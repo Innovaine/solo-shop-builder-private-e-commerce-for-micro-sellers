@@ -3514,3 +3514,57 @@ STDOUT:
 NO MIGRATIONS DIR
 ```
 Full output: [`server-runs/2026-05-15T18-34-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-34-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:37:49.766Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8065153` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4704ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Check if repo exists, if not clone it
+if [ ! -d ".git" ]; then
+  cd ~ && git clone https://github.com/Innovaine/solo-shop-builder-private-e-commerce-for-micro-sellers.git
+  cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+else
+  git pull
+fi
+
+# Install Playwright test dependencies if not already installed
+npm install -D @playwright/test 2>&1 | tail -20
+
+# Create playwright config if it doesn't exist
+if [ ! -f "playwright.config.ts" ]; then
+  cat > playwright.config.ts << 'EOF'
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests/web',
+  fullyParallel: false,
+  retries: 0,
+  workers: 1,
+  reporter: [['list'], ['html', { outputFolder: 'test-results/playwright-report', open: 'never' }]],
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  outputDir: 'test-results/artifacts',
+});
+EOF
+  echo "Created playwright.config.ts"
+fi
+
+# Create test-results directory
+mkdir -p test-results/day-07
+
+echo "Setup complete"
+```
+STDOUT:
+```
+
+added 3 packages in 2s
+Created playwright.config.ts
+Setup complete
+```
+Full output: [`server-runs/2026-05-15T18-37-49-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-37-49-app-cd-solo-shop-builder-private-e-commerce--1.log)
