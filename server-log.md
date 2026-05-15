@@ -2779,3 +2779,16 @@ Fast-forward
     command: sh -c "node_modules/.bin/prisma migrate deploy && node server.js"
 ```
 Full output: [`server-runs/2026-05-15T17-17-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-17-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:18:34.690Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1ce2b8e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 20650ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down
+docker compose up app -d
+sleep 7
+docker compose logs app --tail=50
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
