@@ -3717,3 +3717,31 @@ drwxrwxr-x 3 tester tester 4096 May 15 18:40 ..
 -rw-rw-r-- 1 tester tester  546 May 15 18:40 shop-creation.spec.ts
 ```
 Full output: [`server-runs/2026-05-15T18-40-04-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-40-04-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:40:44.518Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8564560` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 6017ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Run tests with Playwright
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list 2>&1 | tee /tmp/test-output.log
+
+# Show summary
+echo "=== TEST COMPLETE ==="
+```
+STDOUT:
+```
+
+Running 4 tests using 1 worker
+
+  ✓  1 [chromium] › tests/web/auth-flow.spec.ts:6:7 › FR-1 & FR-2: Authentication Flow › FR-1: Homepage loads and signup interface visible (608ms)
+  ✓  2 [chromium] › tests/web/auth-flow.spec.ts:14:7 › FR-1 & FR-2: Authentication Flow › FR-2: Auth verify page responds (217ms)
+  ✓  3 [chromium] › tests/web/public-storefront.spec.ts:4:7 › FR-5: Public Storefront › FR-5: Shop page responds (306ms)
+  ✓  4 [chromium] › tests/web/shop-creation.spec.ts:4:7 › FR-3 & FR-4: Shop Creation › FR-4: Dashboard loads (262ms)
+
+  4 passed (2.4s)
+=== TEST COMPLETE ===
+```
+Full output: [`server-runs/2026-05-15T18-40-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-40-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
