@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand color classes matching design/branding/brand.md */
+.text-slate-blue {
+  color: #3B4C63;
+}
+
+.bg-slate-blue {
+  background-color: #3B4C63;
+}
+
+.text-slate-blue-600 {
+  color: #2C3A4F;
+}
+
+.bg-slate-blue-600 {
+  background-color: #2C3A4F;
+}
+
+.text-charcoal {
+  color: #2E3A4C;
+}
+
+.bg-charcoal {
+  background-color: #2E3A4C;
+}
+
+.text-slate {
+  color: #64748B;
+}
+
+.bg-slate {
+  background-color: #64748B;
+}
+
+.text-slate-300 {
+  color: #CBD5E1;
+}
+
+.bg-slate-300 {
+  background-color: #CBD5E1;
+}
+
+.text-emerald {
+  color: #10B981;
+}
+
+.bg-emerald {
+  background-color: #10B981;
+}
+
+.bg-emerald-50 {
+  background-color: #ECFDF5;
+}
+
+.text-emerald-700 {
+  color: #047857;
+}
+
+.bg-emerald-600 {
+  background-color: #059669;
+}
+
+.text-amber {
+  color: #F59E0B;
+}
+
+.bg-amber {
+  background-color: #F59E0B;
+}
+
+.text-cream {
+  color: #FFFBF3;
+}
+
+.bg-cream {
+  background-color: #FFFBF3;
+}
+
+.text-whisper {
+  color: #E8E8E8;
+}
+
+.bg-whisper {
+  background-color: #E8E8E8;
+}
+
+.border-whisper {
+  border-color: #E8E8E8;
+}
+
+.text-rose {
+  color: #DC2626;
+}
+
+.bg-rose-50 {
+  background-color: #FFF1F2;
+}
+
+.border-rose-200 {
+  border-color: #FECACA;
+}
+
+.text-rose-700 {
+  color: #B91C1C;
+}
+
+.border-rose-500 {
+  border-color: #F43F5E;
+}
+
+.border-emerald-500 {
+  border-color: #10B981;
+}
+
+.border-slate-blue {
+  border-color: #3B4C63;
+}
+
+.text-slate-700 {
+  color: #334155;
+}
+
+.text-slate-200 {
+  color: #E2E8F0;
+}
+
+.bg-slate-700 {
+  background-color: #334155;
+}

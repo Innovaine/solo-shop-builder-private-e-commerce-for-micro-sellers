@@ -222,3 +222,46 @@ BUILD RUNNING
 #15 0.948 prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
 ```
 Full output: [`server-runs/2026-05-15T15-47-56-app-kill--0-cat-tmp-soloshop-build2.pid-2-de-1.log`](server-runs/2026-05-15T15-47-56-app-kill--0-cat-tmp-soloshop-build2.pid-2-de-1.log)
+
+## 2026-05-15T15:48:16.554Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c10cecc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2260ms)
+```
+kill -0 $(cat /tmp/soloshop-build2.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE"
+tail -30 /tmp/soloshop-build2.log
+```
+STDOUT:
+```
+BUILD DONE
+ > [builder 5/5] RUN npm run build:
+3.435  ⨯ page.tsx doesn't have a root layout. To fix this error, make sure every page has a root layout.
+3.474 
+3.474 > Build error occurred
+3.475 Error: Jest worker encountered 1 child process exceptions, exceeding retry limit
+3.475     at ChildProcessWorker.initialize (/app/node_modules/next/dist/compiled/jest-worker/index.js:1:11580)
+3.475     at ChildProcessWorker._onExit (/app/node_modules/next/dist/compiled/jest-worker/index.js:1:12545)
+3.475     at ChildProcess.emit (node:events:536:35)
+3.475     at ChildProcess._handle.onexit (node:internal/child_process:293:12) {
+3.475   type: 'WorkerError'
+3.475 }
+------
+Dockerfile:21
+
+--------------------
+
+  19 |     
+
+  20 |     # Build Next.js app
+
+  21 | >>> RUN npm run build
+
+  22 |     
+
+  23 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-15T15-48-16-app-kill--0-cat-tmp-soloshop-build2.pid-2-de-1.log`](server-runs/2026-05-15T15-48-16-app-kill--0-cat-tmp-soloshop-build2.pid-2-de-1.log)
