@@ -12,7 +12,7 @@ datasource db {
 
 // Seller account - one per email
 model Seller {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -23,7 +23,7 @@ model Seller {
 
 // Shop - single-tenant storefront
 model Shop {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   name      String
   slug      String   @unique
   sellerId  String
@@ -37,7 +37,7 @@ model Shop {
 
 // Magic link tokens for passwordless auth
 model AuthToken {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   token     String   @unique
   sellerId  String
   expiresAt DateTime

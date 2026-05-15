@@ -2250,3 +2250,44 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-15T17-01-27-app-sleep-5-1.log`](server-runs/2026-05-15T17-01-27-app-sleep-5-1.log)
+
+## 2026-05-15T17:01:53.758Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9afc66d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2327ms) _(showing tail — full 7,697B stdout + 0B stderr)_
+```
+tail -100 /tmp/compose-up.log
+```
+STDOUT:
+```
+…nt-config
+app-1       |   -->  prisma/schema.prisma:10
+app-1       |    | 
+app-1       |  9 |   provider = "postgresql"
+app-1       | 10 |   url      = env("DATABASE_URL")
+app-1       |    | 
+app-1       | 
+app-1       | Validation Error Count: 1
+app-1       | [Context: getConfig]
+app-1       | 
+app-1       | Prisma CLI Version : 7.8.0
+[Kapp-1 exited with code 1 (restarting)
+postgres-1  | 2026-05-15 16:55:34.141 UTC [1] LOG:  received fast shutdown request
+postgres-1  | 2026-05-15 16:55:34.142 UTC [1] LOG:  aborting any active transactions
+postgres-1  | 2026-05-15 16:55:34.145 UTC [1] LOG:  background worker "logical replication launcher" (PID 32) exited with exit code 1
+postgres-1  | 2026-05-15 16:55:34.145 UTC [27] LOG:  shutting down
+postgres-1  | 2026-05-15 16:55:34.146 UTC [27] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-05-15 16:55:34.148 UTC [27] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/195FED8, redo lsn=0/195FED8
+postgres-1  | 2026-05-15 16:55:34.153 UTC [1] LOG:  database system is shut down
+[Kpostgres-1 exited with code 0
+postgres-1  | 
+postgres-1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres-1  | 
+postgres-1  | 2026-05-15 17:00:05.241 UTC [1] LOG:  starting PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-05-15 17:00:05.241 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-05-15 17:00:05.242 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-05-15 17:00:05.243 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-05-15 17:00:05.247 UTC [29] LOG:  database system was shut down at 2026-05-15 16:55:34 UTC
+postgres-1  | 2026-05-15 17:00:05.253 UTC [1] LOG:  database system is ready to accept connections
+```
+Full output: [`server-runs/2026-05-15T17-01-53-app-tail--100-tmp-compose-up.log-1.log`](server-runs/2026-05-15T17-01-53-app-tail--100-tmp-compose-up.log-1.log)
