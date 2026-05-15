@@ -6037,3 +6037,23 @@ _Pre-SSH: warehouse pushed to GitHub as commit `c157f97` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT email, token, \"expiresAt\" FROM \"AuthToken\" ORDER BY \"createdAt\" DESC LIMIT 1;"
 ```
 ERROR: command exited 1
+
+## 2026-05-15T21:25:03.732Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f01b61a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2639ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "\dt"
+```
+STDOUT:
+```
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | AuthToken          | table | postgres
+ public | Seller             | table | postgres
+ public | Shop               | table | postgres
+ public | _prisma_migrations | table | postgres
+(4 rows)
+```
+Full output: [`server-runs/2026-05-15T21-25-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-25-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
