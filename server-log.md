@@ -5032,3 +5032,42 @@ STDOUT:
 ls: cannot access '/app/app/': No such file or directory
 ```
 Full output: [`server-runs/2026-05-15T19-56-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-56-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:56:50.836Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `03f1cc8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2700ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -la /app/
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -la /app/.next/ 2>&1 | head -20
+```
+STDOUT:
+```
+total 40
+drwxr-xr-x 1 root   root   4096 May 15 19:15 .
+drwxr-xr-x 1 root   root   4096 May 15 19:15 ..
+-rw------- 1 nextjs nodejs  289 May 15 19:15 .env
+drwxr-xr-x 1 nextjs nodejs 4096 May 15 19:15 .next
+drwxr-xr-x 1 nextjs nodejs 4096 May 15 19:15 node_modules
+-rw-rw-r-- 1 nextjs nodejs  934 May 15 19:15 package.json
+drwxr-xr-x 2 nextjs nodejs 4096 May 15 18:24 prisma
+drwxr-xr-x 2 root   root   4096 May 15 17:26 public
+-rw-r--r-- 1 nextjs nodejs 4541 May 15 19:15 server.js
+total 60
+drwxr-xr-x 1 nextjs nodejs 4096 May 15 19:15 .
+drwxr-xr-x 1 root   root   4096 May 15 19:15 ..
+-rw-r--r-- 1 nextjs nodejs   21 May 15 19:15 BUILD_ID
+-rw-r--r-- 1 nextjs nodejs 2208 May 15 19:15 app-build-manifest.json
+-rw-r--r-- 1 nextjs nodejs  364 May 15 19:15 app-path-routes-manifest.json
+-rw-r--r-- 1 nextjs nodejs  967 May 15 19:15 build-manifest.json
+-rw-r--r-- 1 nextjs nodejs   20 May 15 19:15 package.json
+-rw-r--r-- 1 nextjs nodejs 1154 May 15 19:15 prerender-manifest.js
+-rw-r--r-- 1 nextjs nodejs 1039 May 15 19:15 prerender-manifest.json
+-rw-r--r-- 1 nextjs nodejs    2 May 15 19:15 react-loadable-manifest.json
+-rw-r--r-- 1 nextjs nodejs 4516 May 15 19:15 required-server-files.json
+-rw-r--r-- 1 nextjs nodejs 1205 May 15 19:15 routes-manifest.json
+drwxr-xr-x 5 nextjs nodejs 4096 May 15 19:15 server
+drwxr-xr-x 5 nextjs nodejs 4096 May 15 19:14 static
+```
+Full output: [`server-runs/2026-05-15T19-56-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-56-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
