@@ -6383,3 +6383,22 @@ STDOUT:
 Config review needed in source code
 ```
 Full output: [`server-runs/2026-05-15T21-33-26-app-echo-Check-if-session-cookie-is-HttpOnly-1.log`](server-runs/2026-05-15T21-33-26-app-echo-Check-if-session-cookie-is-HttpOnly-1.log)
+
+## 2026-05-15T21:34:43.440Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f934967` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2892ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || git clone https://github.com/Innovaine/solo-shop-builder-private-e-commerce-for-micro-sellers.git ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker ps --filter "name=solo-shop" 
+curl -sf http://localhost:3000/api/health && echo "App is healthy" || echo "App NOT responding"
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED          STATUS                    PORTS                                         NAMES
+ed6c785093f0   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   16 minutes ago   Up 16 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+42d57c7dc2c1   postgres:16-alpine                                           "docker-entrypoint.s…"   16 minutes ago   Up 16 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}App is healthy
+```
+Full output: [`server-runs/2026-05-15T21-34-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-34-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
