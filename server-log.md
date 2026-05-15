@@ -6230,3 +6230,26 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 11 minute
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 11 minutes (healthy)
 ```
 Full output: [`server-runs/2026-05-15T21-30-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-30-26-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:30:39.528Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `248a3fc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2590ms)
+```
+echo "=== TEST: Homepage ===" && curl -sI http://localhost:3000/ | head -1 && echo "" && echo "=== TEST: Login page ===" && curl -sI http://localhost:3000/auth/login | head -1 && echo "" && echo "=== TEST: Health endpoint ===" && curl -s http://localhost:3000/api/health | head -c 100 && echo "" && echo "" && echo "=== TEST: Public shop page (using test shop slug) ===" && curl -sI http://localhost:3000/shop/test-shop | head -1
+```
+STDOUT:
+```
+=== TEST: Homepage ===
+HTTP/1.1 200 OK
+
+=== TEST: Login page ===
+HTTP/1.1 200 OK
+
+=== TEST: Health endpoint ===
+{"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}
+
+=== TEST: Public shop page (using test shop slug) ===
+HTTP/1.1 200 OK
+```
+Full output: [`server-runs/2026-05-15T21-30-39-app-echo-TEST-Homepage-curl--sI-http-localho-1.log`](server-runs/2026-05-15T21-30-39-app-echo-TEST-Homepage-curl--sI-http-localho-1.log)
