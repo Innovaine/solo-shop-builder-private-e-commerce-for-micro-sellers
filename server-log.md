@@ -4692,3 +4692,32 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 45ms
 ```
 Full output: [`server-runs/2026-05-15T19-17-31-app-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-15T19-17-31-app-cd-solo-shop-builder-private-e-commerce--2.log)
+
+## 2026-05-15T19:17:53.247Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4222317` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2441ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -la /app/.next/server/app/
+```
+STDOUT:
+```
+total 84
+drwxr-xr-x 7 nextjs nodejs 4096 May 15 19:15 .
+drwxr-xr-x 5 nextjs nodejs 4096 May 15 19:15 ..
+drwxr-xr-x 2 nextjs nodejs 4096 May 15 19:15 _not-found
+-rw-r--r-- 1 nextjs nodejs 6429 May 15 19:15 _not-found.html
+-rw-r--r-- 1 nextjs nodejs  142 May 15 19:15 _not-found.meta
+-rw-r--r-- 1 nextjs nodejs 3569 May 15 19:15 _not-found.rsc
+drwxr-xr-x 4 nextjs nodejs 4096 May 15 19:15 api
+drwxr-xr-x 3 nextjs nodejs 4096 May 15 19:15 auth
+drwxr-xr-x 3 nextjs nodejs 4096 May 15 19:15 dashboard
+-rw-r--r-- 1 nextjs nodejs 8468 May 15 19:15 index.html
+-rw-r--r-- 1 nextjs nodejs   80 May 15 19:15 index.meta
+-rw-r--r-- 1 nextjs nodejs 4538 May 15 19:15 index.rsc
+-rw-r--r-- 1 nextjs nodejs 4808 May 15 19:15 page.js
+-rw-r--r-- 1 nextjs nodejs 1187 May 15 19:15 page.js.nft.json
+-rw-r--r-- 1 nextjs nodejs 2993 May 15 19:15 page_client-reference-manifest.js
+drwxr-xr-x 3 nextjs nodejs 4096 May 15 19:15 shop
+```
+Full output: [`server-runs/2026-05-15T19-17-53-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T19-17-53-app-docker-exec-solo-shop-builder-private-e--1.log)
