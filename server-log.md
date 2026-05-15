@@ -3431,3 +3431,30 @@ OK: App is responding
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-15T18-31-50-app-sleep-5-1.log`](server-runs/2026-05-15T18-31-50-app-sleep-5-1.log)
+
+## 2026-05-15T18:32:12.606Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `513dad1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2308ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose logs app --tail=50
+```
+STDOUT:
+```
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | No migration found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 47ms
+```
+Full output: [`server-runs/2026-05-15T18-32-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-32-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
