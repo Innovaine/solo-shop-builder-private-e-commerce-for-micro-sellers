@@ -32,8 +32,28 @@ model Shop {
   updatedAt DateTime @updatedAt
   
   seller    Seller   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  products  Product[]
   
   @@index([sellerId])
+}
+
+// Product - shop inventory items
+model Product {
+  id          String   @id @default(uuid())
+  shopId      String
+  title       String
+  description String?  @db.Text
+  price       Int      // Price in cents (e.g., 4500 = $45.00)
+  imageUrl    String?
+  category    String?  // Handmade, Vintage, Supplies, Other
+  stock       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  shop        Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  
+  @@index([shopId])
+  @@index([category])
 }
 
 // Magic link tokens for passwordless auth
