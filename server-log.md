@@ -5350,3 +5350,34 @@ STDOUT:
 {"version":4,"routes":{"/":{"experimentalBypassFor":[{"type":"header","key":"Next-Action"},{"type":"header","key":"content-type","value":"multipart/form-data;.*"}],"initialRevalidateSeconds":false,"srcRoute":"/","dataRoute":"/index.rsc"},"/auth/login":{"experimentalBypassFor":[{"type":"header","key":"Next-Action"},{"type":"header","key":"content-type","value":"multipart/form-data;.*"}],"initialRevalidateSeconds":false,"srcRoute":"/auth/login","dataRoute":"/auth/login.rsc"},"/dashboard/create-shop":{"experimentalBypassFor":[{"type":"header","key":"Next-Action"},{"type":"header","key":"content-type","value":"multipart/form-data;.*"}],"initialRevalidateSeconds":false,"srcRoute":"/dashboard/create-shop","dataRoute":"/dashboard/create-shop.rsc"}},"dynamicRoutes":{},"notFoundRoutes":[],"preview":{"previewModeId":"38cefe67164aa73aaddd55be77d73a44","previewModeSigningKey":"6d668aa2bbdb89f3664083dea284ee05e4263cc38fd70634ddd5e9e930032ebe","previewModeEncryptionKey":"86cd9cb7033c844936d7f03cca170f04bde63ae9f9f9b3bd50831b7577fc4ae6"}}
 ```
 Full output: [`server-runs/2026-05-15T20-04-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-04-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:05:05.628Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8b5721f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2670ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -I "http://localhost:3000/index.rsc" 2>&1 | head -20
+echo "---"
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -la /app/.next/server/app/ | grep index
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 404 Not Found
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Fri, 15 May 2026 20:05:05 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+---
+-rw-r--r-- 1 nextjs nodejs 8468 May 15 19:15 index.html
+-rw-r--r-- 1 nextjs nodejs   80 May 15 19:15 index.meta
+-rw-r--r-- 1 nextjs nodejs 4538 May 15 19:15 index.rsc
+```
+Full output: [`server-runs/2026-05-15T20-05-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-05-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
