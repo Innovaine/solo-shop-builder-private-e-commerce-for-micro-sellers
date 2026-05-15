@@ -5553,3 +5553,60 @@ time="2026-05-15T20:07:36Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-15T20-07-58-app-kill--0-cat-tmp-compose-up-day9-v2.pid-2-1.log`](server-runs/2026-05-15T20-07-58-app-kill--0-cat-tmp-compose-up-day9-v2.pid-2-1.log)
+
+## 2026-05-15T20:08:33.388Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fafd1cd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2981ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Wait for app to be ready
+timeout 30 bash -c 'until curl -fsS http://localhost:3000/api/health 2>/dev/null; do sleep 2; done' && echo "Health OK" || echo "Health TIMEOUT"
+echo "---"
+curl -I http://localhost:3000/ 2>&1 | head -15
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}Health OK
+---
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  8468    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "5xdqzkfiir6in"
+Content-Type: text/html; charset=utf-8
+Content-Length: 8468
+Date: Fri, 15 May 2026 20:08:33 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-15T20-08-33-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-08-33-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:08:53.252Z — Anil ran 1 command(s)
+### Command 1 on app as engineer (✓ exit 0, 2719ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -s http://localhost:3000/ | grep -o "<h1[^>]*>.*</h1>" | head -3
+echo "---"
+curl -s http://localhost:3000/ | grep -o "Solo Shop Builder\|Your own storefront\|Start selling today" | head -5
+echo "---"
+curl -I http://localhost:3000/auth/login 2>&1 | grep "HTTP\|Content-Type"
+```
+STDOUT:
+```
+<h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Solo Shop Builder</h1>
+---
+Solo Shop Builder
+Your own storefront
+Solo Shop Builder
+Your own storefront
+Start selling today
+---
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+```
+Full output: [`server-runs/2026-05-15T20-08-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-08-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
