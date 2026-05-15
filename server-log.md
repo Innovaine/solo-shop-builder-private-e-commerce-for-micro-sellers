@@ -6112,3 +6112,19 @@ STDOUT:
 {"id":"b67fe1fd-4bbd-4f02-81e5-d0b661d225c1","name":"Test Shop","slug":"test-shop","sellerId":"5d086d96-8afe-490f-ad80-83d1de45dfa9","createdAt":"2026-05-15T21:26:54.179Z","updatedAt":"2026-05-15T21:26:54.179Z"}
 ```
 Full output: [`server-runs/2026-05-15T21-26-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-26-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:27:38.840Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `81c2903` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2591ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c 'SELECT id, name, slug, "sellerId" FROM "Shop" ORDER BY "createdAt" DESC LIMIT 1;'
+```
+STDOUT:
+```
+                  id                  |   name    |   slug    |               sellerId               
+--------------------------------------+-----------+-----------+--------------------------------------
+ b67fe1fd-4bbd-4f02-81e5-d0b661d225c1 | Test Shop | test-shop | 5d086d96-8afe-490f-ad80-83d1de45dfa9
+(1 row)
+```
+Full output: [`server-runs/2026-05-15T21-27-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-27-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
