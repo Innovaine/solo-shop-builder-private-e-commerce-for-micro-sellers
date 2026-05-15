@@ -5920,3 +5920,19 @@ Running 4 tests using 1 worker
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-15T20-21-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-21-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:45:00.063Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `58a5a18` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3036ms) _(showing tail — full 4,655B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -sI http://localhost:3000/dashboard | head -5
+curl -s http://localhost:3000/dashboard | head -30
+ls -lh test-results/artifacts/shop-creation*/test-failed-1.png 2>/dev/null || echo "No screenshot found"
+```
+STDOUT:
+```
+…eScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L7\"],\"globalErrorComponent\":\"$8\",\"missingSlots\":\"$W9\"}]]\n"])</script><script>self.__next_f.push([1,"7:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n4:E{\"digest\":\"NEXT_REDIRECT;replace;/auth/login;307;\"}\n"])</script></body></html>-rw-rw-r-- 1 tester tester 99K May 15 20:21 test-results/artifacts/shop-creation-FR-3-FR-4-Shop-Creation-FR-4-Dashboard-loads-chromium/test-failed-1.png
+```
+Full output: [`server-runs/2026-05-15T20-45-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-45-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
