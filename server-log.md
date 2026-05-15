@@ -5211,3 +5211,46 @@ STDOUT:
 …Name:"text-xl md:text-2xl text-slate-200 mb-8 max-w-2xl mx-auto",children:"Your own storefront. No marketplace fees. Just you and your customers."}),r.jsx(a.default,{href:"/auth/login",className:"inline-block bg-emerald hover:bg-emerald-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition transform hover:-translate-y-0.5",children:"Start selling today"})]}),(0,r.jsxs)("div",{className:"grid md:grid-cols-3 gap-8 mt-20",children:[(0,r.jsxs)("div",{className:"bg-white/10 backdrop-blur rounded-lg p-8 text-white",children:[r.jsx("div",{className:"text-4xl mb-4",children:"\uD83C\uDFEA"}),r.jsx("h3",{className:"text-xl font-semibold mb-3",children:"Your branded shop"}),r.jsx("p",{className:"text-slate-200",children:"Get a unique URL for your storefront. No templates. No marketplace branding."})]}),(0,r.jsxs)("div",{className:"bg-white/10 backdrop-blur rounded-lg p-8 text-white",children:[r.jsx("div",{className:"text-4xl mb-4",children:"\uD83D\uDCB3"}),r.jsx("h3",{className:"text-xl font-semibold mb-3",children:"Accept payments"}),r.jsx("p",{className:"text-slate-200",children:"Stripe integration. Customers pay directly. You keep everything minus processing fees."})]}),(0,r.jsxs)("div",{className:"bg-white/10 backdrop-blur rounded-lg p-8 text-white",children:[r.jsx("div",{className:"text-4xl mb-4",children:"\uD83D\uDCE6"}),r.jsx("h3",{className:"text-xl font-semibold mb-3",children:"Manage orders"}),r.jsx("p",{className:"text-slate-200",children:"Track every order. Update shipping status. Message customers. All in one dashboard."})]})]}),(0,r.jsxs)("div",{className:"text-center mt-16",children:[r.jsx("p",{className:"text-slate-200 mb-4",children:"Built for Etsy resellers, local craftspeople, and micro-sellers who want to own their storefront."}),r.jsx(a.default,{href:"/auth/login",className:"text-white font-semibold hover:underline",children:"Create your shop →"})]})]})})}},7272:()=>{}};var t=require("../webpack-runtime.js");t.C(e);var s=e=>t(t.s=e),r=t.X(0,[948,471,783],()=>s(1152));module.exports=r})();
 ```
 Full output: [`server-runs/2026-05-15T20-00-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-00-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:03:31.902Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9ac7e68` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2753ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -I http://localhost:3000/auth/login 2>&1 | head -15
+echo "---"
+curl -I http://localhost:3000/dashboard 2>&1 | head -15
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  5395    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "qjwqvewb7u458"
+Content-Type: text/html; charset=utf-8
+Content-Length: 5395
+Date: Fri, 15 May 2026 20:03:31 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+---
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 307 Temporary Redirect
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+Location: /auth/login
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Fri, 15 May 2026 20:03:31 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-15T20-03-31-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-03-31-app-cd-solo-shop-builder-private-e-commerce--1.log)
