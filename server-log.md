@@ -8281,3 +8281,43 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 Full output: [`server-runs/2026-05-15T23-15-11-app-curl--sI-http-localhost-3000-head--15-1.log`](server-runs/2026-05-15T23-15-11-app-curl--sI-http-localhost-3000-head--15-1.log)
+
+## 2026-05-15T23:23:56.695Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e112ee9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3464ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+Updating f581a35..e112ee9
+Fast-forward
+ DEPLOYMENT.md                    | 223 +++++++++++
+ app/api/health/route.ts          |  66 +++-
+ app/components/ErrorBoundary.tsx |  82 ++++
+ day-12/_index.md                 |  17 +
+ day-12/engineering.md            | 262 +++++++++++++
+ day-12/review.md                 | 162 ++++++++
+ day-12/test.md                   | 225 +++++++++++
+ day-13/_plan.md                  |  32 ++
+ middleware.ts                    |  48 ++-
+ server-log.md                    | 822 +++++++++++++++++++++++++++++++++++++++
+ src/lib/errors.ts                | 120 ++++++
+ src/lib/timeout.ts               |  66 ++++
+ test-results/day-12/report.md    | 239 ++++++++++++
+ tests/web/scaling-day12.spec.ts  | 121 ++++++
+ 14 files changed, 2448 insertions(+), 37 deletions(-)
+ create mode 100644 DEPLOYMENT.md
+ create mode 100644 app/components/ErrorBoundary.tsx
+ create mode 100644 day-12/_index.md
+ create mode 100644 day-12/engineering.md
+ create mode 100644 day-12/review.md
+ create mode 100644 day-12/test.md
+ create mode 100644 day-13/_plan.md
+ create mode 100644 src/lib/errors.ts
+ create mode 100644 src/lib/timeout.ts
+ create mode 100644 test-results/day-12/report.md
+ create mode 100644 tests/web/scaling-day12.spec.ts
+```
+Full output: [`server-runs/2026-05-15T23-23-56-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-23-56-app-cd-solo-shop-builder-private-e-commerce--1.log)
