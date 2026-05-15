@@ -8988,3 +8988,57 @@ STDOUT:
   7 passed (9.4s)
 ```
 Full output: [`server-runs/2026-05-15T23-39-23-app-kill--0-cat-tmp-day13-playwright.pid-2-d-1.log`](server-runs/2026-05-15T23-39-23-app-kill--0-cat-tmp-day13-playwright.pid-2-d-1.log)
+
+## 2026-05-15T23:39:46.932Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3b2ef7c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2708ms) _(showing tail — full 4,433B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+cat /tmp/day13-playwright.log
+```
+STDOUT:
+```
+…res › Error responses include request ID for debugging 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoMatch[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected pattern: [32m/^[A-Za-z0-9_-]{12}$/[39m
+    Received string:  [31m"cGkjJWTRzTAhhl9S"[39m
+
+      118 |     const headers = response.headers();
+      119 |     expect(headers['x-request-id']).toBeDefined();
+    > 120 |     expect(headers['x-request-id']).toMatch(/^[A-Za-z0-9_-]{12}$/);
+          |                                     ^
+      121 |   });
+      122 |
+      123 |   test('Protected routes redirect with proper headers', async ({ request }) => {
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/scaling-day13.spec.ts:120:37
+
+    Error Context: test-results/tests-web-scaling-day13-Da-78c2d-de-request-ID-for-debugging/error-context.md
+
+  3) tests/web/scaling-day13.spec.ts:123:7 › Day 13 Scaling Features › Protected routes redirect with proper headers 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m307[39m
+    Received: [31m200[39m
+
+      125 |     
+      126 |     // Should redirect to login
+    > 127 |     expect(response.status()).toBe(307);
+          |                               ^
+      128 |     expect(response.headers()['location']).toBe('/auth/login');
+      129 |   });
+      130 |
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/scaling-day13.spec.ts:127:31
+
+    Error Context: test-results/tests-web-scaling-day13-Da-77ccd-edirect-with-proper-headers/error-context.md
+
+  3 failed
+    tests/web/scaling-day13.spec.ts:46:7 › Day 13 Scaling Features › Request ID middleware adds X-Request-Id to API responses 
+    tests/web/scaling-day13.spec.ts:105:7 › Day 13 Scaling Features › Error responses include request ID for debugging 
+    tests/web/scaling-day13.spec.ts:123:7 › Day 13 Scaling Features › Protected routes redirect with proper headers 
+  7 passed (9.4s)
+```
+Full output: [`server-runs/2026-05-15T23-39-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-39-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
