@@ -8042,3 +8042,20 @@ drwxrwxr-x  5 tester tester 4096 May 15 18:40 solo-shop-builder-private-e-commer
 ```
 ERROR: command exited 128
 Full output: [`server-runs/2026-05-15T23-08-04-app-ls--la-grep-solo-shop-echo-Repo-not-foun-1.log`](server-runs/2026-05-15T23-08-04-app-ls--la-grep-solo-shop-echo-Repo-not-foun-1.log)
+
+## 2026-05-15T23:09:36.669Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `35b2f11` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 128, 3083ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git status
+git pull origin main 2>&1 || git pull 2>&1
+```
+STDOUT:
+```
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+```
+ERROR: command exited 128
+Full output: [`server-runs/2026-05-15T23-09-36-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-09-36-app-cd-solo-shop-builder-private-e-commerce--1.log)
