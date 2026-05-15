@@ -4233,3 +4233,43 @@ Running 4 tests using 1 worker
 ---EXIT CODE: 0---
 ```
 Full output: [`server-runs/2026-05-15T19-01-31-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-01-31-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:02:24.944Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e5a3c86` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2709ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "=== Test Results Directory ==="
+ls -lh test-results/ 2>/dev/null || echo "No test-results directory"
+echo ""
+echo "=== Playwright Report ==="
+cat /tmp/playwright-day8.log
+echo ""
+echo "=== Docker Container Status ==="
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+```
+STDOUT:
+```
+=== Test Results Directory ===
+total 8.0K
+drwxrwxr-x 2 tester tester 4.0K May 15 19:01 artifacts
+drwxrwxr-x 2 tester tester 4.0K May 15 18:40 day-07
+
+=== Playwright Report ===
+
+Running 4 tests using 1 worker
+
+  ✓  1 [chromium] › tests/web/auth-flow.spec.ts:6:7 › FR-1 & FR-2: Authentication Flow › FR-1: Homepage loads and signup interface visible (214ms)
+  ✓  2 [chromium] › tests/web/auth-flow.spec.ts:14:7 › FR-1 & FR-2: Authentication Flow › FR-2: Auth verify page responds (215ms)
+  ✓  3 [chromium] › tests/web/public-storefront.spec.ts:4:7 › FR-5: Public Storefront › FR-5: Shop page responds (225ms)
+  ✓  4 [chromium] › tests/web/shop-creation.spec.ts:4:7 › FR-3 & FR-4: Shop Creation › FR-4: Dashboard loads (194ms)
+
+  4 passed (1.5s)
+
+=== Docker Container Status ===
+NAMES                                                               STATUS                    PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 13 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 35 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-15T19-02-24-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-02-24-app-cd-solo-shop-builder-private-e-commerce--1.log)
