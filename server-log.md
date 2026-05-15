@@ -1508,3 +1508,48 @@ STDOUT:
 Started build, PID=720234
 ```
 Full output: [`server-runs/2026-05-15T16-43-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-43-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:44:27.319Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `27df841` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 12518ms)
+```
+sleep 10
+kill -0 $(cat /tmp/soloshop-build11.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/soloshop-build11.log
+```
+STDOUT:
+```
+DONE
+#21 [runner  6/10] RUN chown nextjs:nodejs .next
+#21 DONE 0.2s
+
+#22 [runner  7/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#22 DONE 0.4s
+
+#23 [runner  8/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#23 DONE 0.0s
+
+#24 [runner  9/10] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#24 DONE 0.0s
+
+#25 [runner 10/10] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#25 DONE 0.0s
+
+#26 exporting to image
+#26 exporting layers
+#26 exporting layers 1.3s done
+#26 exporting manifest sha256:f18d6d2adaa904f54d1f1ec81162f33715ed24ff3c6de2e695a4372c8119947d done
+#26 exporting config sha256:bdceb392da9b7cfc878c8b0e1a07ebb334e533f6dddc1ca1c37103c6748a278b done
+#26 exporting attestation manifest sha256:be00b55490c0b1fbe707d3d7c3fa5ac3154870e2aac4fc85ded9523ebefbaee4 done
+#26 exporting manifest list sha256:9bd091ca0131d6e76f5df4293b21ebebbc86487d286284effcf86d8deda24490 done
+#26 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#26 DONE 1.9s
+
+#27 resolving provenance for metadata file
+#27 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-15T16-44-27-app-sleep-10-1.log`](server-runs/2026-05-15T16-44-27-app-sleep-10-1.log)
