@@ -6333,3 +6333,19 @@ Date: Fri, 15 May 2026 21:32:04 GMT
 Connection: keep-alive
 ```
 Full output: [`server-runs/2026-05-15T21-32-04-app-LATEST_TOKEN-docker-exec-solo-shop-build-1.log`](server-runs/2026-05-15T21-32-04-app-LATEST_TOKEN-docker-exec-solo-shop-build-1.log)
+
+## 2026-05-15T21:32:20.488Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ebce936` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2773ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT id, name, slug FROM \"Shop\" LIMIT 5;"
+```
+STDOUT:
+```
+                  id                  |   name    |   slug    
+--------------------------------------+-----------+-----------
+ b67fe1fd-4bbd-4f02-81e5-d0b661d225c1 | Test Shop | test-shop
+(1 row)
+```
+Full output: [`server-runs/2026-05-15T21-32-20-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-32-20-app-docker-exec-solo-shop-builder-private-e--1.log)
