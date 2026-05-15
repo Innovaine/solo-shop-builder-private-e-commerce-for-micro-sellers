@@ -6299,3 +6299,19 @@ STDOUT:
 (1 row)
 ```
 Full output: [`server-runs/2026-05-15T21-31-31-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-31-31-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-15T21:31:49.277Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `121bdb9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2782ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT token FROM \"AuthToken\" LIMIT 1;" -t && echo "---" && LATEST_TOKEN=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT token FROM \"AuthToken\" ORDER BY id DESC LIMIT 1;" -t) && echo "Using token: $LATEST_TOKEN" && curl -s -I "http://localhost:3000/api/auth/verify?token=${LATEST_TOKEN}" | head -5
+```
+STDOUT:
+```
+ HuPW6Sa5r0OpdEUxVflrHADOefH28sE4
+
+---
+Using token:  NDaDKRMzlZb2T_83vVLMysB_yvP3EAdc
+```
+Full output: [`server-runs/2026-05-15T21-31-49-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-31-49-app-docker-exec-solo-shop-builder-private-e--1.log)
