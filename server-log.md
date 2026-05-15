@@ -150,3 +150,53 @@ root      562386  0.0  0.0 1747108 5284 ?        Sl   May14   0:00 /usr/bin/dock
 root      562392  0.0  0.0 2116536 6728 ?        Sl   May14   0:00 /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 3000 -container-ip 172.18.0.3 -container-port 3000 -use-listen-fd
 ```
 Full output: [`server-runs/2026-05-15T15-47-12-app-ls--lh-tmp-soloshop-build2.-2-dev-null-e-1.log`](server-runs/2026-05-15T15-47-12-app-ls--lh-tmp-soloshop-build2.-2-dev-null-e-1.log)
+
+## 2026-05-15T15:47:35.574Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ddaee7c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 1798ms) _(showing tail — full 3,096B stdout + 0B stderr)_
+```
+cat /tmp/soloshop-build2.pid
+kill -0 $(cat /tmp/soloshop-build2.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE"
+tail -100 /tmp/soloshop-build2.log
+```
+STDOUT:
+```
+…rom Dockerfile
+#2 transferring dockerfile: 1.32kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:20-alpine
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [base 1/1] FROM docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
+#5 resolve docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 25.02kB done
+#6 DONE 0.0s
+
+#7 [deps 2/4] WORKDIR /app
+#7 CACHED
+
+#8 [deps 1/4] RUN apk add --no-cache libc6-compat openssl
+#8 CACHED
+
+#9 [deps 3/4] COPY package.json package-lock.json* ./
+#9 CACHED
+
+#10 [deps 4/4] RUN npm install
+#10 17.77 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#10 18.47 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#10 19.13 npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+#10 19.22 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+#10 19.36 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#10 19.65 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#10 20.25 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+```
+Full output: [`server-runs/2026-05-15T15-47-35-app-cat-tmp-soloshop-build2.pid-1.log`](server-runs/2026-05-15T15-47-35-app-cat-tmp-soloshop-build2.pid-1.log)
