@@ -7913,3 +7913,14 @@ for i in {1..6}; do
 done
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T22:55:20.128Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `46cf5bc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13311ms)
+```
+docker restart solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 &
+nohup sleep 4 > /tmp/restart_wait.log 2>&1 &
+echo "Restart queued, waiting 4 seconds..."
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
