@@ -1958,3 +1958,20 @@ Fast-forward
  2 files changed, 128 insertions(+), 1 deletion(-)
 ```
 Full output: [`server-runs/2026-05-15T16-57-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-57-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:57:30.967Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b78b893` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2836ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down 2>/dev/null || true
+nohup docker compose build > /tmp/day5-build2.log 2>&1 &
+echo $! > /tmp/day5-build2.pid
+echo "Build restarted, PID=$(cat /tmp/day5-build2.pid)"
+```
+STDOUT:
+```
+Build restarted, PID=734832
+```
+Full output: [`server-runs/2026-05-15T16-57-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-57-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
