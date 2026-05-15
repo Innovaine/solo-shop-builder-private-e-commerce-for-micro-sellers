@@ -4910,3 +4910,34 @@ Received: false
 -rw-rw-r-- 1 tester tester  99K May 15 19:28 test-failed-1.png
 ```
 Full output: [`server-runs/2026-05-15T19-28-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-28-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:29:54.616Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9e57bdb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2646ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+cat tests/web/shop-creation.spec.ts | head -20
+```
+STDOUT:
+```
+import { test, expect } from '@playwright/test';
+
+test.describe('FR-3 & FR-4: Shop Creation', () => {
+  test('FR-4: Dashboard loads', async ({ page, context }) => {
+    await context.addCookies([{
+      name: 'session',
+      value: 'test-token',
+      domain: 'localhost',
+      path: '/'
+    }]);
+    
+    await page.goto('http://localhost:3000/dashboard');
+    await page.screenshot({ path: 'test-results/day-07/03-dashboard.png' });
+    
+    const pageLoaded = page.url().includes('dashboard');
+    expect(pageLoaded).toBeTruthy();
+  });
+});
+```
+Full output: [`server-runs/2026-05-15T19-29-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-29-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
