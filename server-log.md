@@ -6425,3 +6425,20 @@ found 0 vulnerabilities
 Setup complete, ready to run tests
 ```
 Full output: [`server-runs/2026-05-15T21-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:35:30.735Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3035f91` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 5152ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Run Playwright tests with custom output directories in tester's home
+nohup sh -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list --output=$HOME/test-results/day-10 > /tmp/playwright-day10-tester.log 2>&1" &
+echo $! > /tmp/playwright-day10-tester.pid
+echo "Started Playwright tests, PID=$(cat /tmp/playwright-day10-tester.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=813005
+```
+Full output: [`server-runs/2026-05-15T21-35-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-35-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
