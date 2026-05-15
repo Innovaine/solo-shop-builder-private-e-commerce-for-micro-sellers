@@ -7924,3 +7924,33 @@ nohup sleep 4 > /tmp/restart_wait.log 2>&1 &
 echo "Restart queued, waiting 4 seconds..."
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T22:55:39.868Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cd0c8b7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2877ms)
+```
+echo "=== Checking rate limit configs in code ==="
+grep -A 5 "SHOP_CREATE\|AUTH_SIGNUP" src/lib/rate-limit.ts | head -20
+
+echo ""
+echo "=== Verifying request ID added to health endpoint response ==="
+curl -s -i http://localhost:3000/api/health 2>&1 | head -15
+```
+STDOUT:
+```
+=== Checking rate limit configs in code ===
+
+=== Verifying request ID added to health endpoint response ===
+HTTP/1.1 200 OK
+x-request-id: IMuUj27WPZ_E
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+Date: Fri, 15 May 2026 22:55:40 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"ok","timestamp":"2026-05-15T22:55:40.077Z","database":"connected","responseTime":"55ms"}
+```
+Full output: [`server-runs/2026-05-15T22-55-39-app-echo-Checking-rate-limit-configs-in-code-1.log`](server-runs/2026-05-15T22-55-39-app-echo-Checking-rate-limit-configs-in-code-1.log)
