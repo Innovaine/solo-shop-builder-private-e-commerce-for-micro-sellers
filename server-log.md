@@ -1068,3 +1068,46 @@ sleep 60 && kill -0 $(cat /tmp/soloshop-build8.pid) 2>/dev/null && echo "RUNNING
 tail -80 /tmp/soloshop-build8.log | tail -30
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-15T16:15:30.837Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `445c385` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2225ms)
+```
+kill -0 $(cat /tmp/soloshop-build8.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/soloshop-build8.log | tail -30
+```
+STDOUT:
+```
+DONE
+ > [builder 5/5] RUN npm run build:
+11.60     at async _r.loadEngine (/app/node_modules/@prisma/client/runtime/library.js:112:448)
+11.60     at async _r.instantiateLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:12599) {
+11.60   clientVersion: '5.22.0',
+11.60   errorCode: undefined
+11.60 }
+11.60    Generating static pages (8/11) 
+11.69  ✓ Generating static pages (11/11)
+11.70 
+11.70 > Export encountered errors on following paths:
+11.70 	/auth/login/page: /auth/login
+------
+Dockerfile:21
+
+--------------------
+
+  19 |     
+
+  20 |     # Build Next.js app
+
+  21 | >>> RUN npm run build
+
+  22 |     
+
+  23 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-15T16-15-30-app-kill--0-cat-tmp-soloshop-build8.pid-2-de-1.log`](server-runs/2026-05-15T16-15-30-app-kill--0-cat-tmp-soloshop-build8.pid-2-de-1.log)
