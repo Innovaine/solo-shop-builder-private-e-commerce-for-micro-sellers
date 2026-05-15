@@ -8476,3 +8476,16 @@ time="2026-05-15T23:28:18Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-15T23-29-22-app-sleep-5-1.log`](server-runs/2026-05-15T23-29-22-app-sleep-5-1.log)
+
+## 2026-05-15T23:30:20.572Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5fdb547` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4444ms)
+```
+timeout 90 bash -c 'until curl -fsS http://localhost:3000/api/health 2>/dev/null; do sleep 2; done' && echo "OK" || echo "TIMEOUT"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-15T23:30:20.876Z","responseTime":"283ms","checks":{"database":{"status":"ok","responseTime":"51ms"},"email":{"status":"ok","responseTime":"232ms"}}}OK
+```
+Full output: [`server-runs/2026-05-15T23-30-20-app-timeout-90-bash--c-until-curl--fsS-http--1.log`](server-runs/2026-05-15T23-30-20-app-timeout-90-bash--c-until-curl--fsS-http--1.log)
