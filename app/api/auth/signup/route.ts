@@ -1,12 +1,14 @@
 // FR-1: Email magic link signup
 // POST /api/auth/signup with { email }
 // Sends 6-digit magic link token valid for 15 minutes
+// Rate limited: 5 attempts per 15 minutes per IP
 
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { nanoid } from 'nanoid'
 import { prisma } from '@/lib/db'
 import { sendMagicLinkEmail } from '@/lib/email'
+import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
 
 const signupSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -14,6 +16,23 @@ const signupSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting check
+    const clientId = getClientIdentifier(request)
+    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.AUTH_SIGNUP)
+    
+    if (!rateLimitResult.allowed) {
+      return NextResponse.json(
+        { error: 'Too many signup attempts. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(rateLimitResult.resetAt).toISOString(),
+          }
+        }
+      )
+    }
+    
     const body = await request.json()
     const { email } = signupSchema.parse(body)
 

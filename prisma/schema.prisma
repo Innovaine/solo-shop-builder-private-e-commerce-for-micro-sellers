@@ -49,4 +49,6 @@ model AuthToken {
   
   @@index([token])
   @@index([sellerId])
+  @@index([expiresAt]) // Optimize cleanup queries for expired tokens
+  @@index([used, expiresAt]) // Composite index for auth verification queries
 }

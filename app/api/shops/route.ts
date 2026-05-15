@@ -52,6 +52,24 @@ export async function POST(request: NextRequest) {
   try {
     // Check auth
     const { sellerId } = await requireAuth()
+    
+    // Rate limiting check (prevent shop creation spam)
+    const { checkRateLimit, getClientIdentifier, RATE_LIMITS } = await import('@/lib/rate-limit')
+    const clientId = getClientIdentifier(request)
+    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.SHOP_CREATE)
+    
+    if (!rateLimitResult.allowed) {
+      return NextResponse.json(
+        { error: 'Too many shop creation attempts. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(rateLimitResult.resetAt).toISOString(),
+          }
+        }
+      )
+    }
 
     // Parse and validate body
     const body = await request.json()
