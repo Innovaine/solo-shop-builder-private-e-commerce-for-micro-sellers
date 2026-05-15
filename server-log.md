@@ -2382,3 +2382,18 @@ sleep 2
 docker compose up -d
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T17:05:14.391Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `330ef58` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5206ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+docker compose logs app --tail=40
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   37 seconds ago   Up 36 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-15T17-05-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-05-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
