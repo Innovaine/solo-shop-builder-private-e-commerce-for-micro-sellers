@@ -4096,3 +4096,18 @@ STDOUT:
  create mode 100644 tests/web/shop-creation.spec.ts
 ```
 Full output: [`server-runs/2026-05-15T18-54-49-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-54-49-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:55:08.871Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6bac62b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3243ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED             STATUS                    PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        28 minutes ago      Up 6 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   About an hour ago   Up 28 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-15T18-55-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-55-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
