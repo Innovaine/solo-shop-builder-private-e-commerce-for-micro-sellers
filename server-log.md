@@ -8108,3 +8108,36 @@ STDOUT:
 Started Playwright tests, PID=837501
 ```
 Full output: [`server-runs/2026-05-15T23-11-56-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-11-56-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:12:43.855Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0a159d9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2642ms) _(showing tail — full 3,496B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day12-playwright.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day12-playwright.log
+```
+STDOUT:
+```
+…spec.ts:82:7 › FR-7: Session Management › FR-7: Logout clears session cookie (725ms)
+  ✘  12 tests/web/shop-creation.spec.ts:28:7 › FR-3 & FR-4: Shop Creation › FR-4: Shop creation form loads without errors (5.7s)
+  ✘   2 tests/web/auth-flow.spec.ts:15:7 › FR-1 & FR-2: Authentication Flow › FR-1: Seller can signup with email (10.3s)
+  ✘  16 tests/web/auth-flow.spec.ts:43:7 › FR-1 & FR-2: Authentication Flow › FR-2: Valid magic link logs seller in (5.2s)
+  ✓  17 tests/web/auth-flow.spec.ts:54:7 › FR-1 & FR-2: Authentication Flow › FR-2: Session persists on page reload (720ms)
+Shop creation skipped or failed: locator.fill: Test ended.
+Call log:
+[2m  - waiting for locator('input[name="name"]').or(locator('input[placeholder*="shop name"]').first())[22m
+
+    at [90m/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/[39mtests/web/public-storefront.spec.ts:38:23
+  ✘   3 tests/web/public-storefront.spec.ts:51:7 › FR-5: Public Shop Storefront › FR-5: Valid shop slug returns 200 with shop name (0ms)
+  -  18 tests/web/public-storefront.spec.ts:76:7 › FR-5: Public Shop Storefront › FR-5: Invalid shop slug returns 404
+  -  19 tests/web/public-storefront.spec.ts:88:7 › FR-5: Public Shop Storefront › FR-5: Page loads in under 2 seconds
+  -  20 tests/web/public-storefront.spec.ts:100:7 › FR-5: Public Shop Storefront › FR-5: Page is mobile-responsive (320px)
+  -  21 tests/web/public-storefront.spec.ts:120:7 › FR-5: Public Shop Storefront › FR-5: No authentication required to view storefront
+  ✘  14 tests/web/session-management.spec.ts:130:7 › FR-6: Shop Persistence › FR-6: Shop data persists and can be retrieved (30.0s)
+  ✘  15 tests/web/shop-creation.spec.ts:55:7 › FR-3 & FR-4: Shop Creation › FR-4: Name auto-populates slug (lowercase, hyphens) (30.0s)
+
+  ✘  22 tests/web/session-management.spec.ts:176:7 › FR-6: Shop Persistence › FR-6: Shop can be accessed after simulated session restart (30.0s)
+  ✘  23 tests/web/shop-creation.spec.ts:75:7 › FR-3 & FR-4: Shop Creation › FR-4: Seller can override slug (30.0s)
+```
+Full output: [`server-runs/2026-05-15T23-12-43-app-kill--0-cat-tmp-day12-playwright.pid-2-d-1.log`](server-runs/2026-05-15T23-12-43-app-kill--0-cat-tmp-day12-playwright.pid-2-d-1.log)
