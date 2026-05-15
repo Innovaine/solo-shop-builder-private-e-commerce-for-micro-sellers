@@ -5722,3 +5722,16 @@ X-Powered-By: Next.js
 Cache-Control: s-maxage=31536000, stale-while-revalidate
 ```
 Full output: [`server-runs/2026-05-15T20-11-32-app-curl--sI-http-localhost-3000-auth-login--1.log`](server-runs/2026-05-15T20-11-32-app-curl--sI-http-localhost-3000-auth-login--1.log)
+
+## 2026-05-15T20:11:53.478Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fb7567e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2647ms)
+```
+curl -s http://localhost:3000/api/health | head -20
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}
+```
+Full output: [`server-runs/2026-05-15T20-11-53-app-curl--s-http-localhost-3000-api-health-h-1.log`](server-runs/2026-05-15T20-11-53-app-curl--s-http-localhost-3000-api-health-h-1.log)
