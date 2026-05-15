@@ -5505,3 +5505,21 @@ sleep 3
 docker ps | grep solo-shop
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T20:07:39.637Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0d2c5d6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5850ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down
+nohup docker compose up -d > /tmp/compose-up-day9-v2.log 2>&1 &
+echo $! > /tmp/compose-up-day9-v2.pid
+sleep 3
+kill -0 $(cat /tmp/compose-up-day9-v2.pid) 2>/dev/null && echo "STARTING" || echo "DONE"
+```
+STDOUT:
+```
+STARTING
+```
+Full output: [`server-runs/2026-05-15T20-07-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-07-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
