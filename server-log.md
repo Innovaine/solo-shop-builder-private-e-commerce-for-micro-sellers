@@ -4509,3 +4509,67 @@ echo $! > /tmp/day9-rebuild.pid
 echo "Build started, PID=$(cat /tmp/day9-rebuild.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T19:15:14.187Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1a4fd8e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2402ms) _(showing tail — full 3,490B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day9-rebuild.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day9-rebuild.log
+```
+STDOUT:
+```
+…  2/13] RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#17 CACHED
+
+#18 [runner  3/13] RUN npm install -g prisma@5.14.0
+#18 CACHED
+
+#19 [runner  4/13] RUN groupadd --system --gid 1001 nodejs
+#19 CACHED
+
+#20 [runner  5/13] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#20 CACHED
+
+#21 [runner  6/13] COPY --from=builder /app/public ./public
+#21 CACHED
+
+#22 [runner  7/13] RUN mkdir .next
+#22 CACHED
+
+#23 [runner  8/13] RUN chown nextjs:nodejs .next
+#23 CACHED
+
+#24 [runner  9/13] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#24 DONE 0.4s
+
+#25 [runner 10/13] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#25 DONE 0.1s
+
+#26 [runner 11/13] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#26 DONE 0.0s
+
+#27 [runner 12/13] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#27 DONE 0.1s
+
+#28 [runner 13/13] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#28 DONE 0.0s
+
+#29 exporting to image
+#29 exporting layers
+#29 exporting layers 2.2s done
+#29 exporting manifest sha256:f545b74b102719a0fc94357e5dbfa3b2041f3ba3225d0a2b0df00c6f3a7bb8a7 done
+#29 exporting config sha256:72c055fd2d6dc5bdd1404f4714525d6f19e9fed7485bc5211a4d3c2201d9a7af 0.0s done
+#29 exporting attestation manifest sha256:093b3fbfee871cd3d7b6cef17e66f3a0ce989f1f284fd23ebfd361bda848829e 0.0s done
+#29 exporting manifest list sha256:09b46df8751e2df5a4505017f70bea7d2c65e69f9b0006a03ec7835fa3c15ae6 done
+#29 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#29 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#29 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#29 DONE 2.9s
+
+#30 resolving provenance for metadata file
+#30 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-15T19-15-14-app-kill--0-cat-tmp-day9-rebuild.pid-2-dev-n-1.log`](server-runs/2026-05-15T19-15-14-app-kill--0-cat-tmp-day9-rebuild.pid-2-dev-n-1.log)
