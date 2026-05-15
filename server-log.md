@@ -4606,3 +4606,28 @@ Full output: [`server-runs/2026-05-15T19-16-14-app-docker-ps-grep-solo-shop-1.lo
 ```
 curl -s http://localhost:3000/ 2>&1 | head -30
 ```
+
+## 2026-05-15T19:16:41.249Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5534fa0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3028ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up -d > /tmp/compose-up-day9.log 2>&1 &
+echo $! > /tmp/compose-up-day9.pid
+echo "Compose up started, PID=$(cat /tmp/compose-up-day9.pid)"
+```
+STDOUT:
+```
+Compose up started, PID=783914
+```
+Full output: [`server-runs/2026-05-15T19-16-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-16-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 3400ms)
+```
+sleep 3 && kill -0 $(cat /tmp/compose-up-day9.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-15T19-16-41-app-sleep-3-kill--0-cat-tmp-compose-up-day9.-2.log`](server-runs/2026-05-15T19-16-41-app-sleep-3-kill--0-cat-tmp-compose-up-day9.-2.log)
