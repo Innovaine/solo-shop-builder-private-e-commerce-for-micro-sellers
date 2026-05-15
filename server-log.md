@@ -542,3 +542,37 @@ engineer  705688  0.0  0.0   7740  2132 ?        S    15:59   0:00 bash -c cd ~/
 engineer  705690  0.0  0.0 2104924 28664 ?       Sl   15:59   0:00 docker compose build --no-cache app
 ```
 Full output: [`server-runs/2026-05-15T15-59-51-app-ls--lh-tmp-soloshop-build5.-2-dev-null-e-1.log`](server-runs/2026-05-15T15-59-51-app-ls--lh-tmp-soloshop-build5.-2-dev-null-e-1.log)
+
+## 2026-05-15T16:00:11.702Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a012ae3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 1743ms)
+```
+kill -0 $(cat /tmp/soloshop-build5.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE"
+tail -40 /tmp/soloshop-build5.log | tail -20
+```
+STDOUT:
+```
+BUILD RUNNING
+#8 0.546 (3/4) Installing gcompat (1.1.0-r4)
+#8 0.554 (4/4) Installing openssl (3.5.6-r0)
+#8 0.568 Executing busybox-1.37.0-r30.trigger
+#8 0.580 OK: 11.8 MiB in 22 packages
+#8 DONE 0.6s
+
+#11 [deps 2/4] WORKDIR /app
+#11 DONE 0.0s
+
+#12 [deps 3/4] COPY package.json package-lock.json* ./
+#12 DONE 0.0s
+
+#13 [deps 4/4] RUN npm install
+#13 19.78 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#13 20.50 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#13 21.16 npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+#13 21.26 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+#13 21.33 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#13 21.67 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#13 22.25 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+```
+Full output: [`server-runs/2026-05-15T16-00-11-app-kill--0-cat-tmp-soloshop-build5.pid-2-de-1.log`](server-runs/2026-05-15T16-00-11-app-kill--0-cat-tmp-soloshop-build5.pid-2-de-1.log)
