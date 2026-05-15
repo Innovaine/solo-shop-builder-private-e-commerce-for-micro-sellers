@@ -6402,3 +6402,26 @@ ed6c785093f0   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 {"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}App is healthy
 ```
 Full output: [`server-runs/2026-05-15T21-34-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-34-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:35:03.309Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7cb1467` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3323ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Install playwright test runner if not present
+npm install -D @playwright/test 2>&1 | tail -5
+# Create output directory in tester's home (writable)
+mkdir -p ~/test-results/day-10
+mkdir -p ~/playwright-report
+echo "Setup complete, ready to run tests"
+```
+STDOUT:
+```
+
+up to date, audited 4 packages in 562ms
+
+found 0 vulnerabilities
+Setup complete, ready to run tests
+```
+Full output: [`server-runs/2026-05-15T21-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
