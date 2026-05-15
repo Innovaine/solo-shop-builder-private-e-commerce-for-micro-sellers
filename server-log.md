@@ -7774,3 +7774,72 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 5 minutes
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 5 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-15T22-46-10-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-46-10-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T22:46:38.033Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7945fcf` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3539ms)
+```
+echo "=== TEST 1: Health check with DB connectivity ==="
+curl -s http://localhost:3000/api/health | jq .
+
+echo ""
+echo "=== TEST 2: Request ID middleware on GET / (should have x-request-id) ==="
+curl -s -i http://localhost:3000 2>&1 | grep -i "x-request-id"
+
+echo ""
+echo "=== TEST 3: Request ID middleware on POST /api/auth/signup ==="
+curl -s -i -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}' 2>&1 | grep -i "x-request-id"
+
+echo ""
+echo "=== TEST 4: Rate limiting on signup - attempt 6 consecutive requests ==="
+for i in {1..6}; do
+  STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST http://localhost:3000/api/auth/signup \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"ratelimit-test-$i@example.com\"}")
+  echo "Request $i: HTTP $STATUS"
+  sleep 0.1
+done
+
+echo ""
+echo "=== TEST 5: Performance logs from docker compose logs (last 10 lines) ==="
+docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 --tail 10 2>&1 | grep -E "^\[API\]|^\[SLOW\]|^\[" || echo "No API logs found"
+```
+STDOUT:
+```
+=== TEST 1: Health check with DB connectivity ===
+{
+  "status": "ok",
+  "timestamp": "2026-05-15T22:46:37.455Z",
+  "database": "connected",
+  "responseTime": "2ms"
+}
+
+=== TEST 2: Request ID middleware on GET / (should have x-request-id) ===
+
+=== TEST 3: Request ID middleware on POST /api/auth/signup ===
+x-request-id: qFjzyqxnwIr9
+
+=== TEST 4: Rate limiting on signup - attempt 6 consecutive requests ===
+Request 1: HTTP 429
+Request 2: HTTP 429
+Request 3: HTTP 429
+Request 4: HTTP 429
+Request 5: HTTP 429
+Request 6: HTTP 429
+
+=== TEST 5: Performance logs from docker compose logs (last 10 lines) ===
+[API] POST /api/auth/signup - 1ms [d_cfsUpUGPt1]
+[API] HEAD /api/health - 1ms [x6c-kyYQOIM8]
+[API] GET /api/health - 1ms [_M--AsMi6pAo]
+[API] POST /api/auth/signup - 0ms [qFjzyqxnwIr9]
+[API] POST /api/auth/signup - 1ms [b1XC42sLp0HJ]
+[API] POST /api/auth/signup - 0ms [G5LP4kA19cvp]
+[API] POST /api/auth/signup - 0ms [KYvPuQDNHqA8]
+[API] POST /api/auth/signup - 0ms [OJTWbN3RYnfi]
+[API] POST /api/auth/signup - 0ms [S5ncexe_hCIW]
+[API] POST /api/auth/signup - 0ms [0bOh3aPOUrds]
+```
+Full output: [`server-runs/2026-05-15T22-46-38-app-echo-TEST-1-Health-check-with-DB-connect-1.log`](server-runs/2026-05-15T22-46-38-app-echo-TEST-1-Health-check-with-DB-connect-1.log)
