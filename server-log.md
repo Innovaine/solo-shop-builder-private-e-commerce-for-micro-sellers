@@ -9246,3 +9246,20 @@ No migration found in prisma/migrations
 No pending migrations to apply.
 ```
 Full output: [`server-runs/2026-05-15T23-57-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-57-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:58:20.830Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5db73b8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 3831ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate dev --name add_product_model
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-15T23-58-20-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-58-20-app-cd-solo-shop-builder-private-e-commerce--1.log)
