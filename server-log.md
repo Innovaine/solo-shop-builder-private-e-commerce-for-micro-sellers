@@ -7716,3 +7716,24 @@ Request 6:
 {"error":"Too many signup attempts. Please try again later."}
 ```
 Full output: [`server-runs/2026-05-15T22-43-55-app-echo-Testing-rate-limiting-on-signup-end-1.log`](server-runs/2026-05-15T22-43-55-app-echo-Testing-rate-limiting-on-signup-end-1.log)
+
+## 2026-05-15T22:44:44.490Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `eece41b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2723ms)
+```
+echo "Testing request ID middleware..."
+curl -I http://localhost:3000/api/health 2>&1 | grep -i "x-request-id"
+echo ""
+echo "Testing on dashboard (server-rendered page):"
+curl -I http://localhost:3000/dashboard 2>&1 | grep -i "x-request-id"
+```
+STDOUT:
+```
+Testing request ID middleware...
+x-request-id: x6c-kyYQOIM8
+
+Testing on dashboard (server-rendered page):
+x-request-id: z61hKjDk4QnK
+```
+Full output: [`server-runs/2026-05-15T22-44-44-app-echo-Testing-request-ID-middleware...-1.log`](server-runs/2026-05-15T22-44-44-app-echo-Testing-request-ID-middleware...-1.log)
