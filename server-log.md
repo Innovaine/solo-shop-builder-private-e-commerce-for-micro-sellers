@@ -5263,3 +5263,76 @@ _Pre-SSH: warehouse pushed to GitHub as commit `99ec8fc` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 find . -name "middleware.*" -o -name "_middleware.*" 2>/dev/null | head -10
 ```
+
+## 2026-05-15T20:04:13.250Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `094a41e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2705ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 cat /app/.next/routes-manifest.json | python3 -m json.tool 2>/dev/null | head -60
+```
+STDOUT:
+```
+{
+    "version": 3,
+    "pages404": true,
+    "caseSensitive": false,
+    "basePath": "",
+    "redirects": [
+        {
+            "source": "/:path+/",
+            "destination": "/:path+",
+            "internal": true,
+            "statusCode": 308,
+            "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+        }
+    ],
+    "headers": [],
+    "dynamicRoutes": [
+        {
+            "page": "/shop/[slug]",
+            "regex": "^/shop/([^/]+?)(?:/)?$",
+            "routeKeys": {
+                "nxtPslug": "nxtPslug"
+            },
+            "namedRegex": "^/shop/(?<nxtPslug>[^/]+?)(?:/)?$"
+        }
+    ],
+    "staticRoutes": [
+        {
+            "page": "/",
+            "regex": "^/(?:/)?$",
+            "routeKeys": {},
+            "namedRegex": "^/(?:/)?$"
+        },
+        {
+            "page": "/_not-found",
+            "regex": "^/_not\\-found(?:/)?$",
+            "routeKeys": {},
+            "namedRegex": "^/_not\\-found(?:/)?$"
+        },
+        {
+            "page": "/auth/login",
+            "regex": "^/auth/login(?:/)?$",
+            "routeKeys": {},
+            "namedRegex": "^/auth/login(?:/)?$"
+        },
+        {
+            "page": "/dashboard",
+            "regex": "^/dashboard(?:/)?$",
+            "routeKeys": {},
+            "namedRegex": "^/dashboard(?:/)?$"
+        },
+        {
+            "page": "/dashboard/create-shop",
+            "regex": "^/dashboard/create\\-shop(?:/)?$",
+            "routeKeys": {},
+            "namedRegex": "^/dashboard/create\\-shop(?:/)?$"
+        }
+    ],
+    "dataRoutes": [],
+    "rsc": {
+        "header": "RSC",
+```
+Full output: [`server-runs/2026-05-15T20-04-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-04-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
