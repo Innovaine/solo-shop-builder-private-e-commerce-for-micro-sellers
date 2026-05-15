@@ -6253,3 +6253,19 @@ HTTP/1.1 200 OK
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-15T21-30-39-app-echo-TEST-Homepage-curl--sI-http-localho-1.log`](server-runs/2026-05-15T21-30-39-app-echo-TEST-Homepage-curl--sI-http-localho-1.log)
+
+## 2026-05-15T21:30:54.821Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7cfcdf4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exit 2, 2858ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && UNIQUE_EMAIL="test-day10-$(date +%s)@review.test" && echo "Testing FR-1 & FR-2 with email: $UNIQUE_EMAIL" && curl -s -X POST http://localhost:3000/api/auth/signup -H "Content-Type: application/json" -d "{\"email\": \"$UNIQUE_EMAIL\"}" && echo "" && echo "Checking if token was created in database..." && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d solo_shop_db -c "SELECT email FROM \"AuthToken\" WHERE email = '$UNIQUE_EMAIL' ORDER BY id DESC LIMIT 1;"
+```
+STDOUT:
+```
+Testing FR-1 & FR-2 with email: test-day10-1778880654@review.test
+{"message":"Magic link sent. Check your email."}
+Checking if token was created in database...
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-15T21-30-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-30-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
