@@ -5492,3 +5492,16 @@ STDOUT:
 #29 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
 ```
 Full output: [`server-runs/2026-05-15T20-06-29-app-kill--0-cat-tmp-day9-rebuild-v2.pid-2-de-1.log`](server-runs/2026-05-15T20-06-29-app-kill--0-cat-tmp-day9-rebuild-v2.pid-2-de-1.log)
+
+## 2026-05-15T20:07:16.825Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c6c0636` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13115ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down
+docker compose up -d
+sleep 3
+docker ps | grep solo-shop
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
