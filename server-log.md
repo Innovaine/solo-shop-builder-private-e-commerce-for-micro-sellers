@@ -2492,3 +2492,20 @@ Fast-forward
  3 files changed, 129 insertions(+), 5 deletions(-)
 ```
 Full output: [`server-runs/2026-05-15T17-08-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-08-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:09:09.891Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `40d7e49` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3129ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down
+nohup docker compose build > /tmp/day5-build3.log 2>&1 &
+echo $! > /tmp/day5-build3.pid
+echo "Rebuild started with exact Prisma 5.14.0, PID=$(cat /tmp/day5-build3.pid)"
+```
+STDOUT:
+```
+Rebuild started with exact Prisma 5.14.0, PID=744148
+```
+Full output: [`server-runs/2026-05-15T17-09-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-09-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
