@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .error-container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 64px 48px;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .error-icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .error-code {
+      font-size: 48px;
+      font-weight: 700;
+      color: #F43F5E;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #10B981;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #059669;
+      transform: translateY(-2px);
+    }
+
+    .secondary-link {
+      display: block;
+      color: #3B4C63;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 32px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .secondary-link:hover {
+      background-color: #FAF9F7;
+      border-color: #3B4C63;
+    }
+
+    /* Error Types */
+    .error-variant {
+      display: none;
+    }
+
+    .error-variant.active {
+      display: block;
+    }
+
+    /* Selector */
+    .selector {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .selector-btn {
+      padding: 8px 12px;
+      border: 1px solid #E2E8F0;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      transition: all 0.2s ease;
+    }
+
+    .selector-btn.active {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+    }
+
+    .selector-btn:hover {
+      border-color: #3B4C63;
+    }
+
+    /* Error Details */
+    .error-details {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: 6px;
+      padding: 16px;
+      text-align: left;
+      margin-top: 24px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #BE123C;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .error-details-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #BE123C;
+    }
+
+    @media (max-width: 640px) {
+      .error-container {
+        padding: 48px 32px;
+      }
+
+      .selector {
+        position: static;
+        justify-content: center;
+        margin-bottom: 32px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="selector">
+    <button class="selector-btn active" onclick="showError('500')">500 Error</button>
+    <button class="selector-btn" onclick="showError('timeout')">Timeout</button>
+    <button class="selector-btn" onclick="showError('payment')">Payment Failed</button>
+    <button class="selector-btn" onclick="showError('network')">Network Error</button>
+  </div>
+
+  <!-- 500 Error -->
+  <div class="error-container error-variant active" id="error-500">
+    <span class="error-icon">⚠️</span>
+    <div class="error-code">500</div>
+    <h1>Something Went Wrong</h1>
+    <p>We encountered an unexpected error. Our team has been notified and is looking into it. Please try again in a moment.</p>
+    <div class="button-group">
+      <button class="cta-button" onclick="window.history.back()">Go Back</button>
+      <a href="/" class="secondary-link">Return Home</a>
+    </div>
+    <div class="error-details">
+      <div class="error-details-title">Error Details (for support):</div>
+      Request ID: req_1234567890abcdef<br/>
+      Timestamp: 2024-05-16T12:34:56Z<br/>
+      Endpoint: /api/shops
+    </div>
+  </div>
+
+  <!-- Timeout Error -->
+  <div class="error-container error-variant" id="error-timeout">
+    <span class="error-icon">⏱️</span>
+    <div class="error-code">504</div>
+    <h1>Request Timeout</h1>
+    <p>The request took too long to complete. Your connection may be slow, or our server is experiencing high traffic. Please try again.</p>
+    <div class="button-group">
+      <button class="cta-button" onclick="window.location.reload()">Retry</button>
+      <a href="/" class="secondary-link">Return Home</a>
+    </div>
+  </div>
+
+  <!-- Payment Failed -->
+  <div class="error-container error-variant" id="error-payment">
+    <span class="error-icon">💳</span>
+    <div class="error-code">402</div>
+    <h1>Payment Failed</h1>
+    <p>Your payment could not be processed. Please check your payment method and try again. If the problem persists, contact your bank.</p>
+    <div class="button-group">
+      <button class="cta-button" onclick="window.history.back()">Try Again</button>
+      <a href="/dashboard" class="secondary-link">Back to Dashboard</a>
+    </div>
+    <div class="error-details">
+      <div class="error-details-title">Stripe Error:</div>
+      card_declined — Your card was declined by the payment processor.
+    </div>
+  </div>
+
+  <!-- Network Error -->
+  <div class="error-container error-variant" id="error-network">
+    <span class="error-icon">🌐</span>
+    <div class="error-code">0</div>
+    <h1>Network Connection Error</h1>
+    <p>We couldn't reach the server. Check your internet connection and try again.</p>
+    <div class="button-group">
+      <button class="cta-button" onclick="window.location.reload()">Try Again</button>
+      <a href="/" class="secondary-link">Return Home</a>
+    </div>
+  </div>
+
+  <script>
+    function showError(id) {
+      // Hide all variants
+      document.querySelectorAll('.error-variant').forEach(v => {
+        v.classList.remove('active');
+      });
+
+      // Show selected variant
+      document.getElementById('error-' + id).classList.add('active');
+
+      // Update selector buttons
+      document.querySelectorAll('.selector-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

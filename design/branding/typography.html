@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography System — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      background-color: #FAF9F7;
+      color: #1F2937;
+      line-height: 1.6;
+      padding: 48px 32px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #64748B;
+      margin-bottom: 48px;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-bottom: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: #64748B;
+    }
+
+    .type-sample {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .sample-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .sample-text {
+      margin-bottom: 12px;
+    }
+
+    .spec {
+      font-size: 12px;
+      color: #CBD5E1;
+      font-family: monospace;
+      margin-top: 8px;
+    }
+
+    /* Type Samples */
+    .h1-sample {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .h2-sample {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .h3-sample {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .h4-sample {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .body-sample {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .small-sample {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .tiny-sample {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .weights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .weight-sample {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .weight-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .weight-400 {
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    .weight-500 {
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .weight-600 {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .weight-700 {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 32px 24px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .weights {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Typography System</h1>
+    <p class="subtitle">Clear, honest type. Simple sans-serif, system fonts for speed, readable at any size.</p>
+
+    <!-- Headings -->
+    <div class="section">
+      <span class="section-title">Heading Styles</span>
+
+      <div class="type-sample">
+        <span class="sample-label">H1 — Page Heading</span>
+        <div class="sample-text h1-sample">Your Own Shop, Zero Marketplace Fees</div>
+        <span class="spec">48px / 700 weight / 1.2 line-height</span>
+      </div>
+
+      <div class="type-sample">
+        <span class="sample-label">H2 — Section Heading</span>
+        <div class="sample-text h2-sample">Everything You Need to Run Your Business</div>
+        <span class="spec">36px / 700 weight / 1.3 line-height</span>
+      </div>
+
+      <div class="type-sample">
+        <span class="sample-label">H3 — Subsection</span>
+        <div class="sample-text h3-sample">Simple Product Management</div>
+        <span class="spec">28px / 600 weight / 1.4 line-height</span>
+      </div>
+
+      <div class="type-sample">
+        <span class="sample-label">H4 — Card Title</span>
+        <div class="sample-text h4-sample">Update Status</div>
+        <span class="spec">20px / 600 weight / 1.4 line-height</span>
+      </div>
+    </div>
+
+    <!-- Body Text -->
+    <div class="section">
+      <span class="section-title">Body & Content</span>
+
+      <div class="type-sample">
+        <span class="sample-label">Body — Paragraph Text</span>
+        <div class="sample-text body-sample">Stop paying 6.5% in fees. Get a branded storefront, manage orders, and keep more of what you earn. Upload products with images, set prices, and organize by category. Update in seconds.</div>
+        <span class="spec">16px / 400 weight / 1.6 line-height</span>
+      </div>
+
+      <div class="type-sample">
+        <span class="sample-label">Small — Labels, Help Text</span>
+        <div class="sample-text small-sample">This will appear as your storefront title. We use this to send you order notifications and password resets.</div>
+        <span class="spec">14px / 500 weight / 1.5 line-height</span>
+      </div>
+
+      <div class="type-sample">
+        <span class="sample-label">Tiny — Captions, Hints</span>
+        <div class="sample-text tiny-sample">3–30 characters, letters and numbers only. No spaces or symbols. Leave blank if you haven't set one.</div>
+        <span class="spec">12px / 400 weight / 1.5 line-height</span>
+      </div>
+    </div>
+
+    <!-- Font Weights -->
+    <div class="section">
+      <span class="section-title">Font Weights</span>
+
+      <div class="weights">
+        <div class="weight-sample">
+          <span class="weight-label">Regular (400)</span>
+          <div class="weight-400">The quick brown fox jumps over the lazy dog</div>
+        </div>
+
+        <div class="weight-sample">
+          <span class="weight-label">Medium (500)</span>
+          <div class="weight-500">The quick brown fox jumps over the lazy dog</div>
+        </div>
+
+        <div class="weight-sample">
+          <span class="weight-label">Semi-bold (600)</span>
+          <div class="weight-600">The quick brown fox jumps over the lazy dog</div>
+        </div>
+
+        <div class="weight-sample">
+          <span class="weight-label">Bold (700)</span>
+          <div class="weight-700">The quick brown fox jumps over the lazy dog</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Font Stack -->
+    <div class="section">
+      <span class="section-title">Font Stack & Rationale</span>
+
+      <div class="type-sample">
+        <span class="sample-label">Primary Font Stack</span>
+        <div class="sample-text" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;">
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
+        </div>
+        <span class="spec">System fonts: Loads instantly, no network latency, familiar to every user</span>
+      </div>
+    </div>
+
+    <!-- Scale Reference -->
+    <div class="section">
+      <span class="section-title">Type Scale (Modular: 1.125)</span>
+
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="border-bottom: 2px solid #E2E8F0;">
+            <th style="text-align: left; padding: 12px 0; font-weight: 600; color: #64748B; text-transform: uppercase; font-size: 12px;">Use</th>
+            <th style="text-align: left; padding: 12px 0; font-weight: 600; color: #64748B; text-transform: uppercase; font-size: 12px;">Size</th>
+            <th style="text-align: left; padding: 12px 0; font-weight: 600; color: #64748B; text-transform: uppercase; font-size: 12px;">Weight</th>
+            <th style="text-align: left; padding: 12px 0; font-weight: 600; color: #64748B; text-transform: uppercase; font-size: 12px;">Line-height</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">Page Heading (H1)</td>
+            <td style="padding: 12px 0;">48px</td>
+            <td style="padding: 12px 0;">700 (bold)</td>
+            <td style="padding: 12px 0;">1.2</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">Section Heading (H2)</td>
+            <td style="padding: 12px 0;">36px</td>
+            <td style="padding: 12px 0;">700 (bold)</td>
+            <td style="padding: 12px 0;">1.3</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">Subsection (H3)</td>
+            <td style="padding: 12px 0;">28px</td>
+            <td style="padding: 12px 0;">600 (semi-bold)</td>
+            <td style="padding: 12px 0;">1.4</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">Card Title (H4)</td>
+            <td style="padding: 12px 0;">20px</td>
+            <td style="padding: 12px 0;">600 (semi-bold)</td>
+            <td style="padding: 12px 0;">1.4</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">Body (P)</td>
+            <td style="padding: 12px 0;">16px</td>
+            <td style="padding: 12px 0;">400 (regular)</td>
+            <td style="padding: 12px 0;">1.6</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">Small (label, caption)</td>
+            <td style="padding: 12px 0;">14px</td>
+            <td style="padding: 12px 0;">500 (medium)</td>
+            <td style="padding: 12px 0;">1.5</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0;">Tiny (help text)</td>
+            <td style="padding: 12px 0;">12px</td>
+            <td style="padding: 12px 0;">400 (regular)</td>
+            <td style="padding: 12px 0;">1.5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

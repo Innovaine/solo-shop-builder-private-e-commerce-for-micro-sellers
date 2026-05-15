@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order #2024051201 — Solo Shop Builder Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1F2937;
+    }
+    .back-link {
+      color: #3B4C63;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 28px;
+    }
+
+    /* Order Meta */
+    .order-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 28px;
+    }
+    .meta-item label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .meta-item .value {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+    }
+
+    /* Status Badge */
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .status-pending {
+      background-color: #FEF3C7;
+      color: #92400E;
+    }
+    .status-paid {
+      background-color: #DBEAFE;
+      color: #164E63;
+    }
+    .status-in-progress {
+      background-color: #CCE5FF;
+      color: #003D82;
+    }
+    .status-shipped {
+      background-color: #D1E7DD;
+      color: #0F3919;
+    }
+
+    /* Customer Info Section */
+    .section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .customer-info {
+      background: #FAF9F7;
+      border-radius: 6px;
+      padding: 16px;
+      line-height: 1.8;
+    }
+    .customer-info strong {
+      color: #1F2937;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .customer-info p {
+      color: #64748B;
+      font-size: 14px;
+    }
+
+    /* Items Table */
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+    .items-table th {
+      text-align: left;
+      padding: 12px 0;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+    }
+    .items-table td {
+      padding: 16px 0;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 14px;
+    }
+    .items-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .item-name {
+      font-weight: 600;
+      color: #1F2937;
+    }
+    .item-sku {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    /* Totals */
+    .totals {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #E2E8F0;
+      text-align: right;
+    }
+    .total-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 48px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .total-row.final {
+      font-weight: 700;
+      font-size: 16px;
+      color: #1F2937;
+      margin-bottom: 0;
+    }
+    .total-row.final span:last-child {
+      color: #10B981;
+    }
+
+    /* Actions Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .action-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .action-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 16px;
+    }
+
+    /* Status Dropdown */
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    select:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+
+    /* Tracking Input */
+    .tracking-group {
+      display: flex;
+      gap: 8px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background-color: #10B981;
+      color: white;
+      width: 100%;
+    }
+    .btn-primary:hover {
+      background-color: #059669;
+    }
+    .btn-danger {
+      background-color: #F43F5E;
+      color: white;
+      width: 100%;
+    }
+    .btn-danger:hover {
+      background-color: #BE123C;
+    }
+
+    /* Help Text */
+    .help-text {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 8px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .order-meta {
+        grid-template-columns: 1fr;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .total-row {
+        justify-content: space-between;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Order #2024051201</h1>
+      <a href="#" class="back-link">← Back to Orders</a>
+    </div>
+
+    <div class="grid">
+      <!-- Main Content -->
+      <div>
+        <!-- Order Status -->
+        <div class="card" style="margin-bottom: 24px;">
+          <div class="order-meta">
+            <div class="meta-item">
+              <label>Order Date</label>
+              <div class="value">May 12, 2024</div>
+            </div>
+            <div class="meta-item">
+              <label>Current Status</label>
+              <div class="value">
+                <span class="status-badge status-in-progress">In Progress</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding-bottom: 24px; border-bottom: 1px solid #E2E8F0; margin-bottom: 28px;">
+            <label style="font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; display: block; margin-bottom: 8px;">Customer Email</label>
+            <div style="font-size: 14px; color: #1F2937;">customer@example.com</div>
+          </div>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="card">
+          <div class="section">
+            <div class="section-title">Customer</div>
+            <div class="customer-info">
+              <strong>Jane Smith</strong>
+              <p>123 Oak Street<br/>Portland, OR 97201<br/>United States<br/>jane@example.com</p>
+            </div>
+          </div>
+
+          <!-- Items -->
+          <div class="section">
+            <div class="section-title">Items</div>
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th style="text-align: center;">Qty</th>
+                  <th style="text-align: right;">Price</th>
+                  <th style="text-align: right;">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="item-name">Ceramic Mug — Blue</div>
+                  </td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: right;">$12.00</td>
+                  <td style="text-align: right;">$24.00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="item-name">Custom Sticker Pack</div>
+                  </td>
+                  <td style="text-align: center;">1</td>
+                  <td style="text-align: right;">$8.00</td>
+                  <td style="text-align: right;">$8.00</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="totals">
+              <div class="total-row">
+                <span>Subtotal</span>
+                <span>$32.00</span>
+              </div>
+              <div class="total-row">
+                <span>Shipping</span>
+                <span>$5.00</span>
+              </div>
+              <div class="total-row">
+                <span>Tax</span>
+                <span>$2.96</span>
+              </div>
+              <div class="total-row final">
+                <span>Total</span>
+                <span>$39.96</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Actions -->
+      <div class="sidebar">
+        <!-- Status Update -->
+        <div class="action-card">
+          <div class="action-title">Update Status</div>
+          <select>
+            <option value="pending">Pending</option>
+            <option value="paid" selected>Paid</option>
+            <option value="in-progress">In Progress</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+          </select>
+          <p class="help-text">Set the order status. Customer will be notified.</p>
+        </div>
+
+        <!-- Tracking -->
+        <div class="action-card">
+          <div class="action-title">Tracking</div>
+          <div class="tracking-group">
+            <input type="text" placeholder="Enter tracking ID or link" />
+          </div>
+          <button class="btn btn-primary" style="margin-top: 8px;">Save Tracking</button>
+          <p class="help-text">Customer will receive this tracking info.</p>
+        </div>
+
+        <!-- Payment Info -->
+        <div class="action-card">
+          <div class="action-title">Payment</div>
+          <div style="background: #F0FDF4; border: 1px solid #DCFCE7; border-radius: 4px; padding: 12px; margin-bottom: 12px;">
+            <p style="font-size: 12px; color: #15803D; font-weight: 600; margin-bottom: 4px;">✓ Payment Confirmed</p>
+            <p style="font-size: 13px; color: #166534;">Stripe · Card ending in 4242</p>
+          </div>
+          <p class="help-text">Payment received on May 12, 2:46 PM</p>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="action-card">
+          <div class="action-title">Actions</div>
+          <button class="btn btn-primary" style="margin-bottom: 8px;">Send Invoice Email</button>
+          <button class="btn btn-primary">Message Customer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      padding: 48px 32px;
+    }
+    .header {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    /* Form */
+    .form {
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+    input[type="email"]::placeholder {
+      color: #CBD5E1;
+    }
+
+    /* Button */
+    .btn-primary {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      background-color: #10B981;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: #059669;
+      transform: translateY(-1px);
+    }
+    .btn-primary:disabled {
+      background-color: #CBD5E1;
+      cursor: not-allowed;
+    }
+
+    /* Sign-in Link */
+    .sign-in-link {
+      text-align: center;
+      font-size: 14px;
+      color: #64748B;
+      margin-top: 24px;
+    }
+    .sign-in-link a {
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .sign-in-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Success State */
+    .success-state {
+      display: none;
+      text-align: center;
+    }
+    .success-state.show {
+      display: block;
+    }
+    .form.hide {
+      display: none;
+    }
+    .success-icon {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+    .success-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    .success-detail {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .email-highlight {
+      background: #F0FDF4;
+      border: 1px solid #DCFCE7;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-weight: 600;
+      color: #15803D;
+      margin: 20px 0;
+      font-size: 14px;
+      word-break: break-all;
+    }
+    .check-email {
+      background: #E0F2FE;
+      border: 1px solid #BAE6FD;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 24px;
+      text-align: left;
+    }
+    .check-email h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0369A1;
+      margin-bottom: 8px;
+    }
+    .check-email p {
+      font-size: 13px;
+      color: #0C4A6E;
+      line-height: 1.6;
+    }
+    .resend-link {
+      font-size: 13px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .resend-link a {
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .container {
+        padding: 32px 24px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Get Started</h1>
+      <p class="subtitle">Enter your email to sign in with a magic link. No password needed.</p>
+    </div>
+
+    <form class="form" id="signupForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          autocomplete="email"
+        />
+      </div>
+
+      <button type="submit" class="btn-primary" id="submitBtn">Send Magic Link</button>
+    </form>
+
+    <div class="sign-in-link">
+      Already have an account? <a href="/auth/login">Sign in</a>
+    </div>
+
+    <div class="success-state" id="successState">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Check Your Email</div>
+      <div class="success-detail">
+        We've sent a magic link to:
+      </div>
+      <div class="email-highlight" id="emailHighlight">
+        your@email.com
+      </div>
+
+      <div class="check-email">
+        <h3>What happens next?</h3>
+        <p>
+          Click the link in your email to log in and create your first shop. The link expires in 24 hours. If you don't see it, check your spam folder.
+        </p>
+      </div>
+
+      <div class="resend-link">
+        Didn't receive an email? <a href="#" onclick="document.getElementById('signupForm').style.display='block'; document.getElementById('successState').classList.remove('show');">Try again</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // This is a design reference. The engineer will wire the email validation and API call.
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      
+      // Show success state
+      this.classList.add('hide');
+      document.getElementById('successState').classList.add('show');
+      document.getElementById('emailHighlight').textContent = email;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background: linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 64px 48px;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 80px;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .code {
+      font-size: 72px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #10B981;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #059669;
+      transform: translateY(-2px);
+    }
+
+    .secondary-link {
+      display: block;
+      color: #3B4C63;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 32px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .secondary-link:hover {
+      background-color: #FAF9F7;
+      border-color: #3B4C63;
+    }
+
+    .suggestions {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid #E2E8F0;
+      text-align: left;
+    }
+
+    .suggestions-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .suggestion-link {
+      display: block;
+      padding: 8px 0;
+      color: #3B4C63;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .suggestion-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 48px 32px;
+      }
+
+      .code {
+        font-size: 56px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="icon">🔍</span>
+    <div class="code">404</div>
+    <h1>Page Not Found</h1>
+    <p>The page you're looking for doesn't exist or has been moved. Check the URL and try again.</p>
+
+    <div class="button-group">
+      <button class="cta-button" onclick="window.history.back()">Go Back</button>
+      <a href="/" class="secondary-link">Return Home</a>
+    </div>
+
+    <div class="suggestions">
+      <div class="suggestions-title">You might be looking for:</div>
+      <a href="/auth/login" class="suggestion-link">→ Sign in to your account</a>
+      <a href="/dashboard" class="suggestion-link">→ Go to your dashboard</a>
+      <a href="/help" class="suggestion-link">→ View help & support</a>
+      <a href="/" class="suggestion-link">→ Return to homepage</a>
+    </div>
+  </div>
+</body>
+</html>
