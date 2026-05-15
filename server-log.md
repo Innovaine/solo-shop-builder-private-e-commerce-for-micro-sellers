@@ -4301,3 +4301,27 @@ total 0
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-15T19-02-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-02-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:03:26.735Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `df1fcec` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 2799ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose exec -T postgres psql -U postgres -d soloshop -c "SELECT tablename FROM pg_tables WHERE schemaname='public' ORDER BY tablename;"
+echo ""
+echo "=== Seller count ==="
+docker compose exec -T postgres psql -U postgres -d soloshop -c "SELECT COUNT(*) as seller_count FROM \"Seller\";"
+echo ""
+echo "=== Shop count ==="
+docker compose exec -T postgres psql -U postgres -d soloshop -c "SELECT COUNT(*) as shop_count FROM \"Shop\";"
+```
+STDOUT:
+```
+
+=== Seller count ===
+
+=== Shop count ===
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-15T19-03-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-03-26-app-cd-solo-shop-builder-private-e-commerce--1.log)
