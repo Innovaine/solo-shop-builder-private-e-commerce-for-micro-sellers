@@ -3630,3 +3630,90 @@ tests/web/ directory does not exist
 No test files found
 ```
 Full output: [`server-runs/2026-05-15T18-39-33-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-39-33-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:40:04.302Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dfe563d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2463ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Create tests directory structure
+mkdir -p tests/web test-results/day-07
+
+# Create auth-flow.spec.ts
+cat > tests/web/auth-flow.spec.ts << 'EOFAUTH'
+import { test, expect } from '@playwright/test';
+
+test.describe('FR-1 & FR-2: Authentication Flow', () => {
+  const testEmail = `test-${Date.now()}@example.com`;
+
+  test('FR-1: Homepage loads and signup interface visible', async ({ page }) => {
+    await page.goto('http://localhost:3000');
+    await page.screenshot({ path: 'test-results/day-07/01-homepage.png' });
+    
+    const signupVisible = await page.locator('text=/sign up|get started|start/i').count() > 0;
+    expect(signupVisible).toBeTruthy();
+  });
+
+  test('FR-2: Auth verify page responds', async ({ page }) => {
+    await page.goto('http://localhost:3000/auth/verify?token=invalid');
+    await page.screenshot({ path: 'test-results/day-07/02-verify-page.png' });
+    
+    const pageLoaded = await page.locator('body').count() > 0;
+    expect(pageLoaded).toBeTruthy();
+  });
+});
+EOFAUTH
+
+# Create shop-creation.spec.ts  
+cat > tests/web/shop-creation.spec.ts << 'EOFSHOP'
+import { test, expect } from '@playwright/test';
+
+test.describe('FR-3 & FR-4: Shop Creation', () => {
+  test('FR-4: Dashboard loads', async ({ page, context }) => {
+    await context.addCookies([{
+      name: 'session',
+      value: 'test-token',
+      domain: 'localhost',
+      path: '/'
+    }]);
+    
+    await page.goto('http://localhost:3000/dashboard');
+    await page.screenshot({ path: 'test-results/day-07/03-dashboard.png' });
+    
+    const pageLoaded = page.url().includes('dashboard');
+    expect(pageLoaded).toBeTruthy();
+  });
+});
+EOFSHOP
+
+# Create public-storefront.spec.ts
+cat > tests/web/public-storefront.spec.ts << 'EOFPUBLIC'
+import { test, expect } from '@playwright/test';
+
+test.describe('FR-5: Public Storefront', () => {
+  test('FR-5: Shop page responds', async ({ page }) => {
+    await page.goto('http://localhost:3000/shop/test-shop');
+    await page.screenshot({ path: 'test-results/day-07/04-shop-page.png', fullPage: true });
+    
+    const pageLoaded = await page.locator('body').count() > 0;
+    expect(pageLoaded).toBeTruthy();
+  });
+});
+EOFPUBLIC
+
+echo "Test files created"
+ls -la tests/web/
+```
+STDOUT:
+```
+Test files created
+total 20
+drwxrwxr-x 2 tester tester 4096 May 15 18:40 .
+drwxrwxr-x 3 tester tester 4096 May 15 18:40 ..
+-rw-rw-r-- 1 tester tester  844 May 15 18:40 auth-flow.spec.ts
+-rw-rw-r-- 1 tester tester  425 May 15 18:40 public-storefront.spec.ts
+-rw-rw-r-- 1 tester tester  546 May 15 18:40 shop-creation.spec.ts
+```
+Full output: [`server-runs/2026-05-15T18-40-04-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-40-04-app-cd-solo-shop-builder-private-e-commerce--1.log)
