@@ -605,3 +605,82 @@ STDOUT:
 REPO NOT CLONED YET
 ```
 Full output: [`server-runs/2026-05-15T16-02-06-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-02-06-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:02:22.905Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8ae8689` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 1854ms) _(showing tail — full 3,795B stdout + 0B stderr)_
+```
+tail -100 /tmp/soloshop-build5.log 2>/dev/null || echo "Build log not found"
+```
+STDOUT:
+```
+…t.js' roadmap and prioritize features.
+#17 2.180 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#17 2.180 https://nextjs.org/telemetry
+#17 2.180 
+#17 2.245   ▲ Next.js 14.2.3
+#17 2.246 
+#17 2.331    Creating an optimized production build ...
+#17 5.939 Failed to compile.
+#17 5.939 
+#17 5.940 ./app/api/auth/logout/route.ts
+#17 5.940 Module not found: Can't resolve '@/lib/auth'
+#17 5.940 
+#17 5.940 https://nextjs.org/docs/messages/module-not-found
+#17 5.940 
+#17 5.940 ./app/api/auth/signup/route.ts
+#17 5.940 Module not found: Can't resolve '@/lib/db'
+#17 5.940 
+#17 5.940 https://nextjs.org/docs/messages/module-not-found
+#17 5.940 
+#17 5.940 ./app/api/auth/signup/route.ts
+#17 5.940 Module not found: Can't resolve '@/lib/email'
+#17 5.940 
+#17 5.940 https://nextjs.org/docs/messages/module-not-found
+#17 5.940 
+#17 5.940 ./app/api/auth/verify/route.ts
+#17 5.940 Module not found: Can't resolve '@/lib/db'
+#17 5.940 
+#17 5.940 https://nextjs.org/docs/messages/module-not-found
+#17 5.940 
+#17 5.940 ./app/api/auth/verify/route.ts
+#17 5.940 Module not found: Can't resolve '@/lib/auth'
+#17 5.940 
+#17 5.940 https://nextjs.org/docs/messages/module-not-found
+#17 5.940 
+#17 5.954 
+#17 5.954 > Build failed because of webpack errors
+#17 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 5/5] RUN npm run build:
+5.940 
+5.940 https://nextjs.org/docs/messages/module-not-found
+5.940 
+5.940 ./app/api/auth/verify/route.ts
+5.940 Module not found: Can't resolve '@/lib/auth'
+5.940 
+5.940 https://nextjs.org/docs/messages/module-not-found
+5.940 
+5.954 
+5.954 > Build failed because of webpack errors
+------
+Dockerfile:21
+
+--------------------
+
+  19 |     
+
+  20 |     # Build Next.js app
+
+  21 | >>> RUN npm run build
+
+  22 |     
+
+  23 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-15T16-02-22-app-tail--100-tmp-soloshop-build5.log-2-dev--1.log`](server-runs/2026-05-15T16-02-22-app-tail--100-tmp-soloshop-build5.log-2-dev--1.log)
