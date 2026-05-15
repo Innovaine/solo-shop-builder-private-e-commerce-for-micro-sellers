@@ -7883,3 +7883,33 @@ Request 5: RATE LIMITED - Too many signup attempts. Please try again later.
 Request 6: RATE LIMITED - Too many signup attempts. Please try again later.
 ```
 Full output: [`server-runs/2026-05-15T22-47-26-app-echo-Waiting-5-seconds-for-rate-limit-wi-1.log`](server-runs/2026-05-15T22-47-26-app-echo-Waiting-5-seconds-for-rate-limit-wi-1.log)
+
+## 2026-05-15T22:52:24.680Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9566d9e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13251ms)
+```
+echo "=== RATE LIMIT TEST: Restart app to clear in-memory store, then test 5 passes + 1 fail ==="
+docker restart solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+
+echo "Waiting 3 seconds for app to restart..."
+sleep 3
+
+echo ""
+echo "Testing: 5 requests should succeed, 6th should fail (5/15min limit)"
+NEW_EMAIL_PREFIX=$(date +%s%N)
+
+for i in {1..6}; do
+  EMAIL="test-$NEW_EMAIL_PREFIX-$i@example.com"
+  RESPONSE=$(curl -s -X POST http://localhost:3000/api/auth/signup \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"$EMAIL\"}")
+  
+  if echo "$RESPONSE" | grep -q "error"; then
+    echo "Request $i: BLOCKED - $(echo $RESPONSE | jq -r '.error' 2>/dev/null || echo $RESPONSE)"
+  else
+    echo "Request $i: ALLOWED - $(echo $RESPONSE | jq -r '.message' 2>/dev/null || echo 'OK')"
+  fi
+done
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
