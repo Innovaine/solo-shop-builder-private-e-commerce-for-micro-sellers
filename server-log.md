@@ -2557,3 +2557,80 @@ STDOUT:
 #10 17.41 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
 ```
 Full output: [`server-runs/2026-05-15T17-09-40-app-kill--0-cat-tmp-day5-build3.pid-2-dev-nu-1.log`](server-runs/2026-05-15T17-09-40-app-kill--0-cat-tmp-day5-build3.pid-2-dev-nu-1.log)
+
+## 2026-05-15T17:10:15.552Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7f09cac` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2113ms)
+```
+kill -0 $(cat /tmp/day5-build3.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day5-build3.log | grep -E "Successfully built|ERROR|Error|added.*packages|Image.*Built"
+```
+STDOUT:
+```
+RUNNING
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-15T17-10-15-app-kill--0-cat-tmp-day5-build3.pid-2-dev-nu-1.log`](server-runs/2026-05-15T17-10-15-app-kill--0-cat-tmp-day5-build3.pid-2-dev-nu-1.log)
+
+## 2026-05-15T17:10:36.290Z — Anil ran 1 command(s)
+### Command 1 on app as engineer (✓ exit 0, 2160ms) _(showing tail — full 6,049B stdout + 0B stderr)_
+```
+tail -100 /tmp/day5-build3.log
+```
+STDOUT:
+```
+…23-084dc0ddac7a3dc9.js        31.5 kB
+#16 21.12   ├ chunks/fd9d1056-99698e2e9c7f3a30.js  53.6 kB
+#16 21.12   └ other shared chunks (total)          1.89 kB
+#16 21.12 
+#16 21.12 
+#16 21.12 ○  (Static)   prerendered as static content
+#16 21.12 ƒ  (Dynamic)  server-rendered on demand
+#16 21.12 
+#16 DONE 21.2s
+
+#17 [runner  2/10] RUN groupadd --system --gid 1001 nodejs
+#17 CACHED
+
+#18 [runner  3/10] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#18 CACHED
+
+#19 [runner  4/10] COPY --from=builder /app/public ./public
+#19 CACHED
+
+#20 [runner  5/10] RUN mkdir .next
+#20 CACHED
+
+#21 [runner  6/10] RUN chown nextjs:nodejs .next
+#21 CACHED
+
+#22 [runner  7/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#22 DONE 0.3s
+
+#23 [runner  8/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#23 DONE 0.0s
+
+#24 [runner  9/10] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#24 DONE 0.0s
+
+#25 [runner 10/10] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#25 DONE 0.0s
+
+#26 exporting to image
+#26 exporting layers
+#26 exporting layers 1.3s done
+#26 exporting manifest sha256:acd3a6a7399965a17683e94b8d05ba2b7807ae156847885cae61b10e08fda138 done
+#26 exporting config sha256:93e5324ac9f2bc3a40c8f2f049c3139a62932e84ca051db536bfb7ac9746c633 done
+#26 exporting attestation manifest sha256:fb8bd4fabd3a5958d131df3c0a9412c3b38ecdcb0c9ff794b607ded9cf1610e7 done
+#26 exporting manifest list sha256:659693e0c05e83dc4bca2b0ef7f84f9b7cf54543ab12520c62f319dbe6db63b4 done
+#26 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.5s done
+#26 DONE 1.9s
+
+#27 resolving provenance for metadata file
+#27 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-15T17-10-36-app-tail--100-tmp-day5-build3.log-1.log`](server-runs/2026-05-15T17-10-36-app-tail--100-tmp-day5-build3.log-1.log)
