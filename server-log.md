@@ -4763,3 +4763,21 @@ Full output: [`server-runs/2026-05-15T19-18-46-app-curl--s-http-localhost-3000--
 ```
 curl -s http://localhost:3000/auth/login -H "Accept: text/html" | grep -o 'Sign in\|Log in\|Magic link' | head -3
 ```
+
+## 2026-05-15T19:23:27.663Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `42f71ba` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2785ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+docker ps | grep -E 'solo-shop|CONTAINER'
+curl -sf http://localhost:3000/ > /dev/null && echo "Homepage: OK" || echo "Homepage: FAIL"
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED         STATUS                    PORTS                                         NAMES
+74857d7a1c6e   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   7 minutes ago   Up 6 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+4eb0db4d7307   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago     Up 56 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+Homepage: OK
+```
+Full output: [`server-runs/2026-05-15T19-23-27-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-23-27-app-cd-solo-shop-builder-private-e-commerce--1.log)
