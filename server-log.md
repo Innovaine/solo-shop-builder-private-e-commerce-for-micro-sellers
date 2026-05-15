@@ -5336,3 +5336,17 @@ STDOUT:
         "header": "RSC",
 ```
 Full output: [`server-runs/2026-05-15T20-04-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-04-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:04:43.597Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a506294` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2860ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 cat /app/.next/prerender-manifest.json
+```
+STDOUT:
+```
+{"version":4,"routes":{"/":{"experimentalBypassFor":[{"type":"header","key":"Next-Action"},{"type":"header","key":"content-type","value":"multipart/form-data;.*"}],"initialRevalidateSeconds":false,"srcRoute":"/","dataRoute":"/index.rsc"},"/auth/login":{"experimentalBypassFor":[{"type":"header","key":"Next-Action"},{"type":"header","key":"content-type","value":"multipart/form-data;.*"}],"initialRevalidateSeconds":false,"srcRoute":"/auth/login","dataRoute":"/auth/login.rsc"},"/dashboard/create-shop":{"experimentalBypassFor":[{"type":"header","key":"Next-Action"},{"type":"header","key":"content-type","value":"multipart/form-data;.*"}],"initialRevalidateSeconds":false,"srcRoute":"/dashboard/create-shop","dataRoute":"/dashboard/create-shop.rsc"}},"dynamicRoutes":{},"notFoundRoutes":[],"preview":{"previewModeId":"38cefe67164aa73aaddd55be77d73a44","previewModeSigningKey":"6d668aa2bbdb89f3664083dea284ee05e4263cc38fd70634ddd5e9e930032ebe","previewModeEncryptionKey":"86cd9cb7033c844936d7f03cca170f04bde63ae9f9f9b3bd50831b7577fc4ae6"}}
+```
+Full output: [`server-runs/2026-05-15T20-04-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-04-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
