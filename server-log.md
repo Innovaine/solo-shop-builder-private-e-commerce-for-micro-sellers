@@ -5523,3 +5523,33 @@ STDOUT:
 STARTING
 ```
 Full output: [`server-runs/2026-05-15T20-07-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-07-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:07:58.321Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `43a7f1c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2688ms)
+```
+kill -0 $(cat /tmp/compose-up-day9-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+docker ps | grep solo-shop
+tail -20 /tmp/compose-up-day9-v2.log
+```
+STDOUT:
+```
+DONE
+fdbc115cfd35   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   22 seconds ago   Up 10 seconds             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+015143a57f42   postgres:16-alpine                                           "docker-entrypoint.s…"   22 seconds ago   Up 21 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+time="2026-05-15T20:07:36Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Network solo-shop-builder-private-e-commerce-for-micro-sellers_default Creating 
+ Network solo-shop-builder-private-e-commerce-for-micro-sellers_default Created 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Creating 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Created 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Creating 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Created 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Started 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-15T20-07-58-app-kill--0-cat-tmp-compose-up-day9-v2.pid-2-1.log`](server-runs/2026-05-15T20-07-58-app-kill--0-cat-tmp-compose-up-day9-v2.pid-2-1.log)
