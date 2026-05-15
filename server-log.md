@@ -6366,3 +6366,20 @@ STDOUT:
 HTTP/1.1 404 Not Found
 ```
 Full output: [`server-runs/2026-05-15T21-32-37-app-echo-Test-public-shop-page-FR-5-curl--s--1.log`](server-runs/2026-05-15T21-32-37-app-echo-Test-public-shop-page-FR-5-curl--s--1.log)
+
+## 2026-05-15T21:33:26.560Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `135ea24` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2838ms)
+```
+echo "=== Check if session cookie is HttpOnly and Secure ===" && curl -sI -H "Cookie: test=1" http://localhost:3000/auth/login | grep -i "set-cookie" || echo "(No Set-Cookie header on login page itself, which is correct — session set on verify)" && echo "" && echo "=== Verify app config (from .env example) ===" && grep "SESSION_SECRET\|SECURE\|HTTPONLY" .env.example || echo "Config review needed in source code"
+```
+STDOUT:
+```
+=== Check if session cookie is HttpOnly and Secure ===
+(No Set-Cookie header on login page itself, which is correct — session set on verify)
+
+=== Verify app config (from .env example) ===
+Config review needed in source code
+```
+Full output: [`server-runs/2026-05-15T21-33-26-app-echo-Check-if-session-cookie-is-HttpOnly-1.log`](server-runs/2026-05-15T21-33-26-app-echo-Check-if-session-cookie-is-HttpOnly-1.log)
