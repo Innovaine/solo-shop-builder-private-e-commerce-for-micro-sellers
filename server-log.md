@@ -5071,3 +5071,17 @@ drwxr-xr-x 5 nextjs nodejs 4096 May 15 19:15 server
 drwxr-xr-x 5 nextjs nodejs 4096 May 15 19:14 static
 ```
 Full output: [`server-runs/2026-05-15T19-56-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-56-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:57:14.470Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `20713c0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3083ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 cat /app/.next/app-path-routes-manifest.json
+```
+STDOUT:
+```
+{"/_not-found/page":"/_not-found","/api/auth/logout/route":"/api/auth/logout","/api/shops/route":"/api/shops","/api/auth/signup/route":"/api/auth/signup","/api/auth/verify/route":"/api/auth/verify","/dashboard/create-shop/page":"/dashboard/create-shop","/dashboard/page":"/dashboard","/page":"/","/shop/[slug]/page":"/shop/[slug]","/auth/login/page":"/auth/login"}
+```
+Full output: [`server-runs/2026-05-15T19-57-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-57-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
