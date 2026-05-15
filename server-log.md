@@ -2718,3 +2718,14 @@ app-1  |
 app-1  | Prisma CLI Version : 7.8.0
 ```
 Full output: [`server-runs/2026-05-15T17-13-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-13-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:16:21.679Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f2527ed` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14916ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+docker compose down
+docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
