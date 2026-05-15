@@ -8028,3 +8028,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `2cb7e3a` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
 ```
 ERROR: command exited 128
+
+## 2026-05-15T23:08:04.078Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `eb9e124` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 128, 2760ms)
+```
+ls -la ~ | grep solo-shop || echo "Repo not found - cloning..." && git clone https://github.com/Innovaine/solo-shop-builder-private-e-commerce-for-micro-sellers.git ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+```
+STDOUT:
+```
+drwxrwxr-x  5 tester tester 4096 May 15 18:40 solo-shop-builder-private-e-commerce-for-micro-sellers
+```
+ERROR: command exited 128
+Full output: [`server-runs/2026-05-15T23-08-04-app-ls--la-grep-solo-shop-echo-Repo-not-foun-1.log`](server-runs/2026-05-15T23-08-04-app-ls--la-grep-solo-shop-echo-Repo-not-foun-1.log)
