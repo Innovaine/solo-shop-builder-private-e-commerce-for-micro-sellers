@@ -5806,3 +5806,20 @@ SMTP_PASS=qyxFo5-cakdez-qiqjiz
 SMTP_USER=support@soloshopbox.com
 ```
 Full output: [`server-runs/2026-05-15T20-13-27-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T20-13-27-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-15T20:14:08.978Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4553a5f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2638ms)
+```
+curl -sI http://localhost:3000/dashboard/create-shop | head -5
+```
+STDOUT:
+```
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+```
+Full output: [`server-runs/2026-05-15T20-14-08-app-curl--sI-http-localhost-3000-dashboard-c-1.log`](server-runs/2026-05-15T20-14-08-app-curl--sI-http-localhost-3000-dashboard-c-1.log)
