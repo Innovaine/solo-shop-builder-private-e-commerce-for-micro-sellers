@@ -2291,3 +2291,14 @@ postgres-1  | 2026-05-15 17:00:05.247 UTC [29] LOG:  database system was shut do
 postgres-1  | 2026-05-15 17:00:05.253 UTC [1] LOG:  database system is ready to accept connections
 ```
 Full output: [`server-runs/2026-05-15T17-01-53-app-tail--100-tmp-compose-up.log-1.log`](server-runs/2026-05-15T17-01-53-app-tail--100-tmp-compose-up.log-1.log)
+
+## 2026-05-15T17:02:50.687Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5623b0c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14375ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+docker compose down
+docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
