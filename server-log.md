@@ -4111,3 +4111,22 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-bu
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   About an hour ago   Up 28 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-15T18-55-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-55-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:55:54.012Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `653972e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2795ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public';"
+```
+STDOUT:
+```
+     table_name     
+--------------------
+ _prisma_migrations
+ Seller
+ Shop
+ AuthToken
+(4 rows)
+```
+Full output: [`server-runs/2026-05-15T18-55-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-55-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
