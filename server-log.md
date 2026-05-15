@@ -1111,3 +1111,12 @@ Dockerfile:21
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-15T16-15-30-app-kill--0-cat-tmp-soloshop-build8.pid-2-de-1.log`](server-runs/2026-05-15T16-15-30-app-kill--0-cat-tmp-soloshop-build8.pid-2-de-1.log)
+
+## 2026-05-15T16:16:19.644Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ae21c30` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exit 1, 1873ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+```
+ERROR: command exited 1
