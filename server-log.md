@@ -6962,3 +6962,16 @@ drwxrwxr-x  2 engineer engineer 4096 May 15 19:10 day-08
 drwxrwxr-x  2 engineer engineer 4096 May 15 20:05 day-09
 ```
 Full output: [`server-runs/2026-05-15T21-54-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-54-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:54:38.270Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ada7643` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2512ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-web-1 ls -la /app/test-results 2>&1 | head -30
+```
+STDOUT:
+```
+Error response from daemon: No such container: solo-shop-builder-private-e-commerce-for-micro-sellers-web-1
+```
+Full output: [`server-runs/2026-05-15T21-54-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-54-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
