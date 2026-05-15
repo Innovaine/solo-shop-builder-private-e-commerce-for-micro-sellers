@@ -8695,3 +8695,73 @@ STDOUT:
  create mode 100644 tests/web/scaling-day12.spec.ts
 ```
 Full output: [`server-runs/2026-05-15T23-32-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-32-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:33:07.910Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6359be7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3179ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== Verify new files are present ==="
+ls -lh app/components/ErrorBoundary.tsx src/lib/errors.ts src/lib/timeout.ts DEPLOYMENT.md
+
+echo ""
+echo "=== ErrorBoundary component size ==="
+wc -l app/components/ErrorBoundary.tsx
+
+echo ""
+echo "=== Error codes defined in errors.ts ==="
+grep "export const" src/lib/errors.ts | head -10
+
+echo ""
+echo "=== Check DEPLOYMENT.md sections ==="
+head -30 DEPLOYMENT.md
+```
+STDOUT:
+```
+=== Verify new files are present ===
+-rw-rw-r-- 1 reviewer reviewer 5.8K May 15 23:32 DEPLOYMENT.md
+-rw-rw-r-- 1 reviewer reviewer 2.5K May 15 23:32 app/components/ErrorBoundary.tsx
+-rw-rw-r-- 1 reviewer reviewer 3.2K May 15 23:32 src/lib/errors.ts
+-rw-rw-r-- 1 reviewer reviewer 2.0K May 15 23:32 src/lib/timeout.ts
+
+=== ErrorBoundary component size ===
+82 app/components/ErrorBoundary.tsx
+
+=== Error codes defined in errors.ts ===
+export const Errors = {
+
+=== Check DEPLOYMENT.md sections ===
+# Solo Shop Builder - Deployment Checklist
+
+## Environment Variables (Required)
+
+All environment variables must be set in the production environment before deployment. Copy `.env.example` to `.env` and fill in the values.
+
+### Database
+```bash
+DATABASE_URL=postgresql://user:password@host:5432/database_name
+```
+
+### SMTP (Email Service)
+```bash
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-smtp-username
+SMTP_PASS=your-smtp-password
+SMTP_FROM=noreply@yourdomain.com
+```
+
+### Application
+```bash
+APP_URL=https://yourdomain.com
+NODE_ENV=production
+SESSION_SECRET=generate-a-long-random-string-here
+```
+
+## Pre-Deployment Checklist
+
+- [ ] All environment variables set in production environment
+```
+Full output: [`server-runs/2026-05-15T23-33-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-33-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
