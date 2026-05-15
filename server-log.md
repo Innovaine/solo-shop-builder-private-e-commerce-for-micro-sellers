@@ -1975,3 +1975,52 @@ STDOUT:
 Build restarted, PID=734832
 ```
 Full output: [`server-runs/2026-05-15T16-57-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-57-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:57:47.756Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7d3a757` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2221ms)
+```
+kill -0 $(cat /tmp/day5-build2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day5-build2.log
+```
+STDOUT:
+```
+RUNNING
+time="2026-05-15T16:57:30Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 672B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.57kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:20-slim
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [base 1/1] FROM docker.io/library/node:20-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#5 resolve docker.io/library/node:20-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0 0.0s done
+#5 DONE 0.0s
+
+#6 [deps 1/4] RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [deps 2/4] WORKDIR /app
+#7 CACHED
+
+#8 [internal] load build context
+#8 transferring context: 234.94kB 0.0s done
+#8 DONE 0.0s
+
+#9 [deps 3/4] COPY package.json ./
+#9 DONE 0.0s
+
+#10 [deps 4/4] RUN npm install
+```
+Full output: [`server-runs/2026-05-15T16-57-47-app-kill--0-cat-tmp-day5-build2.pid-2-dev-nu-1.log`](server-runs/2026-05-15T16-57-47-app-kill--0-cat-tmp-day5-build2.pid-2-dev-nu-1.log)
