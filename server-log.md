@@ -6349,3 +6349,20 @@ STDOUT:
 (1 row)
 ```
 Full output: [`server-runs/2026-05-15T21-32-20-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-32-20-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-15T21:32:37.929Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c7fec18` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2812ms)
+```
+echo "=== Test public shop page (FR-5) ===" && curl -s http://localhost:3000/shop/test-shop | grep -o '<h1[^>]*>[^<]*</h1>' | head -1 && echo "" && echo "=== Test 404 for non-existent shop ===" && curl -sI http://localhost:3000/shop/nonexistent-shop | head -1
+```
+STDOUT:
+```
+=== Test public shop page (FR-5) ===
+<h1 class="text-3xl font-bold text-charcoal">Test Shop</h1>
+
+=== Test 404 for non-existent shop ===
+HTTP/1.1 404 Not Found
+```
+Full output: [`server-runs/2026-05-15T21-32-37-app-echo-Test-public-shop-page-FR-5-curl--s--1.log`](server-runs/2026-05-15T21-32-37-app-echo-Test-public-shop-page-FR-5-curl--s--1.log)
