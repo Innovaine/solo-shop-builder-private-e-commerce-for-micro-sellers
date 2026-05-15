@@ -3745,3 +3745,48 @@ Running 4 tests using 1 worker
 === TEST COMPLETE ===
 ```
 Full output: [`server-runs/2026-05-15T18-40-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-40-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:41:19.797Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7050e91` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2487ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# List generated screenshots
+echo "=== Screenshots Generated ==="
+ls -lh test-results/day-07/ 2>/dev/null || echo "No screenshots in day-07"
+
+# Check for any test artifacts
+find test-results -type f -name "*.png" 2>/dev/null | head -20
+
+# Copy test output for report
+cat /tmp/test-output.log
+
+# Check HTML report
+ls -la test-results/playwright-report/ 2>/dev/null || echo "No HTML report"
+```
+STDOUT:
+```
+=== Screenshots Generated ===
+total 92K
+-rw-rw-r-- 1 tester tester  50K May 15 18:40 01-homepage.png
+-rw-rw-r-- 1 tester tester 7.5K May 15 18:40 02-verify-page.png
+-rw-rw-r-- 1 tester tester  13K May 15 18:40 03-dashboard.png
+-rw-rw-r-- 1 tester tester  13K May 15 18:40 04-shop-page.png
+test-results/day-07/04-shop-page.png
+test-results/day-07/02-verify-page.png
+test-results/day-07/03-dashboard.png
+test-results/day-07/01-homepage.png
+
+Running 4 tests using 1 worker
+
+  ✓  1 [chromium] › tests/web/auth-flow.spec.ts:6:7 › FR-1 & FR-2: Authentication Flow › FR-1: Homepage loads and signup interface visible (608ms)
+  ✓  2 [chromium] › tests/web/auth-flow.spec.ts:14:7 › FR-1 & FR-2: Authentication Flow › FR-2: Auth verify page responds (217ms)
+  ✓  3 [chromium] › tests/web/public-storefront.spec.ts:4:7 › FR-5: Public Storefront › FR-5: Shop page responds (306ms)
+  ✓  4 [chromium] › tests/web/shop-creation.spec.ts:4:7 › FR-3 & FR-4: Shop Creation › FR-4: Dashboard loads (262ms)
+
+  4 passed (2.4s)
+No HTML report
+```
+Full output: [`server-runs/2026-05-15T18-41-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-41-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
