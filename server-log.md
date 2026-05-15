@@ -6269,3 +6269,17 @@ Checking if token was created in database...
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-15T21-30-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-30-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:31:12.371Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7f0deb2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exit 2, 2556ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d solo_shop_db -c "SELECT COUNT(*) as token_count FROM \"AuthToken\";" 2>&1
+```
+STDOUT:
+```
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "solo_shop_db" does not exist
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-15T21-31-12-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-31-12-app-docker-exec-solo-shop-builder-private-e--1.log)
