@@ -5610,3 +5610,23 @@ HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 ```
 Full output: [`server-runs/2026-05-15T20-08-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-08-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:09:19.082Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `207cb33` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3530ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate status
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+No migration found in prisma/migrations
+
+Database schema is up to date!
+```
+Full output: [`server-runs/2026-05-15T20-09-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-09-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
