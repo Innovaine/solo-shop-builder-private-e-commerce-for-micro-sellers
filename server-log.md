@@ -525,3 +525,20 @@ echo $! > /tmp/soloshop-build5.pid
 echo "Started no-cache build, PID=$(cat /tmp/soloshop-build5.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T15:59:51.258Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a613b8f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 1842ms)
+```
+ls -lh /tmp/soloshop-build5.* 2>/dev/null || echo "Build 5 not started"
+ps aux | grep "docker compose build" | grep -v grep
+```
+STDOUT:
+```
+-rw-rw-r-- 1 engineer engineer 3.6K May 15 15:59 /tmp/soloshop-build5.log
+-rw-rw-r-- 1 engineer engineer    7 May 15 15:59 /tmp/soloshop-build5.pid
+engineer  705688  0.0  0.0   7740  2132 ?        S    15:59   0:00 bash -c cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose build --no-cache app > /tmp/soloshop-build5.log 2>&1 & echo $! > /tmp/soloshop-build5.pid echo "Started no-cache build, PID=$(cat /tmp/soloshop-build5.pid)"; printf "__QADAR_EXIT__%d" $?
+engineer  705690  0.0  0.0 2104924 28664 ?       Sl   15:59   0:00 docker compose build --no-cache app
+```
+Full output: [`server-runs/2026-05-15T15-59-51-app-ls--lh-tmp-soloshop-build5.-2-dev-null-e-1.log`](server-runs/2026-05-15T15-59-51-app-ls--lh-tmp-soloshop-build5.-2-dev-null-e-1.log)
