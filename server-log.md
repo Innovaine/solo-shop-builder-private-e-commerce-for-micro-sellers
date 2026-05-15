@@ -421,3 +421,19 @@ STDOUT:
 Started build, PID=704387
 ```
 Full output: [`server-runs/2026-05-15T15-56-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T15-56-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T15:56:58.198Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0389d73` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 1947ms)
+```
+kill -0 $(cat /tmp/soloshop-build4.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE"
+tail -30 /tmp/soloshop-build4.log | grep -E "(Creating|Successfully|ERROR|error|failed|DONE|✓)" | tail -15
+```
+STDOUT:
+```
+BUILD DONE
+6.208 > Build failed because of webpack errors
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-15T15-56-58-app-kill--0-cat-tmp-soloshop-build4.pid-2-de-1.log`](server-runs/2026-05-15T15-56-58-app-kill--0-cat-tmp-soloshop-build4.pid-2-de-1.log)
