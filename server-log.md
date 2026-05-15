@@ -7269,3 +7269,20 @@ c6ef2f827207   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 {"status":"ok","timestamp":"2026-05-15T22:06:16.981Z"}OK
 ```
 Full output: [`server-runs/2026-05-15T22-08-59-app-sleep-5-1.log`](server-runs/2026-05-15T22-08-59-app-sleep-5-1.log)
+
+## 2026-05-15T22:10:20.438Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0601a62` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3027ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -la /app/test-results
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 touch /app/test-results/test-write-permission.txt && echo "Write permission OK" || echo "Write permission FAILED"
+```
+STDOUT:
+```
+total 8
+drwxr-xr-x 2 nextjs nodejs 4096 May 15 22:06 .
+drwxr-xr-x 1 root   root   4096 May 15 22:06 ..
+Write permission OK
+```
+Full output: [`server-runs/2026-05-15T22-10-20-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T22-10-20-app-docker-exec-solo-shop-builder-private-e--1.log)
