@@ -6575,3 +6575,44 @@ Received: false
 ```
 ```
 Full output: [`server-runs/2026-05-15T21-36-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-36-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:36:46.227Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `19f28e1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3243ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# FR-1: Test signup endpoint
+echo "=== FR-1: Signup endpoint test ==="
+curl -s -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"tester-day10@example.com"}' | jq .
+
+# FR-5: Test that public shop page exists
+echo ""
+echo "=== FR-5: Public shop page test ==="
+curl -s http://localhost:3000/shop/test-shop | grep -o '<h1[^>]*>.*</h1>' | head -1
+
+# Check if app returns 200 for existing shop
+curl -I http://localhost:3000/shop/test-shop 2>&1 | grep "HTTP"
+
+# Check if app returns 404 for non-existent shop  
+echo ""
+echo "=== FR-5: Non-existent shop returns 404 ==="
+curl -I http://localhost:3000/shop/does-not-exist-slug 2>&1 | grep "HTTP"
+```
+STDOUT:
+```
+=== FR-1: Signup endpoint test ===
+{
+  "message": "Magic link sent. Check your email."
+}
+
+=== FR-5: Public shop page test ===
+<h1 class="text-3xl font-bold text-charcoal">Test Shop</h1>
+HTTP/1.1 200 OK
+
+=== FR-5: Non-existent shop returns 404 ===
+HTTP/1.1 404 Not Found
+```
+Full output: [`server-runs/2026-05-15T21-36-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-36-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
