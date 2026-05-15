@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      color: #1F2937;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      background: white;
+      border-right: 1px solid #E2E8F0;
+      padding: 24px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 32px;
+    }
+    .nav-menu {
+      list-style: none;
+    }
+    .nav-item {
+      margin-bottom: 8px;
+    }
+    .nav-link {
+      display: block;
+      padding: 12px 16px;
+      color: #64748B;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .nav-link:hover {
+      background-color: #FAF9F7;
+      color: #3B4C63;
+    }
+    .nav-link.active {
+      background-color: #EFF6FF;
+      color: #3B4C63;
+      font-weight: 600;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 240px;
+      right: 0;
+      height: 64px;
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 32px;
+      z-index: 999;
+    }
+    .header-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1F2937;
+    }
+    .header-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .btn-small {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+      background: white;
+      color: #3B4C63;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-small:hover {
+      background: #FAF9F7;
+      border-color: #3B4C63;
+    }
+
+    /* Main Content */
+    main {
+      margin-left: 240px;
+      margin-top: 64px;
+      padding: 32px;
+      min-height: 100vh;
+    }
+
+    /* Page Title */
+    .page-header {
+      margin-bottom: 32px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 14px;
+      color: #64748B;
+    }
+
+    /* Stat Grid */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #64748B;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .stat-change {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 8px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      background: white;
+      border: 2px dashed #E2E8F0;
+      border-radius: 8px;
+      padding: 64px 32px;
+      text-align: center;
+    }
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .empty-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    .empty-text {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 24px;
+    }
+    .btn-primary {
+      background-color: #10B981;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      background-color: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 16px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 180px;
+        padding: 16px;
+      }
+      header {
+        left: 180px;
+        padding: 0 16px;
+      }
+      main {
+        margin-left: 180px;
+        margin-top: 64px;
+        padding: 16px;
+      }
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+      .page-title {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #E2E8F0;
+        display: none;
+      }
+      header {
+        left: 0;
+        position: relative;
+        border-bottom: none;
+        margin-bottom: 16px;
+      }
+      main {
+        margin-left: 0;
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">Solo Shop</div>
+    <nav class="nav-menu">
+      <li class="nav-item">
+        <a href="#" class="nav-link active">Orders</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Products</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Analytics</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Shop Settings</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Account</a>
+      </li>
+    </nav>
+  </aside>
+
+  <header>
+    <div class="header-title">Orders</div>
+    <div class="header-actions">
+      <a href="/shop/your-shop" class="btn-small" target="_blank">View Shop</a>
+      <button class="btn-small">Help</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">Welcome back, Seller!</h1>
+      <p class="page-subtitle">Here's your shop overview and recent orders.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Revenue</div>
+        <div class="stat-value">$0</div>
+        <div class="stat-change">This month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Orders</div>
+        <div class="stat-value">0</div>
+        <div class="stat-change">This month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Products</div>
+        <div class="stat-value">0</div>
+        <div class="stat-change">In your shop</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Shop Views</div>
+        <div class="stat-value">0</div>
+        <div class="stat-change">This month</div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="section">
+      <div class="section-title">Products</div>
+      <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <div class="empty-title">No products yet</div>
+        <div class="empty-text">
+          Add your first product to start selling. Include a title, price, description, and image.
+        </div>
+        <button class="btn-primary">Add Your First Product</button>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="section">
+      <div class="section-title">Recent Orders</div>
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <div class="empty-title">No orders yet</div>
+        <div class="empty-text">
+          Once you add products and start getting orders, you'll see them here. Manage order status, add tracking info, and communicate with customers.
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="section">
+      <div class="section-title">Get Started in 3 Steps</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+        <div style="background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px;">
+          <div style="font-size: 28px; margin-bottom: 12px;">1️⃣</div>
+          <div style="font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 8px;">Add Products</div>
+          <div style="font-size: 12px; color: #64748B; line-height: 1.6;">Upload your first product with images and pricing.</div>
+        </div>
+        <div style="background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px;">
+          <div style="font-size: 28px; margin-bottom: 12px;">2️⃣</div>
+          <div style="font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 8px;">Share Your Shop</div>
+          <div style="font-size: 12px; color: #64748B; line-height: 1.6;">Copy your shop link and share with customers.</div>
+        </div>
+        <div style="background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px;">
+          <div style="font-size: 28px; margin-bottom: 12px;">3️⃣</div>
+          <div style="font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 8px;">Manage Orders</div>
+          <div style="font-size: 12px; color: #64748B; line-height: 1.6;">View orders, update status, add tracking info.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

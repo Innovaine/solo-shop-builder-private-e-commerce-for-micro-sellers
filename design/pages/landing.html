@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solo Shop Builder — Your Own Shop, Zero Marketplace Fees</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      color: #1F2937;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header / Nav */
+    header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    nav a {
+      margin-left: 32px;
+      color: #64748B;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: #3B4C63;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%);
+      color: white;
+      padding: 96px 24px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-primary {
+      background-color: #10B981;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .cta-primary:hover {
+      background-color: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 96px 24px;
+      background: white;
+    }
+    .features h2 {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+      color: #1F2937;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .feature-card {
+      padding: 32px;
+      background: #FAF9F7;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+    }
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #3B4C63;
+    }
+    .feature-card p {
+      color: #64748B;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Value Prop Section */
+    .value-section {
+      background: #3B4C63;
+      color: white;
+      padding: 64px 24px;
+      margin: 48px 0;
+      border-radius: 8px;
+    }
+    .value-section h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .value-list {
+      list-style: none;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .value-list li {
+      margin-bottom: 16px;
+      padding-left: 32px;
+      position: relative;
+    }
+    .value-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #10B981;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      padding: 96px 24px;
+      background: #FAF9F7;
+    }
+    .pricing h2 {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+      color: #1F2937;
+    }
+    .pricing-card {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin: 16px 0;
+    }
+    .price-label {
+      font-size: 14px;
+      color: #64748B;
+    }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin: 24px 0;
+      font-size: 14px;
+      color: #64748B;
+    }
+    .pricing-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+    .pricing-cta {
+      background-color: #10B981;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 24px;
+      transition: all 0.2s ease;
+    }
+    .pricing-cta:hover {
+      background-color: #059669;
+    }
+
+    /* CTA Section */
+    .final-cta {
+      background: linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%);
+      color: white;
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .final-cta p {
+      font-size: 16px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+
+    /* Footer */
+    footer {
+      background: white;
+      border-top: 1px solid #E2E8F0;
+      padding: 32px 24px;
+      text-align: center;
+      color: #64748B;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+      .hero p {
+        font-size: 16px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 16px;
+      }
+      nav a {
+        margin-left: 0;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .features h2, .pricing h2 {
+        font-size: 28px;
+      }
+      .value-section h2 {
+        font-size: 24px;
+      }
+      .final-cta h2 {
+        font-size: 24px;
+      }
+      .price {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <div class="logo">Solo Shop</div>
+      <div>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/login">Sign In</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Your Own Shop, Zero Marketplace Fees</h1>
+      <p>Stop paying 6.5% in fees. Get a branded storefront, manage orders, and keep more of what you earn.</p>
+      <a href="/login" class="cta-primary">Start Selling Today</a>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Everything You Need to Run Your Business</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Your Own URL</h3>
+          <p>Get a branded shop at yourname.soloshopcreator.com. Control your storefront, build your own brand.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Simple Product Management</h3>
+          <p>Upload products with images, descriptions, and prices. Organize by category. Update in seconds.</p>
+        </div>
+        <div class="feature-card">
+          <h3>All Orders in One Place</h3>
+          <p>See every order, mark as paid, track progress from in-progress to shipped. One dashboard.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Direct Payments</h3>
+          <p>Stripe integration means payments go straight to you. No marketplace middleman taking a cut.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Customer Tracking</h3>
+          <p>Customers get a tracking link for their order. They see status updates as you ship.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Email Automation</h3>
+          <p>Customers get order confirmations automatically. You get notified when a new order arrives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="value-section container">
+    <h2>Built for Sellers Like You</h2>
+    <ul class="value-list">
+      <li>No marketplace commission — keep 100% of your profit (Stripe fees only)</li>
+      <li>Launch today — sign up with email, create your shop in minutes</li>
+      <li>Own your customer relationships — direct email, no intermediary</li>
+      <li>Grow at your pace — add products, set prices, manage inventory yourself</li>
+      <li>No minimum sales — start with one product, scale to thousands</li>
+    </ul>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>Simple Pricing</h2>
+      <div class="pricing-card">
+        <h3 style="font-size: 24px; color: #3B4C63; margin-bottom: 8px;">Seller Plan</h3>
+        <div class="price-label">Everything included</div>
+        <div class="price">$20<span style="font-size: 24px;">/mo</span></div>
+        <ul class="pricing-features">
+          <li>✓ Unlimited products</li>
+          <li>✓ Unlimited orders</li>
+          <li>✓ Image uploads (up to 10MB each)</li>
+          <li>✓ Product categories & search</li>
+          <li>✓ Order dashboard & tracking</li>
+          <li>✓ Email automation</li>
+          <li>✓ Stripe payments (2.9% + 30¢ pass-through)</li>
+        </ul>
+        <button class="pricing-cta">Start Free Trial (14 days)</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready to Take Control?</h2>
+      <p>Join independent sellers who've left marketplace fees behind.</p>
+      <a href="/login" class="cta-primary">Get Started Now</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Solo Shop Builder. All rights reserved. | <a href="#" style="color: #64748B;">Privacy</a> | <a href="#" style="color: #64748B;">Terms</a></p>
+    </div>
+  </footer>
+</body>
+</html>

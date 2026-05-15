@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Minimalist Necklace — Sarah's Jewelry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FFFFFF;
+      color: #1F2937;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .back-link {
+      color: #3B4C63;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .shop-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+
+    /* Main */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Product Layout */
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    /* Product Image */
+    .product-images {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .main-image {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 96px;
+      cursor: pointer;
+      border: 1px solid #E2E8F0;
+      transition: all 0.2s ease;
+    }
+    .main-image:hover {
+      background: linear-gradient(135deg, #CBD5E1 0%, #94A3B8 100%);
+    }
+    .thumbnail-list {
+      display: flex;
+      gap: 8px;
+    }
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .thumbnail:hover {
+      border-color: #3B4C63;
+    }
+    .thumbnail.active {
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px #3B4C63;
+    }
+
+    /* Product Info */
+    .product-info {
+      padding-top: 12px;
+    }
+    .product-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    .product-category {
+      font-size: 12px;
+      color: #64748B;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .product-price {
+      font-size: 32px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 8px;
+    }
+    .product-stock {
+      font-size: 14px;
+      color: #10B981;
+      margin-bottom: 24px;
+    }
+    .product-stock.out-of-stock {
+      color: #F43F5E;
+    }
+
+    /* Description */
+    .product-description {
+      color: #64748B;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    /* Variants */
+    .variant-section {
+      margin-bottom: 24px;
+    }
+    .variant-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    .variant-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .variant-option {
+      padding: 10px 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #64748B;
+      transition: all 0.2s ease;
+      background: white;
+    }
+    .variant-option:hover {
+      border-color: #3B4C63;
+      color: #3B4C63;
+    }
+    .variant-option.selected {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+    }
+
+    /* Quantity */
+    .quantity-section {
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .quantity-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+    }
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+    }
+    .quantity-btn {
+      padding: 8px 12px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: #3B4C63;
+    }
+    .quantity-input {
+      width: 50px;
+      border: none;
+      text-align: center;
+      padding: 8px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Add to Cart Button */
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 16px;
+      background: #10B981;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 12px;
+    }
+    .add-to-cart-btn:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .add-to-cart-btn:disabled {
+      background: #CBD5E1;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Continue Shopping */
+    .continue-shopping-btn {
+      width: 100%;
+      padding: 12px;
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .continue-shopping-btn:hover {
+      background: #FAF9F7;
+      border-color: #3B4C63;
+    }
+
+    /* Details Accordion */
+    .details-section {
+      border-top: 1px solid #E2E8F0;
+      padding-top: 24px;
+    }
+    .detail-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+    .detail-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .detail-content {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .product-title {
+        font-size: 22px;
+      }
+      .product-price {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/shop/sarahs-jewelry" class="back-link">← Back to Shop</a>
+      <div class="shop-name">Sarah's Jewelry</div>
+      <div></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="product-layout">
+      <!-- Images -->
+      <div class="product-images">
+        <div class="main-image" id="mainImage">💎</div>
+        <div class="thumbnail-list">
+          <div class="thumbnail active" data-image="💎">💎</div>
+          <div class="thumbnail" data-image="✨">✨</div>
+          <div class="thumbnail" data-image="⭐">⭐</div>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <div class="product-category">Necklaces</div>
+        <h1 class="product-title">Gold Minimalist Necklace</h1>
+        <div class="product-price">$45.00</div>
+        <div class="product-stock">In stock (8 available)</div>
+
+        <p class="product-description">
+          A delicate, handcrafted necklace featuring a 14k gold-plated chain and minimalist pendant. Perfect for everyday wear or as a gift. Each piece is made with care and attention to detail.
+        </p>
+
+        <!-- Length Variant -->
+        <div class="variant-section">
+          <div class="variant-label">Chain Length</div>
+          <div class="variant-options">
+            <div class="variant-option selected">16"</div>
+            <div class="variant-option">18"</div>
+            <div class="variant-option">20"</div>
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="quantity-section">
+          <div class="quantity-label">Quantity</div>
+          <div class="quantity-control">
+            <button class="quantity-btn">−</button>
+            <input type="number" class="quantity-input" value="1" min="1" max="10">
+            <button class="quantity-btn">+</button>
+          </div>
+        </div>
+
+        <!-- Add to Cart -->
+        <button class="add-to-cart-btn">Add to Cart</button>
+        <button class="continue-shopping-btn">Continue Shopping</button>
+
+        <!-- Details -->
+        <div class="details-section">
+          <div class="detail-item">
+            <div class="detail-title">Materials & Care</div>
+            <div class="detail-content">
+              14k gold-plated brass with stainless steel chain. Hand wash with mild soap and water. Store away from moisture.
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-title">Shipping</div>
+            <div class="detail-content">
+              Ships within 3–5 business days. Free shipping on orders over $75. International shipping available.
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-title">Returns</div>
+            <div class="detail-content">
+              30-day returns accepted. Items must be in original condition. Contact the seller for a return label.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Image gallery (design reference)
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('mainImage').textContent = this.dataset.image;
+      });
+    });
+
+    // Variant selection
+    document.querySelectorAll('.variant-option').forEach(option => {
+      option.addEventListener('click', function() {
+        this.parentElement.querySelectorAll('.variant-option').forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
+    // Quantity control
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('.quantity-input');
+        if (this.textContent === '−') {
+          input.value = Math.max(1, parseInt(input.value) - 1);
+        } else {
+          input.value = Math.min(10, parseInt(input.value) + 1);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

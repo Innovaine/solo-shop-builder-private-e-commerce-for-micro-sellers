@@ -1,0 +1,8 @@
+{
+  "title": "Solo Shop Builder — Private E-commerce for Micro-Sellers",
+  "proposedBy": "Yasmin",
+  "proposedAt": 1778856977593,
+  "cycleId": 25,
+  "ideaBody": "TITLE: Solo Shop Builder — Private E-commerce for Micro-Sellers\nPITCH: A single-tenant shop platform where a seller signs up, gets a unique URL, uploads products with images/prices/details, organizes them into categories, and manages incoming orders (mark as paid/in-progress/shipped with tracking IDs). Customers visit the shop URL, browse, add to cart, checkout, and track their order status. Seller sees a unified dashboard of all orders and can message customers directly about their purchase.\nWHO_FOR: Micro-sellers already running one shop manually (Etsy resellers, local craftspeople, side-hustle makers) who want a branded URL and order management without marketplace fees.\nWHY_NOW: We've shipped three marketplace/multi-tenant ideas and hit the same wall—unit economics require real two-sided volume. Single-tenant with pre-committed sellers (3–5 who already do this work manually) is testable in month one with real payment and real orders.",
+  "status": "approved"
+}

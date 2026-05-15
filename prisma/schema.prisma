@@ -1,0 +1,51 @@
+// Solo Shop Builder - Database Schema
+// Stack: Postgres + Prisma ORM
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Seller account - one per email
+model Seller {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  shops     Shop[]
+  tokens    AuthToken[]
+}
+
+// Shop - single-tenant storefront
+model Shop {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  sellerId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  seller    Seller   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  
+  @@index([sellerId])
+}
+
+// Magic link tokens for passwordless auth
+model AuthToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  sellerId  String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  seller    Seller   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  
+  @@index([token])
+  @@index([sellerId])
+}

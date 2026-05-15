@@ -1,0 +1,315 @@
+/* Solo Shop Builder — CSS Animations & Transitions */
+
+/* ===== Page Transitions ===== */
+
+/* Fade in on page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ===== Button Interactions ===== */
+
+/* Button hover state */
+@keyframes buttonHover {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2px);
+  }
+}
+
+.btn-primary:hover,
+.cta-primary:hover {
+  animation: buttonHover 0.2s ease-out forwards;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Button press state */
+@keyframes buttonPress {
+  from {
+    transform: translateY(-2px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary:active {
+  animation: buttonPress 0.1s ease-out;
+}
+
+/* ===== Form Interactions ===== */
+
+/* Input focus glow */
+@keyframes inputFocus {
+  from {
+    box-shadow: 0 0 0 0 rgba(59, 76, 99, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+  }
+}
+
+input:focus {
+  animation: inputFocus 0.2s ease-out;
+}
+
+/* Error state pulse */
+@keyframes errorPulse {
+  0%, 100% {
+    border-color: #F43F5E;
+  }
+  50% {
+    border-color: #FEF2F2;
+  }
+}
+
+input.error {
+  animation: errorPulse 0.5s ease-in-out 2;
+}
+
+/* Success state slide in */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-state.show {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* ===== Card & List Animations ===== */
+
+/* Card hover lift */
+@keyframes cardLift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+.product-card:hover,
+.feature-card:hover {
+  animation: cardLift 0.2s ease-out forwards;
+}
+
+/* Stagger list items */
+@keyframes itemStagger {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card {
+  animation: itemStagger 0.3s ease-out;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* ===== Loading & Processing ===== */
+
+/* Spinner / Loading animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation: spin 1s linear infinite;
+}
+
+/* Loading pulse (skeleton screens) */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #E2E8F0 25%, #F0F5FA 50%, #E2E8F0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Processing state (progress) */
+@keyframes progress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.progress-bar {
+  animation: progress 1.5s ease-out forwards;
+}
+
+/* ===== Notifications & Alerts ===== */
+
+/* Notification slide in from top */
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notification,
+.alert {
+  animation: slideInTop 0.3s ease-out;
+}
+
+/* Notification fade out on dismiss */
+@keyframes slideOutTop {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
+
+.notification.dismissing {
+  animation: slideOutTop 0.2s ease-out forwards;
+}
+
+/* ===== Modal Animations ===== */
+
+/* Modal fade in & scale */
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal {
+  animation: modalAppear 0.2s ease-out;
+}
+
+/* Modal backdrop fade in */
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-backdrop {
+  animation: backdropFade 0.2s ease-out;
+}
+
+/* ===== Navigation Transitions ===== */
+
+/* Underline animation on nav link hover */
+@keyframes underline {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #3B4C63;
+  margin-top: 4px;
+  animation: underline 0.3s ease-out forwards;
+}
+
+/* ===== Text Animations ===== */
+
+/* Fade in text on load */
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1, h2, h3 {
+  animation: textFadeIn 0.4s ease-out;
+}
+
+/* ===== Utility Classes ===== */
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Disable animations on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
