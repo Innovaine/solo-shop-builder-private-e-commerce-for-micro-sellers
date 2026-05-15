@@ -4631,3 +4631,28 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-15T19-16-41-app-sleep-3-kill--0-cat-tmp-compose-up-day9.-2.log`](server-runs/2026-05-15T19-16-41-app-sleep-3-kill--0-cat-tmp-compose-up-day9.-2.log)
+
+## 2026-05-15T19:17:05.164Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `823efa5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2540ms)
+```
+docker ps | grep -E 'solo-shop|CONTAINER'
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED              STATUS                    PORTS                                         NAMES
+74857d7a1c6e   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About a minute ago   Up 26 seconds             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+4eb0db4d7307   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago          Up 50 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-15T19-17-04-app-docker-ps-grep--E-solo-shop-CONTAINER-1.log`](server-runs/2026-05-15T19-17-04-app-docker-ps-grep--E-solo-shop-CONTAINER-1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 559ms) _(showing tail — full 8,467B stdout + 0B stderr)_
+```
+timeout 10 bash -c 'until curl -fsS http://localhost:3000/ 2>/dev/null | head -1; do sleep 1; done' && echo "Homepage loaded"
+```
+STDOUT:
+```
+…segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L7\"],\"globalErrorComponent\":\"$8\",\"missingSlots\":\"$W9\"}]]\n"])</script><script>self.__next_f.push([1,"7:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>Homepage loaded
+```
+Full output: [`server-runs/2026-05-15T19-17-05-app-timeout-10-bash--c-until-curl--fsS-http--2.log`](server-runs/2026-05-15T19-17-05-app-timeout-10-bash--c-until-curl--fsS-http--2.log)
