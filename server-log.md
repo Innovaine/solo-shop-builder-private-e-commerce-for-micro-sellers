@@ -7312,3 +7312,35 @@ STDOUT:
 Started Playwright install, PID=825325
 ```
 Full output: [`server-runs/2026-05-15T22-11-59-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-11-59-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T22:12:57.503Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e02dd3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2700ms)
+```
+kill -0 $(cat /tmp/playwright-install.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/playwright-install.log
+```
+STDOUT:
+```
+DONE
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ WARNING: It looks like you are running 'npx playwright install' without first ║
+║ installing your project's dependencies.                                       ║
+║                                                                               ║
+║ To avoid unexpected behavior, please install your dependencies first, and     ║
+║ then run Playwright's install command:                                        ║
+║                                                                               ║
+║     npm install                                                               ║
+║     npx playwright install                                                    ║
+║                                                                               ║
+║ If your project does not yet depend on Playwright, first install the          ║
+║ applicable npm package (most commonly @playwright/test), and                  ║
+║ then run Playwright's install command to download the browsers:               ║
+║                                                                               ║
+║     npm install @playwright/test                                              ║
+║     npx playwright install                                                    ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+```
+Full output: [`server-runs/2026-05-15T22-12-57-app-kill--0-cat-tmp-playwright-install.pid-2-1.log`](server-runs/2026-05-15T22-12-57-app-kill--0-cat-tmp-playwright-install.pid-2-1.log)
