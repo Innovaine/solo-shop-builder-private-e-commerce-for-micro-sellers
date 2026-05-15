@@ -3174,3 +3174,48 @@ STDOUT:
 Started compose up v3, PID=762073
 ```
 Full output: [`server-runs/2026-05-15T17-28-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-28-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:19:38.580Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e46908b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 12727ms) _(showing tail — full 5,294B stdout + 0B stderr)_
+```
+sleep 10
+tail -80 /tmp/compose-up-day6-v3.log
+```
+STDOUT:
+```
+…onError: 
+app-1       | Invalid `prisma.seller.findUnique()` invocation:
+app-1       | 
+app-1       | 
+app-1       | Prisma Client could not locate the Query Engine for runtime "debian-openssl-3.0.x".
+app-1       | 
+app-1       | This happened because Prisma Client was generated for "debian-openssl-1.1.x", but the actual deployment required "debian-openssl-3.0.x".
+app-1       | Add "debian-openssl-3.0.x" to `binaryTargets` in the "schema.prisma" file and run `prisma generate` after saving it:
+app-1       | 
+app-1       | generator client {
+app-1       |   provider      = "prisma-client-js"
+app-1       |   binaryTargets = ["native", "debian-openssl-3.0.x"]
+app-1       | }
+app-1       | 
+app-1       | The following locations have been searched:
+app-1       |   /app/node_modules/.prisma/client
+app-1       |   /app/node_modules/@prisma/client
+app-1       |   /tmp/prisma-engines
+app-1       |   /app/prisma
+app-1       |     at In.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:7177)
+app-1       |     at In.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6211)
+app-1       |     at In.request (/app/node_modules/@prisma/client/runtime/library.js:122:5919)
+app-1       |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+app-1       |     at async l (/app/node_modules/@prisma/client/runtime/library.js:127:11167)
+app-1       |     at async f (/app/.next/server/app/api/auth/signup/route.js:13:154)
+app-1       |     at async /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34666
+app-1       |     at async eS.execute (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:25813)
+app-1       |     at async eS.handle (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:35920)
+app-1       |     at async doRender (/app/node_modules/next/dist/server/base-server.js:1377:42) {
+app-1       |   clientVersion: '5.14.0',
+app-1       |   errorCode: undefined
+app-1       | }
+```
+Full output: [`server-runs/2026-05-15T18-19-38-app-sleep-10-1.log`](server-runs/2026-05-15T18-19-38-app-sleep-10-1.log)
