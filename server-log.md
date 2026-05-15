@@ -1146,3 +1146,14 @@ STDOUT:
 Cloning into 'solo-shop-builder-private-e-commerce-for-micro-sellers'...
 ```
 Full output: [`server-runs/2026-05-15T16-16-47-app-cd-home-reviewer-git-clone-https-github.-1.log`](server-runs/2026-05-15T16-16-47-app-cd-home-reviewer-git-clone-https-github.-1.log)
+
+## 2026-05-15T16:17:12.065Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e7426bc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12234ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/soloshop-review-build.log 2>&1 &
+echo $! > /tmp/soloshop-review-build.pid
+echo "Build started with PID=$(cat /tmp/soloshop-review-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
