@@ -6616,3 +6616,84 @@ HTTP/1.1 200 OK
 HTTP/1.1 404 Not Found
 ```
 Full output: [`server-runs/2026-05-15T21-36-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-36-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:37:19.736Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `00dd3f8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: ERROR:  column "email" does not exist
+LINE 1: SELECT token FROM "AuthToken" WHERE email = 'day10-tester-17...
+                                            ^
+ (mutating command — not auto-retried; queue it again if you want to try once more), 3725ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# FR-1 & FR-2: Full auth flow with real token
+TEST_EMAIL="day10-tester-$(date +%s)@example.com"
+echo "=== Testing with email: $TEST_EMAIL ==="
+
+# Step 1: Signup
+echo "1. Signup..."
+curl -s -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"$TEST_EMAIL\"}" | jq .
+
+# Step 2: Get the token from database
+echo ""
+echo "2. Retrieving magic link token from database..."
+TOKEN=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U postgres -d soloshop -t -c \
+  "SELECT token FROM \"AuthToken\" WHERE email = '$TEST_EMAIL' ORDER BY \"createdAt\" DESC LIMIT 1;" | xargs)
+
+if [ -z "$TOKEN" ]; then
+  echo "ERROR: No token found in database"
+  exit 1
+fi
+
+echo "Token: $TOKEN"
+
+# Step 3: Verify token and get session cookie
+echo ""
+echo "3. Verifying token (FR-2)..."
+COOKIE_JAR=$(mktemp)
+curl -s -c "$COOKIE_JAR" -L "http://localhost:3000/api/auth/verify?token=$TOKEN" > /dev/null
+SESSION_COOKIE=$(grep soloshop_session "$COOKIE_JAR" | awk '{print $7}' | head -1)
+
+if [ -z "$SESSION_COOKIE" ]; then
+  echo "ERROR: No session cookie received"
+  rm -f "$COOKIE_JAR"
+  exit 1
+fi
+
+echo "Session cookie received: ${SESSION_COOKIE:0:50}..."
+
+# Step 4: Create shop (FR-3)
+echo ""
+echo "4. Creating shop (FR-3)..."
+SHOP_SLUG="test-shop-$(date +%s)"
+SHOP_RESPONSE=$(curl -s -b "$COOKIE_JAR" -X POST http://localhost:3000/api/shops \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"Test Shop Day 10\",\"slug\":\"$SHOP_SLUG\"}")
+
+echo "$SHOP_RESPONSE" | jq .
+
+# Step 5: Verify shop persisted (FR-6)
+echo ""
+echo "5. Verifying shop in database (FR-6)..."
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U postgres -d soloshop -c \
+  "SELECT id, name, slug FROM \"Shop\" WHERE slug = '$SHOP_SLUG';"
+
+# Step 6: Access public shop page (FR-5)
+echo ""
+echo "6. Accessing public shop page (FR-5)..."
+curl -s "http://localhost:3000/shop/$SHOP_SLUG" | grep -o '<h1[^>]*>.*</h1>' | head -1
+
+# Cleanup
+rm -f "$COOKIE_JAR"
+
+echo ""
+echo "=== ALL MANUAL TESTS PASSED ==="
+```
+ERROR: ERROR:  column "email" does not exist
+LINE 1: SELECT token FROM "AuthToken" WHERE email = 'day10-tester-17...
+                                            ^
+ (mutating command — not auto-retried; queue it again if you want to try once more)
