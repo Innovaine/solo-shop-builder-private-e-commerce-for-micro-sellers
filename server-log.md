@@ -7990,3 +7990,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `11fd20c` so the server's `git pu
 cat src/lib/db.ts
 ```
 ERROR: command exited 1
+
+## 2026-05-15T22:59:11.711Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4ac40ae` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3481ms)
+```
+ls -la src/lib/ 2>/dev/null || echo "src/lib not found. Checking .next structure..."
+```
+STDOUT:
+```
+src/lib not found. Checking .next structure...
+```
+Full output: [`server-runs/2026-05-15T22-59-11-app-ls--la-src-lib-2-dev-null-echo-src-lib-n-1.log`](server-runs/2026-05-15T22-59-11-app-ls--la-src-lib-2-dev-null-echo-src-lib-n-1.log)
