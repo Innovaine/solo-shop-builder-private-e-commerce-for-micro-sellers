@@ -3941,3 +3941,60 @@ STDOUT:
  FAIL
 ```
 Full output: [`server-runs/2026-05-15T18-49-54-app-curl--sf-http-localhost-3000-health-echo-1.log`](server-runs/2026-05-15T18-49-54-app-curl--sf-http-localhost-3000-health-echo-1.log)
+
+## 2026-05-15T18:51:02.845Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2b0c5aa` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2975ms) _(showing tail — full 2,361B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=50
+```
+STDOUT:
+```
+…chema "public" at "postgres:5432"
+app-1  | 
+app-1  | 1 migration found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  | ┌─────────────────────────────────────────────────────────┐
+app-1  | │  Update available 5.14.0 -> 7.8.0                       │
+app-1  | │                                                         │
+app-1  | │  This is a major update - please follow the guide at    │
+app-1  | │  https://pris.ly/d/major-version-upgrade                │
+app-1  | │                                                         │
+app-1  | │  Run the following to update                            │
+app-1  | │    npm i -g prisma@latest                               │
+app-1  | │    npm i @prisma/client@latest                          │
+app-1  | └─────────────────────────────────────────────────────────┘
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 45ms
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 1 migration found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 49ms
+app-1  | Signup error: Error: Greeting never received
+app-1  |     at m._formatError (/app/.next/server/app/api/auth/signup/route.js:13:166153)
+app-1  |     at m._onError (/app/.next/server/app/api/auth/signup/route.js:13:165981)
+app-1  |     at Timeout.<anonymous> (/app/.next/server/app/api/auth/signup/route.js:13:165153)
+app-1  |     at listOnTimeout (node:internal/timers:581:17)
+app-1  |     at process.processTimers (node:internal/timers:519:7) {
+app-1  |   code: 'ETIMEDOUT',
+app-1  |   command: 'CONN'
+app-1  | }
+```
+Full output: [`server-runs/2026-05-15T18-51-02-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-51-02-app-cd-solo-shop-builder-private-e-commerce--1.log)
