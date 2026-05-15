@@ -9297,3 +9297,33 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-15T23:59:00.152Z","responseTime":"264ms","checks":{"database":{"status":"ok","responseTime":"51ms"},"email":{"status":"ok","responseTime":"213ms"}}}OK
 ```
 Full output: [`server-runs/2026-05-15T23-58-59-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-15T23-58-59-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-15T23:59:17.925Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `356eeee` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2621ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "Testing product API endpoints..."
+echo ""
+echo "1. Test GET /api/products (requires shopId - will fail without auth)"
+curl -s http://localhost:3000/api/products?shopId=test-id | head -20
+echo ""
+echo ""
+echo "2. Check database for existing shops:"
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT id, name, slug FROM \"Shop\" LIMIT 5;"
+```
+STDOUT:
+```
+Testing product API endpoints...
+
+1. Test GET /api/products (requires shopId - will fail without auth)
+[]
+
+2. Check database for existing shops:
+                  id                  |   name    |   slug    
+--------------------------------------+-----------+-----------
+ b67fe1fd-4bbd-4f02-81e5-d0b661d225c1 | Test Shop | test-shop
+(1 row)
+```
+Full output: [`server-runs/2026-05-15T23-59-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-59-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
