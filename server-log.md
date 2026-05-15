@@ -1058,3 +1058,13 @@ STDOUT:
 Started build, PID=711467
 ```
 Full output: [`server-runs/2026-05-15T16-11-45-app-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-15T16-11-45-app-cd-solo-shop-builder-private-e-commerce--2.log)
+
+## 2026-05-15T16:15:10.624Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `293d842` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 189041ms)
+```
+sleep 60 && kill -0 $(cat /tmp/soloshop-build8.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/soloshop-build8.log | tail -30
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
