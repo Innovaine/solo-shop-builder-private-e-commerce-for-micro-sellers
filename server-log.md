@@ -5688,3 +5688,20 @@ fdbc115cfd35   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 015143a57f42   postgres:16-alpine                                           "docker-entrypoint.s…"   3 minutes ago   Up 2 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-15T20-10-36-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-10-36-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:10:54.455Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ddff5f5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2868ms)
+```
+curl -sI http://localhost:3000/ | head -5
+```
+STDOUT:
+```
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+```
+Full output: [`server-runs/2026-05-15T20-10-54-app-curl--sI-http-localhost-3000-head--5-1.log`](server-runs/2026-05-15T20-10-54-app-curl--sI-http-localhost-3000-head--5-1.log)
