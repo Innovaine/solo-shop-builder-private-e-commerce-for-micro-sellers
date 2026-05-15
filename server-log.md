@@ -8003,3 +8003,19 @@ STDOUT:
 src/lib not found. Checking .next structure...
 ```
 Full output: [`server-runs/2026-05-15T22-59-11-app-ls--la-src-lib-2-dev-null-echo-src-lib-n-1.log`](server-runs/2026-05-15T22-59-11-app-ls--la-src-lib-2-dev-null-echo-src-lib-n-1.log)
+
+## 2026-05-15T23:01:29.961Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f9586bb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3190ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --filter "name=solo-shop" && curl -sf http://localhost:3000/api/health && echo " - Health OK"
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED          STATUS                    PORTS                                         NAMES
+2e7e8fcdf1da   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   21 minutes ago   Up 6 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+aa166135a925   postgres:16-alpine                                           "docker-entrypoint.s…"   21 minutes ago   Up 21 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{"status":"ok","timestamp":"2026-05-15T23:01:30.144Z","database":"connected","responseTime":"1ms"} - Health OK
+```
+Full output: [`server-runs/2026-05-15T23-01-29-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-01-29-app-cd-solo-shop-builder-private-e-commerce--1.log)
