@@ -2894,3 +2894,20 @@ Fast-forward
  2 files changed, 72 insertions(+)
 ```
 Full output: [`server-runs/2026-05-15T17-23-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-23-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:24:12.312Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `468faa1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2580ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down
+nohup docker compose build > /tmp/day6-rebuild.log 2>&1 &
+echo $! > /tmp/day6-rebuild.pid
+echo "Started rebuild, PID=$(cat /tmp/day6-rebuild.pid)"
+```
+STDOUT:
+```
+Started rebuild, PID=754662
+```
+Full output: [`server-runs/2026-05-15T17-24-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-24-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
