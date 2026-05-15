@@ -7625,3 +7625,24 @@ time="2026-05-15T22:40:12Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-15T22-40-53-app-sleep-5-1.log`](server-runs/2026-05-15T22-40-53-app-sleep-5-1.log)
+
+## 2026-05-15T22:41:20.427Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2d7570a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4516ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate deploy
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+No migration found in prisma/migrations
+
+
+No pending migrations to apply.
+```
+Full output: [`server-runs/2026-05-15T22-41-20-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-41-20-app-cd-solo-shop-builder-private-e-commerce--1.log)
