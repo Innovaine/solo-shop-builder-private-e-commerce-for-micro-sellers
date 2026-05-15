@@ -6283,3 +6283,19 @@ psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" 
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-15T21-31-12-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-31-12-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-15T21:31:31.606Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `92b8357` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2725ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT COUNT(*) as token_count FROM \"AuthToken\";"
+```
+STDOUT:
+```
+ token_count 
+-------------
+          20
+(1 row)
+```
+Full output: [`server-runs/2026-05-15T21-31-31-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-31-31-app-docker-exec-solo-shop-builder-private-e--1.log)
