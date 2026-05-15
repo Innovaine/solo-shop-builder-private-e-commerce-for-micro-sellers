@@ -1133,3 +1133,16 @@ STDOUT:
 Repo not found, cloning...
 ```
 Full output: [`server-runs/2026-05-15T16-16-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-16-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:16:47.092Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `350eb19` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2414ms)
+```
+cd /home/reviewer && git clone https://github.com/Innovaine/solo-shop-builder-private-e-commerce-for-micro-sellers.git solo-shop-builder-private-e-commerce-for-micro-sellers 2>&1 | tail -20
+```
+STDOUT:
+```
+Cloning into 'solo-shop-builder-private-e-commerce-for-micro-sellers'...
+```
+Full output: [`server-runs/2026-05-15T16-16-47-app-cd-home-reviewer-git-clone-https-github.-1.log`](server-runs/2026-05-15T16-16-47-app-cd-home-reviewer-git-clone-https-github.-1.log)
