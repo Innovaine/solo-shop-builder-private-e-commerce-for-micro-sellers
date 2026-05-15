@@ -6860,3 +6860,65 @@ All manual API tests passed
 App is deployed and accessible at http://187.124.22.3:3000
 ```
 Full output: [`server-runs/2026-05-15T21-39-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-39-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:39:31.301Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d3c3851` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2819ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== Testing FR-7: Session Cookie Security ==="
+
+# Get a valid unused token from database
+VALID_TOKEN=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U postgres -d soloshop -t -c \
+  "SELECT token FROM \"AuthToken\" WHERE used = false AND \"expiresAt\" > NOW() LIMIT 1;" | xargs)
+
+if [ -z "$VALID_TOKEN" ]; then
+  # Create a new one
+  echo "Creating fresh auth token..."
+  curl -s -X POST http://localhost:3000/api/auth/signup \
+    -H "Content-Type: application/json" \
+    -d '{"email":"cookie-test-'$(date +%s)'@example.com"}' > /dev/null
+  
+  sleep 1
+  
+  VALID_TOKEN=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+    psql -U postgres -d soloshop -t -c \
+    "SELECT token FROM \"AuthToken\" WHERE used = false ORDER BY \"createdAt\" DESC LIMIT 1;" | xargs)
+fi
+
+echo "Using token: $VALID_TOKEN"
+echo ""
+
+# Test the verify endpoint with valid token
+COOKIE_RESPONSE=$(curl -I -s -L "http://localhost:3000/api/auth/verify?token=$VALID_TOKEN")
+echo "Response headers:"
+echo "$COOKIE_RESPONSE" | grep -i "set-cookie"
+
+echo ""
+if echo "$COOKIE_RESPONSE" | grep -i "set-cookie" | grep -qi "httponly"; then
+  echo "✓ FR-7 PASS: HttpOnly flag present"
+else
+  echo "✗ FR-7 FAIL: HttpOnly flag missing"
+fi
+
+if echo "$COOKIE_RESPONSE" | grep -i "set-cookie" | grep -qi "samesite"; then
+  echo "✓ FR-7 PASS: SameSite flag present"
+else
+  echo "✗ FR-7 FAIL: SameSite flag missing"
+fi
+```
+STDOUT:
+```
+=== Testing FR-7: Session Cookie Security ===
+Using token: yXczDqNxzr1XRmi4UTce4pml8TiyuXc6
+
+Response headers:
+set-cookie: soloshop_session=Fe26.2*1*1e0558b47e754e2f7a4a18e0b5c07849b2f19952f31b271fb959d2be3a50297c*x9Q1bYkZvb_ugcCjoXQ6Mw*-e0_Pi88WVuk9_LHqzzdsxF521pZxS4atckhhRGik-W6nk7Fs3ZIm29ng-RPgNTtwW0sDR5ARUfxZSS3mRPEiLvGxvAKZo2PXDylR7XL-FmxKze6Wzk0gBMvNNRuF9b9PmgLZyARFwTUTAwznaJ311rl3MWh9kyJR2xWoQsWtm8*1780090771330*2fba859ce1159735cc5aa781b47da08bf9cd1c004fbf7f1009c1ee095ba96c71*8f70Zn7qKwMlwr3leTOXpo7IfjX5j49s-uvixxVxq-4~2; Path=/; Expires=Sun, 14 Jun 2026 21:39:31 GMT; Max-Age=2592000; Secure; HttpOnly; SameSite=strict
+
+✓ FR-7 PASS: HttpOnly flag present
+✓ FR-7 PASS: SameSite flag present
+```
+Full output: [`server-runs/2026-05-15T21-39-31-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-39-31-app-cd-solo-shop-builder-private-e-commerce--1.log)
