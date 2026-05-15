@@ -987,3 +987,44 @@ Dockerfile:21
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-15T16-10-39-app-kill--0-cat-tmp-soloshop-build7.pid-2-de-1.log`](server-runs/2026-05-15T16-10-39-app-kill--0-cat-tmp-soloshop-build7.pid-2-de-1.log)
+
+## 2026-05-15T16:10:55.031Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `50b4066` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 1885ms)
+```
+grep -A 15 "Export encountered errors" /tmp/soloshop-build7.log
+```
+STDOUT:
+```
+#17 12.67 > Export encountered errors on following paths:
+#17 12.67 	/auth/login/page: /auth/login
+#17 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 5/5] RUN npm run build:
+12.58     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+12.58     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+12.58     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+12.58   description: "Route /api/auth/verify couldn't be rendered statically because it accessed `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+12.58   digest: 'DYNAMIC_SERVER_USAGE'
+12.58 }
+12.66  ✓ Generating static pages (11/11)
+12.67 
+12.67 > Export encountered errors on following paths:
+12.67 	/auth/login/page: /auth/login
+------
+Dockerfile:21
+
+--------------------
+
+  19 |     
+
+  20 |     # Build Next.js app
+
+  21 | >>> RUN npm run build
+
+  22 |     
+
+  23 |     # Production image, copy all the files and run next
+```
+Full output: [`server-runs/2026-05-15T16-10-55-app-grep--A-15-Export-encountered-errors-tmp-1.log`](server-runs/2026-05-15T16-10-55-app-grep--A-15-Export-encountered-errors-tmp-1.log)

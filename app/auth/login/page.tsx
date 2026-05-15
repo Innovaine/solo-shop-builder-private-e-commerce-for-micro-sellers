@@ -6,6 +6,9 @@
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
+// Force dynamic rendering because we use searchParams
+export const dynamic = 'force-dynamic'
+
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
