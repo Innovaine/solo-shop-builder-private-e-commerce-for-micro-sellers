@@ -1437,3 +1437,41 @@ Homepage FAIL
 Login page FAIL
 ```
 Full output: [`server-runs/2026-05-15T16-42-00-app-sleep-5-1.log`](server-runs/2026-05-15T16-42-00-app-sleep-5-1.log)
+
+## 2026-05-15T16:42:23.472Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9a3bf98` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2851ms) _(showing tail — full 3,674B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app
+```
+STDOUT:
+```
+…ACCES: permission denied, mkdir '/home/nextjs'
+app-1  | npm error     at /usr/local/lib/node_modules/npm/node_modules/minipass-fetch/lib/body.js:170:15
+app-1  | npm error     at async Response.json (/usr/local/lib/node_modules/npm/node_modules/minipass-fetch/lib/body.js:75:17)
+app-1  | npm error     at async RegistryFetcher.packument (/usr/local/lib/node_modules/npm/node_modules/pacote/lib/registry.js:98:25)
+app-1  | npm error     at async RegistryFetcher.manifest (/usr/local/lib/node_modules/npm/node_modules/pacote/lib/registry.js:128:23)
+app-1  | npm error     at async getManifest (/usr/local/lib/node_modules/npm/node_modules/libnpmexec/lib/index.js:27:22)
+app-1  | npm error     at async missingFromTree (/usr/local/lib/node_modules/npm/node_modules/libnpmexec/lib/index.js:60:22)
+app-1  | npm error     at async /usr/local/lib/node_modules/npm/node_modules/libnpmexec/lib/index.js:182:32
+app-1  | npm error     at async Promise.all (index 0)
+app-1  | npm error     at async exec (/usr/local/lib/node_modules/npm/node_modules/libnpmexec/lib/index.js:180:3)
+app-1  | npm error     at async Npm.exec (/usr/local/lib/node_modules/npm/lib/npm.js:207:9) {
+app-1  | npm error   code: 'EACCES',
+app-1  | npm error   errno: 'EACCES',
+app-1  | npm error   syscall: 'mkdir',
+app-1  | npm error   path: '/home/nextjs',
+app-1  | npm error   type: 'system'
+app-1  | npm error }
+app-1  | npm error
+app-1  | npm error The operation was rejected by your operating system.
+app-1  | npm error It is likely you do not have the permissions to access this file as the current user
+app-1  | npm error
+app-1  | npm error If you believe this might be a permissions issue, please double-check the
+app-1  | npm error permissions of the file and its containing directories, or try running
+app-1  | npm error the command again as root/Administrator.
+app-1  | npm error Log files were not written due to an error writing to the directory: /home/nextjs/.npm/_logs
+app-1  | npm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal
+```
+Full output: [`server-runs/2026-05-15T16-42-23-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-42-23-app-cd-solo-shop-builder-private-e-commerce--1.log)

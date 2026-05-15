@@ -30,7 +30,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 RUN groupadd --system --gid 1001 nodejs
-RUN useradd --system --uid 1001 nextjs
+RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
 
 # Copy public directory (will be empty if no static assets, but must exist)
 COPY --from=builder /app/public ./public
