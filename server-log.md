@@ -437,3 +437,57 @@ BUILD DONE
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-15T15-56-58-app-kill--0-cat-tmp-soloshop-build4.pid-2-de-1.log`](server-runs/2026-05-15T15-56-58-app-kill--0-cat-tmp-soloshop-build4.pid-2-de-1.log)
+
+## 2026-05-15T15:57:24.868Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a442c5f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2177ms)
+```
+grep -A 10 "Module not found\|Cannot find\|Error:" /tmp/soloshop-build4.log | head -50
+```
+STDOUT:
+```
+#15 6.191 Module not found: Can't resolve '@/lib/auth'
+#15 6.191 
+#15 6.191 https://nextjs.org/docs/messages/module-not-found
+#15 6.191 
+#15 6.191 ./app/api/auth/signup/route.ts
+#15 6.191 Module not found: Can't resolve '@/lib/db'
+#15 6.191 
+#15 6.191 https://nextjs.org/docs/messages/module-not-found
+#15 6.191 
+#15 6.191 ./app/api/auth/signup/route.ts
+#15 6.191 Module not found: Can't resolve '@/lib/email'
+#15 6.191 
+#15 6.191 https://nextjs.org/docs/messages/module-not-found
+#15 6.191 
+#15 6.191 ./app/api/auth/verify/route.ts
+#15 6.191 Module not found: Can't resolve '@/lib/db'
+#15 6.191 
+#15 6.191 https://nextjs.org/docs/messages/module-not-found
+#15 6.191 
+#15 6.191 ./app/api/auth/verify/route.ts
+#15 6.191 Module not found: Can't resolve '@/lib/auth'
+#15 6.191 
+#15 6.191 https://nextjs.org/docs/messages/module-not-found
+#15 6.192 
+#15 6.208 
+#15 6.208 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 5/5] RUN npm run build:
+6.191 
+6.191 https://nextjs.org/docs/messages/module-not-found
+--
+6.191 Module not found: Can't resolve '@/lib/auth'
+6.191 
+6.191 https://nextjs.org/docs/messages/module-not-found
+6.192 
+6.208 
+6.208 > Build failed because of webpack errors
+------
+Dockerfile:21
+
+--------------------
+```
+Full output: [`server-runs/2026-05-15T15-57-24-app-grep--A-10-Module-not-found-Cannot-find--1.log`](server-runs/2026-05-15T15-57-24-app-grep--A-10-Module-not-found-Cannot-find--1.log)
