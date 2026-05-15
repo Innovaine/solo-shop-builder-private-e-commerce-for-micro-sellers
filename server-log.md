@@ -5756,3 +5756,23 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 Full output: [`server-runs/2026-05-15T20-12-19-app-curl--sI-http-localhost-3000-dashboard-h-1.log`](server-runs/2026-05-15T20-12-19-app-curl--sI-http-localhost-3000-dashboard-h-1.log)
+
+## 2026-05-15T20:12:37.505Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1bc3ad5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2970ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "\dt"
+```
+STDOUT:
+```
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | AuthToken          | table | postgres
+ public | Seller             | table | postgres
+ public | Shop               | table | postgres
+ public | _prisma_migrations | table | postgres
+(4 rows)
+```
+Full output: [`server-runs/2026-05-15T20-12-37-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T20-12-37-app-docker-exec-solo-shop-builder-private-e--1.log)
