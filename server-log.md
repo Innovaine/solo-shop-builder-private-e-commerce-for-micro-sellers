@@ -4743,3 +4743,23 @@ ETag: "9g3xo8ztgy6in"
 Content-Type: text/html; charset=utf-8
 ```
 Full output: [`server-runs/2026-05-15T19-18-16-app-curl--I-http-localhost-3000-2-1-head--10-1.log`](server-runs/2026-05-15T19-18-16-app-curl--I-http-localhost-3000-2-1-head--10-1.log)
+
+## 2026-05-15T19:18:46.864Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `030ed6b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2489ms)
+```
+curl -s http://localhost:3000/ -H "Accept: text/html" | grep -o 'Start selling today\|Solo Shop Builder' | head -3
+```
+STDOUT:
+```
+Solo Shop Builder
+Solo Shop Builder
+Start selling today
+```
+Full output: [`server-runs/2026-05-15T19-18-46-app-curl--s-http-localhost-3000--H-Accept-te-1.log`](server-runs/2026-05-15T19-18-46-app-curl--s-http-localhost-3000--H-Accept-te-1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 397ms)
+```
+curl -s http://localhost:3000/auth/login -H "Accept: text/html" | grep -o 'Sign in\|Log in\|Magic link' | head -3
+```
