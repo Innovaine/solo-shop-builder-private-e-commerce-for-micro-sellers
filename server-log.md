@@ -4325,3 +4325,39 @@ STDOUT:
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-15T19-03-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-03-26-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:03:46.571Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c5f45d3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2518ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker ps
+echo ""
+echo "=== App Health Check ==="
+curl -sf http://localhost:3000/ > /dev/null && echo "App is responding" || echo "App is NOT responding"
+echo ""
+echo "=== Test Summary ==="
+cat /tmp/playwright-day8.log
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED          STATUS                    PORTS                                         NAMES
+3167e38b07ff   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   37 minutes ago   Up 14 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+4eb0db4d7307   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago      Up 37 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+
+=== App Health Check ===
+App is responding
+
+=== Test Summary ===
+
+Running 4 tests using 1 worker
+
+  ✓  1 [chromium] › tests/web/auth-flow.spec.ts:6:7 › FR-1 & FR-2: Authentication Flow › FR-1: Homepage loads and signup interface visible (214ms)
+  ✓  2 [chromium] › tests/web/auth-flow.spec.ts:14:7 › FR-1 & FR-2: Authentication Flow › FR-2: Auth verify page responds (215ms)
+  ✓  3 [chromium] › tests/web/public-storefront.spec.ts:4:7 › FR-5: Public Storefront › FR-5: Shop page responds (225ms)
+  ✓  4 [chromium] › tests/web/shop-creation.spec.ts:4:7 › FR-3 & FR-4: Shop Creation › FR-4: Dashboard loads (194ms)
+
+  4 passed (1.5s)
+```
+Full output: [`server-runs/2026-05-15T19-03-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-03-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
