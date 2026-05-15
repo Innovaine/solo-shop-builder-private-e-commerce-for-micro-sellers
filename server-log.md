@@ -5987,3 +5987,26 @@ ed6c785093f0   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 {"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}
 ```
 Full output: [`server-runs/2026-05-15T21-23-01-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-23-01-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:23:33.527Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `65269a2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2559ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && curl -sI http://localhost:3000/ | head -5 && echo "=== LOGIN PAGE ===" && curl -sI http://localhost:3000/auth/login | head -5
+```
+STDOUT:
+```
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+=== LOGIN PAGE ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+```
+Full output: [`server-runs/2026-05-15T21-23-33-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-23-33-app-cd-solo-shop-builder-private-e-commerce--1.log)
