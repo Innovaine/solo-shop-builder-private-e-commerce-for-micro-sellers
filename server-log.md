@@ -6028,3 +6028,12 @@ STDOUT:
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-15T21-24-01-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-24-01-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:24:28.097Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c157f97` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2874ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT email, token, \"expiresAt\" FROM \"AuthToken\" ORDER BY \"createdAt\" DESC LIMIT 1;"
+```
+ERROR: command exited 1
