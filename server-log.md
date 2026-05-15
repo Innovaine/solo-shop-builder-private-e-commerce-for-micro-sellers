@@ -3471,3 +3471,33 @@ STDOUT:
 HEALTH: FAIL
 ```
 Full output: [`server-runs/2026-05-15T18-32-59-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-32-59-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:33:55.283Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5c43908` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2625ms) _(showing tail — full 6,461B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps && docker compose logs --tail=30
+```
+STDOUT:
+```
+…tabase directory appears to contain a database; Skipping initialization
+postgres-1  | 
+postgres-1  | 2026-05-15 18:26:28.731 UTC [1] LOG:  starting PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-05-15 18:26:28.731 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-05-15 18:26:28.731 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-05-15 18:26:28.733 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-05-15 18:26:28.736 UTC [29] LOG:  database system was shut down at 2026-05-15 18:20:16 UTC
+postgres-1  | 2026-05-15 18:26:28.742 UTC [1] LOG:  database system is ready to accept connections
+postgres-1  | 2026-05-15 18:31:28.788 UTC [27] LOG:  checkpoint starting: time
+postgres-1  | 2026-05-15 18:31:28.894 UTC [27] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.107 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1989220, redo lsn=0/19891E8
+postgres-1  | 2026-05-15 18:32:31.353 UTC [306] ERROR:  relation "public.Seller" does not exist at character 125
+postgres-1  | 2026-05-15 18:32:31.353 UTC [306] STATEMENT:  SELECT "public"."Seller"."id", "public"."Seller"."email", "public"."Seller"."createdAt", "public"."Seller"."updatedAt" FROM "public"."Seller" WHERE ("public"."Seller"."email" = $1 AND 1=1) LIMIT $2 OFFSET $3
+postgres-1  | 2026-05-15 18:32:57.751 UTC [306] ERROR:  relation "public.Seller" does not exist at character 125
+postgres-1  | 2026-05-15 18:32:57.751 UTC [306] STATEMENT:  SELECT "public"."Seller"."id", "public"."Seller"."email", "public"."Seller"."createdAt", "public"."Seller"."updatedAt" FROM "public"."Seller" WHERE ("public"."Seller"."email" = $1 AND 1=1) LIMIT $2 OFFSET $3
+app-1       |   code: 'P2021',
+app-1       |   clientVersion: '5.14.0',
+app-1       |   meta: { modelName: 'Seller', table: 'public.Seller' }
+app-1       | }
+```
+Full output: [`server-runs/2026-05-15T18-33-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-33-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
