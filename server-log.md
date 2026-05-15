@@ -7759,3 +7759,18 @@ app-1  | [API] POST /api/auth/signup - 1ms [d_cfsUpUGPt1]
 app-1  | [API] HEAD /api/health - 1ms [x6c-kyYQOIM8]
 ```
 Full output: [`server-runs/2026-05-15T22-45-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-45-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T22:46:10.669Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1f1d1f3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3135ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --filter "name=solo-shop" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+```
+STDOUT:
+```
+NAMES                                                               STATUS                   PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 5 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 5 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-15T22-46-10-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-46-10-app-cd-solo-shop-builder-private-e-commerce--1.log)
