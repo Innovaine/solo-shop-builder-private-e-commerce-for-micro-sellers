@@ -7425,3 +7425,37 @@ Running 4 tests using 1 worker
   3 passed (1.8s)
 ```
 Full output: [`server-runs/2026-05-15T22-16-23-app-kill--0-cat-tmp-day11-playwright.pid-2-d-1.log`](server-runs/2026-05-15T22-16-23-app-kill--0-cat-tmp-day11-playwright.pid-2-d-1.log)
+
+## 2026-05-15T22:17:26.007Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fb41621` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3240ms) _(showing tail — full 13,777B stdout + 0B stderr)_
+```
+echo "=== Testing Day 11 FR-8: Product CRUD endpoints ==="
+curl -s -X GET http://localhost:3000/api/products -w "\nHTTP Status: %{http_code}\n" | head -20
+
+echo ""
+echo "=== Testing Day 11 FR-11: Shopping cart page ==="
+curl -s -I http://localhost:3000/cart 2>&1 | head -5
+
+echo ""
+echo "=== Testing Day 11 FR-13: Stripe checkout endpoint ==="
+curl -s -X POST http://localhost:3000/api/checkout -H "Content-Type: application/json" -d '{"items":[]}' -w "\nHTTP Status: %{http_code}\n" | head -20
+
+echo ""
+echo "=== Testing Day 11 FR-17: Seller orders dashboard ==="
+curl -s -I http://localhost:3000/dashboard/orders 2>&1 | head -5
+```
+STDOUT:
+```
+…fined\",\"styles\":null}],null]},[[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":\"$6\",\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":\"$7\",\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":\"$8\",\"children\":[\"$\",\"h2\",null,{\"style\":\"$9\",\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[[\"$\",\"meta\",null,{\"name\":\"robots\",\"content\":\"noindex\"}],\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
+HTTP Status: 404
+
+=== Testing Day 11 FR-17: Seller orders dashboard ===
+HTTP/1.1 404 Not Found
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+```
+Full output: [`server-runs/2026-05-15T22-17-25-app-echo-Testing-Day-11-FR-8-Product-CRUD-en-1.log`](server-runs/2026-05-15T22-17-25-app-echo-Testing-Day-11-FR-8-Product-CRUD-en-1.log)
