@@ -5970,3 +5970,20 @@ HTTP/1.1 307 Temporary Redirect
 Location: /auth/login
 ```
 Full output: [`server-runs/2026-05-15T20-45-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-45-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:23:01.729Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b1e730f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3544ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --filter "name=solo-shop" && echo "=== APP HEALTH ===" && curl -sf http://localhost:3000/api/health || echo "HEALTH CHECK FAILED"
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED         STATUS                   PORTS                                         NAMES
+ed6c785093f0   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   4 minutes ago   Up 4 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+42d57c7dc2c1   postgres:16-alpine                                           "docker-entrypoint.s…"   4 minutes ago   Up 4 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+=== APP HEALTH ===
+{"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}
+```
+Full output: [`server-runs/2026-05-15T21-23-01-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-23-01-app-cd-solo-shop-builder-private-e-commerce--1.log)
