@@ -7510,3 +7510,55 @@ STDOUT:
 Started build, PID=828382
 ```
 Full output: [`server-runs/2026-05-15T22-31-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-31-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T22:31:47.302Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c4d7863` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2623ms) _(showing tail — full 3,789B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day12-rebuild.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day12-rebuild.log
+```
+STDOUT:
+```
+… RUN chown nextjs:nodejs .next
+#22 CACHED
+
+#23 [runner  2/14] RUN apt-get update && apt-get install -y     openssl     ca-certificates     libnss3     libnspr4     libatk1.0-0     libatk-bridge2.0-0     libcups2     libdrm2     libdbus-1-3     libxkbcommon0     libatspi2.0-0     libxcomposite1     libxdamage1     libxfixes3     libxrandr2     libgbm1     libpango-1.0-0     libcairo2     libasound2     && rm -rf /var/lib/apt/lists/*
+#23 CACHED
+
+#24 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#24 CACHED
+
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.4s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 2.1s done
+#30 exporting manifest sha256:d0d8ab14f9ca51dd04c00429730cc8ecf1b562d22448b2da3698b39a3d216394 done
+#30 exporting config sha256:f0e1352fba68b55b02a16997ceccb7df317270ed0f958df6d0f499b14066a750 done
+#30 exporting attestation manifest sha256:68a1fd335b7918793ee9785308e09cc6b879a4d803cdb5f627685b2233c24949 0.0s done
+#30 exporting manifest list sha256:7e8c83bf7e2faaaf3a7bd7fde02277411e7c1a410096372be2d2cc92cf391b23 done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.8s done
+#30 DONE 3.0s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-15T22-31-47-app-kill--0-cat-tmp-day12-rebuild.pid-2-dev--1.log`](server-runs/2026-05-15T22-31-47-app-kill--0-cat-tmp-day12-rebuild.pid-2-dev--1.log)
