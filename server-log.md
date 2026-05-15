@@ -4273,3 +4273,31 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 13 minute
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 35 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-15T19-02-24-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-02-24-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:02:58.067Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `62c1585` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 2528ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "=== Test Artifacts ==="
+ls -lhR test-results/artifacts/ 2>/dev/null || echo "No artifacts found"
+echo ""
+echo "=== Database Health Check ==="
+docker compose exec -T postgres psql -U postgres -d soloshop -c "SELECT tablename FROM pg_tables WHERE schemaname='public';" 2>/dev/null
+echo ""
+echo "=== App Logs (last 20 lines) ==="
+docker compose logs app --tail=20 2>/dev/null
+```
+STDOUT:
+```
+=== Test Artifacts ===
+test-results/artifacts/:
+total 0
+
+=== Database Health Check ===
+
+=== App Logs (last 20 lines) ===
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-15T19-02-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-02-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
