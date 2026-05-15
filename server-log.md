@@ -310,3 +310,21 @@ sleep 60 && kill -0 $(cat /tmp/soloshop-build3.pid) 2>/dev/null && echo "BUILD R
 tail -40 /tmp/soloshop-build3.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-15T15:54:45.491Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `53a59d6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2406ms)
+```
+kill -0 $(cat /tmp/soloshop-build3.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE"
+tail -50 /tmp/soloshop-build3.log | grep -E "(Successfully|ERROR|error|failed|DONE|Creating|✓)" | tail -25
+```
+STDOUT:
+```
+BUILD DONE
+#15 6.278 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+6.278 > Build failed because of webpack errors
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-15T15-54-45-app-kill--0-cat-tmp-soloshop-build3.pid-2-de-1.log`](server-runs/2026-05-15T15-54-45-app-kill--0-cat-tmp-soloshop-build3.pid-2-de-1.log)
