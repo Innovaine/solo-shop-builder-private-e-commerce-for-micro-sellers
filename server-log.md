@@ -8843,3 +8843,34 @@ HTTP/1.1 307 Temporary Redirect
 ✓ (6) Deployment documentation complete (DEPLOYMENT.md)
 ```
 Full output: [`server-runs/2026-05-15T23-34-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-34-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:35:38.990Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `023ccb8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3646ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || echo "Repo not cloned yet"
+docker ps | grep solo-shop
+curl -sf http://localhost:3000/api/health | jq . || echo "App not responding"
+```
+STDOUT:
+```
+6cdce4de44c9   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   7 minutes ago   Up 7 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+d223da32ddfb   postgres:16-alpine                                           "docker-entrypoint.s…"   7 minutes ago   Up 7 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{
+  "status": "ok",
+  "timestamp": "2026-05-15T23:35:39.335Z",
+  "responseTime": "105ms",
+  "checks": {
+    "database": {
+      "status": "ok",
+      "responseTime": "1ms"
+    },
+    "email": {
+      "status": "ok",
+      "responseTime": "104ms"
+    }
+  }
+}
+```
+Full output: [`server-runs/2026-05-15T23-35-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-35-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
