@@ -130,3 +130,23 @@ echo $! > /tmp/soloshop-build2.pid
 echo "Started build, PID=$(cat /tmp/soloshop-build2.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T15:47:12.402Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4b7c9ee` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2253ms)
+```
+ls -lh /tmp/soloshop-build2.* 2>/dev/null || echo "Build files not found"
+ps aux | grep docker | grep -v grep | head -5
+```
+STDOUT:
+```
+-rw-rw-r-- 1 engineer engineer 3.1K May 15 15:47 /tmp/soloshop-build2.log
+-rw-rw-r-- 1 engineer engineer    7 May 15 15:46 /tmp/soloshop-build2.pid
+root        2194  0.3  1.1 3233040 385204 ?      Ssl  May12  12:33 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root      541816  0.0  0.0 1747108 5176 ?        Sl   May14   0:00 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 5432 -container-ip 172.18.0.2 -container-port 5432 -use-listen-fd
+root      541823  0.0  0.0 1747108 5440 ?        Sl   May14   0:00 /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 5432 -container-ip 172.18.0.2 -container-port 5432 -use-listen-fd
+root      562386  0.0  0.0 1747108 5284 ?        Sl   May14   0:00 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 3000 -container-ip 172.18.0.3 -container-port 3000 -use-listen-fd
+root      562392  0.0  0.0 2116536 6728 ?        Sl   May14   0:00 /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 3000 -container-ip 172.18.0.3 -container-port 3000 -use-listen-fd
+```
+Full output: [`server-runs/2026-05-15T15-47-12-app-ls--lh-tmp-soloshop-build2.-2-dev-null-e-1.log`](server-runs/2026-05-15T15-47-12-app-ls--lh-tmp-soloshop-build2.-2-dev-null-e-1.log)
