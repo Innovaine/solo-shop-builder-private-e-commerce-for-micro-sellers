@@ -3415,3 +3415,19 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-bu
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   About an hour ago   Up 4 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-15T18-31-23-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-31-23-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:31:50.431Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `94d99e6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 7594ms)
+```
+sleep 5
+curl -sf http://localhost:3000 -o /dev/null && echo "OK: App is responding" || echo "FAIL: App not responding"
+docker compose logs app --tail=30
+```
+STDOUT:
+```
+OK: App is responding
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-15T18-31-50-app-sleep-5-1.log`](server-runs/2026-05-15T18-31-50-app-sleep-5-1.log)
