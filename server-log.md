@@ -5789,3 +5789,20 @@ STDOUT:
 {"message":"Magic link sent. Check your email."}
 ```
 Full output: [`server-runs/2026-05-15T20-12-56-app-curl--s--X-POST-http-localhost-3000-api--1.log`](server-runs/2026-05-15T20-12-56-app-curl--s--X-POST-http-localhost-3000-api--1.log)
+
+## 2026-05-15T20:13:27.746Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ad13d80` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2959ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 env | grep -i smtp
+```
+STDOUT:
+```
+SMTP_HOST=smtp.hostinger.com
+SMTP_FROM=support
+SMTP_PORT=587
+SMTP_PASS=qyxFo5-cakdez-qiqjiz
+SMTP_USER=support@soloshopbox.com
+```
+Full output: [`server-runs/2026-05-15T20-13-27-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T20-13-27-app-docker-exec-solo-shop-builder-private-e--1.log)
