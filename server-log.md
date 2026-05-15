@@ -2429,3 +2429,48 @@ docker compose ps
 docker compose logs app --tail=50
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T17:07:55.789Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7cde999` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2380ms) _(showing tail — full 4,260B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose ps
+docker compose logs app --tail=50
+```
+STDOUT:
+```
+…, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+```
+Full output: [`server-runs/2026-05-15T17-07-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-07-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
