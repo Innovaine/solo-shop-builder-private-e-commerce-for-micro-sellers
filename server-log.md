@@ -7581,3 +7581,19 @@ _Pre-SSH: warehouse pushed to GitHub as commit `afcc938` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose down
 ```
+
+## 2026-05-15T22:40:12.141Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a7868e4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3335ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/compose-up-day12.log 2>&1 &
+echo $! > /tmp/compose-up-day12.pid
+echo "Started compose up, PID=$(cat /tmp/compose-up-day12.pid)"
+```
+STDOUT:
+```
+Started compose up, PID=830151
+```
+Full output: [`server-runs/2026-05-15T22-40-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-40-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
