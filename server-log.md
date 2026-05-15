@@ -5836,3 +5836,20 @@ STDOUT:
 <title>Solo Shop Builder
 ```
 Full output: [`server-runs/2026-05-15T20-14-29-app-curl--s-http-localhost-3000-dashboard-cr-1.log`](server-runs/2026-05-15T20-14-29-app-curl--s-http-localhost-3000-dashboard-cr-1.log)
+
+## 2026-05-15T20:17:11.025Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5688698` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4457ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+docker ps | grep solo-shop
+df -h / | tail -1
+```
+STDOUT:
+```
+fdbc115cfd35   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   9 minutes ago   Up 9 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+015143a57f42   postgres:16-alpine                                           "docker-entrypoint.s…"   9 minutes ago   Up 9 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+/dev/sda1       387G   44G  344G  12% /
+```
+Full output: [`server-runs/2026-05-15T20-17-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-17-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
