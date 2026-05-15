@@ -7683,3 +7683,36 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-15T22:43:17.580Z","database":"connected","responseTime":"2ms"}
 ```
 Full output: [`server-runs/2026-05-15T22-43-17-app-sleep-3-1.log`](server-runs/2026-05-15T22-43-17-app-sleep-3-1.log)
+
+## 2026-05-15T22:43:55.340Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `75b5098` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5142ms)
+```
+echo "Testing rate limiting on signup endpoint..."
+for i in {1..6}; do
+  echo "Request $i:"
+  curl -s -X POST http://localhost:3000/api/auth/signup \
+    -H "Content-Type: application/json" \
+    -d '{"email":"test@example.com"}' \
+    | head -5
+  echo ""
+done
+```
+STDOUT:
+```
+Testing rate limiting on signup endpoint...
+Request 1:
+{"message":"Magic link sent. Check your email."}
+Request 2:
+{"message":"Magic link sent. Check your email."}
+Request 3:
+{"message":"Magic link sent. Check your email."}
+Request 4:
+{"message":"Magic link sent. Check your email."}
+Request 5:
+{"message":"Magic link sent. Check your email."}
+Request 6:
+{"error":"Too many signup attempts. Please try again later."}
+```
+Full output: [`server-runs/2026-05-15T22-43-55-app-echo-Testing-rate-limiting-on-signup-end-1.log`](server-runs/2026-05-15T22-43-55-app-echo-Testing-rate-limiting-on-signup-end-1.log)
