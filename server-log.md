@@ -8258,3 +8258,26 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 curl -I http://localhost:3000/ 2>&1 | grep -i request-id
 ```
 ERROR: command exited 1
+
+## 2026-05-15T23:15:11.022Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fbc0c11` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2818ms)
+```
+curl -sI http://localhost:3000/ | head -15
+```
+STDOUT:
+```
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "ixt4v18uje6in"
+Content-Type: text/html; charset=utf-8
+Content-Length: 8468
+Date: Fri, 15 May 2026 23:15:11 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-15T23-15-11-app-curl--sI-http-localhost-3000-head--15-1.log`](server-runs/2026-05-15T23-15-11-app-curl--sI-http-localhost-3000-head--15-1.log)
