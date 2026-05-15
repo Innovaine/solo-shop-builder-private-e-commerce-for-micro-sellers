@@ -3501,3 +3501,16 @@ app-1       |   meta: { modelName: 'Seller', table: 'public.Seller' }
 app-1       | }
 ```
 Full output: [`server-runs/2026-05-15T18-33-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-33-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:34:13.521Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cc58131` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2516ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la prisma/migrations/ 2>/dev/null || echo "NO MIGRATIONS DIR"
+```
+STDOUT:
+```
+NO MIGRATIONS DIR
+```
+Full output: [`server-runs/2026-05-15T18-34-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-34-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
