@@ -1901,3 +1901,43 @@ STDOUT:
 #10 17.11 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
 ```
 Full output: [`server-runs/2026-05-15T16-56-13-app-kill--0-cat-tmp-day5-build.pid-2-dev-nul-1.log`](server-runs/2026-05-15T16-56-13-app-kill--0-cat-tmp-day5-build.pid-2-dev-nul-1.log)
+
+## 2026-05-15T16:56:39.242Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d76c58a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2333ms) _(showing tail — full 5,810B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day5-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day5-build.log | grep -A 20 "added\|Successfully built\|ERROR\|Error\|DONE"
+```
+STDOUT:
+```
+… upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+#10 49.77 npm error code EINTEGRITY
+#10 49.77 npm error sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== integrity checksum failed when using sha512: wanted sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== but got sha512-lgxkKZ6IEygVcw6IZZUlPIfLQ9hjSYAtHjZ5r64sCLDgVzsPFCi2XBBJgzPMkOQ5RHzUD4E/dVdpn9+ez8tk1A==. (22478 bytes)
+#10 49.77 npm notice
+#10 49.77 npm notice New major version of npm available! 10.8.2 -> 11.14.1
+--
+#10 ERROR: process "/bin/sh -c npm install" did not complete successfully: exit code: 1
+------
+ > [deps 4/4] RUN npm install:
+17.11 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+49.30 npm warn deprecated next@14.2.3: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+49.77 npm error code EINTEGRITY
+49.77 npm error sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== integrity checksum failed when using sha512: wanted sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== but got sha512-lgxkKZ6IEygVcw6IZZUlPIfLQ9hjSYAtHjZ5r64sCLDgVzsPFCi2XBBJgzPMkOQ5RHzUD4E/dVdpn9+ez8tk1A==. (22478 bytes)
+49.77 npm notice
+49.77 npm notice New major version of npm available! 10.8.2 -> 11.14.1
+49.77 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+49.77 npm notice To update run: npm install -g npm@11.14.1
+49.77 npm notice
+49.77 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-05-15T16_55_35_439Z-debug-0.log
+------
+Dockerfile:9
+
+--------------------
+
+   7 |     
+
+   8 |     COPY package.json package-lock.json* ./
+```
+Full output: [`server-runs/2026-05-15T16-56-39-app-kill--0-cat-tmp-day5-build.pid-2-dev-nul-1.log`](server-runs/2026-05-15T16-56-39-app-kill--0-cat-tmp-day5-build.pid-2-dev-nul-1.log)
