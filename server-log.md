@@ -8523,3 +8523,65 @@ access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
 access-control-allow-origin: *
 ```
 Full output: [`server-runs/2026-05-15T23-30-53-app-echo-Test-1-Check-request-ID-header-on-A-1.log`](server-runs/2026-05-15T23-30-53-app-echo-Test-1-Check-request-ID-header-on-A-1.log)
+
+## 2026-05-15T23:31:47.416Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b279d7c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3843ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "=== Test 1: Health check endpoint ==="
+curl -s http://localhost:3000/api/health | head -c 200
+echo ""
+echo ""
+
+echo "=== Test 2: Homepage loads with 200 ==="
+curl -sI http://localhost:3000 | head -5
+
+echo ""
+echo "=== Test 3: Auth pages respond ==="
+curl -sI http://localhost:3000/auth/login | head -5
+
+echo ""
+echo "=== Test 4: Dashboard page (protected) ==="
+curl -sI http://localhost:3000/dashboard | head -5
+
+echo ""
+echo "=== Test 5: ErrorBoundary component exists ==="
+ls -lh app/components/ErrorBoundary.tsx
+
+echo ""
+echo "=== Test 6: Middleware request tracking active ==="
+curl -s http://localhost:3000 | grep -o 'x-request-id' | head -1 || echo "Header not visible in response body"
+```
+STDOUT:
+```
+=== Test 1: Health check endpoint ===
+{"status":"ok","timestamp":"2026-05-15T23:31:47.606Z","responseTime":"189ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"187ms"}}}
+
+=== Test 2: Homepage loads with 200 ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+
+=== Test 3: Auth pages respond ===
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: 9wEbvqbN5cVHeLgv
+
+=== Test 4: Dashboard page (protected) ===
+HTTP/1.1 307 Temporary Redirect
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+Location: /auth/login
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+
+=== Test 5: ErrorBoundary component exists ===
+
+=== Test 6: Middleware request tracking active ===
+```
+Full output: [`server-runs/2026-05-15T23-31-47-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-31-47-app-cd-solo-shop-builder-private-e-commerce--1.log)
