@@ -4994,3 +4994,41 @@ No pending migrations to apply.
  ✓ Ready in 45ms
 ```
 Full output: [`server-runs/2026-05-15T19-55-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-55-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:55:56.261Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3dd3a59` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2898ms) _(showing tail — full 9,027B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -s http://localhost:3000 | head -20
+echo "---"
+curl -I http://localhost:3000 2>&1 | head -10
+```
+STDOUT:
+```
+…\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L7\"],\"globalErrorComponent\":\"$8\",\"missingSlots\":\"$W9\"}]]\n"])</script><script>self.__next_f.push([1,"7:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>---
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  8468    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "9g3xo8ztgy6in"
+Content-Type: text/html; charset=utf-8
+```
+Full output: [`server-runs/2026-05-15T19-55-56-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-55-56-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:56:22.607Z — Anil ran 1 command(s)
+### Command 1 on app as engineer (✓ exit 0, 3134ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -la /app/app/ 2>&1 | head -30
+```
+STDOUT:
+```
+ls: cannot access '/app/app/': No such file or directory
+```
+Full output: [`server-runs/2026-05-15T19-56-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-56-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
