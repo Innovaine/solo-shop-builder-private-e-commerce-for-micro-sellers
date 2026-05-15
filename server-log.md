@@ -8874,3 +8874,47 @@ d223da32ddfb   postgres:16-alpine                                           "doc
 }
 ```
 Full output: [`server-runs/2026-05-15T23-35-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-35-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:37:53.002Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dc1f550` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4136ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+ls -la tests/web/scaling-day13.spec.ts 2>/dev/null || echo "Test file not yet in repo"
+npx playwright --version 2>/dev/null || echo "Playwright not installed"
+```
+STDOUT:
+```
+Updating ad79b84..dc1f550
+Fast-forward
+ DEPLOYMENT.md                    | 223 +++++++++++
+ app/api/health/route.ts          |  66 +++-
+ app/components/ErrorBoundary.tsx |  82 ++++
+ day-12/_index.md                 |  17 +
+ day-12/test.md                   | 225 +++++++++++
+ day-13/_plan.md                  |  32 ++
+ day-13/engineering.md            | 225 +++++++++++
+ day-13/review.md                 | 231 +++++++++++
+ middleware.ts                    |  48 ++-
+ server-log.md                    | 815 +++++++++++++++++++++++++++++++++++++++
+ src/lib/errors.ts                | 120 ++++++
+ src/lib/timeout.ts               |  66 ++++
+ test-results/day-12/report.md    | 239 ++++++++++++
+ tests/web/scaling-day13.spec.ts  | 195 ++++++++++
+ 14 files changed, 2547 insertions(+), 37 deletions(-)
+ create mode 100644 DEPLOYMENT.md
+ create mode 100644 app/components/ErrorBoundary.tsx
+ create mode 100644 day-12/_index.md
+ create mode 100644 day-12/test.md
+ create mode 100644 day-13/_plan.md
+ create mode 100644 day-13/engineering.md
+ create mode 100644 day-13/review.md
+ create mode 100644 src/lib/errors.ts
+ create mode 100644 src/lib/timeout.ts
+ create mode 100644 test-results/day-12/report.md
+ create mode 100644 tests/web/scaling-day13.spec.ts
+-rw-rw-r-- 1 tester tester 6831 May 15 23:37 tests/web/scaling-day13.spec.ts
+Version 1.60.0
+```
+Full output: [`server-runs/2026-05-15T23-37-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-37-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
