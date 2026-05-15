@@ -2989,3 +2989,19 @@ DONE
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-15T17-24-53-app-kill--0-cat-tmp-day6-rebuild.pid-2-dev-n-1.log`](server-runs/2026-05-15T17-24-53-app-kill--0-cat-tmp-day6-rebuild.pid-2-dev-n-1.log)
+
+## 2026-05-15T17:25:13.645Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `849c79a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2246ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up > /tmp/compose-up-day6-v2.log 2>&1 &
+echo $! > /tmp/compose-up-day6-v2.pid
+echo "Started compose up v2, PID=$(cat /tmp/compose-up-day6-v2.pid)"
+```
+STDOUT:
+```
+Started compose up v2, PID=755745
+```
+Full output: [`server-runs/2026-05-15T17-25-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-25-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
