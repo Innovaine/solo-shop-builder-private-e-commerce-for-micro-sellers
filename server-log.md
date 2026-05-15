@@ -4411,3 +4411,55 @@ STDOUT:
 FAIL
 ```
 Full output: [`server-runs/2026-05-15T19-10-54-app-curl--sf-http-localhost-3000-health-echo-3.log`](server-runs/2026-05-15T19-10-54-app-curl--sf-http-localhost-3000-health-echo-3.log)
+
+## 2026-05-15T19:11:44.801Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `56cd2ce` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2500ms) _(showing tail — full 5,053B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=80
+```
+STDOUT:
+```
+…   at process.processTimers (node:internal/timers:519:7) {
+app-1  |   code: 'ETIMEDOUT',
+app-1  |   command: 'CONN'
+app-1  | }
+app-1  | Error: iron-session: Bad usage. Password must be at least 32 characters long.
+app-1  |     at T (/app/.next/server/chunks/402.js:6:14677)
+app-1  |     at r (/app/.next/server/chunks/402.js:6:15511)
+app-1  |     at i (/app/.next/server/app/dashboard/page.js:1:15509)
+app-1  |     at l (/app/.next/server/app/dashboard/page.js:1:2323)
+app-1  |     at eh (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134786)
+app-1  |     at e (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137671)
+app-1  |     at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138145)
+app-1  |     at Array.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+app-1  |     at stringify (<anonymous>)
+app-1  |     at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219) {
+app-1  |   digest: '2474506325'
+app-1  | }
+app-1  | Error: iron-session: Bad usage. Password must be at least 32 characters long.
+app-1  |     at T (/app/.next/server/chunks/402.js:6:14677)
+app-1  |     at r (/app/.next/server/chunks/402.js:6:15511)
+app-1  |     at i (/app/.next/server/app/dashboard/page.js:1:15509)
+app-1  |     at l (/app/.next/server/app/dashboard/page.js:1:2323)
+app-1  |     at eh (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134786)
+app-1  |     at e (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:137671)
+app-1  |     at ek (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138145)
+app-1  |     at Array.toJSON (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135755)
+app-1  |     at stringify (<anonymous>)
+app-1  |     at eR (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:142219) {
+app-1  |   digest: '2474506325'
+app-1  | }
+```
+Full output: [`server-runs/2026-05-15T19-11-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-11-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 450ms) _(showing tail — full 8,452B stdout + 0B stderr)_
+```
+curl -s http://localhost:3000/ | head -20
+```
+STDOUT:
+```
+…\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L7\"],\"globalErrorComponent\":\"$8\",\"missingSlots\":\"$W9\"}]]\n"])</script><script>self.__next_f.push([1,"7:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
+```
+Full output: [`server-runs/2026-05-15T19-11-44-app-curl--s-http-localhost-3000-head--20-2.log`](server-runs/2026-05-15T19-11-44-app-curl--s-http-localhost-3000-head--20-2.log)
