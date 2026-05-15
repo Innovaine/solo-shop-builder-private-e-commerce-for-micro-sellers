@@ -3897,3 +3897,14 @@ _Pre-SSH: warehouse pushed to GitHub as commit `6356853` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose restart app
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T18:49:00.455Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d94a583` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12951ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose restart app > /tmp/restart.log 2>&1 &
+echo $! > /tmp/restart.pid
+echo "Started restart, PID=$(cat /tmp/restart.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
