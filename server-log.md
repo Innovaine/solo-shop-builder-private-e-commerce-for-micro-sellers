@@ -5085,3 +5085,66 @@ STDOUT:
 {"/_not-found/page":"/_not-found","/api/auth/logout/route":"/api/auth/logout","/api/shops/route":"/api/shops","/api/auth/signup/route":"/api/auth/signup","/api/auth/verify/route":"/api/auth/verify","/dashboard/create-shop/page":"/dashboard/create-shop","/dashboard/page":"/dashboard","/page":"/","/shop/[slug]/page":"/shop/[slug]","/auth/login/page":"/auth/login"}
 ```
 Full output: [`server-runs/2026-05-15T19-57-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-57-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:57:45.773Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3708030` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2690ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -R /app/.next/server/app/ 2>&1 | head -50
+```
+STDOUT:
+```
+/app/.next/server/app/:
+_not-found
+_not-found.html
+_not-found.meta
+_not-found.rsc
+api
+auth
+dashboard
+index.html
+index.meta
+index.rsc
+page.js
+page.js.nft.json
+page_client-reference-manifest.js
+shop
+
+/app/.next/server/app/_not-found:
+page.js
+page.js.nft.json
+page_client-reference-manifest.js
+
+/app/.next/server/app/api:
+auth
+shops
+
+/app/.next/server/app/api/auth:
+logout
+signup
+verify
+
+/app/.next/server/app/api/auth/logout:
+route.js
+route.js.nft.json
+
+/app/.next/server/app/api/auth/signup:
+route.js
+route.js.nft.json
+
+/app/.next/server/app/api/auth/verify:
+route.js
+route.js.nft.json
+
+/app/.next/server/app/api/shops:
+route.js
+route.js.nft.json
+
+/app/.next/server/app/auth:
+login
+login.html
+login.meta
+```
+Full output: [`server-runs/2026-05-15T19-57-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-57-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
