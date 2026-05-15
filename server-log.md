@@ -5853,3 +5853,23 @@ fdbc115cfd35   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 /dev/sda1       387G   44G  344G  12% /
 ```
 Full output: [`server-runs/2026-05-15T20-17-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-17-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:18:05.709Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e28beb7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2744ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -sf http://localhost:3000/api/health && echo "Health OK" || echo "Health FAIL"
+curl -sI http://localhost:3000 | head -3
+curl -s http://localhost:3000 | grep -o '<title>[^<]*</title>' | head -1
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}Health OK
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+<title>Solo Shop Builder</title>
+```
+Full output: [`server-runs/2026-05-15T20-18-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-18-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
