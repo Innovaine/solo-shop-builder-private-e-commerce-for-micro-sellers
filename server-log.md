@@ -1157,3 +1157,12 @@ echo $! > /tmp/soloshop-review-build.pid
 echo "Build started with PID=$(cat /tmp/soloshop-review-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T16:17:36.997Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3c9faa9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14141ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose build 2>&1 | tail -100
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
