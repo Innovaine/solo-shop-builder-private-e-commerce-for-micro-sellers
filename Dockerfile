@@ -17,6 +17,9 @@ COPY . .
 # Generate Prisma client
 RUN npx prisma generate
 
+# Ensure public directory exists (Next.js may not create it if there are no static assets)
+RUN mkdir -p public
+
 # Build Next.js app
 RUN npm run build
 
@@ -29,6 +32,7 @@ ENV NODE_ENV=production
 RUN groupadd --system --gid 1001 nodejs
 RUN useradd --system --uid 1001 nextjs
 
+# Copy public directory (will be empty if no static assets, but must exist)
 COPY --from=builder /app/public ./public
 
 # Set the correct permission for prerender cache

@@ -1207,3 +1207,65 @@ STDOUT:
 Started build, PID=714653
 ```
 Full output: [`server-runs/2026-05-15T16-37-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-37-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:38:08.656Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6f1a8e2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2221ms) _(showing tail — full 4,898B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/soloshop-build9.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/soloshop-build9.log
+```
+STDOUT:
+```
+… Generating static pages (8/11) 
+#17 11.76  ✓ Generating static pages (11/11)
+#17 11.87    Finalizing page optimization ...
+#17 11.87    Collecting build traces ...
+#17 21.83 
+#17 21.83 Route (app)                              Size     First Load JS
+#17 21.83 ┌ ○ /                                    175 B          93.9 kB
+#17 21.83 ├ ○ /_not-found                          871 B          87.9 kB
+#17 21.83 ├ ƒ /api/auth/logout                     0 B                0 B
+#17 21.83 ├ ƒ /api/auth/signup                     0 B                0 B
+#17 21.83 ├ ƒ /api/auth/verify                     0 B                0 B
+#17 21.83 ├ ƒ /api/shops                           0 B                0 B
+#17 21.83 ├ ○ /auth/login                          1.66 kB        88.6 kB
+#17 21.83 ├ ƒ /dashboard                           175 B          93.9 kB
+#17 21.83 ├ ○ /dashboard/create-shop               1.88 kB        88.9 kB
+#17 21.83 └ ƒ /shop/[slug]                         136 B          87.1 kB
+#17 21.83 + First Load JS shared by all            87 kB
+#17 21.83   ├ chunks/23-084dc0ddac7a3dc9.js        31.5 kB
+#17 21.83   ├ chunks/fd9d1056-99698e2e9c7f3a30.js  53.6 kB
+#17 21.83   └ other shared chunks (total)          1.89 kB
+#17 21.83 
+#17 21.83 
+#17 21.83 ○  (Static)   prerendered as static content
+#17 21.83 ƒ  (Dynamic)  server-rendered on demand
+#17 21.83 
+#17 DONE 21.9s
+
+#18 [runner  4/10] COPY --from=builder /app/public ./public
+#18 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::nxtb76xe6uz3kkmgu4kxtx2rs: "/app/public": not found
+------
+ > [runner  4/10] COPY --from=builder /app/public ./public:
+------
+Dockerfile:32
+
+--------------------
+
+  30 |     RUN useradd --system --uid 1001 nextjs
+
+  31 |     
+
+  32 | >>> COPY --from=builder /app/public ./public
+
+  33 |     
+
+  34 |     # Set the correct permission for prerender cache
+
+--------------------
+
+failed to solve: failed to compute cache key: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::nxtb76xe6uz3kkmgu4kxtx2rs: "/app/public": not found
+```
+Full output: [`server-runs/2026-05-15T16-38-08-app-kill--0-cat-tmp-soloshop-build9.pid-2-de-1.log`](server-runs/2026-05-15T16-38-08-app-kill--0-cat-tmp-soloshop-build9.pid-2-de-1.log)
