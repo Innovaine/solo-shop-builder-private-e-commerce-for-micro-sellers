@@ -3852,3 +3852,39 @@ STDOUT:
 Started migration inside container, PID=776251
 ```
 Full output: [`server-runs/2026-05-15T18-47-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-47-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:47:44.685Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d798364` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2438ms)
+```
+kill -0 $(cat /tmp/migrate2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/migrate2.log
+```
+STDOUT:
+```
+DONE
+time="2026-05-15T18:47:20Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+Applying migration `20260515184722_init`
+
+The following migration(s) have been created and applied from new schema changes:
+
+migrations/
+  └─ 20260515184722_init/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+Error: Can't write to /usr/local/lib/node_modules/prisma please make sure you install "prisma" with the right permissions.
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.14.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+```
+Full output: [`server-runs/2026-05-15T18-47-44-app-kill--0-cat-tmp-migrate2.pid-2-dev-null--1.log`](server-runs/2026-05-15T18-47-44-app-kill--0-cat-tmp-migrate2.pid-2-dev-null--1.log)
