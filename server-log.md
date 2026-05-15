@@ -4039,3 +4039,60 @@ STDOUT:
 (1 row)
 ```
 Full output: [`server-runs/2026-05-15T18-52-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-52-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:54:49.820Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2abf78c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3218ms) _(showing tail — full 2,300B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+```
+STDOUT:
+```
+…                |   17 +
+ day-05/_plan.md                      |   33 +
+ day-05/engineering.md                |  753 +++++++++++
+ day-06/_index.md                     |   17 +
+ day-06/_plan.md                      |   35 +
+ day-06/engineering.md                |  361 +++++
+ day-07/_index.md                     |   17 +
+ day-07/_plan.md                      |   34 +
+ day-07/engineering.md                |  207 +++
+ day-07/review.md                     |   83 ++
+ day-07/test.md                       |  139 ++
+ day-08/_plan.md                      |   32 +
+ day-08/engineering.md                |  217 ++++
+ docker-compose.yml                   |    1 +
+ package-lock.json                    |   75 ++
+ package.json                         |    4 +-
+ prisma/schema.prisma                 |    1 +
+ server-log.md                        | 2384 ++++++++++++++++++++++++++++++++++
+ test-results/day-07/report.md        |  266 ++++
+ tests/web/auth-flow.spec.ts          |   78 ++
+ tests/web/public-storefront.spec.ts  |  137 ++
+ tests/web/session-management.spec.ts |  223 ++++
+ tests/web/shop-creation.spec.ts      |  147 +++
+ 27 files changed, 5468 insertions(+), 5 deletions(-)
+ create mode 100644 day-04/_index.md
+ create mode 100644 day-04/review.md
+ create mode 100644 day-05/_index.md
+ create mode 100644 day-05/_plan.md
+ create mode 100644 day-05/engineering.md
+ create mode 100644 day-06/_index.md
+ create mode 100644 day-06/_plan.md
+ create mode 100644 day-06/engineering.md
+ create mode 100644 day-07/_index.md
+ create mode 100644 day-07/_plan.md
+ create mode 100644 day-07/engineering.md
+ create mode 100644 day-07/review.md
+ create mode 100644 day-07/test.md
+ create mode 100644 day-08/_plan.md
+ create mode 100644 day-08/engineering.md
+ create mode 100644 package-lock.json
+ create mode 100644 test-results/day-07/report.md
+ create mode 100644 tests/web/auth-flow.spec.ts
+ create mode 100644 tests/web/public-storefront.spec.ts
+ create mode 100644 tests/web/session-management.spec.ts
+ create mode 100644 tests/web/shop-creation.spec.ts
+```
+Full output: [`server-runs/2026-05-15T18-54-49-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-54-49-app-cd-solo-shop-builder-private-e-commerce--1.log)
