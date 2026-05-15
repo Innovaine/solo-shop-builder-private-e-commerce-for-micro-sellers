@@ -9096,3 +9096,19 @@ STDOUT:
  create mode 100644 tests/web/scaling-day13.spec.ts
 ```
 Full output: [`server-runs/2026-05-15T23-54-35-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-54-35-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:55:05.246Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7295cb7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2543ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day14-build.log 2>&1 &
+echo $! > /tmp/day14-build.pid
+echo "Started build, PID=$(cat /tmp/day14-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=847431
+```
+Full output: [`server-runs/2026-05-15T23-55-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-55-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
