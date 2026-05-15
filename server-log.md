@@ -6697,3 +6697,45 @@ ERROR: ERROR:  column "email" does not exist
 LINE 1: SELECT token FROM "AuthToken" WHERE email = 'day10-tester-17...
                                             ^
  (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T21:37:42.985Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `104797b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2968ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Check AuthToken table structure
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U postgres -d soloshop -c "\d \"AuthToken\""
+
+# Check what tokens exist
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U postgres -d soloshop -c "SELECT * FROM \"AuthToken\" LIMIT 3;"
+```
+STDOUT:
+```
+                               Table "public.AuthToken"
+  Column   |              Type              | Collation | Nullable |      Default      
+-----------+--------------------------------+-----------+----------+-------------------
+ id        | text                           |           | not null | 
+ token     | text                           |           | not null | 
+ sellerId  | text                           |           | not null | 
+ expiresAt | timestamp(3) without time zone |           | not null | 
+ used      | boolean                        |           | not null | false
+ createdAt | timestamp(3) without time zone |           | not null | CURRENT_TIMESTAMP
+Indexes:
+    "AuthToken_pkey" PRIMARY KEY, btree (id)
+    "AuthToken_sellerId_idx" btree ("sellerId")
+    "AuthToken_token_idx" btree (token)
+    "AuthToken_token_key" UNIQUE, btree (token)
+Foreign-key constraints:
+    "AuthToken_sellerId_fkey" FOREIGN KEY ("sellerId") REFERENCES "Seller"(id) ON UPDATE CASCADE ON DELETE CASCADE
+
+                  id                  |              token               |               sellerId               |        expiresAt        | used |        createdAt        
+--------------------------------------+----------------------------------+--------------------------------------+-------------------------+------+-------------------------
+ c4bccdef-4d8c-49f8-9609-c8b69354769b | HuPW6Sa5r0OpdEUxVflrHADOefH28sE4 | dbaf49ad-f20d-4905-b9da-5688f05878ea | 2026-05-15 19:05:19.067 | f    | 2026-05-15 18:50:19.068
+ 993e2422-6122-4260-ae2d-6cad9c47c23d | 8-SQ9PW7lBsG63q0SSqyYEQtY2-d8Q0y | dbaf49ad-f20d-4905-b9da-5688f05878ea | 2026-05-15 19:06:15.787 | f    | 2026-05-15 18:51:15.788
+ 2cf6ba27-0cb3-4f86-9e10-c31d47dbe1ca | HEb3iHZY0Z-XnnI2MQwGTIePN3NgnEf8 | e627f26c-cd97-4890-9220-791ee482a4ae | 2026-05-15 19:06:50.144 | f    | 2026-05-15 18:51:50.145
+(3 rows)
+```
+Full output: [`server-runs/2026-05-15T21-37-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-37-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
