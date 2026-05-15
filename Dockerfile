@@ -29,8 +29,28 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Install openssl and prisma CLI for migrations at runtime
-RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+# Install openssl, prisma CLI, and Playwright dependencies for running tests
+RUN apt-get update && apt-get install -y \
+    openssl \
+    ca-certificates \
+    libnss3 \
+    libnspr4 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libdbus-1-3 \
+    libxkbcommon0 \
+    libatspi2.0-0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm1 \
+    libpango-1.0-0 \
+    libcairo2 \
+    libasound2 \
+    && rm -rf /var/lib/apt/lists/*
 RUN npm install -g prisma@5.14.0
 
 RUN groupadd --system --gid 1001 nodejs
@@ -42,6 +62,9 @@ COPY --from=builder /app/public ./public
 # Set the correct permission for prerender cache
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
+
+# Create test-results directory with correct permissions for Playwright
+RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
 
 # Automatically leverage output traces to reduce image size
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./

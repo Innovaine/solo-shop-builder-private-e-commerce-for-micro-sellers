@@ -6975,3 +6975,17 @@ STDOUT:
 Error response from daemon: No such container: solo-shop-builder-private-e-commerce-for-micro-sellers-web-1
 ```
 Full output: [`server-runs/2026-05-15T21-54-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-54-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:55:17.076Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a8722ea` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2853ms)
+```
+docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+ed6c785093f0   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   36 minutes ago   Up 36 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+42d57c7dc2c1   postgres:16-alpine                                           "docker-entrypoint.s…"   36 minutes ago   Up 36 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-15T21-55-17-app-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-15T21-55-17-app-docker-ps--a-grep-solo-shop-1.log)
