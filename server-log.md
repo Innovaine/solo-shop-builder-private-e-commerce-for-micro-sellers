@@ -4941,3 +4941,29 @@ test.describe('FR-3 & FR-4: Shop Creation', () => {
 });
 ```
 Full output: [`server-runs/2026-05-15T19-29-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-29-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:54:55.799Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `398491f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2963ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git status
+docker ps | grep solo-shop
+curl -sf http://localhost:3000/health -o /dev/null && echo "Health check: OK" || echo "Health check: FAIL"
+```
+STDOUT:
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.env
+
+nothing added to commit but untracked files present (use "git add" to track)
+74857d7a1c6e   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   39 minutes ago   Up 38 minutes                0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+4eb0db4d7307   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago      Up About an hour (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+Health check: FAIL
+```
+Full output: [`server-runs/2026-05-15T19-54-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-54-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
