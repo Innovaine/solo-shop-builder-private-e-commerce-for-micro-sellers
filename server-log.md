@@ -3998,3 +3998,15 @@ app-1  |   command: 'CONN'
 app-1  | }
 ```
 Full output: [`server-runs/2026-05-15T18-51-02-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-51-02-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:52:00.673Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4f43c8f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12888ms)
+```
+curl -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}' \
+  -w "\nHTTP_CODE:%{http_code}\n"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
