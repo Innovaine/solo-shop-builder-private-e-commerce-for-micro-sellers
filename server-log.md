@@ -8177,3 +8177,33 @@ Call log:
   ✘  24 tests/web/shop-creation.spec.ts:92:7 › FR-3 & FR-4: Shop Creation › FR-3: Valid shop creation succeeds (30.0s)
 ```
 Full output: [`server-runs/2026-05-15T23-13-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-13-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:13:41.613Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b69e898` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2680ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "=== FULL TEST SUMMARY ==="
+tail -100 /tmp/day12-playwright.log | grep -A 50 "passed\|failed"
+```
+STDOUT:
+```
+=== FULL TEST SUMMARY ===
+  12 failed
+    tests/web/auth-flow.spec.ts:15:7 › FR-1 & FR-2: Authentication Flow › FR-1: Seller can signup with email 
+    tests/web/auth-flow.spec.ts:43:7 › FR-1 & FR-2: Authentication Flow › FR-2: Valid magic link logs seller in 
+    tests/web/public-storefront.spec.ts:51:7 › FR-5: Public Shop Storefront › FR-5: Valid shop slug returns 200 with shop name 
+    tests/web/scaling-day12.spec.ts:37:7 › Day 12: Scaling Features › NFR-11: Request ID present on homepage 
+    tests/web/session-management.spec.ts:51:7 › FR-7: Session Management › FR-7: Session persists across page reloads 
+    tests/web/session-management.spec.ts:130:7 › FR-6: Shop Persistence › FR-6: Shop data persists and can be retrieved 
+    tests/web/session-management.spec.ts:176:7 › FR-6: Shop Persistence › FR-6: Shop can be accessed after simulated session restart 
+    tests/web/shop-creation.spec.ts:28:7 › FR-3 & FR-4: Shop Creation › FR-4: Shop creation form loads without errors 
+    tests/web/shop-creation.spec.ts:55:7 › FR-3 & FR-4: Shop Creation › FR-4: Name auto-populates slug (lowercase, hyphens) 
+    tests/web/shop-creation.spec.ts:75:7 › FR-3 & FR-4: Shop Creation › FR-4: Seller can override slug 
+    tests/web/shop-creation.spec.ts:92:7 › FR-3 & FR-4: Shop Creation › FR-3: Valid shop creation succeeds 
+    tests/web/shop-creation.spec.ts:119:7 › FR-3 & FR-4: Shop Creation › FR-3: Invalid slug format rejected 
+  4 did not run
+  9 passed (2.2m)
+```
+Full output: [`server-runs/2026-05-15T23-13-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-13-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
