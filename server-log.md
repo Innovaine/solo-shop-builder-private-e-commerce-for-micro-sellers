@@ -8207,3 +8207,44 @@ STDOUT:
   9 passed (2.2m)
 ```
 Full output: [`server-runs/2026-05-15T23-13-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-13-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:14:24.808Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ba21a4c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3093ms) _(showing tail — full 2,716B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "=== Day 12 Scaling Tests Details ==="
+grep -B 2 -A 2 "scaling-day12" /tmp/day12-playwright.log | head -40
+```
+STDOUT:
+```
+…sion cookie has correct security attributes (768ms)
+  ✓   8 tests/web/scaling-day12.spec.ts:46:7 › Day 12: Scaling Features › Enhanced health check returns DB status (41ms)
+  ✓   9 tests/web/scaling-day12.spec.ts:61:7 › Day 12: Scaling Features › Rate limiting on signup endpoint blocks after threshold (46ms)
+  ✓  10 tests/web/scaling-day12.spec.ts:83:7 › Day 12: Scaling Features › Rate limiting returns 429 with error message (63ms)
+  ✓  11 tests/web/scaling-day12.spec.ts:109:7 › Day 12: Scaling Features › Performance monitoring logs requests with timing (13ms)
+  ✘   7 tests/web/session-management.spec.ts:51:7 › FR-7: Session Management › FR-7: Session persists across page reloads (1.7s)
+Logout button not found on page - functionality may not be implemented yet
+--
+    Error Context: test-results/tests-web-public-storefron-fce78--returns-200-with-shop-name/error-context.md
+
+  4) tests/web/scaling-day12.spec.ts:37:7 › Day 12: Scaling Features › NFR-11: Request ID present on homepage 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeDefined[2m()[22m
+--
+      44 |   });
+      45 |
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/scaling-day12.spec.ts:42:37
+
+    Error Context: test-results/tests-web-scaling-day12-Da-7990b-uest-ID-present-on-homepage/error-context.md
+
+  5) tests/web/session-management.spec.ts:51:7 › FR-7: Session Management › FR-7: Session persists across page reloads 
+--
+    tests/web/auth-flow.spec.ts:43:7 › FR-1 & FR-2: Authentication Flow › FR-2: Valid magic link logs seller in 
+    tests/web/public-storefront.spec.ts:51:7 › FR-5: Public Shop Storefront › FR-5: Valid shop slug returns 200 with shop name 
+    tests/web/scaling-day12.spec.ts:37:7 › Day 12: Scaling Features › NFR-11: Request ID present on homepage 
+    tests/web/session-management.spec.ts:51:7 › FR-7: Session Management › FR-7: Session persists across page reloads 
+    tests/web/session-management.spec.ts:130:7 › FR-6: Shop Persistence › FR-6: Shop data persists and can be retrieved
+```
+Full output: [`server-runs/2026-05-15T23-14-24-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-14-24-app-cd-solo-shop-builder-private-e-commerce--1.log)
