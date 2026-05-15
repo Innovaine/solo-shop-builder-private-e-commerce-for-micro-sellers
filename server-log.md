@@ -8019,3 +8019,12 @@ aa166135a925   postgres:16-alpine                                           "doc
 {"status":"ok","timestamp":"2026-05-15T23:01:30.144Z","database":"connected","responseTime":"1ms"} - Health OK
 ```
 Full output: [`server-runs/2026-05-15T23-01-29-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-01-29-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:07:40.341Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2cb7e3a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 128, 3876ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+ERROR: command exited 128
