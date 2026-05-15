@@ -7378,3 +7378,50 @@ STDOUT:
 Started Playwright tests, PID=825982
 ```
 Full output: [`server-runs/2026-05-15T22-15-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-15-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T22:16:23.452Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2b49989` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2983ms)
+```
+kill -0 $(cat /tmp/day11-playwright.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day11-playwright.log
+```
+STDOUT:
+```
+DONE
+
+Running 4 tests using 1 worker
+
+  ✓  1 [chromium] › tests/web/auth-flow.spec.ts:6:7 › FR-1 & FR-2: Authentication Flow › FR-1: Homepage loads and signup interface visible (260ms)
+  ✓  2 [chromium] › tests/web/auth-flow.spec.ts:14:7 › FR-1 & FR-2: Authentication Flow › FR-2: Auth verify page responds (251ms)
+  ✓  3 [chromium] › tests/web/public-storefront.spec.ts:4:7 › FR-5: Public Storefront › FR-5: Shop page responds (291ms)
+  ✘  4 [chromium] › tests/web/shop-creation.spec.ts:4:7 › FR-3 & FR-4: Shop Creation › FR-4: Dashboard loads (300ms)
+
+
+  1) [chromium] › tests/web/shop-creation.spec.ts:4:7 › FR-3 & FR-4: Shop Creation › FR-4: Dashboard loads 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mfalse[39m
+
+      14 |     
+      15 |     const pageLoaded = page.url().includes('dashboard');
+    > 16 |     expect(pageLoaded).toBeTruthy();
+         |                        ^
+      17 |   });
+      18 | });
+      19 |
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/shop-creation.spec.ts:16:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/artifacts/shop-creation-FR-3-FR-4-Shop-Creation-FR-4-Dashboard-loads-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/artifacts/shop-creation-FR-3-FR-4-Shop-Creation-FR-4-Dashboard-loads-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/web/shop-creation.spec.ts:4:7 › FR-3 & FR-4: Shop Creation › FR-4: Dashboard loads 
+  3 passed (1.8s)
+```
+Full output: [`server-runs/2026-05-15T22-16-23-app-kill--0-cat-tmp-day11-playwright.pid-2-d-1.log`](server-runs/2026-05-15T22-16-23-app-kill--0-cat-tmp-day11-playwright.pid-2-d-1.log)
