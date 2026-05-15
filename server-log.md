@@ -2945,3 +2945,47 @@ STDOUT:
 #16 11.72 }
 ```
 Full output: [`server-runs/2026-05-15T17-24-27-app-kill--0-cat-tmp-day6-rebuild.pid-2-dev-n-1.log`](server-runs/2026-05-15T17-24-27-app-kill--0-cat-tmp-day6-rebuild.pid-2-dev-n-1.log)
+
+## 2026-05-15T17:24:53.112Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `23b2957` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2359ms)
+```
+kill -0 $(cat /tmp/day6-rebuild.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/day6-rebuild.log
+```
+STDOUT:
+```
+DONE
+#22 [runner  7/11] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#22 DONE 0.3s
+
+#23 [runner  8/11] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#23 DONE 0.1s
+
+#24 [runner  9/11] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#24 DONE 0.0s
+
+#25 [runner 10/11] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#25 DONE 0.0s
+
+#26 [runner 11/11] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#26 DONE 0.0s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 1.4s done
+#27 exporting manifest sha256:c3337591130b80c6b429810993bada97203e59cfb53ed9e0b930630faff7c3fe done
+#27 exporting config sha256:f3abfb713febf00d96f62882b69ef2b23fb7e38daeb4e5fa1c18400d2c1cec2f done
+#27 exporting attestation manifest sha256:2c5ad23c3910d00010367a60840d8adbc5c2d3aa7d26d7a2ed52ec274ec6bf23 0.0s done
+#27 exporting manifest list sha256:63e442408ff0346817653d0838bca376e0340a61d18d425dfb573f161974fbfc done
+#27 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#27 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#27 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.5s done
+#27 DONE 1.9s
+
+#28 resolving provenance for metadata file
+#28 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-15T17-24-53-app-kill--0-cat-tmp-day6-rebuild.pid-2-dev-n-1.log`](server-runs/2026-05-15T17-24-53-app-kill--0-cat-tmp-day6-rebuild.pid-2-dev-n-1.log)
