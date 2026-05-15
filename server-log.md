@@ -7737,3 +7737,25 @@ Testing on dashboard (server-rendered page):
 x-request-id: z61hKjDk4QnK
 ```
 Full output: [`server-runs/2026-05-15T22-44-44-app-echo-Testing-request-ID-middleware...-1.log`](server-runs/2026-05-15T22-44-44-app-echo-Testing-request-ID-middleware...-1.log)
+
+## 2026-05-15T22:45:09.299Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `11bf75b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3360ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose logs --tail=30 app | grep -E "\[API\]|\[SLOW\]|HEALTH"
+```
+STDOUT:
+```
+app-1  | [API] GET /api/health - 3ms [K5vNyIgQv8fX]
+app-1  | [API] GET /api/health - 1ms [kWKZuxxA5R_0]
+app-1  | [API] POST /api/auth/signup - 0ms [dX2fCMjxldo9]
+app-1  | [API] POST /api/auth/signup - 0ms [KSYfJ5dPjsmZ]
+app-1  | [API] POST /api/auth/signup - 1ms [-a6V44arkScx]
+app-1  | [API] POST /api/auth/signup - 1ms [xgz_MNr_7gsP]
+app-1  | [API] POST /api/auth/signup - 0ms [-VCftsmwCCFw]
+app-1  | [API] POST /api/auth/signup - 1ms [d_cfsUpUGPt1]
+app-1  | [API] HEAD /api/health - 1ms [x6c-kyYQOIM8]
+```
+Full output: [`server-runs/2026-05-15T22-45-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T22-45-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
