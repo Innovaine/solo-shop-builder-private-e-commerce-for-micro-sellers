@@ -1,5 +1,6 @@
 // FR-3: Shop creation API
 // POST /api/shops with { name, slug }
+// GET /api/shops - fetch seller's shops
 // Creates shop for authenticated seller
 
 import { NextRequest, NextResponse } from 'next/server'
@@ -18,6 +19,34 @@ const shopSchema = z.object({
       'Slug can only contain lowercase letters, numbers, and hyphens'
     ),
 })
+
+export async function GET(request: NextRequest) {
+  try {
+    // Check auth
+    const { sellerId } = await requireAuth()
+
+    // Fetch seller's shops
+    const shops = await prisma.shop.findMany({
+      where: { sellerId },
+      orderBy: { createdAt: 'desc' },
+    })
+
+    return NextResponse.json(shops, { status: 200 })
+  } catch (error) {
+    if (error instanceof Error && error.message === 'Unauthorized') {
+      return NextResponse.json(
+        { error: 'You must be logged in to view shops.' },
+        { status: 401 }
+      )
+    }
+
+    console.error('Shop fetch error:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch shops. Please try again.' },
+      { status: 500 }
+    )
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
