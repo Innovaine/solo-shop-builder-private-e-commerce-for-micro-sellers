@@ -514,3 +514,14 @@ drwxrwxr-x 3 engineer engineer 4096 May 15 15:45 ..
 -rw-rw-r-- 1 engineer engineer 1629 May 15 15:45 email.ts
 ```
 Full output: [`server-runs/2026-05-15T15-58-04-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T15-58-04-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T15:59:23.939Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `93f77cc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12558ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose build --no-cache app > /tmp/soloshop-build5.log 2>&1 &
+echo $! > /tmp/soloshop-build5.pid
+echo "Started no-cache build, PID=$(cat /tmp/soloshop-build5.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
