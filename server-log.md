@@ -6128,3 +6128,23 @@ STDOUT:
 (1 row)
 ```
 Full output: [`server-runs/2026-05-15T21-27-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-27-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T21:28:00.281Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4314470` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2999ms) _(showing tail — full 7,064B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== PUBLIC SHOP PAGE ===" && curl -s http://localhost:3000/shop/test-shop | grep -A5 "<title>" | head -10 && echo "" && echo "=== CHECK STATUS ===" && curl -sI http://localhost:3000/shop/test-shop | head -5
+```
+STDOUT:
+```
+…tFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"missingSlots\":\"$Wa\"}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script><script>self.__next_f.push([1,"4:[\"$\",\"div\",null,{\"className\":\"min-h-screen bg-cream\",\"children\":[[\"$\",\"header\",null,{\"className\":\"bg-white border-b border-whisper\",\"children\":[\"$\",\"div\",null,{\"className\":\"max-w-7xl mx-auto px-6 py-6\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-3xl font-bold text-charcoal\",\"children\":\"Test Shop\"}],[\"$\",\"p\",null,{\"className\":\"text-slate mt-1\",\"children\":\"Independent storefront\"}]]}]}],[\"$\",\"main\",null,{\"className\":\"max-w-7xl mx-auto px-6 py-12\",\"children\":[\"$\",\"div\",null,{\"className\":\"bg-white rounded-lg border border-whisper p-12 text-center\",\"children\":[[\"$\",\"div\",null,{\"className\":\"text-6xl mb-6\",\"children\":\"🛍️\"}],[\"$\",\"h2\",null,{\"className\":\"text-2xl font-semibold text-charcoal mb-3\",\"children\":\"This shop is empty\"}],[\"$\",\"p\",null,{\"className\":\"text-slate max-w-md mx-auto\",\"children\":\"The seller hasn't added any products yet. Check back soon!\"}],[\"$\",\"div\",null,{\"className\":\"mt-8 pt-8 border-t border-whisper\",\"children\":[\"$\",\"p\",null,{\"className\":\"text-sm text-slate\",\"children\":[\"Shop created\",\" \",\"May 15, 2026\"]}]}]]}]}]]}]\n"])</script></body></html>
+
+=== CHECK STATUS ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+```
+Full output: [`server-runs/2026-05-15T21-28-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T21-28-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
