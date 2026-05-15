@@ -4361,3 +4361,53 @@ Running 4 tests using 1 worker
   4 passed (1.5s)
 ```
 Full output: [`server-runs/2026-05-15T19-03-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-03-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:10:54.810Z — Anil ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d0b1975` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3113ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+Updating 09bf487..d0b1975
+Fast-forward
+ day-08/_index.md              |  17 ++
+ day-08/engineering.md         | 217 ++++++++++++++++
+ day-08/review.md              | 160 ++++++++++++
+ day-08/test.md                | 132 ++++++++++
+ day-09/_plan.md               |  32 +++
+ server-log.md                 | 571 ++++++++++++++++++++++++++++++++++++++++++
+ test-results/day-08/report.md | 349 ++++++++++++++++++++++++++
+ 7 files changed, 1478 insertions(+)
+ create mode 100644 day-08/_index.md
+ create mode 100644 day-08/engineering.md
+ create mode 100644 day-08/review.md
+ create mode 100644 day-08/test.md
+ create mode 100644 day-09/_plan.md
+ create mode 100644 test-results/day-08/report.md
+```
+Full output: [`server-runs/2026-05-15T19-10-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-10-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 464ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED          STATUS                    PORTS                                         NAMES
+3167e38b07ff   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   44 minutes ago   Up 21 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+4eb0db4d7307   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago      Up 44 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-15T19-10-54-app-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-15T19-10-54-app-cd-solo-shop-builder-private-e-commerce--2.log)
+
+### Command 3 on app as engineer (✓ exit 0, 409ms)
+```
+curl -sf http://localhost:3000/health && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+FAIL
+```
+Full output: [`server-runs/2026-05-15T19-10-54-app-curl--sf-http-localhost-3000-health-echo-3.log`](server-runs/2026-05-15T19-10-54-app-curl--sf-http-localhost-3000-health-echo-3.log)
