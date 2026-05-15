@@ -5148,3 +5148,19 @@ login.html
 login.meta
 ```
 Full output: [`server-runs/2026-05-15T19-57-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T19-57-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T19:58:50.483Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ff32588` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 6818ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Clear previous logs and make a fresh request
+docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 --tail=0 --follow > /tmp/homepage-test.log 2>&1 &
+TAIL_PID=$!
+sleep 2
+curl -s http://localhost:3000/ > /dev/null
+sleep 2
+kill $TAIL_PID 2>/dev/null || true
+cat /tmp/homepage-test.log
+```
