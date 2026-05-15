@@ -3005,3 +3005,47 @@ STDOUT:
 Started compose up v2, PID=755745
 ```
 Full output: [`server-runs/2026-05-15T17-25-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-25-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:25:40.082Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cbee337` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7032ms) _(showing tail — full 2,880B stdout + 0B stderr)_
+```
+sleep 5
+tail -100 /tmp/compose-up-day6-v2.log
+```
+STDOUT:
+```
+…lers-postgres-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Started 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+postgres-1  | 
+postgres-1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres-1  | 
+postgres-1  | 2026-05-15 17:25:14.080 UTC [1] LOG:  starting PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-05-15 17:25:14.080 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-05-15 17:25:14.080 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-05-15 17:25:14.082 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-05-15 17:25:14.086 UTC [29] LOG:  database system was shut down at 2026-05-15 17:24:11 UTC
+postgres-1  | 2026-05-15 17:25:14.092 UTC [1] LOG:  database system is ready to accept connections
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started 
+[Kapp-1 exited with code 127 (restarting)
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+[Kapp-1 exited with code 127 (restarting)
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+[Kapp-1 exited with code 127 (restarting)
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+[Kapp-1 exited with code 127 (restarting)
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+[Kapp-1 exited with code 127 (restarting)
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+[Kapp-1 exited with code 127 (restarting)
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+[Kapp-1 exited with code 127 (restarting)
+app-1       | sh: 1: node_modules/.bin/prisma: not found
+[Kapp-1 exited with code 127 (restarting)
+```
+Full output: [`server-runs/2026-05-15T17-25-40-app-sleep-5-1.log`](server-runs/2026-05-15T17-25-40-app-sleep-5-1.log)

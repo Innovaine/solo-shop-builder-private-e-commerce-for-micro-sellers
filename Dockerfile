@@ -29,6 +29,10 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+# Install openssl and prisma CLI for migrations at runtime
+RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN npm install -g prisma@5.14.0
+
 RUN groupadd --system --gid 1001 nodejs
 RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
 
