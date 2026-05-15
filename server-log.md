@@ -3568,3 +3568,25 @@ Created playwright.config.ts
 Setup complete
 ```
 Full output: [`server-runs/2026-05-15T18-37-49-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-37-49-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:38:30.106Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `619b97e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2486ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Verify app is running
+docker ps | grep app
+
+# Run Playwright tests in background (they can take a while)
+nohup bash -c 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list 2>&1' > /tmp/playwright-test.log 2>&1 &
+echo $! > /tmp/playwright-test.pid
+echo "Started Playwright tests, PID=$(cat /tmp/playwright-test.pid)"
+```
+STDOUT:
+```
+3167e38b07ff   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   12 minutes ago      Up 7 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+Started Playwright tests, PID=773891
+```
+Full output: [`server-runs/2026-05-15T18-38-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-38-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
