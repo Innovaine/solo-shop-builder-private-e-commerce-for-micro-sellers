@@ -8076,3 +8076,19 @@ STDOUT:
 -rw-rw-r-- 1 tester tester 4540 May 15 23:09 scaling-day12.spec.ts
 ```
 Full output: [`server-runs/2026-05-15T23-09-59-app-cd-1.log`](server-runs/2026-05-15T23-09-59-app-cd-1.log)
+
+## 2026-05-15T23:11:23.297Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fc80fa0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 54820ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Ensure playwright test deps are installed
+npm list @playwright/test &>/dev/null || npm install -D @playwright/test &>/dev/null
+
+# Run tests in background
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list > /tmp/day12-playwright.log 2>&1" &
+echo $! > /tmp/day12-playwright.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day12-playwright.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
