@@ -2397,3 +2397,23 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   37 seconds ago   Up 36 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-15T17-05-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-05-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:05:41.224Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0f73ea6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 6581ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose up app -d
+sleep 3
+docker compose ps
+docker compose logs app --tail=30
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED              STATUS                        PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        About a minute ago   Up 3 seconds                  0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+app-1  | npm warn exec The following package was not found and will be installed: prisma@7.8.0
+```
+Full output: [`server-runs/2026-05-15T17-05-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-05-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
