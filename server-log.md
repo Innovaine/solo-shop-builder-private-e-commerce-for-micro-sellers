@@ -9176,3 +9176,52 @@ sleep 2
 docker compose up -d
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-15T23:57:00.097Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5c99aaf` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2681ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup bash -c "docker compose down && sleep 2 && docker compose up -d" > /tmp/day14-compose-up.log 2>&1 &
+echo $! > /tmp/day14-compose-up.pid
+echo "Started compose restart, PID=$(cat /tmp/day14-compose-up.pid)"
+```
+STDOUT:
+```
+Started compose restart, PID=848723
+```
+Full output: [`server-runs/2026-05-15T23-57-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-57-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:57:20.492Z — Anil ran 1 command(s)
+### Command 1 on app as engineer (✓ exit 0, 7458ms)
+```
+sleep 5
+kill -0 $(cat /tmp/day14-compose-up.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/day14-compose-up.log
+```
+STDOUT:
+```
+DONE
+time="2026-05-15T23:57:00Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Stopping 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Stopped 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Removing 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Removed 
+ Network solo-shop-builder-private-e-commerce-for-micro-sellers_default Removing 
+ Network solo-shop-builder-private-e-commerce-for-micro-sellers_default Removed 
+time="2026-05-15T23:57:02Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Network solo-shop-builder-private-e-commerce-for-micro-sellers_default Creating 
+ Network solo-shop-builder-private-e-commerce-for-micro-sellers_default Created 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Creating 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Created 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Creating 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Created 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Started 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-15T23-57-20-app-sleep-5-1.log`](server-runs/2026-05-15T23-57-20-app-sleep-5-1.log)
