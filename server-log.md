@@ -8413,3 +8413,15 @@ STDOUT:
 solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest   cdac9dbb0ef9        892MB          214MB
 ```
 Full output: [`server-runs/2026-05-15T23-26-42-app-docker-images-grep-solo-shop-head--3-1.log`](server-runs/2026-05-15T23-26-42-app-docker-images-grep-solo-shop-head--3-1.log)
+
+## 2026-05-15T23:27:38.514Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e4c1fea` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13553ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down
+sleep 2
+docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
