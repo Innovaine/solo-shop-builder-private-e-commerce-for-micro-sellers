@@ -729,3 +729,62 @@ STDOUT:
 Started build, PID=708182
 ```
 Full output: [`server-runs/2026-05-15T16-07-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-07-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:08:12.227Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `768d93a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2165ms) _(showing tail — full 5,165B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/soloshop-build6.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/soloshop-build6.log
+```
+STDOUT:
+```
+…y install OpenSSL and try installing Prisma again.
+#15 15.21 PrismaClientInitializationError: Unable to require(`/app/node_modules/.prisma/client/libquery_engine-linux-musl.so.node`).
+#15 15.21 The Prisma engines do not seem to be compatible with your system. Please refer to the documentation about Prisma's system requirements: https://pris.ly/d/system-requirements
+#15 15.21 
+#15 15.21 Details: Error loading shared library libssl.so.1.1: No such file or directory (needed by /app/node_modules/.prisma/client/libquery_engine-linux-musl.so.node)
+#15 15.21     at Object.loadLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:10243)
+#15 15.21     at async _r.loadEngine (/app/node_modules/@prisma/client/runtime/library.js:112:448)
+#15 15.21     at async _r.instantiateLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:12599) {
+#15 15.21   clientVersion: '5.22.0',
+#15 15.21   errorCode: undefined
+#15 15.21 }
+#15 15.33  ✓ Generating static pages (11/11)
+#15 15.34 
+#15 15.34 > Export encountered errors on following paths:
+#15 15.34 	/auth/login/page: /auth/login
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 5/5] RUN npm run build:
+15.21     at Object.loadLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:10243)
+15.21     at async _r.loadEngine (/app/node_modules/@prisma/client/runtime/library.js:112:448)
+15.21     at async _r.instantiateLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:12599) {
+15.21   clientVersion: '5.22.0',
+15.21   errorCode: undefined
+15.21 }
+15.33  ✓ Generating static pages (11/11)
+15.34 
+15.34 > Export encountered errors on following paths:
+15.34 	/auth/login/page: /auth/login
+------
+Dockerfile:21
+
+--------------------
+
+  19 |     
+
+  20 |     # Build Next.js app
+
+  21 | >>> RUN npm run build
+
+  22 |     
+
+  23 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-15T16-08-12-app-kill--0-cat-tmp-soloshop-build6.pid-2-de-1.log`](server-runs/2026-05-15T16-08-12-app-kill--0-cat-tmp-soloshop-build6.pid-2-de-1.log)
