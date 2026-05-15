@@ -5705,3 +5705,20 @@ X-Powered-By: Next.js
 Cache-Control: s-maxage=31536000, stale-while-revalidate
 ```
 Full output: [`server-runs/2026-05-15T20-10-54-app-curl--sI-http-localhost-3000-head--5-1.log`](server-runs/2026-05-15T20-10-54-app-curl--sI-http-localhost-3000-head--5-1.log)
+
+## 2026-05-15T20:11:32.493Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `50525e5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2594ms)
+```
+curl -sI http://localhost:3000/auth/login | head -5
+```
+STDOUT:
+```
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+```
+Full output: [`server-runs/2026-05-15T20-11-32-app-curl--sI-http-localhost-3000-auth-login--1.log`](server-runs/2026-05-15T20-11-32-app-curl--sI-http-localhost-3000-auth-login--1.log)
