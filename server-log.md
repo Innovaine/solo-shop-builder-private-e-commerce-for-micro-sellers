@@ -8059,3 +8059,20 @@ fatal: not a git repository (or any of the parent directories): .git
 ```
 ERROR: command exited 128
 Full output: [`server-runs/2026-05-15T23-09-36-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-09-36-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:09:59.384Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ad79b84` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3652ms)
+```
+cd ~
+rm -rf solo-shop-builder-private-e-commerce-for-micro-sellers
+git clone https://github.com/Innovaine/solo-shop-builder-private-e-commerce-for-micro-sellers.git
+cd solo-shop-builder-private-e-commerce-for-micro-sellers
+ls -la tests/web/ | grep scaling
+```
+STDOUT:
+```
+-rw-rw-r-- 1 tester tester 4540 May 15 23:09 scaling-day12.spec.ts
+```
+Full output: [`server-runs/2026-05-15T23-09-59-app-cd-1.log`](server-runs/2026-05-15T23-09-59-app-cd-1.log)
