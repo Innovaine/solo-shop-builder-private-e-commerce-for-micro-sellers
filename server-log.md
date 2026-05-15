@@ -2844,3 +2844,36 @@ STDOUT:
 Started compose up, PID=753904
 ```
 Full output: [`server-runs/2026-05-15T17-22-48-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-22-48-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:23:10.942Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1b8236b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2082ms)
+```
+kill -0 $(cat /tmp/compose-up-day6.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/compose-up-day6.log
+```
+STDOUT:
+```
+RUNNING
+time="2026-05-15T17:22:48Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+Attaching to app-1, postgres-1
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+app-1  | sh: 1: node_modules/.bin/prisma: not found
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-15T17-23-10-app-kill--0-cat-tmp-compose-up-day6.pid-2-de-1.log`](server-runs/2026-05-15T17-23-10-app-kill--0-cat-tmp-compose-up-day6.pid-2-de-1.log)
