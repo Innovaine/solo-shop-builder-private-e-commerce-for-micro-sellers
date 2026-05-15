@@ -3285,3 +3285,41 @@ STDOUT:
 Build started, PID=769988
 ```
 Full output: [`server-runs/2026-05-15T18-24-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-24-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:24:37.526Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ff6ade2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2657ms) _(showing tail — full 9,290B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day7-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day7-build.log
+```
+STDOUT:
+```
+…16 13.06 PrismaClientInitializationError: Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).
+#16 13.06 Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.
+#16 13.06 
+#16 13.06 Details: libssl.so.1.1: cannot open shared object file: No such file or directory
+#16 13.06     at Object.loadLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:10219)
+#16 13.06     at async wt.loadEngine (/app/node_modules/@prisma/client/runtime/library.js:112:448)
+#16 13.06     at async wt.instantiateLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:12778) {
+#16 13.06   clientVersion: '5.14.0',
+#16 13.06   errorCode: undefined
+#16 13.06 }
+#16 13.16 prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+#16 13.16 Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+#16 13.16 PrismaClientInitializationError: Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).
+#16 13.16 Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.
+#16 13.16 
+#16 13.16 Details: libssl.so.1.1: cannot open shared object file: No such file or directory
+#16 13.16     at Object.loadLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:10219)
+#16 13.16     at async wt.loadEngine (/app/node_modules/@prisma/client/runtime/library.js:112:448)
+#16 13.16     at async wt.instantiateLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:12778) {
+#16 13.16   clientVersion: '5.14.0',
+#16 13.16   errorCode: undefined
+#16 13.16 }
+#16 13.17  ✓ Generating static pages (11/11)
+#16 13.32    Finalizing page optimization ...
+#16 13.32    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-15T18-24-37-app-kill--0-cat-tmp-day7-build.pid-2-dev-nul-1.log`](server-runs/2026-05-15T18-24-37-app-kill--0-cat-tmp-day7-build.pid-2-dev-nul-1.log)
