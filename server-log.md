@@ -8489,3 +8489,37 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-15T23:30:20.876Z","responseTime":"283ms","checks":{"database":{"status":"ok","responseTime":"51ms"},"email":{"status":"ok","responseTime":"232ms"}}}OK
 ```
 Full output: [`server-runs/2026-05-15T23-30-20-app-timeout-90-bash--c-until-curl--fsS-http--1.log`](server-runs/2026-05-15T23-30-20-app-timeout-90-bash--c-until-curl--fsS-http--1.log)
+
+## 2026-05-15T23:30:53.354Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `18d3348` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 6791ms)
+```
+echo "=== Test 1: Check request ID header on API call ==="
+curl -I http://localhost:3000/api/health 2>/dev/null | grep -i "x-request-id"
+
+echo -e "\n=== Test 2: Homepage loads ==="
+curl -s http://localhost:3000 | grep -o '<title>.*</title>'
+
+echo -e "\n=== Test 3: Login page loads ==="
+curl -s http://localhost:3000/auth/login | grep -o '<h1.*</h1>' | head -1
+
+echo -e "\n=== Test 4: Check CORS headers on API route ==="
+curl -I http://localhost:3000/api/health 2>/dev/null | grep -i "access-control"
+```
+STDOUT:
+```
+=== Test 1: Check request ID header on API call ===
+x-request-id: -fZM1_RWnLrVExpK
+
+=== Test 2: Homepage loads ===
+<title>Solo Shop Builder</title>
+
+=== Test 3: Login page loads ===
+
+=== Test 4: Check CORS headers on API route ===
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+```
+Full output: [`server-runs/2026-05-15T23-30-53-app-echo-Test-1-Check-request-ID-header-on-A-1.log`](server-runs/2026-05-15T23-30-53-app-echo-Test-1-Check-request-ID-header-on-A-1.log)
