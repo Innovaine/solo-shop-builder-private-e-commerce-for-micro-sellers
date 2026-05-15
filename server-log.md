@@ -2417,3 +2417,15 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-
 app-1  | npm warn exec The following package was not found and will be installed: prisma@7.8.0
 ```
 Full output: [`server-runs/2026-05-15T17-05-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T17-05-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T17:07:34.250Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `efed872` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12674ms)
+```
+sleep 10
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose ps
+docker compose logs app --tail=50
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
