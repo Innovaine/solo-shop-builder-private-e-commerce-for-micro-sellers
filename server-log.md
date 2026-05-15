@@ -3590,3 +3590,18 @@ STDOUT:
 Started Playwright tests, PID=773891
 ```
 Full output: [`server-runs/2026-05-15T18-38-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-38-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T18:38:47.409Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cf5ed3d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2493ms)
+```
+kill -0 $(cat /tmp/playwright-test.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/playwright-test.log
+```
+STDOUT:
+```
+DONE
+Error: No tests found
+```
+Full output: [`server-runs/2026-05-15T18-38-47-app-kill--0-cat-tmp-playwright-test.pid-2-de-1.log`](server-runs/2026-05-15T18-38-47-app-kill--0-cat-tmp-playwright-test.pid-2-de-1.log)
