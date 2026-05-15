@@ -7843,3 +7843,43 @@ Request 6: HTTP 429
 [API] POST /api/auth/signup - 0ms [0bOh3aPOUrds]
 ```
 Full output: [`server-runs/2026-05-15T22-46-38-app-echo-TEST-1-Health-check-with-DB-connect-1.log`](server-runs/2026-05-15T22-46-38-app-echo-TEST-1-Health-check-with-DB-connect-1.log)
+
+## 2026-05-15T22:47:26.168Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a4a8e4f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 8810ms)
+```
+echo "Waiting 5 seconds for rate limit window to reset (store cleanup interval)..."
+sleep 5
+
+echo ""
+echo "=== RATE LIMIT FRESH TEST: New IP/client should get through ==="
+NEW_TIMESTAMP=$(date +%s%N)
+
+# Simulate fresh requests from "new client"
+for i in {1..6}; do
+  BODY="{\"email\":\"fresh-test-$NEW_TIMESTAMP-$i@example.com\"}"
+  RESPONSE=$(curl -s -X POST http://localhost:3000/api/auth/signup \
+    -H "Content-Type: application/json" \
+    -d "$BODY")
+  
+  if echo "$RESPONSE" | grep -q "error"; then
+    echo "Request $i: RATE LIMITED - $(echo $RESPONSE | jq -r '.error')"
+  else
+    echo "Request $i: ALLOWED - $(echo $RESPONSE | jq -r '.message')"
+  fi
+done
+```
+STDOUT:
+```
+Waiting 5 seconds for rate limit window to reset (store cleanup interval)...
+
+=== RATE LIMIT FRESH TEST: New IP/client should get through ===
+Request 1: RATE LIMITED - Too many signup attempts. Please try again later.
+Request 2: RATE LIMITED - Too many signup attempts. Please try again later.
+Request 3: RATE LIMITED - Too many signup attempts. Please try again later.
+Request 4: RATE LIMITED - Too many signup attempts. Please try again later.
+Request 5: RATE LIMITED - Too many signup attempts. Please try again later.
+Request 6: RATE LIMITED - Too many signup attempts. Please try again later.
+```
+Full output: [`server-runs/2026-05-15T22-47-26-app-echo-Waiting-5-seconds-for-rate-limit-wi-1.log`](server-runs/2026-05-15T22-47-26-app-echo-Waiting-5-seconds-for-rate-limit-wi-1.log)
