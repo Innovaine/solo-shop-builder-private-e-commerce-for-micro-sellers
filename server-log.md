@@ -328,3 +328,63 @@ BUILD DONE
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-15T15-54-45-app-kill--0-cat-tmp-soloshop-build3.pid-2-de-1.log`](server-runs/2026-05-15T15-54-45-app-kill--0-cat-tmp-soloshop-build3.pid-2-de-1.log)
+
+## 2026-05-15T15:55:11.795Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c44242f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 1944ms) _(showing tail — full 3,681B stdout + 0B stderr)_
+```
+tail -150 /tmp/soloshop-build3.log | grep -A 20 -B 5 "error\|Error\|failed\|Failed" | head -80
+```
+STDOUT:
+```
+…nssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+#15 0.893 Please manually install OpenSSL and try installing Prisma again.
+#15 1.335 
+#15 1.335 ✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 91ms
+#15 1.335 
+#15 1.335 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+#15 1.335 
+#15 1.335 Tip: Want to react to database changes in your app as they happen? Discover how with Pulse: https://pris.ly/tip-1-pulse
+#15 1.335 
+#15 2.171 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#15 2.172 This information is used to shape Next.js' roadmap and prioritize features.
+#15 2.172 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 2.172 https://nextjs.org/telemetry
+#15 2.172 
+#15 2.237   ▲ Next.js 14.2.3
+#15 2.237 
+#15 2.337    Creating an optimized production build ...
+#15 6.230 Failed to compile.
+#15 6.230 
+#15 6.231 ./app/api/auth/logout/route.ts
+#15 6.231 Module not found: Can't resolve '@/lib/auth'
+#15 6.231 
+#15 6.231 https://nextjs.org/docs/messages/module-not-found
+#15 6.231 
+#15 6.231 ./app/api/auth/signup/route.ts
+#15 6.231 Module not found: Can't resolve '@/lib/db'
+#15 6.231 
+#15 6.231 https://nextjs.org/docs/messages/module-not-found
+#15 6.231 
+#15 6.231 ./app/api/auth/signup/route.ts
+#15 6.231 Module not found: Can't resolve '@/lib/email'
+#15 6.231 
+#15 6.231 https://nextjs.org/docs/messages/module-not-found
+#15 6.231 
+#15 6.231 ./app/api/auth/verify/route.ts
+#15 6.231 Module not found: Can't resolve '@/lib/db'
+#15 6.231 
+#15 6.231 https://nextjs.org/docs/messages/module-not-found
+--
+#15 6.231 Module not found: Can't resolve '@/lib/auth'
+#15 6.231 
+#15 6.231 https://nextjs.org/docs/messages/module-not-found
+#15 6.231 
+#15 6.278 
+#15 6.278 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 5/5] RUN npm run build:
+```
+Full output: [`server-runs/2026-05-15T15-55-11-app-tail--150-tmp-soloshop-build3.log-grep---1.log`](server-runs/2026-05-15T15-55-11-app-tail--150-tmp-soloshop-build3.log-grep---1.log)
