@@ -5735,3 +5735,24 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-15T20:06:15.601Z"}
 ```
 Full output: [`server-runs/2026-05-15T20-11-53-app-curl--s-http-localhost-3000-api-health-h-1.log`](server-runs/2026-05-15T20-11-53-app-curl--s-http-localhost-3000-api-health-h-1.log)
+
+## 2026-05-15T20:12:19.220Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7bf222c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3864ms)
+```
+curl -sI http://localhost:3000/dashboard | head -10
+```
+STDOUT:
+```
+HTTP/1.1 307 Temporary Redirect
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+Location: /auth/login
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Fri, 15 May 2026 20:12:19 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-15T20-12-19-app-curl--sI-http-localhost-3000-dashboard-h-1.log`](server-runs/2026-05-15T20-12-19-app-curl--sI-http-localhost-3000-dashboard-h-1.log)
