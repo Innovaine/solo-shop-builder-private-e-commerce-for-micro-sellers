@@ -1340,3 +1340,57 @@ STDOUT:
 #18 12.13    Collecting build traces ...
 ```
 Full output: [`server-runs/2026-05-15T16-39-42-app-kill--0-cat-tmp-soloshop-build10.pid-2-d-1.log`](server-runs/2026-05-15T16-39-42-app-kill--0-cat-tmp-soloshop-build10.pid-2-d-1.log)
+
+## 2026-05-15T16:40:11.573Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2eb40f3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2360ms)
+```
+kill -0 $(cat /tmp/soloshop-build10.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -40 /tmp/soloshop-build10.log
+```
+STDOUT:
+```
+DONE
+#18 21.55 ƒ  (Dynamic)  server-rendered on demand
+#18 21.55 
+#18 DONE 21.6s
+
+#19 [runner  4/10] COPY --from=builder /app/public ./public
+#19 DONE 0.0s
+
+#20 [runner  5/10] RUN mkdir .next
+#20 DONE 0.2s
+
+#21 [runner  6/10] RUN chown nextjs:nodejs .next
+#21 DONE 0.2s
+
+#22 [runner  7/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#22 DONE 0.4s
+
+#23 [runner  8/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#23 DONE 0.0s
+
+#24 [runner  9/10] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#24 DONE 0.0s
+
+#25 [runner 10/10] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#25 DONE 0.0s
+
+#26 exporting to image
+#26 exporting layers
+#26 exporting layers 1.5s done
+#26 exporting manifest sha256:801cfaa275ba7f2118bc283082d9f9b710e5def661797c2b95508807a0c0d2bc done
+#26 exporting config sha256:d7c42b373a738c45241b6550dca25e22697f9b4478683a4a9aad89281055138c done
+#26 exporting attestation manifest sha256:5306983094217024d147f236a9ca8bcbc4ea773bd4f789fd7971e5679834119f 0.0s done
+#26 exporting manifest list sha256:9b2a670a98cdde764f5e53404aba5c9e3a87257a63068e655c2708e19d962e47 done
+#26 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#26 DONE 2.1s
+
+#27 resolving provenance for metadata file
+#27 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-15T16-40-11-app-kill--0-cat-tmp-soloshop-build10.pid-2-d-1.log`](server-runs/2026-05-15T16-40-11-app-kill--0-cat-tmp-soloshop-build10.pid-2-d-1.log)
