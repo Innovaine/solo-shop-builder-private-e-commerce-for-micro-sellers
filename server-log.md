@@ -5630,3 +5630,24 @@ No migration found in prisma/migrations
 Database schema is up to date!
 ```
 Full output: [`server-runs/2026-05-15T20-09-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-09-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T20:09:48.360Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6bcef1d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2816ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "\dt"
+```
+STDOUT:
+```
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | AuthToken          | table | postgres
+ public | Seller             | table | postgres
+ public | Shop               | table | postgres
+ public | _prisma_migrations | table | postgres
+(4 rows)
+```
+Full output: [`server-runs/2026-05-15T20-09-48-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T20-09-48-app-cd-solo-shop-builder-private-e-commerce--1.log)
