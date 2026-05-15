@@ -1681,3 +1681,16 @@ Fast-forward
  create mode 100644 day-04/engineering.md
 ```
 Full output: [`server-runs/2026-05-15T16-48-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-48-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:48:45.826Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `496e4d1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3179ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose down 2>/dev/null; nohup docker compose build > /tmp/day4-build.log 2>&1 & echo $! > /tmp/day4-build.pid && cat /tmp/day4-build.pid
+```
+STDOUT:
+```
+727056
+```
+Full output: [`server-runs/2026-05-15T16-48-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-48-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
