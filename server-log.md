@@ -8248,3 +8248,13 @@ Logout button not found on page - functionality may not be implemented yet
     tests/web/session-management.spec.ts:130:7 › FR-6: Shop Persistence › FR-6: Shop data persists and can be retrieved
 ```
 Full output: [`server-runs/2026-05-15T23-14-24-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-14-24-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:14:48.779Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1f37913` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 2832ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -I http://localhost:3000/ 2>&1 | grep -i request-id
+```
+ERROR: command exited 1
