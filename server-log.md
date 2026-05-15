@@ -2024,3 +2024,24 @@ time="2026-05-15T16:57:30Z" level=warning msg="/home/engineer/solo-shop-builder-
 #10 [deps 4/4] RUN npm install
 ```
 Full output: [`server-runs/2026-05-15T16-57-47-app-kill--0-cat-tmp-day5-build2.pid-2-dev-nu-1.log`](server-runs/2026-05-15T16-57-47-app-kill--0-cat-tmp-day5-build2.pid-2-dev-nu-1.log)
+
+## 2026-05-15T16:58:08.545Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6ae7e6c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2282ms)
+```
+kill -0 $(cat /tmp/day5-build2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day5-build2.log | grep -E "Successfully built|ERROR|Error|DONE|added.*packages"
+```
+STDOUT:
+```
+RUNNING
+#1 DONE 0.0s
+#2 DONE 0.0s
+#3 DONE 0.4s
+#4 DONE 0.0s
+#5 DONE 0.0s
+#8 DONE 0.0s
+#9 DONE 0.0s
+```
+Full output: [`server-runs/2026-05-15T16-58-08-app-kill--0-cat-tmp-day5-build2.pid-2-dev-nu-1.log`](server-runs/2026-05-15T16-58-08-app-kill--0-cat-tmp-day5-build2.pid-2-dev-nu-1.log)
