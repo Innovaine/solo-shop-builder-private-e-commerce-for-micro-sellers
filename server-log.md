@@ -4721,3 +4721,25 @@ drwxr-xr-x 3 nextjs nodejs 4096 May 15 19:15 dashboard
 drwxr-xr-x 3 nextjs nodejs 4096 May 15 19:15 shop
 ```
 Full output: [`server-runs/2026-05-15T19-17-53-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T19-17-53-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-15T19:18:16.693Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fdcfa4f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3000ms)
+```
+curl -I http://localhost:3000/ 2>&1 | head -10
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  8468    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "9g3xo8ztgy6in"
+Content-Type: text/html; charset=utf-8
+```
+Full output: [`server-runs/2026-05-15T19-18-16-app-curl--I-http-localhost-3000-2-1-head--10-1.log`](server-runs/2026-05-15T19-18-16-app-curl--I-http-localhost-3000-2-1-head--10-1.log)
