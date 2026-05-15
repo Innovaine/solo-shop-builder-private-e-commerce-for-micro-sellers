@@ -4139,3 +4139,45 @@ _Pre-SSH: warehouse pushed to GitHub as commit `161d7a3` so the server's `git pu
 curl -s http://localhost:3000/api/auth/signup -H "Content-Type: application/json" -d '{"email":"test@example.com","password":"Test123!"}' | head -c 500
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-15T18:58:29.676Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ba6bbf5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2698ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=30
+```
+STDOUT:
+```
+app-1  |   code: 'ETIMEDOUT',
+app-1  |   command: 'CONN'
+app-1  | }
+app-1  | Signup error: Error: Greeting never received
+app-1  |     at m._formatError (/app/.next/server/app/api/auth/signup/route.js:13:166153)
+app-1  |     at m._onError (/app/.next/server/app/api/auth/signup/route.js:13:165981)
+app-1  |     at Timeout.<anonymous> (/app/.next/server/app/api/auth/signup/route.js:13:165153)
+app-1  |     at listOnTimeout (node:internal/timers:581:17)
+app-1  |     at process.processTimers (node:internal/timers:519:7) {
+app-1  |   code: 'ETIMEDOUT',
+app-1  |   command: 'CONN'
+app-1  | }
+app-1  | Signup error: Error: Greeting never received
+app-1  |     at m._formatError (/app/.next/server/app/api/auth/signup/route.js:13:166153)
+app-1  |     at m._onError (/app/.next/server/app/api/auth/signup/route.js:13:165981)
+app-1  |     at Timeout.<anonymous> (/app/.next/server/app/api/auth/signup/route.js:13:165153)
+app-1  |     at listOnTimeout (node:internal/timers:581:17)
+app-1  |     at process.processTimers (node:internal/timers:519:7) {
+app-1  |   code: 'ETIMEDOUT',
+app-1  |   command: 'CONN'
+app-1  | }
+app-1  | Signup error: Error: Greeting never received
+app-1  |     at m._formatError (/app/.next/server/app/api/auth/signup/route.js:13:166153)
+app-1  |     at m._onError (/app/.next/server/app/api/auth/signup/route.js:13:165981)
+app-1  |     at Timeout.<anonymous> (/app/.next/server/app/api/auth/signup/route.js:13:165153)
+app-1  |     at listOnTimeout (node:internal/timers:581:17)
+app-1  |     at process.processTimers (node:internal/timers:519:7) {
+app-1  |   code: 'ETIMEDOUT',
+app-1  |   command: 'CONN'
+app-1  | }
+```
+Full output: [`server-runs/2026-05-15T18-58-29-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T18-58-29-app-cd-solo-shop-builder-private-e-commerce--1.log)
