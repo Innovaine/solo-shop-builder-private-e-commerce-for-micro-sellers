@@ -1703,3 +1703,67 @@ _Pre-SSH: warehouse pushed to GitHub as commit `63070c9` so the server's `git pu
 sleep 15 && kill -0 $(cat /tmp/day4-build.pid) 2>/dev/null && echo "STILL_RUNNING" || echo "DONE" && tail -100 /tmp/day4-build.log 2>/dev/null | tail -50
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-15T16:50:08.168Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `093e093` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2362ms) _(showing tail — full 4,157B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day4-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"; tail -80 /tmp/day4-build.log 2>/dev/null
+```
+STDOUT:
+```
+…4dc0ddac7a3dc9.js        31.5 kB
+#16 21.54   ├ chunks/fd9d1056-99698e2e9c7f3a30.js  53.6 kB
+#16 21.54   └ other shared chunks (total)          1.89 kB
+#16 21.54 
+#16 21.54 
+#16 21.54 ○  (Static)   prerendered as static content
+#16 21.54 ƒ  (Dynamic)  server-rendered on demand
+#16 21.54 
+#16 DONE 21.7s
+
+#17 [runner  5/10] RUN mkdir .next
+#17 CACHED
+
+#18 [runner  2/10] RUN groupadd --system --gid 1001 nodejs
+#18 CACHED
+
+#19 [runner  3/10] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#19 CACHED
+
+#20 [runner  4/10] COPY --from=builder /app/public ./public
+#20 CACHED
+
+#21 [runner  6/10] RUN chown nextjs:nodejs .next
+#21 CACHED
+
+#22 [runner  7/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#22 DONE 0.3s
+
+#23 [runner  8/10] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#23 DONE 0.0s
+
+#24 [runner  9/10] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#24 DONE 0.0s
+
+#25 [runner 10/10] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#25 DONE 0.0s
+
+#26 exporting to image
+#26 exporting layers
+#26 exporting layers 1.3s done
+#26 exporting manifest sha256:6b0ad6327bf30290a8772b881fe2c74f932d147e4a21508c3d27a0e98864a6a4 done
+#26 exporting config sha256:713c15cc24a0a18c15874f322da43749ac5b8448107c2c5931a329aeb472b298 done
+#26 exporting attestation manifest sha256:8f643016b50e0b11c19438bfc0f38a2fdf7c175189cc3162af6bd171e5c7b3e3 0.0s done
+#26 exporting manifest list sha256:e233fca8fad39697dbe4f961f1703a8e6996bd7215b20aac3a5fa936e71d788b done
+#26 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#26 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.5s done
+#26 DONE 1.8s
+
+#27 resolving provenance for metadata file
+#27 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-15T16-50-08-app-kill--0-cat-tmp-day4-build.pid-2-dev-nul-1.log`](server-runs/2026-05-15T16-50-08-app-kill--0-cat-tmp-day4-build.pid-2-dev-nul-1.log)
