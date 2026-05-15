@@ -3,13 +3,13 @@
 // Login page matching design/pages/login.html
 // FR-1: Email magic link signup form
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 // Force dynamic rendering because we use searchParams
 export const dynamic = 'force-dynamic'
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -121,5 +121,21 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center p-6" style={{
+        background: 'linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%)'
+      }}>
+        <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-12 text-center">
+          <div className="text-slate">Loading...</div>
+        </div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   )
 }
