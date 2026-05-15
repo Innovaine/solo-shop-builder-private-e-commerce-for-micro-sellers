@@ -4588,3 +4588,21 @@ ERROR: Connection timed out (mutating command — not auto-retried; queue it aga
 sleep 5 && curl -s http://localhost:3000/ | grep -o '<title>.*</title>'
 ```
 ERROR: command exited 1
+
+## 2026-05-15T19:16:14.504Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `317f2b9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2304ms)
+```
+docker ps | grep solo-shop
+```
+STDOUT:
+```
+4eb0db4d7307   postgres:16-alpine   "docker-entrypoint.s…"   2 hours ago   Up 49 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-15T19-16-14-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-15T19-16-14-app-docker-ps-grep-solo-shop-1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 388ms)
+```
+curl -s http://localhost:3000/ 2>&1 | head -30
+```
