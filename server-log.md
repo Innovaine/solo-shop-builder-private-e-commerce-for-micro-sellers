@@ -7954,3 +7954,30 @@ Transfer-Encoding: chunked
 {"status":"ok","timestamp":"2026-05-15T22:55:40.077Z","database":"connected","responseTime":"55ms"}
 ```
 Full output: [`server-runs/2026-05-15T22-55-39-app-echo-Checking-rate-limit-configs-in-code-1.log`](server-runs/2026-05-15T22-55-39-app-echo-Checking-rate-limit-configs-in-code-1.log)
+
+## 2026-05-15T22:57:09.362Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4103e36` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2838ms)
+```
+echo "=== Checking Prisma client singleton pattern ==="
+grep -A 8 "const globalForPrisma" src/lib/db.ts
+
+echo ""
+echo "=== Checking graceful shutdown handlers ==="
+grep -A 3 "process.on.*beforeExit\|process.on.*SIGINT\|process.on.*SIGTERM" src/lib/db.ts
+
+echo ""
+echo "=== Verifying app is responsive before shutdown test ==="
+curl -s http://localhost:3000/api/health | jq '.status'
+```
+STDOUT:
+```
+=== Checking Prisma client singleton pattern ===
+
+=== Checking graceful shutdown handlers ===
+
+=== Verifying app is responsive before shutdown test ===
+"ok"
+```
+Full output: [`server-runs/2026-05-15T22-57-09-app-echo-Checking-Prisma-client-singleton-pa-1.log`](server-runs/2026-05-15T22-57-09-app-echo-Checking-Prisma-client-singleton-pa-1.log)
