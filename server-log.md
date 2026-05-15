@@ -6315,3 +6315,21 @@ STDOUT:
 Using token:  NDaDKRMzlZb2T_83vVLMysB_yvP3EAdc
 ```
 Full output: [`server-runs/2026-05-15T21-31-49-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-15T21-31-49-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-15T21:32:04.813Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `03424bf` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2794ms)
+```
+LATEST_TOKEN=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT token FROM \"AuthToken\" ORDER BY id DESC LIMIT 1;" -t -A) && echo "Token: $LATEST_TOKEN" && curl -sI "http://localhost:3000/api/auth/verify?token=${LATEST_TOKEN}" | head -5
+```
+STDOUT:
+```
+Token: NDaDKRMzlZb2T_83vVLMysB_yvP3EAdc
+HTTP/1.1 307 Temporary Redirect
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+location: http://0.0.0.0:3000/auth/login?error=token_expired
+Date: Fri, 15 May 2026 21:32:04 GMT
+Connection: keep-alive
+```
+Full output: [`server-runs/2026-05-15T21-32-04-app-LATEST_TOKEN-docker-exec-solo-shop-build-1.log`](server-runs/2026-05-15T21-32-04-app-LATEST_TOKEN-docker-exec-solo-shop-build-1.log)
