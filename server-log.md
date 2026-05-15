@@ -8634,3 +8634,64 @@ STDOUT:
 ✗ Not found
 ```
 Full output: [`server-runs/2026-05-15T23-32-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-32-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:32:44.975Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0b7bfd7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3359ms) _(showing tail — full 2,961B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+```
+STDOUT:
+```
+…7 +
+ day-12/_plan.md                  |   35 +
+ day-12/engineering.md            |  262 ++++
+ day-12/review.md                 |  162 +++
+ day-12/test.md                   |  225 +++
+ day-13/_plan.md                  |   32 +
+ day-13/engineering.md            |  225 +++
+ middleware.ts                    |   54 +
+ package.json                     |    3 +-
+ prisma/schema.prisma             |    2 +
+ server-log.md                    | 2983 ++++++++++++++++++++++++++++++++++++++
+ src/lib/db.ts                    |   18 +-
+ src/lib/errors.ts                |  120 ++
+ src/lib/rate-limit.ts            |  106 ++
+ src/lib/timeout.ts               |   66 +
+ test-results/day-10/report.md    |  179 +++
+ test-results/day-11/report.md    |  166 +++
+ test-results/day-12/report.md    |  239 +++
+ tests/web/scaling-day12.spec.ts  |  121 ++
+ 38 files changed, 7000 insertions(+), 16 deletions(-)
+ create mode 100644 DEPLOYMENT.md
+ create mode 100644 app/components/ErrorBoundary.tsx
+ create mode 100644 day-09/_index.md
+ create mode 100644 day-09/test.md
+ create mode 100644 day-10/_index.md
+ create mode 100644 day-10/_plan.md
+ create mode 100644 day-10/engineering.md
+ create mode 100644 day-10/review.md
+ create mode 100644 day-10/test.md
+ create mode 100644 day-11/_index.md
+ create mode 100644 day-11/_plan.md
+ create mode 100644 day-11/engineering.md
+ create mode 100644 day-11/requirements.md
+ create mode 100644 day-11/test.md
+ create mode 100644 day-12/_index.md
+ create mode 100644 day-12/_plan.md
+ create mode 100644 day-12/engineering.md
+ create mode 100644 day-12/review.md
+ create mode 100644 day-12/test.md
+ create mode 100644 day-13/_plan.md
+ create mode 100644 day-13/engineering.md
+ create mode 100644 middleware.ts
+ create mode 100644 src/lib/errors.ts
+ create mode 100644 src/lib/rate-limit.ts
+ create mode 100644 src/lib/timeout.ts
+ create mode 100644 test-results/day-10/report.md
+ create mode 100644 test-results/day-11/report.md
+ create mode 100644 test-results/day-12/report.md
+ create mode 100644 tests/web/scaling-day12.spec.ts
+```
+Full output: [`server-runs/2026-05-15T23-32-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-32-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
