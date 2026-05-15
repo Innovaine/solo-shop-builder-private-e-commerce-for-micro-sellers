@@ -1302,3 +1302,41 @@ STDOUT:
 Started build, PID=715728
 ```
 Full output: [`server-runs/2026-05-15T16-39-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T16-39-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T16:39:42.080Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cff875b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2444ms) _(showing tail — full 6,924B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/soloshop-build10.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/soloshop-build10.log
+```
+STDOUT:
+```
+…compiled/@opentelemetry/api/index.js:1:18093)
+#18 11.92     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#18 11.92     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+#18 11.92     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+#18 11.92   description: "Route /api/auth/verify couldn't be rendered statically because it accessed `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#18 11.92   digest: 'DYNAMIC_SERVER_USAGE'
+#18 11.92 }
+#18 11.92 prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+#18 11.92 Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+#18 11.92 PrismaClientInitializationError: Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).
+#18 11.92 Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.
+#18 11.92 
+#18 11.92 Details: libssl.so.1.1: cannot open shared object file: No such file or directory
+#18 11.92     at Object.loadLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:10243)
+#18 11.92     at async _r.loadEngine (/app/node_modules/@prisma/client/runtime/library.js:112:448)
+#18 11.92     at async _r.instantiateLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:12599) {
+#18 11.92   clientVersion: '5.22.0',
+#18 11.92   errorCode: undefined
+#18 11.92 }
+#18 11.92    Generating static pages (2/11) 
+#18 11.92    Generating static pages (5/11) 
+#18 12.01    Generating static pages (8/11) 
+#18 12.01  ✓ Generating static pages (11/11)
+#18 12.13    Finalizing page optimization ...
+#18 12.13    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-15T16-39-42-app-kill--0-cat-tmp-soloshop-build10.pid-2-d-1.log`](server-runs/2026-05-15T16-39-42-app-kill--0-cat-tmp-soloshop-build10.pid-2-d-1.log)
