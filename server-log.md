@@ -11842,3 +11842,31 @@ Shop response: {"error":"You must be logged in to create a shop."}
 Product response: {"error":"You must be logged in to create products."}
 ```
 Full output: [`server-runs/2026-05-16T02-12-09-app-echo-Creating-test-seller-shop-and-produ-1.log`](server-runs/2026-05-16T02-12-09-app-echo-Creating-test-seller-shop-and-produ-1.log)
+
+## 2026-05-16T02:12:36.700Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0ad5d97` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2633ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT COUNT(*) FROM \"Seller\";" 2>&1
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT COUNT(*) FROM \"Shop\";" 2>&1
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT COUNT(*) FROM \"Product\";" 2>&1
+```
+STDOUT:
+```
+ count 
+-------
+    14
+(1 row)
+
+ count 
+-------
+     1
+(1 row)
+
+ count 
+-------
+     0
+(1 row)
+```
+Full output: [`server-runs/2026-05-16T02-12-36-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-12-36-app-docker-exec-solo-shop-builder-private-e--1.log)
