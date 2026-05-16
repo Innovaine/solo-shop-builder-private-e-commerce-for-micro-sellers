@@ -11925,3 +11925,38 @@ Verifying product created...
 (1 row)
 ```
 Full output: [`server-runs/2026-05-16T02-13-01-app-echo-Getting-shop-info...-1.log`](server-runs/2026-05-16T02-13-01-app-echo-Getting-shop-info...-1.log)
+
+## 2026-05-16T02:14:22.914Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `19c55a7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2672ms)
+```
+echo "Testing product detail page route..."
+curl -sI http://localhost:3000/shop/test-shop/product/48cbf0db-6ca1-43f7-a584-c24f2a26a930 | head -15
+
+echo -e "\nFetching full page to verify it renders..."
+curl -s http://localhost:3000/shop/test-shop/product/48cbf0db-6ca1-43f7-a584-c24f2a26a930 | grep -o '<title>.*</title>' | head -1
+
+echo -e "\nChecking for product title in page..."
+curl -s http://localhost:3000/shop/test-shop/product/48cbf0db-6ca1-43f7-a584-c24f2a26a930 | grep -o 'Handcrafted Ceramic Mug' | head -1
+```
+STDOUT:
+```
+Testing product detail page route...
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Sat, 16 May 2026 02:14:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+Fetching full page to verify it renders...
+<title>Solo Shop Builder</title>
+
+Checking for product title in page...
+Handcrafted Ceramic Mug
+```
+Full output: [`server-runs/2026-05-16T02-14-22-app-echo-Testing-product-detail-page-route..-1.log`](server-runs/2026-05-16T02-14-22-app-echo-Testing-product-detail-page-route..-1.log)
