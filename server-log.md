@@ -9957,3 +9957,20 @@ No pending migrations to apply.
 {"requestId":"r0Iqu8mS6fgXCNC9","method":"GET","path":"/auth/login","responseTime":"1ms","timestamp":"2026-05-16T00:57:28.946Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
 ```
 Full output: [`server-runs/2026-05-16T00-57-48-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-57-48-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:58:25.439Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `195b1a2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13451ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Stop containers
+docker compose down
+
+# Rebuild (image is already built from earlier)
+nohup docker compose build > /tmp/day15-rebuild.log 2>&1 &
+echo $! > /tmp/day15-rebuild.pid
+echo "Rebuilding with latest code, PID=$(cat /tmp/day15-rebuild.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
