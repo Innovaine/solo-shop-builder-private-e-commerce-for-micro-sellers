@@ -16067,3 +16067,13 @@ _Pre-SSH: warehouse pushed to GitHub as commit `01a0b85` so the server's `git pu
 docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U soloshop -d soloshop -c "DELETE FROM _prisma_migrations WHERE migration_name = '20260516_add_order_tables' AND finished_at IS NULL;"
 ```
 ERROR: command exited 2
+
+## 2026-05-16T15:41:36.788Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c3be230` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 2, 3027ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose exec -T postgres psql -U soloshop -d soloshop -c "DELETE FROM _prisma_migrations WHERE migration_name = '20260516_add_order_tables';"
+```
+ERROR: command exited 2
