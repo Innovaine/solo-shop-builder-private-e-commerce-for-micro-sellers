@@ -17069,3 +17069,56 @@ STDOUT:
 #16 1.954    Creating an optimized production build ...
 ```
 Full output: [`server-runs/2026-05-16T18-36-06-app-kill--0-cat-tmp-day26-build-v2.pid-2-dev-1.log`](server-runs/2026-05-16T18-36-06-app-kill--0-cat-tmp-day26-build-v2.pid-2-dev-1.log)
+
+## 2026-05-16T18:36:23.241Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2a5faea` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2573ms) _(showing tail — full 5,465B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day26-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day26-build-v2.log
+```
+STDOUT:
+```
+…ButtonElement>'.
+#16 16.93 
+#16 16.93 [0m [90m 94 |[39m                   onClick[33m=[39m{() [33m=>[39m router[33m.[39mpush([32m'/auth/login'[39m)}[0m
+#16 16.93 [0m [90m 95 |[39m                   variant[33m=[39m[32m"primary"[39m[0m
+#16 16.93 [0m[31m[1m>[22m[39m[90m 96 |[39m                   fullWidth[0m
+#16 16.93 [0m [90m    |[39m                   [31m[1m^[22m[39m[0m
+#16 16.93 [0m [90m 97 |[39m                 [33m>[39m[0m
+#16 16.93 [0m [90m 98 |[39m                   [33mBack[39m to [33mLogin[39m[0m
+#16 16.93 [0m [90m 99 |[39m                 [33m<[39m[33m/[39m[33mButton[39m[33m>[39m[0m
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN npm run build:
+16.93 Type error: Type '{ children: string; onClick: () => void; variant: "primary"; fullWidth: true; }' is not assignable to type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+16.93   Property 'fullWidth' does not exist on type 'IntrinsicAttributes & ButtonProps & RefAttributes<HTMLButtonElement>'.
+16.93 
+16.93 [0m [90m 94 |[39m                   onClick[33m=[39m{() [33m=>[39m router[33m.[39mpush([32m'/auth/login'[39m)}[0m
+16.93 [0m [90m 95 |[39m                   variant[33m=[39m[32m"primary"[39m[0m
+16.93 [0m[31m[1m>[22m[39m[90m 96 |[39m                   fullWidth[0m
+16.93 [0m [90m    |[39m                   [31m[1m^[22m[39m[0m
+16.93 [0m [90m 97 |[39m                 [33m>[39m[0m
+16.93 [0m [90m 98 |[39m                   [33mBack[39m to [33mLogin[39m[0m
+16.93 [0m [90m 99 |[39m                 [33m<[39m[33m/[39m[33mButton[39m[33m>[39m[0m
+------
+Dockerfile:24
+
+--------------------
+
+  22 |     
+
+  23 |     # Build Next.js app
+
+  24 | >>> RUN npm run build
+
+  25 |     
+
+  26 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T18-36-23-app-kill--0-cat-tmp-day26-build-v2.pid-2-dev-1.log`](server-runs/2026-05-16T18-36-23-app-kill--0-cat-tmp-day26-build-v2.pid-2-dev-1.log)

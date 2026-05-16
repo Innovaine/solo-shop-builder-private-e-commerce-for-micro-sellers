@@ -235,7 +235,7 @@ export default function EditProductPage() {
             </FormField>
 
             <div className="flex gap-4 pt-4">
-              <Button type="submit" variant="primary" disabled={saving} fullWidth>
+              <Button type="submit" variant="primary" disabled={saving} className="flex-1">
                 {saving ? 'Saving...' : 'Update Product'}
               </Button>
               <Button

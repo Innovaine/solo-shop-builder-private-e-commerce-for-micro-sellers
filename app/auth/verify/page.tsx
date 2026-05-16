@@ -93,7 +93,7 @@ export default function VerifyPage() {
                 <Button
                   onClick={() => router.push('/auth/login')}
                   variant="primary"
-                  fullWidth
+                  className="w-full"
                 >
                   Back to Login
                 </Button>
