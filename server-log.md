@@ -12439,3 +12439,18 @@ STDOUT:
 Error: EACCES: permission denied, rmdir '/app/test-results'
 ```
 Full output: [`server-runs/2026-05-16T02-31-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-31-26-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:34:25.864Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `af4349f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2996ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps | grep solo-shop && curl -sf http://localhost:3000/api/health && echo "App running OK"
+```
+STDOUT:
+```
+ba26e90eee38   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+b81a6a30fa09   postgres:16-alpine                                           "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{"status":"ok","timestamp":"2026-05-16T02:34:25.768Z","responseTime":"139ms","checks":{"database":{"status":"ok","responseTime":"31ms"},"email":{"status":"ok","responseTime":"108ms"}}}App running OK
+```
+Full output: [`server-runs/2026-05-16T02-34-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-34-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
