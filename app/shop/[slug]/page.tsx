@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { CartButton } from '@/components/CartButton'
 
 export default async function ShopPage({
   params,
@@ -33,14 +34,11 @@ export default async function ShopPage({
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white border-b border-whisper sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div>
             <h1 className="text-2xl font-bold text-charcoal">{shop.name}</h1>
             <p className="text-slate text-sm mt-0.5">Independent storefront</p>
           </div>
-          <Button variant="secondary" size="sm">
-            🛒 Cart (0)
-          </Button>
         </div>
       </header>
 
@@ -112,6 +110,9 @@ export default async function ShopPage({
       <footer className="bg-white border-t border-whisper py-8 px-6 text-center text-xs text-slate">
         <p>© 2026 {shop.name}. Solo Shop Builder. | Secured by Stripe</p>
       </footer>
+
+      {/* Floating cart button */}
+      <CartButton shopSlug={shop.slug} />
     </div>
   )
 }

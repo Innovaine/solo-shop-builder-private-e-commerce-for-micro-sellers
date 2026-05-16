@@ -13315,3 +13315,32 @@ Date: Sat, 16 May 2026 02:59:01 GMT
 Connection: keep-alive
 ```
 Full output: [`server-runs/2026-05-16T02-59-01-app-curl--sI-http-localhost-3000-head--10-1.log`](server-runs/2026-05-16T02-59-01-app-curl--sI-http-localhost-3000-head--10-1.log)
+
+## 2026-05-16T13:15:29.216Z — Anil ran 1 command(s)
+### Command 1 on app as engineer (✗ exec-error: All SSH connection shapes failed. Underlying errors:
+  • SSHClient.connectWithKey(host, port, user, key, passphrase) → Connection to host 187.124.22.3 failed, with session
+
+This is a TRANSPORT-LAYER failure, not an auth failure. The SSH handshake never got to the password step. Causes:
+  • Phone can't reach the server (firewall, wrong network, VPN). Test from the phone's network: `nc -zv <host> <port>` should connect.
+  • SSH algorithm mismatch. The library uses older ciphers/KEX. Modern OpenSSH (Ubuntu 22.04+) disables many of them. Try:
+      On the server, edit /etc/ssh/sshd_config and ADD lines:
+        KexAlgorithms +diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
+        Ciphers +aes128-cbc,aes256-cbc,3des-cbc
+        HostKeyAlgorithms +ssh-rsa
+      Then: sudo systemctl restart sshd
+  • Wrong port (not 22). Check via your laptop: `ssh -v root@<host>` shows the real port., 10025ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps | grep solo-shop
+```
+ERROR: All SSH connection shapes failed. Underlying errors:
+  • SSHClient.connectWithKey(host, port, user, key, passphrase) → Connection to host 187.124.22.3 failed, with session
+
+This is a TRANSPORT-LAYER failure, not an auth failure. The SSH handshake never got to the password step. Causes:
+  • Phone can't reach the server (firewall, wrong network, VPN). Test from the phone's network: `nc -zv <host> <port>` should connect.
+  • SSH algorithm mismatch. The library uses older ciphers/KEX. Modern OpenSSH (Ubuntu 22.04+) disables many of them. Try:
+      On the server, edit /etc/ssh/sshd_config and ADD lines:
+        KexAlgorithms +diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
+        Ciphers +aes128-cbc,aes256-cbc,3des-cbc
+        HostKeyAlgorithms +ssh-rsa
+      Then: sudo systemctl restart sshd
+  • Wrong port (not 22). Check via your laptop: `ssh -v root@<host>` shows the real port.

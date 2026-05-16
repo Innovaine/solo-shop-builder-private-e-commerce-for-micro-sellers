@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { AddToCartButton } from '@/components/AddToCartButton'
+import { CartButton } from '@/components/CartButton'
 
 export default async function ProductDetailPage({
   params,
@@ -109,22 +111,24 @@ export default async function ProductDetailPage({
             </div>
 
             {/* Add to Cart Button */}
-            <Button
-              variant="primary"
-              size="lg"
-              className="w-full mb-3"
-            >
-              Add to Cart
-            </Button>
-            <Link href={`/shop/${slug}`}>
-              <Button
-                variant="secondary"
-                size="lg"
-                className="w-full"
-              >
-                Continue Shopping
-              </Button>
-            </Link>
+            <AddToCartButton
+              productId={product.id}
+              productTitle={product.title}
+              price={product.price}
+              shopSlug={slug}
+              imageUrl={product.imageUrl || undefined}
+            />
+            <div className="mt-3">
+              <Link href={`/shop/${slug}`}>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full"
+                >
+                  Continue Shopping
+                </Button>
+              </Link>
+            </div>
 
             {/* Product Details Accordion */}
             <div className="mt-8 border-t border-whisper pt-6 space-y-4">
@@ -175,6 +179,9 @@ export default async function ProductDetailPage({
       <footer className="bg-white border-t border-whisper py-8 px-6 text-center text-xs text-slate mt-12">
         <p>© 2026 {product.shop.name}. Solo Shop Builder. | Secured by Stripe</p>
       </footer>
+
+      {/* Floating cart button */}
+      <CartButton shopSlug={slug} />
     </div>
   )
 }
