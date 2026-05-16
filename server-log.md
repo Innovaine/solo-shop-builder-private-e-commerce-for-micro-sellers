@@ -10758,3 +10758,12 @@ echo $! > /tmp/build-day16.pid
 echo "Started docker build, PID=$(cat /tmp/build-day16.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T01:32:27.321Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e9268e6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 3480ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps | grep solo-shop
+```
+ERROR: command exited 1
