@@ -7,6 +7,8 @@ Along side stripe add my fatoorah integration
 
 Note that it will send url to put card details
 
+Add my Fatoorah key in env 
+
 ## 🧪 Sandbox / test credentials
 
 > Owner-provided test card numbers, sandbox API keys, sandbox endpoints, test OTPs, etc. Use these for integration testing — never production data.
