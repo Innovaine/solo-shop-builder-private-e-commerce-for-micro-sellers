@@ -18672,3 +18672,17 @@ Dockerfile:25
 --------------------
 ```
 Full output: [`server-runs/2026-05-16T20-17-16-app-grep--A-5-Export-encountered-errors-tmp--1.log`](server-runs/2026-05-16T20-17-16-app-grep--A-5-Export-encountered-errors-tmp--1.log)
+
+## 2026-05-16T20:18:01.124Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9f372ba` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2935ms)
+```
+grep -B 20 "Export encountered errors" /tmp/day27-build.log | grep -E "Error|prerender"
+```
+STDOUT:
+```
+#15 17.18 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
+17.18 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
+```
+Full output: [`server-runs/2026-05-16T20-18-01-app-grep--B-20-Export-encountered-errors-tmp-1.log`](server-runs/2026-05-16T20-18-01-app-grep--B-20-Export-encountered-errors-tmp-1.log)
