@@ -16217,3 +16217,14 @@ STDOUT:
 UPDATE 1
 ```
 Full output: [`server-runs/2026-05-16T17-38-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-38-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:39:08.289Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4fc507d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12999ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build.log 2>&1 &
+echo $! > /tmp/build.pid
+echo "Started build, PID=$(cat /tmp/build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
