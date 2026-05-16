@@ -12517,3 +12517,36 @@ total 68K
 Started all Playwright tests, PID=888699
 ```
 Full output: [`server-runs/2026-05-16T02-35-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-35-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:35:36.914Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e0b2389` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2651ms) _(showing tail — full 4,446B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git status
+ls -lh tests/web/scaling-day18.spec.ts 2>&1
+echo "---"
+kill -0 $(cat /tmp/day18-test-all.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -150 /tmp/day18-test-all.log
+```
+STDOUT:
+```
+…Component Integration › Landing page uses Button component and renders correctly (5.3s)
+  ✘   5 tests/web/day16-smoke.spec.ts:20:7 › Day 16 — Smoke Tests › Login page loads successfully (5.1s)
+  -   8 tests/web/day17-component-integration.spec.ts:34:7 › Day 17 — Button Component Integration › Product detail page renders without 404
+  ✓   7 tests/web/day16-ui-components.spec.ts:31:7 › Day 16 — UI Component Library › Component library files exist in codebase (198ms)
+  -   9 tests/web/day17-component-integration.spec.ts:109:7 › Day 17 — Button Component Integration › Shop storefront page uses Button component
+  ✓  11 tests/web/day16-smoke.spec.ts:31:7 › Day 16 — Smoke Tests › Health endpoint responds correctly (291ms)
+  ✓  12 tests/web/day17-component-integration.spec.ts:148:7 › Day 17 — Button Component Integration › All pages still render after component integration (no regressions) (333ms)
+No signup link found, assuming on signup page
+  ✘   6 tests/web/auth-flow.spec.ts:43:7 › FR-1 & FR-2: Authentication Flow › FR-2: Valid magic link logs seller in (5.2s)
+  ✓  14 tests/web/day17-component-integration.spec.ts:162:7 › Day 17 — Button Component Integration › Visual consistency check - buttons use brand colors (696ms)
+  ✓  16 tests/web/auth-flow.spec.ts:54:7 › FR-1 & FR-2: Authentication Flow › FR-2: Session persists on page reload (728ms)
+  ✘  17 tests/web/scaling-day12.spec.ts:12:7 › Day 12: Scaling Features › NFR-11: Request ID middleware adds X-Request-Id to all API responses (135ms)
+  ✘  10 tests/web/day16-ui-components.spec.ts:53:7 › Day 16 — UI Component Library › Login page form elements render (hand-coded, not using component library yet) (5.2s)
+  ✘  18 tests/web/scaling-day12.spec.ts:25:7 › Day 12: Scaling Features › NFR-11: Request ID present on signup endpoint (4.1s)
+  ✘  20 tests/web/scaling-day12.spec.ts:37:7 › Day 12: Scaling Features › NFR-11: Request ID present on homepage (156ms)
+  ✘  21 tests/web/scaling-day12.spec.ts:46:7 › Day 12: Scaling Features › Enhanced health check returns DB status (191ms)
+```
+Full output: [`server-runs/2026-05-16T02-35-36-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-35-36-app-cd-solo-shop-builder-private-e-commerce--1.log)
