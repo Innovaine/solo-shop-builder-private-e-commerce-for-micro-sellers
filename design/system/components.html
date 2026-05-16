@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solo Shop Builder — UI Components</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 48px; font-weight: 700; margin: 48px 0 16px; }
+    h2 { font-size: 32px; font-weight: 700; margin: 32px 0 16px; }
+    h3 { font-size: 20px; font-weight: 600; margin: 24px 0 12px; }
+    
+    .component-section { background: white; padding: 32px; border-radius: 8px; border: 1px solid #E2E8F0; margin-bottom: 32px; }
+    .component-demo { padding: 24px; background: #F9FAFB; border-radius: 6px; margin: 16px 0; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+    
+    /* Buttons */
+    button, .btn { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; box-shadow: 0 2px 8px rgba(16,185,129,0.2); }
+    .btn-primary:disabled { background: #D1D5DB; cursor: not-allowed; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .btn-ghost { background: transparent; color: #3B4C63; padding: 8px 12px; }
+    .btn-danger { background: #F43F5E; color: white; }
+    
+    /* Forms */
+    .form-field { margin-bottom: 24px; display: flex; flex-direction: column; }
+    label { font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, textarea, select { padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    input::placeholder { color: #94A3B8; }
+    .form-error input { border-color: #F43F5E; background: #FEF2F2; }
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    .form-error-msg { font-size: 12px; color: #F43F5E; margin-top: 4px; }
+    
+    /* Cards */
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .card.elevated { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .card.interactive:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; }
+    th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937; }
+    td { padding: 12px 16px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    tr:hover { background: #F9FAFB; }
+    
+    /* Badges */
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+    .badge-green { background: #D1FAE5; color: #065F46; }
+    .badge-amber { background: #FEF3C7; color: #92400E; }
+    .badge-red { background: #FEE2E2; color: #991B1B; }
+    
+    /* Loading */
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #E2E8F0; border-top-color: #3B4C63; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* Toast */
+    .toast { padding: 16px 20px; border-radius: 6px; margin-bottom: 12px; font-size: 14px; border-left: 4px solid; }
+    .toast-success { background: #D1FAE5; color: #065F46; border-left-color: #10B981; }
+    .toast-error { background: #FEE2E2; color: #991B1B; border-left-color: #F43F5E; }
+    
+    /* Empty State */
+    .empty-state { text-align: center; padding: 64px 24px; background: white; border-radius: 8px; }
+    .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+    
+    @media (max-width: 768px) {
+      .component-demo { flex-direction: column; }
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="container" style="border-bottom: 1px solid #E2E8F0; padding: 16px 24px; margin-bottom: 0;">
+    <h1 style="margin: 0;">Solo Shop Builder — UI Component Library</h1>
+    <p style="color: #64748B; font-size: 14px; margin: 8px 0 0 0;">Engineer reference: use these components for React implementation</p>
+  </header>
+
+  <div class="container">
+    <!-- BUTTONS -->
+    <section class="component-section" id="buttons">
+      <h2>Buttons</h2>
+      <p>All buttons: 44px minimum touch target, visible focus state (outline #3B4C63), transition on hover.</p>
+      <h3>Primary Button</h3>
+      <div class="component-demo">
+        <button class="btn btn-primary">Save Changes</button>
+        <button class="btn btn-primary">Add Product</button>
+        <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <h3>Secondary Button</h3>
+      <div class="component-demo">
+        <button class="btn btn-secondary">Cancel</button>
+        <button class="btn btn-secondary">Back</button>
+      </div>
+      <h3>Ghost Button</h3>
+      <div class="component-demo">
+        <button class="btn btn-ghost">Learn More</button>
+        <button class="btn btn-ghost">Skip</button>
+      </div>
+      <h3>Danger Button</h3>
+      <div class="component-demo">
+        <button class="btn btn-danger">Delete</button>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="component-section" id="forms">
+      <h2>Forms & Inputs</h2>
+      <h3>Text Input</h3>
+      <div class="component-demo" style="display: block;">
+        <div class="form-field">
+          <label>Email Address</label>
+          <input type="email" placeholder="seller@example.com">
+          <div class="form-hint">We'll send order notifications here.</div>
+        </div>
+      </div>
+      <h3>Password Input</h3>
+      <div class="component-demo" style="display: block;">
+        <div class="form-field">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••">
+        </div>
+      </div>
+      <h3>Textarea</h3>
+      <div class="component-demo" style="display: block;">
+        <div class="form-field">
+          <label>Product Description</label>
+          <textarea placeholder="Describe your product..." style="min-height: 120px;"></textarea>
+        </div>
+      </div>
+      <h3>Select Dropdown</h3>
+      <div class="component-demo" style="display: block;">
+        <div class="form-field">
+          <label>Category</label>
+          <select>
+            <option>Choose category...</option>
+            <option>Handmade</option>
+            <option>Vintage</option>
+            <option>Supplies</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <h3>Error State</h3>
+      <div class="component-demo" style="display: block;">
+        <div class="form-field form-error">
+          <label>Shop Name</label>
+          <input type="text" value="already-taken">
+          <div class="form-error-msg">This shop name is already taken.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="component-section" id="cards">
+      <h2>Cards</h2>
+      <h3>Default Card</h3>
+      <div class="component-demo">
+        <div class="card" style="flex: 1; min-width: 250px;">
+          <div style="font-weight: 600; margin-bottom: 8px; color: #1F2937;">Product Title</div>
+          <div style="color: #64748B; font-size: 14px;">Brief description or content preview goes here.</div>
+        </div>
+      </div>
+      <h3>Elevated Card</h3>
+      <div class="component-demo">
+        <div class="card elevated" style="flex: 1; min-width: 250px;">
+          <div style="font-weight: 600; margin-bottom: 8px; color: #1F2937;">Featured Content</div>
+          <div style="color: #64748B; font-size: 14px;">Higher elevation for emphasis.</div>
+        </div>
+      </div>
+      <h3>Interactive Card</h3>
+      <div class="component-demo">
+        <div class="card interactive" style="flex: 1; min-width: 250px; cursor: pointer;">
+          <div style="font-weight: 600; margin-bottom: 8px; color: #1F2937;">Clickable Card</div>
+          <div style="color: #64748B; font-size: 14px;">Hover to see elevation + lift effect.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLES -->
+    <section class="component-section" id="tables">
+      <h2>Tables</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#ORD-001</td>
+            <td>Jane Smith</td>
+            <td>$145.00</td>
+            <td><span class="badge badge-green">Shipped</span></td>
+          </tr>
+          <tr>
+            <td>#ORD-002</td>
+            <td>John Doe</td>
+            <td>$89.50</td>
+            <td><span class="badge badge-amber">In Progress</span></td>
+          </tr>
+          <tr>
+            <td>#ORD-003</td>
+            <td>Sarah Lee</td>
+            <td>$220.00</td>
+            <td><span class="badge badge-green">Delivered</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- BADGES -->
+    <section class="component-section" id="badges">
+      <h2>Badges & Status Indicators</h2>
+      <div class="component-demo">
+        <span class="badge badge-green">Paid</span>
+        <span class="badge badge-amber">Pending</span>
+        <span class="badge badge-red">Failed</span>
+      </div>
+    </section>
+
+    <!-- ALERTS / TOASTS -->
+    <section class="component-section" id="toasts">
+      <h2>Alerts & Toasts</h2>
+      <div class="toast toast-success">✓ Order marked as shipped successfully.</div>
+      <div class="toast toast-error">✗ Unable to process payment. Please try again.</div>
+    </section>
+
+    <!-- EMPTY STATE -->
+    <section class="component-section" id="empty">
+      <h2>Empty States</h2>
+      <div class="empty-state">
+        <div class="empty-state-icon">📦</div>
+        <h3>No Products Yet</h3>
+        <p style="color: #94A3B8; margin-bottom: 16px;">You haven't added any products. Get started by adding your first item.</p>
+        <button class="btn btn-primary">Add Your First Product</button>
+      </div>
+    </section>
+
+    <!-- LOADING -->
+    <section class="component-section" id="loading">
+      <h2>Loading States</h2>
+      <h3>Spinner</h3>
+      <div class="component-demo">
+        <span class="spinner"></span>
+      </div>
+      <h3>Button with Loading</h3>
+      <div class="component-demo">
+        <button class="btn btn-primary" disabled><span class="spinner" style="margin-right: 8px;"></span>Saving...</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
