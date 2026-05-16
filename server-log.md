@@ -12062,3 +12062,19 @@ total 68K
 -rw-rw-r-- 1 tester tester 5.9K May 15 23:09 shop-creation.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T02-17-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-17-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:17:50.484Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ddad96b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2487ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup bash -c 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day17-component-integration.spec.ts --reporter=list' > /tmp/day17-playwright-v2.log 2>&1 &
+echo $! > /tmp/day17-playwright-v2.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day17-playwright-v2.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=883202
+```
+Full output: [`server-runs/2026-05-16T02-17-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-17-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
