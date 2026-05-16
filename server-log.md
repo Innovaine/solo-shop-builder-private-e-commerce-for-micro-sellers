@@ -12395,3 +12395,18 @@ npm notice To update run: npm install -g npm@11.14.1
 npm notice
 ```
 Full output: [`server-runs/2026-05-16T02-30-17-app-kill--0-cat-tmp-playwright-day18.pid-2-d-1.log`](server-runs/2026-05-16T02-30-17-app-kill--0-cat-tmp-playwright-day18.pid-2-d-1.log)
+
+## 2026-05-16T02:30:43.620Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a5f3d67` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4765ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 rm -rf /app/test-results/day-18 2>/dev/null || true
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx playwright test tests/web/scaling-day18.spec.ts --reporter=list 2>&1 | head -200
+```
+STDOUT:
+```
+Error: EACCES: permission denied, rmdir '/app/test-results'
+```
+Full output: [`server-runs/2026-05-16T02-30-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-30-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
