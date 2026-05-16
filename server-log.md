@@ -11137,3 +11137,19 @@ STDOUT:
   1 passed (1.2m)
 ```
 Full output: [`server-runs/2026-05-16T01-45-27-app-kill--0-cat-tmp-playwright-day16-final.p-1.log`](server-runs/2026-05-16T01-45-27-app-kill--0-cat-tmp-playwright-day16-final.p-1.log)
+
+## 2026-05-16T01:45:54.580Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9d40a3d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3787ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers nohup npx playwright test tests/web/auth-flow.spec.ts --reporter=list > /tmp/playwright-authflow.log 2>&1 &
+echo $! > /tmp/playwright-authflow.pid
+echo "Started auth flow tests, PID=$(cat /tmp/playwright-authflow.pid)"
+```
+STDOUT:
+```
+Started auth flow tests, PID=873052
+```
+Full output: [`server-runs/2026-05-16T01-45-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-45-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
