@@ -11797,3 +11797,48 @@ STDOUT:
 (0 rows)
 ```
 Full output: [`server-runs/2026-05-16T02-11-27-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-11-27-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T02:12:09.787Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1ebc1b8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3268ms)
+```
+echo "Creating test seller, shop, and product..."
+
+# 1. Create seller via signup
+SIGNUP_RESP=$(curl -s -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}')
+echo "Signup response: $SIGNUP_RESP"
+
+# 2. Get the magic link token from database
+TOKEN=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U postgres -d soloshop -t -c "SELECT token FROM \"AuthToken\" WHERE email='test@example.com' ORDER BY \"createdAt\" DESC LIMIT 1;" | xargs)
+echo "Token: $TOKEN"
+
+# 3. Verify token to get session
+VERIFY_RESP=$(curl -s -c /tmp/session-cookie.txt http://localhost:3000/api/auth/verify?token=$TOKEN)
+echo "Verify response: $VERIFY_RESP"
+
+# 4. Create shop
+SHOP_RESP=$(curl -s -b /tmp/session-cookie.txt -X POST http://localhost:3000/api/shops \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test Shop","slug":"test-shop"}')
+echo "Shop response: $SHOP_RESP"
+
+# 5. Create product
+PRODUCT_RESP=$(curl -s -b /tmp/session-cookie.txt -X POST http://localhost:3000/api/products \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Test Product","description":"A test product","price":4500,"category":"Handmade","stock":10}')
+echo "Product response: $PRODUCT_RESP"
+```
+STDOUT:
+```
+Creating test seller, shop, and product...
+Signup response: {"message":"Magic link sent. Check your email."}
+Token: 
+Verify response: 
+Shop response: {"error":"You must be logged in to create a shop."}
+Product response: {"error":"You must be logged in to create products."}
+```
+Full output: [`server-runs/2026-05-16T02-12-09-app-echo-Creating-test-seller-shop-and-produ-1.log`](server-runs/2026-05-16T02-12-09-app-echo-Creating-test-seller-shop-and-produ-1.log)
