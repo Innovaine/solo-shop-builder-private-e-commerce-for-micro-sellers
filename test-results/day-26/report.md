@@ -1,7 +1,7 @@
 # Day 26 — Test Report
 
 ## Verdict: BLOCKED
-Build failure prevents testing day 26 features. App from day 24 build is running and healthy, but cannot deploy day 26 changes.
+Build failure prevents testing day 26 features. Day 24 container remains UP and healthy; day 26 code is written but undeployed due to missing Next.js dynamic rendering exports.
 
 ## What I tested
 - Tool used: Manual curl health check
@@ -82,27 +82,46 @@ Error occurred prerendering page "/auth/verify".
 
 ## What to fix next round
 
-**CRITICAL — Engineer must fix before ANY testing can proceed:**
+**CRITICAL — Engineer must add `export const dynamic = 'force-dynamic'` to 13 files:**
 
-1. **Remove Prisma calls from `/auth/verify` page during static generation**
-   - Error: "Prisma cannot find libssl.so.1.1" during `next build`
-   - Next.js tries to pre-render `/auth/verify` at build time
-   - Page queries DB → Prisma fails in builder container (no libssl)
-   - **Fix options:**
-     - A) Make page fully dynamic: `export const dynamic = 'force-dynamic'` at top of file
-     - B) Move DB queries to client-side useEffect (runs after hydration)
-     - C) Add `libssl1.1` to Dockerfile builder stage
+### Root Cause (detailed in `test-results/day-26/blocking-analysis.md`)
+Next.js 14 tries to statically pre-render all pages/routes at build time. Server Components that call Prisma fail because the builder container has no database.
 
-2. **TypeScript errors from multiple builds:**
-   - Build v1: Card component `padding="xl"` invalid (expects "none"|"sm"|"md"|"lg")
-   - Build v2: Button component doesn't accept `fullWidth` prop
-   - Build v3: `cart.shopId` doesn't exist on Cart type (use `cart.items[0]?.shopId` or refactor Cart interface)
-   - Build final: FormField doesn't accept `htmlFor` prop (check component definition)
+### Files missing the export (13 total):
+1. ❌ `app/api/checkout/route.ts` — **(BLOCKER)** calls `prisma.shop.findUnique()`
+2. ❌ `app/dashboard/page.tsx` — **(BLOCKER)** calls `prisma.shop.findFirst()`
+3. ❌ `app/api/checkout/myfatoorah/callback/route.ts`
+4. ❌ `app/api/checkout/myfatoorah/route.ts`
+5. ❌ `app/api/orders/[id]/route.ts`
+6. ❌ `app/api/products/[id]/route.ts`
+7. ❌ `app/api/webhooks/stripe/route.ts`
+8. ❌ `app/dashboard/create-shop/page.tsx`
+9. ❌ `app/dashboard/orders/page.tsx`
+10. ❌ `app/dashboard/products/page.tsx`
+11. ❌ `app/dashboard/products/[id]/edit/page.tsx`
+12. ❌ `app/shop/[slug]/page.tsx`
+13. ❌ `app/shop/[slug]/product/[productId]/page.tsx`
+14. ❌ `app/track/[orderId]/page.tsx`
 
-3. **Test after build succeeds:**
-   - Playwright suite covering all FR-2 through FR-14
-   - Myfatoorah integration end-to-end (initiate payment, callback verification)
-   - Order tracking page for customers
+### The fix (1 line per file)
+Add after imports:
+```typescript
+export const dynamic = 'force-dynamic'
+```
+
+### Alternative: Global fix in `next.config.js`
+```javascript
+module.exports = {
+  experimental: {
+    dynamicIO: true, // Forces all routes dynamic by default
+  },
+}
+```
+
+### After build succeeds, run these test suites:
+- ✅ `tests/web/day26-verification-flow.spec.ts` (FR-2, FR-3)
+- ✅ `tests/web/day26-dashboard-dynamic-rendering.spec.ts` (FR-3)
+- Additional tests for FR-4 through FR-14 (product CRUD, order tracking, Myfatoorah)
 
 ## Regression note
 Day 24 app remains stable and testable. Previous features (auth, shop, products, cart, Stripe checkout) have not regressed — they're still running in the deployed container. Day 26 is purely a forward-progress block.

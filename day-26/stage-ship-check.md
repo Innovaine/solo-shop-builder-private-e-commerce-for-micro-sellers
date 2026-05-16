@@ -4,7 +4,7 @@
 **Stage:** MVP (core)
 **Target features:** 20
 **Completed super tasks:** 17 / 20 (85%)
-**Total open tasks:** 19
+**Total open tasks:** 20
 **Total in-progress tasks:** 4
 **Total blocked tasks:** 0
 

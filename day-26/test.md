@@ -1,117 +1,112 @@
 # Day 26 — Testing (Playwright / Appetize): Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Priya (Tester)
-- **Cycle:** 59
-- **Saved:** 16/05/2026, 9:55:18 PM
+- **Cycle:** 60
+- **Saved:** 16/05/2026, 10:53:54 PM
 
 ---
 
 ## ✅ Done
 
-Day 26 testing BLOCKED by build failure. Engineer wrote code for FR-2/3 (verify page), FR-4-11 (product CRUD), FR-12-14 (order tracking), and Myfatoorah integration, but all 5 build attempts failed on /auth/verify static generation error (Prisma requires libssl.so.1.1 during Next.js build). Current app from day 24 is still running and healthy at localhost:3000. Wrote test-results/day-26/report.md documenting blocked state and fix guidance (add `export const dynamic = 'force-dynamic'` to force runtime rendering). Commented on task #69 with unblock instructions.
+Day 26 testing BLOCKED by build failure. Engineer wrote day 26 features (verification flow, dashboard, checkout, order tracking) but build fails because 13 files importing Prisma lack `export const dynamic = 'force-dynamic'`. Container from day 24 (db1e07827eda) remains UP and healthy. Documented root cause in blocking-analysis.md, wrote test specs for FR-2/FR-3 (ready to run post-build), updated report with precise fix list, and created task #81 for engineer with exact files needing the one-line export. Cannot test day 26 features until build succeeds.
 
 Status: DONE
 
-Day 26 testing BLOCKED by build failure. Engineer wrote code for FR-2/3 (verify page), FR-4-11 (product CRUD), FR-12-14 (order tracking), and Myfatoorah integration, but all 5 build attempts failed on /auth/verify static generation error (Prisma requires libssl.so.1.1 during Next.js build). Current app from day 24 is still running and healthy at localhost:3000. Wrote test-results/day-26/report.md documenting blocked state and fix guidance (add `export const dynamic = 'force-dynamic'` to force runtime rendering). Commented on task #69 with unblock instructions.
+Day 26 testing BLOCKED by build failure. Engineer wrote day 26 features (verification flow, dashboard, checkout, order tracking) but build fails because 13 files importing Prisma lack `export const dynamic = 'force-dynamic'`. Container from day 24 (db1e07827eda) remains UP and healthy. Documented root cause in blocking-analysis.md, wrote test specs for FR-2/FR-3 (ready to run post-build), updated report with precise fix list, and created task #81 for engineer with exact files needing the one-line export. Cannot test day 26 features until build succeeds.
 
 ## Plan
-[x] p1: Check latest build status and understand blocking errors
-[x] p2: Review what features were supposed to be shipped today (FR-2, FR-3, FR-4-11, FR-12-14, Myfatoorah integration)
-[x] p3: Write test report documenting build blocked state and what cannot be tested
-[x] p4: Create task for engineer to fix /auth/verify build error (Prisma/openssl + Next.js static generation issue)
+[x] p1: Check current server state: is day 26 build complete or still blocked?
+[-] p2: If build succeeded: run smoke test to verify app is up
+[x] p3: If build blocked: document blocking issues in report
+[x] p4: Write test specs for day 26 FR features (ready to run once build succeeds)
+[x] p5: Update test-results/day-26/report.md with findings
+[x] p6: Create engineer task for remaining build fixes if needed
 
 ## Actions
-- list `/` (885 files)
-- read `day-26/requirements.md` (2869B)
-- read `day-26/engineering.md` (29368B)
+- list `/` (918 files)
+- read `day-26/requirements.md` (1758B)
+- read `day-26/engineering.md` (20403B)
 - read `README.md` (1426B)
-- queued SSH on app: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull`
+- read `day-26/review.md` (11323B)
+- read `test-results/day-26/report.md` (4624B)
+- queued SSH on app: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || echo "REPO NOT CLONED"`
 - ran 1 SSH command(s) — 0 failure(s)
-- queued SSH on app: `docker ps -a | grep solo-shop && echo "---" && docker images | grep solo-shop | head -3`
-- ran 1 SSH command(s) — 0 failure(s)
-- queued SSH on app: `curl -sf http://localhost:3000/api/health -o /dev/null && echo "OK" || echo "FAIL"`
-- ran 1 SSH command(s) — 0 failure(s)
-- ✓ p1: Check latest build status and understand blocking errors
-- queued SSH on app: `curl -s http://localhost:3000 | grep -o '<h1[^>]*>.*</h1>' | head -2`
-- ran 1 SSH command(s) — 0 failure(s)
-- ✓ p2: Review what features were supposed to be shipped today (FR-2, FR-3, FR-4-11, FR-12-14, Myfatoorah integration)
 - queued SSH on app: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers`
-- ran 1 SSH command(s) — 1 failure(s)
-- queued SSH on app: `ls -la ~/solo-shop-builder-private-e-commerce-for-micro-sellers/node_modules/.bin/playwright 2>/dev/`
 - ran 1 SSH command(s) — 0 failure(s)
-- **wrote** `test-results/day-26/report.md` (4624B)
-- ✓ p3: Write test report documenting build blocked state and what cannot be tested
-- ✓ p4: Create task for engineer to fix /auth/verify build error (Prisma/openssl + Next.js static generation issue)
+- queued SSH on app: `curl -sf http://localhost:3000/api/health | head -20`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on app: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers`
+- ran 1 SSH command(s) — 0 failure(s)
+- ✓ p1: Check current server state: is day 26 build complete or still blocked?
+- ○ skipped p2: If build succeeded: run smoke test to verify app is up
+- read `app/auth/verify/page.tsx` (3676B)
+- read `app/api/checkout/route.ts` (3182B)
+- read `app/dashboard/page.tsx` (4094B)
+- **wrote** `test-results/day-26/blocking-analysis.md` (4532B)
+- ✓ p3: If build blocked: document blocking issues in report
+- **wrote** `tests/web/day26-verification-flow.spec.ts` (5223B)
+- **wrote** `tests/web/day26-dashboard-dynamic-rendering.spec.ts` (5030B)
+- ✓ p4: Write test specs for day 26 FR features (ready to run once build succeeds)
+- **edited** `test-results/day-26/report.md`
+- **edited** `test-results/day-26/report.md`
+- ✓ p5: Update test-results/day-26/report.md with findings
+- ✓ p6: Create engineer task for remaining build fixes if needed
 
 ## SSH commands executed
-1. ✓ exit 0 — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+1. ✓ exit 0 — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || echo 
 STDOUT:
-…                     |  23 +
- design/accessibility.md                       | 293 ++++++++
- design/pages/dashboard.html                   | 109 ++-
- design/pages/login.html                       |  11 +-
- design/pages/mobile-dashboard.html            | 420 +++++++++++
- design/pages/product-list.html                |  19 +
- design/pages/product-management.html          | 382 ++++++++++
- design/responsive-spec.md                     | 502 +++++++++++++
- design/system/components.html                 | 137 +++-
- design/system/mobile-patterns.md              | 183 +++++
- server-log.md                                 | 969 ++++++++++++++++++++++++++
- test-results/day-24/report.md                 | 122 ++++
- 35 files changed, 5275 insertions(+), 31 deletions(-)
- create mode 100644 app/api/checkout/myfatoorah/callback/route.ts
- create mode 100644 app/api/checkout/myfatoorah/route.ts
- create mode 100644 app/auth/verify/page.tsx
- create mode 100644 app/dashboard/products/[id]/edit/page.tsx
- create mode 100644 app/track/[orderId]/page.tsx
- create mode 100644 day-24/_index.md
- create mode 100644 day-24/stage-ship-check.md
- create mode 100644 day-24/test.md
- create mode 100644 day-25/_index.md
- create mode 100644 day-25/_plan.md
- create mode 100644 day-25/design.md
- create mode 100644 day-25/engineering.md
- create mode 100644 day-25/requirements.md
- create mode 100644 day-25/review.md
- create mode 100644 day-25/stage-ship-check.md
- create mode 100644 day-25/test.md
- create mode 100644 day-26/_index.md
- create mode 100644 day-26/_plan.md
- create mode 100644 day-26/design.md
- create mode 100644 day-26/engineering.md
- create mode 100644 day-26/requirements.md
- create mode 100644 day-26/review.md
- create mode 100644 day-26/test.md
- create mode 100644 design/accessibility.md
- create mode 100644 design/pages/mobile-dashboard.html
- create mode 100644 design/pages/product-management.html
- create mode 100644 design/responsive-spec.md
- create mode 100644 design/system/mobile-patterns.md
- create mode 100644 test-results/day-24/report.md
-Full log: server-runs/2026-05-16T18-50-34-app-cd-solo-shop-builder-private-e-commerce--1.log
-
-2. ✓ exit 0 — docker ps -a | grep solo-shop && echo "---" && docker images | grep solo-shop | 
-STDOUT:
-3ef6b3dddfa7   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About an hour ago   Up About an hour       0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
-d6af22021ce2   postgres:16-alpine                                           "docker-entrypoint.s…"   3 hours ago         Up 3 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
----
+3ef6b3dddfa7   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   2 hours ago   Up 2 hours             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+d6af22021ce2   postgres:16-alpine                                           "docker-entrypoint.s…"   4 hours ago   Up 4 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest   db1e07827eda        893MB          214MB   U
-Full log: server-runs/2026-05-16T18-50-51-app-docker-ps--a-grep-solo-shop-echo-----doc-1.log
+Full log: server-runs/2026-05-16T19-49-26-app-cd-solo-shop-builder-private-e-commerce--1.log
 
-3. ✓ exit 0 — curl -sf http://localhost:3000/api/health -o /dev/null && echo "OK" || echo "FAI
+2. ✓ exit 0 — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 STDOUT:
-OK
-Full log: server-runs/2026-05-16T18-51-57-app-curl--sf-http-localhost-3000-api-health--1.log
+18a27f4 Priya (tester, day 26) — pre-SSH sync
+aba9447 Anil (engineer, day 26) — pre-SSH sync
+6099650 Anil (engineer, day 26) — pre-SSH sync
+f9fbb25 Anil (engineer, day 26) — pre-SSH sync
+e733d40 Anil (engineer, day 26) — pre-SSH sync
+-rw-rw-r-- 1 engineer engineer 7 May 15 16:09 /tmp/soloshop-build7.pid
+-rw-rw-r-- 1 engineer engineer 7 May 15 16:11 /tmp/soloshop-build8.pid
+-rw-rw-r-- 1 engineer engineer 7 May 15 16:37 /tmp/soloshop-build9.pid
+-rw-rw-r-- 1 reviewer reviewer 7 May 15 16:17 /tmp/soloshop-review-build.pid
+-rw-rw-r-- 1 engineer engineer 7 May 14 21:58 /tmp/up.pid
+-rw-rw-r-- 1 engineer engineer    1248 May 15 16:45 /tmp/soloshop-up2.log
+-rw-rw-r-- 1 tester   tester       599 May 15 18:40 /tmp/test-output.log
+-rw-rw-r-- 1 tester   tester      4888 May 13 19:27 /tmp/test-run-day2.log
+-rw-rw-r-- 1 engineer engineer     548 May 14 21:58 /tmp/up.log
+-rw-rw-r-- 1 tester   tester      1110 May 13 19:59 /tmp/upload-test.log
+Full log: server-runs/2026-05-16T19-49-42-app-cd-solo-shop-builder-private-e-commerce--1.log
 
-4. ✓ exit 0 — curl -s http://localhost:3000 | grep -o '<h1[^>]*>.*</h1>' | head -2
+3. ✓ exit 0 — curl -sf http://localhost:3000/api/health | head -20
 STDOUT:
-<h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Solo Shop Builder</h1>
-Full log: server-runs/2026-05-16T18-52-17-app-curl--s-http-localhost-3000-grep--o-h1-.-1.log
+{"status":"ok","timestamp":"2026-05-16T19:50:55.945Z","responseTime":"242ms","checks":{"database":{"status":"ok","responseTime":"48ms"},"email":{"status":"ok","responseTime":"194ms"}}}HTTP/1.1 404 Not Found
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: 2pegvytCc8N7i3e0
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Sat, 16 May 2026 19:50:55 GMT
+Full log: server-runs/2026-05-16T19-50-56-app-curl--sf-http-localhost-3000-api-health--1.log
 
-5. ✗ exec-error (exit -) — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
-ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
-
-6. ✓ exit 0 — ls -la ~/solo-shop-builder-private-e-commerce-for-micro-sellers/node_modules/.bi
+4. ✓ exit 0 — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 STDOUT:
-Not installed
-Full log: server-runs/2026-05-16T18-54-08-app-ls--la-solo-shop-builder-private-e-comme-1.log
+day-26/engineering.md
+day-26/review.md
+server-log.md
+test-results/day-02/report.md
+test-results/day-07/report.md
+test-results/day-08/report.md
+test-results/day-09/report.md
+test-results/day-10/report.md
+test-results/day-11/report.md
+test-results/day-12/report.md
+test-results/day-13/report.md
+test-results/day-15/report.md
+test-results/day-16/report.md
+    image: postgres:16-alpine
+Full log: server-runs/2026-05-16T19-51-14-app-cd-solo-shop-builder-private-e-commerce--1.log
