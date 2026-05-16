@@ -10571,3 +10571,24 @@ STDOUT:
   5 passed (2.9s)
 ```
 Full output: [`server-runs/2026-05-16T01-17-55-app-kill--0-cat-tmp-playwright-day15-v2.pid--1.log`](server-runs/2026-05-16T01-17-55-app-kill--0-cat-tmp-playwright-day15-v2.pid--1.log)
+
+## 2026-05-16T01:18:21.046Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ec42e3b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2490ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+ls -lh test-results/day-15/ 2>/dev/null || echo "No day-15 screenshots yet"
+find test-results -name "*.png" -mmin -10 | head -10
+```
+STDOUT:
+```
+total 80K
+-rw-rw-r-- 1 tester tester 7.5K May 16 01:16 product-detail-404.png
+-rw-rw-r-- 1 tester tester  36K May 16 01:16 storefront-footer.png
+-rw-rw-r-- 1 tester tester  36K May 16 01:16 storefront-loaded.png
+test-results/day-15/storefront-loaded.png
+test-results/day-15/product-detail-404.png
+test-results/day-15/storefront-footer.png
+```
+Full output: [`server-runs/2026-05-16T01-18-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-18-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
