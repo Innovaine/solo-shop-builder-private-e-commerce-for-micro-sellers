@@ -1,7 +1,7 @@
 # Myfatoorah
 > **Kind:** `url`
-> **Source URL:** https://docs.myfatoorah.com/reference/create-payment
-> **Last refreshed:** 2026-05-16T16:12:23.983Z
+> **Source URL:** https://docs.myfatoorah.com/docs/get-started
+> **Last refreshed:** 2026-05-16T16:34:29.306Z
 ## Owner notes
 
 Along side stripe add my fatoorah integration 
@@ -20,141 +20,68 @@ Note that it will send url to put card details
 
 ## Docs
 
-### https://docs.myfatoorah.com/reference/create-payment
+### https://docs.myfatoorah.com/docs/get-started
 
-TimeStatusUser Agent
+Introduction
 
-Retrieving recent requests…
+In this section of the documentation, we will explain the different types of integration with MyFatoorah. This guide helps developers to get a better understanding of the exact technical endpoints and functions needed. It will serve the business accordingly and save development time and efforts to project the required business needs on the desired API and integration.
 
-Loading…
+Integration Methods
 
-PaymentMethodstring
+Embedded Payment (Recommended)
 
-enum
+Allow customers to complete the payment directly on your checkout page, while supporting hosted payment methods through a single integration.
 
-Defaults to CARD
+Hosted Payment Page
 
-Specify the payment method you want to use, or omit this parameter to create a payment page that displays all enabled methods. This is required for redirection cases.
+You are able to redirect the client to the payment page based on the payment method he chose to pay from his side.
 
-CARDAPPLE_PAYGOOGLE_PAYKNET
+Invoicing
 
-Allowed:CARDAPPLE_PAYGOOGLE_PAYKNET
+You are able to create a payment link and send it to your customers via email, SMS, or both. The customer can pay with any of the activated payment methods to your account.
 
-Orderobject
+Direct Payment
 
-required
+Collect card details or decrypt wallet tokens and send them to us. PCI Certificate is required
 
-Order information related to the payment..
+Updating Your System
 
-Order object
+Webhook
 
-SourceOfFundobject
+Keeps your system instantly updated through server-to-server notifications.
 
-Contains the payment source details (Tokenized card, direct card details, or Session Id)
+Get Payment Details
 
-SourceOfFund object
+GET Payments keeps your system updated with the transaction status changes.
 
-PaymentExpirydate-time
+📘
 
-The payment expiration date. Must be in UTC timezone.
+Recommended Action
 
-SaveCardOptionsobject
+Kindly review the following section for more understanding of the best way to update your system with the payment status: Updating Payment Status Guidelines
 
-Used to tokenize card details when using direct integration.
+Demo Environment
 
-SaveCardOptions object
+Test Cards
 
-ThreeDSobject
+Perform virtual transactions and make sure everything is perfectly working before going live.
 
-3D Secure authentication details for the direct card transaction.
+Test Token
 
-ThreeDS object
+Simulate live production without the need for actual payment.
 
-NotificationOptionstring
+📘
 
-enum
+Demo Account Registration
 
-Defines how the customer receives invoice notifications.
-Note: Email or mobile becomes mandatory based on the selected option.
+To test your integration without real transactions, create a demo account by registering at https://registertest.myfatoorah.com/en/ , selecting Kuwait as the country, and skipping the bank details step. After completing the registration, email [email&#160;protected] to activate your demo account and enable the required features.
 
-EMAILSMSALLLINK
+📘
 
-Allowed:EMAILSMSALLLINK
+API & Portal URLs
 
-OperationTypestring
+To identify the correct API Base URL and Portal URL for your environment, please refer to this table.
 
-enum
+Updated 3 months ago
 
-Defines the type of payment operation.
-
-AUTHORIZEPAY
-
-Allowed:AUTHORIZEPAY
-
-Suppliersarray of objects
-
-Required only if Multi-Vendor feature is enabled.
-
-SuppliersADD  object
-
-Customerobject
-
-Customer information that will be returned back to you in webhook events.
-
-Customer object
-
-IntegrationUrlsobject
-
-URLs for redirecting and receiving payment status notifications.
-
-IntegrationUrls object
-
-Languagestring
-
-enum
-
-Invoice language.
-
-ENAR
-
-Allowed:ENAR
-
-IpAddressstring
-
-The customer’s IP address
-
-MetaDataobject
-
-Custom fields stored with the transaction and returned in the webhook.
-
-MetaData object
-
-DisplayPaymentMethodsarray of strings
-
-Array of payment methods to be displayed on the invoice page.
-such as: ["card", "knet", "googlepay", "applepay"]
-If this parameter is not sent, and the PaymentMethod field is also not provided, all payment methods enabled on your account will be displayed automatically.
-
-DisplayPaymentMethodsADD  string
-
-NetworkTransactionIdstring
-
-Can be used when paying with network tokens.
-
- 201
-
-Payment created successfully
-
-Updated 4 months ago
-
-ShellNodeRubyPHPPython
-
-Loading…
-
-Click Try It! to start a request and see the response here! Or choose an example:
-
-application/json
-
-201 - Payment Response201 - Payment Response with Result of Payment (when paying with a session and disabling 3DS)
-
-Updated 4 months ago
+Copy Page
