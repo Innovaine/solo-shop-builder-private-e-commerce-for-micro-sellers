@@ -19015,3 +19015,56 @@ You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-16T20-28-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-28-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T20:28:50.816Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `db05c28` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2872ms)
+```
+echo "Test 1: Homepage"
+curl -sI http://localhost:3000 | head -10
+
+echo ""
+echo "Test 2: Login page"
+curl -s http://localhost:3000/auth/login | grep -o '<h1[^>]*>[^<]*</h1>' | head -3
+
+echo ""
+echo "Test 3: Verify page (the build blocker fix)"
+curl -sI http://localhost:3000/auth/verify | head -10
+
+echo ""
+echo "Test 4: Health check"
+curl -s http://localhost:3000/api/health | head -5
+```
+STDOUT:
+```
+Test 1: Homepage
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "155rcldhf4b6pa"
+Content-Type: text/html; charset=utf-8
+Content-Length: 8707
+Date: Sat, 16 May 2026 20:28:50 GMT
+Connection: keep-alive
+
+Test 2: Login page
+
+Test 3: Verify page (the build blocker fix)
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: lT9sRyy5Lh2OApqo
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "620er1zwgb46w"
+
+Test 4: Health check
+{"status":"ok","timestamp":"2026-05-16T20:28:50.732Z","responseTime":"147ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"146ms"}}}
+```
+Full output: [`server-runs/2026-05-16T20-28-50-app-echo-Test-1-Homepage-1.log`](server-runs/2026-05-16T20-28-50-app-echo-Test-1-Homepage-1.log)
