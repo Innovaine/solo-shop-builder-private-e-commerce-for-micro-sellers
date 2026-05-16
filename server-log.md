@@ -16046,3 +16046,15 @@ app-1  |
 FAIL
 ```
 Full output: [`server-runs/2026-05-16T15-39-19-app-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-16T15-39-19-app-docker-ps--a-grep-solo-shop-1.log)
+
+## 2026-05-16T15:40:02.657Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2bf8e79` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14161ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose down
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U soloshop -d soloshop -c "DELETE FROM _prisma_migrations WHERE migration_name = '20260516_add_order_tables' AND finished_at IS NULL;"
+docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
