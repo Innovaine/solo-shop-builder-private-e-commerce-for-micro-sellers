@@ -9830,3 +9830,58 @@ Refresh: 0;url=/shop
 === Page content check ===
 ```
 Full output: [`server-runs/2026-05-16T00-55-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-55-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:56:42.762Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `085f17a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2785ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Create test user, shop, and product
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U soloshop -d soloshop <<EOF
+-- Insert test seller
+INSERT INTO "Seller" (id, email, "verificationToken", "tokenExpiry", "createdAt")
+VALUES ('test-seller-123', 'test@example.com', NULL, NULL, NOW())
+ON CONFLICT (id) DO NOTHING;
+
+-- Insert test shop
+INSERT INTO "Shop" (id, slug, name, "sellerId", "createdAt")
+VALUES ('test-shop-123', 'test-shop', 'Test Shop', 'test-seller-123', NOW())
+ON CONFLICT (id) DO NOTHING;
+
+-- Insert test products
+INSERT INTO "Product" (id, "shopId", title, description, price, category, "createdAt")
+VALUES 
+  ('prod-1', 'test-shop-123', 'Gold Necklace', 'Beautiful handcrafted necklace', 4500, 'Jewelry', NOW()),
+  ('prod-2', 'test-shop-123', 'Silver Bracelet', 'Elegant silver bracelet', 3200, 'Jewelry', NOW()),
+  ('prod-3', 'test-shop-123', 'Pearl Earrings', 'Classic pearl studs', 2800, 'Jewelry', NOW())
+ON CONFLICT (id) DO NOTHING;
+
+SELECT 'Created test data' AS result;
+EOF
+
+echo ""
+echo "=== Testing storefront: /shop/test-shop ==="
+curl -sI http://localhost:3000/shop/test-shop | head -3
+
+echo ""
+echo "=== Check for product grid and cart ==="
+curl -s http://localhost:3000/shop/test-shop | grep -o -E "(Welcome to|grid grid-cols|Gold Necklace|Cart \(0\))" | head -10
+```
+STDOUT:
+```
+
+=== Testing storefront: /shop/test-shop ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+
+=== Check for product grid and cart ===
+Cart (0)
+Welcome to
+Cart (0)
+Welcome to
+```
+Full output: [`server-runs/2026-05-16T00-56-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-56-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
