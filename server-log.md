@@ -11782,3 +11782,18 @@ STDOUT:
 (5 rows)
 ```
 Full output: [`server-runs/2026-05-16T02-11-08-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-11-08-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T02:11:27.155Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2c2178f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2452ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT s.slug, p.id, p.title FROM \"Shop\" s JOIN \"Product\" p ON p.\"shopId\" = s.id LIMIT 3;" 2>&1
+```
+STDOUT:
+```
+ slug | id | title 
+------+----+-------
+(0 rows)
+```
+Full output: [`server-runs/2026-05-16T02-11-27-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-11-27-app-docker-exec-solo-shop-builder-private-e--1.log)
