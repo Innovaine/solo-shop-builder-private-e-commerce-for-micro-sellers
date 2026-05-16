@@ -14674,3 +14674,26 @@ d11d49dc643d   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 5f319186e48e   postgres:16-alpine                                           "docker-entrypoint.s…"   About an hour ago   Up About an hour (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-16T14-47-49-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T14-47-49-app-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-16T14:49:04.833Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3a9efc5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3652ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "\dt"
+```
+STDOUT:
+```
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | AuthToken          | table | postgres
+ public | Order              | table | postgres
+ public | OrderItem          | table | postgres
+ public | Product            | table | postgres
+ public | Seller             | table | postgres
+ public | Shop               | table | postgres
+ public | _prisma_migrations | table | postgres
+(7 rows)
+```
+Full output: [`server-runs/2026-05-16T14-49-04-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T14-49-04-app-docker-exec-solo-shop-builder-private-e--1.log)
