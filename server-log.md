@@ -13437,3 +13437,26 @@ STDOUT:
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-16T13-20-36-app-tail--80-tmp-day20-build.log-grep--E-Suc-1.log`](server-runs/2026-05-16T13-20-36-app-tail--80-tmp-day20-build.log-grep--E-Suc-1.log)
+
+## 2026-05-16T13:20:56.979Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `947d175` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3085ms)
+```
+grep -B10 "Type error: Argument of type 'Cart'" /tmp/day20-build.log | tail -20
+```
+STDOUT:
+```
+#16 1.918 
+#16 1.974   ▲ Next.js 14.2.3
+#16 1.974   - Environments: .env
+#16 1.974 
+#16 2.034    Creating an optimized production build ...
+#16 11.69  ✓ Compiled successfully
+#16 11.69    Linting and checking validity of types ...
+#16 14.74 Failed to compile.
+#16 14.74 
+#16 14.74 ./app/components/CartButton.tsx:21:15
+#16 14.74 Type error: Argument of type 'Cart' is not assignable to parameter of type 'SetStateAction<{ items: never[]; shopSlug: undefined; }>'.
+```
+Full output: [`server-runs/2026-05-16T13-20-56-app-grep--B10-Type-error-Argument-of-type-Ca-1.log`](server-runs/2026-05-16T13-20-56-app-grep--B10-Type-error-Argument-of-type-Ca-1.log)
