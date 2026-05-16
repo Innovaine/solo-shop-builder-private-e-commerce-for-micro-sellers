@@ -14014,3 +14014,28 @@ d11d49dc643d   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
  13:35:02 up 3 days, 14:38,  5 users,  load average: 0.03, 0.06, 0.04
 ```
 Full output: [`server-runs/2026-05-16T13-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:35:18.564Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `aa7e6bd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2767ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+curl -sf http://localhost:3000/api/health -o /dev/null && echo "✓ Health check PASS" || echo "✗ Health check FAIL"
+curl -sI http://localhost:3000 | head -10
+```
+STDOUT:
+```
+✓ Health check PASS
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "d5vb1f2l6b6pa"
+Content-Type: text/html; charset=utf-8
+Content-Length: 8707
+Date: Sat, 16 May 2026 13:35:18 GMT
+Connection: keep-alive
+```
+Full output: [`server-runs/2026-05-16T13-35-18-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-35-18-app-cd-solo-shop-builder-private-e-commerce--1.log)
