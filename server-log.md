@@ -20608,3 +20608,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `03da895` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose down && docker compose up -d && sleep 3 && docker compose ps
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T22:43:48.836Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c346c32` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2058ms)
+```
+timeout 10 curl -sf http://localhost:3000/api/health 2>&1 || echo "Service not responding"
+```
+STDOUT:
+```
+Service not responding
+```
+Full output: [`server-runs/2026-05-16T22-43-48-app-timeout-10-curl--sf-http-localhost-3000--1.log`](server-runs/2026-05-16T22-43-48-app-timeout-10-curl--sf-http-localhost-3000--1.log)
