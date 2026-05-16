@@ -12187,3 +12187,19 @@ Fast-forward
  create mode 100644 tests/web/scaling-day18.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T02-26-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-26-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:26:48.711Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1d5e51e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2415ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day18-build.log 2>&1 &
+echo $! > /tmp/day18-build.pid
+echo "Started build, PID=$(cat /tmp/day18-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=884997
+```
+Full output: [`server-runs/2026-05-16T02-26-48-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-26-48-app-cd-solo-shop-builder-private-e-commerce--1.log)
