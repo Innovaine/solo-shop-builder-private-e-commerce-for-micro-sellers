@@ -12968,3 +12968,20 @@ time="2026-05-16T02:46:31Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-16T02-46-57-app-sleep-5-1.log`](server-runs/2026-05-16T02-46-57-app-sleep-5-1.log)
+
+## 2026-05-16T02:47:15.079Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e7c2a4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 4142ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate dev --name add_order_models
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T02-47-15-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-47-15-app-cd-solo-shop-builder-private-e-commerce--1.log)
