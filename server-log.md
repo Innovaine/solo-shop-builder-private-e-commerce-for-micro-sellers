@@ -20272,3 +20272,45 @@ Fast-forward
 Started Day 29 smoke test, PID=1106495
 ```
 Full output: [`server-runs/2026-05-16T21-46-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-46-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T21:46:36.718Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `df70bc7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2377ms) _(showing tail — full 29,411B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day29-smoke.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day29-smoke.log
+```
+STDOUT:
+```
+…ts/web/day29-pages-smoke.spec.ts:63:7 › Day 29 — New Pages Smoke Test › API endpoints respond without 500 errors 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: not [32m404[39m
+
+      67 |     const profileResponse = await page.request.get(`${BASE_URL}/api/shops/profile`);
+      68 |     expect(profileResponse.status()).not.toBe(500);
+    > 69 |     expect(profileResponse.status()).not.toBe(404);
+         |                                          ^
+      70 |     
+      71 |     // Branding API
+      72 |     const brandingResponse = await page.request.get(`${BASE_URL}/api/shops/branding`);
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day29-pages-smoke.spec.ts:69:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-output/day29-pages-smoke-Day-29-—-b50c8--respond-without-500-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-output/day29-pages-smoke-Day-29-—-b50c8--respond-without-500-errors-chromium/error-context.md
+
+  6 failed
+    [chromium] › tests/web/day29-pages-smoke.spec.ts:7:7 › Day 29 — New Pages Smoke Test › Profile page endpoint exists 
+    [chromium] › tests/web/day29-pages-smoke.spec.ts:27:7 › Day 29 — New Pages Smoke Test › Branding page endpoint exists 
+    [chromium] › tests/web/day29-pages-smoke.spec.ts:36:7 › Day 29 — New Pages Smoke Test › Email template page endpoint exists 
+    [chromium] › tests/web/day29-pages-smoke.spec.ts:45:7 › Day 29 — New Pages Smoke Test › Billing page endpoint exists 
+    [chromium] › tests/web/day29-pages-smoke.spec.ts:54:7 › Day 29 — New Pages Smoke Test › Enhanced analytics page endpoint exists 
+    [chromium] › tests/web/day29-pages-smoke.spec.ts:63:7 › Day 29 — New Pages Smoke Test › API endpoints respond without 500 errors 
+  1 passed (2.8s)
+```
+Full output: [`server-runs/2026-05-16T21-46-36-app-kill--0-cat-tmp-day29-smoke.pid-2-dev-nu-1.log`](server-runs/2026-05-16T21-46-36-app-kill--0-cat-tmp-day29-smoke.pid-2-dev-nu-1.log)
