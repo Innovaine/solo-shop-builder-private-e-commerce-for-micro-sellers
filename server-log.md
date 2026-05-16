@@ -12252,3 +12252,47 @@ STDOUT:
 #16 10.42    Linting and checking validity of types ...
 ```
 Full output: [`server-runs/2026-05-16T02-27-04-app-kill--0-cat-tmp-day18-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T02-27-04-app-kill--0-cat-tmp-day18-build.pid-2-dev-nu-1.log)
+
+## 2026-05-16T02:27:22.042Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `61c5b66` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2595ms)
+```
+kill -0 $(cat /tmp/day18-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/day18-build.log
+```
+STDOUT:
+```
+DONE
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.3s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 2.0s done
+#30 exporting manifest sha256:5687ed5e7a8dfcebe33a417786bd7e44b5f63def6950e346de1c31de04936127 done
+#30 exporting config sha256:40e7eb847eccffe07f59637fb075150686770f3c88a9f0bbbb4c057f050f75fb done
+#30 exporting attestation manifest sha256:b454d75e901a175f9387e45e17bdb005f91fb1ef9efd9e7db85d3c2def09bcba 0.0s done
+#30 exporting manifest list sha256:0a59322a1a7864fce9ae08d63d8ca2aafe58c615795d89ce4d713349193867ff done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#30 DONE 2.7s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-16T02-27-22-app-kill--0-cat-tmp-day18-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T02-27-22-app-kill--0-cat-tmp-day18-build.pid-2-dev-nu-1.log)
