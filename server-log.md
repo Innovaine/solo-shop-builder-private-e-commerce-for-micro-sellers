@@ -20112,3 +20112,55 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-16T21-41-07-app-sleep-10-1.log`](server-runs/2026-05-16T21-41-07-app-sleep-10-1.log)
+
+## 2026-05-16T21:42:25.515Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `05c0416` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3427ms) _(showing tail — full 9,258B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+ls -la tests/web/day29-seller-customization.spec.ts
+```
+STDOUT:
+```
+…eate mode 100644 day-27/review.md
+ create mode 100644 day-27/stage-ship-check.md
+ create mode 100644 day-27/test.md
+ create mode 100644 day-28/_index.md
+ create mode 100644 day-28/_plan.md
+ create mode 100644 day-28/design.md
+ create mode 100644 day-28/engineering.md
+ create mode 100644 day-28/requirements.md
+ create mode 100644 day-28/review.md
+ create mode 100644 day-28/stage-ship-check.md
+ create mode 100644 day-28/test.md
+ create mode 100644 day-29/_plan.md
+ create mode 100644 day-29/design.md
+ create mode 100644 day-29/engineering.md
+ create mode 100644 day-29/requirements.md
+ create mode 100644 day-29/review.md
+ create mode 100644 design/component-api.md
+ create mode 100644 design/pages/category-filter.html
+ create mode 100644 design/pages/email-template-editor.html
+ create mode 100644 design/pages/forgot-password.html
+ create mode 100644 design/pages/product-out-of-stock.html
+ create mode 100644 design/pages/reset-password.html
+ create mode 100644 design/pages/shop-branding.html
+ create mode 100644 prisma/migrations/20260516_add_password_reset_fields/migration.sql
+ create mode 100644 prisma/migrations/20260516_add_seller_password_hash/migration.sql
+ create mode 100644 prisma/migrations/20260517_add_profile_branding_fields/migration.sql
+ create mode 100644 test-results/day-26/blocking-analysis.md
+ create mode 100644 test-results/day-26/report.md
+ create mode 100644 test-results/day-27/report.md
+ create mode 100644 test-results/day-28/report.md
+ create mode 100644 tests/web/day26-dashboard-dynamic-rendering.spec.ts
+ create mode 100644 tests/web/day26-verification-flow.spec.ts
+ create mode 100644 tests/web/day27-build-fix-smoke.spec.ts
+ create mode 100644 tests/web/day28-analytics.spec.ts
+ create mode 100644 tests/web/day28-csv-export.spec.ts
+ create mode 100644 tests/web/day28-password-auth.spec.ts
+ create mode 100644 tests/web/day28-password-reset.spec.ts
+ create mode 100644 tests/web/day29-seller-customization.spec.ts
+-rw-rw-r-- 1 tester tester 5644 May 16 21:42 tests/web/day29-seller-customization.spec.ts
+```
+Full output: [`server-runs/2026-05-16T21-42-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-42-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
