@@ -18935,3 +18935,19 @@ X-Powered-By: Next.js
 Cache-Control: s-maxage=31536000, stale-while-revalidate
 ```
 Full output: [`server-runs/2026-05-16T20-25-17-app-echo-Test-1-Login-page-curl--sI-http-loc-1.log`](server-runs/2026-05-16T20-25-17-app-echo-Test-1-Login-page-curl--sI-http-loc-1.log)
+
+## 2026-05-16T20:26:31.019Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `73ccd4f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3787ms)
+```
+docker ps | grep solo-shop
+curl -sf http://localhost:3000/api/health | head -20
+```
+STDOUT:
+```
+e0d9e041a5ef   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   3 minutes ago   Up 2 minutes           0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+d6af22021ce2   postgres:16-alpine                                           "docker-entrypoint.s…"   5 hours ago     Up 5 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{"status":"ok","timestamp":"2026-05-16T20:26:30.795Z","responseTime":"175ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"174ms"}}}
+```
+Full output: [`server-runs/2026-05-16T20-26-30-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T20-26-30-app-docker-ps-grep-solo-shop-1.log)
