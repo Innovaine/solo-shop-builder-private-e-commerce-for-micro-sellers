@@ -39,3 +39,5 @@ export function EmptyState({
     </div>
   )
 }
+
+export default EmptyState
