@@ -11328,3 +11328,11 @@ STDOUT:
   2 passed (1.1m)
 ```
 Full output: [`server-runs/2026-05-16T01-49-43-app-sleep-10-tail--150-tmp-playwright-smoke.-1.log`](server-runs/2026-05-16T01-49-43-app-sleep-10-tail--150-tmp-playwright-smoke.-1.log)
+
+## 2026-05-16T01:50:11.902Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d3c0526` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3755ms)
+```
+curl -s http://localhost:3000/auth/login | grep -i 'password\|email\|type=' | head -20
+```
