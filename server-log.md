@@ -19357,3 +19357,21 @@ app-1  | {"requestId":"dpo7ueZF0VmRlgl1","method":"GET","path":"/auth/login","re
 app-1  | {"requestId":"lBCl2QYDyn0Jo_cS","method":"GET","path":"/auth/login","responseTime":"1ms","timestamp":"2026-05-16T21:00:52.950Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
 ```
 Full output: [`server-runs/2026-05-16T21-00-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-00-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T21:01:17.655Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ce1856f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2731ms)
+```
+curl -sf http://localhost:3000/api/health
+curl -sI http://localhost:3000/auth/login | head -5
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-16T21:01:17.542Z","responseTime":"296ms","checks":{"database":{"status":"ok","responseTime":"48ms"},"email":{"status":"ok","responseTime":"248ms"}}}HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: Whrbe72tXtEJRPQw
+```
+Full output: [`server-runs/2026-05-16T21-01-17-app-curl--sf-http-localhost-3000-api-health-1.log`](server-runs/2026-05-16T21-01-17-app-curl--sf-http-localhost-3000-api-health-1.log)
