@@ -3,6 +3,8 @@
 // FR-2: Email verification page
 // User clicks magic link, lands here, we verify token and create session
 
+export const dynamic = 'force-dynamic'
+
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Card } from '@/components/ui/Card'

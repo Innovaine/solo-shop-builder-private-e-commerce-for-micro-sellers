@@ -17402,3 +17402,48 @@ DONE
 17.70 > Export encountered errors on following paths:
 ```
 Full output: [`server-runs/2026-05-16T18-43-46-app-kill--0-cat-tmp-day26-build-v4.pid-2-dev-1.log`](server-runs/2026-05-16T18-43-46-app-kill--0-cat-tmp-day26-build-v4.pid-2-dev-1.log)
+
+## 2026-05-16T18:44:14.399Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0e72b5e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2790ms)
+```
+tail -100 /tmp/day26-build-v4.log | grep -A 20 "Export encountered errors"
+```
+STDOUT:
+```
+#16 17.70 > Export encountered errors on following paths:
+#16 17.70 	/auth/verify/page: /auth/verify
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN npm run build:
+17.62       'Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.\n' +
+17.62       '\n' +
+17.62       'Details: libssl.so.1.1: cannot open shared object file: No such file or directory'
+17.62   },
+17.62   email: { status: 'ok', responseTime: '222ms' }
+17.62 }
+17.67  ✓ Generating static pages (24/24)
+17.70 
+17.70 > Export encountered errors on following paths:
+17.70 	/auth/verify/page: /auth/verify
+------
+Dockerfile:24
+
+--------------------
+
+  22 |     
+
+  23 |     # Build Next.js app
+
+  24 | >>> RUN npm run build
+
+  25 |     
+
+  26 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T18-44-14-app-tail--100-tmp-day26-build-v4.log-grep--A-1.log`](server-runs/2026-05-16T18-44-14-app-tail--100-tmp-day26-build-v4.log-grep--A-1.log)
