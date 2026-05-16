@@ -4,7 +4,7 @@
 // FR-12: Cart UI component
 
 import { useState, useEffect } from 'react'
-import { getCartItemCount, getCart, removeFromCart, updateCartItemQuantity, getCartTotal, clearCart } from '@/lib/cart'
+import { getCartItemCount, getCart, removeFromCart, updateCartItemQuantity, getCartTotal, clearCart, type Cart } from '@/lib/cart'
 import { Button } from './ui/Button'
 import { Modal } from './ui/Modal'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ import Link from 'next/link'
 export function CartButton({ shopSlug }: { shopSlug?: string }) {
   const [itemCount, setItemCount] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
-  const [cart, setCart] = useState({ items: [], shopSlug: undefined })
+  const [cart, setCart] = useState<Cart>({ items: [], shopSlug: undefined })
 
   // Load cart on mount and listen for storage events
   useEffect(() => {
