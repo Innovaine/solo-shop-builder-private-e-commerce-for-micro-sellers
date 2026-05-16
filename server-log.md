@@ -18299,3 +18299,12 @@ Author: Qadar <qadar@local>
 Date:   Sat May 16 19:20:05 2026 +0000
 ```
 Full output: [`server-runs/2026-05-16T19-40-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-40-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T19:40:50.468Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6816d4b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13660ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day26-review-build.log 2>&1 & echo $! > /tmp/day26-review-build.pid && echo "Started build, PID=$(cat /tmp/day26-review-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
