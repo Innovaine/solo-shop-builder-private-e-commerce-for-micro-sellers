@@ -12155,3 +12155,35 @@ STDOUT:
 -rw-rw-r-- 1 tester tester 47K May 16 02:17 test-results/day-17/visual-consistency.png
 ```
 Full output: [`server-runs/2026-05-16T02-21-27-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-21-27-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:26:21.875Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `60ca051` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3290ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+Updating b5b7d1d..60ca051
+Fast-forward
+ day-17/_index.md                              |  17 +
+ day-17/engineering.md                         | 296 +++++++++++++
+ day-17/review.md                              |  28 ++
+ day-17/test.md                                | 176 ++++++++
+ day-18/_plan.md                               |  35 ++
+ server-log.md                                 | 588 ++++++++++++++++++++++++++
+ test-results/day-17/report.md                 | 179 ++++++++
+ tests/web/day17-component-integration.spec.ts | 179 ++++++++
+ tests/web/scaling-day18.spec.ts               | 308 ++++++++++++++
+ 9 files changed, 1806 insertions(+)
+ create mode 100644 day-17/_index.md
+ create mode 100644 day-17/engineering.md
+ create mode 100644 day-17/review.md
+ create mode 100644 day-17/test.md
+ create mode 100644 day-18/_plan.md
+ create mode 100644 test-results/day-17/report.md
+ create mode 100644 tests/web/day17-component-integration.spec.ts
+ create mode 100644 tests/web/scaling-day18.spec.ts
+```
+Full output: [`server-runs/2026-05-16T02-26-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-26-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
