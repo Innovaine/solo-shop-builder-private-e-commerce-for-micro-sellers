@@ -14310,3 +14310,33 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-16T13-40-06-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-40-06-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:40:34.112Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `82e02e4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 7147ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Use the project's test-results output directory to avoid /tmp permissions
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/cart.spec.ts --reporter=list --output=test-results/day-21 2>&1 | grep -v "EACCES" | head -150
+```
+STDOUT:
+```
+
+Running 11 tests using 4 workers
+
+  ✓   4 [chromium] › tests/web/cart.spec.ts:34:7 › Shopping Cart — Add to Cart › Clicking Add to Cart shows success message (770ms)
+  ✓   3 [chromium] › tests/web/cart.spec.ts:76:7 › Shopping Cart — Cart UI › Cart modal opens when clicking cart button (814ms)
+  ✓   1 [chromium] › tests/web/cart.spec.ts:57:7 › Shopping Cart — Cart UI › Cart button appears after adding item (825ms)
+  ✓   2 [chromium] › tests/web/cart.spec.ts:17:7 › Shopping Cart — Add to Cart › Product detail page has Add to Cart button (829ms)
+  ✓   5 [chromium] › tests/web/cart.spec.ts:98:7 › Shopping Cart — Cart UI › Cart displays item count badge (730ms)
+  ✓   6 [chromium] › tests/web/cart.spec.ts:120:7 › Shopping Cart — Quantity Management › Can increase quantity in cart modal (756ms)
+  ✓   7 [chromium] › tests/web/cart.spec.ts:153:7 › Shopping Cart — Quantity Management › Can remove item from cart (750ms)
+  ✓   8 [chromium] › tests/web/cart.spec.ts:184:7 › Shopping Cart — Persistence › Cart persists across page navigation (749ms)
+  ✓   9 [chromium] › tests/web/cart.spec.ts:213:7 › Shopping Cart — Storefront Integration › Cart button appears on shop storefront page (678ms)
+  ✓  11 [chromium] › tests/web/cart.spec.ts:264:7 › Shopping Cart — Error Handling › Shows error when localStorage is full (664ms)
+  ✓  10 [chromium] › tests/web/cart.spec.ts:237:7 › Shopping Cart — Storefront Integration › Cart modal shows Proceed to Checkout button (681ms)
+
+  11 passed (3.0s)
+```
+Full output: [`server-runs/2026-05-16T13-40-34-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-40-34-app-cd-solo-shop-builder-private-e-commerce--1.log)
