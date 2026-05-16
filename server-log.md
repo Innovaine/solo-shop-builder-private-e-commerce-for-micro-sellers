@@ -14630,3 +14630,24 @@ STDOUT:
 No Order/Webhook tables found
 ```
 Full output: [`server-runs/2026-05-16T14-45-27-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T14-45-27-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T14:45:58.700Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bf513db` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 3390ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma db push
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T14-45-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-45-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
