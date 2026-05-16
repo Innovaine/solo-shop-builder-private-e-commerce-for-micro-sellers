@@ -13057,3 +13057,21 @@ npm warn exec The following package was not found and will be installed: playwri
 Error: EACCES: permission denied, rmdir '/app/test-results'
 ```
 Full output: [`server-runs/2026-05-16T02-48-46-app-sleep-10-1.log`](server-runs/2026-05-16T02-48-46-app-sleep-10-1.log)
+
+## 2026-05-16T02:49:04.608Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0a6d908` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2426ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers \
+  npx playwright test tests/web/scaling-day19.spec.ts --reporter=list \
+  > /tmp/playwright-day19-v2.log 2>&1 &
+echo $! > /tmp/playwright-day19-v2.pid
+echo "Playwright tests started (v2), PID=$(cat /tmp/playwright-day19-v2.pid)"
+```
+STDOUT:
+```
+Playwright tests started (v2), PID=898549
+```
+Full output: [`server-runs/2026-05-16T02-49-04-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-49-04-app-cd-solo-shop-builder-private-e-commerce--1.log)
