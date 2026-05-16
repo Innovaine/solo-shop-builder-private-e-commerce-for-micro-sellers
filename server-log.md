@@ -12373,3 +12373,25 @@ kill -0 $(cat /tmp/playwright-day18.pid) 2>/dev/null && echo "RUNNING" || echo "
 tail -100 /tmp/playwright-day18.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-16T02:30:17.258Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `27b6653` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2415ms)
+```
+kill -0 $(cat /tmp/playwright-day18.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/playwright-day18.log
+```
+STDOUT:
+```
+DONE
+npm warn exec The following package was not found and will be installed: playwright@1.60.0
+Error: EACCES: permission denied, rmdir '/app/test-results'
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.14.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+```
+Full output: [`server-runs/2026-05-16T02-30-17-app-kill--0-cat-tmp-playwright-day18.pid-2-d-1.log`](server-runs/2026-05-16T02-30-17-app-kill--0-cat-tmp-playwright-day18.pid-2-d-1.log)
