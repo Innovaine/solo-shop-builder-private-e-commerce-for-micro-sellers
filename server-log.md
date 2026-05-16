@@ -12090,3 +12090,54 @@ echo "---"
 tail -150 /tmp/day17-playwright-v2.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-16T02:20:52.642Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `96a0615` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2839ms) _(showing tail — full 2,379B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day17-playwright-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+echo "---"
+tail -150 /tmp/day17-playwright-v2.log
+```
+STDOUT:
+```
+…rs without 404
+  -  3 tests/web/day17-component-integration.spec.ts:109:7 › Day 17 — Button Component Integration › Shop storefront page uses Button component
+  ✓  4 tests/web/day17-component-integration.spec.ts:148:7 › Day 17 — Button Component Integration › All pages still render after component integration (no regressions) (244ms)
+  ✓  5 tests/web/day17-component-integration.spec.ts:162:7 › Day 17 — Button Component Integration › Visual consistency check - buttons use brand colors (687ms)
+
+
+  1) tests/web/day17-component-integration.spec.ts:18:7 › Day 17 — Button Component Integration › Landing page uses Button component and renders correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"S[7mtart Your Shop Today[27m"[39m
+    Received string:    [31m"S[7molo Shop Builder[27m"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+    [2m    14 × locator resolved to <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Solo Shop Builder</h1>[22m
+    [2m       - unexpected value "Solo Shop Builder"[22m
+
+
+      21 |     
+      22 |     // Landing page should have the heading
+    > 23 |     await expect(page.locator('h1')).toContainText('Start Your Shop Today');
+         |                                      ^
+      24 |     
+      25 |     // Should have CTA buttons
+      26 |     const buttons = page.locator('button, a[class*="btn"], a[class*="button"]');
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day17-component-integration.spec.ts:23:38
+
+    Error Context: test-results/tests-web-day17-component--05852-onent-and-renders-correctly/error-context.md
+
+  1 failed
+    tests/web/day17-component-integration.spec.ts:18:7 › Day 17 — Button Component Integration › Landing page uses Button component and renders correctly 
+  2 skipped
+  2 passed (7.7s)
+```
+Full output: [`server-runs/2026-05-16T02-20-52-app-kill--0-cat-tmp-day17-playwright-v2.pid--1.log`](server-runs/2026-05-16T02-20-52-app-kill--0-cat-tmp-day17-playwright-v2.pid--1.log)
