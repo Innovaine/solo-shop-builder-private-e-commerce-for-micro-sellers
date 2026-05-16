@@ -18308,3 +18308,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `6816d4b` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day26-review-build.log 2>&1 & echo $! > /tmp/day26-review-build.pid && echo "Started build, PID=$(cat /tmp/day26-review-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T19:41:49.561Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `64c49e4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3383ms)
+```
+ls -la /tmp/day26-review-build.pid 2>/dev/null && cat /tmp/day26-review-build.pid || echo "PID file not found"
+```
+STDOUT:
+```
+-rw-rw-r-- 1 reviewer reviewer 8 May 16 19:40 /tmp/day26-review-build.pid
+1069339
+```
+Full output: [`server-runs/2026-05-16T19-41-49-app-ls--la-tmp-day26-review-build.pid-2-dev--1.log`](server-runs/2026-05-16T19-41-49-app-ls--la-tmp-day26-review-build.pid-2-dev--1.log)
