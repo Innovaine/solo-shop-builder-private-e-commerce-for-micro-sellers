@@ -12721,3 +12721,15 @@ STDOUT:
 Shop creation skipped or failed: locator.fill: Test ended.
 ```
 Full output: [`server-runs/2026-05-16T02-37-40-app-wc--l-tmp-day18-test-all.log-1.log`](server-runs/2026-05-16T02-37-40-app-wc--l-tmp-day18-test-all.log-1.log)
+
+## 2026-05-16T02:38:12.762Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `142a694` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13314ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list 2>&1 | tee /tmp/playwright-final.log &
+echo $! > /tmp/playwright-final.pid
+echo "Started tests, PID=$(cat /tmp/playwright-final.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
