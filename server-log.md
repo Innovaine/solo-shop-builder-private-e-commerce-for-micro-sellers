@@ -20503,3 +20503,46 @@ _Pre-SSH: warehouse pushed to GitHub as commit `a6dd962` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=100
 ```
+
+## 2026-05-16T22:41:57.091Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3ec9929` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3277ms) _(showing tail — full 10,619B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only && docker compose ps
+```
+STDOUT:
+```
+… day-30/design.md
+ create mode 100644 day-30/design_qa.md
+ create mode 100644 day-30/engineering.md
+ create mode 100644 day-30/requirements.md
+ create mode 100644 design/pages/category-filter.html
+ create mode 100644 design/pages/email-template-editor.html
+ create mode 100644 design/pages/forgot-password.html
+ create mode 100644 design/pages/product-out-of-stock.html
+ create mode 100644 design/pages/reset-password.html
+ create mode 100644 design/pages/shop-branding.html
+ create mode 100644 design/patterns/form-patterns.html
+ create mode 100644 design/system/color-usage.md
+ create mode 100644 prisma/migrations/20260516_add_password_reset_fields/migration.sql
+ create mode 100644 prisma/migrations/20260516_add_seller_password_hash/migration.sql
+ create mode 100644 prisma/migrations/20260517_add_product_variants/migration.sql
+ create mode 100644 prisma/migrations/20260517_add_profile_branding_fields/migration.sql
+ create mode 100644 test-results/day-26/blocking-analysis.md
+ create mode 100644 test-results/day-27/report.md
+ create mode 100644 test-results/day-28/report.md
+ create mode 100644 test-results/day-29/report.md
+ create mode 100644 tests/web/day26-dashboard-dynamic-rendering.spec.ts
+ create mode 100644 tests/web/day26-verification-flow.spec.ts
+ create mode 100644 tests/web/day27-build-fix-smoke.spec.ts
+ create mode 100644 tests/web/day28-analytics.spec.ts
+ create mode 100644 tests/web/day28-csv-export.spec.ts
+ create mode 100644 tests/web/day28-password-auth.spec.ts
+ create mode 100644 tests/web/day28-password-reset.spec.ts
+ create mode 100644 tests/web/day29-pages-smoke.spec.ts
+ create mode 100644 tests/web/day29-seller-customization.spec.ts
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED       STATUS                 PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   7 hours ago   Up 7 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-16T22-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T22-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
