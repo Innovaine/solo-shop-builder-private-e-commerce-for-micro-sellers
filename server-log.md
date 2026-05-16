@@ -14598,3 +14598,21 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 docker exec -i solo-shop-builder-private-e-commerce-for-micro-sellers-db-1 psql -U postgres -d soloshop < prisma/migrations/20260516_add_order_tables/migration.sql
 ```
 ERROR: command exited 1
+
+## 2026-05-16T14:45:09.909Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `298b3e4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4306ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma db push --skip-generate
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+The database is already in sync with the Prisma schema.
+```
+Full output: [`server-runs/2026-05-16T14-45-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-45-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
