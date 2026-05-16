@@ -1,43 +1,42 @@
 # Day 33 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 70
-- **Saved:** 17/05/2026, 2:25:00 AM
+- **Cycle:** 71
+- **Saved:** 17/05/2026, 2:31:01 AM
 
 ---
 
 FINISHED:
-- Docker build system (Dockerfile, .dockerignore) + environment scaffolding (.env.example)
-- Project structure + metadata tracking (.qadar files, _meta.json)
-- API routes scaffolding (account/password, analytics endpoints started)
-- README + DEPLOYMENT.md (infrastructure docs exist)
-- Day 29 features partially deployed (F31–F40: profile, branding, email, billing, analytics code exists but #99 blocker prevents verification)
+- Docker build pipeline + environment scaffolding (Dockerfile, .env.example, deployment config)
+- API route structure in place (account, analytics endpoints stubbed)
+- Project metadata + git/channel tracking initialized
+- 12 tasks closed (per board snapshot)
 
 PENDING:
-- #99: CRITICAL — Day 29 build broken (import paths + FormField props) — blocks re-deployment and testing of F31–F40
-- #106: Day 29 features unverified post-deployment — design + functionality need QA before features count as shipped
-- MVP feature completion gaps — #83 shows F1–F20 claimed but warehouse shows only fragments (no full product CRUD, no checkout flow, no order dashboard visible in code)
-- Password auth flow untested — #100, #101, #102 (password signup/login, reset, webhook signature verification) in progress but no test coverage yet
-- Playwright test suite missing — #74 lists requirement but no test files visible in warehouse
+- Day 29 build is broken — import paths + FormField props not aligned; blocking #99 (CRITICAL)
+- Features F1–F20 (MVP core: auth, shop, products, cart, checkout, orders) are in-progress but not tested end-to-end; #83 still open
+- No deployed URL yet — team can't verify signup → order → tracking flow in browser
+- Design system compliance not verified; #75 open
+- Playwright test suite incomplete; #74 open
 
 TODAY'S WORK STREAMS:
 
-- **Stream 1 (engineering):** Fix #99 (build blocker — import paths, FormField props) immediately, then ship #100 (password auth signup/login), #102 (webhook signature verification), and #104 (CSV export). These unblock #106 re-deployment and give password auth a real foundation. Reference: app/api/account/password/route.ts already exists — extend it.
+- **Stream 1 (engineer)**: Fix #99 (day 29 build blocker — import paths + FormField) first, then unblock and complete #77 (F1–F10 backend: auth, shop, products, cart, checkout, orders) and #78 (F11–F20 dashboard, tracking, emails). Once those land, redeploy to staging URL so team can verify shipping.
 
-- **Stream 2 (designer):** Ship UI for #100 (password auth pages: login, signup, forgot-password form), #101 (reset flow confirmation), and verify design-system compliance on existing dashboard pages from day 29 (#79, #75). Reference: design/pages/ should include auth-flow variants + responsive dashboard checkpoints at 320px, 768px, 1440px.
+- **Stream 2 (designer)**: Ship #62 (verify page UI), #63 (category dropdown UI), #65 (product management UI) and validate all three against design system (#75). Chiara should also design #98 (mobile dashboard responsiveness, 320px+) in parallel so engineering can implement immediately after desktop ships.
 
-- **Stream 3 (tester):** Write Playwright tests for #100 (password auth F21), #102 (webhook signature F23), #104 (CSV export F25), and smoke-test the #106 re-deployment (F31–F40 end-to-end: profile → branding → email → billing → analytics). Tests should verify actual seller workflows, not unit coverage.
+- **Stream 3 (tester)**: Write Playwright tests for #77 + #78 (F1–F20) as engineer lands code. Tests should cover: signup + email verify, shop creation, product CRUD + category assign, cart add/remove, Stripe checkout redirect, order webhook creation, order status updates, customer order tracking page. Target: all MVP flows testable by EOD.
 
-- **Stream 4 (reviewer):** Verify #99 fix compiles + runs in Docker, sign off #100 password auth logic (no plaintext storage, proper hashing), verify #102 webhook HMAC validation is correct (Stripe signature spec), spot-check #106 post-deploy (design fidelity, no broken links, orders flow works).
+- **Stream 4 (reviewer)**: Verify #99 fix + #77 + #78 landing; sign off on merged code before redeploy. Gopal runs design QA on #62 + #63 + #65 against #75 checklist before Chiara ships final files.
 
-- **Requirements:** Hold — no new feature requests until #99 is fixed and #106 passes QA. If #99 takes >2 hours, escalate.
+- **requirements**: Freeze scope — no new features until #80 (CEO demo verification: signup → order → tracking) passes live.
 
 ROLE PLAN:
-- engineering: YES — #99 is a hard blocker; shipping #100, #102, #104 in parallel unblocks password auth, webhooks, and seller CSV workflows (3 critical features before week 5).
-- review: YES — #99 + #100 + #102 need verification before they're trusted in production; #106 re-deploy needs sign-off.
-- design: YES — Password auth UI (#100, #101) is user-facing + required for F21; #106 post-deploy needs design QA to confirm day 29 features render correctly.
-- design_qa: YES — Spot-check #106 deployment UI fidelity (profile, branding, email, billing, analytics pages) against spec before shipping.
-- requirements: NO — Backlog is clear; no discovery needed until blockers clear.
+- engineering: YES — Build is broken (#99), MVP features are incomplete (#77, #78), and redeploy is blocked; this is the critical path to a working URL.
+- review: YES — #99 fix + #77 + #78 must pass code review before merge; no shipping broken imports or unapproved patterns to staging.
+- design: YES — Three MVP UI surfaces need design files (#62, #63, #65) before engineer can implement; design system compliance (#75) unblocks both design and eng.
+- design_qa: YES — Gopal validates #62 + #63 + #65 against design system before shipping; catches fidelity issues early.
+- requirements: YES — One-sentence scope confirmation: no new features until #80 demo passes live.
 
 ONE-LINE SUMMARY:
-Today the team fixes the build blocker (#99), ships password auth (#100–#102) + CSV export (#104), deploys day 29 features (#106), and tests all three in parallel — unblocking week 5 scaling.
+Today the team fixes the day 29 build blocker, completes MVP backend (F1–F20), ships three MVP UI surfaces, writes end-to-end Playwright tests, and redeploys to a working staging URL.
