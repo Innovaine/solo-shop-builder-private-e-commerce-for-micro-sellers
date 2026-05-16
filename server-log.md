@@ -18388,3 +18388,16 @@ STDOUT:
 app/api/checkout/route.ts
 ```
 Full output: [`server-runs/2026-05-16T19-47-47-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-47-47-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T19:48:04.049Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6c2b4e1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2975ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && for f in app/**/*page.tsx; do grep -q "export const dynamic" "$f" || echo "$f"; done
+```
+STDOUT:
+```
+app/dashboard/page.tsx
+```
+Full output: [`server-runs/2026-05-16T19-48-04-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-48-04-app-cd-solo-shop-builder-private-e-commerce--1.log)
