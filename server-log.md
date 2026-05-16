@@ -12425,3 +12425,17 @@ STDOUT:
 Error: EACCES: permission denied, rmdir '/app/test-results'
 ```
 Full output: [`server-runs/2026-05-16T02-31-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-31-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:31:26.089Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `007282a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3583ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 bash -c "PLAYWRIGHT_HTML_REPORT=/tmp/playwright-report npx playwright test tests/web/scaling-day18.spec.ts --reporter=list 2>&1" | head -200
+```
+STDOUT:
+```
+Error: EACCES: permission denied, rmdir '/app/test-results'
+```
+Full output: [`server-runs/2026-05-16T02-31-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-31-26-app-cd-solo-shop-builder-private-e-commerce--1.log)

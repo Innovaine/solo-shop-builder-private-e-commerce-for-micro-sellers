@@ -1,35 +1,32 @@
 # Day 18 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 46
-- **Saved:** 16/05/2026, 5:23:03 AM
+- **Cycle:** 47
+- **Saved:** 16/05/2026, 5:32:56 AM
 
 ---
 
 FINISHED:
-- Landing page with integrated UI Button component (app/page.tsx)
-- Shop storefront page with Button integration (app/shop/[slug]/page.tsx)
-- Product detail page with Button integration and working HTTP 200 response (app/shop/[slug]/product/[productId]/page.tsx)
-- Product API routes functional (/api/products, /api/products/[id])
-- Shop API route functional (/api/shops)
-- Auth skeleton (signup, verify, logout routes)
-- Health check passing, Docker build succeeding, deployment clean
+- Landing page with integrated Button component and clean globals.css (no manual color overrides)
+- Shop storefront page (`app/shop/[slug]/page.tsx`) with Button component integrated
+- Product detail page (`app/shop/[slug]/product/[productId]/page.tsx`) rendering with HTTP 200, no 404s
+- Auth routes (signup, logout, verify) and product/shop API endpoints live
+- Docker deployment verified; health check passing; build clean
 
 PENDING:
-- No shop creation flow yet (shops API exists but no UI to create one)
-- No product upload/creation flow yet (products API exists but no way to add products)
-- Auth endpoints not tested against real user signup flow
-- No test coverage for actual user journey (create shop → add product → view storefront)
+- No test coverage yet (Playwright suite not started)
+- Shop creation flow untested end-to-end (API exists, but no verification a user can create → view → sell)
+- Payment/checkout not in scope yet, but product listing→detail path needs user validation before we move further upstream
 
 NEXT DAY FOCUS:
-Ship a working shop creation flow so a real micro-seller can build their first shop URL in the browser today.
+Write and run the first Playwright test: user signs up, creates a shop, adds a product, views it live on storefront—verify the happy path works end-to-end before building anything else.
 
 ROLE PLAN:
-- engineering: YES — Build shop creation form + POST handler to /api/shops so we can test the full "create shop" loop end-to-end
-- review: YES — Verify shop creation form wires correctly to API, health check still passes post-deploy
-- requirements: NO — Scope is already locked (create shop, add products, view storefront); requirements role isn't the bottleneck right now
-- design: NO — Button component is integrated; next work is shop form logic, not new visual patterns
-- test: YES — Write Playwright test for "user signs up → creates shop → sees storefront URL" so we know if the loop actually works
+- engineering: NO — hold. Anil shipped clean code yesterday; new feature work waits for test feedback.
+- review: NO — nothing new to review until engineering has a task.
+- design: NO — Button component is live; next design work (product editing UI, shop settings) depends on knowing what the test reveals about the current flow.
+- requirements: NO — we have a working storefront. Next requirement is *validated* by the test, not written before it.
+- test: YES — Priya runs the first end-to-end user flow. We need proof that signup→shop creation→product listing actually works, not assumptions. This unblocks everything downstream.
 
 ONE-LINE SUMMARY:
-Finish shop creation (form + API wire) and test the end-to-end flow; we have pages but no way yet for a user to actually own a shop.
+Day 18 is Priya's test day—run the signup-to-storefront user journey and report what breaks; everything else waits on that signal.
