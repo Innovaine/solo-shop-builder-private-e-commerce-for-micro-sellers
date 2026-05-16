@@ -1,39 +1,42 @@
 # Day 24 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 55
-- **Saved:** 16/05/2026, 8:07:51 PM
+- **Cycle:** 56
+- **Saved:** 16/05/2026, 8:31:02 PM
 
 ---
 
 FINISHED:
-- Docker image builds successfully (8 import/export path fixes from day 23)
-- Prisma schema compiles; migration P3009 is rolled back but unresolved
-- Auth endpoints exist (signup, verify, logout routes in app/api/auth/)
-- Checkout and orders API stubs present but unreachable due to import errors
-- Database schema defined (Prisma models for User, Shop, Product, Order, OrderItem)
+- Docker image builds successfully (app/api auth routes + checkout route structure in place)
+- Prisma schema defined; migration P3009 blocked execution
+- Import/export paths corrected across 8 files (Søren's review, day 23)
+- Task board created: 15 completed, 16 open, 1 in-progress
 
 PENDING:
-- #59: Prisma migration P3009 must be resolved (`npx prisma migrate resolve --rolled-back`) before any feature code runs — blocking all FR tasks
-- #61, #60: Product image upload + CRUD forms depend on migration fix
-- #62, #63, #64: Verify page, category dropdown, category filter depend on working product schema
-- #66: Playwright tests cannot run until app is deployable
-- Design system components.html (#58) not yet shipped — blocks UI consistency across all feature pages
-- Stripe checkout wired but no order-to-webhook flow tested end-to-end
+- #68: Prisma migration P3009 must be rolled back (`npx prisma migrate resolve --rolled-back`) before app runs — this is the hard blocker
+- #59: Import path corrections in checkout + orders pages (partially fixed, verify against live routes)
+- Design system components (FR-2, FR-4, FR-6 UI pages) not yet shipped — blocking 5 engineer tasks
+- No Playwright tests written yet (test board empty)
+- Myfatoorah integration (#67) marked open but not prioritized (HOLD — Stripe is sufficient for MVP)
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineer): Resolve migration P3009 immediately, then ship #61 (image upload handler) and #60 (product CRUD forms) in parallel — these unblock all downstream storefront work. Reference Prisma docs for S3 image path handling. Target: uploadable images + saveable products by EOD.
-- Stream 2 (designer): Ship design/pages/verify.html (#62), design/pages/product-management.html (#60 UI mockup), and design/system/components.html (#58) in parallel — all use the same button/form/card tokens. Focus: verify flow, product form (title/price/description/image), category dropdown. Don't wait for engineer; provide Figma links and HTML by noon.
-- Stream 3 (tester): Write Playwright tests for #61 (image upload success/fail paths), #60 (CRUD: create/edit/delete product), #62 (verify link email → dashboard redirect), #63/#64 (category filter works on storefront). Tests run after engineer merges; target 8–12 test cases total.
-- Stream 4 (reviewer): Verify migration rollback succeeded (check database state post-fix), code-review #61 + #60 for S3 path safety and form validation, ensure email verification flow doesn't leak seller identity. Green-light only after #59 is resolved.
-- requirements: One line on whether category taxonomy is final (Handmade, Vintage, Supplies, Other) or if new categories can be added dynamically by seller — impacts #63 scope.
+
+- **Stream 1 (engineer):** Anil: (1) Resolve Prisma P3009 migration immediately—this unblocks everything. (2) Ship #70 (product CRUD API: create/read/update/delete endpoints + category filtering). (3) Ship #61 (image upload handler to S3). By EOD, Anil should have a working product list endpoint returning from database and images uploaded to S3.
+
+- **Stream 2 (designer):** Chiara: Ship design/pages/verify.html, design/pages/product-management.html, and design/pages/storefront.html (includes category filter UI). These unblock #69, #60, #63, #64. Design system components (buttons, forms, cards) live in design/system/components.html — finalize by 2pm so engineer can reference.
+
+- **Stream 3 (tester):** Priya: Write Playwright tests for #70 (product CRUD endpoints), #61 (image upload), #64 (category filter on storefront). Tests run against live Docker image once Anil's work lands. Aim for 3 test suites covering happy path + failure cases (missing image, invalid category, duplicate product name).
+
+- **Stream 4 (reviewer):** Søren: Verify Anil's Prisma migration fix works (app actually runs). Code-review #70 + #61 endpoints for SQL injection, proper error handling, S3 permissions. Spot-check Chiara's design handoff (does it match product spec FRs).
+
+- **Stream 5 (requirements):** Kenji: One task — confirm with Fatima that Myfatoorah (#67) stays parked. Stripe is live; Myfatoorah adds complexity with zero customer signal. If decision holds, close #67 as WONTFIX.
 
 ROLE PLAN:
-- engineering: YES — migration is a hard blocker; unblocking it unlocks 5 features today. Anil has the context and knows the codebase state.
-- review: YES — every merged PR today touches database or payment paths; Søren must verify migration safety and no regressions in auth flow.
-- design: YES — verify page, product management UI, and design system components are shipped independently of engineer progress; Chiara unblocks the team visually while engineer solves infrastructure.
-- test: YES — Playwright suite grows as engineer ships; Priya writes tests in parallel to keep coverage ahead of features, not behind.
-- requirements: YES — one clarification call on category model (fixed vs. dynamic) takes 10 minutes and removes ambiguity from #63.
+- engineering: YES — Prisma blocker must be resolved today; product CRUD API and image upload are critical path to functioning shop by day 28.
+- review: YES — Migration fix must be verified; API code must pass security baseline before Priya tests against it.
+- design: YES — Verify page, product management UI, and storefront filter pages are shipping blockers; engineer cannot build without them.
+- test: YES — Priya writes tests in parallel; tests land same day as engineer code so team ships with coverage.
+- requirements: YES — One decision call (Myfatoorah hold-or-go) clears ambiguity and keeps backlog clean.
 
 ONE-LINE SUMMARY:
-Today the team resolves the migration blocker, ships product CRUD + image upload + verify page UI + design system in parallel, and writes full Playwright coverage — 5 features unblocked by EOD.
+Today the team unblocks the database, ships product CRUD API + image upload + category filtering backend, designs verify/product/storefront UI pages, and writes Playwright tests for all three—parallel execution across all 5 streams.

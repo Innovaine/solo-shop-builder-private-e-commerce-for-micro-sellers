@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Refund — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; }
+    .header h1 { font-size: 28px; font-weight: 700; }
+    .header p { color: #64748B; font-size: 14px; margin-top: 4px; }
+    
+    .container { max-width: 600px; margin: 24px auto; padding: 0 24px; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    
+    h2 { font-size: 18px; font-weight: 600; margin: 20px 0 16px; }
+    
+    .form-field { margin-bottom: 20px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, textarea, select { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    input::placeholder, textarea::placeholder { color: #94A3B8; }
+    input[type="radio"], input[type="checkbox"] { width: auto; margin-right: 8px; }
+    textarea { min-height: 100px; resize: vertical; }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; width: 100%; }
+    .btn-primary:hover { background: #059669; }
+    .btn-primary:disabled { background: #D1D5DB; cursor: not-allowed; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; width: 100%; margin-top: 12px; }
+    
+    .order-summary { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; margin-bottom: 24px; }
+    .order-summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
+    .order-summary-row.total { border-top: 1px solid #E2E8F0; padding-top: 12px; margin-top: 12px; font-weight: 600; color: #1F2937; }
+    
+    .option-group { margin-bottom: 20px; }
+    .option { display: flex; align-items: flex-start; padding: 12px; border: 1px solid #E2E8F0; border-radius: 6px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s; }
+    .option:hover { border-color: #3B4C63; background: #F9FAFB; }
+    .option input[type="radio"] { margin-top: 2px; }
+    .option-content { flex: 1; margin-left: 12px; }
+    .option-title { font-weight: 500; color: #1F2937; }
+    .option-desc { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    .alert { border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; border-left: 4px solid; }
+    .alert-info { background: #D1E9F6; color: #0C4A6E; border-left-color: #0EA5E9; }
+    .alert-warning { background: #FEF3C7; color: #92400E; border-left-color: #F59E0B; }
+    
+    .checkbox-group { display: flex; align-items: flex-start; margin-bottom: 20px; }
+    .checkbox-group input { margin-top: 2px; }
+    .checkbox-group label { margin: 0 0 0 8px; flex: 1; }
+    
+    @media (max-width: 768px) {
+      .header { padding: 16px; }
+      .header h1 { font-size: 24px; }
+      .container { padding: 0 16px; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Request a Refund</h1>
+    <p>We're here to help. Let us know what happened with your order.</p>
+  </div>
+
+  <div class="container">
+    <!-- Order Summary -->
+    <div class="card">
+      <h2>Order Details</h2>
+      <div class="order-summary">
+        <div class="order-summary-row">
+          <span>Order #ORD-12345</span>
+          <span>May 15, 2026</span>
+        </div>
+        <div class="order-summary-row">
+          <span>Handmade Ceramic Bowl (Large) — Blue</span>
+          <span>$65.00</span>
+        </div>
+        <div class="order-summary-row">
+          <span>Shipping</span>
+          <span>$8.00</span>
+        </div>
+        <div class="order-summary-row total">
+          <span>Total</span>
+          <span>$73.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert -->
+    <div class="alert alert-info">
+      ℹ️ Refunds are processed within 3-5 business days. You'll receive an email confirmation once approved.
+    </div>
+
+    <!-- Refund Reason -->
+    <div class="card">
+      <h2>What's the issue?</h2>
+      <div class="option-group">
+        <label class="option">
+          <input type="radio" name="reason" value="not-as-described" checked>
+          <div class="option-content">
+            <div class="option-title">Item not as described</div>
+            <div class="option-desc">The product didn't match the photos or description</div>
+          </div>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="reason" value="defective">
+          <div class="option-content">
+            <div class="option-title">Item arrived damaged</div>
+            <div class="option-desc">The product was broken, cracked, or defective</div>
+          </div>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="reason" value="wrong-item">
+          <div class="option-content">
+            <div class="option-title">Wrong item sent</div>
+            <div class="option-desc">You received the wrong product or quantity</div>
+          </div>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="reason" value="no-longer-wanted">
+          <div class="option-content">
+            <div class="option-title">Changed my mind</div>
+            <div class="option-desc">I no longer want or need this item</div>
+          </div>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="reason" value="other">
+          <div class="option-content">
+            <div class="option-title">Something else</div>
+            <div class="option-desc">Other reason not listed above</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Details -->
+    <div class="card">
+      <h2>Tell us more</h2>
+      <div class="form-field">
+        <label>What happened? *</label>
+        <textarea placeholder="Please provide as much detail as possible...">The bowl arrived with a significant crack along the rim. It's not usable as intended.</textarea>
+        <div class="form-hint">This helps the seller understand the issue and prevent it in the future.</div>
+      </div>
+
+      <div class="form-field">
+        <label>Do you want to return the item?</label>
+        <select>
+          <option selected>Yes, I'll send it back</option>
+          <option>No, keep it</option>
+          <option>Not sure</option>
+        </select>
+        <div class="form-hint">For damaged items, a return may not be required.</div>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="agree" checked>
+        <label for="agree">I understand that refunds take 3-5 business days to process after approval</label>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="photos">
+        <label for="photos">I'd like to attach photos of the issue (optional)</label>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="card">
+      <h2>Your contact information</h2>
+      <div class="form-field">
+        <label>Email Address</label>
+        <input type="email" value="jane@example.com" disabled style="background: #F3F4F6; color: #94A3B8;">
+      </div>
+      <div class="form-field">
+        <label>Preferred contact method</label>
+        <select>
+          <option selected>Email</option>
+          <option>Phone (if provided)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Submission -->
+    <div class="card">
+      <div class="alert alert-warning">
+        ⚠️ Before requesting a refund, contact the seller directly using the message link in your order. Many issues can be resolved faster that way.
+      </div>
+      <button class="btn-primary">Submit Refund Request</button>
+      <button class="btn-secondary">Cancel</button>
+    </div>
+  </div>
+</body>
+</html>

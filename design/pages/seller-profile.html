@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Profile — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; }
+    .header h1 { font-size: 24px; font-weight: 700; }
+    .header p { color: #64748B; font-size: 14px; margin-top: 4px; }
+    .container { max-width: 900px; margin: 24px auto; padding: 0 24px; }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    
+    h2 { font-size: 20px; font-weight: 600; margin: 24px 0 16px; }
+    h3 { font-size: 14px; font-weight: 600; color: #1F2937; margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; }
+    .card + .card { margin-top: 24px; }
+    
+    .form-field { margin-bottom: 20px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, textarea, select { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    input::placeholder, textarea::placeholder { color: #94A3B8; }
+    textarea { min-height: 100px; resize: vertical; }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; box-shadow: 0 2px 8px rgba(16,185,129,0.2); }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .btn-danger { background: #F43F5E; color: white; margin-top: 12px; }
+    
+    .color-preview { display: flex; gap: 8px; align-items: center; }
+    .color-swatch { width: 40px; height: 40px; border-radius: 6px; border: 1px solid #E2E8F0; cursor: pointer; }
+    
+    .profile-preview { background: #FAF9F7; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin-top: 16px; }
+    .profile-preview-header { background: #3B4C63; color: white; padding: 16px; border-radius: 6px 6px 0 0; text-align: center; }
+    .profile-preview-header h4 { font-size: 20px; font-weight: 600; margin: 0; }
+    .profile-preview-body { padding: 16px; background: white; }
+    .profile-preview-text { font-size: 14px; color: #64748B; }
+    .profile-preview-links { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+    .profile-preview-links a { font-size: 12px; color: #3B4C63; text-decoration: none; }
+    
+    .section-divider { height: 1px; background: #E2E8F0; margin: 24px 0; }
+    
+    .button-group { display: flex; gap: 12px; margin-top: 24px; }
+    
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .header { padding: 12px 16px; }
+      .header h1 { font-size: 20px; }
+      .container { padding: 0 16px; margin: 16px auto; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Shop Profile & Settings</h1>
+    <p>Customize your shop appearance and public information</p>
+  </div>
+
+  <div class="container">
+    <div class="layout">
+      <!-- LEFT COLUMN: FORM -->
+      <div>
+        <div class="card">
+          <h2>Basic Information</h2>
+          <div class="form-field">
+            <label>Shop Name</label>
+            <input type="text" value="Artisan Ceramics Studio" placeholder="Your shop name">
+            <div class="form-hint">This appears in emails and your public shop page.</div>
+          </div>
+          <div class="form-field">
+            <label>Shop Description</label>
+            <textarea placeholder="Tell customers about your shop...">Hand-thrown ceramic pieces made with locally-sourced clay. Each piece is one-of-a-kind.</textarea>
+            <div class="form-hint">Public on your shop page. 300 characters max.</div>
+          </div>
+          <div class="form-field">
+            <label>Shop Email (Public)</label>
+            <input type="email" value="hello@artisanceramics.com" placeholder="customer@shop.com">
+            <div class="form-hint">Where customers can reach you about orders.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Branding</h2>
+          <div class="form-field">
+            <label>Header Background Color</label>
+            <div class="color-preview">
+              <input type="text" value="#3B4C63" placeholder="#000000" style="flex: 1;">
+              <div class="color-swatch" style="background: #3B4C63;"></div>
+            </div>
+            <div class="form-hint">Hex color code. Applied to shop header + buttons.</div>
+          </div>
+          <div class="form-field">
+            <label>Logo (Optional)</label>
+            <div style="border: 2px dashed #E2E8F0; padding: 32px; text-align: center; border-radius: 6px; cursor: pointer;">
+              <div style="font-size: 24px; margin-bottom: 8px;">📤</div>
+              <div style="font-size: 14px; color: #64748B;">Drop image or click to upload</div>
+              <div style="font-size: 12px; color: #94A3B8; margin-top: 4px;">PNG, JPG, max 2MB</div>
+            </div>
+            <div class="form-hint">Recommended: 300x100px (landscape). Appears top-left of storefront.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Social Links (Optional)</h2>
+          <div class="form-field">
+            <label>Instagram</label>
+            <input type="text" value="@artisanceramics" placeholder="@yourhandle">
+          </div>
+          <div class="form-field">
+            <label>Facebook</label>
+            <input type="text" placeholder="facebook.com/yourpage">
+          </div>
+          <div class="form-field">
+            <label>Twitter/X</label>
+            <input type="text" placeholder="@yourhandle">
+          </div>
+          <div class="form-hint">Links appear in your public shop footer.</div>
+        </div>
+
+        <div class="card">
+          <h2>Danger Zone</h2>
+          <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">These actions cannot be undone.</p>
+          <button class="btn-danger">Delete Shop & All Data</button>
+        </div>
+
+        <div class="button-group" style="margin-top: 32px;">
+          <button class="btn-primary">Save Changes</button>
+          <button class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: PREVIEW -->
+      <div style="position: sticky; top: 24px; height: fit-content;">
+        <h2 style="margin-top: 0;">Public Shop Preview</h2>
+        <div class="profile-preview">
+          <div class="profile-preview-header" style="background: #3B4C63;">
+            <div style="font-size: 20px; margin-bottom: 4px;">🏛️</div>
+            <h4>Artisan Ceramics Studio</h4>
+          </div>
+          <div class="profile-preview-body">
+            <div class="profile-preview-text">
+              Hand-thrown ceramic pieces made with locally-sourced clay. Each piece is one-of-a-kind.
+            </div>
+            <div class="profile-preview-links">
+              <a href="#">📷 Instagram</a>
+              <a href="#">👍 Facebook</a>
+              <a href="#">𝕏 Twitter</a>
+            </div>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E2E8F0;">
+              <div style="font-size: 12px; color: #94A3B8;">Questions? Email hello@artisanceramics.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 6px; padding: 12px; margin-top: 16px; font-size: 12px; color: #92400E;">
+          <strong>Preview tip:</strong> Changes take effect immediately on your public shop page.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

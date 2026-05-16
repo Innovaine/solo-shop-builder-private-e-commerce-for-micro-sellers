@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing & Subscriptions — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; }
+    .header h1 { font-size: 28px; font-weight: 700; }
+    .header p { color: #64748B; font-size: 14px; margin-top: 4px; }
+    .container { max-width: 1000px; margin: 24px auto; padding: 0 24px; }
+    
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    
+    h2 { font-size: 18px; font-weight: 600; margin: 24px 0 16px; }
+    h3 { font-size: 12px; font-weight: 600; color: #1F2937; margin: 16px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    
+    .stat-box { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; }
+    .stat-label { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .stat-value { font-size: 32px; font-weight: 700; color: #1F2937; }
+    .stat-subtext { font-size: 12px; color: #64748B; margin-top: 8px; }
+    
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    
+    .plan-card { background: white; border: 2px solid #E2E8F0; border-radius: 8px; padding: 24px; text-align: center; margin-bottom: 16px; transition: all 0.2s; }
+    .plan-card.active { border-color: #10B981; background: #F0FDF4; }
+    .plan-card.active .plan-name { color: #10B981; }
+    .plan-name { font-size: 18px; font-weight: 600; margin: 0 0 8px; }
+    .plan-price { font-size: 32px; font-weight: 700; color: #1F2937; margin: 12px 0; }
+    .plan-price span { font-size: 14px; color: #64748B; font-weight: 400; }
+    .plan-features { text-align: left; margin: 20px 0; }
+    .plan-features li { list-style: none; padding: 8px 0; font-size: 14px; color: #64748B; }
+    .plan-features li:before { content: "✓ "; color: #10B981; font-weight: 600; margin-right: 8px; }
+    .plan-features li.unavailable { color: #D1D5DB; }
+    .plan-features li.unavailable:before { color: #D1D5DB; content: "— "; }
+    .plan-cta { width: 100%; margin-top: 16px; }
+    
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; }
+    th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937; }
+    td { padding: 12px 16px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+    .badge-green { background: #D1FAE5; color: #065F46; }
+    .badge-amber { background: #FEF3C7; color: #92400E; }
+    
+    .section-divider { height: 1px; background: #E2E8F0; margin: 32px 0; }
+    
+    .alert { border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; border-left: 4px solid; }
+    .alert-info { background: #D1E9F6; color: #0C4A6E; border-left-color: #0EA5E9; }
+    
+    .payment-method { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .payment-method-info { flex: 1; }
+    .payment-method-name { font-weight: 500; color: #1F2937; }
+    .payment-method-details { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .header { padding: 16px; }
+      .header h1 { font-size: 24px; }
+      .container { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Billing & Subscription</h1>
+    <p>Manage your plan, invoices, and payment methods</p>
+  </div>
+
+  <div class="container">
+    <div class="layout">
+      <!-- LEFT: CURRENT PLAN & STATS -->
+      <div>
+        <div class="card">
+          <h2>Current Plan</h2>
+          <div class="plan-card active">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">$20<span>/month</span></div>
+            <div style="color: #64748B; font-size: 14px; margin: 12px 0;">Renews May 16, 2026</div>
+            <button class="btn-secondary" style="width: 100%; margin-top: 12px;">Upgrade to Pro</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>This Month's Activity</h2>
+          <div class="stat-box" style="margin-bottom: 16px;">
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-value">$2,340</div>
+            <div class="stat-subtext">From 12 orders</div>
+          </div>
+          <div class="stat-box" style="margin-bottom: 16px;">
+            <div class="stat-label">Your Earnings (after Stripe fees)</div>
+            <div class="stat-value">$2,228</div>
+            <div class="stat-subtext">Stripe fee: 2.9% + 30¢</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Subscription Cost</div>
+            <div class="stat-value">-$20</div>
+            <div class="stat-subtext">Starter plan, paid upfront</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: UPGRADE OPTIONS -->
+      <div>
+        <div class="card">
+          <h2>Upgrade Your Plan</h2>
+          <p style="color: #64748B; font-size: 14px; margin-bottom: 20px;">Choose the plan that fits your business.</p>
+
+          <div class="plan-card">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">$20<span>/month</span></div>
+            <ul class="plan-features">
+              <li>Up to 100 products</li>
+              <li>Basic email support</li>
+              <li>Order notifications</li>
+              <li class="unavailable">Advanced analytics</li>
+              <li class="unavailable">Custom branding</li>
+            </ul>
+            <button class="btn-secondary plan-cta" disabled>Current Plan</button>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-name">Pro</div>
+            <div class="plan-price">$50<span>/month</span></div>
+            <ul class="plan-features">
+              <li>Unlimited products</li>
+              <li>Priority email support</li>
+              <li>Advanced analytics</li>
+              <li>Custom shop colors</li>
+              <li>Bulk import/export</li>
+            </ul>
+            <button class="btn-primary plan-cta">Upgrade to Pro</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- INVOICES -->
+    <div class="card">
+      <h2>Invoices & Payment History</h2>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">View or download your invoices.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>May 16, 2026</td>
+            <td>$20.00</td>
+            <td><span class="badge badge-green">Paid</span></td>
+            <td><a href="#" style="color: #3B4C63; text-decoration: none; font-weight: 500;">Download</a></td>
+          </tr>
+          <tr>
+            <td>April 16, 2026</td>
+            <td>$20.00</td>
+            <td><span class="badge badge-green">Paid</span></td>
+            <td><a href="#" style="color: #3B4C63; text-decoration: none; font-weight: 500;">Download</a></td>
+          </tr>
+          <tr>
+            <td>March 16, 2026</td>
+            <td>$20.00</td>
+            <td><span class="badge badge-green">Paid</span></td>
+            <td><a href="#" style="color: #3B4C63; text-decoration: none; font-weight: 500;">Download</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAYMENT METHOD -->
+    <div class="card">
+      <h2>Payment Method</h2>
+      <div class="payment-method">
+        <div class="payment-method-info">
+          <div class="payment-method-name">💳 Visa ending in 4242</div>
+          <div class="payment-method-details">Expires 12/2028 • Default</div>
+        </div>
+        <button class="btn-secondary" style="white-space: nowrap;">Edit</button>
+      </div>
+      <button class="btn-secondary" style="width: 100%; margin-top: 12px;">+ Add Payment Method</button>
+    </div>
+
+    <!-- BILLING SETTINGS -->
+    <div class="card">
+      <h2>Billing Settings</h2>
+      <div class="alert alert-info">
+        ℹ️ Auto-renewal is enabled. Your subscription will renew on May 16 each month.
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: flex; align-items: center; cursor: pointer;">
+          <input type="checkbox" checked style="width: auto; margin-right: 8px;">
+          <span>Send me invoice reminders 3 days before renewal</span>
+        </label>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: flex; align-items: center; cursor: pointer;">
+          <input type="checkbox" checked style="width: auto; margin-right: 8px;">
+          <span>Automatically charge my payment method for renewals</span>
+        </label>
+      </div>
+      <button class="btn-danger" style="background: #F43F5E; color: white;">Cancel Subscription</button>
+    </div>
+  </div>
+</body>
+</html>

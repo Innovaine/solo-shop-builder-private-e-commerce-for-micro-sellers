@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation — Solo Shop Builder</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; margin: 0; padding: 0; }
+    .email-container { max-width: 600px; margin: 0 auto; background: white; }
+    .header { background: #3B4C63; color: white; padding: 40px 24px; text-align: center; }
+    .header h1 { margin: 0; font-size: 28px; font-weight: 700; }
+    .header p { margin: 8px 0 0 0; font-size: 14px; opacity: 0.9; }
+    
+    .content { padding: 32px 24px; }
+    .section { margin-bottom: 32px; }
+    .section h2 { font-size: 18px; font-weight: 600; margin: 0 0 16px 0; }
+    
+    .order-number { background: #F0FDF4; border-left: 4px solid #10B981; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
+    .order-number .label { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; }
+    .order-number .value { font-size: 20px; font-weight: 700; color: #065F46; margin-top: 4px; }
+    
+    table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E2E8F0; }
+    th { padding: 12px; text-align: left; font-size: 12px; font-weight: 600; color: #1F2937; }
+    td { padding: 12px; border-bottom: 1px solid #E2E8F0; }
+    
+    .total-row { font-weight: 600; font-size: 16px; background: #F9FAFB; }
+    .total-row td { padding: 16px 12px; border-bottom: none; }
+    
+    .tracking-section { background: #D1E9F6; border: 1px solid #0EA5E9; border-radius: 6px; padding: 20px; text-align: center; }
+    .tracking-section h3 { margin: 0 0 12px 0; color: #0C4A6E; font-size: 14px; }
+    .tracking-link { display: inline-block; background: #0EA5E9; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 8px; }
+    
+    .shipping-info { background: #F9FAFB; padding: 16px; border-radius: 6px; margin-bottom: 16px; }
+    .shipping-info-row { display: flex; justify-content: space-between; padding: 8px 0; }
+    .shipping-info-label { color: #64748B; font-size: 14px; }
+    .shipping-info-value { font-weight: 500; color: #1F2937; }
+    
+    .cta-section { text-align: center; margin: 32px 0; }
+    .btn { display: inline-block; background: #10B981; color: white; padding: 12px 32px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+    .btn:hover { background: #059669; }
+    
+    .footer { background: #F9FAFB; border-top: 1px solid #E2E8F0; padding: 24px; text-align: center; color: #64748B; font-size: 12px; }
+    .footer a { color: #3B4C63; text-decoration: none; }
+    
+    @media (max-width: 600px) {
+      .header { padding: 24px 16px; }
+      .content { padding: 20px 16px; }
+      table { font-size: 13px; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="header">
+      <h1>✓ Order Confirmed</h1>
+      <p>Thank you for your purchase!</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Order Number -->
+      <div class="section">
+        <div class="order-number">
+          <div class="label">Order Number</div>
+          <div class="value">#ORD-12345</div>
+        </div>
+        <p style="color: #64748B; margin: 0;">Placed on May 15, 2026 at 2:47 PM EDT</p>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="section">
+        <h2>Order Summary</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th style="text-align: right;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Handmade Ceramic Bowl (Large) — Blue</td>
+              <td style="text-align: right;">$65.00</td>
+            </tr>
+            <tr>
+              <td>Shipping (Standard)</td>
+              <td style="text-align: right;">$8.00</td>
+            </tr>
+            <tr class="total-row">
+              <td>Total</td>
+              <td style="text-align: right;">$73.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Shipping Address -->
+      <div class="section">
+        <h2>Shipping Address</h2>
+        <div class="shipping-info">
+          <div class="shipping-info-row">
+            <span class="shipping-info-label">Jane Smith</span>
+          </div>
+          <div class="shipping-info-row">
+            <span class="shipping-info-label">123 Oak Street</span>
+          </div>
+          <div class="shipping-info-row">
+            <span class="shipping-info-label">Portland, OR 97201</span>
+          </div>
+          <div class="shipping-info-row">
+            <span class="shipping-info-label">United States</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's Next -->
+      <div class="section">
+        <h2>What's Next?</h2>
+        <p style="color: #64748B; margin-bottom: 16px;">Your order is being prepared. You'll receive a shipping notification with tracking information as soon as your item ships.</p>
+        <p style="color: #64748B; margin: 0;">Most orders ship within 1-3 business days.</p>
+      </div>
+
+      <!-- Tracking -->
+      <div class="section">
+        <div class="tracking-section">
+          <h3>📦 Track Your Order</h3>
+          <p style="color: #0C4A6E; margin: 0 0 12px 0;">Use your tracking link to get real-time shipping updates.</p>
+          <a href="#" class="tracking-link">View Order Status</a>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <p style="color: #64748B; margin-bottom: 16px;">Have questions about your order?</p>
+        <a href="#" class="btn">Contact the Seller</a>
+      </div>
+
+      <!-- Customer Service -->
+      <div class="section" style="background: #F9FAFB; padding: 16px; border-radius: 6px; margin-bottom: 0;">
+        <h3 style="margin-top: 0;">Questions or Issues?</h3>
+        <p style="color: #64748B; margin: 8px 0; font-size: 14px;">• <strong>Damaged item:</strong> Reply to this email with photos and we'll help right away.</p>
+        <p style="color: #64748B; margin: 8px 0; font-size: 14px;">• <strong>Order problem:</strong> Message the seller directly via your order page.</p>
+        <p style="color: #64748B; margin: 8px 0; font-size: 14px;">• <strong>Shipping delay:</strong> Check your tracking link for updates.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p style="margin: 0 0 12px 0;">
+        <strong>Artisan Ceramics Studio</strong><br>
+        <a href="#">View Shop</a> | <a href="#">Contact Seller</a>
+      </p>
+      <p style="margin: 0;">
+        Powered by <a href="#">Solo Shop Builder</a><br>
+        © 2026 Solo Shop Builder. All rights reserved.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

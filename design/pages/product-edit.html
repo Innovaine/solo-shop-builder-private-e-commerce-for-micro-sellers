@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+    .header a { color: #3B4C63; text-decoration: none; font-size: 14px; }
+    .header h1 { font-size: 24px; font-weight: 700; flex: 1; }
+    .container { max-width: 800px; margin: 24px auto; padding: 0 24px; }
+    
+    h2 { font-size: 18px; font-weight: 600; margin: 24px 0 16px; }
+    h3 { font-size: 12px; font-weight: 600; color: #1F2937; margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    
+    .form-field { margin-bottom: 20px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, textarea, select { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    input::placeholder, textarea::placeholder { color: #94A3B8; }
+    textarea { min-height: 100px; resize: vertical; }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    
+    .image-preview { width: 100%; aspect-ratio: 1 / 1; background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .image-placeholder { text-align: center; color: #94A3B8; }
+    
+    .file-input-label { display: block; background: white; border: 2px dashed #E2E8F0; padding: 24px; text-align: center; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .file-input-label:hover { border-color: #3B4C63; background: #F9FAFB; }
+    input[type="file"] { display: none; }
+    
+    .variant-item { background: #F9FAFB; padding: 16px; border-radius: 6px; margin-bottom: 12px; }
+    .variant-remove { float: right; color: #F43F5E; cursor: pointer; font-size: 12px; text-decoration: underline; }
+    
+    .button-group { display: flex; gap: 12px; margin-top: 32px; }
+    
+    .alert { background: #D1FAE5; border: 1px solid #10B981; border-radius: 6px; padding: 12px; font-size: 14px; color: #065F46; margin-bottom: 16px; }
+    
+    @media (max-width: 768px) {
+      .row { grid-template-columns: 1fr; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .header h1 { margin-top: 8px; }
+      .container { padding: 0 16px; margin: 16px auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="#">← Back to Products</a>
+    <h1>Edit Product</h1>
+  </div>
+
+  <div class="container">
+    <div class="alert">
+      ✓ Last saved 2 minutes ago
+    </div>
+
+    <div class="card">
+      <h2>Product Basics</h2>
+      <div class="form-field">
+        <label>Product Title *</label>
+        <input type="text" value="Handmade Ceramic Bowl (Large)" placeholder="e.g., Ceramic Vase">
+        <div class="form-hint">This is what customers see in search and product lists.</div>
+      </div>
+      <div class="form-field">
+        <label>Description *</label>
+        <textarea placeholder="Describe what makes this product special...">Large hand-thrown ceramic bowl featuring a subtle blue glaze. Food-safe, dishwasher-safe (top rack). Each piece is unique. Dimensions: 10" diameter x 4" height. Made from local earthenware clay.</textarea>
+        <div class="form-hint">Details, materials, care instructions, dimensions. Show customers exactly what they're getting.</div>
+      </div>
+      <div class="row">
+        <div class="form-field">
+          <label>Price *</label>
+          <input type="number" value="65.00" placeholder="0.00">
+        </div>
+        <div class="form-field">
+          <label>Stock Count</label>
+          <input type="number" value="12" placeholder="0">
+          <div class="form-hint">Leave blank for unlimited stock.</div>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Category *</label>
+        <select>
+          <option selected>Handmade</option>
+          <option>Vintage</option>
+          <option>Supplies</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Images</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+        <div>
+          <h3>Primary Image</h3>
+          <div class="image-preview">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f0f0f0' width='200' height='200'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%23e0e0e0'/%3E%3C/svg%3E" alt="Product image">
+          </div>
+          <label class="file-input-label" style="margin-top: 12px;">
+            📤 Replace Image
+            <input type="file" accept="image/*">
+          </label>
+          <div class="form-hint" style="margin-top: 8px;">JPG or PNG, at least 800x800px</div>
+        </div>
+        <div>
+          <h3>Additional Images (Optional)</h3>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="image-preview" style="height: 100px;">
+              <div class="image-placeholder">Image 2</div>
+            </div>
+            <div class="image-preview" style="height: 100px;">
+              <div class="image-placeholder">Image 3</div>
+            </div>
+          </div>
+          <label class="file-input-label" style="margin-top: 12px;">
+            📤 Add More
+            <input type="file" accept="image/*" multiple>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Variants (Optional)</h2>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">Offer size, color, or material options.</p>
+      
+      <div class="variant-item">
+        <span class="variant-remove">Remove</span>
+        <h3>Size</h3>
+        <div class="row">
+          <div class="form-field">
+            <label>Variant Name</label>
+            <input type="text" value="Size" disabled style="background: #F3F4F6; color: #94A3B8;">
+          </div>
+          <div class="form-field">
+            <label>Option 1</label>
+            <input type="text" value="Small" placeholder="e.g., Small, Medium, Large">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-field">
+            <label>Option 2</label>
+            <input type="text" value="Large" placeholder="Leave blank for single option">
+          </div>
+          <div class="form-field">
+            <label>Option 3</label>
+            <input type="text" placeholder="Optional third option">
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-item">
+        <span class="variant-remove">Remove</span>
+        <h3>Color</h3>
+        <div class="row">
+          <div class="form-field">
+            <label>Variant Name</label>
+            <input type="text" value="Color" disabled style="background: #F3F4F6; color: #94A3B8;">
+          </div>
+          <div class="form-field">
+            <label>Option 1</label>
+            <input type="text" value="Blue" placeholder="e.g., Blue, Red, Green">
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-secondary" style="width: 100%; margin-top: 12px; justify-content: center;">+ Add Variant Type</button>
+    </div>
+
+    <div class="card">
+      <h2>SEO (Optional)</h2>
+      <div class="form-field">
+        <label>Search Keywords</label>
+        <input type="text" value="ceramic, bowl, handmade, artisan" placeholder="Comma-separated keywords">
+        <div class="form-hint">Help customers find this product via search.</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn-primary">Save Changes</button>
+      <button class="btn-secondary">Cancel</button>
+    </div>
+  </div>
+</body>
+</html>
