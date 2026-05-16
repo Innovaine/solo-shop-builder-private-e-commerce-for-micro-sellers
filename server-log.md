@@ -10655,3 +10655,25 @@ STDOUT:
 Started npm install, PID=866402
 ```
 Full output: [`server-runs/2026-05-16T01-26-34-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-26-34-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:27:06.298Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `366dd98` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3488ms) _(showing tail — full 2,656B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/npm-install-day16.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/npm-install-day16.log
+```
+STDOUT:
+```
+…ublicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn tarball tarball data for @prisma/engines@https://registry.npmjs.org/@prisma/engines/-/engines-5.14.0.tgz (sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ==) seems to be corrupted. Trying again.
+npm warn tarball tarball data for @prisma/engines@https://registry.npmjs.org/@prisma/engines/-/engines-5.14.0.tgz (sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ==) seems to be corrupted. Trying again.
+npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+```
+Full output: [`server-runs/2026-05-16T01-27-06-app-kill--0-cat-tmp-npm-install-day16.pid-2--1.log`](server-runs/2026-05-16T01-27-06-app-kill--0-cat-tmp-npm-install-day16.pid-2--1.log)
