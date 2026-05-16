@@ -85,6 +85,72 @@
   </header>
 
   <div class="container">
+    <!-- COMPONENT API REFERENCE -->
+    <section class="component-section" style="background: #F0FDF4; border: 1px solid #BBDF37;">
+      <h2 style="color: #16A34A; margin-top: 0;">⚙️ Component API Reference for Engineers</h2>
+      <p style="color: #15803D; font-size: 14px;">Copy-paste the exact prop names and types. Do NOT invent props that aren't listed here.</p>
+      
+      <h3 style="border-top: 1px solid #BBDF37; padding-top: 16px; margin-top: 24px;">Button Component</h3>
+      <div style="background: #F9FAFB; padding: 16px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 12px; margin-top: 12px; overflow-x: auto;">
+&lt;Button
+&nbsp;&nbsp;variant="primary" | "secondary" | "ghost" | "danger" (optional, default: "primary")
+&nbsp;&nbsp;size="sm" | "md" | "lg" (optional, default: "md")
+&nbsp;&nbsp;loading={boolean} (optional, default: false)
+&nbsp;&nbsp;disabled={boolean} (optional)
+&nbsp;&nbsp;className={string} (optional)
+&nbsp;&nbsp;onClick={handler} (optional)
+&gt;
+&nbsp;&nbsp;Button text
+&lt;/Button&gt;
+      </div>
+      <p style="color: #64748B; font-size: 12px; margin-top: 8px;"><strong>❌ WRONG:</strong> <code>fullWidth</code>, <code>width</code>, <code>p</code> (padding) are NOT props. Use <code>className="w-full"</code> instead.</p>
+      
+      <h3>Card Component</h3>
+      <div style="background: #F9FAFB; padding: 16px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 12px; margin-top: 12px; overflow-x: auto;">
+&lt;Card
+&nbsp;&nbsp;variant="default" | "elevated" | "interactive" (optional, default: "default")
+&nbsp;&nbsp;padding="none" | "sm" | "md" | "lg" (optional, default: "md")
+&nbsp;&nbsp;className={string} (optional)
+&gt;
+&nbsp;&nbsp;Card content here
+&lt;/Card&gt;
+      </div>
+      <p style="color: #64748B; font-size: 12px; margin-top: 8px;"><strong>❌ WRONG:</strong> <code>padding="xl"</code> or <code>p="lg"</code>. Only <code>none</code>, <code>sm</code>, <code>md</code>, <code>lg</code> are valid. For larger padding, use <code>className="p-12"</code>.</p>
+      
+      <h3>FormField Component</h3>
+      <div style="background: #F9FAFB; padding: 16px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 12px; margin-top: 12px; overflow-x: auto;">
+&lt;FormField
+&nbsp;&nbsp;label="Field Label" (required)
+&nbsp;&nbsp;id="field-id" (optional, auto-generated if omitted)
+&nbsp;&nbsp;type="text" | "email" | "password" | ... (optional, default: "text")
+&nbsp;&nbsp;placeholder="..." (optional)
+&nbsp;&nbsp;required={boolean} (optional)
+&nbsp;&nbsp;error="Error message" (optional)
+&nbsp;&nbsp;helpText="Help text" (optional)
+&nbsp;&nbsp;fullWidth={boolean} (optional, default: true)
+/&gt;
+      </div>
+      <p style="color: #64748B; font-size: 12px; margin-top: 8px;"><strong>❌ WRONG:</strong> <code>htmlFor</code> (use <code>id</code> instead); <code>help</code> (use <code>helpText</code>); <code>label</code> as a prop inside children (use the <code>label</code> prop).</p>
+
+      <h3>Input Component</h3>
+      <div style="background: #F9FAFB; padding: 16px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 12px; margin-top: 12px; overflow-x: auto;">
+&lt;Input
+&nbsp;&nbsp;id="input-id" (optional)
+&nbsp;&nbsp;type="text" | "email" | "password" | ... (optional, default: "text")
+&nbsp;&nbsp;placeholder="..." (optional)
+&nbsp;&nbsp;value={string} (optional, for controlled inputs)
+&nbsp;&nbsp;onChange={handler} (optional)
+&nbsp;&nbsp;error={boolean} (optional, adds error styling)
+&nbsp;&nbsp;fullWidth={boolean} (optional, default: true)
+&nbsp;&nbsp;disabled={boolean} (optional)
+/&gt;
+      </div>
+      <p style="color: #64748B; font-size: 12px; margin-top: 8px;">Use <code>FormField</code> for labeled inputs (recommended); use <code>Input</code> directly only for inline/simple cases.</p>
+
+      <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 24px 0;">
+      <p style="color: #64748B; font-size: 12px;"><strong>Remember:</strong> All components support <code>className</code> for Tailwind CSS overrides. Don't invent new props—use Tailwind classes for styling.</p>
+    </section>
+
     <!-- BUTTONS -->
     <section class="component-section" id="buttons">
       <h2>Buttons</h2>
