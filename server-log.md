@@ -9758,3 +9758,38 @@ Content-Type: text/html; charset=utf-8
 === Test 2: Check for product grid HTML ===
 ```
 Full output: [`server-runs/2026-05-16T00-52-31-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-52-31-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:52:58.613Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `52f0f7b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3032ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Get shops via API
+echo "=== Get shops from API ==="
+SHOP_DATA=$(curl -s http://localhost:3000/api/shops)
+echo "$SHOP_DATA" | head -20
+
+# Extract first shop slug using grep
+SHOP_SLUG=$(echo "$SHOP_DATA" | grep -o '"slug":"[^"]*"' | head -1 | cut -d'"' -f4)
+
+if [ -n "$SHOP_SLUG" ]; then
+  echo ""
+  echo "=== Testing shop: $SHOP_SLUG ==="
+  curl -sI http://localhost:3000/shop/$SHOP_SLUG | head -5
+  
+  echo ""
+  echo "=== Check page content ==="
+  curl -s http://localhost:3000/shop/$SHOP_SLUG | grep -i -E "welcome to|this shop is empty|cart \(0\)" | head -5
+else
+  echo "No shops found in database"
+fi
+```
+STDOUT:
+```
+=== Get shops from API ===
+{"error":"You must be logged in to view shops."}
+No shops found in database
+```
+Full output: [`server-runs/2026-05-16T00-52-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-52-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
