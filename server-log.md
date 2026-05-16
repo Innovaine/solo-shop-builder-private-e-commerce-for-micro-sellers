@@ -14055,3 +14055,20 @@ STDOUT:
 Started cart tests, PID=986282
 ```
 Full output: [`server-runs/2026-05-16T13-35-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-35-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:35:58.557Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `368784c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2668ms)
+```
+kill -0 $(cat /tmp/cart-test-day21.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/cart-test-day21.log
+```
+STDOUT:
+```
+DONE
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+Full output: [`server-runs/2026-05-16T13-35-58-app-kill--0-cat-tmp-cart-test-day21.pid-2-de-1.log`](server-runs/2026-05-16T13-35-58-app-kill--0-cat-tmp-cart-test-day21.pid-2-de-1.log)
