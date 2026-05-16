@@ -11724,3 +11724,19 @@ No seed script
 psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "soloshop" does not exist
 ```
 Full output: [`server-runs/2026-05-16T02-10-14-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-10-14-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T02:10:32.471Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `307b2a8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2713ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d postgres -c "SELECT s.slug, p.id, p.title FROM \"Shop\" s JOIN \"Product\" p ON p.\"shopId\" = s.id LIMIT 3;" 2>&1
+```
+STDOUT:
+```
+ERROR:  relation "Shop" does not exist
+LINE 1: SELECT s.slug, p.id, p.title FROM "Shop" s JOIN "Product" p ...
+                                          ^
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T02-10-32-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-10-32-app-docker-exec-solo-shop-builder-private-e--1.log)
