@@ -11708,3 +11708,19 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-16T02:09:50.598Z","responseTime":"187ms","checks":{"database":{"status":"ok","responseTime":"50ms"},"email":{"status":"ok","responseTime":"137ms"}}} - OK
 ```
 Full output: [`server-runs/2026-05-16T02-09-50-app-timeout-60-bash--c-until-curl--fsS-http--1.log`](server-runs/2026-05-16T02-09-50-app-timeout-60-bash--c-until-curl--fsS-http--1.log)
+
+## 2026-05-16T02:10:14.828Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5a6cb08` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3227ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma db seed 2>/dev/null || echo "No seed script"
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U soloshop -d soloshop -c "SELECT s.slug, p.id, p.title FROM \"Shop\" s JOIN \"Product\" p ON p.\"shopId\" = s.id LIMIT 3;" 2>&1 | head -20
+```
+STDOUT:
+```
+Environment variables loaded from .env
+No seed script
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "soloshop" does not exist
+```
+Full output: [`server-runs/2026-05-16T02-10-14-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-10-14-app-docker-exec-solo-shop-builder-private-e--1.log)
