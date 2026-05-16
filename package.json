@@ -19,7 +19,8 @@
     "nodemailer": "^6.9.13",
     "iron-session": "^8.0.1",
     "nanoid": "^5.0.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
     "typescript": "^5.4.5",
