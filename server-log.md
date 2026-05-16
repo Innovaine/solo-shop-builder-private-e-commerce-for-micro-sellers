@@ -18647,3 +18647,28 @@ DONE
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-16T20-16-46-app-kill--0-cat-tmp-day27-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T20-16-46-app-kill--0-cat-tmp-day27-build.pid-2-dev-nu-1.log)
+
+## 2026-05-16T20:17:16.307Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0c21501` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3484ms)
+```
+grep -A 5 "Export encountered errors" /tmp/day27-build.log
+```
+STDOUT:
+```
+#15 17.23 > Export encountered errors on following paths:
+#15 17.23 	/auth/verify/page: /auth/verify
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+17.18     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+--
+17.23 > Export encountered errors on following paths:
+17.23 	/auth/verify/page: /auth/verify
+------
+Dockerfile:25
+
+--------------------
+```
+Full output: [`server-runs/2026-05-16T20-17-16-app-grep--A-5-Export-encountered-errors-tmp--1.log`](server-runs/2026-05-16T20-17-16-app-grep--A-5-Export-encountered-errors-tmp--1.log)
