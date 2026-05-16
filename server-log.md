@@ -13006,3 +13006,19 @@ Running generate... (Use --skip-generate to skip the generators)
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-16T02-47-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-47-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:48:01.657Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b8844a5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2759ms)
+```
+docker ps | grep solo-shop
+curl -sf http://localhost:3000/api/health -o /dev/null && echo "Health check OK" || echo "Health check FAILED"
+```
+STDOUT:
+```
+e7a7f6e17750   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About a minute ago   Up About a minute             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a98ba37ee118   postgres:16-alpine                                           "docker-entrypoint.s…"   About a minute ago   Up About a minute (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+Health check OK
+```
+Full output: [`server-runs/2026-05-16T02-48-01-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T02-48-01-app-docker-ps-grep-solo-shop-1.log)
