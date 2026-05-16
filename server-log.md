@@ -14960,3 +14960,18 @@ d11d49dc643d   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 App is UP
 ```
 Full output: [`server-runs/2026-05-16T14-56-20-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T14-56-20-app-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-16T14:56:41.728Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c2bcf46` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2648ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "\dt" | grep -E "Order|Webhook"
+```
+STDOUT:
+```
+ public | Order              | table | postgres
+ public | OrderItem          | table | postgres
+ public | Webhook            | table | postgres
+```
+Full output: [`server-runs/2026-05-16T14-56-41-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T14-56-41-app-docker-exec-solo-shop-builder-private-e--1.log)
