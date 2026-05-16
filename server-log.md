@@ -20664,3 +20664,19 @@ Fast-forward
  create mode 100644 design/pages/csv-export-modal.html
 ```
 Full output: [`server-runs/2026-05-16T22-55-27-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T22-55-27-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T22:56:01.256Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a9b697b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2478ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day31-build.log 2>&1 &
+echo $! > /tmp/day31-build.pid
+echo "Started build, PID=$(cat /tmp/day31-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=1119531
+```
+Full output: [`server-runs/2026-05-16T22-56-01-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T22-56-01-app-cd-solo-shop-builder-private-e-commerce--1.log)
