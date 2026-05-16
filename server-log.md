@@ -18201,3 +18201,101 @@ STDOUT:
 * a0bee1a Anil (engineer, day 26) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-16T19-39-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-39-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T19:39:57.059Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1a4fce8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2758ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git diff a0bee1a~1..51a001a --name-only
+```
+STDOUT:
+```
+app/api/orders/route.ts
+app/api/products/route.ts
+app/api/shops/route.ts
+server-log.md
+```
+Full output: [`server-runs/2026-05-16T19-39-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-39-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T19:40:21.223Z — Søren ran 1 command(s)
+### Command 1 on app as reviewer (✓ exit 0, 2312ms) _(showing tail — full 2,368B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git show --stat ae64a23..14557b4 | head -80
+```
+STDOUT:
+```
+…ons(-)
+
+commit 51a001a789bba11b109f734b6fdf8e970d0424f9
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:34:05 2026 +0000
+
+    Anil (engineer, day 26) — pre-SSH sync
+
+ app/api/orders/route.ts   |  2 ++
+ app/api/products/route.ts |  2 ++
+ app/api/shops/route.ts    |  2 ++
+ server-log.md             | 57 +++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 63 insertions(+)
+
+commit 086a0f9bbf62f3addef043184bf273e8d3b9bcb7
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:31:37 2026 +0000
+
+    Anil (engineer, day 26) — pre-SSH sync
+
+ server-log.md | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+commit a57113a445e47c506b956970fa3502cba7e07472
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:30:01 2026 +0000
+
+    Anil (engineer, day 26) — pre-SSH sync
+
+ server-log.md | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit a0bee1abaa65891b86fe74115c23f11db4124454
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:23:44 2026 +0000
+
+    Anil (engineer, day 26) — pre-SSH sync
+
+ server-log.md | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit 83d17e1ff839d5ada2dfd832754ca2ab61e2d6f5
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:23:21 2026 +0000
+
+    Anil (engineer, day 26) — pre-SSH sync
+
+ app/api/auth/verify/route.ts | 75 ++++++++++++++++++++++++++++++++++++++++++++
+ server-log.md                | 56 +++++++++++++++++++++++++++++++++
+ 2 files changed, 131 insertions(+)
+
+commit 619f10d4d737b27f874e799d1b18276c9c619514
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:21:48 2026 +0000
+
+    Anil (engineer, day 26) — pre-SSH sync
+
+ server-log.md | 61 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+
+commit f580dbc14d4c19ba12d1af23a70f6672d216864c
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:20:24 2026 +0000
+
+    Anil (engineer, day 26) — pre-SSH sync
+
+ server-log.md | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit 45fc05ae56c7d0e25d54c6705ce7a194453aa113
+Author: Qadar <qadar@local>
+Date:   Sat May 16 19:20:05 2026 +0000
+```
+Full output: [`server-runs/2026-05-16T19-40-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-40-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
