@@ -3,8 +3,8 @@
 // Returns: total revenue (last 30 days), order count, top products
 
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/src/lib/db'
-import { requireAuth } from '@/src/lib/auth'
+import { prisma } from '@/lib/db'
+import { requireAuth } from '@/lib/auth'
 
 interface ProductAnalytics {
   productId: string

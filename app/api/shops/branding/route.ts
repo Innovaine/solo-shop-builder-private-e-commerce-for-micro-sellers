@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import prisma from '@/src/lib/db';
+import { prisma } from '@/lib/db';
 
 // PATCH /api/shops/branding — Update shop branding (FR-33)
 export async function PATCH(req: NextRequest) {

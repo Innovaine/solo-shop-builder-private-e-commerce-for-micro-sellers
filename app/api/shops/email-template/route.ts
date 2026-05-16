@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import prisma from '@/src/lib/db';
+import { prisma } from '@/lib/db';
 
 // PATCH /api/shops/email-template — Update email template (FR-35)
 export async function PATCH(req: NextRequest) {

@@ -19823,3 +19823,83 @@ STDOUT:
 Started build v2, PID=1100953
 ```
 Full output: [`server-runs/2026-05-16T21-28-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-28-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T21:30:02.783Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3e98f9f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 12482ms) _(showing tail — full 2,757B stdout + 0B stderr)_
+```
+sleep 10 && kill -0 $(cat /tmp/day29-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day29-build-v2.log
+```
+STDOUT:
+```
+…more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 1.771 https://nextjs.org/telemetry
+#15 1.771 
+#15 1.819   ▲ Next.js 14.2.3
+#15 1.819   - Environments: .env
+#15 1.819 
+#15 1.887    Creating an optimized production build ...
+#15 6.348 Failed to compile.
+#15 6.348 
+#15 6.348 ./app/api/analytics/route.ts
+#15 6.348 Module not found: Can't resolve '@/src/lib/db'
+#15 6.348 
+#15 6.348 https://nextjs.org/docs/messages/module-not-found
+#15 6.348 
+#15 6.348 ./app/api/analytics/route.ts
+#15 6.348 Module not found: Can't resolve '@/src/lib/auth'
+#15 6.348 
+#15 6.348 https://nextjs.org/docs/messages/module-not-found
+#15 6.348 
+#15 6.348 ./app/api/billing/route.ts
+#15 6.348 Module not found: Can't resolve '@/src/lib/db'
+#15 6.348 
+#15 6.348 https://nextjs.org/docs/messages/module-not-found
+#15 6.348 
+#15 6.348 ./app/api/shops/branding/route.ts
+#15 6.348 Module not found: Can't resolve '@/src/lib/db'
+#15 6.348 
+#15 6.348 https://nextjs.org/docs/messages/module-not-found
+#15 6.348 
+#15 6.348 ./app/api/shops/email-template/route.ts
+#15 6.348 Module not found: Can't resolve '@/src/lib/db'
+#15 6.348 
+#15 6.348 https://nextjs.org/docs/messages/module-not-found
+#15 6.348 
+#15 6.363 
+#15 6.363 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+6.348 
+6.348 https://nextjs.org/docs/messages/module-not-found
+6.348 
+6.348 ./app/api/shops/email-template/route.ts
+6.348 Module not found: Can't resolve '@/src/lib/db'
+6.348 
+6.348 https://nextjs.org/docs/messages/module-not-found
+6.348 
+6.363 
+6.363 > Build failed because of webpack errors
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T21-30-02-app-sleep-10-kill--0-cat-tmp-day29-build-v2.-1.log`](server-runs/2026-05-16T21-30-02-app-sleep-10-kill--0-cat-tmp-day29-build-v2.-1.log)

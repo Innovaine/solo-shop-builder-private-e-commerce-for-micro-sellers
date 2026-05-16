@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import prisma from '@/src/lib/db';
+import { prisma } from '@/lib/db';
 
 // GET /api/billing — Get billing dashboard data (FR-37)
 export async function GET(req: NextRequest) {
