@@ -19316,3 +19316,44 @@ STDOUT:
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-16T21-00-26-app-kill--0-cat-tmp-day28-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T21-00-26-app-kill--0-cat-tmp-day28-build.pid-2-dev-nu-1.log)
+
+## 2026-05-16T21:00:55.968Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9260bbc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 8824ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose up -d
+sleep 5
+docker compose logs app --tail=30
+```
+STDOUT:
+```
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 3 migrations found in prisma/migrations
+app-1  | 
+app-1  | Applying migration `20260516_add_password_reset_fields`
+app-1  | Applying migration `20260516_add_seller_password_hash`
+app-1  | 
+app-1  | The following migration(s) have been applied:
+app-1  | 
+app-1  | migrations/
+app-1  |   └─ 20260516_add_password_reset_fields/
+app-1  |     └─ migration.sql
+app-1  |   └─ 20260516_add_seller_password_hash/
+app-1  |     └─ migration.sql
+app-1  |       
+app-1  | All migrations have been successfully applied.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 54ms
+app-1  | {"requestId":"dpo7ueZF0VmRlgl1","method":"GET","path":"/auth/login","responseTime":"2ms","timestamp":"2026-05-16T21:00:51.972Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1  | {"requestId":"lBCl2QYDyn0Jo_cS","method":"GET","path":"/auth/login","responseTime":"1ms","timestamp":"2026-05-16T21:00:52.950Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+```
+Full output: [`server-runs/2026-05-16T21-00-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-00-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
