@@ -13,6 +13,8 @@ export const dynamic = 'force-dynamic'
 
 function LoginForm() {
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [usePassword, setUsePassword] = useState(false) // FR-21: Toggle between magic link and password
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -33,21 +35,30 @@ function LoginForm() {
     setError('')
 
     try {
-      const response = await fetch('/api/auth/signup', {
+      const endpoint = usePassword ? '/api/auth/login' : '/api/auth/signup'
+      const body = usePassword ? { email, password } : { email }
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify(body),
       })
 
       const data = await response.json()
 
       if (!response.ok) {
-        setError(data.error || 'Failed to send login link')
+        setError(data.error || (usePassword ? 'Login failed' : 'Failed to send login link'))
         setLoading(false)
         return
       }
 
-      setSubmitted(true)
+      if (usePassword) {
+        // Password login - redirect to dashboard
+        window.location.href = '/dashboard'
+      } else {
+        // Magic link - show success message
+        setSubmitted(true)
+      }
     } catch {
       setError('Network error. Please try again.')
       setLoading(false)
@@ -79,9 +90,11 @@ function LoginForm() {
 
         {!submitted ? (
           <form onSubmit={handleSubmit}>
-            <div className="bg-cream border border-whisper rounded-md p-4 mb-6 text-sm text-slate leading-relaxed">
-              <strong className="text-slate-blue">No password needed.</strong> We&apos;ll send you a login link via email.
-            </div>
+            {!usePassword && (
+              <div className="bg-cream border border-whisper rounded-md p-4 mb-6 text-sm text-slate leading-relaxed">
+                <strong className="text-slate-blue">No password needed.</strong> We&apos;ll send you a login link via email.
+              </div>
+            )}
 
             <FormField
               label="Email Address"
@@ -94,6 +107,19 @@ function LoginForm() {
               autoComplete="email"
             />
 
+            {usePassword && (
+              <FormField
+                label="Password"
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                autoComplete="current-password"
+              />
+            )}
+
             <Button
               type="submit"
               loading={loading}
@@ -101,8 +127,27 @@ function LoginForm() {
               size="lg"
               className="w-full"
             >
-              Send Login Link
+              {usePassword ? 'Sign In' : 'Send Login Link'}
             </Button>
+
+            <div className="mt-4 text-center space-y-2">
+              <button
+                type="button"
+                onClick={() => setUsePassword(!usePassword)}
+                className="text-sm text-slate-blue hover:underline block w-full"
+              >
+                {usePassword ? 'Use magic link instead' : 'Sign in with password'}
+              </button>
+              
+              {usePassword && (
+                <a
+                  href="/auth/forgot-password"
+                  className="text-sm text-slate hover:underline block"
+                >
+                  Forgot your password?
+                </a>
+              )}
+            </div>
           </form>
         ) : (
           <div className="text-center">

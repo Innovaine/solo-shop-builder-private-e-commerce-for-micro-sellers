@@ -26,7 +26,9 @@ export async function POST(request: NextRequest) {
   let event: Stripe.Event
 
   try {
-    // Verify webhook signature (NFR-6)
+    // FR-25 & NFR-6: Verify webhook signature using HMAC
+    // Stripe.webhooks.constructEvent validates the signature
+    // and throws if invalid/tampered
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
   } catch (err: any) {
     console.error('Webhook signature verification failed:', err.message)

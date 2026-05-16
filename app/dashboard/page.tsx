@@ -11,6 +11,7 @@ import { Card } from '@/components/ui/Card'
 import { Header } from '@/components/ui/Header'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
+import AnalyticsCards from '@/components/AnalyticsCards'
 
 export default async function DashboardPage() {
   // Check authentication
@@ -61,6 +62,9 @@ export default async function DashboardPage() {
           <h2 className="text-3xl font-bold text-charcoal mb-2">Dashboard</h2>
           <p className="text-slate">Manage your shop and products</p>
         </div>
+
+        {/* Analytics */}
+        <AnalyticsCards />
 
         {/* Shop info card */}
         <Card padding="lg" className="mb-6">

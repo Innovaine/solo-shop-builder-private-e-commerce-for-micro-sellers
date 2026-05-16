@@ -161,6 +161,16 @@ export default function OrdersPage() {
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-charcoal">Orders</h1>
+          
+          {orders.length > 0 && (
+            <a
+              href="/api/orders/export"
+              download
+              className="inline-flex items-center px-4 py-2 bg-slate-blue text-white rounded-lg hover:bg-slate-blue/90 transition-colors text-sm font-semibold"
+            >
+              Export CSV
+            </a>
+          )}
         </div>
 
         {orders.length === 0 ? (

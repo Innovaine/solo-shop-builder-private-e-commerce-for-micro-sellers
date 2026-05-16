@@ -13,13 +13,18 @@ datasource db {
 
 // Seller account - one per email
 model Seller {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                   String    @id @default(uuid())
+  email                String    @unique
+  passwordHash         String?   // Optional: allows both magic link + password auth (FR-21)
+  passwordResetToken   String?   @unique // FR-23: Password reset token
+  passwordResetExpires DateTime? // FR-23: Password reset token expiration
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
   
   shops     Shop[]
   tokens    AuthToken[]
+  
+  @@index([passwordResetToken])
 }
 
 // Shop - single-tenant storefront

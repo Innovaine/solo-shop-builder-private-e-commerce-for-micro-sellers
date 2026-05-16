@@ -93,6 +93,11 @@ export const RATE_LIMITS = {
     windowMs: 15 * 60 * 1000, // per 15 minutes
     keyPrefix: 'auth:signup',
   },
+  AUTH_LOGIN: {
+    maxRequests: 5, // 5 password login attempts (FR-21)
+    windowMs: 15 * 60 * 1000, // per 15 minutes
+    keyPrefix: 'auth:login',
+  },
   AUTH_VERIFY: {
     maxRequests: 10, // 10 verification attempts
     windowMs: 15 * 60 * 1000, // per 15 minutes

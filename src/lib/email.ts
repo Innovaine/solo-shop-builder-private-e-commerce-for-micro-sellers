@@ -38,3 +38,30 @@ export async function sendMagicLinkEmail(
 
   await transporter.sendMail(mailOptions)
 }
+
+export async function sendPasswordResetEmail(
+  email: string,
+  token: string
+): Promise<void> {
+  const appUrl = process.env.APP_URL || 'http://localhost:3000'
+  const resetLink = `${appUrl}/auth/reset-password?token=${token}`
+
+  const mailOptions = {
+    from: process.env.SMTP_FROM || 'noreply@soloshop.com',
+    to: email,
+    subject: 'Reset your Solo Shop password',
+    text: `Click this link to reset your password:\n\n${resetLink}\n\nThis link expires in 1 hour.\n\nIf you didn't request this, you can safely ignore this email.`,
+    html: `
+      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #3B4C63;">Reset your password</h2>
+        <p>Click the button below to reset your Solo Shop password:</p>
+        <a href="${resetLink}" style="display: inline-block; background-color: #10B981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin: 16px 0;">Reset Password</a>
+        <p style="color: #64748B; font-size: 14px;">Or copy and paste this link into your browser:<br/>${resetLink}</p>
+        <p style="color: #64748B; font-size: 12px;">This link expires in 1 hour.</p>
+        <p style="color: #64748B; font-size: 12px;">If you didn't request a password reset, you can safely ignore this email.</p>
+      </div>
+    `,
+  }
+
+  await transporter.sendMail(mailOptions)
+}

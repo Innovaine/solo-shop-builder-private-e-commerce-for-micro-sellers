@@ -200,6 +200,77 @@
       line-height: 1.6;
     }
 
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 32px;
+      border-bottom: 2px solid #E2E8F0;
+    }
+    .tab {
+      flex: 1;
+      padding: 16px;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    .tab.active {
+      color: #10B981;
+      border-bottom-color: #10B981;
+    }
+    .tab:hover:not(.active) {
+      color: #1F2937;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Input Password */
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.2);
+    }
+    input[type="password"]::placeholder {
+      color: #CBD5E1;
+    }
+
+    /* Forgot Password Link */
+    .forgot-password {
+      text-align: right;
+      margin-top: -16px;
+      margin-bottom: 24px;
+    }
+    .forgot-password a {
+      font-size: 13px;
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+
     /* Mobile */
     @media (max-width: 480px) {
       .auth-container {
@@ -207,6 +278,13 @@
       }
       .auth-title {
         font-size: 24px;
+      }
+      .tabs {
+        gap: 0;
+      }
+      .tab {
+        padding: 12px;
+        font-size: 13px;
       }
     }
   </style>
@@ -219,38 +297,90 @@
       <p class="auth-subtitle">or create a new account</p>
     </div>
 
-    <form id="loginForm">
-      <div class="info-box">
-        <strong>No password needed.</strong> We'll send you a login link via email.
-      </div>
+    <!-- Login Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="magic-link">Magic Link</button>
+      <button class="tab" data-tab="password">Password</button>
+    </div>
 
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="you@example.com"
-          required
-          autocomplete="email"
-        />
-      </div>
-
-      <button type="submit" class="submit-btn">Send Login Link</button>
-
-      <div class="divider">
-        <span>already have a shop?</span>
-      </div>
-
-      <div class="success-state" id="successState">
-        <div class="success-icon">✓</div>
-        <div class="success-message">Check your email</div>
-        <div class="success-detail">
-          We've sent a login link to <strong id="emailDisplay"></strong>.<br/>
-          Click the link to sign in or create your shop.
+    <!-- Magic Link Tab -->
+    <div id="magic-link" class="tab-content active">
+      <form id="magicLinkForm">
+        <div class="info-box">
+          <strong>No password needed.</strong> We'll send you a login link via email.
         </div>
-      </div>
-    </form>
+
+        <div class="form-group">
+          <label for="magicEmail">Email Address</label>
+          <input
+            type="email"
+            id="magicEmail"
+            name="email"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <button type="submit" class="submit-btn">Send Login Link</button>
+
+        <div class="success-state" id="magicSuccessState">
+          <div class="success-icon">✓</div>
+          <div class="success-message">Check your email</div>
+          <div class="success-detail">
+            We've sent a login link to <strong id="magicEmailDisplay"></strong>.<br/>
+            Click the link to sign in or create your shop.
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Password Tab -->
+    <div id="password" class="tab-content">
+      <form id="passwordForm">
+        <div class="info-box">
+          💡 <strong>Sign in with your password</strong> for faster access next time.
+        </div>
+
+        <div class="form-group">
+          <label for="passwordEmail">Email Address</label>
+          <input
+            type="email"
+            id="passwordEmail"
+            name="email"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input
+            type="password"
+            id="passwordInput"
+            name="password"
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+
+        <div class="forgot-password">
+          <a href="/forgot-password">Forgot your password?</a>
+        </div>
+
+        <button type="submit" class="submit-btn">Sign In</button>
+
+        <div class="success-state" id="passwordSuccessState">
+          <div class="success-icon">✓</div>
+          <div class="success-message">Welcome back!</div>
+          <div class="success-detail">
+            You're now signed in. Redirecting to your dashboard...
+          </div>
+        </div>
+      </form>
+    </div>
 
     <div class="auth-footer">
       <p>New to Solo Shop? <a href="/">Learn more</a></p>
@@ -259,16 +389,42 @@
 
   <script>
     // This is a design reference — the form submission will be wired by the engineer.
-    // The success state shows what the user sees after submitting their email.
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const tabName = this.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and content
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        this.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+      });
+    });
+
+    // Magic Link Form
+    document.getElementById('magicLinkForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      document.getElementById('emailDisplay').textContent = email;
+      const email = document.getElementById('magicEmail').value;
+      document.getElementById('magicEmailDisplay').textContent = email;
       
       // Hide form, show success
-      document.querySelectorAll('.form-group').forEach(el => el.classList.add('hide'));
-      document.querySelector('.submit-btn').classList.add('hide');
-      document.getElementById('successState').classList.add('show');
+      this.querySelectorAll('.form-group').forEach(el => el.classList.add('hide'));
+      this.querySelector('.submit-btn').classList.add('hide');
+      document.getElementById('magicSuccessState').classList.add('show');
+    });
+
+    // Password Form
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Hide form, show success
+      this.querySelectorAll('.form-group').forEach(el => el.classList.add('hide'));
+      this.querySelector('.submit-btn').classList.add('hide');
+      document.getElementById('passwordSuccessState').classList.add('show');
     });
   </script>
 </body>
