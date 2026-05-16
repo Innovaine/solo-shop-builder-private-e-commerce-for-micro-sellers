@@ -17612,3 +17612,19 @@ STDOUT:
  create mode 100644 test-results/day-24/report.md
 ```
 Full output: [`server-runs/2026-05-16T18-50-34-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T18-50-34-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T18:50:51.605Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7492c7a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2735ms)
+```
+docker ps -a | grep solo-shop && echo "---" && docker images | grep solo-shop | head -3
+```
+STDOUT:
+```
+3ef6b3dddfa7   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About an hour ago   Up About an hour       0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+d6af22021ce2   postgres:16-alpine                                           "docker-entrypoint.s…"   3 hours ago         Up 3 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+---
+solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest   db1e07827eda        893MB          214MB   U
+```
+Full output: [`server-runs/2026-05-16T18-50-51-app-docker-ps--a-grep-solo-shop-echo-----doc-1.log`](server-runs/2026-05-16T18-50-51-app-docker-ps--a-grep-solo-shop-echo-----doc-1.log)
