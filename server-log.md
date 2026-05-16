@@ -18352,3 +18352,26 @@ STDOUT:
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-16T19-44-26-app-tail--150-tmp-day26-review-build.log-gre-1.log`](server-runs/2026-05-16T19-44-26-app-tail--150-tmp-day26-review-build.log-gre-1.log)
+
+## 2026-05-16T19:44:45.488Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fd621ad` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3484ms)
+```
+tail -200 /tmp/day26-review-build.log | grep -B 10 "ERROR:" | tail -20
+```
+STDOUT:
+```
+#15 16.86 
+#15 16.86 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
+#15 16.86 
+#15 16.86    Generating static pages (4/19) 
+#15 16.87    Generating static pages (9/19) 
+#15 16.93    Generating static pages (14/19) 
+#15 16.93  ✓ Generating static pages (19/19)
+#15 16.94 
+#15 16.94 > Export encountered errors on following paths:
+#15 16.94 	/auth/verify/page: /auth/verify
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T19-44-45-app-tail--200-tmp-day26-review-build.log-gre-1.log`](server-runs/2026-05-16T19-44-45-app-tail--200-tmp-day26-review-build.log-gre-1.log)
