@@ -15590,3 +15590,24 @@ STDOUT:
 16.64 > Export encountered errors on following paths:
 ```
 Full output: [`server-runs/2026-05-16T15-30-42-app-tail--200-tmp-day23-build-v5.log-grep--B-1.log`](server-runs/2026-05-16T15-30-42-app-tail--200-tmp-day23-build-v5.log-grep--B-1.log)
+
+## 2026-05-16T15:31:04.492Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d97df06` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2568ms)
+```
+tail -250 /tmp/day23-build-v5.log | grep -A 3 "Export encountered errors"
+```
+STDOUT:
+```
+#16 16.64 > Export encountered errors on following paths:
+#16 16.64 	/checkout/success/page: /checkout/success
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+--
+16.64 > Export encountered errors on following paths:
+16.64 	/checkout/success/page: /checkout/success
+------
+Dockerfile:24
+```
+Full output: [`server-runs/2026-05-16T15-31-04-app-tail--250-tmp-day23-build-v5.log-grep--A-1.log`](server-runs/2026-05-16T15-31-04-app-tail--250-tmp-day23-build-v5.log-grep--A-1.log)
