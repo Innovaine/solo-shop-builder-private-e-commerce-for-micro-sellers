@@ -10304,3 +10304,17 @@ STDOUT:
 Welcome
 ```
 Full output: [`server-runs/2026-05-16T01-06-08-app-curl--s-http-localhost-3000-api-health-h-1.log`](server-runs/2026-05-16T01-06-08-app-curl--s-http-localhost-3000-api-health-h-1.log)
+
+## 2026-05-16T01:06:25.338Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5dd6316` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exit 1, 2572ms)
+```
+echo "=== Check products in DB ===" && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT id, title, price FROM products LIMIT 3;" && echo "=== Test product detail page ===" && curl -sI http://localhost:3000/shop/test-shop/product/prod-1 | head -5
+```
+STDOUT:
+```
+=== Check products in DB ===
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T01-06-25-app-echo-Check-products-in-DB-docker-exec-so-1.log`](server-runs/2026-05-16T01-06-25-app-echo-Check-products-in-DB-docker-exec-so-1.log)
