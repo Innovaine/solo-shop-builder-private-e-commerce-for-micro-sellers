@@ -20761,3 +20761,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `d5a0541` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps grep solo-shop | head -5
 ```
+
+## 2026-05-16T22:58:42.919Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `019c85b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2177ms)
+```
+curl -sf http://localhost:3000/api/health 2>&1 | head -5
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-16T22:58:42.917Z","responseTime":"191ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"190ms"}}}
+```
+Full output: [`server-runs/2026-05-16T22-58-42-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-16T22-58-42-app-curl--sf-http-localhost-3000-api-health--1.log)
