@@ -87,7 +87,7 @@ export default function TrackOrderPage() {
   if (error || !order) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center p-6">
-        <Card padding="xl" variant="elevated" className="max-w-md w-full text-center">
+        <Card padding="lg" variant="elevated" className="max-w-md w-full text-center">
           <div className="text-6xl mb-6">😕</div>
           <h1 className="text-3xl font-bold text-charcoal mb-4">Order Not Found</h1>
           <p className="text-slate">{error || 'This order does not exist or has been deleted.'}</p>
@@ -101,7 +101,7 @@ export default function TrackOrderPage() {
   return (
     <div className="min-h-screen bg-cream py-12 px-6">
       <div className="max-w-3xl mx-auto">
-        <Card padding="xl" variant="elevated">
+        <Card padding="lg" variant="elevated">
           <div className="text-center mb-8">
             <div className="text-6xl mb-4">{statusDetails.emoji}</div>
             <h1 className={`text-4xl font-bold mb-2 ${statusDetails.color}`}>

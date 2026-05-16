@@ -55,7 +55,7 @@ export default function VerifyPage() {
 
   return (
     <div className="min-h-screen bg-cream flex items-center justify-center p-6">
-      <Card padding="xl" variant="elevated" className="max-w-md w-full">
+      <Card padding="lg" variant="elevated" className="max-w-md w-full">
         <div className="text-center">
           {status === 'verifying' && (
             <>
