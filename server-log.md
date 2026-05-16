@@ -13360,3 +13360,39 @@ a98ba37ee118   postgres:16-alpine                                           "doc
  13:19:21 up 3 days, 14:22,  4 users,  load average: 0.00, 0.00, 0.00
 ```
 Full output: [`server-runs/2026-05-16T13-19-21-app-docker-ps-grep-solo-shop-df--h-tail--1-u-1.log`](server-runs/2026-05-16T13-19-21-app-docker-ps-grep-solo-shop-df--h-tail--1-u-1.log)
+
+## 2026-05-16T13:19:38.685Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ae64a23` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3790ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+```
+STDOUT:
+```
+Updating 04ec191..ae64a23
+Fast-forward
+ app/components/AddToCartButton.tsx           |  78 +++++++
+ app/components/CartButton.tsx                | 212 +++++++++++++++++
+ app/shop/[slug]/page.tsx                     |   9 +-
+ app/shop/[slug]/product/[productId]/page.tsx |  39 ++--
+ day-19/_index.md                             |  17 ++
+ day-19/_plan.md                              |  39 ++--
+ day-19/engineering.md                        | 338 ++++-----------------------
+ day-19/review.md                             | 125 ++++++++++
+ day-20/_plan.md                              |  33 +++
+ day-20/engineering.md                        |  81 +++++++
+ server-log.md                                | 224 ++++++++++++++++++
+ src/lib/cart.ts                              | 162 +++++++++++++
+ tests/web/cart.spec.ts                       | 283 ++++++++++++++++++++++
+ 13 files changed, 1306 insertions(+), 334 deletions(-)
+ create mode 100644 app/components/AddToCartButton.tsx
+ create mode 100644 app/components/CartButton.tsx
+ create mode 100644 day-19/_index.md
+ create mode 100644 day-19/review.md
+ create mode 100644 day-20/_plan.md
+ create mode 100644 day-20/engineering.md
+ create mode 100644 src/lib/cart.ts
+ create mode 100644 tests/web/cart.spec.ts
+```
+Full output: [`server-runs/2026-05-16T13-19-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-19-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
