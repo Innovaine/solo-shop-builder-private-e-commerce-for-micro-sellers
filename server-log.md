@@ -10728,3 +10728,20 @@ kill -0 $(cat /tmp/npm-install-day16-v2.pid) 2>/dev/null && echo "STILL RUNNING"
 tail -30 /tmp/npm-install-day16-v2.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-16T01:29:43.252Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5b53b65` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2633ms)
+```
+kill -0 $(cat /tmp/npm-install-day16-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/npm-install-day16-v2.log | grep -E "added|removed|changed|clsx|DONE|error" || tail -15 /tmp/npm-install-day16-v2.log
+```
+STDOUT:
+```
+DONE
+npm error code EINTEGRITY
+npm error sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== integrity checksum failed when using sha512: wanted sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== but got sha512-lgxkKZ6IEygVcw6IZZUlPIfLQ9hjSYAtHjZ5r64sCLDgVzsPFCi2XBBJgzPMkOQ5RHzUD4E/dVdpn9+ez8tk1A==. (22478 bytes)
+npm error A complete log of this run can be found in: /home/engineer/.npm/_logs/2026-05-16T01_28_20_857Z-debug-0.log
+```
+Full output: [`server-runs/2026-05-16T01-29-43-app-kill--0-cat-tmp-npm-install-day16-v2.pid-1.log`](server-runs/2026-05-16T01-29-43-app-kill--0-cat-tmp-npm-install-day16-v2.pid-1.log)
