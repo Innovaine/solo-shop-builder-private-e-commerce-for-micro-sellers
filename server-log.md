@@ -16164,3 +16164,29 @@ _Pre-SSH: warehouse pushed to GitHub as commit `0281710` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx prisma migrate status
 ```
 ERROR: command exited 1
+
+## 2026-05-16T17:37:50.950Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `abdd827` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3888ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la node_modules 2>&1 | head -20 && echo "---" && npx prisma --version 2>&1
+```
+STDOUT:
+```
+ls: cannot access 'node_modules': No such file or directory
+---
+Prisma schema loaded from prisma/schema.prisma.
+prisma               : 7.8.0
+@prisma/client       : 5.14.0
+Operating System     : linux
+Architecture         : x64
+Node.js              : v24.15.0
+TypeScript           : unknown
+Query Compiler       : enabled
+PSL                  : @prisma/prisma-schema-wasm 7.8.0-6.3c6e192761c0362d496ed980de936e2f3cebcd3a
+Schema Engine        : schema-engine-cli 3c6e192761c0362d496ed980de936e2f3cebcd3a (at ../.npm/_npx/2778af9cee32ff87/node_modules/@prisma/engines/schema-engine-debian-openssl-3.0.x)
+Default Engines Hash : 3c6e192761c0362d496ed980de936e2f3cebcd3a
+Studio               : 0.27.3
+```
+Full output: [`server-runs/2026-05-16T17-37-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-37-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
