@@ -13241,3 +13241,19 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 Full output: [`server-runs/2026-05-16T02-53-26-app-curl--sI-http-localhost-3000-head--15-1.log`](server-runs/2026-05-16T02-53-26-app-curl--sI-http-localhost-3000-head--15-1.log)
+
+## 2026-05-16T02:54:08.685Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1703845` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 4406ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup npm test -- tests/web/scaling-day19.spec.ts > /tmp/day19-review-tests.log 2>&1 &
+echo $! > /tmp/day19-review-tests.pid
+sleep 2
+cat /tmp/day19-review-tests.pid
+```
+STDOUT:
+```
+900392
+```
+Full output: [`server-runs/2026-05-16T02-54-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-54-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
