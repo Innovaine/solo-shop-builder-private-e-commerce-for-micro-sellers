@@ -20250,3 +20250,25 @@ _Pre-SSH: warehouse pushed to GitHub as commit `1318209` so the server's `git pu
 ```
 curl -s http://localhost:3000/auth/login | grep -A 2 -B 2 'type="email"' | head -20
 ```
+
+## 2026-05-16T21:46:09.238Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7e71846` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3195ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day29-pages-smoke.spec.ts --reporter=list --output ~/test-output > /tmp/day29-smoke.log 2>&1 &
+echo $! > /tmp/day29-smoke.pid
+echo "Started Day 29 smoke test, PID=$(cat /tmp/day29-smoke.pid)"
+```
+STDOUT:
+```
+Updating 05c0416..7e71846
+Fast-forward
+ server-log.md                       | 138 ++++++++++++++++++++++++++++++++++++
+ tests/web/day29-pages-smoke.spec.ts | 100 ++++++++++++++++++++++++++
+ 2 files changed, 238 insertions(+)
+ create mode 100644 tests/web/day29-pages-smoke.spec.ts
+Started Day 29 smoke test, PID=1106495
+```
+Full output: [`server-runs/2026-05-16T21-46-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-46-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
