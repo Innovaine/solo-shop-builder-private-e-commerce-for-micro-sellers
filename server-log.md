@@ -12011,3 +12011,54 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-16T02-17-13-app-kill--0-cat-tmp-day17-playwright.pid-2-d-1.log`](server-runs/2026-05-16T02-17-13-app-kill--0-cat-tmp-day17-playwright.pid-2-d-1.log)
+
+## 2026-05-16T02:17:32.735Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `da5807b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3435ms) _(showing tail — full 2,165B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+echo "---"
+ls -lh tests/web/ 2>/dev/null || echo "tests/web/ directory not found"
+```
+STDOUT:
+```
+…shop/page.tsx            |  51 +-
+ app/dashboard/page.tsx                        |  57 +-
+ app/dashboard/products/new/page.tsx           |  34 +-
+ app/dashboard/products/page.tsx               |  38 +-
+ app/globals.css                               | 130 +----
+ app/page.tsx                                  |  11 +-
+ app/shop/[slug]/page.tsx                      |   6 +-
+ app/shop/[slug]/product/[productId]/page.tsx  |  30 +-
+ day-16/_index.md                              |  17 +
+ day-16/test.md                                | 460 +++++++++++++++
+ day-17/_plan.md                               |  32 ++
+ day-17/engineering.md                         | 296 ++++++++++
+ day-17/review.md                              |  28 +
+ server-log.md                                 | 788 ++++++++++++++++++++++++++
+ test-results/day-16/report.md                 | 133 +++++
+ tests/web/day17-component-integration.spec.ts | 179 ++++++
+ tsconfig.json                                 |   2 +-
+ 18 files changed, 2082 insertions(+), 251 deletions(-)
+ create mode 100644 day-16/_index.md
+ create mode 100644 day-16/test.md
+ create mode 100644 day-17/_plan.md
+ create mode 100644 day-17/engineering.md
+ create mode 100644 day-17/review.md
+ create mode 100644 test-results/day-16/report.md
+ create mode 100644 tests/web/day17-component-integration.spec.ts
+---
+total 68K
+-rw-rw-r-- 1 tester tester 3.1K May 15 23:09 auth-flow.spec.ts
+-rw-rw-r-- 1 tester tester 4.0K May 16 01:47 day16-smoke.spec.ts
+-rw-rw-r-- 1 tester tester 4.6K May 16 01:42 day16-ui-components.spec.ts
+-rw-rw-r-- 1 tester tester 7.2K May 16 02:17 day17-component-integration.spec.ts
+-rw-rw-r-- 1 tester tester 4.9K May 15 23:09 public-storefront.spec.ts
+-rw-rw-r-- 1 tester tester 4.5K May 15 23:09 scaling-day12.spec.ts
+-rw-rw-r-- 1 tester tester 6.7K May 15 23:37 scaling-day13.spec.ts
+-rw-rw-r-- 1 tester tester 3.6K May 16 01:15 scaling-day15.spec.ts
+-rw-rw-r-- 1 tester tester 7.8K May 15 23:09 session-management.spec.ts
+-rw-rw-r-- 1 tester tester 5.9K May 15 23:09 shop-creation.spec.ts
+```
+Full output: [`server-runs/2026-05-16T02-17-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-17-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
