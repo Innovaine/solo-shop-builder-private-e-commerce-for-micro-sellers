@@ -106,7 +106,7 @@ export default function AnalyticsPage() {
               </div>
               <div className="text-3xl">📦</div>
             </div>
-            <div className="text-4xl font-bold text-slate-blue">
+            <div className="text-4xl font-bold text-slateBlue">
               {analytics?.orderCount || 0}
             </div>
           </Card>
