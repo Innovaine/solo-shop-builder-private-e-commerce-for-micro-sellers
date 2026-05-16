@@ -10383,3 +10383,26 @@ STDOUT:
 APP IS UP
 ```
 Full output: [`server-runs/2026-05-16T01-09-40-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-09-40-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:11:19.367Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6627990` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 26408ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Check if playwright already installed
+if [ ! -d "node_modules/@playwright" ]; then
+  echo "Installing Playwright..."
+  npm install -D @playwright/test >/dev/null 2>&1
+fi
+
+# Create test-results directory
+mkdir -p test-results/day-15
+
+# Run tests in background
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/scaling-day15.spec.ts --reporter=list > /tmp/playwright-day15.log 2>&1" &
+echo $! > /tmp/playwright-day15.pid
+echo "Started Playwright tests, PID=$(cat /tmp/playwright-day15.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
