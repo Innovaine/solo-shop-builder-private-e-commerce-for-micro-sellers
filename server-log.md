@@ -9501,3 +9501,29 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 3 minutes
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 4 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-16T00-01-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-01-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:01:19.267Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `12dabec` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3192ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+echo "=== TEST 1: GET /api/products without shopId (should fail) ===" && \
+curl -s http://localhost:3000/api/products | jq . && \
+echo "" && \
+echo "=== TEST 2: Get a shop ID from database ===" && \
+SHOP_ID=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 \
+  npx prisma db execute --stdin --file /dev/stdin <<< "SELECT id FROM \"Shop\" LIMIT 1;" | head -1) && \
+echo "Using shop ID: $SHOP_ID"
+```
+STDOUT:
+```
+=== TEST 1: GET /api/products without shopId (should fail) ===
+{
+  "error": "Shop ID is required (query param: shopId)"
+}
+
+=== TEST 2: Get a shop ID from database ===
+Using shop ID:
+```
+Full output: [`server-runs/2026-05-16T00-01-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-01-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
