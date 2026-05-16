@@ -16818,3 +16818,15 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-16T17-50-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-50-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:51:45.815Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9cbafe5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 34895ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+mkdir -p ~/test-output-day24
+export PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers
+timeout 120 npx playwright test tests/web/day24-product-order-flow.spec.ts --reporter=list --output ~/test-output-day24 2>&1 | tee /tmp/day24-sync.log
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
