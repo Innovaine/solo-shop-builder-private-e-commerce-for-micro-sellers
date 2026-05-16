@@ -11519,3 +11519,51 @@ STDOUT:
 Started build v2, PID=877673
 ```
 Full output: [`server-runs/2026-05-16T02-03-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-03-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:04:05.938Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8efc363` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 12404ms) _(showing tail — full 8,224B stdout + 0B stderr)_
+```
+sleep 10
+kill -0 $(cat /tmp/day17-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day17-build-v2.log
+```
+STDOUT:
+```
+…es/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#16 14.51     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#16 14.51     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#16 14.51     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+#16 14.51     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+#16 14.51   description: "Route /api/auth/verify couldn't be rendered statically because it accessed `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#16 14.51   digest: 'DYNAMIC_SERVER_USAGE'
+#16 14.51 }
+#16 14.51    Generating static pages (11/15) 
+#16 14.52 prisma:error 
+#16 14.52 Invalid `prisma.$queryRaw()` invocation:
+#16 14.52 
+#16 14.52 
+#16 14.52 Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).
+#16 14.52 Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.
+#16 14.52 
+#16 14.52 Details: libssl.so.1.1: cannot open shared object file: No such file or directory
+#16 14.71 [HEALTH CHECK FAILED] {
+#16 14.71   database: {
+#16 14.71     status: 'error',
+#16 14.71     message: '\n' +
+#16 14.71       'Invalid `prisma.$queryRaw()` invocation:\n' +
+#16 14.71       '\n' +
+#16 14.71       '\n' +
+#16 14.71       'Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).\n' +
+#16 14.71       'Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.\n' +
+#16 14.71       '\n' +
+#16 14.71       'Details: libssl.so.1.1: cannot open shared object file: No such file or directory'
+#16 14.71   },
+#16 14.71   email: { status: 'ok', responseTime: '213ms' }
+#16 14.71 }
+#16 14.71  ✓ Generating static pages (15/15)
+#16 15.17    Finalizing page optimization ...
+#16 15.17    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-16T02-04-05-app-sleep-10-1.log`](server-runs/2026-05-16T02-04-05-app-sleep-10-1.log)
