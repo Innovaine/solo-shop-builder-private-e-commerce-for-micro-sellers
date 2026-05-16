@@ -10098,3 +10098,25 @@ STDOUT:
 Starting containers, PID=861167
 ```
 Full output: [`server-runs/2026-05-16T01-01-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-01-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:02:20.764Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5651619` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5810ms)
+```
+kill -0 $(cat /tmp/compose-up-final.pid) 2>/dev/null && echo "STARTING" || echo "STARTED"
+sleep 3
+curl -sf http://localhost:3000/api/health && echo "API OK" || echo "Waiting for app..."
+echo ""
+echo "=== Test product detail page ==="
+curl -sI http://localhost:3000/shop/test-shop/product/prod-1 | head -1
+```
+STDOUT:
+```
+STARTED
+{"status":"ok","timestamp":"2026-05-16T01:02:20.618Z","responseTime":"297ms","checks":{"database":{"status":"ok","responseTime":"52ms"},"email":{"status":"ok","responseTime":"245ms"}}}API OK
+
+=== Test product detail page ===
+HTTP/1.1 404 Not Found
+```
+Full output: [`server-runs/2026-05-16T01-02-20-app-kill--0-cat-tmp-compose-up-final.pid-2-d-1.log`](server-runs/2026-05-16T01-02-20-app-kill--0-cat-tmp-compose-up-final.pid-2-d-1.log)
