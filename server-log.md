@@ -15940,3 +15940,20 @@ STDOUT:
 Started docker compose up, PID=1014786
 ```
 Full output: [`server-runs/2026-05-16T15-37-35-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T15-37-35-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T15:37:52.738Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d3ae034` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5544ms)
+```
+sleep 3
+kill -0 $(cat /tmp/compose-up-day23.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+docker ps | grep solo-shop
+```
+STDOUT:
+```
+DONE
+cccd39a53b8f   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   51 seconds ago   Restarting (1) 5 seconds ago                                                 solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+5f319186e48e   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago      Up 2 hours (healthy)           0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-16T15-37-52-app-sleep-3-1.log`](server-runs/2026-05-16T15-37-52-app-sleep-3-1.log)
