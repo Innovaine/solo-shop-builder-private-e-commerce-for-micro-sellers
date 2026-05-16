@@ -20546,3 +20546,12 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   7 hours ago   Up 7 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-16T22-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T22-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T22:42:21.928Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `734eca4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12472ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day30-build.log 2>&1 & echo $! > /tmp/day30-build.pid && echo "Build started, PID=$(cat /tmp/day30-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
