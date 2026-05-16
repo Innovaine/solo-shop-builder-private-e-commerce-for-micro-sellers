@@ -9722,3 +9722,39 @@ DONE
 {"status":"ok","timestamp":"2026-05-16T00:51:57.802Z","responseTime":"267ms","checks":{"database":{"status":"ok","responseTime":"50ms"},"email":{"status":"ok","responseTime":"217ms"}}}API OK
 ```
 Full output: [`server-runs/2026-05-16T00-51-57-app-kill--0-cat-tmp-compose-up-day15.pid-2-d-1.log`](server-runs/2026-05-16T00-51-57-app-kill--0-cat-tmp-compose-up-day15.pid-2-d-1.log)
+
+## 2026-05-16T00:52:31.886Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d333bc9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3572ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Get a shop slug from database
+SHOP_SLUG=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 \
+  npx prisma db execute --stdin <<< "SELECT slug FROM \"Shop\" LIMIT 1;" 2>/dev/null | grep -v 'slug' | head -1 | xargs)
+
+echo "Testing shop: $SHOP_SLUG"
+
+# Test storefront page loads
+echo "=== Test 1: Storefront page ==="
+curl -sI http://localhost:3000/shop/$SHOP_SLUG | head -5
+
+# Check if page contains products
+echo ""
+echo "=== Test 2: Check for product grid HTML ==="
+curl -s http://localhost:3000/shop/$SHOP_SLUG | grep -o 'Product Grid\|grid grid-cols\|This shop is empty' | head -3
+```
+STDOUT:
+```
+Testing shop: Script executed successfully.
+=== Test 1: Storefront page ===
+HTTP/1.1 404 Not Found
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+
+=== Test 2: Check for product grid HTML ===
+```
+Full output: [`server-runs/2026-05-16T00-52-31-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-52-31-app-cd-solo-shop-builder-private-e-commerce--1.log)
