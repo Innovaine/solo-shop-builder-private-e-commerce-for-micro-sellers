@@ -10440,3 +10440,71 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-16T01-12-28-app-kill--0-cat-tmp-playwright-day15.pid-2-d-1.log`](server-runs/2026-05-16T01-12-28-app-kill--0-cat-tmp-playwright-day15.pid-2-d-1.log)
+
+## 2026-05-16T01:15:56.984Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `509c2a2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3551ms) _(showing tail — full 4,441B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git pull
+ls -lh tests/web/ | grep day15
+cat tests/web/scaling-day15.spec.ts | head -30
+```
+STDOUT:
+```
+…ate mode 100644 day-14/_plan.md
+ create mode 100644 day-14/design.md
+ create mode 100644 day-14/engineering.md
+ create mode 100644 day-14/review.md
+ create mode 100644 day-15/_plan.md
+ create mode 100644 day-15/design.md
+ create mode 100644 day-15/engineering.md
+ create mode 100644 day-15/review.md
+ create mode 100644 design/branding/typography.html
+ create mode 100644 design/pages/404.html
+ create mode 100644 design/pages/empty.html
+ create mode 100644 design/pages/error.html
+ create mode 100644 design/pages/loading.html
+ create mode 100644 design/pages/order-detail.html
+ create mode 100644 design/pages/order-tracking.html
+ create mode 100644 design/pages/settings.html
+ create mode 100644 design/pages/signup.html
+ create mode 100644 design/system/spacing.md
+ create mode 100644 design/system/test.txt
+ create mode 100644 src/lib/product.ts
+ create mode 100644 test-results/day-13/report.md
+ create mode 100644 tests/web/scaling-day15.spec.ts
+-rw-rw-r-- 1 tester tester 3.6K May 16 01:15 scaling-day15.spec.ts
+import { test, expect } from '@playwright/test';
+
+/**
+ * Day 15 scaling tests — Storefront + Product Detail Pages
+ * 
+ * FR-5: Public shop page displays products in grid
+ * FR-6: Product detail page shows full product info
+ * 
+ * KNOWN ISSUE (from review): product detail returns 404, likely params/Prisma issue
+ */
+
+const BASE_URL = 'http://localhost:3000';
+
+test.describe('Day 15: Public Storefront', () => {
+  
+  test('FR-5: Storefront page renders with grid layout and cart button', async ({ page }) => {
+    // Visit storefront for test shop
+    const response = await page.goto(`${BASE_URL}/shop/test-shop`);
+    expect(response?.status()).toBe(200);
+    
+    // Check page title shows shop name
+    await expect(page.locator('h1')).toContainText('Test Shop');
+    
+    // Check cart button is present
+    await expect(page.locator('button:has-text("Cart")')).toBeVisible();
+    
+    // Check for storefront hero/banner
+    await expect(page.locator('h2:has-text("Welcome to")')).toBeVisible();
+    
+    // Take screenshot
+```
+Full output: [`server-runs/2026-05-16T01-15-56-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-15-56-app-cd-solo-shop-builder-private-e-commerce--1.log)
