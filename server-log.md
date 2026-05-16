@@ -18322,3 +18322,16 @@ STDOUT:
 1069339
 ```
 Full output: [`server-runs/2026-05-16T19-41-49-app-ls--la-tmp-day26-review-build.pid-2-dev--1.log`](server-runs/2026-05-16T19-41-49-app-ls--la-tmp-day26-review-build.pid-2-dev--1.log)
+
+## 2026-05-16T19:42:06.557Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `89e0847` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3594ms)
+```
+kill -0 $(cat /tmp/day26-review-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-16T19-42-06-app-kill--0-cat-tmp-day26-review-build.pid-2-1.log`](server-runs/2026-05-16T19-42-06-app-kill--0-cat-tmp-day26-review-build.pid-2-1.log)
