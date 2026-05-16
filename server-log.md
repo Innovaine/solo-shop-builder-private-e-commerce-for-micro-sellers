@@ -18997,3 +18997,21 @@ Error: EACCES: permission denied, unlink '/tmp/playwright-test-results/.last-run
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-16T20-28-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-28-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T20:28:25.544Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d85e5c6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 3337ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+rm -rf /tmp/playwright-test-results 2>/dev/null || true
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day27-build-fix-smoke.spec.ts --reporter=list --output=/tmp/day27-pw-output
+```
+STDOUT:
+```
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T20-28-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-28-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
