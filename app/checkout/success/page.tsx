@@ -3,15 +3,13 @@
 // Checkout success page - shown after Stripe payment
 // FR-14
 
-export const dynamic = 'force-dynamic'
-
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { clearCart } from '@/lib/cart'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 
-export default function CheckoutSuccessPage() {
+function SuccessContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
@@ -73,5 +71,19 @@ export default function CheckoutSuccessPage() {
         </Button>
       </Card>
     </div>
+  )
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-cream flex items-center justify-center px-4">
+        <Card className="max-w-md w-full text-center p-8">
+          <p className="text-slate">Loading...</p>
+        </Card>
+      </div>
+    }>
+      <SuccessContent />
+    </Suspense>
   )
 }
