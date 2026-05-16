@@ -11695,3 +11695,16 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 docker compose up -d app
 sleep 3
 ```
+
+## 2026-05-16T02:09:50.735Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5354a95` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2702ms)
+```
+timeout 60 bash -c 'until curl -fsS http://localhost:3000/api/health 2>/dev/null; do sleep 2; done' && echo " - OK" || echo " - TIMEOUT"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-16T02:09:50.598Z","responseTime":"187ms","checks":{"database":{"status":"ok","responseTime":"50ms"},"email":{"status":"ok","responseTime":"137ms"}}} - OK
+```
+Full output: [`server-runs/2026-05-16T02-09-50-app-timeout-60-bash--c-until-curl--fsS-http--1.log`](server-runs/2026-05-16T02-09-50-app-timeout-60-bash--c-until-curl--fsS-http--1.log)
