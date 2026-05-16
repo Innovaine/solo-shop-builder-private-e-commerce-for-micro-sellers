@@ -10176,3 +10176,25 @@ le\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-16T01-03-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-03-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:04:11.891Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `17d2db2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2531ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Check product in database
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U soloshop -d soloshop -c "SELECT p.id, p.title, s.slug FROM \"Product\" p JOIN \"Shop\" s ON p.\"shopId\" = s.id WHERE p.id = 'prod-1';"
+
+# Let me also check route params - maybe the slug is case-sensitive or something
+echo ""
+echo "Testing with direct DB query result..."
+```
+STDOUT:
+```
+
+Testing with direct DB query result...
+```
+Full output: [`server-runs/2026-05-16T01-04-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-04-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
