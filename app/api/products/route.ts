@@ -2,6 +2,8 @@
 // GET /api/products - list products for a shop (query param: ?shopId=xxx or use seller's shop)
 // POST /api/products - create new product (seller must be logged in)
 
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'

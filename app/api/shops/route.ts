@@ -3,6 +3,8 @@
 // GET /api/shops - fetch seller's shops
 // Creates shop for authenticated seller
 
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'

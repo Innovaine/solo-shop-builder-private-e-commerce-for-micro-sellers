@@ -1,6 +1,8 @@
 // GET /api/orders - Fetch all orders for the seller's shops
 // FR-17: Seller order dashboard
 
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import prisma from '@/lib/db'

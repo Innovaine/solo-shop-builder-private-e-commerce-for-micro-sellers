@@ -18049,3 +18049,60 @@ kill -0 $(cat /tmp/day26-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DO
 tail -120 /tmp/day26-build-v2.log | grep -A 20 "Export encountered\|Successfully built\|DONE"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T19:31:42.031Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `086a0f9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3037ms) _(showing tail — full 7,438B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day26-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -120 /tmp/day26-build-v2.log
+```
+STDOUT:
+```
+…
+#15 17.34     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 17.34     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 17.34     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#15 17.34     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#15 17.34     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+#15 17.34   description: "Route /api/orders couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 17.34   digest: 'DYNAMIC_SERVER_USAGE'
+#15 17.34 }
+#15 17.36  ✓ Generating static pages (22/22)
+#15 17.37 
+#15 17.37 > Export encountered errors on following paths:
+#15 17.37 	/auth/verify/page: /auth/verify
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+17.34     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+17.34     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+17.34     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+17.34   description: "Route /api/orders couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+17.34   digest: 'DYNAMIC_SERVER_USAGE'
+17.34 }
+17.36  ✓ Generating static pages (22/22)
+17.37 
+17.37 > Export encountered errors on following paths:
+17.37 	/auth/verify/page: /auth/verify
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T19-31-42-app-kill--0-cat-tmp-day26-build-v2.pid-2-dev-1.log`](server-runs/2026-05-16T19-31-42-app-kill--0-cat-tmp-day26-build-v2.pid-2-dev-1.log)
