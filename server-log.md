@@ -11271,3 +11271,60 @@ STDOUT:
 RUNNING
 ```
 Full output: [`server-runs/2026-05-16T01-48-55-app-sleep-10-kill--0-cat-tmp-playwright-smok-1.log`](server-runs/2026-05-16T01-48-55-app-sleep-10-kill--0-cat-tmp-playwright-smok-1.log)
+
+## 2026-05-16T01:49:43.558Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5e99fd4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 27741ms) _(showing tail — full 3,791B stdout + 0B stderr)_
+```
+sleep 10 && tail -150 /tmp/playwright-smoke.log
+```
+STDOUT:
+```
+…ay 16 — Smoke Tests › Can create account and see dashboard 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('input[type="password"]')[22m
+
+
+      53 |     const testEmail = `smoke-test-${Date.now()}@example.com`;
+      54 |     await page.fill('input[type="email"]', testEmail);
+    > 55 |     await page.fill('input[type="password"]', 'TestPass123!');
+         |                ^
+      56 |     
+      57 |     // Submit
+      58 |     await page.click('button[type="submit"]');
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day16-smoke.spec.ts:55:16
+
+    Error Context: test-results/tests-web-day16-smoke-Day--3f2af-e-account-and-see-dashboard/error-context.md
+
+  3) tests/web/day16-smoke.spec.ts:70:7 › Day 16 — Smoke Tests › Can create a shop ─────────────────
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('input[type="password"]')[22m
+
+
+      78 |     const testEmail = `shop-creator-${Date.now()}@example.com`;
+      79 |     await page.fill('input[type="email"]', testEmail);
+    > 80 |     await page.fill('input[type="password"]', 'TestPass123!');
+         |                ^
+      81 |     await page.click('button[type="submit"]');
+      82 |     
+      83 |     await page.waitForURL('**/dashboard', { timeout: 15000 });
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day16-smoke.spec.ts:80:16
+
+    Error Context: test-results/tests-web-day16-smoke-Day-16-—-Smoke-Tests-Can-create-a-shop/error-context.md
+
+  3 failed
+    tests/web/day16-smoke.spec.ts:20:7 › Day 16 — Smoke Tests › Login page loads successfully ──────
+    tests/web/day16-smoke.spec.ts:40:7 › Day 16 — Smoke Tests › Can create account and see dashboard 
+    tests/web/day16-smoke.spec.ts:70:7 › Day 16 — Smoke Tests › Can create a shop ──────────────────
+  2 passed (1.1m)
+```
+Full output: [`server-runs/2026-05-16T01-49-43-app-sleep-10-tail--150-tmp-playwright-smoke.-1.log`](server-runs/2026-05-16T01-49-43-app-sleep-10-tail--150-tmp-playwright-smoke.-1.log)
