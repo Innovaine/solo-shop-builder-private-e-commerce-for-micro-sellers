@@ -46,7 +46,6 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           items: cart.items,
           shopSlug: cart.shopSlug,
-          shopId: cart.shopId,
           customerEmail: customerEmail || undefined,
         }),
       })

@@ -6,12 +6,24 @@ import { prisma } from '@/lib/db'
 
 export async function POST(req: NextRequest) {
   try {
-    const { shopId, items } = await req.json()
+    const { shopSlug, items } = await req.json()
 
-    if (!shopId || !items || items.length === 0) {
+    if (!shopSlug || !items || items.length === 0) {
       return NextResponse.json(
-        { error: 'Shop ID and items are required' },
+        { error: 'Shop slug and items are required' },
         { status: 400 }
+      )
+    }
+
+    // Verify shop exists
+    const shop = await prisma.shop.findUnique({
+      where: { slug: shopSlug },
+    })
+
+    if (!shop) {
+      return NextResponse.json(
+        { error: 'Shop not found' },
+        { status: 404 }
       )
     }
 
@@ -23,7 +35,7 @@ export async function POST(req: NextRequest) {
     const products = await prisma.product.findMany({
       where: {
         id: { in: productIds },
-        shopId,
+        shopId: shop.id,
       },
     })
 
