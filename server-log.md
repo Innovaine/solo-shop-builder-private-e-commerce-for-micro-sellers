@@ -15957,3 +15957,55 @@ cccd39a53b8f   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 5f319186e48e   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago      Up 2 hours (healthy)           0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-16T15-37-52-app-sleep-3-1.log`](server-runs/2026-05-16T15-37-52-app-sleep-3-1.log)
+
+## 2026-05-16T15:38:08.183Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `319a00c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2729ms) _(showing tail — full 2,522B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app
+```
+STDOUT:
+```
+…duction database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260516_add_order_tables` migration started at 2026-05-16 15:37:36.710076 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 1 migration found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260516_add_order_tables` migration started at 2026-05-16 15:37:36.710076 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 1 migration found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260516_add_order_tables` migration started at 2026-05-16 15:37:36.710076 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 1 migration found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260516_add_order_tables` migration started at 2026-05-16 15:37:36.710076 UTC failed
+app-1  | 
+app-1  |
+```
+Full output: [`server-runs/2026-05-16T15-38-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T15-38-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
