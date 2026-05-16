@@ -5,12 +5,12 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 
-export default function VerifyPage() {
+function VerifyContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying')
@@ -111,5 +111,23 @@ export default function VerifyPage() {
         </div>
       </Card>
     </div>
+  )
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-cream flex items-center justify-center p-6">
+        <Card padding="lg" variant="elevated" className="max-w-md w-full">
+          <div className="text-center">
+            <div className="text-6xl mb-6">⏳</div>
+            <h1 className="text-3xl font-bold text-charcoal mb-4">Loading...</h1>
+            <p className="text-slate">Please wait</p>
+          </div>
+        </Card>
+      </div>
+    }>
+      <VerifyContent />
+    </Suspense>
   )
 }

@@ -18686,3 +18686,46 @@ STDOUT:
 17.18 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
 ```
 Full output: [`server-runs/2026-05-16T20-18-01-app-grep--B-20-Export-encountered-errors-tmp-1.log`](server-runs/2026-05-16T20-18-01-app-grep--B-20-Export-encountered-errors-tmp-1.log)
+
+## 2026-05-16T20:19:01.067Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5bce2b1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2872ms) _(showing tail — full 2,846B stdout + 0B stderr)_
+```
+grep -B 30 "Export encountered errors" /tmp/day27-build.log | tail -40
+```
+STDOUT:
+```
+….18  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/auth/verify". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+#15 17.18     at o (/app/.next/server/chunks/471.js:1:10403)
+#15 17.18     at d (/app/.next/server/chunks/471.js:1:21262)
+#15 17.18     at c (/app/.next/server/app/auth/verify/page.js:1:2347)
+#15 17.18     at nj (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+#15 17.18     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+#15 17.18     at nN (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+#15 17.18     at nI (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47010)
+#15 17.18     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47717)
+#15 17.18     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+#15 17.18     at nN (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+#15 17.18 
+#15 17.18 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
+#15 17.18 
+#15 17.18    Generating static pages (13/18) 
+#15 17.22  ✓ Generating static pages (18/18)
+#15 17.23 
+#15 17.23 > Export encountered errors on following paths:
+#15 17.23 	/auth/verify/page: /auth/verify
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+17.18     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+17.18     at nN (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+17.18 
+17.18 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
+17.18 
+17.18    Generating static pages (13/18) 
+17.22  ✓ Generating static pages (18/18)
+17.23 
+17.23 > Export encountered errors on following paths:
+```
+Full output: [`server-runs/2026-05-16T20-19-01-app-grep--B-30-Export-encountered-errors-tmp-1.log`](server-runs/2026-05-16T20-19-01-app-grep--B-30-Export-encountered-errors-tmp-1.log)
