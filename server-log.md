@@ -9974,3 +9974,19 @@ echo $! > /tmp/day15-rebuild.pid
 echo "Rebuilding with latest code, PID=$(cat /tmp/day15-rebuild.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T00:58:46.967Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `542e0d9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2534ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose down > /tmp/compose-down.log 2>&1 &
+echo $! > /tmp/compose-down.pid
+echo "Stopping containers, PID=$(cat /tmp/compose-down.pid)"
+```
+STDOUT:
+```
+Stopping containers, PID=860381
+```
+Full output: [`server-runs/2026-05-16T00-58-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-58-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
