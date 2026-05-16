@@ -10829,3 +10829,41 @@ STDOUT:
 Started build, PID=868820
 ```
 Full output: [`server-runs/2026-05-16T01-33-23-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-33-23-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:33:50.179Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5c28cc3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3687ms) _(showing tail — full 3,452B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day16-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/day16-build.log
+```
+STDOUT:
+```
+…e required `libssl` system library in your system. Please install openssl and try again.\n' +
+#16 14.41       '\n' +
+#16 14.41       'Details: libssl.so.1.1: cannot open shared object file: No such file or directory'
+#16 14.41   },
+#16 14.41   email: { status: 'ok', responseTime: '149ms' }
+#16 14.41 }
+#16 14.41    Generating static pages (7/15) 
+#16 14.42 Token verification error: q [Error]: Dynamic server usage: Route /api/auth/verify couldn't be rendered statically because it accessed `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#16 14.42     at Object.get (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38289)
+#16 14.42     at u (/app/.next/server/app/api/auth/verify/route.js:1:871)
+#16 14.42     at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34672
+#16 14.42     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#16 14.42     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#16 14.42     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#16 14.42     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#16 14.42     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#16 14.42     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+#16 14.42     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+#16 14.42   description: "Route /api/auth/verify couldn't be rendered statically because it accessed `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#16 14.42   digest: 'DYNAMIC_SERVER_USAGE'
+#16 14.42 }
+#16 14.42    Generating static pages (11/15) 
+#16 14.43  ✓ Generating static pages (15/15)
+#16 14.58    Finalizing page optimization ...
+#16 14.58    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-16T01-33-50-app-kill--0-cat-tmp-day16-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T01-33-50-app-kill--0-cat-tmp-day16-build.pid-2-dev-nu-1.log)
