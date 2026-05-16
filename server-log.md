@@ -16155,3 +16155,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `3ea7a47` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx prisma migrate resolve --rolled-back "20260516_add_order_tables"
 ```
 ERROR: command exited 1
+
+## 2026-05-16T17:37:26.038Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0281710` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 3989ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx prisma migrate status
+```
+ERROR: command exited 1
