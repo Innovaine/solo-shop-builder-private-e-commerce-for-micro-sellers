@@ -13257,3 +13257,12 @@ STDOUT:
 900392
 ```
 Full output: [`server-runs/2026-05-16T02-54-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-54-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:55:18.778Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3a824d7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 54719ms)
+```
+sleep 15 && kill -0 $(cat /tmp/day19-review-tests.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
