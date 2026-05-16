@@ -3,6 +3,8 @@
 // Checkout page - displays cart and triggers Stripe checkout
 // FR-13 & FR-14
 
+export const dynamic = 'force-dynamic'
+
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { getCart, getCartTotal, removeFromCart } from '@/lib/cart'

@@ -3,6 +3,8 @@
 // Seller order dashboard - view and manage orders
 // FR-17: Order dashboard with status updates
 
+export const dynamic = 'force-dynamic'
+
 import { useState, useEffect } from 'react'
 import Header from '@/components/ui/Header'
 import Card from '@/components/ui/Card'

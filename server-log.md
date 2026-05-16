@@ -15611,3 +15611,35 @@ STDOUT:
 Dockerfile:24
 ```
 Full output: [`server-runs/2026-05-16T15-31-04-app-tail--250-tmp-day23-build-v5.log-grep--A-1.log`](server-runs/2026-05-16T15-31-04-app-tail--250-tmp-day23-build-v5.log-grep--A-1.log)
+
+## 2026-05-16T15:31:19.925Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `eb65330` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2436ms)
+```
+grep -B 3 "checkout/success" /tmp/day23-build-v5.log | head -20
+```
+STDOUT:
+```
+#16 16.30   digest: 'DYNAMIC_SERVER_USAGE'
+#16 16.30 }
+#16 16.46    Generating static pages (5/21) 
+#16 16.47  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/checkout/success". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+#16 16.47     at o (/app/.next/server/chunks/471.js:1:10403)
+#16 16.47     at d (/app/.next/server/chunks/471.js:1:21262)
+#16 16.47     at c (/app/.next/server/app/checkout/success/page.js:1:2341)
+--
+#16 16.47     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+#16 16.47     at nN (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+#16 16.47 
+#16 16.47 Error occurred prerendering page "/checkout/success". Read more: https://nextjs.org/docs/messages/prerender-error
+--
+#16 16.63  ✓ Generating static pages (21/21)
+#16 16.64 
+#16 16.64 > Export encountered errors on following paths:
+#16 16.64 	/checkout/success/page: /checkout/success
+--
+16.63  ✓ Generating static pages (21/21)
+16.64
+```
+Full output: [`server-runs/2026-05-16T15-31-19-app-grep--B-3-checkout-success-tmp-day23-bui-1.log`](server-runs/2026-05-16T15-31-19-app-grep--B-3-checkout-success-tmp-day23-bui-1.log)

@@ -3,6 +3,8 @@
 // Checkout success page - shown after Stripe payment
 // FR-14
 
+export const dynamic = 'force-dynamic'
+
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { clearCart } from '@/lib/cart'
