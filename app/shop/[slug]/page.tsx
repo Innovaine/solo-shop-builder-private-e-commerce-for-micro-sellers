@@ -3,10 +3,10 @@
 // Day 17: Integrated UI components (Button)
 
 import { notFound } from 'next/navigation'
-import prisma from '@/src/lib/db'
+import { prisma } from '@/lib/db'
 import Link from 'next/link'
-import { Button } from '@/app/components/ui/Button'
-import { CartButton } from '@/app/components/CartButton'
+import { Button } from '@/components/ui/Button'
+import { CartButton } from '@/components/CartButton'
 
 export default async function ShopPage({
   params,

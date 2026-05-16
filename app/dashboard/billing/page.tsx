@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Header, Card, EmptyState } from '@/app/components/ui';
+import { Header } from '@/components/ui/Header';
+import { Card } from '@/components/ui/Card';
+import { EmptyState } from '@/components/ui/EmptyState';
 
 interface BillingData {
   totalRevenue: number;
