@@ -1,6 +1,8 @@
 // Seller dashboard - shows shop info and management links
 // Requires authentication
 
+export const dynamic = 'force-dynamic'
+
 import { redirect } from 'next/navigation'
 import { getSession } from '@/lib/auth'
 import { prisma } from '@/lib/db'

@@ -1,6 +1,8 @@
 // POST /api/checkout - Create Stripe checkout session
 // FR-13 & FR-14: Stripe Checkout integration
 
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import prisma from '@/lib/db'

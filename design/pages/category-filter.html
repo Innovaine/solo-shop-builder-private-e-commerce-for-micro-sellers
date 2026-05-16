@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Filter — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      color: #1F2937;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .description {
+      color: #64748B;
+      font-size: 16px;
+      margin-bottom: 48px;
+      max-width: 600px;
+    }
+
+    /* Filter Section */
+    .filter-section {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+
+    .filter-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .category-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .category-tag {
+      background: white;
+      border: 1px solid #E2E8F0;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .category-tag:hover {
+      border-color: #3B4C63;
+      color: #3B4C63;
+      background: #F9FAFB;
+    }
+
+    .category-tag.active {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+      font-weight: 600;
+    }
+
+    /* Dropdown Variant */
+    .dropdown-section {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+
+    .dropdown-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+
+    select {
+      padding: 12px 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+      color: #1F2937;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      max-width: 300px;
+    }
+
+    select:hover {
+      border-color: #3B4C63;
+      background: #F9FAFB;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+
+    /* Product Grid Result */
+    .results-container {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      padding: 32px;
+    }
+
+    .results-header {
+      margin-bottom: 24px;
+    }
+
+    .results-count {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+
+    .results-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .product-image {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .product-info {
+      padding: 12px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .product-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      .category-list {
+        gap: 8px;
+      }
+
+      .category-tag {
+        padding: 8px 14px;
+        font-size: 13px;
+      }
+
+      select {
+        max-width: 100%;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+    }
+
+    .section-note {
+      color: #94A3B8;
+      font-size: 12px;
+      margin-top: 16px;
+      padding: 12px;
+      background: #F9FAFB;
+      border-left: 2px solid #E2E8F0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Category Filter — Interaction Reference</h1>
+    <p class="description">
+      Customers can filter products by category (Handmade, Vintage, Supplies, Other) using either tag pills or a dropdown. When a category is selected, the product grid updates to show only items in that category.
+    </p>
+
+    <!-- Tag Pills Variant (Recommended for Storefront) -->
+    <div class="filter-section">
+      <div class="filter-title">Variant A: Category Pill Tags (Recommended)</div>
+      <div class="category-list">
+        <div class="category-tag active">All Products</div>
+        <div class="category-tag">Handmade</div>
+        <div class="category-tag">Vintage</div>
+        <div class="category-tag">Supplies</div>
+        <div class="category-tag">Other</div>
+      </div>
+      <div class="section-note">
+        ✓ Default: "All Products" is selected<br>
+        ✓ Click any tag to filter; tag changes to filled (dark background)<br>
+        ✓ Only one category can be active at a time<br>
+        ✓ Results update instantly (no page reload)
+      </div>
+    </div>
+
+    <!-- Dropdown Variant (Alternative for Compact Spaces) -->
+    <div class="dropdown-section">
+      <div class="filter-title">Variant B: Dropdown Menu (Compact)</div>
+      <label class="dropdown-label">Filter by Category:</label>
+      <select>
+        <option selected>All Products</option>
+        <option>Handmade</option>
+        <option>Vintage</option>
+        <option>Supplies</option>
+        <option>Other</option>
+      </select>
+      <div class="section-note">
+        ✓ Takes less space on page<br>
+        ✓ Use this variant if filtering doesn't need to be prominent<br>
+        ✓ Same behavior as pill tags (single selection)
+      </div>
+    </div>
+
+    <!-- Filtered Results Example -->
+    <div class="results-container">
+      <div class="results-header">
+        <div class="results-count">Showing 5 products</div>
+        <div class="results-title">Handmade Category</div>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image">🎨</div>
+          <div class="product-info">
+            <div class="product-title">Hand-Thrown Ceramic Vase</div>
+            <div class="product-price">$65.00</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🧵</div>
+          <div class="product-info">
+            <div class="product-title">Knit Wool Sweater</div>
+            <div class="product-price">$85.00</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🌿</div>
+          <div class="product-info">
+            <div class="product-title">Pressed Flower Art</div>
+            <div class="product-price">$28.00</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">💎</div>
+          <div class="product-info">
+            <div class="product-title">Beaded Macramé Bracelet</div>
+            <div class="product-price">$22.00</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🪵</div>
+          <div class="product-info">
+            <div class="product-title">Wooden Cutting Board</div>
+            <div class="product-price">$45.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

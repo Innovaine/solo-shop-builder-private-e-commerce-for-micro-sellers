@@ -405,6 +405,119 @@
       </div>
     </section>
 
+    <!-- PRODUCT CARD -->
+    <section class="component-section" id="product-card">
+      <h2>Product Card (Storefront)</h2>
+      <p>Used in product grids on public storefronts. Shows product image, title, price, rating, and stock status.</p>
+      <h3>Structure</h3>
+      <div style="background: #F9FAFB; padding: 16px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 12px; margin-top: 12px; overflow-x: auto;">
+&lt;ProductCard&gt;
+&nbsp;&nbsp;&lt;image src="..." alt="..." /&gt;
+&nbsp;&nbsp;&lt;title&gt;Product Name&lt;/title&gt;
+&nbsp;&nbsp;&lt;price&gt;$XX.XX&lt;/price&gt;
+&nbsp;&nbsp;&lt;rating&gt;★★★★☆ (24 reviews)&lt;/rating&gt; (optional)
+&nbsp;&nbsp;&lt;badge&gt;In Stock&lt;/badge&gt; (optional)
+&lt;/ProductCard&gt;
+      </div>
+      <h3>Visual Reference</h3>
+      <div class="component-demo" style="display: block; max-width: 300px;">
+        <div style="
+          border: 1px solid #E2E8F0;
+          border-radius: 8px;
+          overflow: hidden;
+          background: white;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow=''; this.style.transform=''">
+          <div style="
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+          ">💎</div>
+          <div style="padding: 16px;">
+            <div style="font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 8px; line-height: 1.4;">Handmade Silver Necklace</div>
+            <div style="font-size: 16px; font-weight: 700; color: #3B4C63; margin-bottom: 8px;">$45.00</div>
+            <div style="font-size: 13px; color: #64748B; margin-bottom: 8px;">
+              <span style="color: #F59E0B;">★★★★★</span> (24 reviews)
+            </div>
+            <div style="display: inline-block; background: #D1FAE5; color: #065F46; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">In Stock</div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: #64748B; margin-top: 12px;"><strong>Behavior:</strong> Hover lifts card up 2px with box-shadow. Click navigates to product detail page.</p>
+      <p style="font-size: 12px; color: #64748B; margin-top: 8px;"><strong>Mobile:</strong> Remove shadow, keep lift effect subtle. Text may wrap to 2 lines.</p>
+    </section>
+
+    <!-- CATEGORY FILTER -->
+    <section class="component-section" id="category-filter">
+      <h2>Category Filter</h2>
+      <p>Allows customers to filter products by category (Handmade, Vintage, Supplies, Other). Supports two variants: pill tags or dropdown.</p>
+      <h3>Variant A: Pill Tags (Recommended for Storefronts)</h3>
+      <div class="component-demo" style="display: flex; flex-wrap: wrap; gap: 12px; background: #F9FAFB; padding: 24px; border-radius: 6px;">
+        <div style="
+          background: #3B4C63;
+          color: white;
+          padding: 10px 18px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 600;
+          border: 1px solid #3B4C63;
+          cursor: pointer;
+        ">All Products</div>
+        <div style="
+          background: white;
+          color: #64748B;
+          padding: 10px 18px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          border: 1px solid #E2E8F0;
+          cursor: pointer;
+          transition: all 0.2s;
+        " onmouseover="this.style.borderColor='#3B4C63'; this.style.color='#3B4C63'; this.style.background='#F9FAFB'" onmouseout="this.style.borderColor='#E2E8F0'; this.style.color='#64748B'; this.style.background='white'">Handmade</div>
+        <div style="
+          background: white;
+          color: #64748B;
+          padding: 10px 18px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          border: 1px solid #E2E8F0;
+          cursor: pointer;
+          transition: all 0.2s;
+        " onmouseover="this.style.borderColor='#3B4C63'; this.style.color='#3B4C63'; this.style.background='#F9FAFB'" onmouseout="this.style.borderColor='#E2E8F0'; this.style.color='#64748B'; this.style.background='white'">Vintage</div>
+        <div style="
+          background: white;
+          color: #64748B;
+          padding: 10px 18px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          border: 1px solid #E2E8F0;
+          cursor: pointer;
+          transition: all 0.2s;
+        " onmouseover="this.style.borderColor='#3B4C63'; this.style.color='#3B4C63'; this.style.background='#F9FAFB'" onmouseout="this.style.borderColor='#E2E8F0'; this.style.color='#64748B'; this.style.background='white'">Supplies</div>
+      </div>
+      <p style="font-size: 12px; color: #64748B; margin-top: 12px;"><strong>Behavior:</strong> Only one tag active at a time. Active tag has dark background. Clicking updates product grid instantly.</p>
+
+      <h3 style="margin-top: 32px;">Variant B: Dropdown (Compact)</h3>
+      <div class="component-demo" style="display: block;">
+        <div>
+          <label style="display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px;">Filter by Category:</label>
+          <select style="padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit;">
+            <option selected>All Products</option>
+            <option>Handmade</option>
+            <option>Vintage</option>
+            <option>Supplies</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: #64748B; margin-top: 12px;"><strong>Use when:</strong> Space is limited or filtering is secondary to content.</p>
+    </section>
+
     <!-- DROPDOWNS / MENUS -->
     <section class="component-section" id="dropdowns">
       <h2>Dropdowns & Context Menus</h2>
