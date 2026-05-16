@@ -9393,3 +9393,56 @@ Foreign-key constraints:
 (10 rows)
 ```
 Full output: [`server-runs/2026-05-15T23-59-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-59-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:00:26.767Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fa90612` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3004ms) _(showing tail — full 2,402B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…-13/test.md                      | 202 ++++++++++
+ day-14/_plan.md                     |  35 ++
+ day-14/design.md                    |  55 +++
+ day-14/engineering.md               | 315 +++++++++++++++
+ design/branding/typography.html     | 347 +++++++++++++++++
+ design/pages/404.html               | 171 ++++++++
+ design/pages/empty.html             | 192 +++++++++
+ design/pages/error.html             | 264 +++++++++++++
+ design/pages/loading.html           | 395 +++++++++++++++++++
+ design/pages/order-detail.html      | 440 +++++++++++++++++++++
+ design/pages/order-tracking.html    | 444 +++++++++++++++++++++
+ design/pages/settings.html          | 334 ++++++++++++++++
+ design/pages/signup.html            | 258 ++++++++++++
+ prisma/schema.prisma                |  20 +
+ server-log.md                       | 759 ++++++++++++++++++++++++++++++++++++
+ src/lib/product.ts                  |  67 ++++
+ test-results/day-13/report.md       | 277 +++++++++++++
+ tests/web/scaling-day13.spec.ts     | 195 +++++++++
+ 24 files changed, 5727 insertions(+)
+ create mode 100644 app/api/products/[id]/route.ts
+ create mode 100644 app/api/products/route.ts
+ create mode 100644 app/dashboard/products/new/page.tsx
+ create mode 100644 app/dashboard/products/page.tsx
+ create mode 100644 day-13/_index.md
+ create mode 100644 day-13/review.md
+ create mode 100644 day-13/test.md
+ create mode 100644 day-14/_plan.md
+ create mode 100644 day-14/design.md
+ create mode 100644 day-14/engineering.md
+ create mode 100644 design/branding/typography.html
+ create mode 100644 design/pages/404.html
+ create mode 100644 design/pages/empty.html
+ create mode 100644 design/pages/error.html
+ create mode 100644 design/pages/loading.html
+ create mode 100644 design/pages/order-detail.html
+ create mode 100644 design/pages/order-tracking.html
+ create mode 100644 design/pages/settings.html
+ create mode 100644 design/pages/signup.html
+ create mode 100644 src/lib/product.ts
+ create mode 100644 test-results/day-13/report.md
+ create mode 100644 tests/web/scaling-day13.spec.ts
+```
+Full output: [`server-runs/2026-05-16T00-00-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-00-26-app-cd-solo-shop-builder-private-e-commerce--1.log)
