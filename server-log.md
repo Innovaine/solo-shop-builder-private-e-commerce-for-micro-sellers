@@ -13460,3 +13460,19 @@ STDOUT:
 #16 14.74 Type error: Argument of type 'Cart' is not assignable to parameter of type 'SetStateAction<{ items: never[]; shopSlug: undefined; }>'.
 ```
 Full output: [`server-runs/2026-05-16T13-20-56-app-grep--B10-Type-error-Argument-of-type-Ca-1.log`](server-runs/2026-05-16T13-20-56-app-grep--B10-Type-error-Argument-of-type-Ca-1.log)
+
+## 2026-05-16T13:22:41.392Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fa9946e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3706ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || echo "Repo not cloned yet"
+docker ps | grep solo-shop | head -1
+tail -30 /tmp/day20-build.log 2>/dev/null | grep -E "(Successfully|Type error|failed)" || echo "No build log found"
+```
+STDOUT:
+```
+e7a7f6e17750   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   11 hours ago   Up 11 hours             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T13-22-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-22-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
