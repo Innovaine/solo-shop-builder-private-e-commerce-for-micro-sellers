@@ -14508,3 +14508,24 @@ Fast-forward
  create mode 100644 prisma/migrations/20260516_add_order_tables/migration.sql
 ```
 Full output: [`server-runs/2026-05-16T14-43-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-43-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T14:43:37.877Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `231caf7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3293ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate deploy
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+No migration found in prisma/migrations
+
+
+No pending migrations to apply.
+```
+Full output: [`server-runs/2026-05-16T14-43-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-43-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
