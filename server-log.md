@@ -13293,3 +13293,25 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-16T02:58:36.623Z","responseTime":"218ms","checks":{"database":{"status":"ok","responseTime":"36ms"},"email":{"status":"ok","responseTime":"182ms"}}}
 ```
 Full output: [`server-runs/2026-05-16T02-58-36-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-16T02-58-36-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-16T02:59:01.716Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `da2e083` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3375ms)
+```
+curl -sI http://localhost:3000/ | head -10
+```
+STDOUT:
+```
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "15zui95hca96pa"
+Content-Type: text/html; charset=utf-8
+Content-Length: 8707
+Date: Sat, 16 May 2026 02:59:01 GMT
+Connection: keep-alive
+```
+Full output: [`server-runs/2026-05-16T02-59-01-app-curl--sI-http-localhost-3000-head--10-1.log`](server-runs/2026-05-16T02-59-01-app-curl--sI-http-localhost-3000-head--10-1.log)
