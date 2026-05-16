@@ -16535,3 +16535,22 @@ STDOUT:
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-16T17-44-19-app-sleep-5-curl--sf-http-localhost-3000--o--1.log`](server-runs/2026-05-16T17-44-19-app-sleep-5-curl--sf-http-localhost-3000--o--1.log)
+
+## 2026-05-16T17:45:57.474Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5d4ae8d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2972ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || echo "Repo not cloned yet"
+docker ps | grep solo-shop
+df -h / | tail -1
+uptime
+```
+STDOUT:
+```
+3ef6b3dddfa7   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   5 minutes ago   Up 2 minutes           0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+d6af22021ce2   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago     Up 2 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+/dev/sda1       387G   56G  331G  15% /
+ 17:45:57 up 3 days, 18:49,  5 users,  load average: 0.09, 0.26, 0.17
+```
+Full output: [`server-runs/2026-05-16T17-45-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-45-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
