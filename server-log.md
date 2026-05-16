@@ -9885,3 +9885,35 @@ Cart (0)
 Welcome to
 ```
 Full output: [`server-runs/2026-05-16T00-56-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-56-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:57:06.848Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1f0b705` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2532ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== Testing product detail page ==="
+curl -sI http://localhost:3000/shop/test-shop/product/prod-1 | head -3
+
+echo ""
+echo "=== Check product detail content ==="
+curl -s http://localhost:3000/shop/test-shop/product/prod-1 | grep -o -E "(Gold Necklace|Back to Shop|Add to Cart|Continue Shopping|\$45\.00)" | head -10
+
+echo ""
+echo "=== Test 404 for invalid product ==="
+curl -sI http://localhost:3000/shop/test-shop/product/invalid-id | head -1
+```
+STDOUT:
+```
+=== Testing product detail page ===
+HTTP/1.1 404 Not Found
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+
+=== Check product detail content ===
+
+=== Test 404 for invalid product ===
+HTTP/1.1 404 Not Found
+```
+Full output: [`server-runs/2026-05-16T00-57-06-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-57-06-app-cd-solo-shop-builder-private-e-commerce--1.log)
