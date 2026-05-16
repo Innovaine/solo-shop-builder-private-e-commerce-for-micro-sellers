@@ -14457,3 +14457,36 @@ STDOUT:
 Started Prisma migrate deploy, PID=997213
 ```
 Full output: [`server-runs/2026-05-16T14-42-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-42-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T14:42:31.109Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b324562` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7439ms)
+```
+sleep 5
+kill -0 $(cat /tmp/migrate-deploy-day22.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/migrate-deploy-day22.log
+```
+STDOUT:
+```
+DONE
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+No migration found in prisma/migrations
+
+
+No pending migrations to apply.
+┌─────────────────────────────────────────────────────────┐
+│  Update available 5.14.0 -> 7.8.0                       │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i -g prisma@latest                               │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+```
+Full output: [`server-runs/2026-05-16T14-42-31-app-sleep-5-1.log`](server-runs/2026-05-16T14-42-31-app-sleep-5-1.log)
