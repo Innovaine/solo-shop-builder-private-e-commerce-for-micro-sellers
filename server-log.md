@@ -13086,3 +13086,53 @@ kill -0 $(cat /tmp/playwright-day19-v2.pid) 2>/dev/null && echo "RUNNING" || ech
 tail -150 /tmp/playwright-day19-v2.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-16T02:50:30.219Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `835c7ad` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2808ms) _(showing tail — full 5,500B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/playwright-day19-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+wc -l /tmp/playwright-day19-v2.log
+tail -80 /tmp/playwright-day19-v2.log
+```
+STDOUT:
+```
+… > 104 |       expect(hasEmptyState || hasTable).toBe(true);
+          |                                         ^
+      105 |     }
+      106 |   });
+      107 |
+        at /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/scaling-day19.spec.ts:104:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../tmp/playwright-test-results/scaling-day19-Day-19-—-Sca-fc88b-mpty-state-when-no-products-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../tmp/playwright-test-results/scaling-day19-Day-19-—-Sca-fc88b-mpty-state-when-no-products-chromium/error-context.md
+
+  3) [chromium] › tests/web/scaling-day19.spec.ts:331:7 › Day 19 — Scaling: Security Headers › API responses include security headers 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      341 |       headers['strict-transport-security'] !== undefined;
+      342 |     
+    > 343 |     expect(hasSecurityHeaders).toBe(true);
+          |                                ^
+      344 |   });
+      345 | });
+      346 |
+        at /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/scaling-day19.spec.ts:343:32
+
+    Error Context: ../../../tmp/playwright-test-results/scaling-day19-Day-19-—-Sca-b75d5-es-include-security-headers-chromium/error-context.md
+
+  3 failed
+    [chromium] › tests/web/scaling-day19.spec.ts:62:7 › Day 19 — Scaling: Product Management Workflow › Product creation page has all required fields 
+    [chromium] › tests/web/scaling-day19.spec.ts:89:7 › Day 19 — Scaling: Product Management Workflow › Product list page shows empty state when no products 
+    [chromium] › tests/web/scaling-day19.spec.ts:331:7 › Day 19 — Scaling: Security Headers › API responses include security headers 
+  20 passed (3.7s)
+```
+Full output: [`server-runs/2026-05-16T02-50-30-app-kill--0-cat-tmp-playwright-day19-v2.pid--1.log`](server-runs/2026-05-16T02-50-30-app-kill--0-cat-tmp-playwright-day19-v2.pid--1.log)
