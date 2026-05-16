@@ -12659,3 +12659,41 @@ Call log:
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-16T02-36-33-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-36-33-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:36:55.308Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a81e53b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2644ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git log --oneline -5
+echo ""
+echo "=== Test files ==="
+ls -1 tests/web/
+echo ""
+echo "=== Check if scaling-day18.spec.ts in git ==="
+git ls-files tests/web/scaling-day18.spec.ts
+```
+STDOUT:
+```
+da5807b Priya (tester, day 17) — pre-SSH sync
+cd059dc Priya (tester, day 17) — pre-SSH sync
+be19d7d Priya (tester, day 17) — pre-SSH sync
+b55a251 Priya (tester, day 17) — pre-SSH sync
+19c55a7 Anil (engineer, day 17) — pre-SSH sync
+
+=== Test files ===
+auth-flow.spec.ts
+day16-smoke.spec.ts
+day16-ui-components.spec.ts
+day17-component-integration.spec.ts
+public-storefront.spec.ts
+scaling-day12.spec.ts
+scaling-day13.spec.ts
+scaling-day15.spec.ts
+session-management.spec.ts
+shop-creation.spec.ts
+
+=== Check if scaling-day18.spec.ts in git ===
+```
+Full output: [`server-runs/2026-05-16T02-36-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-36-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
