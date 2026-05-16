@@ -9527,3 +9527,36 @@ STDOUT:
 Using shop ID:
 ```
 Full output: [`server-runs/2026-05-16T00-01-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-01-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:01:37.822Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3340717` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2479ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+echo "=== TEST: Product endpoints ===" && \
+SHOP_ID="b67fe1fd-4bbd-4f02-81e5-d0b661d225c1" && \
+echo "Testing with Shop ID: $SHOP_ID" && \
+echo "" && \
+echo "1. GET /api/products?shopId=$SHOP_ID (should return empty array initially):" && \
+curl -s "http://localhost:3000/api/products?shopId=$SHOP_ID" | jq . && \
+echo "" && \
+echo "2. Test POST /api/products (unauthenticated - should fail with 401):" && \
+curl -s -X POST http://localhost:3000/api/products \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Test Product","price":4999,"stock":10}' | jq .
+```
+STDOUT:
+```
+=== TEST: Product endpoints ===
+Testing with Shop ID: b67fe1fd-4bbd-4f02-81e5-d0b661d225c1
+
+1. GET /api/products?shopId=b67fe1fd-4bbd-4f02-81e5-d0b661d225c1 (should return empty array initially):
+[]
+
+2. Test POST /api/products (unauthenticated - should fail with 401):
+{
+  "error": "You must be logged in to create products."
+}
+```
+Full output: [`server-runs/2026-05-16T00-01-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-01-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
