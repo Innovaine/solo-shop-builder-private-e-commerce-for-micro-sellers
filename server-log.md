@@ -10813,3 +10813,19 @@ Fast-forward
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 Full output: [`server-runs/2026-05-16T01-32-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-32-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:33:23.907Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `86332d3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4027ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day16-build.log 2>&1 &
+echo $! > /tmp/day16-build.pid
+echo "Started build, PID=$(cat /tmp/day16-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=868820
+```
+Full output: [`server-runs/2026-05-16T01-33-23-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-33-23-app-cd-solo-shop-builder-private-e-commerce--1.log)
