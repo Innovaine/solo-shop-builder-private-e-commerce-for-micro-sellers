@@ -12550,3 +12550,36 @@ No signup link found, assuming on signup page
   ✘  21 tests/web/scaling-day12.spec.ts:46:7 › Day 12: Scaling Features › Enhanced health check returns DB status (191ms)
 ```
 Full output: [`server-runs/2026-05-16T02-35-36-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-35-36-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:36:00.687Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3e96d64` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2472ms) _(showing tail — full 6,082B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day18-test-all.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/day18-test-all.log
+```
+STDOUT:
+```
+… 404 (EXPECTED FAILURE) (693ms)
+  ✓  38 tests/web/scaling-day15.spec.ts:62:7 › Day 15: Public Storefront › Storefront header has proper branding and navigation (155ms)
+  ✓  39 tests/web/scaling-day15.spec.ts:76:7 › Day 15: Public Storefront › Storefront footer exists with branding (165ms)
+  ✓  40 tests/web/scaling-day15.spec.ts:89:7 › Day 15: Public Storefront › Storefront handles invalid shop slug gracefully (108ms)
+Session cookie attributes: { httpOnly: [33mtrue[39m, sameSite: [32m'Strict'[39m, secure: [33mfalse[39m }
+  ✓  41 tests/web/session-management.spec.ts:17:7 › FR-7: Session Management › FR-7: Session cookie has correct security attributes (667ms)
+  ✘  42 tests/web/session-management.spec.ts:51:7 › FR-7: Session Management › FR-7: Session persists across page reloads (1.6s)
+Logout button not found on page - functionality may not be implemented yet
+  ✓  43 tests/web/session-management.spec.ts:82:7 › FR-7: Session Management › FR-7: Logout clears session cookie (696ms)
+  ✘  13 tests/web/day16-smoke.spec.ts:40:7 › Day 16 — Smoke Tests › Can create account and see dashboard (30.0s)
+Shop creation skipped or failed: locator.fill: Test ended.
+Call log:
+[2m  - waiting for locator('input[name="name"]').or(locator('input[placeholder*="shop name"]').first())[22m
+
+    at [90m/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/[39mtests/web/public-storefront.spec.ts:38:23
+  ✘  15 tests/web/public-storefront.spec.ts:51:7 › FR-5: Public Shop Storefront › FR-5: Valid shop slug returns 200 with shop name (0ms)
+  -  46 tests/web/public-storefront.spec.ts:76:7 › FR-5: Public Shop Storefront › FR-5: Invalid shop slug returns 404
+  -  47 tests/web/public-storefront.spec.ts:88:7 › FR-5: Public Shop Storefront › FR-5: Page loads in under 2 seconds
+  -  48 tests/web/public-storefront.spec.ts:100:7 › FR-5: Public Shop Storefront › FR-5: Page is mobile-responsive (320px)
+  -  49 tests/web/public-storefront.spec.ts:120:7 › FR-5: Public Shop Storefront › FR-5: No authentication required to view storefront
+```
+Full output: [`server-runs/2026-05-16T02-36-00-app-kill--0-cat-tmp-day18-test-all.pid-2-dev-1.log`](server-runs/2026-05-16T02-36-00-app-kill--0-cat-tmp-day18-test-all.pid-2-dev-1.log)
