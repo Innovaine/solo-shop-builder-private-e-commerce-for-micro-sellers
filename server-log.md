@@ -9793,3 +9793,40 @@ STDOUT:
 No shops found in database
 ```
 Full output: [`server-runs/2026-05-16T00-52-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-52-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:55:14.679Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a69a73b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2854ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Query shop directly from database
+echo "=== Shops in database ==="
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U soloshop -d soloshop -c "SELECT slug, name FROM \"Shop\" LIMIT 3;"
+
+# Get first shop slug
+SHOP_SLUG=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 \
+  psql -U soloshop -d soloshop -t -c "SELECT slug FROM \"Shop\" LIMIT 1;" | xargs)
+
+echo ""
+echo "=== Testing storefront for: $SHOP_SLUG ==="
+curl -sI http://localhost:3000/shop/$SHOP_SLUG | head -3
+
+echo ""
+echo "=== Page content check ==="
+curl -s http://localhost:3000/shop/$SHOP_SLUG | grep -o -E "(Welcome to|This shop is empty|Cart \(0\)|Independent storefront)" | head -5
+```
+STDOUT:
+```
+=== Shops in database ===
+
+=== Testing storefront for:  ===
+HTTP/1.1 308 Permanent Redirect
+location: /shop
+Refresh: 0;url=/shop
+
+=== Page content check ===
+```
+Full output: [`server-runs/2026-05-16T00-55-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-55-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
