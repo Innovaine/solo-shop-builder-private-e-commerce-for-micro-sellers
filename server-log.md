@@ -10318,3 +10318,24 @@ STDOUT:
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-16T01-06-25-app-echo-Check-products-in-DB-docker-exec-so-1.log`](server-runs/2026-05-16T01-06-25-app-echo-Check-products-in-DB-docker-exec-so-1.log)
+
+## 2026-05-16T01:06:49.451Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `361f60c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2510ms)
+```
+docker compose logs --tail=30 app 2>&1 | grep -E "ERROR|404|product" | head -10; echo "---PRODUCT TEST---"; curl -sI http://localhost:3000/shop/test-shop/product/prod-1
+```
+STDOUT:
+```
+---PRODUCT TEST---
+HTTP/1.1 404 Not Found
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Sat, 16 May 2026 01:06:49 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-16T01-06-49-app-docker-compose-logs---tail-30-app-2-1-gr-1.log`](server-runs/2026-05-16T01-06-49-app-docker-compose-logs---tail-30-app-2-1-gr-1.log)
