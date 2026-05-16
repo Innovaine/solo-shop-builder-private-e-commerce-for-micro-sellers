@@ -11406,3 +11406,83 @@ STDOUT:
 Started build, PID=876678
 ```
 Full output: [`server-runs/2026-05-16T02-01-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-01-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:02:07.578Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b0209b6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2642ms) _(showing tail — full 2,820B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day17-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day17-build.log
+```
+STDOUT:
+```
+… in this anonymous program, by visiting the following URL:
+#16 1.746 https://nextjs.org/telemetry
+#16 1.746 
+#16 1.793   ▲ Next.js 14.2.3
+#16 1.793   - Environments: .env
+#16 1.793 
+#16 1.846    Creating an optimized production build ...
+#16 5.083 Failed to compile.
+#16 5.083 
+#16 5.083 ./app/auth/login/page.tsx
+#16 5.083 Module not found: Can't resolve '@/components/ui/Button'
+#16 5.083 
+#16 5.083 https://nextjs.org/docs/messages/module-not-found
+#16 5.083 
+#16 5.083 ./app/auth/login/page.tsx
+#16 5.083 Module not found: Can't resolve '@/components/ui/FormField'
+#16 5.083 
+#16 5.083 https://nextjs.org/docs/messages/module-not-found
+#16 5.083 
+#16 5.083 ./app/dashboard/create-shop/page.tsx
+#16 5.083 Module not found: Can't resolve '@/components/ui/Button'
+#16 5.083 
+#16 5.083 https://nextjs.org/docs/messages/module-not-found
+#16 5.083 
+#16 5.083 ./app/dashboard/create-shop/page.tsx
+#16 5.083 Module not found: Can't resolve '@/components/ui/FormField'
+#16 5.083 
+#16 5.083 https://nextjs.org/docs/messages/module-not-found
+#16 5.083 
+#16 5.083 ./app/dashboard/products/new/page.tsx
+#16 5.083 Module not found: Can't resolve '@/components/ui/Card'
+#16 5.083 
+#16 5.083 https://nextjs.org/docs/messages/module-not-found
+#16 5.083 
+#16 5.093 
+#16 5.093 > Build failed because of webpack errors
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN npm run build:
+5.083 
+5.083 https://nextjs.org/docs/messages/module-not-found
+5.083 
+5.083 ./app/dashboard/products/new/page.tsx
+5.083 Module not found: Can't resolve '@/components/ui/Card'
+5.083 
+5.083 https://nextjs.org/docs/messages/module-not-found
+5.083 
+5.093 
+5.093 > Build failed because of webpack errors
+------
+Dockerfile:24
+
+--------------------
+
+  22 |     
+
+  23 |     # Build Next.js app
+
+  24 | >>> RUN npm run build
+
+  25 |     
+
+  26 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T02-02-07-app-kill--0-cat-tmp-day17-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T02-02-07-app-kill--0-cat-tmp-day17-build.pid-2-dev-nu-1.log)
