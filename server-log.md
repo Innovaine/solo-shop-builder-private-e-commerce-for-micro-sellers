@@ -10352,3 +10352,16 @@ STDOUT:
 …in-h-screen bg-white\",\"children\":[[\"$\",\"header\",null,{\"className\":\"bg-white border-b border-whisper sticky top-0 z-10\",\"children\":[\"$\",\"div\",null,{\"className\":\"max-w-7xl mx-auto px-6 py-4 flex justify-between items-center\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-2xl font-bold text-charcoal\",\"children\":\"Test Shop\"}],[\"$\",\"p\",null,{\"className\":\"text-slate text-sm mt-0.5\",\"children\":\"Independent storefront\"}]]}],[\"$\",\"button\",null,{\"className\":\"px-4 py-2 border border-whisper rounded-md text-sm font-semibold text-charcoal hover:bg-cream transition-colors\",\"children\":\"🛒 Cart (0)\"}]]}]}],[\"$\",\"section\",null,{\"className\":\"bg-gradient-to-br from-charcoal to-slate text-white py-16 px-6 text-center\",\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-4xl font-bold mb-2\",\"children\":[\"Welcome to \",\"Test Shop\"]}],[\"$\",\"p\",null,{\"className\":\"text-lg opacity-90\",\"children\":\"Shop coming soon\"}]]}],[\"$\",\"main\",null,{\"className\":\"max-w-7xl mx-auto px-6 py-12\",\"children\":[\"$\",\"div\",null,{\"className\":\"bg-cream rounded-lg border-2 border-dashed border-whisper p-12 text-center\",\"children\":[[\"$\",\"div\",null,{\"className\":\"text-6xl mb-6\",\"children\":\"🛍️\"}],[\"$\",\"h2\",null,{\"className\":\"text-2xl font-semibold text-charcoal mb-3\",\"children\":\"This shop is empty\"}],[\"$\",\"p\",null,{\"className\":\"text-slate max-w-md mx-auto\",\"children\":\"The seller hasn't added any products yet. Check back soon!\"}],[\"$\",\"div\",null,{\"className\":\"mt-8 pt-8 border-t border-whisper\",\"children\":[\"$\",\"p\",null,{\"className\":\"text-sm text-slate\",\"children\":[\"Shop created\",\" \",\"May 15, 2026\"]}]}]]}]}],[\"$\",\"footer\",null,{\"className\":\"bg-white border-t border-whisper py-8 px-6 text-center text-xs text-slate\",\"children\":[\"$\",\"p\",null,{\"children\":[\"© 2026 \",\"Test Shop\",\". Solo Shop Builder. | Secured by Stripe\"]}]}]]}]\n"])</script></body></html>
 ```
 Full output: [`server-runs/2026-05-16T01-07-34-app-curl--s-http-localhost-3000-shop-test-sh-1.log`](server-runs/2026-05-16T01-07-34-app-curl--s-http-localhost-3000-shop-test-sh-1.log)
+
+## 2026-05-16T01:08:05.180Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9106504` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2974ms)
+```
+curl -s -X GET -H "Cookie: session=test" http://localhost:3000/api/shops 2>&1 | head -50
+```
+STDOUT:
+```
+{"error":"You must be logged in to view shops."}
+```
+Full output: [`server-runs/2026-05-16T01-08-05-app-curl--s--X-GET--H-Cookie-session-test-ht-1.log`](server-runs/2026-05-16T01-08-05-app-curl--s--X-GET--H-Cookie-session-test-ht-1.log)
