@@ -14441,3 +14441,19 @@ To apply existing migrations in deployments, use prisma migrate deploy.
 See https://www.prisma.io/docs/reference/api-reference/command-reference#migrate-deploy
 ```
 Full output: [`server-runs/2026-05-16T14-41-12-app-kill--0-cat-tmp-migrate-day22.pid-2-dev--1.log`](server-runs/2026-05-16T14-41-12-app-kill--0-cat-tmp-migrate-day22.pid-2-dev--1.log)
+
+## 2026-05-16T14:42:05.748Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5be5dd9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2658ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate deploy > /tmp/migrate-deploy-day22.log 2>&1 &
+echo $! > /tmp/migrate-deploy-day22.pid
+echo "Started Prisma migrate deploy, PID=$(cat /tmp/migrate-deploy-day22.pid)"
+```
+STDOUT:
+```
+Started Prisma migrate deploy, PID=997213
+```
+Full output: [`server-runs/2026-05-16T14-42-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-42-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
