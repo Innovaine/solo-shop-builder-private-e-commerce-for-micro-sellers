@@ -19509,3 +19509,78 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 ls -la tests/web/day28*.spec.ts
 cat tests/web/day28-password-auth.spec.ts | head -20
 ```
+
+## 2026-05-16T21:06:23.923Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ae99edd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2400ms)
+```
+echo "=== FR-21 & FR-22: Password Login & Settings ==="
+curl -sI http://localhost:3000/auth/login | head -5
+curl -s http://localhost:3000/auth/login | grep -o '<input[^>]*type="password"[^>]*>' | head -1
+curl -sI http://localhost:3000/dashboard/settings | head -5
+
+echo ""
+echo "=== FR-23 & FR-24: Password Reset Flow ==="
+curl -sI http://localhost:3000/auth/forgot-password | head -5
+curl -sI http://localhost:3000/auth/reset-password | head -5
+
+echo ""
+echo "=== FR-27 & FR-28: CSV Export ==="
+curl -sI http://localhost:3000/api/orders/export | head -10
+
+echo ""
+echo "=== FR-29 & FR-30: Analytics ==="
+curl -sI http://localhost:3000/api/analytics | head -10
+```
+STDOUT:
+```
+=== FR-21 & FR-22: Password Login & Settings ===
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: 9oKRcO8jpXJ6x5Dx
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+
+=== FR-23 & FR-24: Password Reset Flow ===
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: 1sT3oaUuu7aJ2aJq
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: Y8WpAcyIjbq8IaPs
+
+=== FR-27 & FR-28: CSV Export ===
+HTTP/1.1 401 Unauthorized
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: YOkf9V3BRonlM0Di
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+Date: Sat, 16 May 2026 21:06:23 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+=== FR-29 & FR-30: Analytics ===
+HTTP/1.1 401 Unauthorized
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: WWgDcawn-sMhqd9I
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+Date: Sat, 16 May 2026 21:06:23 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-16T21-06-23-app-echo-FR-21-FR-22-Password-Login-Settings-1.log`](server-runs/2026-05-16T21-06-23-app-echo-FR-21-FR-22-Password-Login-Settings-1.log)
