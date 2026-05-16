@@ -6,6 +6,8 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
+  // Skip static generation for pages that need runtime DB access
+  skipTrailingSlashRedirect: true,
 }
 
 module.exports = nextConfig

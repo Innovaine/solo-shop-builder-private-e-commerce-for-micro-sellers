@@ -2,6 +2,8 @@
 // Includes database connectivity check for production readiness
 // Validates all critical services: DB, email (SMTP)
 
+export const dynamic = 'force-dynamic'
+
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import nodemailer from 'nodemailer'
@@ -10,44 +12,61 @@ export async function GET() {
   const startTime = Date.now()
   const checks: Record<string, { status: string; message?: string; responseTime?: string }> = {}
   
+  // Skip database checks during build time (no DB available)
+  const isBuildTime = process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL
+  
   // Check database connectivity
-  try {
-    const dbStart = Date.now()
-    await prisma.$queryRaw`SELECT 1`
+  if (isBuildTime) {
     checks.database = {
       status: 'ok',
-      responseTime: `${Date.now() - dbStart}ms`,
+      message: 'Skipped (build time)',
     }
-  } catch (error) {
-    checks.database = {
-      status: 'error',
-      message: error instanceof Error ? error.message : 'Unknown error',
+  } else {
+    try {
+      const dbStart = Date.now()
+      await prisma.$queryRaw`SELECT 1`
+      checks.database = {
+        status: 'ok',
+        responseTime: `${Date.now() - dbStart}ms`,
+      }
+    } catch (error) {
+      checks.database = {
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Unknown error',
+      }
     }
   }
   
   // Check email service connectivity (SMTP)
-  try {
-    const emailStart = Date.now()
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.ethereal.email',
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
-    
-    // Verify SMTP connection (doesn't send email)
-    await transporter.verify()
+  if (isBuildTime) {
     checks.email = {
       status: 'ok',
-      responseTime: `${Date.now() - emailStart}ms`,
+      message: 'Skipped (build time)',
     }
-  } catch (error) {
-    checks.email = {
-      status: 'warning',
-      message: error instanceof Error ? error.message : 'Unknown error',
+  } else {
+    try {
+      const emailStart = Date.now()
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.ethereal.email',
+        port: parseInt(process.env.SMTP_PORT || '587'),
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      })
+      
+      // Verify SMTP connection (doesn't send email)
+      await transporter.verify()
+      checks.email = {
+        status: 'ok',
+        responseTime: `${Date.now() - emailStart}ms`,
+      }
+    } catch (error) {
+      checks.email = {
+        status: 'warning',
+        message: error instanceof Error ? error.message : 'Unknown error',
+      }
     }
   }
   

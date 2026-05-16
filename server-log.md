@@ -17785,3 +17785,71 @@ STDOUT:
 #15 1.973    Creating an optimized production build ...
 ```
 Full output: [`server-runs/2026-05-16T19-10-57-app-kill--0-cat-tmp-day26-fix-build.pid-2-de-1.log`](server-runs/2026-05-16T19-10-57-app-kill--0-cat-tmp-day26-fix-build.pid-2-de-1.log)
+
+## 2026-05-16T19:16:26.327Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `50ac201` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3643ms) _(showing tail — full 4,078B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day26-fix-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day26-fix-build.log
+```
+STDOUT:
+```
+…server/app-page.runtime.prod.js:12:64546)
+#15 17.64     at nI (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47010)
+#15 17.64     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47717)
+#15 17.64     at nM (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+#15 17.64     at nN (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+#15 17.64 
+#15 17.64 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
+#15 17.64 
+#15 17.64 [HEALTH CHECK FAILED] {
+#15 17.64   database: {
+#15 17.64     status: 'error',
+#15 17.64     message: '\n' +
+#15 17.64       'Invalid `prisma.$queryRaw()` invocation:\n' +
+#15 17.64       '\n' +
+#15 17.64       '\n' +
+#15 17.64       'Database `solo_shop_db` does not exist on the database server at `187.124.22.3:5432`.'
+#15 17.64   },
+#15 17.64   email: { status: 'ok', responseTime: '159ms' }
+#15 17.64 }
+#15 17.64    Generating static pages (18/24) 
+#15 17.68  ✓ Generating static pages (24/24)
+#15 17.69 
+#15 17.69 > Export encountered errors on following paths:
+#15 17.69 	/auth/verify/page: /auth/verify
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+17.64       '\n' +
+17.64       'Database `solo_shop_db` does not exist on the database server at `187.124.22.3:5432`.'
+17.64   },
+17.64   email: { status: 'ok', responseTime: '159ms' }
+17.64 }
+17.64    Generating static pages (18/24) 
+17.68  ✓ Generating static pages (24/24)
+17.69 
+17.69 > Export encountered errors on following paths:
+17.69 	/auth/verify/page: /auth/verify
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T19-16-26-app-kill--0-cat-tmp-day26-fix-build.pid-2-de-1.log`](server-runs/2026-05-16T19-16-26-app-kill--0-cat-tmp-day26-fix-build.pid-2-de-1.log)
