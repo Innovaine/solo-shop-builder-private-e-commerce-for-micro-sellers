@@ -11740,3 +11740,24 @@ LINE 1: SELECT s.slug, p.id, p.title FROM "Shop" s JOIN "Product" p ...
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-16T02-10-32-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-10-32-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T02:10:52.528Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a0e1e27` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3374ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose exec app npx prisma migrate deploy
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+No migration found in prisma/migrations
+
+
+No pending migrations to apply.
+```
+Full output: [`server-runs/2026-05-16T02-10-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-10-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
