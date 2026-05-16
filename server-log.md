@@ -11088,3 +11088,52 @@ _Pre-SSH: warehouse pushed to GitHub as commit `d03f19e` so the server's `git pu
 sleep 30 && kill -0 $(cat /tmp/playwright-day16-final.pid) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-16T01:45:27.242Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `496682d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2867ms) _(showing tail — full 5,832B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/playwright-day16-final.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -150 /tmp/playwright-day16-final.log
+```
+STDOUT:
+```
+…page.goto('http://localhost:3000/auth/login');
+    > 67 |     await page.click('a[href*="signup"]');
+         |                ^
+      68 |     
+      69 |     const testEmail = `test-day16-${Date.now()}@example.com`;
+      70 |     await page.fill('input[type="email"]', testEmail);
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day16-ui-components.spec.ts:67:16
+
+    Error Context: test-results/tests-web-day16-ui-compone-851c3-ter-component-library-added/error-context.md
+
+  4) tests/web/day16-ui-components.spec.ts:84:7 › Day 16 — UI Component Library › Storefront pages work (verify no regression from adding components) 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="signup"]')[22m
+
+
+      85 |     // First create a shop and product
+      86 |     await page.goto('http://localhost:3000/auth/login');
+    > 87 |     await page.click('a[href*="signup"]');
+         |                ^
+      88 |     
+      89 |     const testEmail = `shop-test-${Date.now()}@example.com`;
+      90 |     await page.fill('input[type="email"]', testEmail);
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day16-ui-components.spec.ts:87:16
+
+    Error Context: test-results/tests-web-day16-ui-compone-f5431-ion-from-adding-components-/error-context.md
+
+  4 failed
+    tests/web/day16-ui-components.spec.ts:15:7 › Day 16 — UI Component Library › Existing pages still render without errors 
+    tests/web/day16-ui-components.spec.ts:53:7 › Day 16 — UI Component Library › Login page form elements render (hand-coded, not using component library yet) 
+    tests/web/day16-ui-components.spec.ts:64:7 › Day 16 — UI Component Library › Dashboard pages still accessible after component library added 
+    tests/web/day16-ui-components.spec.ts:84:7 › Day 16 — UI Component Library › Storefront pages work (verify no regression from adding components) 
+  1 passed (1.2m)
+```
+Full output: [`server-runs/2026-05-16T01-45-27-app-kill--0-cat-tmp-playwright-day16-final.p-1.log`](server-runs/2026-05-16T01-45-27-app-kill--0-cat-tmp-playwright-day16-final.p-1.log)
