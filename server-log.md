@@ -18903,3 +18903,35 @@ d6af22021ce2   postgres:16-alpine                                           "doc
 {"status":"ok","timestamp":"2026-05-16T20:25:03.445Z","responseTime":"178ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"176ms"}}}
 ```
 Full output: [`server-runs/2026-05-16T20-25-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-25-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T20:25:17.806Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4c037f8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3181ms)
+```
+echo "=== Test 1: Login page ===" && curl -sI http://localhost:3000/auth/login | head -5 && echo "" && echo "=== Test 2: Verify page (auth/verify) ===" && curl -sI http://localhost:3000/auth/verify | head -5 && echo "" && echo "=== Test 3: Homepage ===" && curl -sI http://localhost:3000/ | head -5
+```
+STDOUT:
+```
+=== Test 1: Login page ===
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: 1H4uDYusFTs4F7gR
+
+=== Test 2: Verify page (auth/verify) ===
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: UkEpxsA2gzCKIDzR
+
+=== Test 3: Homepage ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+```
+Full output: [`server-runs/2026-05-16T20-25-17-app-echo-Test-1-Login-page-curl--sI-http-loc-1.log`](server-runs/2026-05-16T20-25-17-app-echo-Test-1-Login-page-curl--sI-http-loc-1.log)
