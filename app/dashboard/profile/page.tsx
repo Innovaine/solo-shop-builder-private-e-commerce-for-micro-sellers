@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/ui/Header';
 import { Button } from '@/components/ui/Button';
-import { FormField } from '@/components/ui/FormField';
 import { Card } from '@/components/ui/Card';
 
 export default function ProfilePage() {
@@ -93,10 +92,9 @@ export default function ProfilePage() {
               </div>
             )}
 
-            <FormField
-              label="Shop Description"
-              help="Tell customers about your shop (displayed on your storefront)"
-            >
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-charcoal">Shop Description</label>
+              <p className="text-xs text-slate">Tell customers about your shop (displayed on your storefront)</p>
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -104,13 +102,12 @@ export default function ProfilePage() {
                 className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
                 placeholder="We craft hand-made leather goods using traditional techniques..."
               />
-            </FormField>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <FormField
-                label="Instagram URL"
-                help="Your Instagram profile link"
-              >
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-charcoal">Instagram URL</label>
+                <p className="text-xs text-slate">Your Instagram profile link</p>
                 <input
                   type="url"
                   value={formData.instagramUrl}
@@ -118,12 +115,11 @@ export default function ProfilePage() {
                   className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
                   placeholder="https://instagram.com/yourshop"
                 />
-              </FormField>
+              </div>
 
-              <FormField
-                label="Facebook URL"
-                help="Your Facebook page link"
-              >
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-charcoal">Facebook URL</label>
+                <p className="text-xs text-slate">Your Facebook page link</p>
                 <input
                   type="url"
                   value={formData.facebookUrl}
@@ -131,13 +127,12 @@ export default function ProfilePage() {
                   className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
                   placeholder="https://facebook.com/yourshop"
                 />
-              </FormField>
+              </div>
             </div>
 
-            <FormField
-              label="Twitter URL"
-              help="Your Twitter profile link"
-            >
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-charcoal">Twitter URL</label>
+              <p className="text-xs text-slate">Your Twitter profile link</p>
               <input
                 type="url"
                 value={formData.twitterUrl}
@@ -145,7 +140,7 @@ export default function ProfilePage() {
                 className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
                 placeholder="https://twitter.com/yourshop"
               />
-            </FormField>
+            </div>
 
             <div className="flex gap-4">
               <Button type="submit" disabled={loading}>
