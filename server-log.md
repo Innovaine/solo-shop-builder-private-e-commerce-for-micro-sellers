@@ -19167,3 +19167,14 @@ echo $! > /tmp/day28-build.pid
 echo "Build started, PID=$(cat /tmp/day28-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T20:46:31.527Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9d22024` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12809ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day28-build.log 2>&1 &
+echo $! > /tmp/day28-build.pid
+echo "Build started, PID=$(cat /tmp/day28-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
