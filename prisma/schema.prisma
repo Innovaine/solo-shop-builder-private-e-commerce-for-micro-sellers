@@ -72,9 +72,28 @@ model Product {
   updatedAt   DateTime @updatedAt
   
   shop        Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  variants    ProductVariant[]
   
   @@index([shopId])
   @@index([category])
+}
+
+// ProductVariant - size, color, etc. variants of a product (FR-37)
+model ProductVariant {
+  id          String   @id @default(uuid())
+  productId   String
+  name        String   // e.g., "Size", "Color"
+  value       String   // e.g., "Large", "Red"
+  price       Int?     // Optional price override (if null, use product.price)
+  stock       Int      @default(0)
+  sku         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  @@index([productId])
+  @@index([sku])
 }
 
 // Magic link tokens for passwordless auth

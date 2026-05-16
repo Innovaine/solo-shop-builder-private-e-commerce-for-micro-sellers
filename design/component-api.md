@@ -210,5 +210,126 @@ Example:
 
 ---
 
-Last updated: Day 26, Cycle 60  
-Questions? Check `design/system/components.html` for visual reference.
+## CRITICAL FIXES FOR DAY 30 PAGES (FORMFIELD VIOLATIONS)
+
+### Issue 1: Wrong Prop Names
+
+**PAGES AFFECTED:** `/dashboard/branding`, `/dashboard/email-template`
+
+**WRONG (Current code):**
+```tsx
+<FormField
+  label="Primary Color"
+  help="Main brand color"  // ❌ WRONG PROP NAME
+>
+  <div className="flex gap-3">
+    <input type="color" value={primaryColor} onChange={handleColorChange} />  // ❌ DON'T NEST INPUTS
+    <input type="text" value={primaryHex} />
+  </div>
+</FormField>
+```
+
+**CORRECT:**
+```tsx
+<FormField
+  label="Primary Color"
+  id="primaryColor"
+  type="text"
+  placeholder="#3B4C63"
+  helpText="Main brand color (headers, navigation)"  // ✅ CORRECT PROP NAME
+  fullWidth={true}
+/>
+```
+
+**Why:** FormField IS the input wrapper. It handles label, input, error, and helpText internally. Don't try to nest a raw `<input>` inside FormField — use the `type` prop instead.
+
+### Issue 2: Multiple Inputs in One Field
+
+If you need a color picker WITH a text input for the hex code, use TWO FormFields side-by-side:
+
+```tsx
+<div className="flex gap-4">
+  <FormField
+    label="Primary Color (Visual)"
+    id="colorPicker"
+    type="color"
+    fullWidth={false}
+    className="flex-none w-20"
+  />
+  <FormField
+    label="Primary Color (Hex)"
+    id="colorHex"
+    type="text"
+    placeholder="#3B4C63"
+    helpText="Copy hex code here or choose above"
+    fullWidth={true}
+  />
+</div>
+```
+
+### Issue 3: Color Class Names
+
+**PAGES AFFECTED:** All pages using `text-slate-blue`, `text-slateBlue`, `bg-slate-blue`
+
+**Why the confusion:** Tailwind config defines colors with hyphens (e.g., `slate-blue`), but the CSS class name is generated from that token. The class SHOULD be `text-slate-blue` (hyphenated), NOT `text-slateBlue` (camelCase).
+
+**WRONG:**
+```tsx
+<div className="text-slateBlue">Text</div>  // ❌ camelCase doesn't work
+<button className="bg-slate_blue">Button</button>  // ❌ underscores don't work
+```
+
+**CORRECT (if Tailwind is configured):**
+```tsx
+<div className="text-slate-blue">Text</div>  // ✅ if defined in tailwind.config.ts
+<button className="bg-slate-blue">Button</button>
+```
+
+**If this doesn't work:** Fall back to arbitrary color values:
+```tsx
+<div className="text-[#3B4C63]">Text</div>  // ✅ Tailwind arbitrary value syntax
+<button className="bg-[#3B4C63]">Button</button>
+```
+
+See `design/system/color-usage.md` for the complete mapping of color tokens to hex values.
+
+### Issue 4: Textarea in FormField
+
+**WRONG:**
+```tsx
+<FormField label="Description" helpText="Optional">
+  <textarea placeholder="..." />  // ❌ DON'T NEST
+</FormField>
+```
+
+**CORRECT:**
+```tsx
+<FormField
+  label="Description"
+  id="description"
+  type="textarea"
+  placeholder="Tell us about your product..."
+  helpText="Optional. Maximum 500 characters."
+/>
+```
+
+FormField handles textarea rendering when `type="textarea"` is passed.
+
+---
+
+## Summary of Common Mistakes (COPY-PASTE REFERENCE FOR ENGINEERS)
+
+| Mistake | Wrong | Right |
+|---------|-------|-------|
+| Wrong prop name for help text | `help="text"` | `helpText="text"` |
+| Nested input inside FormField | `<FormField><input /></FormField>` | `<FormField type="text" />` |
+| Nested textarea inside FormField | `<FormField><textarea /></FormField>` | `<FormField type="textarea" />` |
+| Button width prop | `<Button fullWidth>` | `<Button className="w-full">` |
+| Card padding value | `padding="xl"` | `padding="lg"` (or `className="p-12"`) |
+| Color class camelCase | `text-slateBlue` | `text-slate-blue` (or `text-[#3B4C63]`) |
+| Inventing color class | `text-slate_blue` or `text-slateBlue` | Use exact token name or arbitrary value |
+
+---
+
+Last updated: Day 30, Cycle 65  
+Questions? Check `design/system/components.html` for visual reference. File a task if your component needs different props.

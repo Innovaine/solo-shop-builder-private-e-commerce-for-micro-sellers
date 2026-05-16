@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/ui/Header';
 import { Button } from '@/components/ui/Button';
-import { FormField } from '@/components/ui/FormField';
 import { Card } from '@/components/ui/Card';
 
 export default function BrandingPage() {
@@ -92,10 +91,9 @@ export default function BrandingPage() {
             )}
 
             <div className="grid md:grid-cols-2 gap-6">
-              <FormField
-                label="Primary Color"
-                help="Main brand color (headers, navigation)"
-              >
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-charcoal">Primary Color</label>
+                <p className="text-xs text-slate">Main brand color (headers, navigation)</p>
                 <div className="flex gap-3 items-center">
                   <input
                     type="color"
@@ -112,12 +110,11 @@ export default function BrandingPage() {
                     pattern="^#[0-9A-Fa-f]{6}$"
                   />
                 </div>
-              </FormField>
+              </div>
 
-              <FormField
-                label="Accent Color"
-                help="Secondary color (buttons, highlights)"
-              >
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-charcoal">Accent Color</label>
+                <p className="text-xs text-slate">Secondary color (buttons, highlights)</p>
                 <div className="flex gap-3 items-center">
                   <input
                     type="color"
@@ -134,13 +131,12 @@ export default function BrandingPage() {
                     pattern="^#[0-9A-Fa-f]{6}$"
                   />
                 </div>
-              </FormField>
+              </div>
             </div>
 
-            <FormField
-              label="Logo URL"
-              help="Link to your logo image (HTTPS required, recommended: square PNG/SVG, max 500KB)"
-            >
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-charcoal">Logo URL</label>
+              <p className="text-xs text-slate">Link to your logo image (HTTPS required, recommended: square PNG/SVG, max 500KB)</p>
               <input
                 type="url"
                 value={formData.logoUrl}
@@ -148,7 +144,7 @@ export default function BrandingPage() {
                 className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
                 placeholder="https://example.com/logo.png"
               />
-            </FormField>
+            </div>
 
             {/* Preview */}
             {formData.logoUrl && (

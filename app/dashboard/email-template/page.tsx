@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/ui/Header';
 import { Button } from '@/components/ui/Button';
-import { FormField } from '@/components/ui/FormField';
 import { Card } from '@/components/ui/Card';
 
 const DEFAULT_TEMPLATE = `Hi {{customerName}},
@@ -104,10 +103,9 @@ export default function EmailTemplatePage() {
                   </div>
                 )}
 
-                <FormField
-                  label="Email Body"
-                  help="Available variables: {{customerName}}, {{shopName}}, {{orderSummary}}, {{trackingUrl}}"
-                >
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-charcoal">Email Body</label>
+                  <p className="text-xs text-slate">Available variables: {"{{customerName}}"}, {"{{shopName}}"}, {"{{orderSummary}}"}, {"{{trackingUrl}}"}</p>
                   <textarea
                     value={template}
                     onChange={(e) => setTemplate(e.target.value)}
@@ -115,7 +113,7 @@ export default function EmailTemplatePage() {
                     className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue font-mono text-sm"
                     placeholder={DEFAULT_TEMPLATE}
                   />
-                </FormField>
+                </div>
 
                 <div className="flex gap-3">
                   <Button type="submit" disabled={loading}>

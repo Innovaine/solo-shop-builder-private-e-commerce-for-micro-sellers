@@ -80,7 +80,16 @@ export default async function ProductDetailPage({
             <div className="text-3xl font-bold text-charcoal mb-2">
               ${(product.price / 100).toFixed(2)}
             </div>
-            <div className="text-sm text-green-600 mb-6">In stock</div>
+            {product.stock > 0 ? (
+              <div className="text-sm text-emerald font-medium mb-6">
+                In stock ({product.stock} available)
+              </div>
+            ) : (
+              <div className="text-sm text-rose font-medium mb-6 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-rose rounded-full"></span>
+                Out of stock
+              </div>
+            )}
 
             {product.description && (
               <p className="text-slate leading-relaxed mb-6">
@@ -111,13 +120,24 @@ export default async function ProductDetailPage({
             </div>
 
             {/* Add to Cart Button */}
-            <AddToCartButton
-              productId={product.id}
-              productTitle={product.title}
-              price={product.price}
-              shopSlug={slug}
-              imageUrl={product.imageUrl || undefined}
-            />
+            {product.stock > 0 ? (
+              <AddToCartButton
+                productId={product.id}
+                productTitle={product.title}
+                price={product.price}
+                shopSlug={slug}
+                imageUrl={product.imageUrl || undefined}
+              />
+            ) : (
+              <Button
+                variant="primary"
+                size="lg"
+                disabled
+                className="w-full opacity-50 cursor-not-allowed"
+              >
+                Out of Stock
+              </Button>
+            )}
             <div className="mt-3">
               <Link href={`/shop/${slug}`}>
                 <Button
