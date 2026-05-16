@@ -19218,3 +19218,20 @@ _Pre-SSH: warehouse pushed to GitHub as commit `bae9fb5` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose build app 2>&1 | tee /tmp/day28-quick-build.log | tail -20
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T20:59:30.434Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `79cea8e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3687ms)
+```
+docker ps | grep solo-shop
+df -h / | tail -1
+uptime
+```
+STDOUT:
+```
+d6af22021ce2   postgres:16-alpine   "docker-entrypoint.s…"   5 hours ago   Up 5 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+/dev/sda1       387G   63G  324G  17% /
+ 20:59:30 up 3 days, 22:02,  5 users,  load average: 0.00, 0.14, 0.22
+```
+Full output: [`server-runs/2026-05-16T20-59-30-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T20-59-30-app-docker-ps-grep-solo-shop-1.log)
