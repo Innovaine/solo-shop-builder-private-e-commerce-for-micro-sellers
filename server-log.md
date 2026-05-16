@@ -14975,3 +14975,16 @@ STDOUT:
  public | Webhook            | table | postgres
 ```
 Full output: [`server-runs/2026-05-16T14-56-41-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T14-56-41-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T15:16:42.832Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b4a0951` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: bash: -c: line 1: syntax error near unexpected token `;&'
+bash: -c: line 1: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; git pull; printf "__QADAR_EXIT__%d" $?'
+ (mutating command — not auto-retried; queue it again if you want to try once more), 2401ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; git pull
+```
+ERROR: bash: -c: line 1: syntax error near unexpected token `;&'
+bash: -c: line 1: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; git pull; printf "__QADAR_EXIT__%d" $?'
+ (mutating command — not auto-retried; queue it again if you want to try once more)
