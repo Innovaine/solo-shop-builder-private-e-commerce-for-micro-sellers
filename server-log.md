@@ -13344,3 +13344,19 @@ This is a TRANSPORT-LAYER failure, not an auth failure. The SSH handshake never 
         HostKeyAlgorithms +ssh-rsa
       Then: sudo systemctl restart sshd
   • Wrong port (not 22). Check via your laptop: `ssh -v root@<host>` shows the real port.
+
+## 2026-05-16T13:19:21.813Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a44e8f4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2891ms)
+```
+docker ps | grep solo-shop; df -h / | tail -1; uptime
+```
+STDOUT:
+```
+e7a7f6e17750   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   11 hours ago   Up 11 hours             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a98ba37ee118   postgres:16-alpine                                           "docker-entrypoint.s…"   11 hours ago   Up 11 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+/dev/sda1       387G   52G  335G  14% /
+ 13:19:21 up 3 days, 14:22,  4 users,  load average: 0.00, 0.00, 0.00
+```
+Full output: [`server-runs/2026-05-16T13-19-21-app-docker-ps-grep-solo-shop-df--h-tail--1-u-1.log`](server-runs/2026-05-16T13-19-21-app-docker-ps-grep-solo-shop-df--h-tail--1-u-1.log)
