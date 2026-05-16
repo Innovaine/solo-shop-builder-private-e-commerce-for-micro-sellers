@@ -20191,3 +20191,46 @@ kill -0 $(cat /tmp/day29-test-final.pid) 2>/dev/null && echo "RUNNING" || echo "
 tail -200 /tmp/day29-test-final.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-16T21:44:21.420Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `66dba78` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2401ms) _(showing tail — full 8,093B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day29-test-final.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -200 /tmp/day29-test-final.log 2>/dev/null || echo "Log not ready yet"
+```
+STDOUT:
+```
+…ller-customization.spec.ts:109:7 › Day 29 — Seller Customization Features › FR-39/40: Enhanced analytics dashboard 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('input[type="password"]')[22m
+
+
+      110 |     await page.goto('http://localhost:3000/auth/login');
+      111 |     await page.fill('input[type="email"]', 'test-seller-day29@example.com');
+    > 112 |     await page.fill('input[type="password"]', 'testpass123');
+          |                ^
+      113 |     await page.click('button[type="submit"]');
+      114 |     await page.waitForURL('**/dashboard');
+      115 |     
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day29-seller-customization.spec.ts:112:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-output/day29-seller-customization-ecd80-nhanced-analytics-dashboard-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-output/day29-seller-customization-ecd80-nhanced-analytics-dashboard-chromium/error-context.md
+
+  5 failed
+    [chromium] › tests/web/day29-seller-customization.spec.ts:4:7 › Day 29 — Seller Customization Features › FR-31/32: Seller profile page and storefront display 
+    [chromium] › tests/web/day29-seller-customization.spec.ts:42:7 › Day 29 — Seller Customization Features › FR-33/34: Shop branding with custom colors 
+    [chromium] › tests/web/day29-seller-customization.spec.ts:73:7 › Day 29 — Seller Customization Features › FR-35/36: Email template customization 
+    [chromium] › tests/web/day29-seller-customization.spec.ts:94:7 › Day 29 — Seller Customization Features › FR-37/38: Billing dashboard with transaction history 
+    [chromium] › tests/web/day29-seller-customization.spec.ts:109:7 › Day 29 — Seller Customization Features › FR-39/40: Enhanced analytics dashboard
+```
+Full output: [`server-runs/2026-05-16T21-44-21-app-kill--0-cat-tmp-day29-test-final.pid-2-d-1.log`](server-runs/2026-05-16T21-44-21-app-kill--0-cat-tmp-day29-test-final.pid-2-d-1.log)
