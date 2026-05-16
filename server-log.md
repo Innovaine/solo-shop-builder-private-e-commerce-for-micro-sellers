@@ -19068,3 +19068,42 @@ Test 4: Health check
 {"status":"ok","timestamp":"2026-05-16T20:28:50.732Z","responseTime":"147ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"146ms"}}}
 ```
 Full output: [`server-runs/2026-05-16T20-28-50-app-echo-Test-1-Homepage-1.log`](server-runs/2026-05-16T20-28-50-app-echo-Test-1-Homepage-1.log)
+
+## 2026-05-16T20:29:13.949Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ea44202` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2306ms)
+```
+echo "Test 5: Dashboard page (dynamic export fix)"
+curl -sI http://localhost:3000/dashboard | head -10
+
+echo ""
+echo "Test 6: Checkout API (dynamic export fix)"
+curl -s -X POST http://localhost:3000/api/checkout \
+  -H "Content-Type: application/json" \
+  -d '{"cartItems":[{"productId":"test","quantity":1,"price":10,"name":"Test"}]}' | head -5
+
+echo ""
+echo "Test 7: Verify page with query param (useSearchParams test)"
+curl -s http://localhost:3000/auth/verify?token=test123 | grep -o '<body[^>]*>' | head -1
+```
+STDOUT:
+```
+Test 5: Dashboard page (dynamic export fix)
+HTTP/1.1 307 Temporary Redirect
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+Location: /auth/login
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Sat, 16 May 2026 20:29:13 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+Test 6: Checkout API (dynamic export fix)
+{"error":"Cart is empty"}
+Test 7: Verify page with query param (useSearchParams test)
+<body>
+```
+Full output: [`server-runs/2026-05-16T20-29-13-app-echo-Test-5-Dashboard-page-dynamic-expor-1.log`](server-runs/2026-05-16T20-29-13-app-echo-Test-5-Dashboard-page-dynamic-expor-1.log)
