@@ -3,8 +3,8 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import prisma from '@/src/lib/db'
-import { verifySession } from '@/src/lib/auth'
+import prisma from '@/lib/db'
+import { verifySession } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
   try {
