@@ -14697,3 +14697,36 @@ STDOUT:
 (7 rows)
 ```
 Full output: [`server-runs/2026-05-16T14-49-04-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T14-49-04-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T14:49:30.722Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9031255` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2538ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "CREATE TABLE IF NOT EXISTS \"Webhook\" (
+    \"id\" TEXT NOT NULL,
+    \"stripeEventId\" TEXT NOT NULL,
+    \"eventType\" TEXT NOT NULL,
+    \"payload\" TEXT NOT NULL,
+    \"status\" TEXT NOT NULL DEFAULT 'pending',
+    \"receivedAt\" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    \"processedAt\" TIMESTAMP(3),
+    \"createdAt\" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT \"Webhook_pkey\" PRIMARY KEY (\"id\")
+);
+CREATE UNIQUE INDEX IF NOT EXISTS \"Webhook_stripeEventId_key\" ON \"Webhook\"(\"stripeEventId\");
+CREATE INDEX IF NOT EXISTS \"Webhook_stripeEventId_idx\" ON \"Webhook\"(\"stripeEventId\");
+CREATE INDEX IF NOT EXISTS \"Webhook_eventType_idx\" ON \"Webhook\"(\"eventType\");
+CREATE INDEX IF NOT EXISTS \"Webhook_status_idx\" ON \"Webhook\"(\"status\");
+CREATE INDEX IF NOT EXISTS \"Webhook_receivedAt_idx\" ON \"Webhook\"(\"receivedAt\");"
+```
+STDOUT:
+```
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+```
+Full output: [`server-runs/2026-05-16T14-49-30-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T14-49-30-app-docker-exec-solo-shop-builder-private-e--1.log)
