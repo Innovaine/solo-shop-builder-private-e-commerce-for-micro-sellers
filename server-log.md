@@ -19178,3 +19178,20 @@ echo $! > /tmp/day28-build.pid
 echo "Build started, PID=$(cat /tmp/day28-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T20:46:52.155Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7d98bcd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2153ms)
+```
+ps aux | grep docker | grep -v grep | head -5
+```
+STDOUT:
+```
+root        2194  0.4  1.6 3634836 546436 ?      Ssl  May12  22:33 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+reviewer  730439  0.0  0.0   7740  2068 ?        S    May15   0:00 bash -c cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up > /tmp/compose-up.log 2>&1 & echo "Started"; sleep 8; docker compose logs app 2>&1 | tail -60; printf "__QADAR_EXIT__%d" $?
+reviewer  730441  0.0  0.0 2032368 29172 ?       Sl   May15   0:01 docker compose up
+reviewer  730459  0.0  0.0 1256920 30996 ?       Sl   May15   0:18 /usr/libexec/docker/cli-plugins/docker-compose compose up
+engineer  753904  0.0  0.0 2032048 29212 ?       Sl   May15   0:01 docker compose up
+```
+Full output: [`server-runs/2026-05-16T20-46-52-app-ps-aux-grep-docker-grep--v-grep-head--5-1.log`](server-runs/2026-05-16T20-46-52-app-ps-aux-grep-docker-grep--v-grep-head--5-1.log)
