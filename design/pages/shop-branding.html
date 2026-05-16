@@ -65,16 +65,9 @@
         <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">This color appears in buttons, links, and highlights throughout your shop.</p>
         
         <div class="form-group">
-          <label>Choose Your Color</label>
-          <div class="color-input-group">
-            <div>
-              <input type="color" id="primaryColor" value="#10B981">
-              <div class="color-code" id="colorCode">#10B981</div>
-            </div>
-            <div style="flex: 1;">
-              <input type="text" id="colorHex" placeholder="#10B981" value="#10B981" maxlength="7">
-            </div>
-          </div>
+          <label>Choose Your Color (Hex)</label>
+          <input type="text" id="colorHex" placeholder="#10B981" value="#10B981" maxlength="7">
+          <div class="label-hint">Use a 6-character hex code, e.g. #10B981 (emerald)</div>
         </div>
 
         <div class="form-group">
@@ -141,20 +134,10 @@
     const removeLogo = document.getElementById('removeLogo');
     const previewLogo = document.getElementById('previewLogo');
 
-    primaryColor.addEventListener('input', (e) => {
-      const color = e.target.value;
-      colorHex.value = color;
-      colorCode.textContent = color;
-      previewHeader.style.background = color;
-      previewBtn.style.background = color;
-    });
-
-    colorHex.addEventListener('change', (e) => {
+    colorHex.addEventListener('input', (e) => {
       let color = e.target.value;
       if (!color.startsWith('#')) color = '#' + color;
       if (/^#[0-9A-F]{6}$/i.test(color)) {
-        primaryColor.value = color;
-        colorCode.textContent = color;
         previewHeader.style.background = color;
         previewBtn.style.background = color;
       }

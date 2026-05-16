@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Export CSV — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background: rgba(0, 0, 0, 0.5);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      max-width: 500px;
+      width: 100%;
+      animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .modal-header {
+      padding: 24px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .modal-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1F2937;
+      margin: 0;
+    }
+    .modal-header p {
+      color: #64748B;
+      font-size: 14px;
+      margin: 8px 0 0 0;
+    }
+    .modal-content {
+      padding: 24px;
+    }
+    .export-option {
+      border: 2px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .export-option:hover {
+      border-color: #3B4C63;
+      background: #F8FAFC;
+    }
+    .export-option.selected {
+      border-color: #10B981;
+      background: #F0FDF4;
+    }
+    .export-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .export-details h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin: 0;
+    }
+    .export-details p {
+      font-size: 13px;
+      color: #64748B;
+      margin: 4px 0 0 0;
+    }
+    .radio-input {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #E2E8F0;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .export-option.selected .radio-input {
+      border-color: #10B981;
+      background: #10B981;
+    }
+    .radio-input::after {
+      content: "✓";
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      display: none;
+    }
+    .export-option.selected .radio-input::after {
+      display: block;
+    }
+
+    .filter-section {
+      background: #FAF9F7;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .filter-section h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1F2937;
+      margin: 0 0 12px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .filter-group {
+      margin-bottom: 12px;
+    }
+    .filter-group:last-child {
+      margin-bottom: 0;
+    }
+    .filter-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #64748B;
+      cursor: pointer;
+    }
+    .filter-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: #10B981;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+    .btn {
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: #10B981;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #059669;
+    }
+    .btn-primary:disabled {
+      background: #CBD5E1;
+      cursor: not-allowed;
+    }
+    .btn-secondary {
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+    }
+    .btn-secondary:hover {
+      background: #F9FAFB;
+    }
+
+    .info-banner {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #0369A1;
+    }
+    .info-banner strong {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .modal {
+        max-width: 100%;
+      }
+      .modal-header,
+      .modal-content,
+      .modal-footer {
+        padding: 16px;
+      }
+      .modal-header h2 {
+        font-size: 18px;
+      }
+      .export-option {
+        padding: 12px;
+      }
+      .modal-footer {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Export Data as CSV</h2>
+        <p>Download your orders or products for analysis or backup</p>
+      </div>
+
+      <div class="modal-content">
+        <div class="info-banner">
+          <strong>What's included?</strong>
+          <span>Your data is exported as a standard CSV file that opens in Excel or Google Sheets.</span>
+        </div>
+
+        <div>
+          <label class="export-option selected" id="orderOption">
+            <div class="radio-input"></div>
+            <div class="export-details">
+              <h3>Orders (Last 30 days)</h3>
+              <p>Order ID, date, customer email, total, status, tracking ID</p>
+            </div>
+          </label>
+
+          <label class="export-option" id="productOption">
+            <div class="radio-input"></div>
+            <div class="export-details">
+              <h3>All Products</h3>
+              <p>Title, price, category, SKU, inventory count, created date</p>
+            </div>
+          </label>
+
+          <label class="export-option" id="customerOption">
+            <div class="radio-input"></div>
+            <div class="export-details">
+              <h3>Customer List</h3>
+              <p>Email, purchase count, total spent, first purchase, last purchase</p>
+            </div>
+          </label>
+        </div>
+
+        <div class="filter-section" id="filterSection">
+          <h4>Date Range (Orders)</h4>
+          <div class="filter-group">
+            <label>
+              <input type="checkbox" checked>
+              Last 30 days (default)
+            </label>
+          </div>
+          <div class="filter-group">
+            <label>
+              <input type="checkbox">
+              Last 90 days
+            </label>
+          </div>
+          <div class="filter-group">
+            <label>
+              <input type="checkbox">
+              All time
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="downloadCSV()">Download CSV</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const orderOption = document.getElementById('orderOption');
+    const productOption = document.getElementById('productOption');
+    const customerOption = document.getElementById('customerOption');
+    const filterSection = document.getElementById('filterSection');
+
+    // Handle export type selection
+    [orderOption, productOption, customerOption].forEach(option => {
+      option.addEventListener('click', function() {
+        [orderOption, productOption, customerOption].forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        // Show/hide filters based on selection
+        if (this === orderOption) {
+          filterSection.style.display = 'block';
+        } else {
+          filterSection.style.display = 'none';
+        }
+      });
+    });
+
+    function closeModal() {
+      // In production, this would close the modal or redirect
+      console.log('Modal closed');
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    function downloadCSV() {
+      const selected = document.querySelector('.export-option.selected .export-details h3').textContent;
+      console.log('Download CSV for:', selected);
+      // In production, this would trigger the CSV download via an API call
+      // Example: fetch('/api/export/orders?format=csv')
+      alert(`Downloading ${selected}...\n\nIn production, this would trigger a real CSV download.`);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

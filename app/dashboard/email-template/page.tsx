@@ -110,7 +110,7 @@ export default function EmailTemplatePage() {
                     value={template}
                     onChange={(e) => setTemplate(e.target.value)}
                     rows={12}
-                    className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue font-mono text-sm"
+                    className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue font-mono text-sm"
                     placeholder={DEFAULT_TEMPLATE}
                   />
                 </div>

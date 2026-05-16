@@ -105,7 +105,7 @@ export default function BrandingPage() {
                     type="text"
                     value={formData.primaryColor}
                     onChange={(e) => setFormData({ ...formData, primaryColor: e.target.value })}
-                    className="flex-1 px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
+                    className="flex-1 px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                     placeholder="#3B4C63"
                     pattern="^#[0-9A-Fa-f]{6}$"
                   />
@@ -126,7 +126,7 @@ export default function BrandingPage() {
                     type="text"
                     value={formData.accentColor}
                     onChange={(e) => setFormData({ ...formData, accentColor: e.target.value })}
-                    className="flex-1 px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
+                    className="flex-1 px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                     placeholder="#10B981"
                     pattern="^#[0-9A-Fa-f]{6}$"
                   />
@@ -141,7 +141,7 @@ export default function BrandingPage() {
                 type="url"
                 value={formData.logoUrl}
                 onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
-                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
+                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                 placeholder="https://example.com/logo.png"
               />
             </div>

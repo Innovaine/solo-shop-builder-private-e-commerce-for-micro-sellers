@@ -86,8 +86,28 @@
     /* Main Content */
     main {
       margin-top: 56px;
-      padding: 24px 16px 80px;
+      padding: 16px 12px 80px;
       min-height: 100vh;
+    }
+
+    /* Ultra-narrow screens (320px) */
+    @media (max-width: 380px) {
+      main {
+        padding: 12px 8px 80px;
+      }
+      .stat-card {
+        padding: 12px;
+      }
+      .step-card {
+        padding: 12px;
+        gap: 8px;
+      }
+      .page-title {
+        font-size: 20px;
+      }
+      header {
+        padding: 0 12px;
+      }
     }
 
     /* Page Header */

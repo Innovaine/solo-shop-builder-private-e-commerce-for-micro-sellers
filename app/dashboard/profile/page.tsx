@@ -99,7 +99,7 @@ export default function ProfilePage() {
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={5}
-                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
+                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                 placeholder="We craft hand-made leather goods using traditional techniques..."
               />
             </div>
@@ -112,7 +112,7 @@ export default function ProfilePage() {
                   type="url"
                   value={formData.instagramUrl}
                   onChange={(e) => setFormData({ ...formData, instagramUrl: e.target.value })}
-                  className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
+                  className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                   placeholder="https://instagram.com/yourshop"
                 />
               </div>
@@ -124,7 +124,7 @@ export default function ProfilePage() {
                   type="url"
                   value={formData.facebookUrl}
                   onChange={(e) => setFormData({ ...formData, facebookUrl: e.target.value })}
-                  className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
+                  className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                   placeholder="https://facebook.com/yourshop"
                 />
               </div>
@@ -137,7 +137,7 @@ export default function ProfilePage() {
                 type="url"
                 value={formData.twitterUrl}
                 onChange={(e) => setFormData({ ...formData, twitterUrl: e.target.value })}
-                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slateBlue"
+                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                 placeholder="https://twitter.com/yourshop"
               />
             </div>
