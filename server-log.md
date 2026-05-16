@@ -14863,3 +14863,84 @@ STDOUT:
 Started build #2, PID=1000813
 ```
 Full output: [`server-runs/2026-05-16T14-52-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-52-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T14:53:31.282Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1ad13f9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 12702ms) _(showing tail — full 2,786B stdout + 0B stderr)_
+```
+sleep 10
+kill -0 $(cat /tmp/day22-build2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day22-build2.log
+```
+STDOUT:
+```
+…t if you'd not like to participate in this anonymous program, by visiting the following URL:
+#16 1.750 https://nextjs.org/telemetry
+#16 1.750 
+#16 1.807   ▲ Next.js 14.2.3
+#16 1.807   - Environments: .env
+#16 1.807 
+#16 1.870    Creating an optimized production build ...
+#16 5.514 Failed to compile.
+#16 5.514 
+#16 5.514 ./app/dashboard/orders/page.tsx
+#16 5.514 Module not found: Can't resolve '@/app/components/ui/Header'
+#16 5.514 
+#16 5.514 https://nextjs.org/docs/messages/module-not-found
+#16 5.514 
+#16 5.514 ./app/dashboard/orders/page.tsx
+#16 5.514 Module not found: Can't resolve '@/app/components/ui/Card'
+#16 5.514 
+#16 5.514 https://nextjs.org/docs/messages/module-not-found
+#16 5.514 
+#16 5.514 ./app/dashboard/orders/page.tsx
+#16 5.514 Module not found: Can't resolve '@/app/components/ui/Button'
+#16 5.514 
+#16 5.514 https://nextjs.org/docs/messages/module-not-found
+#16 5.514 
+#16 5.514 ./app/dashboard/orders/page.tsx
+#16 5.514 Module not found: Can't resolve '@/app/components/ui/EmptyState'
+#16 5.514 
+#16 5.514 https://nextjs.org/docs/messages/module-not-found
+#16 5.514 
+#16 5.514 ./app/api/checkout/route.ts
+#16 5.514 Module not found: Can't resolve 'stripe'
+#16 5.514 
+#16 5.514 https://nextjs.org/docs/messages/module-not-found
+#16 5.514 
+#16 5.529 
+#16 5.529 > Build failed because of webpack errors
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN npm run build:
+5.514 
+5.514 https://nextjs.org/docs/messages/module-not-found
+5.514 
+5.514 ./app/api/checkout/route.ts
+5.514 Module not found: Can't resolve 'stripe'
+5.514 
+5.514 https://nextjs.org/docs/messages/module-not-found
+5.514 
+5.529 
+5.529 > Build failed because of webpack errors
+------
+Dockerfile:24
+
+--------------------
+
+  22 |     
+
+  23 |     # Build Next.js app
+
+  24 | >>> RUN npm run build
+
+  25 |     
+
+  26 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T14-53-31-app-sleep-10-1.log`](server-runs/2026-05-16T14-53-31-app-sleep-10-1.log)
