@@ -16403,3 +16403,45 @@ STDOUT:
 DELETE 2
 ```
 Full output: [`server-runs/2026-05-16T17-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:42:40.686Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b612aec` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 10904ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose restart app && sleep 8 && docker compose logs app --tail=30
+```
+STDOUT:
+```
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260516_add_order_tables` migration started at 2026-05-16 17:42:00.307401 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 1 migration found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260516_add_order_tables` migration started at 2026-05-16 17:42:00.307401 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 1 migration found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260516_add_order_tables` migration started at 2026-05-16 17:42:00.307401 UTC failed
+app-1  | 
+app-1  |
+```
+Full output: [`server-runs/2026-05-16T17-42-40-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-42-40-app-cd-solo-shop-builder-private-e-commerce--1.log)
