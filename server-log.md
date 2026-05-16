@@ -15158,3 +15158,51 @@ DONE
 #16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-16T15-19-32-app-kill--0-cat-tmp-day23-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T15-19-32-app-kill--0-cat-tmp-day23-build.pid-2-dev-nu-1.log)
+
+## 2026-05-16T15:19:52.138Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7b31416` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2633ms)
+```
+tail -150 /tmp/day23-build.log | grep -A 20 "Type error"
+```
+ERROR: command exited 1
+
+## 2026-05-16T15:20:16.645Z — Anil ran 1 command(s)
+### Command 1 on app as engineer (✓ exit 0, 2548ms)
+```
+grep -B 5 -A 10 "error" /tmp/day23-build.log | tail -50
+```
+STDOUT:
+```
+#16 6.085 Module not found: Can't resolve '@/src/lib/auth'
+#16 6.085 
+#16 6.085 https://nextjs.org/docs/messages/module-not-found
+#16 6.085 
+#16 6.158 
+#16 6.158 > Build failed because of webpack errors
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN npm run build:
+6.085 
+6.085 https://nextjs.org/docs/messages/module-not-found
+6.085 
+6.085 ./app/api/orders/[id]/route.ts
+6.085 Module not found: Can't resolve '@/src/lib/auth'
+6.085 
+6.085 https://nextjs.org/docs/messages/module-not-found
+6.085 
+6.158 
+6.158 > Build failed because of webpack errors
+------
+Dockerfile:24
+
+--------------------
+
+  22 |     
+
+  23 |     # Build Next.js app
+
+  24 | >>> RUN npm run build
+```
+Full output: [`server-runs/2026-05-16T15-20-16-app-grep--B-5--A-10-error-tmp-day23-build.lo-1.log`](server-runs/2026-05-16T15-20-16-app-grep--B-5--A-10-error-tmp-day23-build.lo-1.log)
