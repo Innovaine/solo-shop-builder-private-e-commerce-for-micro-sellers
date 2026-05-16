@@ -14572,3 +14572,19 @@ No migration found in prisma/migrations
 No pending migrations to apply.
 ```
 Full output: [`server-runs/2026-05-16T14-44-18-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-44-18-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T14:44:33.997Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c9e75df` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2463ms)
+```
+ls -la ~/solo-shop-builder-private-e-commerce-for-micro-sellers/prisma/migrations/20260516_add_order_tables/
+```
+STDOUT:
+```
+total 12
+drwxrwxr-x 2 engineer engineer 4096 May 16 14:43 .
+drwxrwxr-x 3 engineer engineer 4096 May 16 14:44 ..
+-rw-rw-r-- 1 engineer engineer 2558 May 16 14:43 migration.sql
+```
+Full output: [`server-runs/2026-05-16T14-44-33-app-ls--la-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-16T14-44-33-app-ls--la-solo-shop-builder-private-e-comme-1.log)
