@@ -20001,3 +20001,17 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-16T21-33-04-app-kill--0-cat-tmp-day29-build-v3.pid-2-dev-1.log`](server-runs/2026-05-16T21-33-04-app-kill--0-cat-tmp-day29-build-v3.pid-2-dev-1.log)
+
+## 2026-05-16T21:38:12.869Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `da86a34` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2607ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --all | grep solo-shop
+```
+STDOUT:
+```
+7c3a8e190fe8   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   37 minutes ago   Up 37 minutes          0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+d6af22021ce2   postgres:16-alpine                                           "docker-entrypoint.s…"   6 hours ago      Up 6 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-16T21-38-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-38-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
