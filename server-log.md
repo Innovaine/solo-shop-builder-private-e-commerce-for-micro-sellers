@@ -13715,3 +13715,84 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   11 hours ago   Up 11 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-16T13-28-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-28-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:28:32.426Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6b3d1b5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3369ms) _(showing tail — full 1,516,466B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose logs --tail=50 web 2>&1 || echo "No web logs found"
+cat /tmp/compose-up.log 2>&1 || echo "No compose-up log"
+```
+STDOUT:
+```
+time="2026-05-16T13:28:31Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+no such service: web
+No web logs found
+time="2026-05-15T16:52:10Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+Attaching to app-1, postgres-1
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started 
+app-1  | npm warn exec The following package was not found and will be installed: prisma@7.8.0
+app-1  | npm warn EBADENGINE Unsupported engine {
+app-1  | npm warn EBADENGINE   package: '@prisma/streams-local@0.1.2',
+app-1  | npm warn EBADENGINE   required: { bun: '>=1.3.6', node: '>=22.0.0' },
+app-1  | npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+app-1  | npm warn EBADENGINE }
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+app-1  | npm notice
+app-1  | npm notice New major version of npm available! 10.8.2 -> 11.14.1
+app-1  | npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+app-1  | npm notice To update run: npm install -g npm@11.14.1
+app-1  | npm notice
+[Kapp-1 exited with code 1 (restarting)
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+[Kapp-1 exited with code 1 (restarting)
+app-1  | prisma:warn Prisma f
+
+…[1,511,346 bytes elided]…
+
+entication failed for user "postgres"
+postgres-1  | 2026-05-16 13:28:08.307 UTC [33444] DETAIL:  Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+postgres-1  | 2026-05-16 13:28:13.549 UTC [33453] FATAL:  password authentication failed for user "postgres"
+postgres-1  | 2026-05-16 13:28:13.549 UTC [33453] DETAIL:  Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+postgres-1  | 2026-05-16 13:28:22.024 UTC [33461] FATAL:  password authentication failed for user "postgres"
+postgres-1  | 2026-05-16 13:28:22.024 UTC [33461] DETAIL:  Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+postgres-1  | 2026-05-16 13:28:28.761 UTC [33462] FATAL:  password authentication failed for user "postgres"
+postgres-1  | 2026-05-16 13:28:28.761 UTC [33462] DETAIL:  Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 128: "host all all all scram-sha-256"
+```
+Full output: [`server-runs/2026-05-16T13-28-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-28-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
