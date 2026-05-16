@@ -18448,3 +18448,27 @@ e733d40 Anil (engineer, day 26) — pre-SSH sync
 -rw-rw-r-- 1 tester   tester      1110 May 13 19:59 /tmp/upload-test.log
 ```
 Full output: [`server-runs/2026-05-16T19-49-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-49-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T19:50:56.185Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c022d1d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3789ms)
+```
+curl -sf http://localhost:3000/api/health | head -20
+curl -sI http://localhost:3000/auth/verify | head -10
+curl -s http://localhost:3000 | grep -o '<h1>.*</h1>' | head -1
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-16T19:50:55.945Z","responseTime":"242ms","checks":{"database":{"status":"ok","responseTime":"48ms"},"email":{"status":"ok","responseTime":"194ms"}}}HTTP/1.1 404 Not Found
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: 2pegvytCc8N7i3e0
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Sat, 16 May 2026 19:50:55 GMT
+```
+Full output: [`server-runs/2026-05-16T19-50-56-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-16T19-50-56-app-curl--sf-http-localhost-3000-api-health--1.log)
