@@ -12346,3 +12346,19 @@ STDOUT:
 Health check OK
 ```
 Full output: [`server-runs/2026-05-16T02-28-48-app-sleep-5-1.log`](server-runs/2026-05-16T02-28-48-app-sleep-5-1.log)
+
+## 2026-05-16T02:29:07.462Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e152b80` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2399ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx playwright test tests/web/scaling-day18.spec.ts --reporter=list > /tmp/playwright-day18.log 2>&1 &
+echo $! > /tmp/playwright-day18.pid
+echo "Started Playwright tests, PID=$(cat /tmp/playwright-day18.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=886924
+```
+Full output: [`server-runs/2026-05-16T02-29-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-29-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
