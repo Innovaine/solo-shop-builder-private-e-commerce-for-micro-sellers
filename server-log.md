@@ -10406,3 +10406,20 @@ echo $! > /tmp/playwright-day15.pid
 echo "Started Playwright tests, PID=$(cat /tmp/playwright-day15.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T01:11:45.740Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `61488a2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3450ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+mkdir -p test-results/day-15
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/scaling-day15.spec.ts --reporter=list > /tmp/playwright-day15.log 2>&1" &
+echo $! > /tmp/playwright-day15.pid
+echo "Started Playwright Day 15 tests, PID=$(cat /tmp/playwright-day15.pid)"
+```
+STDOUT:
+```
+Started Playwright Day 15 tests, PID=863794
+```
+Full output: [`server-runs/2026-05-16T01-11-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-11-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
