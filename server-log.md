@@ -10986,3 +10986,18 @@ STDOUT:
 Started Playwright tests, PID=871061
 ```
 Full output: [`server-runs/2026-05-16T01-38-49-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-38-49-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:40:22.276Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3384a1a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3676ms)
+```
+kill -0 $(cat /tmp/playwright-day16.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/playwright-day16.log
+```
+STDOUT:
+```
+DONE
+nohup: failed to run command 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers': No such file or directory
+```
+Full output: [`server-runs/2026-05-16T01-40-22-app-kill--0-cat-tmp-playwright-day16.pid-2-d-1.log`](server-runs/2026-05-16T01-40-22-app-kill--0-cat-tmp-playwright-day16.pid-2-d-1.log)
