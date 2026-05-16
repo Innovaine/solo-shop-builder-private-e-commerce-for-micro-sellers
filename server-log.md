@@ -16497,3 +16497,24 @@ INSERT 0 1
 ```
 ERROR: command exited -1
 Full output: [`server-runs/2026-05-16T17-43-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-43-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:43:52.640Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7fa2528` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3136ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c "SELECT migration_name, finished_at IS NOT NULL as completed FROM _prisma_migrations ORDER BY started_at DESC LIMIT 3;"
+echo "---"
+docker compose restart app
+```
+STDOUT:
+```
+      migration_name       | completed 
+---------------------------+-----------
+ 20260516_add_order_tables | t
+ 20260515184722_init       | t
+(2 rows)
+
+---
+```
+Full output: [`server-runs/2026-05-16T17-43-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-43-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
