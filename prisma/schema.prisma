@@ -112,3 +112,20 @@ model OrderItem {
   @@index([orderId])
   @@index([productId])
 }
+
+// Webhook - Stripe event audit trail (NFR-9)
+model Webhook {
+  id            String   @id @default(uuid())
+  stripeEventId String   @unique
+  eventType     String   // payment_intent.succeeded, charge.failed, etc.
+  payload       String   @db.Text // Raw JSON payload
+  status        String   @default("pending") // pending, processed, failed
+  receivedAt    DateTime @default(now())
+  processedAt   DateTime?
+  createdAt     DateTime @default(now())
+  
+  @@index([stripeEventId])
+  @@index([eventType])
+  @@index([status])
+  @@index([receivedAt])
+}

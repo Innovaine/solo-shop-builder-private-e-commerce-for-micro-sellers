@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      background-color: #FAF9F7;
+      color: #1F2937;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 0;
+      margin-bottom: 32px;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: #64748B;
+    }
+    .checkout-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+    }
+    .checkout-form {
+      background: white;
+      padding: 32px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+    }
+    .form-section {
+      margin-bottom: 32px;
+    }
+    .form-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #3B4C63;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #1F2937;
+    }
+    input, select {
+      padding: 12px 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: inherit;
+      background: white;
+      color: #1F2937;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+    .stripe-checkout-frame {
+      padding: 20px;
+      background: #F8F8F8;
+      border: 2px dashed #D1D5DB;
+      border-radius: 8px;
+      text-align: center;
+      color: #64748B;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+    .divider {
+      height: 1px;
+      background: #E2E8F0;
+      margin: 24px 0;
+    }
+    .checkout-button {
+      background-color: #10B981;
+      color: white;
+      border: none;
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+    .checkout-button:hover {
+      background-color: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .checkout-button:active {
+      transform: translateY(0);
+    }
+    .security-notice {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 12px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .security-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: #10B981;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 16px;
+      font-size: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Order Summary Sidebar */
+    .order-summary {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+    .order-summary h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #3B4C63;
+    }
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .order-item:last-of-type {
+      border-bottom: none;
+      margin-bottom: 16px;
+      padding-bottom: 0;
+    }
+    .item-name {
+      color: #1F2937;
+      font-weight: 500;
+    }
+    .item-price {
+      color: #3B4C63;
+      font-weight: 600;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #64748B;
+    }
+    .summary-row.total {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B4C63;
+      padding-top: 12px;
+      border-top: 2px solid #E2E8F0;
+      margin-top: 12px;
+    }
+
+    /* Stripe Checkout Context */
+    .stripe-context {
+      background: linear-gradient(135deg, #F5F5F5 0%, #FFFFFF 100%);
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 24px;
+      font-size: 12px;
+      color: #64748B;
+    }
+    .stripe-context strong {
+      color: #3B4C63;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .checkout-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .order-summary {
+        position: static;
+        margin-bottom: 24px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .header-content {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">Solo Shop</div>
+      <div class="breadcrumb">Cart → <strong>Checkout</strong></div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="checkout-wrapper">
+      <div class="checkout-form">
+        <div class="form-section">
+          <h2>Contact Information</h2>
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="form-section">
+          <h2>Shipping Address</h2>
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Jane Doe" required>
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="address">Street Address</label>
+              <input type="text" id="address" placeholder="123 Main Street" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" placeholder="New York" required>
+            </div>
+            <div class="form-group">
+              <label for="state">State / Province</label>
+              <input type="text" id="state" placeholder="NY" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="zip">Postal Code</label>
+              <input type="text" id="zip" placeholder="10001" required>
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" required>
+                <option value="">Select a country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <option value="OTHER">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="form-section">
+          <h2>Payment Method</h2>
+          <p style="font-size: 14px; color: #64748B; margin-bottom: 16px;">Click the button below to securely enter your payment information with Stripe.</p>
+          <div class="stripe-checkout-frame">
+            🔒 Stripe Checkout Hosted Payment Form<br>
+            <span style="font-size: 12px; margin-top: 8px; display: block;">Card information collected securely by Stripe</span>
+          </div>
+          <div class="stripe-context">
+            <strong>How it works:</strong> When you click "Complete Purchase," you'll be securely redirected to Stripe Checkout where you can enter your credit card, billing address, and confirm payment. Your information is never stored on our servers—Stripe handles all payment processing.
+          </div>
+        </div>
+
+        <button class="checkout-button">Complete Purchase</button>
+        <div class="security-notice">
+          <span class="security-icon">✓</span>
+          Your payment information is secure and encrypted.
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        
+        <div class="order-item">
+          <span class="item-name">Handmade Ceramic Mug (Blue)</span>
+          <span class="item-price">$18.00</span>
+        </div>
+        <div class="order-item">
+          <span class="item-name">Quantity: 1</span>
+        </div>
+
+        <div class="order-item">
+          <span class="item-name">Hand-Knitted Scarf (Wool)</span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="order-item">
+          <span class="item-name">Quantity: 1</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>$63.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span>$8.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax</span>
+          <span>$5.36</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>$76.36</span>
+        </div>
+
+        <p style="font-size: 12px; color: #64748B; margin-top: 16px;">
+          By purchasing, you agree to the seller's return policy and our terms of service.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
