@@ -10717,3 +10717,14 @@ STDOUT:
 Started npm install (clean cache), PID=866814
 ```
 Full output: [`server-runs/2026-05-16T01-28-20-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-28-20-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:29:19.529Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4abe6d4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 41178ms)
+```
+sleep 10
+kill -0 $(cat /tmp/npm-install-day16-v2.pid) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+tail -30 /tmp/npm-install-day16-v2.log
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
