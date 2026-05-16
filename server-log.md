@@ -18375,3 +18375,16 @@ STDOUT:
 #15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-16T19-44-45-app-tail--200-tmp-day26-review-build.log-gre-1.log`](server-runs/2026-05-16T19-44-45-app-tail--200-tmp-day26-review-build.log-gre-1.log)
+
+## 2026-05-16T19:47:47.829Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e1cffb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2934ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -L "export const dynamic" app/api/**/*.ts 2>/dev/null | head -20
+```
+STDOUT:
+```
+app/api/checkout/route.ts
+```
+Full output: [`server-runs/2026-05-16T19-47-47-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-47-47-app-cd-solo-shop-builder-private-e-commerce--1.log)
