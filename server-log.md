@@ -16469,3 +16469,31 @@ STDOUT:
 (8 rows)
 ```
 Full output: [`server-runs/2026-05-16T17-43-06-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-43-06-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:43:30.599Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6f8efed` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit -1, 2651ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop <<'EOF'
+DELETE FROM _prisma_migrations WHERE migration_name = '20260516_add_order_tables';
+INSERT INTO _prisma_migrations (id, checksum, finished_at, migration_name, logs, rolled_back_at, started_at, applied_steps_count) 
+VALUES (
+  gen_random_uuid()::text,
+  '8d5c8f9e3a2b1c4d7e6f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d',
+  NOW(),
+  '20260516_add_order_tables',
+  NULL,
+  NULL,
+  NOW(),
+  1
+);
+EOF
+```
+STDOUT:
+```
+DELETE 1
+INSERT 0 1
+```
+ERROR: command exited -1
+Full output: [`server-runs/2026-05-16T17-43-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-43-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
