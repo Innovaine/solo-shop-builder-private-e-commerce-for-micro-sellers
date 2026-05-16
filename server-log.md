@@ -17725,3 +17725,63 @@ STDOUT:
 Started build, PID=1061771
 ```
 Full output: [`server-runs/2026-05-16T19-10-36-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-10-36-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T19:10:57.413Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5495e8c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3688ms) _(showing tail — full 3,413B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day26-fix-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day26-fix-build.log
+```
+STDOUT:
+```
+…ion of npm available! 10.8.2 -> 11.14.1
+#13 1.854 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+#13 1.854 npm notice To update run: npm install -g npm@11.14.1
+#13 1.854 npm notice
+#13 DONE 1.9s
+
+#14 [builder 6/7] RUN mkdir -p public
+#14 DONE 0.2s
+
+#15 [builder 7/7] RUN npm run build
+#15 0.327 
+#15 0.327 > solo-shop-builder@0.1.0 build
+#15 0.327 > prisma generate && next build
+#15 0.327 
+#15 0.778 Environment variables loaded from .env
+#15 0.782 Prisma schema loaded from prisma/schema.prisma
+#15 1.155 
+#15 1.155 ✔ Generated Prisma Client (v5.14.0) to ./node_modules/@prisma/client in 102ms
+#15 1.155 
+#15 1.155 Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
+#15 1.155 ```
+#15 1.155 import { PrismaClient } from '@prisma/client'
+#15 1.155 const prisma = new PrismaClient()
+#15 1.155 ```
+#15 1.155 or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+#15 1.155 ```
+#15 1.155 import { PrismaClient } from '@prisma/client/edge'
+#15 1.155 const prisma = new PrismaClient()
+#15 1.155 ```
+#15 1.155 
+#15 1.155 See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+#15 1.155 
+#15 1.155 ┌─────────────────────────────────────────────────────────────┐
+#15 1.155 │  Deploying your app to serverless or edge functions?        │
+#15 1.155 │  Try Prisma Accelerate for connection pooling and caching.  │
+#15 1.155 │  https://pris.ly/cli/--accelerate                           │
+#15 1.155 └─────────────────────────────────────────────────────────────┘
+#15 1.155 
+#15 1.870 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#15 1.871 This information is used to shape Next.js' roadmap and prioritize features.
+#15 1.871 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 1.871 https://nextjs.org/telemetry
+#15 1.871 
+#15 1.920   ▲ Next.js 14.2.3
+#15 1.920   - Environments: .env
+#15 1.920 
+#15 1.973    Creating an optimized production build ...
+```
+Full output: [`server-runs/2026-05-16T19-10-57-app-kill--0-cat-tmp-day26-fix-build.pid-2-de-1.log`](server-runs/2026-05-16T19-10-57-app-kill--0-cat-tmp-day26-fix-build.pid-2-de-1.log)
