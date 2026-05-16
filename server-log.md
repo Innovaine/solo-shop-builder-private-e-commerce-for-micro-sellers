@@ -11870,3 +11870,58 @@ STDOUT:
 (1 row)
 ```
 Full output: [`server-runs/2026-05-16T02-12-36-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-16T02-12-36-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-16T02:13:01.701Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8bd6f00` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2734ms)
+```
+echo "Getting shop info..."
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT id, slug, name, \"sellerId\" FROM \"Shop\" LIMIT 1;" 2>&1
+
+echo -e "\nInserting test product..."
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "
+INSERT INTO \"Product\" (id, title, description, price, \"imageUrl\", category, stock, \"shopId\", \"createdAt\", \"updatedAt\")
+SELECT 
+  gen_random_uuid(),
+  'Handcrafted Ceramic Mug',
+  'Beautiful handmade ceramic mug, perfect for your morning coffee',
+  2500,
+  null,
+  'Handmade',
+  10,
+  id,
+  NOW(),
+  NOW()
+FROM \"Shop\" 
+LIMIT 1
+RETURNING id, title, \"shopId\";
+" 2>&1
+
+echo -e "\nVerifying product created..."
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT s.slug, p.id, p.title FROM \"Shop\" s JOIN \"Product\" p ON p.\"shopId\" = s.id;" 2>&1
+```
+STDOUT:
+```
+Getting shop info...
+                  id                  |   slug    |   name    |               sellerId               
+--------------------------------------+-----------+-----------+--------------------------------------
+ b67fe1fd-4bbd-4f02-81e5-d0b661d225c1 | test-shop | Test Shop | 5d086d96-8afe-490f-ad80-83d1de45dfa9
+(1 row)
+
+
+Inserting test product...
+                  id                  |          title          |                shopId                
+--------------------------------------+-------------------------+--------------------------------------
+ 48cbf0db-6ca1-43f7-a584-c24f2a26a930 | Handcrafted Ceramic Mug | b67fe1fd-4bbd-4f02-81e5-d0b661d225c1
+(1 row)
+
+INSERT 0 1
+
+Verifying product created...
+   slug    |                  id                  |          title          
+-----------+--------------------------------------+-------------------------
+ test-shop | 48cbf0db-6ca1-43f7-a584-c24f2a26a930 | Handcrafted Ceramic Mug
+(1 row)
+```
+Full output: [`server-runs/2026-05-16T02-13-01-app-echo-Getting-shop-info...-1.log`](server-runs/2026-05-16T02-13-01-app-echo-Getting-shop-info...-1.log)
