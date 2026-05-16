@@ -5,10 +5,10 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { getCart, getCartTotal, removeFromCart } from '@/src/lib/cart'
-import type { Cart } from '@/src/lib/cart'
-import Button from '@/app/components/ui/Button'
-import Card from '@/app/components/ui/Card'
+import { getCart, getCartTotal, removeFromCart } from '@/lib/cart'
+import type { Cart } from '@/lib/cart'
+import Button from '@/components/ui/Button'
+import Card from '@/components/ui/Card'
 
 export default function CheckoutPage() {
   const router = useRouter()
