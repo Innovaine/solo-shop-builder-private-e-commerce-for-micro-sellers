@@ -14402,3 +14402,19 @@ Fast-forward
  create mode 100644 test-results/day-21/report.md
 ```
 Full output: [`server-runs/2026-05-16T14-37-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-37-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T14:40:42.529Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a30cd2e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3995ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate dev --name add_order_tables > /tmp/migrate-day22.log 2>&1 &
+echo $! > /tmp/migrate-day22.pid
+echo "Started Prisma migrate, PID=$(cat /tmp/migrate-day22.pid)"
+```
+STDOUT:
+```
+Started Prisma migrate, PID=996826
+```
+Full output: [`server-runs/2026-05-16T14-40-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-40-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
