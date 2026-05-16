@@ -11241,3 +11241,20 @@ Fast-forward
  create mode 100644 tests/web/day16-smoke.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T01-47-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-47-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:48:11.780Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `89b85bb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3359ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+mkdir -p test-results/day-16
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers nohup npx playwright test tests/web/day16-smoke.spec.ts --reporter=list > /tmp/playwright-smoke.log 2>&1 &
+echo $! > /tmp/playwright-smoke.pid
+echo "Started smoke tests, PID=$(cat /tmp/playwright-smoke.pid)"
+```
+STDOUT:
+```
+Started smoke tests, PID=873898
+```
+Full output: [`server-runs/2026-05-16T01-48-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-48-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
