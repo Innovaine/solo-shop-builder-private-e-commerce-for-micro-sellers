@@ -19107,3 +19107,52 @@ Test 7: Verify page with query param (useSearchParams test)
 <body>
 ```
 Full output: [`server-runs/2026-05-16T20-29-13-app-echo-Test-5-Dashboard-page-dynamic-expor-1.log`](server-runs/2026-05-16T20-29-13-app-echo-Test-5-Dashboard-page-dynamic-expor-1.log)
+
+## 2026-05-16T20:45:03.304Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `17efb39` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3049ms) _(showing tail — full 3,514B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+….html                  | 257 ++++++++++++
+ design/pages/login.html                            | 224 +++++++++--
+ design/pages/reset-password.html                   | 436 +++++++++++++++++++++
+ package.json                                       |   4 +-
+ .../migration.sql                                  |   7 +
+ .../migration.sql                                  |   3 +
+ prisma/schema.prisma                               |  13 +-
+ server-log.md                                      | 378 ++++++++++++++++++
+ src/lib/email.ts                                   |  27 ++
+ src/lib/rate-limit.ts                              |   5 +
+ test-results/day-27/report.md                      | 149 +++++++
+ tests/web/day27-build-fix-smoke.spec.ts            |  98 +++++
+ 34 files changed, 3457 insertions(+), 48 deletions(-)
+ create mode 100644 app/api/account/password/route.ts
+ create mode 100644 app/api/analytics/route.ts
+ create mode 100644 app/api/auth/forgot-password/route.ts
+ create mode 100644 app/api/auth/login/route.ts
+ create mode 100644 app/api/auth/reset-password/route.ts
+ create mode 100644 app/api/orders/export/route.ts
+ create mode 100644 app/auth/forgot-password/page.tsx
+ create mode 100644 app/auth/reset-password/page.tsx
+ create mode 100644 app/components/AnalyticsCards.tsx
+ create mode 100644 app/dashboard/settings/page.tsx
+ create mode 100644 day-27/_index.md
+ create mode 100644 day-27/engineering.md
+ create mode 100644 day-27/review.md
+ create mode 100644 day-27/stage-ship-check.md
+ create mode 100644 day-27/test.md
+ create mode 100644 day-28/_plan.md
+ create mode 100644 day-28/design.md
+ create mode 100644 day-28/requirements.md
+ create mode 100644 design/pages/forgot-password.html
+ create mode 100644 design/pages/reset-password.html
+ create mode 100644 prisma/migrations/20260516_add_password_reset_fields/migration.sql
+ create mode 100644 prisma/migrations/20260516_add_seller_password_hash/migration.sql
+ create mode 100644 test-results/day-27/report.md
+ create mode 100644 tests/web/day27-build-fix-smoke.spec.ts
+```
+Full output: [`server-runs/2026-05-16T20-45-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-45-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
