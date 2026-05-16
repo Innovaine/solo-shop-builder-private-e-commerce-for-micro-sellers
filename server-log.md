@@ -10069,3 +10069,16 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-16T01-00-46-app-kill--0-cat-tmp-day15-rebuild2.pid-2-dev-1.log`](server-runs/2026-05-16T01-00-46-app-kill--0-cat-tmp-day15-rebuild2.pid-2-dev-1.log)
+
+## 2026-05-16T01:01:31.389Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5bed475` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 20947ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose up -d
+sleep 7
+curl -sf http://localhost:3000/api/health && echo " - API healthy" || echo " - API not ready"
+curl -sI http://localhost:3000/shop/test-shop/product/prod-1 | head -1
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
