@@ -10867,3 +10867,18 @@ STDOUT:
 #16 14.58    Collecting build traces ...
 ```
 Full output: [`server-runs/2026-05-16T01-33-50-app-kill--0-cat-tmp-day16-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T01-33-50-app-kill--0-cat-tmp-day16-build.pid-2-dev-nu-1.log)
+
+## 2026-05-16T01:34:09.007Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `001415a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 2855ms)
+```
+kill -0 $(cat /tmp/day16-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day16-build.log | grep -E "(Successfully built|ERROR|failed|Build failed|exported)"
+```
+STDOUT:
+```
+DONE
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T01-34-08-app-kill--0-cat-tmp-day16-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T01-34-08-app-kill--0-cat-tmp-day16-build.pid-2-dev-nu-1.log)
