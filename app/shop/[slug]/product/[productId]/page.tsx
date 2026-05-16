@@ -8,17 +8,19 @@ import Link from 'next/link'
 export default async function ProductDetailPage({
   params,
 }: {
-  params: { slug: string; productId: string }
+  params: Promise<{ slug: string; productId: string }>
 }) {
+  const { slug, productId } = await params
+  
   const product = await prisma.product.findUnique({
-    where: { id: params.productId },
+    where: { id: productId },
     include: {
       shop: true,
     },
   })
 
   // Verify product exists and belongs to the correct shop
-  if (!product || product.shop.slug !== params.slug) {
+  if (!product || product.shop.slug !== slug) {
     notFound()
   }
 
@@ -28,7 +30,7 @@ export default async function ProductDetailPage({
       <header className="bg-white border-b border-whisper sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link
-            href={`/shop/${params.slug}`}
+            href={`/shop/${slug}`}
             className="text-charcoal text-sm font-semibold hover:text-slate transition-colors"
           >
             ← Back to Shop
@@ -108,7 +110,7 @@ export default async function ProductDetailPage({
             <button className="w-full py-4 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 transition-all hover:-translate-y-0.5 hover:shadow-lg mb-3">
               Add to Cart
             </button>
-            <Link href={`/shop/${params.slug}`}>
+            <Link href={`/shop/${slug}`}>
               <button className="w-full py-3 bg-white border border-whisper text-charcoal font-semibold rounded-md hover:bg-cream transition-colors">
                 Continue Shopping
               </button>

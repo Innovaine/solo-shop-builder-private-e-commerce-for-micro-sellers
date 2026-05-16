@@ -6,6 +6,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { formatPrice } from '@/lib/product'
+import { Card } from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
+import { EmptyState } from '@/components/ui/EmptyState'
 
 interface Product {
   id: string
@@ -114,32 +117,35 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-cream">
       <div className="max-w-6xl mx-auto p-6">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <Card padding="lg" variant="elevated">
           <div className="flex justify-between items-center mb-8">
             <div>
               <h1 className="text-3xl font-bold text-charcoal mb-2">Products</h1>
               <p className="text-slate">Manage your shop inventory</p>
             </div>
-            <button
+            <Button
               onClick={() => router.push('/dashboard/products/new')}
-              className="bg-emerald text-white px-6 py-3 rounded-md font-semibold hover:bg-emerald-600 transition"
+              variant="primary"
+              size="lg"
             >
               + Add Product
-            </button>
+            </Button>
           </div>
 
           {products.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="text-6xl mb-4">📦</div>
-              <h2 className="text-xl font-bold text-charcoal mb-2">No products yet</h2>
-              <p className="text-slate mb-6">Add your first product to get started</p>
-              <button
-                onClick={() => router.push('/dashboard/products/new')}
-                className="bg-slate-blue text-white px-6 py-2 rounded-md hover:bg-slate-blue/90 transition"
-              >
-                Add Product
-              </button>
-            </div>
+            <EmptyState
+              icon="📦"
+              title="No products yet"
+              description="Add your first product to get started"
+              action={
+                <Button
+                  onClick={() => router.push('/dashboard/products/new')}
+                  variant="primary"
+                >
+                  Add Product
+                </Button>
+              }
+            />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -210,7 +216,7 @@ export default function ProductsPage() {
               </table>
             </div>
           )}
-        </div>
+        </Card>
       </div>
     </div>
   )

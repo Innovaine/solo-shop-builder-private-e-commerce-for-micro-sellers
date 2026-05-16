@@ -5,6 +5,8 @@
 
 import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { Button } from '@/components/ui/Button'
+import { FormField } from '@/components/ui/FormField'
 
 // Force dynamic rendering because we use searchParams
 export const dynamic = 'force-dynamic'
@@ -81,29 +83,26 @@ function LoginForm() {
               <strong className="text-slate-blue">No password needed.</strong> We&apos;ll send you a login link via email.
             </div>
 
-            <div className="mb-6">
-              <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-                autoComplete="email"
-                className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
-              />
-            </div>
+            <FormField
+              label="Email Address"
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              required
+              autoComplete="email"
+            />
 
-            <button
+            <Button
               type="submit"
-              disabled={loading}
-              className="w-full bg-emerald text-white font-semibold py-3 rounded-md hover:bg-emerald-600 active:transform active:translate-y-0 disabled:bg-slate-300 disabled:cursor-not-allowed transition"
+              loading={loading}
+              variant="primary"
+              size="lg"
+              className="w-full"
             >
-              {loading ? 'Sending...' : 'Send Login Link'}
-            </button>
+              Send Login Link
+            </Button>
           </form>
         ) : (
           <div className="text-center">

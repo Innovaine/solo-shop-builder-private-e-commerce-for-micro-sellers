@@ -6,6 +6,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { PRODUCT_CATEGORIES, parsePriceToCents } from '@/lib/product'
+import { Card } from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
+import { FormField } from '@/components/ui/FormField'
 
 export default function NewProductPage() {
   const router = useRouter()
@@ -65,7 +68,7 @@ export default function NewProductPage() {
 
   return (
     <div className="min-h-screen bg-cream flex items-center justify-center p-6">
-      <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full p-12">
+      <Card padding="lg" variant="elevated" className="max-w-2xl w-full">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-charcoal mb-2">Add Product</h1>
           <p className="text-slate">Create a new product for your shop</p>
@@ -80,10 +83,8 @@ export default function NewProductPage() {
         <form onSubmit={handleSubmit}>
           {/* Title */}
           <div className="mb-6">
-            <label htmlFor="title" className="block text-sm font-medium text-charcoal mb-2">
-              Product Title *
-            </label>
-            <input
+            <FormField
+              label="Product Title"
               type="text"
               id="title"
               value={title}
@@ -91,7 +92,6 @@ export default function NewProductPage() {
               placeholder="e.g., Gold Minimalist Necklace"
               required
               maxLength={100}
-              className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
             />
           </div>
 
@@ -192,23 +192,27 @@ export default function NewProductPage() {
           </div>
 
           <div className="flex gap-3">
-            <button
+            <Button
               type="button"
               onClick={() => router.back()}
-              className="flex-1 bg-transparent text-slate-blue border border-whisper font-semibold py-3 rounded-md hover:bg-cream hover:border-slate-blue transition"
+              variant="secondary"
+              size="lg"
+              className="flex-1"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
-              disabled={loading}
-              className="flex-1 bg-emerald text-white font-semibold py-3 rounded-md hover:bg-emerald-600 active:transform active:translate-y-0 disabled:bg-slate-300 disabled:cursor-not-allowed transition"
+              loading={loading}
+              variant="primary"
+              size="lg"
+              className="flex-1"
             >
-              {loading ? 'Creating...' : 'Create Product'}
-            </button>
+              Create Product
+            </Button>
           </div>
         </form>
-      </div>
+      </Card>
     </div>
   )
 }

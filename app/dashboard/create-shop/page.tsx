@@ -5,6 +5,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/Button'
+import { FormField } from '@/components/ui/FormField'
 
 export default function CreateShopPage() {
   const router = useRouter()
@@ -83,10 +85,8 @@ export default function CreateShopPage() {
 
             <form onSubmit={handleSubmit}>
               <div className="mb-7">
-                <label htmlFor="shopName" className="block text-sm font-medium text-charcoal mb-2">
-                  Shop Name
-                </label>
-                <input
+                <FormField
+                  label="Shop Name"
                   type="text"
                   id="shopName"
                   value={shopName}
@@ -94,9 +94,8 @@ export default function CreateShopPage() {
                   placeholder="e.g., Sarah's Jewelry"
                   required
                   maxLength={50}
-                  className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
+                  helpText="This will appear as your storefront title."
                 />
-                <p className="text-xs text-slate mt-1">This will appear as your storefront title.</p>
               </div>
 
               <div className="bg-cream border-l-4 border-amber rounded p-4 mb-7 text-sm text-slate leading-relaxed">
@@ -105,10 +104,8 @@ export default function CreateShopPage() {
               </div>
 
               <div className="mb-7">
-                <label htmlFor="shopSlug" className="block text-sm font-medium text-charcoal mb-2">
-                  Web Address
-                </label>
-                <input
+                <FormField
+                  label="Web Address"
                   type="text"
                   id="shopSlug"
                   value={shopSlug}
@@ -118,8 +115,7 @@ export default function CreateShopPage() {
                   }}
                   placeholder="sarahs-jewelry"
                   required
-                  pattern="^[a-z0-9-]{3,30}$"
-                  className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
+                  error={shopSlug && !slugValid ? 'Use 3–30 letters, numbers, hyphens only' : undefined}
                 />
                 <div className={`mt-2 px-4 py-3 rounded-md font-mono text-sm ${
                   !shopSlug ? 'bg-cream border border-whisper text-slate' :
@@ -128,32 +124,31 @@ export default function CreateShopPage() {
                 }`}>
                   {appUrl}/shop/{shopSlug || 'your-shop'}
                 </div>
-                {shopSlug && (
-                  <p className="text-xs mt-1">
-                    {slugValid ? (
-                      <span className="text-emerald">✓ Address available</span>
-                    ) : (
-                      <span className="text-rose">✕ Use 3–30 letters, numbers, hyphens only</span>
-                    )}
-                  </p>
+                {shopSlug && slugValid && (
+                  <p className="text-xs mt-1 text-emerald">✓ Address available</p>
                 )}
               </div>
 
               <div className="flex gap-3">
-                <button
+                <Button
                   type="button"
                   onClick={() => router.back()}
-                  className="flex-1 bg-transparent text-slate-blue border border-whisper font-semibold py-3 rounded-md hover:bg-cream hover:border-slate-blue transition"
+                  variant="secondary"
+                  size="lg"
+                  className="flex-1"
                 >
                   Back
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
-                  disabled={loading || !slugValid}
-                  className="flex-1 bg-emerald text-white font-semibold py-3 rounded-md hover:bg-emerald-600 active:transform active:translate-y-0 disabled:bg-slate-300 disabled:cursor-not-allowed transition"
+                  loading={loading}
+                  disabled={!slugValid}
+                  variant="primary"
+                  size="lg"
+                  className="flex-1"
                 >
-                  {loading ? 'Creating...' : 'Create Shop'}
-                </button>
+                  Create Shop
+                </Button>
               </div>
             </form>
           </>
