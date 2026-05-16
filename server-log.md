@@ -10275,3 +10275,18 @@ a56f0ab Anil (engineer, day 15) — pre-SSH sync
 17d2db2 Anil (engineer, day 15) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-16T01-05-34-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-05-34-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:05:50.805Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `837af23` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2694ms)
+```
+docker ps -a | grep solo-shop || echo "No containers"; df -h / | tail -1
+```
+STDOUT:
+```
+204880d1bc50   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   4 minutes ago   Up 3 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+443e82c8f61d   postgres:16-alpine                                           "docker-entrypoint.s…"   4 minutes ago   Up 4 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+/dev/sda1       387G   48G  339G  13% /
+```
+Full output: [`server-runs/2026-05-16T01-05-50-app-docker-ps--a-grep-solo-shop-echo-No-cont-1.log`](server-runs/2026-05-16T01-05-50-app-docker-ps--a-grep-solo-shop-echo-No-cont-1.log)
