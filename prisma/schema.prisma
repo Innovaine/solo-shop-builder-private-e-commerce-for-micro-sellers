@@ -29,12 +29,27 @@ model Seller {
 
 // Shop - single-tenant storefront
 model Shop {
-  id        String   @id @default(uuid())
-  name      String
-  slug      String   @unique
-  sellerId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                String   @id @default(uuid())
+  name              String
+  slug              String   @unique
+  sellerId          String
+  
+  // FR-31: Seller profile
+  description       String?  @db.Text
+  instagramUrl      String?
+  facebookUrl       String?
+  twitterUrl        String?
+  
+  // FR-33: Shop branding
+  primaryColor      String?  @default("#3B4C63") // Default: Slate Blue
+  accentColor       String?  @default("#10B981") // Default: Emerald
+  logoUrl           String?
+  
+  // FR-35: Email template customization
+  emailTemplateBody String?  @db.Text // Custom order confirmation email body
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
   
   seller    Seller   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
   products  Product[]

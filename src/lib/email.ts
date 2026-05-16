@@ -65,3 +65,74 @@ export async function sendPasswordResetEmail(
 
   await transporter.sendMail(mailOptions)
 }
+
+// FR-35 & FR-36: Send order confirmation email with custom template
+export async function sendOrderConfirmationEmail(
+  customerEmail: string,
+  customerName: string,
+  shopName: string,
+  orderSummary: string,
+  trackingUrl: string | null,
+  customTemplate?: string | null
+): Promise<void> {
+  const defaultTemplate = `Hi {{customerName}},
+
+Thank you for your order!
+
+{{orderSummary}}
+
+{{trackingInfo}}
+
+If you have any questions, please reply to this email.
+
+Best regards,
+{{shopName}}`;
+
+  const template = customTemplate || defaultTemplate;
+  
+  // Replace template variables
+  let emailBody = template
+    .replace(/\{\{customerName\}\}/g, customerName)
+    .replace(/\{\{shopName\}\}/g, shopName)
+    .replace(/\{\{orderSummary\}\}/g, orderSummary);
+
+  // Handle tracking URL conditionally
+  if (trackingUrl) {
+    emailBody = emailBody.replace(
+      /\{\{trackingUrl\}\}/g,
+      trackingUrl
+    ).replace(
+      /\{\{trackingInfo\}\}/g,
+      `Track your order: ${trackingUrl}`
+    );
+  } else {
+    emailBody = emailBody
+      .replace(/\{\{trackingUrl\}\}/g, 'Not available yet')
+      .replace(/\{\{trackingInfo\}\}/g, "We'll send you tracking information once your order ships.");
+  }
+
+  const mailOptions = {
+    from: process.env.SMTP_FROM || 'noreply@soloshop.com',
+    to: customerEmail,
+    subject: `Order Confirmation - ${shopName}`,
+    text: emailBody,
+    html: `
+      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background-color: #3B4C63; color: white; padding: 20px; border-radius: 8px 8px 0 0;">
+          <h2 style="margin: 0; font-size: 24px;">Order Confirmation</h2>
+          <p style="margin: 8px 0 0 0; opacity: 0.9;">${shopName}</p>
+        </div>
+        <div style="padding: 24px; border: 1px solid #E2E8F0; border-top: none; border-radius: 0 0 8px 8px;">
+          <div style="white-space: pre-wrap; line-height: 1.6; color: #1F2937;">
+            ${emailBody.replace(/\n/g, '<br/>')}
+          </div>
+        </div>
+        <p style="color: #64748B; font-size: 12px; text-align: center; margin-top: 16px;">
+          Powered by Solo Shop Builder
+        </p>
+      </div>
+    `,
+  };
+
+  await transporter.sendMail(mailOptions);
+}

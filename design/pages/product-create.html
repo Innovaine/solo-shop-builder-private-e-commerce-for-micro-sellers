@@ -280,6 +280,19 @@
         </div>
       </div>
 
+      <!-- VARIANTS SECTION (OPTIONAL) -->
+      <div class="form-section">
+        <h2>Product Variants <span style="font-weight: 400; font-size: 14px; color: #64748B;">(Optional)</span></h2>
+        <p style="font-size: 14px; color: #64748B; margin-bottom: 16px;">Offer different options like size, color, or material. Add up to 3 variant types.</p>
+        
+        <div id="variants-container">
+          <!-- Variant items will be added here dynamically -->
+        </div>
+        
+        <button type="button" class="btn btn-secondary" id="add-variant-btn" style="width: 100%;">+ Add Variant</button>
+        <p class="input-help" style="margin-top: 12px;">Example: Add a "Size" variant with options "Small", "Medium", "Large". Customers will select one when checking out.</p>
+      </div>
+
       <!-- ACTIONS -->
       <div class="form-actions">
         <button type="button" class="btn btn-secondary">Cancel</button>
@@ -330,6 +343,58 @@
       imageInput.value = '';
       imagePreview.classList.remove('show');
     });
+
+    // Variants behavior (reference for engineer)
+    let variantCount = 0;
+    const addVariantBtn = document.getElementById('add-variant-btn');
+    const variantsContainer = document.getElementById('variants-container');
+
+    addVariantBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (variantCount >= 3) {
+        alert('Maximum 3 variant types allowed');
+        return;
+      }
+      addVariantField();
+    });
+
+    function addVariantField() {
+      const variantId = variantCount++;
+      const variantHTML = `
+        <div style="background: #F9FAFB; padding: 16px; border-radius: 6px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 14px; font-weight: 600; color: #1F2937; margin: 0;">Variant ${variantId + 1}</h3>
+            <button type="button" class="remove-variant" data-id="${variantId}" style="background: none; border: none; color: #F43F5E; cursor: pointer; font-size: 14px; text-decoration: underline;">Remove</button>
+          </div>
+          <div class="form-group">
+            <label>Variant Name (e.g., "Size", "Color")</label>
+            <input type="text" placeholder="e.g., Size" required />
+          </div>
+          <div class="two-cols">
+            <div class="form-group">
+              <label>Option 1</label>
+              <input type="text" placeholder="e.g., Small" required />
+            </div>
+            <div class="form-group">
+              <label>Option 2 (Optional)</label>
+              <input type="text" placeholder="e.g., Medium" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Option 3 (Optional)</label>
+            <input type="text" placeholder="e.g., Large" />
+          </div>
+        </div>
+      `;
+      variantsContainer.insertAdjacentHTML('beforeend', variantHTML);
+      
+      // Attach remove handler
+      document.querySelector(`[data-id="${variantId}"]`).addEventListener('click', (e) => {
+        e.preventDefault();
+        e.target.closest('div').style.opacity = '0.5';
+        e.target.closest('div').remove();
+      });
+    }
   </script>
 </body>
 </html>

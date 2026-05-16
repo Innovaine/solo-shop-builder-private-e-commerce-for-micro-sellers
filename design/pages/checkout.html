@@ -264,45 +264,10 @@
         <div class="divider"></div>
 
         <div class="form-section">
-          <h2>Shipping Address</h2>
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" placeholder="Jane Doe" required>
-            </div>
-          </div>
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="address">Street Address</label>
-              <input type="text" id="address" placeholder="123 Main Street" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="city">City</label>
-              <input type="text" id="city" placeholder="New York" required>
-            </div>
-            <div class="form-group">
-              <label for="state">State / Province</label>
-              <input type="text" id="state" placeholder="NY" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="zip">Postal Code</label>
-              <input type="text" id="zip" placeholder="10001" required>
-            </div>
-            <div class="form-group">
-              <label for="country">Country</label>
-              <select id="country" required>
-                <option value="">Select a country</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="GB">United Kingdom</option>
-                <option value="AU">Australia</option>
-                <option value="OTHER">Other</option>
-              </select>
-            </div>
+          <h2>Shipping & Billing Address</h2>
+          <p style="font-size: 14px; color: #64748B; margin-bottom: 16px;">Your address will be collected securely through Stripe Checkout in the next step.</p>
+          <div style="background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 6px; padding: 16px; font-size: 13px; color: #0369A1; margin-bottom: 16px;">
+            <strong>ℹ️ Stripe handles address collection:</strong> When you click "Complete Purchase" below, you'll enter your full shipping and billing address directly through Stripe Checkout's secure form. We never store your raw address data — Stripe handles all address validation and storage.
           </div>
         </div>
 

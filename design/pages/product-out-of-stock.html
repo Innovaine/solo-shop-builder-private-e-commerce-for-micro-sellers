@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Out of Stock — Sarah's Jewelry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FFFFFF;
+      color: #1F2937;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .back-link {
+      color: #3B4C63;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .shop-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .product-images {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .main-image {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 96px;
+      border: 1px solid #E2E8F0;
+      position: relative;
+      opacity: 0.6;
+    }
+
+    .stock-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+    }
+
+    .stock-badge {
+      background: #F43F5E;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .thumbnail-list {
+      display: flex;
+      gap: 8px;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+      cursor: not-allowed;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.5;
+    }
+
+    .product-info {
+      padding-top: 12px;
+    }
+
+    .product-category {
+      font-size: 12px;
+      color: #64748B;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .product-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 32px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 16px;
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    .stock-status {
+      background: #FEF2F2;
+      border: 1px solid #FECDD3;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stock-status-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #BE123C;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .stock-status-text {
+      font-size: 14px;
+      color: #9F1239;
+      line-height: 1.6;
+    }
+
+    .product-description {
+      color: #64748B;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    .variant-section {
+      margin-bottom: 24px;
+    }
+
+    .variant-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+
+    .variant-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .variant-option {
+      padding: 10px 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #CBD5E1;
+      background: #F9FAFB;
+      cursor: not-allowed;
+    }
+
+    .out-of-stock-btn {
+      width: 100%;
+      padding: 16px;
+      background: #D1D5DB;
+      color: #6B7280;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: not-allowed;
+      margin-bottom: 12px;
+    }
+
+    .notify-btn {
+      width: 100%;
+      padding: 16px;
+      background: white;
+      color: #3B4C63;
+      border: 2px solid #3B4C63;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 12px;
+    }
+
+    .notify-btn:hover {
+      background: #F9FAFB;
+    }
+
+    .continue-shopping-btn {
+      width: 100%;
+      padding: 12px;
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .continue-shopping-btn:hover {
+      background: #FAF9F7;
+      border-color: #3B4C63;
+    }
+
+    .similar-section {
+      border-top: 1px solid #E2E8F0;
+      padding-top: 32px;
+      margin-top: 32px;
+    }
+
+    .similar-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .similar-products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .product-card-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .product-card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+
+    .product-card-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+
+    @media (max-width: 768px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .product-title {
+        font-size: 22px;
+      }
+      .product-price {
+        font-size: 24px;
+      }
+      .similar-products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/shop/sarahs-jewelry" class="back-link">← Back to Shop</a>
+      <div class="shop-name">Sarah's Jewelry</div>
+      <div></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="product-layout">
+      <!-- Images (Grayed Out) -->
+      <div class="product-images">
+        <div class="main-image">
+          <div class="stock-overlay">
+            <div class="stock-badge">OUT OF STOCK</div>
+          </div>
+          💎
+        </div>
+        <div class="thumbnail-list">
+          <div class="thumbnail">💎</div>
+          <div class="thumbnail">✨</div>
+          <div class="thumbnail">⭐</div>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <div class="product-category">Necklaces</div>
+        <h1 class="product-title">Gold Minimalist Necklace</h1>
+        <div class="product-price">$45.00</div>
+
+        <div class="stock-status">
+          <div class="stock-status-title">
+            ⚠️ Out of Stock
+          </div>
+          <div class="stock-status-text">
+            This item is currently unavailable. We're working to restock it soon. <strong>Get notified</strong> when it's back in stock.
+          </div>
+        </div>
+
+        <p class="product-description">
+          A delicate, handcrafted necklace featuring a 14k gold-plated chain and minimalist pendant. Perfect for everyday wear or as a gift. Each piece is made with care and attention to detail.
+        </p>
+
+        <!-- Disabled Variant Section -->
+        <div class="variant-section">
+          <div class="variant-label">Chain Length</div>
+          <div class="variant-options">
+            <div class="variant-option">16"</div>
+            <div class="variant-option">18"</div>
+            <div class="variant-option">20"</div>
+          </div>
+        </div>
+
+        <!-- Out of Stock Buttons -->
+        <button class="out-of-stock-btn">Out of Stock — Cannot Order</button>
+        <button class="notify-btn">💌 Notify Me When Back in Stock</button>
+        <button class="continue-shopping-btn">Continue Shopping</button>
+      </div>
+    </div>
+
+    <!-- Similar Products Section -->
+    <div class="similar-section">
+      <h2 class="similar-title">Similar Items in This Shop</h2>
+      <div class="similar-products">
+        <div class="product-card">
+          <div class="product-card-image">✨</div>
+          <div class="product-card-name">Silver Minimalist Necklace</div>
+          <div class="product-card-price">$35.00</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-image">🔗</div>
+          <div class="product-card-name">Chain Link Bracelet</div>
+          <div class="product-card-price">$28.00</div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-image">👑</div>
+          <div class="product-card-name">Gold Crown Ring</div>
+          <div class="product-card-price">$52.00</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Notify button handler (design reference)
+    document.querySelector('.notify-btn').addEventListener('click', function() {
+      const email = prompt('Enter your email to be notified when this item is back in stock:');
+      if (email) {
+        alert('You\'ll be notified at ' + email + ' when this item is available again.');
+      }
+    });
+  </script>
+</body>
+</html>
