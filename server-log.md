@@ -11960,3 +11960,19 @@ Checking for product title in page...
 Handcrafted Ceramic Mug
 ```
 Full output: [`server-runs/2026-05-16T02-14-22-app-echo-Testing-product-detail-page-route..-1.log`](server-runs/2026-05-16T02-14-22-app-echo-Testing-product-detail-page-route..-1.log)
+
+## 2026-05-16T02:16:30.923Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b55a251` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2984ms)
+```
+docker ps | grep solo-shop && echo "---" && curl -sf http://localhost:3000/api/health | head -20
+```
+STDOUT:
+```
+b24936400abb   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   7 minutes ago    Up 7 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+067dc53b0990   postgres:16-alpine                                           "docker-entrypoint.s…"   41 minutes ago   Up 41 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+---
+{"status":"ok","timestamp":"2026-05-16T02:16:30.798Z","responseTime":"189ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"187ms"}}}
+```
+Full output: [`server-runs/2026-05-16T02-16-30-app-docker-ps-grep-solo-shop-echo-----curl---1.log`](server-runs/2026-05-16T02-16-30-app-docker-ps-grep-solo-shop-echo-----curl---1.log)
