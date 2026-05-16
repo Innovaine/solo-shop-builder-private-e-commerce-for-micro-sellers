@@ -13680,3 +13680,21 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   11 hours ago   Up 11 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-16T13-27-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-27-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:27:52.599Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fe8cdc5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5878ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/compose-up.log 2>&1 &
+echo $! > /tmp/compose-up.pid
+sleep 3
+docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED        STATUS                  PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   11 hours ago   Up 11 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-16T13-27-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-27-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
