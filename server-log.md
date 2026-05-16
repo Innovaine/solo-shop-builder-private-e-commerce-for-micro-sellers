@@ -19639,3 +19639,53 @@ error
 error
 ```
 Full output: [`server-runs/2026-05-16T21-07-10-app-echo-Test-1-Login-page-has-password-inpu-1.log`](server-runs/2026-05-16T21-07-10-app-echo-Test-1-Login-page-has-password-inpu-1.log)
+
+## 2026-05-16T21:26:04.793Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2443e4f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3097ms) _(showing tail — full 3,610B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…+++++++++++++
+ design/pages/shop-branding.html                    | 216 +++++++++
+ .../migration.sql                                  |  15 +
+ prisma/schema.prisma                               |  27 +-
+ server-log.md                                      | 532 +++++++++++++++++++++
+ src/lib/email.ts                                   |  71 +++
+ test-results/day-28/report.md                      | 208 ++++++++
+ tests/web/day28-analytics.spec.ts                  | 194 ++++++++
+ tests/web/day28-csv-export.spec.ts                 | 130 +++++
+ tests/web/day28-password-auth.spec.ts              | 131 +++++
+ tests/web/day28-password-reset.spec.ts             | 170 +++++++
+ 34 files changed, 4483 insertions(+), 57 deletions(-)
+ create mode 100644 app/api/billing/route.ts
+ create mode 100644 app/api/shops/branding/route.ts
+ create mode 100644 app/api/shops/email-template/route.ts
+ create mode 100644 app/api/shops/profile/route.ts
+ create mode 100644 app/dashboard/analytics/page.tsx
+ create mode 100644 app/dashboard/billing/page.tsx
+ create mode 100644 app/dashboard/branding/page.tsx
+ create mode 100644 app/dashboard/email-template/page.tsx
+ create mode 100644 app/dashboard/profile/page.tsx
+ create mode 100644 day-28/_index.md
+ create mode 100644 day-28/engineering.md
+ create mode 100644 day-28/review.md
+ create mode 100644 day-28/stage-ship-check.md
+ create mode 100644 day-28/test.md
+ create mode 100644 day-29/_plan.md
+ create mode 100644 day-29/design.md
+ create mode 100644 day-29/requirements.md
+ create mode 100644 design/pages/email-template-editor.html
+ create mode 100644 design/pages/product-out-of-stock.html
+ create mode 100644 design/pages/shop-branding.html
+ create mode 100644 prisma/migrations/20260517_add_profile_branding_fields/migration.sql
+ create mode 100644 test-results/day-28/report.md
+ create mode 100644 tests/web/day28-analytics.spec.ts
+ create mode 100644 tests/web/day28-csv-export.spec.ts
+ create mode 100644 tests/web/day28-password-auth.spec.ts
+ create mode 100644 tests/web/day28-password-reset.spec.ts
+```
+Full output: [`server-runs/2026-05-16T21-26-04-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-26-04-app-cd-solo-shop-builder-private-e-commerce--1.log)
