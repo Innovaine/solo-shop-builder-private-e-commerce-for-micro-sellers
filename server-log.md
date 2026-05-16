@@ -9327,3 +9327,69 @@ Testing product API endpoints...
 (1 row)
 ```
 Full output: [`server-runs/2026-05-15T23-59-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-59-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-15T23:59:38.383Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d8ed6c7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2877ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+SHOP_ID="b67fe1fd-4bbd-4f02-81e5-d0b661d225c1"
+
+echo "Testing product API with shop ID: $SHOP_ID"
+echo ""
+echo "1. GET /api/products?shopId=$SHOP_ID (should return empty array):"
+curl -s "http://localhost:3000/api/products?shopId=$SHOP_ID"
+echo ""
+echo ""
+echo "2. Check Product table exists in database:"
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "\d \"Product\""
+echo ""
+echo "3. Verify Product table has correct columns:"
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = 'Product';"
+```
+STDOUT:
+```
+Testing product API with shop ID: b67fe1fd-4bbd-4f02-81e5-d0b661d225c1
+
+1. GET /api/products?shopId=b67fe1fd-4bbd-4f02-81e5-d0b661d225c1 (should return empty array):
+[]
+
+2. Check Product table exists in database:
+                                 Table "public.Product"
+   Column    |              Type              | Collation | Nullable |      Default      
+-------------+--------------------------------+-----------+----------+-------------------
+ id          | text                           |           | not null | 
+ shopId      | text                           |           | not null | 
+ title       | text                           |           | not null | 
+ description | text                           |           |          | 
+ price       | integer                        |           | not null | 
+ imageUrl    | text                           |           |          | 
+ category    | text                           |           |          | 
+ stock       | integer                        |           | not null | 0
+ createdAt   | timestamp(3) without time zone |           | not null | CURRENT_TIMESTAMP
+ updatedAt   | timestamp(3) without time zone |           | not null | 
+Indexes:
+    "Product_pkey" PRIMARY KEY, btree (id)
+    "Product_category_idx" btree (category)
+    "Product_shopId_idx" btree ("shopId")
+Foreign-key constraints:
+    "Product_shopId_fkey" FOREIGN KEY ("shopId") REFERENCES "Shop"(id) ON UPDATE CASCADE ON DELETE CASCADE
+
+
+3. Verify Product table has correct columns:
+ column_name |          data_type          
+-------------+-----------------------------
+ price       | integer
+ stock       | integer
+ createdAt   | timestamp without time zone
+ updatedAt   | timestamp without time zone
+ id          | text
+ category    | text
+ imageUrl    | text
+ shopId      | text
+ title       | text
+ description | text
+(10 rows)
+```
+Full output: [`server-runs/2026-05-15T23-59-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-15T23-59-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
