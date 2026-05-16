@@ -10082,3 +10082,19 @@ curl -sf http://localhost:3000/api/health && echo " - API healthy" || echo " - A
 curl -sI http://localhost:3000/shop/test-shop/product/prod-1 | head -1
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T01:01:54.073Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `01ae31a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2848ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/compose-up-final.log 2>&1 &
+echo $! > /tmp/compose-up-final.pid
+echo "Starting containers, PID=$(cat /tmp/compose-up-final.pid)"
+```
+STDOUT:
+```
+Starting containers, PID=861167
+```
+Full output: [`server-runs/2026-05-16T01-01-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-01-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
