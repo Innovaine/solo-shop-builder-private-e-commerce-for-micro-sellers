@@ -10290,3 +10290,17 @@ STDOUT:
 /dev/sda1       387G   48G  339G  13% /
 ```
 Full output: [`server-runs/2026-05-16T01-05-50-app-docker-ps--a-grep-solo-shop-echo-No-cont-1.log`](server-runs/2026-05-16T01-05-50-app-docker-ps--a-grep-solo-shop-echo-No-cont-1.log)
+
+## 2026-05-16T01:06:08.428Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6f95ac2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2647ms)
+```
+curl -s http://localhost:3000/api/health | head -20; echo "---"; curl -s http://localhost:3000/shop/test-shop | grep -o "Welcome\|404\|200" | head -1
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-16T01:06:08.306Z","responseTime":"111ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"110ms"}}}---
+Welcome
+```
+Full output: [`server-runs/2026-05-16T01-06-08-app-curl--s-http-localhost-3000-api-health-h-1.log`](server-runs/2026-05-16T01-06-08-app-curl--s-http-localhost-3000-api-health-h-1.log)
