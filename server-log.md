@@ -13995,3 +13995,22 @@ HTTP/1.1 307 Temporary Redirect
 Location: /auth/login
 ```
 Full output: [`server-runs/2026-05-16T13-34-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-34-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:35:03.038Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `846e2a9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3091ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || echo "Repo not cloned yet"
+docker ps | grep solo-shop
+df -h / | tail -1
+uptime
+```
+STDOUT:
+```
+d11d49dc643d   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   5 minutes ago   Up 3 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+5f319186e48e   postgres:16-alpine                                           "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+/dev/sda1       387G   53G  335G  14% /
+ 13:35:02 up 3 days, 14:38,  5 users,  load average: 0.03, 0.06, 0.04
+```
+Full output: [`server-runs/2026-05-16T13-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-35-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
