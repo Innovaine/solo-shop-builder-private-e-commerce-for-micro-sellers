@@ -20094,3 +20094,21 @@ STDOUT:
 Started Playwright test v2, PID=1104379
 ```
 Full output: [`server-runs/2026-05-16T21-40-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-40-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T21:41:07.378Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `009c5e6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 39288ms)
+```
+sleep 10
+kill -0 $(cat /tmp/day29-test-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -150 /tmp/day29-test-v2.log
+```
+STDOUT:
+```
+DONE
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+Full output: [`server-runs/2026-05-16T21-41-07-app-sleep-10-1.log`](server-runs/2026-05-16T21-41-07-app-sleep-10-1.log)
