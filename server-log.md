@@ -13193,3 +13193,28 @@ STDOUT:
  create mode 100644 tests/web/scaling-day19.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T02-51-29-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-51-29-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:52:22.483Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6d3735c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2714ms)
+```
+docker ps | grep solo-shop
+```
+STDOUT:
+```
+e7a7f6e17750   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a98ba37ee118   postgres:16-alpine                                           "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-16T02-52-22-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T02-52-22-app-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-16T02:52:38.334Z — Søren ran 1 command(s)
+### Command 1 on app as reviewer (✓ exit 0, 2561ms)
+```
+curl -sf http://localhost:3000/api/health | head -20
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-16T02:52:38.253Z","responseTime":"105ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"104ms"}}}
+```
+Full output: [`server-runs/2026-05-16T02-52-38-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-16T02-52-38-app-curl--sf-http-localhost-3000-api-health--1.log)
