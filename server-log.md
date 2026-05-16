@@ -12798,3 +12798,47 @@ STDOUT:
 Build started, PID=895299
 ```
 Full output: [`server-runs/2026-05-16T02-44-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-44-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:45:20.483Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2bce78d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2423ms) _(showing tail — full 8,195B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day19-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day19-build.log
+```
+STDOUT:
+```
+…tic pages (7/15) 
+#16 14.62 prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+#16 14.62 Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+#16 14.62 PrismaClientInitializationError: Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).
+#16 14.62 Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.
+#16 14.62 
+#16 14.62 Details: libssl.so.1.1: cannot open shared object file: No such file or directory
+#16 14.62     at Object.loadLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:10219)
+#16 14.62     at async wt.loadEngine (/app/node_modules/@prisma/client/runtime/library.js:112:448)
+#16 14.62     at async wt.instantiateLibrary (/app/node_modules/@prisma/client/runtime/library.js:111:12778) {
+#16 14.62   clientVersion: '5.14.0',
+#16 14.62   errorCode: undefined
+#16 14.62 }
+#16 14.62 [HEALTH CHECK FAILED] {
+#16 14.62   database: {
+#16 14.62     status: 'error',
+#16 14.62     message: '\n' +
+#16 14.62       'Invalid `prisma.$queryRaw()` invocation:\n' +
+#16 14.62       '\n' +
+#16 14.62       '\n' +
+#16 14.62       'Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).\n' +
+#16 14.62       'Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.\n' +
+#16 14.62       '\n' +
+#16 14.62       'Details: libssl.so.1.1: cannot open shared object file: No such file or directory'
+#16 14.62   },
+#16 14.62   email: { status: 'ok', responseTime: '141ms' }
+#16 14.62 }
+#16 14.66    Generating static pages (11/15) 
+#16 14.67  ✓ Generating static pages (15/15)
+#16 14.80    Finalizing page optimization ...
+#16 14.80    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-16T02-45-20-app-kill--0-cat-tmp-day19-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T02-45-20-app-kill--0-cat-tmp-day19-build.pid-2-dev-nu-1.log)
