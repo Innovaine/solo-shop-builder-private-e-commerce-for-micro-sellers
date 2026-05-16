@@ -16518,3 +16518,20 @@ STDOUT:
 ---
 ```
 Full output: [`server-runs/2026-05-16T17-43-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-43-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:44:19.337Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c02215e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 7960ms)
+```
+sleep 5 && curl -sf http://localhost:3000 -o /dev/null && echo "✓ APP OK" || echo "✗ APP NOT RESPONDING"
+echo "---"
+docker compose logs app --tail=20
+```
+STDOUT:
+```
+✓ APP OK
+---
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T17-44-19-app-sleep-5-curl--sf-http-localhost-3000--o--1.log`](server-runs/2026-05-16T17-44-19-app-sleep-5-curl--sf-http-localhost-3000--o--1.log)
