@@ -11209,3 +11209,17 @@ STDOUT:
   1 passed (18.0s)
 ```
 Full output: [`server-runs/2026-05-16T01-46-24-app-sleep-5-kill--0-cat-tmp-playwright-authf-1.log`](server-runs/2026-05-16T01-46-24-app-sleep-5-kill--0-cat-tmp-playwright-authf-1.log)
+
+## 2026-05-16T01:46:51.665Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `efd9cf7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2730ms)
+```
+curl -s http://localhost:3000/ | grep -o '<h1[^>]*>.*</h1>' | head -3
+curl -s http://localhost:3000/auth/login | grep -o '<h1[^>]*>.*</h1>' | head -3
+```
+STDOUT:
+```
+<h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Solo Shop Builder</h1>
+```
+Full output: [`server-runs/2026-05-16T01-46-51-app-curl--s-http-localhost-3000-grep--o-h1-.-1.log`](server-runs/2026-05-16T01-46-51-app-curl--s-http-localhost-3000-grep--o-h1-.-1.log)
