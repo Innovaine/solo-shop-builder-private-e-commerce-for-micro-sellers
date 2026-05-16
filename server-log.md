@@ -13639,3 +13639,21 @@ STDOUT:
 #16 DONE 24.9s
 ```
 Full output: [`server-runs/2026-05-16T13-26-24-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-16T13-26-24-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+
+## 2026-05-16T13:26:39.342Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0daa0a1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2777ms)
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -20 /tmp/build.log | grep -E "(Successfully built|ERROR|failed|DONE)"
+```
+STDOUT:
+```
+DONE
+#28 DONE 0.1s
+#29 DONE 0.0s
+#30 DONE 2.8s
+#31 DONE 0.0s
+```
+Full output: [`server-runs/2026-05-16T13-26-39-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-16T13-26-39-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
