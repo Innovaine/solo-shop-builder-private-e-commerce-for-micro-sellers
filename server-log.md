@@ -12454,3 +12454,19 @@ b81a6a30fa09   postgres:16-alpine                                           "doc
 {"status":"ok","timestamp":"2026-05-16T02:34:25.768Z","responseTime":"139ms","checks":{"database":{"status":"ok","responseTime":"31ms"},"email":{"status":"ok","responseTime":"108ms"}}}App running OK
 ```
 Full output: [`server-runs/2026-05-16T02-34-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-34-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T02:34:50.014Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d99863e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2482ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/scaling-day18.spec.ts --reporter=list > /tmp/day18-test-run.log 2>&1 &
+echo $! > /tmp/day18-test-run.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day18-test-run.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=888450
+```
+Full output: [`server-runs/2026-05-16T02-34-49-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T02-34-49-app-cd-solo-shop-builder-private-e-commerce--1.log)
