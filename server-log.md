@@ -19584,3 +19584,58 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 Full output: [`server-runs/2026-05-16T21-06-23-app-echo-FR-21-FR-22-Password-Login-Settings-1.log`](server-runs/2026-05-16T21-06-23-app-echo-FR-21-FR-22-Password-Login-Settings-1.log)
+
+## 2026-05-16T21:07:10.833Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c5c8e74` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2717ms)
+```
+echo "=== Test 1: Login page has password input ==="
+curl -s http://localhost:3000/auth/login | grep -c 'type="password"'
+
+echo ""
+echo "=== Test 2: Login page has email input ==="
+curl -s http://localhost:3000/auth/login | grep -c 'type="email"'
+
+echo ""
+echo "=== Test 3: Login page has link to forgot password ==="
+curl -s http://localhost:3000/auth/login | grep -i "forgot" | head -1
+
+echo ""
+echo "=== Test 4: Forgot password page exists ==="
+curl -s http://localhost:3000/auth/forgot-password | grep -o '<h1[^>]*>.*</h1>' | head -1
+
+echo ""
+echo "=== Test 5: Reset password page exists ==="  
+curl -s http://localhost:3000/auth/reset-password | grep -o '<h1[^>]*>.*</h1>' | head -1
+
+echo ""
+echo "=== Test 6: CSV export requires auth (401) ==="
+curl -s http://localhost:3000/api/orders/export | grep -o 'error'
+
+echo ""
+echo "=== Test 7: Analytics requires auth (401) ==="
+curl -s http://localhost:3000/api/analytics | grep -o 'error'
+```
+STDOUT:
+```
+=== Test 1: Login page has password input ===
+0
+
+=== Test 2: Login page has email input ===
+0
+
+=== Test 3: Login page has link to forgot password ===
+
+=== Test 4: Forgot password page exists ===
+<h1 class="text-3xl font-bold text-charcoal mb-2">Forgot Password</h1>
+
+=== Test 5: Reset password page exists ===
+
+=== Test 6: CSV export requires auth (401) ===
+error
+
+=== Test 7: Analytics requires auth (401) ===
+error
+```
+Full output: [`server-runs/2026-05-16T21-07-10-app-echo-Test-1-Login-page-has-password-inpu-1.log`](server-runs/2026-05-16T21-07-10-app-echo-Test-1-Login-page-has-password-inpu-1.log)
