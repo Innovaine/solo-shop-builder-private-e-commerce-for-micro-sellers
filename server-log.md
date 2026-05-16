@@ -13970,3 +13970,28 @@ time="2026-05-16T13:33:27Z" level=warning msg="/home/engineer/solo-shop-builder-
 OCI runtime exec failed: exec failed: unable to start container process: exec: "node_modules/.bin/playwright": stat node_modules/.bin/playwright: no such file or directory
 ```
 Full output: [`server-runs/2026-05-16T13-33-40-app-kill--0-cat-tmp-cart-test2.pid-2-dev-nul-1.log`](server-runs/2026-05-16T13-33-40-app-kill--0-cat-tmp-cart-test2.pid-2-dev-nul-1.log)
+
+## 2026-05-16T13:34:00.366Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `47a9dcd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2889ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "=== Testing login page ==="
+curl -s http://localhost:3000/auth/login | grep -q "Sign in" && echo "✓ Login page OK" || echo "✗ Login page FAIL"
+echo "=== Testing home page ==="
+curl -s http://localhost:3000 | grep -q "Solo Shop" && echo "✓ Home page OK" || echo "✗ Home page FAIL"
+echo "=== Testing dashboard (should redirect) ==="
+curl -s -I http://localhost:3000/dashboard | grep -E "HTTP|Location" | head -2
+```
+STDOUT:
+```
+=== Testing login page ===
+✗ Login page FAIL
+=== Testing home page ===
+✓ Home page OK
+=== Testing dashboard (should redirect) ===
+HTTP/1.1 307 Temporary Redirect
+Location: /auth/login
+```
+Full output: [`server-runs/2026-05-16T13-34-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-34-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
