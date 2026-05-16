@@ -19433,3 +19433,34 @@ _Pre-SSH: warehouse pushed to GitHub as commit `4a03b8f` so the server's `git pu
 grep -A 2 "Running.*tests" /tmp/day28-test.log | head -20
 grep "passed\|failed\|skipped" /tmp/day28-test.log | tail -20
 ```
+
+## 2026-05-16T21:04:47.617Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c42ecf8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2569ms)
+```
+cat /tmp/day28-test.log | head -200
+```
+STDOUT:
+```
+Error: EACCES: permission denied, rmdir '/tmp/playwright-test-results/scaling-day19-Day-19-—-Sca-b75d5-es-include-security-headers-chromium'
+
+Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-results/.last-run.json'
+    at open (node:internal/fs/promises:640:25)
+    at Object.writeFile (node:internal/fs/promises:1257:14)
+    at LastRunReporter.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:6153:5)
+    at wrapAsync (/usr/lib/node_modules/playwright/lib/runner/index.js:1614:12)
+    at Multiplexer.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:1582:25)
+    at InternalReporter.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:1749:12)
+    at finishTaskRun (/usr/lib/node_modules/playwright/lib/runner/index.js:5822:26)
+    at runTasks (/usr/lib/node_modules/playwright/lib/runner/index.js:5809:10)
+    at Object.runAllTestsWithConfig (/usr/lib/node_modules/playwright/lib/runner/index.js:6480:18)
+    at runTests (/usr/lib/node_modules/playwright/lib/cli/testActions.js:93:18)
+    at _Command.<anonymous> (/usr/lib/node_modules/playwright/lib/program.js:50:7) {
+  errno: -13,
+  code: 'EACCES',
+  syscall: 'open',
+  path: '/tmp/playwright-test-results/.last-run.json'
+}
+```
+Full output: [`server-runs/2026-05-16T21-04-47-app-cat-tmp-day28-test.log-head--200-1.log`](server-runs/2026-05-16T21-04-47-app-cat-tmp-day28-test.log-head--200-1.log)
