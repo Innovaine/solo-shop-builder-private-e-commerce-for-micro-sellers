@@ -13849,3 +13849,40 @@ Full output: [`server-runs/2026-05-16T13-30-34-app-cd-solo-shop-builder-private-
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=30 app
 ```
+
+## 2026-05-16T13:31:46.335Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `50eaba2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7675ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up app > /tmp/app-startup.log 2>&1 &
+echo $! > /tmp/app-startup.pid
+sleep 5
+tail -100 /tmp/app-startup.log
+```
+STDOUT:
+```
+time="2026-05-16T13:31:41Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+Attaching to app-1
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | No migration found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 48ms
+```
+Full output: [`server-runs/2026-05-16T13-31-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-31-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
