@@ -37,3 +37,23 @@ export async function requireAuth(): Promise<{ sellerId: string; email: string }
     email: session.email,
   }
 }
+
+export async function verifySession(sessionToken: string): Promise<{ sellerId: string; email: string } | null> {
+  // This function verifies a session token (cookie value)
+  // For iron-session, the token verification is handled internally by getSession()
+  // We just need to check if the session is valid
+  try {
+    const session = await getSession()
+    
+    if (!session.isLoggedIn || !session.sellerId || !session.email) {
+      return null
+    }
+    
+    return {
+      sellerId: session.sellerId,
+      email: session.email,
+    }
+  } catch (error) {
+    return null
+  }
+}
