@@ -16390,3 +16390,16 @@ STDOUT:
 (3 rows)
 ```
 Full output: [`server-runs/2026-05-16T17-41-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-41-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:41:57.394Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6b524e8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2943ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c "DELETE FROM _prisma_migrations WHERE migration_name = '20260516_add_order_tables';"
+```
+STDOUT:
+```
+DELETE 2
+```
+Full output: [`server-runs/2026-05-16T17-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-41-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
