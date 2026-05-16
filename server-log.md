@@ -18762,3 +18762,41 @@ STDOUT:
 Build v2 started, PID=1077629
 ```
 Full output: [`server-runs/2026-05-16T20-21-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-21-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T20:21:40.198Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6f8393d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3792ms) _(showing tail — full 4,593B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day27-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day27-build-v2.log
+```
+STDOUT:
+```
+…   Creating an optimized production build ...
+#15 12.14  ✓ Compiled successfully
+#15 12.15    Linting and checking validity of types ...
+#15 16.35    Collecting page data ...
+#15 17.42    Generating static pages (0/18) ...
+#15 17.49 MyFatoorah callback error: q [Error]: Dynamic server usage: Route /api/checkout/myfatoorah/callback couldn't be rendered statically because it accessed `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#15 17.49     at Object.get (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:37835)
+#15 17.49     at c (/app/.next/server/app/api/checkout/myfatoorah/callback/route.js:1:718)
+#15 17.49     at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34672
+#15 17.49     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#15 17.49     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 17.49     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 17.49     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#15 17.49     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#15 17.49     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+#15 17.49     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+#15 17.49   description: "Route /api/checkout/myfatoorah/callback couldn't be rendered statically because it accessed `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 17.49   digest: 'DYNAMIC_SERVER_USAGE'
+#15 17.49 }
+#15 17.61    Generating static pages (4/18) 
+#15 17.62    Generating static pages (8/18) 
+#15 17.67    Generating static pages (13/18) 
+#15 17.71  ✓ Generating static pages (18/18)
+#15 17.94    Finalizing page optimization ...
+#15 17.94    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-16T20-21-40-app-kill--0-cat-tmp-day27-build-v2.pid-2-dev-1.log`](server-runs/2026-05-16T20-21-40-app-kill--0-cat-tmp-day27-build-v2.pid-2-dev-1.log)
