@@ -1,9 +1,11 @@
 // Product detail page - customer can view product details
 // Day 15: Customer-facing product page
+// Day 17: Integrated UI components (Button)
 
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
+import { Button } from '@/components/ui/Button'
 
 export default async function ProductDetailPage({
   params,
@@ -107,13 +109,21 @@ export default async function ProductDetailPage({
             </div>
 
             {/* Add to Cart Button */}
-            <button className="w-full py-4 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 transition-all hover:-translate-y-0.5 hover:shadow-lg mb-3">
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-full mb-3"
+            >
               Add to Cart
-            </button>
+            </Button>
             <Link href={`/shop/${slug}`}>
-              <button className="w-full py-3 bg-white border border-whisper text-charcoal font-semibold rounded-md hover:bg-cream transition-colors">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="w-full"
+              >
                 Continue Shopping
-              </button>
+              </Button>
             </Link>
 
             {/* Product Details Accordion */}

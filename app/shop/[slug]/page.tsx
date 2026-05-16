@@ -1,9 +1,11 @@
 // FR-5: Public shop storefront - displays shop products in grid
 // Updated Day 15: Show products, not just empty state
+// Day 17: Integrated UI components (Button)
 
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
+import { Button } from '@/components/ui/Button'
 
 export default async function ShopPage({
   params,
@@ -36,9 +38,9 @@ export default async function ShopPage({
             <h1 className="text-2xl font-bold text-charcoal">{shop.name}</h1>
             <p className="text-slate text-sm mt-0.5">Independent storefront</p>
           </div>
-          <button className="px-4 py-2 border border-whisper rounded-md text-sm font-semibold text-charcoal hover:bg-cream transition-colors">
+          <Button variant="secondary" size="sm">
             🛒 Cart (0)
-          </button>
+          </Button>
         </div>
       </header>
 

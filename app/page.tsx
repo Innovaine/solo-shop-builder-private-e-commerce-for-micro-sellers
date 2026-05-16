@@ -1,6 +1,8 @@
 // Landing page with sign-up link
+// Day 17: Integrated UI components (Button)
 
 import Link from 'next/link'
+import { Button } from '@/components/ui/Button'
 
 export default function HomePage() {
   return (
@@ -13,11 +15,10 @@ export default function HomePage() {
           <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-2xl mx-auto">
             Your own storefront. No marketplace fees. Just you and your customers.
           </p>
-          <Link
-            href="/auth/login"
-            className="inline-block bg-emerald hover:bg-emerald-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition transform hover:-translate-y-0.5"
-          >
-            Start selling today
+          <Link href="/auth/login">
+            <Button variant="primary" size="lg" className="text-lg px-8">
+              Start selling today
+            </Button>
           </Link>
         </div>
 
