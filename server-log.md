@@ -16303,3 +16303,20 @@ _Pre-SSH: warehouse pushed to GitHub as commit `1bce832` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
 ```
+
+## 2026-05-16T17:40:32.287Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c1819ff` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 7812ms)
+```
+sleep 5 && curl -sf http://localhost:3000 -o /dev/null && echo "APP OK" || echo "APP NOT RESPONDING"
+echo "---"
+docker compose logs app --tail=50
+```
+STDOUT:
+```
+APP NOT RESPONDING
+---
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-16T17-40-32-app-sleep-5-curl--sf-http-localhost-3000--o--1.log`](server-runs/2026-05-16T17-40-32-app-sleep-5-curl--sf-http-localhost-3000--o--1.log)
