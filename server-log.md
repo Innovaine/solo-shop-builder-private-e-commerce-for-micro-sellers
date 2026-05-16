@@ -20350,3 +20350,52 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1: created 2026-05-16
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1: created 2026-05-16 15:39:51 +0000 UTC, status Up 6 hours (healthy)
 ```
 Full output: [`server-runs/2026-05-16T21-47-24-app-docker-ps---format-.Names-created-.Creat-1.log`](server-runs/2026-05-16T21-47-24-app-docker-ps---format-.Names-created-.Creat-1.log)
+
+## 2026-05-16T22:38:04.564Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fbedbb0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3711ms) _(showing tail — full 2,660B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null && git pull || git clone https://github.com/Innovaine/solo-shop-builder-private-e-commerce-for-micro-sellers.git ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…review.md                                   |  30 ++
+ day-29/stage-ship-check.md                         |  15 +
+ day-29/test.md                                     | 283 +++++++++++++
+ day-30/_plan.md                                    |  43 ++
+ day-30/design-compliance.md                        | 217 ++++++++++
+ day-30/design.md                                   |  58 +++
+ day-30/design_qa.md                                |  57 +++
+ day-30/requirements.md                             |  37 ++
+ design/component-api.md                            | 125 +++++-
+ design/patterns/form-patterns.html                 |   0
+ design/system/color-usage.md                       | 122 ++++++
+ .../20260517_add_product_variants/migration.sql    |  20 +
+ prisma/schema.prisma                               |  19 +
+ server-log.md                                      | 447 +++++++++++++++++++++
+ test-results/day-29/report.md                      | 151 +++++++
+ tests/web/day29-pages-smoke.spec.ts                | 100 +++++
+ tests/web/day29-seller-customization.spec.ts       | 125 ++++++
+ 26 files changed, 2442 insertions(+), 53 deletions(-)
+ create mode 100644 app/api/products/[id]/variants/[variantId]/route.ts
+ create mode 100644 app/api/products/[id]/variants/route.ts
+ create mode 100644 day-29/_index.md
+ create mode 100644 day-29/engineering.md
+ create mode 100644 day-29/review.md
+ create mode 100644 day-29/stage-ship-check.md
+ create mode 100644 day-29/test.md
+ create mode 100644 day-30/_plan.md
+ create mode 100644 day-30/design-compliance.md
+ create mode 100644 day-30/design.md
+ create mode 100644 day-30/design_qa.md
+ create mode 100644 day-30/requirements.md
+ create mode 100644 design/patterns/form-patterns.html
+ create mode 100644 design/system/color-usage.md
+ create mode 100644 prisma/migrations/20260517_add_product_variants/migration.sql
+ create mode 100644 test-results/day-29/report.md
+ create mode 100644 tests/web/day29-pages-smoke.spec.ts
+ create mode 100644 tests/web/day29-seller-customization.spec.ts
+Already up to date.
+```
+Full output: [`server-runs/2026-05-16T22-38-04-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T22-38-04-app-cd-solo-shop-builder-private-e-commerce--1.log)
