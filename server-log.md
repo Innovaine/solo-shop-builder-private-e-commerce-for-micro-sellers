@@ -19156,3 +19156,14 @@ STDOUT:
  create mode 100644 tests/web/day27-build-fix-smoke.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T20-45-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-45-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T20:45:39.625Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `98324dd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12446ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day28-build.log 2>&1 &
+echo $! > /tmp/day28-build.pid
+echo "Build started, PID=$(cat /tmp/day28-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
