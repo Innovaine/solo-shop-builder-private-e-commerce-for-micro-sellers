@@ -10953,3 +10953,20 @@ docker ps
 timeout 60 bash -c 'until curl -fsS http://localhost:3000/api/health 2>/dev/null; do sleep 2; done' && echo "App is UP" || echo "App health check TIMEOUT"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T01:37:56.374Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e3c675f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4212ms)
+```
+docker ps
+curl -sf http://localhost:3000/api/health && echo "App is UP" || echo "App is DOWN"
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED         STATUS                   PORTS                                         NAMES
+85e93f8524c4   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   3 minutes ago   Up 2 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+067dc53b0990   postgres:16-alpine                                           "docker-entrypoint.s…"   3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{"status":"ok","timestamp":"2026-05-16T01:37:56.244Z","responseTime":"106ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"105ms"}}}App is UP
+```
+Full output: [`server-runs/2026-05-16T01-37-56-app-docker-ps-1.log`](server-runs/2026-05-16T01-37-56-app-docker-ps-1.log)
