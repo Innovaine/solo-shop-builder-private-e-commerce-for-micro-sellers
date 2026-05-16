@@ -13396,3 +13396,14 @@ Fast-forward
  create mode 100644 tests/web/cart.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T13-19-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-19-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:20:04.109Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `53eed15` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14243ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day20-build.log 2>&1 &
+echo $! > /tmp/day20-build.pid
+echo "Kicking off build with PID=$(cat /tmp/day20-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
