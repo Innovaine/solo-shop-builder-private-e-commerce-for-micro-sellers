@@ -14588,3 +14588,13 @@ drwxrwxr-x 3 engineer engineer 4096 May 16 14:44 ..
 -rw-rw-r-- 1 engineer engineer 2558 May 16 14:43 migration.sql
 ```
 Full output: [`server-runs/2026-05-16T14-44-33-app-ls--la-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-16T14-44-33-app-ls--la-solo-shop-builder-private-e-comme-1.log)
+
+## 2026-05-16T14:44:49.945Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `de7a281` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2479ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec -i solo-shop-builder-private-e-commerce-for-micro-sellers-db-1 psql -U postgres -d soloshop < prisma/migrations/20260516_add_order_tables/migration.sql
+```
+ERROR: command exited 1
