@@ -17628,3 +17628,16 @@ d6af22021ce2   postgres:16-alpine                                           "doc
 solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest   db1e07827eda        893MB          214MB   U
 ```
 Full output: [`server-runs/2026-05-16T18-50-51-app-docker-ps--a-grep-solo-shop-echo-----doc-1.log`](server-runs/2026-05-16T18-50-51-app-docker-ps--a-grep-solo-shop-echo-----doc-1.log)
+
+## 2026-05-16T18:51:57.444Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7943be6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3282ms)
+```
+curl -sf http://localhost:3000/api/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+OK
+```
+Full output: [`server-runs/2026-05-16T18-51-57-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-16T18-51-57-app-curl--sf-http-localhost-3000-api-health--1.log)
