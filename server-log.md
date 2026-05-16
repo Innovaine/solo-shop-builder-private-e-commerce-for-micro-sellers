@@ -11336,3 +11336,19 @@ _Pre-SSH: warehouse pushed to GitHub as commit `d3c0526` so the server's `git pu
 ```
 curl -s http://localhost:3000/auth/login | grep -i 'password\|email\|type=' | head -20
 ```
+
+## 2026-05-16T01:53:38.992Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4f6a7fe` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3405ms)
+```
+ls -lh ~/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/day-16/ 2>/dev/null || echo "No screenshots directory"
+find ~/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/ -name "*.png" -mmin -10 -ls 2>/dev/null | tail -20
+```
+STDOUT:
+```
+total 52K
+-rw-rw-r-- 1 tester tester 50K May 16 01:48 homepage-smoke.png
+  1857937     52 -rw-rw-r--   1 tester   tester      50260 May 16 01:48 /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/day-16/homepage-smoke.png
+```
+Full output: [`server-runs/2026-05-16T01-53-38-app-ls--lh-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-16T01-53-38-app-ls--lh-solo-shop-builder-private-e-comme-1.log)
