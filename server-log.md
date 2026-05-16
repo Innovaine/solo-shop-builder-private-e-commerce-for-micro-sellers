@@ -20242,3 +20242,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `071b4ee` so the server's `git pu
 ```
 curl -s http://localhost:3000/auth/login | grep -o 'input.*type=.*' | head -10
 ```
+
+## 2026-05-16T21:45:24.389Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1318209` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2208ms)
+```
+curl -s http://localhost:3000/auth/login | grep -A 2 -B 2 'type="email"' | head -20
+```
