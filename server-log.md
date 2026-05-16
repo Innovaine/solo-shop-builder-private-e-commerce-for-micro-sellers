@@ -16445,3 +16445,27 @@ app-1  |
 app-1  |
 ```
 Full output: [`server-runs/2026-05-16T17-42-40-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-42-40-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:43:06.189Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bf010cd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2885ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c "\dt"
+```
+STDOUT:
+```
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | AuthToken          | table | postgres
+ public | Order              | table | postgres
+ public | OrderItem          | table | postgres
+ public | Product            | table | postgres
+ public | Seller             | table | postgres
+ public | Shop               | table | postgres
+ public | Webhook            | table | postgres
+ public | _prisma_migrations | table | postgres
+(8 rows)
+```
+Full output: [`server-runs/2026-05-16T17-43-06-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-43-06-app-cd-solo-shop-builder-private-e-commerce--1.log)
