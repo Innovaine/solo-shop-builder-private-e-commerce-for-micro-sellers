@@ -17641,3 +17641,16 @@ STDOUT:
 OK
 ```
 Full output: [`server-runs/2026-05-16T18-51-57-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-16T18-51-57-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-16T18:52:17.643Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `41e7e6d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2608ms)
+```
+curl -s http://localhost:3000 | grep -o '<h1[^>]*>.*</h1>' | head -2
+```
+STDOUT:
+```
+<h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Solo Shop Builder</h1>
+```
+Full output: [`server-runs/2026-05-16T18-52-17-app-curl--s-http-localhost-3000-grep--o-h1-.-1.log`](server-runs/2026-05-16T18-52-17-app-curl--s-http-localhost-3000-grep--o-h1-.-1.log)
