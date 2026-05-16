@@ -18951,3 +18951,19 @@ d6af22021ce2   postgres:16-alpine                                           "doc
 {"status":"ok","timestamp":"2026-05-16T20:26:30.795Z","responseTime":"175ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"174ms"}}}
 ```
 Full output: [`server-runs/2026-05-16T20-26-30-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T20-26-30-app-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-16T20:27:28.267Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a34c6af` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2383ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day27-build-fix-smoke.spec.ts --reporter=list > /tmp/day27-test.log 2>&1 &
+echo $! > /tmp/day27-test.pid
+echo "Day 27 smoke test started, PID=$(cat /tmp/day27-test.pid)"
+```
+STDOUT:
+```
+Day 27 smoke test started, PID=1080182
+```
+Full output: [`server-runs/2026-05-16T20-27-28-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-27-28-app-cd-solo-shop-builder-private-e-commerce--1.log)
