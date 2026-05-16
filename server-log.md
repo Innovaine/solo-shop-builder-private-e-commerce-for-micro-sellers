@@ -10024,3 +10024,18 @@ a7668e5 Day 14 — Solo Shop Builder — Private E-commerce for Micro-Sellers
 3340717 Søren (reviewer, day 14) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-16T00-59-23-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T00-59-23-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T00:59:53.736Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5e6043d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2463ms)
+```
+kill -0 $(cat /tmp/compose-down.pid) 2>/dev/null && echo "STOPPING" || echo "STOPPED"
+docker ps | grep solo-shop || echo "No containers running"
+```
+STDOUT:
+```
+STOPPED
+No containers running
+```
+Full output: [`server-runs/2026-05-16T00-59-53-app-kill--0-cat-tmp-compose-down.pid-2-dev-n-1.log`](server-runs/2026-05-16T00-59-53-app-kill--0-cat-tmp-compose-down.pid-2-dev-n-1.log)
