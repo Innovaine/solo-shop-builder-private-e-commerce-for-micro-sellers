@@ -10524,3 +10524,50 @@ STDOUT:
 Started Playwright tests, PID=864704
 ```
 Full output: [`server-runs/2026-05-16T01-16-59-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-16-59-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:17:55.551Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `568191a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2871ms) _(showing tail — full 2,550B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/playwright-day15-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/playwright-day15-v2.log
+```
+STDOUT:
+```
+…15.spec.ts:62:7 › Day 15: Public Storefront › Storefront header has proper branding and navigation (147ms)
+  ✓  5 tests/web/scaling-day15.spec.ts:76:7 › Day 15: Public Storefront › Storefront footer exists with branding (170ms)
+  ✓  6 tests/web/scaling-day15.spec.ts:89:7 › Day 15: Public Storefront › Storefront handles invalid shop slug gracefully (108ms)
+
+
+  1) tests/web/scaling-day15.spec.ts:34:7 › Day 15: Public Storefront › FR-5: Storefront shows empty state when no products exist 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=/This shop is empty|No products yet|Shop coming soon/i')
+    Expected: visible
+    Error: strict mode violation: locator('text=/This shop is empty|No products yet|Shop coming soon/i') resolved to 2 elements:
+        1) <p class="text-lg opacity-90">Shop coming soon</p> aka getByText('Shop coming soon')
+        2) <h2 class="text-2xl font-semibold text-charcoal mb-3">This shop is empty</h2> aka getByRole('heading', { name: 'This shop is empty' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=/This shop is empty|No products yet|Shop coming soon/i')[22m
+
+
+      38 |     // From review logs: "This shop is empty" message appears
+      39 |     const emptyMsg = page.locator('text=/This shop is empty|No products yet|Shop coming soon/i');
+    > 40 |     await expect(emptyMsg).toBeVisible();
+         |                            ^
+      41 |     
+      42 |     await page.screenshot({ path: 'test-results/day-15/storefront-empty-state.png', fullPage: true });
+      43 |   });
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/scaling-day15.spec.ts:40:28
+
+    Error Context: test-results/tests-web-scaling-day15-Da-d4976-tate-when-no-products-exist/error-context.md
+
+  1 failed
+    tests/web/scaling-day15.spec.ts:34:7 › Day 15: Public Storefront › FR-5: Storefront shows empty state when no products exist 
+  5 passed (2.9s)
+```
+Full output: [`server-runs/2026-05-16T01-17-55-app-kill--0-cat-tmp-playwright-day15-v2.pid--1.log`](server-runs/2026-05-16T01-17-55-app-kill--0-cat-tmp-playwright-day15-v2.pid--1.log)
