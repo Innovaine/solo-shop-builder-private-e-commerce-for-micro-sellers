@@ -1,0 +1,168 @@
+// Product detail page - customer can view product details
+// Day 15: Customer-facing product page
+
+import { notFound } from 'next/navigation'
+import { prisma } from '@/lib/db'
+import Link from 'next/link'
+
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: { slug: string; productId: string }
+}) {
+  const product = await prisma.product.findUnique({
+    where: { id: params.productId },
+    include: {
+      shop: true,
+    },
+  })
+
+  // Verify product exists and belongs to the correct shop
+  if (!product || product.shop.slug !== params.slug) {
+    notFound()
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white border-b border-whisper sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <Link
+            href={`/shop/${params.slug}`}
+            className="text-charcoal text-sm font-semibold hover:text-slate transition-colors"
+          >
+            ← Back to Shop
+          </Link>
+          <div className="text-lg font-bold text-charcoal">
+            {product.shop.name}
+          </div>
+          <div className="w-24"></div>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Product Image */}
+          <div className="space-y-3">
+            <div className="aspect-square bg-gradient-to-br from-whisper to-cream rounded-lg flex items-center justify-center text-9xl border border-whisper cursor-pointer hover:from-cream hover:to-whisper transition-all">
+              💎
+            </div>
+            {/* Thumbnail placeholders for future image gallery */}
+            <div className="flex gap-2">
+              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center text-3xl border-2 border-charcoal">
+                💎
+              </div>
+              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center text-3xl border border-whisper opacity-50">
+                ✨
+              </div>
+              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center text-3xl border border-whisper opacity-50">
+                ⭐
+              </div>
+            </div>
+          </div>
+
+          {/* Product Info */}
+          <div className="pt-3">
+            {product.category && (
+              <div className="text-xs font-semibold text-slate uppercase tracking-wide mb-2">
+                {product.category}
+              </div>
+            )}
+            <h1 className="text-3xl lg:text-4xl font-bold text-charcoal mb-2">
+              {product.title}
+            </h1>
+            <div className="text-3xl font-bold text-charcoal mb-2">
+              ${(product.price / 100).toFixed(2)}
+            </div>
+            <div className="text-sm text-green-600 mb-6">In stock</div>
+
+            {product.description && (
+              <p className="text-slate leading-relaxed mb-6">
+                {product.description}
+              </p>
+            )}
+
+            {/* Quantity selector (client-side feature for later) */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-sm font-semibold text-charcoal">
+                Quantity
+              </span>
+              <div className="flex items-center border border-whisper rounded-md">
+                <button className="px-3 py-2 text-charcoal font-semibold hover:bg-cream transition-colors">
+                  −
+                </button>
+                <input
+                  type="number"
+                  className="w-12 text-center border-x border-whisper py-2 text-sm font-semibold focus:outline-none"
+                  defaultValue="1"
+                  min="1"
+                  readOnly
+                />
+                <button className="px-3 py-2 text-charcoal font-semibold hover:bg-cream transition-colors">
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Add to Cart Button */}
+            <button className="w-full py-4 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 transition-all hover:-translate-y-0.5 hover:shadow-lg mb-3">
+              Add to Cart
+            </button>
+            <Link href={`/shop/${params.slug}`}>
+              <button className="w-full py-3 bg-white border border-whisper text-charcoal font-semibold rounded-md hover:bg-cream transition-colors">
+                Continue Shopping
+              </button>
+            </Link>
+
+            {/* Product Details Accordion */}
+            <div className="mt-8 border-t border-whisper pt-6 space-y-4">
+              <details className="group">
+                <summary className="text-sm font-semibold text-charcoal cursor-pointer flex justify-between items-center py-3">
+                  Materials & Care
+                  <span className="text-slate group-open:rotate-180 transition-transform">
+                    ▼
+                  </span>
+                </summary>
+                <div className="text-sm text-slate leading-relaxed pt-2 pb-3">
+                  High-quality materials. Handle with care. Store in a cool, dry
+                  place.
+                </div>
+              </details>
+
+              <details className="group border-t border-whisper">
+                <summary className="text-sm font-semibold text-charcoal cursor-pointer flex justify-between items-center py-3">
+                  Shipping
+                  <span className="text-slate group-open:rotate-180 transition-transform">
+                    ▼
+                  </span>
+                </summary>
+                <div className="text-sm text-slate leading-relaxed pt-2 pb-3">
+                  Ships within 3–5 business days. Free shipping on orders over
+                  $75.
+                </div>
+              </details>
+
+              <details className="group border-t border-whisper">
+                <summary className="text-sm font-semibold text-charcoal cursor-pointer flex justify-between items-center py-3">
+                  Returns
+                  <span className="text-slate group-open:rotate-180 transition-transform">
+                    ▼
+                  </span>
+                </summary>
+                <div className="text-sm text-slate leading-relaxed pt-2 pb-3">
+                  30-day returns accepted. Items must be in original condition.
+                  Contact the seller for a return label.
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-whisper py-8 px-6 text-center text-xs text-slate mt-12">
+        <p>© 2026 {product.shop.name}. Solo Shop Builder. | Secured by Stripe</p>
+      </footer>
+    </div>
+  )
+}
