@@ -16920,3 +16920,19 @@ STDOUT:
  create mode 100644 tests/web/day24-product-order-flow.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T18-31-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T18-31-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T18:32:39.763Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `290aafa` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2371ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day26-build.log 2>&1 &
+echo $! > /tmp/day26-build.pid
+echo "Started build, PID=$(cat /tmp/day26-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=1051154
+```
+Full output: [`server-runs/2026-05-16T18-32-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T18-32-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
