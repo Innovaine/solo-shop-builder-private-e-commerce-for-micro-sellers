@@ -21076,3 +21076,39 @@ STDOUT:
 ✗ Myfatoorah option NOT found
 ```
 Full output: [`server-runs/2026-05-16T23-22-32-app-curl--s-http-localhost-3000-checkout-gre-1.log`](server-runs/2026-05-16T23-22-32-app-curl--s-http-localhost-3000-checkout-gre-1.log)
+
+## 2026-05-16T23:22:59.846Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ec311ca` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2444ms)
+```
+echo "=== Test 1: Myfatoorah checkout endpoint exists ==="
+curl -s -X POST http://localhost:3000/api/checkout/myfatoorah \
+  -H "Content-Type: application/json" \
+  -d '{}' | head -5
+
+echo ""
+echo "=== Test 2: Myfatoorah callback endpoint exists ==="
+curl -sI http://localhost:3000/api/checkout/myfatoorah/callback | head -5
+
+echo ""
+echo "=== Test 3: Standard Stripe checkout still works ==="
+curl -s -X POST http://localhost:3000/api/checkout \
+  -H "Content-Type: application/json" \
+  -d '{}' | head -5
+```
+STDOUT:
+```
+=== Test 1: Myfatoorah checkout endpoint exists ===
+{"error":"Shop slug and items are required"}
+=== Test 2: Myfatoorah callback endpoint exists ===
+HTTP/1.1 307 Temporary Redirect
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: aTvGSplWIPdLRCNB
+
+=== Test 3: Standard Stripe checkout still works ===
+{"error":"Cart is empty"}
+```
+Full output: [`server-runs/2026-05-16T23-22-59-app-echo-Test-1-Myfatoorah-checkout-endpoint-1.log`](server-runs/2026-05-16T23-22-59-app-echo-Test-1-Myfatoorah-checkout-endpoint-1.log)
