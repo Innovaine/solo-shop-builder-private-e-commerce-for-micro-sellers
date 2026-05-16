@@ -1,7 +1,8 @@
 # Myfatoorah
 > **Kind:** `url`
 > **Source URL:** https://docs.myfatoorah.com/reference
-> **Last refreshed:** 2026-05-16T15:57:27.784Z
+> **Last refreshed:** 2026-05-16T16:10:59.858Z
+> **Last fetch error:** ⚠ extracted content is short — the page is likely JavaScript-rendered and the HTML stripper couldn't find the real docs. Paste them into the body field manually, or use a docs URL that serves rendered HTML.
 ## Owner notes
 
 Along side stripe add my fatoorah integration 
@@ -19,6 +20,8 @@ Note that it will send url to put card details
 ```
 
 ## Docs
+
+### https://docs.myfatoorah.com/reference ⚠ short result (90 chars) — likely a JS-rendered page; paste docs manually
 
 Reference- - -
 -
