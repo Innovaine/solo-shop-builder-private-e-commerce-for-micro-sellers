@@ -11153,3 +11153,59 @@ STDOUT:
 Started auth flow tests, PID=873052
 ```
 Full output: [`server-runs/2026-05-16T01-45-54-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-45-54-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:46:24.997Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `29564a0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 8184ms) _(showing tail — full 2,999B stdout + 0B stderr)_
+```
+sleep 5 && kill -0 $(cat /tmp/playwright-authflow.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/playwright-authflow.log
+```
+STDOUT:
+```
+…ted')).or(locator('button:has-text("Start")')).first()[22m
+
+
+      20 |     // Should see signup/login interface
+      21 |     const signupButton = page.locator('text=Sign up').or(page.locator('text=Get Started')).or(page.locator('button:has-text("Start")')).first();
+    > 22 |     await expect(signupButton).toBeVisible({ timeout: 10000 });
+         |                                ^
+      23 |
+      24 |     // Click to navigate to signup/login page
+      25 |     await signupButton.click();
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/auth-flow.spec.ts:22:32
+
+    Error Context: test-results/tests-web-auth-flow-FR-1-F-56a2e-eller-can-signup-with-email/error-context.md
+
+  2) tests/web/auth-flow.spec.ts:43:7 › FR-1 & FR-2: Authentication Flow › FR-2: Valid magic link logs seller in 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=/expired|invalid|error/i')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=/expired|invalid|error/i')[22m
+
+
+      49 |
+      50 |     // Invalid token should show error
+    > 51 |     await expect(page.locator('text=/expired|invalid|error/i')).toBeVisible({ timeout: 5000 });
+         |                                                                 ^
+      52 |   });
+      53 |
+      54 |   test('FR-2: Session persists on page reload', async ({ page, context }) => {
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/auth-flow.spec.ts:51:65
+
+    Error Context: test-results/tests-web-auth-flow-FR-1-F-ba98d-d-magic-link-logs-seller-in/error-context.md
+
+  2 failed
+    tests/web/auth-flow.spec.ts:15:7 › FR-1 & FR-2: Authentication Flow › FR-1: Seller can signup with email 
+    tests/web/auth-flow.spec.ts:43:7 › FR-1 & FR-2: Authentication Flow › FR-2: Valid magic link logs seller in 
+  1 passed (18.0s)
+```
+Full output: [`server-runs/2026-05-16T01-46-24-app-sleep-5-kill--0-cat-tmp-playwright-authf-1.log`](server-runs/2026-05-16T01-46-24-app-sleep-5-kill--0-cat-tmp-playwright-authf-1.log)
