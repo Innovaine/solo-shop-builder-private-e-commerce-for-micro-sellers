@@ -14224,3 +14224,14 @@ STDOUT:
 Started cart tests v3, PID=987101
 ```
 Full output: [`server-runs/2026-05-16T13-37-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-37-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:38:53.556Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `55b705f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 57346ms)
+```
+sleep 15
+kill -0 $(cat /tmp/cart-test-day21-v3.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -200 ~/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/day-21/run.log
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
