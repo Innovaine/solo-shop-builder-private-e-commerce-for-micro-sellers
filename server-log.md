@@ -13422,3 +13422,18 @@ NOT_RUNNING or PID_FILE_MISSING
 -rw-rw-r-- 1 reviewer reviewer 8.8K May 16 13:20 /tmp/day20-build.log
 ```
 Full output: [`server-runs/2026-05-16T13-20-21-app-kill--0-cat-tmp-day20-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T13-20-21-app-kill--0-cat-tmp-day20-build.pid-2-dev-nu-1.log)
+
+## 2026-05-16T13:20:36.033Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `adf2366` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3584ms)
+```
+tail -80 /tmp/day20-build.log | grep -E "(Successfully|failed|error|ERROR|Error)" || tail -30 /tmp/day20-build.log
+```
+STDOUT:
+```
+#16 14.74 Type error: Argument of type 'Cart' is not assignable to parameter of type 'SetStateAction<{ items: never[]; shopSlug: undefined; }>'.
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T13-20-36-app-tail--80-tmp-day20-build.log-grep--E-Suc-1.log`](server-runs/2026-05-16T13-20-36-app-tail--80-tmp-day20-build.log-grep--E-Suc-1.log)
