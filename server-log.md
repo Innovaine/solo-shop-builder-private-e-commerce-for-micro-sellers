@@ -13830,3 +13830,22 @@ ERROR: Connection timed out (mutating command — not auto-retried; queue it aga
 sleep 10 && cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T13:30:34.760Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `db5866e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2810ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED              STATUS                        PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-16T13-30-34-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-30-34-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 523ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=30 app
+```
