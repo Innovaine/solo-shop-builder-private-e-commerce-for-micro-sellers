@@ -11001,3 +11001,19 @@ DONE
 nohup: failed to run command 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers': No such file or directory
 ```
 Full output: [`server-runs/2026-05-16T01-40-22-app-kill--0-cat-tmp-playwright-day16.pid-2-d-1.log`](server-runs/2026-05-16T01-40-22-app-kill--0-cat-tmp-playwright-day16.pid-2-d-1.log)
+
+## 2026-05-16T01:42:28.959Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c767469` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3798ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers nohup npx playwright test tests/web/day16-ui-components.spec.ts --reporter=list > /tmp/playwright-day16-v2.log 2>&1 &
+echo $! > /tmp/playwright-day16-v2.pid
+echo "Started Playwright tests, PID=$(cat /tmp/playwright-day16-v2.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=871678
+```
+Full output: [`server-runs/2026-05-16T01-42-28-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-42-28-app-cd-solo-shop-builder-private-e-commerce--1.log)
