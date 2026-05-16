@@ -19235,3 +19235,19 @@ d6af22021ce2   postgres:16-alpine   "docker-entrypoint.s…"   5 hours ago   Up 
  20:59:30 up 3 days, 22:02,  5 users,  load average: 0.00, 0.14, 0.22
 ```
 Full output: [`server-runs/2026-05-16T20-59-30-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-16T20-59-30-app-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-16T21:00:07.811Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `32f9695` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3378ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day28-build.log 2>&1 &
+echo $! > /tmp/day28-build.pid
+echo "Build started, PID=$(cat /tmp/day28-build.pid)"
+```
+STDOUT:
+```
+Build started, PID=1084770
+```
+Full output: [`server-runs/2026-05-16T21-00-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-00-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
