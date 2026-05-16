@@ -19499,3 +19499,13 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-16T21-05-30-app-kill--0-cat-tmp-day28-test-v2.pid-2-dev--1.log`](server-runs/2026-05-16T21-05-30-app-kill--0-cat-tmp-day28-test-v2.pid-2-dev--1.log)
+
+## 2026-05-16T21:05:50.988Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `98346c8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2540ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+ls -la tests/web/day28*.spec.ts
+cat tests/web/day28-password-auth.spec.ts | head -20
+```
