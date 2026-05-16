@@ -14249,3 +14249,27 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-16T13-39-23-app-kill--0-cat-tmp-cart-test-day21-v3.pid-2-1.log`](server-runs/2026-05-16T13-39-23-app-kill--0-cat-tmp-cart-test-day21-v3.pid-2-1.log)
+
+## 2026-05-16T13:39:40.018Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `23d4917` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3049ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+ls -lah test-results/day-21/ 2>/dev/null || echo "No test-results/day-21"
+cat test-results/day-21/run.log 2>/dev/null || echo "No run.log"
+# Also check if npx is working
+which npx
+npx --version
+```
+STDOUT:
+```
+total 12K
+drwxrwxr-x 2 tester tester 4.0K May 16 13:37 .
+drwxrwxr-x 6 tester tester 4.0K May 16 13:37 ..
+-rw-rw-r-- 1 tester tester   45 May 16 13:37 .last-run.json
+No run.log
+/usr/bin/npx
+11.12.1
+```
+Full output: [`server-runs/2026-05-16T13-39-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-39-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
