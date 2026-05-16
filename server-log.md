@@ -10145,3 +10145,34 @@ STDOUT:
 ls: cannot access 'app/shop/': No such file or directory
 ```
 Full output: [`server-runs/2026-05-16T01-02-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-02-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:03:32.804Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `deed09a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2778ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Check container logs for 404 errors
+docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 2>&1 | grep -A 5 "shop/test-shop/product" | tail -20
+
+# Test the route with full path
+echo "=== Test 1: Product route ==="
+curl -v http://localhost:3000/shop/test-shop/product/prod-1 2>&1 | grep -E "(HTTP|404|200|location)" | head -5
+
+# Test shop route works
+echo ""
+echo "=== Test 2: Shop route (should work) ==="
+curl -sI http://localhost:3000/shop/test-shop | head -1
+```
+STDOUT:
+```
+=== Test 1: Product route ===
+> GET /shop/test-shop/product/prod-1 HTTP/1.1
+< HTTP/1.1 404 Not Found
+le\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$L9\"],\"globalErrorComponent\":\"$a\",\"missingSlots\":\"$Wb\"}]]\n"])</script><script>self.__next_f.push([1,"9:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script><script>self.__next_f.push([1,"4:E{\"digest\":\"NEXT_NOT_FOUND\"}\n"])</script></body></html>
+
+=== Test 2: Shop route (should work) ===
+HTTP/1.1 200 OK
+```
+Full output: [`server-runs/2026-05-16T01-03-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-03-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
