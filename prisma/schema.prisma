@@ -33,6 +33,7 @@ model Shop {
   
   seller    Seller   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
   products  Product[]
+  orders    Order[]
   
   @@index([sellerId])
 }
@@ -71,4 +72,43 @@ model AuthToken {
   @@index([sellerId])
   @@index([expiresAt]) // Optimize cleanup queries for expired tokens
   @@index([used, expiresAt]) // Composite index for auth verification queries
+}
+
+// Order - customer purchase record (FR-10, FR-15, FR-16, FR-17)
+model Order {
+  id                String   @id @default(uuid())
+  shopId            String
+  customerEmail     String
+  customerName      String?
+  status            String   @default("pending") // pending, paid, in_progress, shipped, delivered, canceled
+  total             Int      // Total in cents
+  stripePaymentId   String?  @unique // Stripe payment_intent ID
+  trackingUrl       String?
+  trackingId        String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  shop              Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  items             OrderItem[]
+  
+  @@index([shopId])
+  @@index([customerEmail])
+  @@index([status])
+  @@index([stripePaymentId])
+  @@index([createdAt]) // For sorting by date
+}
+
+// OrderItem - individual product line item in an order
+model OrderItem {
+  id          String   @id @default(uuid())
+  orderId     String
+  productId   String   // Reference to product at time of purchase
+  productTitle String  // Snapshot title (in case product is deleted later)
+  price       Int      // Snapshot price in cents
+  quantity    Int      @default(1)
+  
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  @@index([orderId])
+  @@index([productId])
 }

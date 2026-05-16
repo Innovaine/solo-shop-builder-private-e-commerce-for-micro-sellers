@@ -100,13 +100,11 @@ export default async function DashboardPage() {
                 View Storefront
               </Button>
             </Link>
-            <Button
-              disabled
-              variant="secondary"
-              title="Products feature coming soon"
-            >
-              Add Products (Coming Soon)
-            </Button>
+            <Link href="/dashboard/products">
+              <Button variant="secondary">
+                Manage Products
+              </Button>
+            </Link>
           </div>
         </Card>
 
