@@ -13407,3 +13407,18 @@ echo $! > /tmp/day20-build.pid
 echo "Kicking off build with PID=$(cat /tmp/day20-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T13:20:21.286Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8daaa50` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3689ms)
+```
+kill -0 $(cat /tmp/day20-build.pid) 2>/dev/null && echo "RUNNING" || echo "NOT_RUNNING or PID_FILE_MISSING"
+ls -lh /tmp/day20-build.log 2>/dev/null || echo "Log file not found yet"
+```
+STDOUT:
+```
+NOT_RUNNING or PID_FILE_MISSING
+-rw-rw-r-- 1 reviewer reviewer 8.8K May 16 13:20 /tmp/day20-build.log
+```
+Full output: [`server-runs/2026-05-16T13-20-21-app-kill--0-cat-tmp-day20-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T13-20-21-app-kill--0-cat-tmp-day20-build.pid-2-dev-nu-1.log)
