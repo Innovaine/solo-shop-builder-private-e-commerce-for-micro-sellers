@@ -17949,3 +17949,59 @@ STDOUT:
 #15 11.52    Linting and checking validity of types ...
 ```
 Full output: [`server-runs/2026-05-16T19-20-29-app-kill--0-cat-tmp-day26-final-build.pid-2--1.log`](server-runs/2026-05-16T19-20-29-app-kill--0-cat-tmp-day26-final-build.pid-2--1.log)
+
+## 2026-05-16T19:21:53.680Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `619f10d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4277ms) _(showing tail — full 7,348B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day26-final-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day26-final-build.log
+```
+STDOUT:
+```
+…_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 16.64     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#15 16.64     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#15 16.64     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+#15 16.64     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+#15 16.64   description: "Route /api/auth/verify couldn't be rendered statically because it accessed `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 16.64   digest: 'DYNAMIC_SERVER_USAGE'
+#15 16.64 }
+#15 16.64  ✓ Generating static pages (23/23)
+#15 16.66 
+#15 16.66 > Export encountered errors on following paths:
+#15 16.66 	/auth/verify/page: /auth/verify
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+16.64     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+16.64     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+16.64     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+16.64   description: "Route /api/auth/verify couldn't be rendered statically because it accessed `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+16.64   digest: 'DYNAMIC_SERVER_USAGE'
+16.64 }
+16.64  ✓ Generating static pages (23/23)
+16.66 
+16.66 > Export encountered errors on following paths:
+16.66 	/auth/verify/page: /auth/verify
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T19-21-53-app-kill--0-cat-tmp-day26-final-build.pid-2--1.log`](server-runs/2026-05-16T19-21-53-app-kill--0-cat-tmp-day26-final-build.pid-2--1.log)
