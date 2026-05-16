@@ -10055,3 +10055,17 @@ STDOUT:
 Rebuild started, PID=860624
 ```
 Full output: [`server-runs/2026-05-16T01-00-20-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-00-20-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:00:46.391Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3380fc3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2586ms)
+```
+kill -0 $(cat /tmp/day15-rebuild2.pid) 2>/dev/null && echo "BUILDING" || echo "DONE"
+tail -50 /tmp/day15-rebuild2.log | grep -E "(Generating static pages|Successfully built|ERROR|export encountered)" | tail -10
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-16T01-00-46-app-kill--0-cat-tmp-day15-rebuild2.pid-2-dev-1.log`](server-runs/2026-05-16T01-00-46-app-kill--0-cat-tmp-day15-rebuild2.pid-2-dev-1.log)
