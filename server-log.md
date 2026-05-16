@@ -10198,3 +10198,44 @@ STDOUT:
 Testing with direct DB query result...
 ```
 Full output: [`server-runs/2026-05-16T01-04-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-04-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T01:04:46.586Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a56f0ab` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3674ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Re-create test data (containers were restarted, data might be gone)
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U soloshop -d soloshop <<'EOF'
+DELETE FROM "Product";
+DELETE FROM "Shop";
+DELETE FROM "Seller";
+
+INSERT INTO "Seller" (id, email, "createdAt") VALUES ('seller1', 'test@test.com', NOW());
+INSERT INTO "Shop" (id, slug, name, "sellerId", "createdAt") VALUES ('shop1', 'test-shop', 'Test Shop', 'seller1', NOW());
+INSERT INTO "Product" (id, "shopId", title, description, price, category, "createdAt") VALUES 
+  ('prod1', 'shop1', 'Gold Necklace', 'Beautiful necklace', 4500, 'Jewelry', NOW()),
+  ('prod2', 'shop1', 'Silver Ring', 'Elegant ring', 3000, 'Jewelry', NOW());
+
+SELECT 'Data created';
+SELECT p.id, p.title, s.slug AS shop_slug FROM "Product" p JOIN "Shop" s ON p.\"shopId\" = s.id;
+EOF
+
+echo ""
+echo "=== Now test product page ==="
+curl -sI http://localhost:3000/shop/test-shop/product/prod1 | head -1
+
+echo ""
+echo "=== Check page content ==="
+curl -s http://localhost:3000/shop/test-shop/product/prod1 | grep -o -E "(Gold Necklace|Add to Cart|Back to Shop)" | head -5
+```
+STDOUT:
+```
+
+=== Now test product page ===
+HTTP/1.1 404 Not Found
+
+=== Check page content ===
+```
+Full output: [`server-runs/2026-05-16T01-04-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-04-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
