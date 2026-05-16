@@ -19375,3 +19375,19 @@ access-control-allow-origin: *
 x-request-id: Whrbe72tXtEJRPQw
 ```
 Full output: [`server-runs/2026-05-16T21-01-17-app-curl--sf-http-localhost-3000-api-health-1.log`](server-runs/2026-05-16T21-01-17-app-curl--sf-http-localhost-3000-api-health-1.log)
+
+## 2026-05-16T21:03:41.695Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b24d0c5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2550ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day28-*.spec.ts --reporter=list > /tmp/day28-test.log 2>&1 &
+echo $! > /tmp/day28-test.pid
+echo "Tests started, PID=$(cat /tmp/day28-test.pid)"
+```
+STDOUT:
+```
+Tests started, PID=1096049
+```
+Full output: [`server-runs/2026-05-16T21-03-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-03-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
