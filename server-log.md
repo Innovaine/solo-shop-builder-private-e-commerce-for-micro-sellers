@@ -20164,3 +20164,19 @@ STDOUT:
 -rw-rw-r-- 1 tester tester 5644 May 16 21:42 tests/web/day29-seller-customization.spec.ts
 ```
 Full output: [`server-runs/2026-05-16T21-42-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-42-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T21:42:44.983Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `34b6b9c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2309ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day29-seller-customization.spec.ts --reporter=list --output ~/test-output > /tmp/day29-test-final.log 2>&1 &
+echo $! > /tmp/day29-test-final.pid
+echo "Started Playwright test final, PID=$(cat /tmp/day29-test-final.pid)"
+```
+STDOUT:
+```
+Started Playwright test final, PID=1105099
+```
+Full output: [`server-runs/2026-05-16T21-42-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T21-42-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
