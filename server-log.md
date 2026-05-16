@@ -17249,3 +17249,56 @@ STDOUT:
 Started final build, PID=1054232
 ```
 Full output: [`server-runs/2026-05-16T18-39-20-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T18-39-20-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T18:41:22.455Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e027c0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2733ms) _(showing tail — full 4,479B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day26-build-final.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day26-build-final.log
+```
+STDOUT:
+```
+…& FormFieldProps & RefAttributes<HTMLInputElement>'.
+#16 16.03 
+#16 16.03 [0m [90m 132 |[39m             [33m<[39m[33mFormField[39m[0m
+#16 16.03 [0m [90m 133 |[39m               label[33m=[39m[32m"Product Title"[39m[0m
+#16 16.03 [0m[31m[1m>[22m[39m[90m 134 |[39m               htmlFor[33m=[39m[32m"title"[39m[0m
+#16 16.03 [0m [90m     |[39m               [31m[1m^[22m[39m[0m
+#16 16.03 [0m [90m 135 |[39m               required[0m
+#16 16.03 [0m [90m 136 |[39m               error[33m=[39m[32m""[39m[0m
+#16 16.03 [0m [90m 137 |[39m               help[33m=[39m[32m"A clear, descriptive name for your product"[39m[0m
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN npm run build:
+16.03 Type error: Type '{ children: Element; label: string; htmlFor: string; required: true; error: string; help: string; }' is not assignable to type 'IntrinsicAttributes & FormFieldProps & RefAttributes<HTMLInputElement>'.
+16.03   Property 'htmlFor' does not exist on type 'IntrinsicAttributes & FormFieldProps & RefAttributes<HTMLInputElement>'.
+16.03 
+16.03 [0m [90m 132 |[39m             [33m<[39m[33mFormField[39m[0m
+16.03 [0m [90m 133 |[39m               label[33m=[39m[32m"Product Title"[39m[0m
+16.03 [0m[31m[1m>[22m[39m[90m 134 |[39m               htmlFor[33m=[39m[32m"title"[39m[0m
+16.03 [0m [90m     |[39m               [31m[1m^[22m[39m[0m
+16.03 [0m [90m 135 |[39m               required[0m
+16.03 [0m [90m 136 |[39m               error[33m=[39m[32m""[39m[0m
+16.03 [0m [90m 137 |[39m               help[33m=[39m[32m"A clear, descriptive name for your product"[39m[0m
+------
+Dockerfile:24
+
+--------------------
+
+  22 |     
+
+  23 |     # Build Next.js app
+
+  24 | >>> RUN npm run build
+
+  25 |     
+
+  26 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T18-41-22-app-kill--0-cat-tmp-day26-build-final.pid-2--1.log`](server-runs/2026-05-16T18-41-22-app-kill--0-cat-tmp-day26-build-final.pid-2--1.log)

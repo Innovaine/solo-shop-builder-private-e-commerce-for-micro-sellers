@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { FormField } from '@/components/ui/FormField'
 import { Input } from '@/components/ui/Input'
 
 const CATEGORIES = ['Handmade', 'Vintage', 'Supplies', 'Other']
@@ -129,13 +128,10 @@ export default function EditProductPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <FormField
-              label="Product Title"
-              htmlFor="title"
-              required
-              error=""
-              help="A clear, descriptive name for your product"
-            >
+            <div>
+              <label htmlFor="title" className="block text-sm font-semibold text-charcoal mb-2">
+                Product Title <span className="text-rose">*</span>
+              </label>
               <Input
                 id="title"
                 type="text"
@@ -144,15 +140,13 @@ export default function EditProductPage() {
                 placeholder="e.g., Handmade Ceramic Mug"
                 required
               />
-            </FormField>
+              <p className="text-xs text-slate mt-1">A clear, descriptive name for your product</p>
+            </div>
 
-            <FormField
-              label="Description"
-              htmlFor="description"
-              required={false}
-              error=""
-              help="Tell customers about your product"
-            >
+            <div>
+              <label htmlFor="description" className="block text-sm font-semibold text-charcoal mb-2">
+                Description
+              </label>
               <textarea
                 id="description"
                 value={description}
@@ -161,16 +155,14 @@ export default function EditProductPage() {
                 rows={4}
                 className="w-full px-4 py-2 border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue text-charcoal"
               />
-            </FormField>
+              <p className="text-xs text-slate mt-1">Tell customers about your product</p>
+            </div>
 
             <div className="grid grid-cols-2 gap-6">
-              <FormField
-                label="Price (USD)"
-                htmlFor="price"
-                required
-                error=""
-                help="Price in dollars"
-              >
+              <div>
+                <label htmlFor="price" className="block text-sm font-semibold text-charcoal mb-2">
+                  Price (USD) <span className="text-rose">*</span>
+                </label>
                 <Input
                   id="price"
                   type="number"
@@ -181,9 +173,13 @@ export default function EditProductPage() {
                   placeholder="19.99"
                   required
                 />
-              </FormField>
+                <p className="text-xs text-slate mt-1">Price in dollars</p>
+              </div>
 
-              <FormField label="Category" htmlFor="category" required error="" help="Product type">
+              <div>
+                <label htmlFor="category" className="block text-sm font-semibold text-charcoal mb-2">
+                  Category <span className="text-rose">*</span>
+                </label>
                 <select
                   id="category"
                   value={category}
@@ -197,16 +193,14 @@ export default function EditProductPage() {
                     </option>
                   ))}
                 </select>
-              </FormField>
+                <p className="text-xs text-slate mt-1">Product type</p>
+              </div>
             </div>
 
-            <FormField
-              label="Stock Quantity"
-              htmlFor="stock"
-              required
-              error=""
-              help="Number of items available"
-            >
+            <div>
+              <label htmlFor="stock" className="block text-sm font-semibold text-charcoal mb-2">
+                Stock Quantity <span className="text-rose">*</span>
+              </label>
               <Input
                 id="stock"
                 type="number"
@@ -216,15 +210,13 @@ export default function EditProductPage() {
                 placeholder="10"
                 required
               />
-            </FormField>
+              <p className="text-xs text-slate mt-1">Number of items available</p>
+            </div>
 
-            <FormField
-              label="Image URL"
-              htmlFor="imageUrl"
-              required={false}
-              error=""
-              help="Optional: Link to product image"
-            >
+            <div>
+              <label htmlFor="imageUrl" className="block text-sm font-semibold text-charcoal mb-2">
+                Image URL
+              </label>
               <Input
                 id="imageUrl"
                 type="url"
@@ -232,7 +224,8 @@ export default function EditProductPage() {
                 onChange={(e) => setImageUrl(e.target.value)}
                 placeholder="https://example.com/image.jpg"
               />
-            </FormField>
+              <p className="text-xs text-slate mt-1">Optional: Link to product image</p>
+            </div>
 
             <div className="flex gap-4 pt-4">
               <Button type="submit" variant="primary" disabled={saving} className="flex-1">
