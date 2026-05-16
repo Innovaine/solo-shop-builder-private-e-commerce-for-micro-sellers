@@ -10120,3 +10120,28 @@ STARTED
 HTTP/1.1 404 Not Found
 ```
 Full output: [`server-runs/2026-05-16T01-02-20-app-kill--0-cat-tmp-compose-up-final.pid-2-d-1.log`](server-runs/2026-05-16T01-02-20-app-kill--0-cat-tmp-compose-up-final.pid-2-d-1.log)
+
+## 2026-05-16T01:02:53.552Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `798f120` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2645ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Check what routes Next.js knows about
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 \
+  find .next -name "*page.js" | grep -E "shop.*product" | head -5
+
+# Check if file is in build output
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 \
+  ls -R app/shop/ 2>&1 | head -20
+
+# Check build log for route compilation
+grep -i "compiling.*product" /tmp/day15-rebuild2.log | head -5
+```
+STDOUT:
+```
+.next/server/app/shop/[slug]/product/[productId]/page.js
+ls: cannot access 'app/shop/': No such file or directory
+```
+Full output: [`server-runs/2026-05-16T01-02-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T01-02-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
