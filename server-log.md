@@ -13886,3 +13886,16 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 48ms
 ```
 Full output: [`server-runs/2026-05-16T13-31-46-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-31-46-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:32:29.301Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `669462d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2937ms)
+```
+curl -sf http://localhost:3000/api/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+OK
+```
+Full output: [`server-runs/2026-05-16T13-32-29-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-16T13-32-29-app-curl--sf-http-localhost-3000-api-health--1.log)
