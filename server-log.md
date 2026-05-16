@@ -21047,3 +21047,19 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-16T23:21:39.520Z","responseTime":"206ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"204ms"}}}
 ```
 Full output: [`server-runs/2026-05-16T23-21-39-app-sleep-5-1.log`](server-runs/2026-05-16T23-21-39-app-sleep-5-1.log)
+
+## 2026-05-16T23:22:02.696Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b52b7c7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2061ms)
+```
+curl -s -X POST http://localhost:3000/api/checkout/myfatoorah \
+  -H "Content-Type: application/json" \
+  -d '{"shopSlug":"test","items":[{"productId":"test123","quantity":1,"price":1000}]}' \
+  | head -20
+```
+STDOUT:
+```
+{"error":"Shop not found"}
+```
+Full output: [`server-runs/2026-05-16T23-22-02-app-curl--s--X-POST-http-localhost-3000-api--1.log`](server-runs/2026-05-16T23-22-02-app-curl--s--X-POST-http-localhost-3000-api--1.log)
