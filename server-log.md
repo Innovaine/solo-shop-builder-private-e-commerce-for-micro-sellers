@@ -18418,3 +18418,33 @@ d6af22021ce2   postgres:16-alpine                                           "doc
 solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest   db1e07827eda        893MB          214MB   U
 ```
 Full output: [`server-runs/2026-05-16T19-49-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-49-26-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T19:49:42.745Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8b2e8ff` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2750ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git log --oneline -5
+ls -la /tmp/*.pid 2>/dev/null | tail -5
+ls -la /tmp/*.log 2>/dev/null | tail -5
+```
+STDOUT:
+```
+18a27f4 Priya (tester, day 26) — pre-SSH sync
+aba9447 Anil (engineer, day 26) — pre-SSH sync
+6099650 Anil (engineer, day 26) — pre-SSH sync
+f9fbb25 Anil (engineer, day 26) — pre-SSH sync
+e733d40 Anil (engineer, day 26) — pre-SSH sync
+-rw-rw-r-- 1 engineer engineer 7 May 15 16:09 /tmp/soloshop-build7.pid
+-rw-rw-r-- 1 engineer engineer 7 May 15 16:11 /tmp/soloshop-build8.pid
+-rw-rw-r-- 1 engineer engineer 7 May 15 16:37 /tmp/soloshop-build9.pid
+-rw-rw-r-- 1 reviewer reviewer 7 May 15 16:17 /tmp/soloshop-review-build.pid
+-rw-rw-r-- 1 engineer engineer 7 May 14 21:58 /tmp/up.pid
+-rw-rw-r-- 1 engineer engineer    1248 May 15 16:45 /tmp/soloshop-up2.log
+-rw-rw-r-- 1 tester   tester       599 May 15 18:40 /tmp/test-output.log
+-rw-rw-r-- 1 tester   tester      4888 May 13 19:27 /tmp/test-run-day2.log
+-rw-rw-r-- 1 engineer engineer     548 May 14 21:58 /tmp/up.log
+-rw-rw-r-- 1 tester   tester      1110 May 13 19:59 /tmp/upload-test.log
+```
+Full output: [`server-runs/2026-05-16T19-49-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T19-49-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
