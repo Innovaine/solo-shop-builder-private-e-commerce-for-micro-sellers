@@ -1,35 +1,34 @@
 # Day 32 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 68
-- **Saved:** 17/05/2026, 2:03:58 AM
+- **Cycle:** 69
+- **Saved:** 17/05/2026, 2:12:20 AM
 
 ---
 
 FINISHED:
-- Day 31 build passing: Tailwind color classes fixed (slateBlue → slate-blue), landing + branding + profile pages rendering, containers healthy, production-ready binary
-- Code review complete; all critical design debt resolved (#99 unblocked)
-- Infrastructure: Docker, deployment, .env templates verified functional
+- Day 31 build clean: Tailwind color class fixes (slateBlue → slate-blue) applied across branding, email-template, profile pages; landing page + dashboard render correctly; containers running, health checks pass.
+- Code review complete: binary production-ready, design fidelity baseline 65/100, target 80/100 by end of this week.
 
 PENDING:
-- #99: Critical build blocker (import paths + FormField props) — MARKED CRITICAL but code review says it's DONE. Verify this is actually merged and deployed.
-- #106: Day 29 features (F31-F40: profile, branding, email, billing, analytics) re-deployment — need to confirm these are running in staging/prod or if rollback happened
-- #83: MVP feature completion (F1–F20) — 13 closed, 33 open; unclear which of the 20 core features are actually live vs. in-progress
-- Design fidelity at 65/100 (target 80+); landing page color palette needs visual verification in browser, not just code
+- #99: Day 29 build blocker (import paths + FormField props) — critical, must be resolved before day 32 work lands.
+- #106: Re-deploy day 29 features (F31-F40: profile, branding, email, billing, analytics) — these features exist in code but are not yet live in production.
+- Day 29 feature set (F31-F40) is coded but untested in staging; design fidelity on these pages not yet verified.
+- MVP core features (F1-F20) task board status unclear — #83 shows "complete and test" but warehouse files don't show full feature implementation; clarify what's actually shipped vs. what's still open code.
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineer): Ship FR-21 (password auth: signup + login + settings), FR-22 (password reset), FR-23 (webhook signature verification + idempotency). These unblock the critical #100, #101, #102 tasks and remove the dependency on magic-link-only auth. Test against real Stripe events.
-- Stream 2 (designer): Ship dashboard responsiveness polish (#98: mobile 320px+ no horizontal scroll), verify seller profile page layout (F31 from #91), and audit storefront product detail page for design-system compliance. Hand off clickable files to engineering by EOD.
-- Stream 3 (tester): Write Playwright tests for FR-21 (password flow: signup, login, settings update), FR-22 (forgot + reset), FR-23 (webhook verification). Use real Stripe test events. Cover both happy path and error cases (invalid token, expired link, mismatched signature).
-- Stream 4 (reviewer): Verify #99 is actually merged (confirm in git log); spot-check #106 deployment (profile, branding, email, billing pages live or rolled back?); code-review FR-21/22/23 PRs before merge to prod.
-- design_qa: Lighthouse audit (perf + accessibility) on /shop/[slug] storefront and /dashboard paths; flag any color contrast or mobile layout regressions from day 31 changes.
+- Stream 1 (engineer): Unblock #99 immediately (import paths + FormField props fix), then ship #100–#102 in parallel: FR-21 password auth (signup + login), FR-22 password reset, FR-23 webhook signature verification. These unblock payment + seller identity flow. Reference: app/api/account/password/route.ts exists; extend to include reset + webhook handlers.
+- Stream 2 (designer): Ship responsive verification page (#62), product management UI (#65), and storefront category filter UI (#64) — these are F1, F6, F7 from MVP spec and are blocking upstream tests. Use design system components to maintain 80/100 fidelity. Reference: designs/pages/verify.html, product-crud.html, category-filter.html.
+- Stream 3 (tester): Write Playwright tests for F1–F10 (signup, shop, products, cart, checkout, orders) per task #74 — run these against engineer's password auth + webhook work (#100–#102) to verify end-to-end flow. Tests should match real user clicks, not unit assertions.
+- Stream 4 (review): Verify #99 fix compiles, then spot-check #100–#102 for security (webhook signature, password hashing, reset token expiry). Approve production deployment of day 29 features (#106) once tests pass.
+- Stream 5 (requirements): Clarify with Anil: which of F1–F40 are actually shipped in code vs. on task board only? Unblock ambiguity on #83 + #95 status so we don't re-build what exists.
 
 ROLE PLAN:
-- engineering: YES — FR-21/22/23 are authentication core-path work that unblock 5+ downstream tasks and must be solid before seller traffic arrives; critical to survival timeline
-- review: YES — auth code (password hashing, reset token generation, webhook HMAC) is high-risk; must be reviewed before prod deploy
-- design: YES — mobile dashboard (#98) and profile page layout (F31) are actively blocking UX completion; designer ships files in parallel to engineering's auth work
-- design_qa: YES — color/contrast regressions from day 31 need immediate verification; Lighthouse scan catches perf debt before it scales
-- requirements: NO — product spec is locked (MVP F1–F20 + post-MVP F21+); no validation loops needed this cycle; ship what's spec'd
+- engineering: YES — #99 blocker is critical path; shipping password auth (#100–#102) unblocks payment identity and seller-side order flow.
+- design: YES — responsive MVP pages (#62, #64, #65) are blocking Playwright test coverage and must ship today to keep testing pace.
+- design_qa: YES — fidelity baseline is 65/100; day 32 design work must hit 80/100 minimum before design sign-off, verify via Gopal's checklist.
+- review: YES — security review of password + webhook code is non-negotiable before production; also verify day 29 feature re-deploy is safe.
+- requirements: YES — resolve F1–F40 ambiguity so engineering doesn't waste cycles on duplicate work or missing scope.
 
 ONE-LINE SUMMARY:
-Today the team ships password auth (FR-21/22/23), mobile dashboard polish, and webhook verification in parallel while tester covers all three paths with Playwright + real Stripe events.
+Today the team unblocks the build (#99), ships password auth + webhook verification in parallel (#100–#102), designs responsive MVP pages (#62, #64, #65), and tests end-to-end signup-to-order flow to verify seller + customer identity and payment are solid.
