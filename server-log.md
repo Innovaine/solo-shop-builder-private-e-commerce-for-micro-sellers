@@ -20599,3 +20599,12 @@ STDOUT:
 d6af22021ce2   postgres:16-alpine   "docker-entrypoint.s…"   7 hours ago     Up 7 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-16T22-43-06-app-docker-ps--a-grep-solo-1.log`](server-runs/2026-05-16T22-43-06-app-docker-ps--a-grep-solo-1.log)
+
+## 2026-05-16T22:43:33.996Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `03da895` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13907ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose down && docker compose up -d && sleep 3 && docker compose ps
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
