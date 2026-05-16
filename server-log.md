@@ -17491,3 +17491,70 @@ kill -0 $(cat /tmp/day26-build-v5.pid) 2>/dev/null && echo "RUNNING" || echo "DO
 tail -80 /tmp/day26-build-v5.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-16T18:46:59.218Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `aba9447` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2486ms) _(showing tail — full 4,104B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day26-build-v5.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day26-build-v5.log
+```
+STDOUT:
+```
+…ed/next-server/app-page.runtime.prod.js:12:61546)
+#16 17.48     at nN (/app/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+#16 17.48 
+#16 17.48 Error occurred prerendering page "/auth/verify". Read more: https://nextjs.org/docs/messages/prerender-error
+#16 17.48 
+#16 17.59 [HEALTH CHECK FAILED] {
+#16 17.59   database: {
+#16 17.59     status: 'error',
+#16 17.59     message: '\n' +
+#16 17.59       'Invalid `prisma.$queryRaw()` invocation:\n' +
+#16 17.59       '\n' +
+#16 17.59       '\n' +
+#16 17.59       'Unable to require(`/app/node_modules/.prisma/client/libquery_engine-debian-openssl-1.1.x.so.node`).\n' +
+#16 17.59       'Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.\n' +
+#16 17.59       '\n' +
+#16 17.59       'Details: libssl.so.1.1: cannot open shared object file: No such file or directory'
+#16 17.59   },
+#16 17.59   email: { status: 'ok', responseTime: '149ms' }
+#16 17.59 }
+#16 17.60  ✓ Generating static pages (24/24)
+#16 17.62 
+#16 17.62 > Export encountered errors on following paths:
+#16 17.62 	/auth/verify/page: /auth/verify
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN npm run build:
+17.59       'Prisma cannot find the required `libssl` system library in your system. Please install openssl and try again.\n' +
+17.59       '\n' +
+17.59       'Details: libssl.so.1.1: cannot open shared object file: No such file or directory'
+17.59   },
+17.59   email: { status: 'ok', responseTime: '149ms' }
+17.59 }
+17.60  ✓ Generating static pages (24/24)
+17.62 
+17.62 > Export encountered errors on following paths:
+17.62 	/auth/verify/page: /auth/verify
+------
+Dockerfile:24
+
+--------------------
+
+  22 |     
+
+  23 |     # Build Next.js app
+
+  24 | >>> RUN npm run build
+
+  25 |     
+
+  26 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T18-46-59-app-kill--0-cat-tmp-day26-build-v5.pid-2-dev-1.log`](server-runs/2026-05-16T18-46-59-app-kill--0-cat-tmp-day26-build-v5.pid-2-dev-1.log)
