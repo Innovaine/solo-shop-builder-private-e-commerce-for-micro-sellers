@@ -14418,3 +14418,26 @@ STDOUT:
 Started Prisma migrate, PID=996826
 ```
 Full output: [`server-runs/2026-05-16T14-40-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T14-40-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T14:41:12.934Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2b96781` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2443ms)
+```
+kill -0 $(cat /tmp/migrate-day22.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/migrate-day22.log
+```
+STDOUT:
+```
+DONE
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+Error: Prisma Migrate has detected that the environment is non-interactive, which is not supported.
+
+`prisma migrate dev` is an interactive command designed to create new migrations and evolve the database in development.
+To apply existing migrations in deployments, use prisma migrate deploy.
+See https://www.prisma.io/docs/reference/api-reference/command-reference#migrate-deploy
+```
+Full output: [`server-runs/2026-05-16T14-41-12-app-kill--0-cat-tmp-migrate-day22.pid-2-dev--1.log`](server-runs/2026-05-16T14-41-12-app-kill--0-cat-tmp-migrate-day22.pid-2-dev--1.log)
