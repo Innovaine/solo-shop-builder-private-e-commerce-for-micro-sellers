@@ -18513,3 +18513,58 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; git pull
 ERROR: bash: -c: line 1: syntax error near unexpected token `;&'
 bash: -c: line 1: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; git pull; printf "__QADAR_EXIT__%d" $?'
  (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T20:15:37.907Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e6d2a7e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3690ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+Updating 51a001a..e6d2a7e
+Fast-forward
+ app/api/checkout/route.ts                          |   2 +
+ app/auth/verify/page.tsx                           |   2 +
+ app/dashboard/page.tsx                             |   2 +
+ day-26/_index.md                                   |   4 +-
+ day-26/engineering.md                              | 835 ++++++++-------------
+ day-26/review.md                                   | 248 +++++-
+ day-26/stage-ship-check.md                         |   2 +-
+ day-26/test.md                                     | 167 ++---
+ day-27/_plan.md                                    |  38 +
+ day-27/design.md                                   |  51 ++
+ day-27/requirements.md                             |  33 +
+ design/pages/category-filter.html                  | 323 ++++++++
+ design/pages/storefront.html                       |  42 ++
+ design/system/components.html                      | 113 +++
+ server-log.md                                      | 407 ++++++++++
+ test-results/day-26/blocking-analysis.md           | 141 ++++
+ test-results/day-26/report.md                      |  63 +-
+ .../web/day26-dashboard-dynamic-rendering.spec.ts  | 132 ++++
+ tests/web/day26-verification-flow.spec.ts          | 141 ++++
+ 19 files changed, 2100 insertions(+), 646 deletions(-)
+ create mode 100644 day-27/_plan.md
+ create mode 100644 day-27/design.md
+ create mode 100644 day-27/requirements.md
+ create mode 100644 design/pages/category-filter.html
+ create mode 100644 test-results/day-26/blocking-analysis.md
+ create mode 100644 tests/web/day26-dashboard-dynamic-rendering.spec.ts
+ create mode 100644 tests/web/day26-verification-flow.spec.ts
+```
+Full output: [`server-runs/2026-05-16T20-15-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-15-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T20:16:02.787Z — Anil ran 1 command(s)
+### Command 1 on app as engineer (✓ exit 0, 2644ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day27-build.log 2>&1 &
+echo $! > /tmp/day27-build.pid
+echo "Build started, PID=$(cat /tmp/day27-build.pid)"
+```
+STDOUT:
+```
+Build started, PID=1075791
+```
+Full output: [`server-runs/2026-05-16T20-16-02-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T20-16-02-app-cd-solo-shop-builder-private-e-commerce--1.log)
