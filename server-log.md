@@ -20314,3 +20314,25 @@ STDOUT:
   1 passed (2.8s)
 ```
 Full output: [`server-runs/2026-05-16T21-46-36-app-kill--0-cat-tmp-day29-smoke.pid-2-dev-nu-1.log`](server-runs/2026-05-16T21-46-36-app-kill--0-cat-tmp-day29-smoke.pid-2-dev-nu-1.log)
+
+## 2026-05-16T21:47:02.761Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3169938` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2365ms)
+```
+curl -I http://localhost:3000/dashboard/profile 2>&1 | head -10
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 404 Not Found
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Sat, 16 May 2026 21:47:02 GMT
+Connection: keep-alive
+```
+Full output: [`server-runs/2026-05-16T21-47-02-app-curl--I-http-localhost-3000-dashboard-pr-1.log`](server-runs/2026-05-16T21-47-02-app-curl--I-http-localhost-3000-dashboard-pr-1.log)
