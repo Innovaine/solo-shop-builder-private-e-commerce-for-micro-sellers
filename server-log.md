@@ -18335,3 +18335,20 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-16T19-42-06-app-kill--0-cat-tmp-day26-review-build.pid-2-1.log`](server-runs/2026-05-16T19-42-06-app-kill--0-cat-tmp-day26-review-build.pid-2-1.log)
+
+## 2026-05-16T19:44:26.141Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dc93d3a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3799ms)
+```
+tail -150 /tmp/day26-review-build.log | grep -E "Successfully|ERROR|DONE|failed"
+```
+STDOUT:
+```
+#12 DONE 0.1s
+#13 DONE 1.8s
+#14 DONE 0.2s
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T19-44-26-app-tail--150-tmp-day26-review-build.log-gre-1.log`](server-runs/2026-05-16T19-44-26-app-tail--150-tmp-day26-review-build.log-gre-1.log)
