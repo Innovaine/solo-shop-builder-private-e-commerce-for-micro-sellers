@@ -20555,3 +20555,25 @@ _Pre-SSH: warehouse pushed to GitHub as commit `734eca4` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day30-build.log 2>&1 & echo $! > /tmp/day30-build.pid && echo "Build started, PID=$(cat /tmp/day30-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T22:42:36.313Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9d0db94` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2088ms)
+```
+ps aux | grep -E 'docker|build' | grep -v grep | head -10
+```
+STDOUT:
+```
+root        2194  0.4  1.6 3634836 541100 ?      Ssl  May12  23:34 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+reviewer  730439  0.0  0.0   7740  2068 ?        S    May15   0:00 bash -c cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up > /tmp/compose-up.log 2>&1 & echo "Started"; sleep 8; docker compose logs app 2>&1 | tail -60; printf "__QADAR_EXIT__%d" $?
+reviewer  730441  0.0  0.0 2032368 29176 ?       Sl   May15   0:01 docker compose up
+reviewer  730459  0.0  0.0 1256920 30808 ?       Sl   May15   0:19 /usr/libexec/docker/cli-plugins/docker-compose compose up
+engineer  753904  0.0  0.0 2032048 29212 ?       Sl   May15   0:02 docker compose up
+engineer  753924  0.0  0.0 1256920 30860 ?       Sl   May15   0:19 /usr/libexec/docker/cli-plugins/docker-compose compose up
+engineer  755745  0.0  0.0 1958124 29788 ?       Sl   May15   0:01 docker compose up
+engineer  755764  0.0  0.0 1257176 30708 ?       Sl   May15   0:19 /usr/libexec/docker/cli-plugins/docker-compose compose up
+engineer  984815  0.0  0.0 1957868 29576 ?       Sl   13:31   0:00 docker compose up app
+engineer  984835  0.0  0.0 1256920 30332 ?       Sl   13:31   0:05 /usr/libexec/docker/cli-plugins/docker-compose compose up app
+```
+Full output: [`server-runs/2026-05-16T22-42-36-app-ps-aux-grep--E-docker-build-grep--v-grep-1.log`](server-runs/2026-05-16T22-42-36-app-ps-aux-grep--E-docker-build-grep--v-grep-1.log)
