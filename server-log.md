@@ -21011,3 +21011,25 @@ _Pre-SSH: warehouse pushed to GitHub as commit `6dd933d` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T23:20:17.742Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `729a07e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5348ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/compose-up-day32.log 2>&1 &
+echo $! > /tmp/compose-up-day32.pid
+sleep 3
+cat /tmp/compose-up-day32.log
+```
+STDOUT:
+```
+time="2026-05-16T23:20:14Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-16T23-20-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T23-20-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
