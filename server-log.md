@@ -14098,3 +14098,61 @@ b55a251 Priya (tester, day 17) — pre-SSH sync
 19c55a7 Anil (engineer, day 17) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-16T13-36-15-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-36-15-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T13:36:31.363Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `89397d2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3612ms) _(showing tail — full 3,244B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git pull
+ls -la tests/web/cart.spec.ts
+```
+STDOUT:
+```
+…  |   33 +
+ day-21/engineering.md                        |  415 +++++
+ day-21/review.md                             |   21 +
+ docker-compose.yml                           |    2 +-
+ playwright.config.ts                         |   59 +
+ prisma/schema.prisma                         |   40 +
+ server-log.md                                | 2087 ++++++++++++++++++++++++++
+ src/lib/cart.ts                              |  162 ++
+ test-results/day-17/report.md                |  179 +++
+ test-results/day-18/report.md                |  134 ++
+ test-results/day-20/report.md                |  106 ++
+ tests/web/cart.spec.ts                       |  283 ++++
+ tests/web/scaling-day18.spec.ts              |  308 ++++
+ tests/web/scaling-day19.spec.ts              |  345 +++++
+ 34 files changed, 5771 insertions(+), 28 deletions(-)
+ create mode 100644 app/components/AddToCartButton.tsx
+ create mode 100644 app/components/CartButton.tsx
+ create mode 100644 day-17/_index.md
+ create mode 100644 day-17/test.md
+ create mode 100644 day-18/_index.md
+ create mode 100644 day-18/_plan.md
+ create mode 100644 day-18/engineering.md
+ create mode 100644 day-18/test.md
+ create mode 100644 day-19/_index.md
+ create mode 100644 day-19/_plan.md
+ create mode 100644 day-19/engineering.md
+ create mode 100644 day-19/review.md
+ create mode 100644 day-20/_index.md
+ create mode 100644 day-20/_plan.md
+ create mode 100644 day-20/engineering.md
+ create mode 100644 day-20/review.md
+ create mode 100644 day-20/test.md
+ create mode 100644 day-21/_plan.md
+ create mode 100644 day-21/engineering.md
+ create mode 100644 day-21/review.md
+ create mode 100644 playwright.config.ts
+ create mode 100644 src/lib/cart.ts
+ create mode 100644 test-results/day-17/report.md
+ create mode 100644 test-results/day-18/report.md
+ create mode 100644 test-results/day-20/report.md
+ create mode 100644 tests/web/cart.spec.ts
+ create mode 100644 tests/web/scaling-day18.spec.ts
+ create mode 100644 tests/web/scaling-day19.spec.ts
+-rw-rw-r-- 1 tester tester 9361 May 16 13:36 tests/web/cart.spec.ts
+```
+Full output: [`server-runs/2026-05-16T13-36-31-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T13-36-31-app-cd-solo-shop-builder-private-e-commerce--1.log)
