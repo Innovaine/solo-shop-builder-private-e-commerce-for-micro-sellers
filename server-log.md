@@ -16372,3 +16372,21 @@ app-1  |
 app-1  |
 ```
 Full output: [`server-runs/2026-05-16T17-40-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-40-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-16T17:41:19.888Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ea75259` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2673ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c "SELECT migration_name, finished_at, rolled_back_at, started_at FROM _prisma_migrations ORDER BY started_at DESC LIMIT 5;"
+```
+STDOUT:
+```
+      migration_name       |         finished_at          |        rolled_back_at         |          started_at           
+---------------------------+------------------------------+-------------------------------+-------------------------------
+ 20260516_add_order_tables |                              |                               | 2026-05-16 17:40:10.705392+00
+ 20260516_add_order_tables |                              | 2026-05-16 17:38:37.103315+00 | 2026-05-16 15:37:36.710076+00
+ 20260515184722_init       | 2026-05-15 18:47:22.58628+00 |                               | 2026-05-15 18:47:22.54723+00
+(3 rows)
+```
+Full output: [`server-runs/2026-05-16T17-41-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-16T17-41-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
