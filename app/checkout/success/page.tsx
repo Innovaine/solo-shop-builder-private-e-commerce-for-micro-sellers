@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { clearCart } from '@/lib/cart'
+import { clearCart } from '@/src/lib/cart'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 

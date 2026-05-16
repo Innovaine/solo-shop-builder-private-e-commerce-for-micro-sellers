@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Your Email — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      padding: 48px 32px;
+    }
+    .header {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.6;
+    }
+    .status-success {
+      background: #F0FDF4;
+      border-left: 4px solid #10B981;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .status-success .icon {
+      color: #10B981;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .status-success .text {
+      color: #15803D;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .status-error {
+      background: #FEF2F2;
+      border-left: 4px solid #F43F5E;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .status-error .icon {
+      color: #F43F5E;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .status-error .text {
+      color: #991B1B;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .status-expired {
+      background: #FFFBEB;
+      border-left: 4px solid #F59E0B;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .status-expired .icon {
+      color: #F59E0B;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .status-expired .text {
+      color: #92400E;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .spinner {
+      border: 3px solid #E2E8F0;
+      border-top: 3px solid #3B4C63;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 16px;
+      color: #64748B;
+      font-weight: 500;
+    }
+    .next-steps {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-top: 32px;
+    }
+    .next-steps h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    .next-steps ol {
+      list-style: decimal;
+      padding-left: 20px;
+    }
+    .next-steps li {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 24px;
+      background-color: #10B981;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background-color 0.2s ease;
+    }
+    .cta-button:hover {
+      background-color: #059669;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .resend-section {
+      margin-top: 32px;
+      text-align: center;
+      border-top: 1px solid #E2E8F0;
+      padding-top: 24px;
+    }
+    .resend-section p {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 12px;
+    }
+    .resend-link {
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .resend-link:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 32px 24px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- SUCCESS STATE (Default) -->
+    <div class="header">
+      <h1>Email Verified!</h1>
+      <p class="subtitle">Your email has been confirmed. You're ready to create your shop.</p>
+    </div>
+
+    <div class="status-success">
+      <div class="icon">✓</div>
+      <div class="text">Email verified successfully</div>
+    </div>
+
+    <div class="next-steps">
+      <h3>What's next?</h3>
+      <ol>
+        <li>Create your shop with a name and URL slug</li>
+        <li>Add your first product (name, price, description, image)</li>
+        <li>Customize your shop colors and description</li>
+        <li>Share your shop link with customers</li>
+      </ol>
+    </div>
+
+    <div class="text-center">
+      <a href="/dashboard" class="cta-button">Go to Dashboard</a>
+    </div>
+
+    <!-- ERROR STATE (Commented) -->
+    <!-- 
+    <div class="status-error">
+      <div class="icon">✕</div>
+      <div class="text">Verification failed. This link is invalid or has already been used.</div>
+    </div>
+
+    <div class="resend-section">
+      <p>Request a new verification link:</p>
+      <a href="/auth/signup" class="resend-link">Send New Link</a>
+    </div>
+    -->
+
+    <!-- EXPIRED STATE (Commented) -->
+    <!--
+    <div class="status-expired">
+      <div class="icon">⏱</div>
+      <div class="text">This verification link has expired. Links are valid for 24 hours.</div>
+    </div>
+
+    <div class="resend-section">
+      <p>Request a new verification link:</p>
+      <a href="/auth/signup" class="resend-link">Send New Link</a>
+    </div>
+    -->
+
+    <!-- LOADING STATE (Commented) -->
+    <!--
+    <div class="loading">
+      <div class="spinner"></div>
+      <div class="loading-text">Verifying your email...</div>
+    </div>
+    -->
+  </div>
+</body>
+</html>
