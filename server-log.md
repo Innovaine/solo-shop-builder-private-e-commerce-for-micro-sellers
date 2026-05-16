@@ -15143,3 +15143,18 @@ STDOUT:
 #13 DONE 0.5s
 ```
 Full output: [`server-runs/2026-05-16T15-18-41-app-kill--0-cat-tmp-day23-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T15-18-41-app-kill--0-cat-tmp-day23-build.pid-2-dev-nu-1.log)
+
+## 2026-05-16T15:19:32.057Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5b6f957` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2462ms)
+```
+kill -0 $(cat /tmp/day23-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day23-build.log | grep -E "(DONE|ERROR|Successfully built|error TS)"
+```
+STDOUT:
+```
+DONE
+#16 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-16T15-19-32-app-kill--0-cat-tmp-day23-build.pid-2-dev-nu-1.log`](server-runs/2026-05-16T15-19-32-app-kill--0-cat-tmp-day23-build.pid-2-dev-nu-1.log)
