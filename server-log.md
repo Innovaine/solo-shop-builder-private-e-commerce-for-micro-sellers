@@ -17665,3 +17665,16 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 echo "Playwright installed"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-16T18:54:08.462Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a9af226` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3016ms)
+```
+ls -la ~/solo-shop-builder-private-e-commerce-for-micro-sellers/node_modules/.bin/playwright 2>/dev/null && echo "Playwright CLI found" || echo "Not installed"
+```
+STDOUT:
+```
+Not installed
+```
+Full output: [`server-runs/2026-05-16T18-54-08-app-ls--la-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-16T18-54-08-app-ls--la-solo-shop-builder-private-e-comme-1.log)
