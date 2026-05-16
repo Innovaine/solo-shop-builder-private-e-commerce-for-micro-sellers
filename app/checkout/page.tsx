@@ -18,6 +18,7 @@ export default function CheckoutPage() {
   const [customerEmail, setCustomerEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [paymentProvider, setPaymentProvider] = useState<'stripe' | 'myfatoorah'>('stripe')
 
   useEffect(() => {
     setCart(getCart())
@@ -33,7 +34,11 @@ export default function CheckoutPage() {
     setError(null)
 
     try {
-      const response = await fetch('/api/checkout', {
+      const endpoint = paymentProvider === 'myfatoorah' 
+        ? '/api/checkout/myfatoorah' 
+        : '/api/checkout'
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,6 +46,7 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           items: cart.items,
           shopSlug: cart.shopSlug,
+          shopId: cart.shopId,
           customerEmail: customerEmail || undefined,
         }),
       })
@@ -51,9 +57,10 @@ export default function CheckoutPage() {
         throw new Error(data.error || 'Failed to create checkout session')
       }
 
-      // Redirect to Stripe checkout
-      if (data.url) {
-        window.location.href = data.url
+      // Redirect to payment provider
+      const redirectUrl = paymentProvider === 'myfatoorah' ? data.paymentUrl : data.url
+      if (redirectUrl) {
+        window.location.href = redirectUrl
       }
     } catch (err: any) {
       console.error('Checkout error:', err)
@@ -149,6 +156,45 @@ export default function CheckoutPage() {
               <p className="text-xs text-slate mt-2">
                 We'll send your order confirmation to this email.
               </p>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="mb-6">
+          <div className="p-6">
+            <h2 className="text-xl font-semibold text-charcoal mb-4">Payment Method</h2>
+            <div className="space-y-3">
+              <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="stripe"
+                  checked={paymentProvider === 'stripe'}
+                  onChange={(e) => setPaymentProvider('stripe')}
+                  className="text-slate-blue"
+                  disabled={isLoading}
+                />
+                <div className="flex-1">
+                  <div className="font-medium text-charcoal">Credit Card (Stripe)</div>
+                  <div className="text-xs text-slate">Visa, Mastercard, Amex</div>
+                </div>
+              </label>
+
+              <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="myfatoorah"
+                  checked={paymentProvider === 'myfatoorah'}
+                  onChange={(e) => setPaymentProvider('myfatoorah')}
+                  className="text-slate-blue"
+                  disabled={isLoading}
+                />
+                <div className="flex-1">
+                  <div className="font-medium text-charcoal">MyFatoorah</div>
+                  <div className="text-xs text-slate">KNET, Visa, Mastercard, Apple Pay</div>
+                </div>
+              </label>
             </div>
           </div>
         </Card>

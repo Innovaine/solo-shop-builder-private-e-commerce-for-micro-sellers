@@ -44,6 +44,10 @@
     .btn-primary:hover {
       background-color: #059669;
     }
+    .btn-primary:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+    }
     .filters {
       display: flex;
       gap: 16px;
@@ -160,6 +164,11 @@
       background-color: #F8FAFC;
       border-color: #3B4C63;
     }
+    .btn-small:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 76, 99, 0.2);
+      border-color: #3B4C63;
+    }
     .btn-small.delete {
       color: #F43F5E;
       border-color: #FECDD3;
@@ -189,6 +198,16 @@
     }
     .pagination button:hover {
       border-color: #3B4C63;
+    }
+    .pagination button:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 76, 99, 0.2);
+    }
+    select:focus,
+    input[type="search"]:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
     }
     .empty-state {
       text-align: center;

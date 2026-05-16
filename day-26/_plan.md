@@ -1,38 +1,40 @@
 # Day 26 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 58
-- **Saved:** 16/05/2026, 9:05:42 PM
+- **Cycle:** 59
+- **Saved:** 16/05/2026, 9:22:41 PM
 
 ---
 
 FINISHED:
-- Auth skeleton (signup, verify, logout routes exist in `/app/api/auth/`)
-- Stripe Checkout integration route (`/app/api/checkout/route.ts`) — wired but not tested end-to-end
-- Docker + deployment pipeline ready (`Dockerfile`, `DEPLOYMENT.md`)
-- 17 tasks closed; core MVP scope defined and locked
+- Docker setup + environment files (Dockerfile, .env.example, DEPLOYMENT.md) — infrastructure skeleton ready
+- Auth skeleton: signup, logout, verify routes wired (app/api/auth/*) — but not tested end-to-end
+- Checkout route stub (app/api/checkout/route.ts) — no logic yet
+- 17 of 36 tasks closed; 19 open, 0 blocked, 0 in-progress
+- Day 25 produced NO CODE (LLM crash) — plan failed, team rolled backward
 
 PENDING:
-- #73: Day 25 blocker (import path errors) — engineering produced zero code; LLM crash halted work mid-cycle
-- #59: Broken imports in checkout + orders pages still unresolved — blocks all payment-path features
-- No product CRUD API shipped; no product image upload handler; no storefront UI rendered
-- No design system components file (`design/system/components.html`) — blocking all UI work
-- No Playwright tests written — F1–F20 coverage is zero
-- Order dashboard, customer tracking page, and category filter remain API-only stubs
+- Import paths broken in checkout + orders pages (#59) — blocking payment feature work
+- Product CRUD API + image upload not shipped (was day 25 goal, hit by LLM failure)
+- Order dashboard UI incomplete
+- Email verification UX not implemented (verify page exists as route, no UI)
+- Playwright test suite does not exist — 0 tests written yet
+- Design system not shipped (design/system/components.html missing)
+- No end-to-end validation — CEO demo (#76) cannot run until core features are wired
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineer): Fix #59 (import paths) first — 30 min, unblock everything. Then ship #70 (product CRUD API: create, list, update, delete endpoints) + #61 (image upload handler to S3) + #47 (product list API). These three unlock the storefront and seller product management. Reference FR-3, FR-4, FR-5.
-- Stream 2 (designer): Ship `design/system/components.html` (button, card, form, input, table styles — steal from day-24 if exists, copy fast). Then #65 pages: verify page, product management UI, order dashboard skeleton. These unblock engineer's frontend wiring and give tester something to click. Reference FR-2, FR-12, FR-60.
-- Stream 3 (tester): Write Playwright suite for #74: auth flow (signup → verify), product creation (title, price, image), product list filter by category, checkout redirect, order status update. Start with smoke tests; add coverage as engineer ships. Reference F1–F12 from spec.
-- Stream 4 (reviewer): Verify #59 fix lands correctly; spot-check #70 (CRUD endpoints) for SQL injection, missing validation. Approve #65 design files before engineer wires them. Stamp #74 tests for coverage gaps.
-- Stream 5 (requirements): Validate #73 resolution against day-25 failures; write one-pager on why LLM crashed and how to prevent it. Stay async; don't block.
+- Stream 1 (engineer): Fix import paths in #59 FIRST (unblock payment), then ship product CRUD API + image upload (#70, #61) and order dashboard backend (#71). These three supertasks unblock design, testing, and demo. Parallel: start Stripe webhook handler for order creation (F10) — don't wait for dashboard UI.
+- Stream 2 (designer): Ship verify page UI (#62, #69), product management UI (#60, #65), and order dashboard layout (#71). Design system components (#58) must ship today or engineer has no source of truth for styling. Three files in parallel: design/pages/verify.html, design/pages/product-management.html, design/pages/order-dashboard.html.
+- Stream 3 (tester): Write Playwright tests for email verify flow (#62, #66), product CRUD (#60, #70, #66), category filter (#64, #66), and checkout→order creation (#9, #10, #74). Do NOT wait for all engineer work to land — write tests as specs, validate incrementally.
+- Stream 4 (reviewer): Validate import path fix (#59), product CRUD shipping (API contract + image upload), and order webhook integration. Code review turnaround: same-day, blocking merge on test coverage.
+- Stream 5 (requirements): Validate that day 25 blocker is actually resolved; confirm #59 fix is real. One call to unblock engineer.
 
 ROLE PLAN:
-- engineering: YES — day 25 produced zero code; import blocker + CRUD API + image upload are critical path to any storefront. 80 tool calls available; use them.
-- design: YES — design system component file is the key blocker for all UI work; without it, engineer rewrites styles 5 times. Ship once, reuse everywhere.
-- test: YES — F1–F20 have zero coverage; Playwright suite gives confidence that signup→product→checkout actually works end-to-end, not just routes exist.
-- review: YES — #73 blocker needs independent verification; code quality dropped day 25 (no code, but process failure visible). Reviewer must audit the fix.
-- requirements: YES — one async memo on day-25 failure root cause + prevention. Don't block work; write in parallel.
+- engineering: YES — day 25 produced zero code; must recover momentum by shipping 3 supertasks (import fix + CRUD + order backend) before we hit day 3 of blocked work.
+- design: YES — verify page + product UI + order dashboard + design system are all open and blocking engineer polish; three pages in parallel.
+- test: YES — zero tests exist; must write Playwright for all 20 MVP features by end of week; start today with email verify + product CRUD + checkout flows.
+- review: YES — code review must be same-day (not overnight) to unblock merge queue; day 25 failure means we need faster feedback loops.
+- requirements: YES — confirm #59 import blocker is the real problem and validate engineer can unblock it in first 2 hours.
 
 ONE-LINE SUMMARY:
-Today the team ships product CRUD API, image upload handler, design system components, verify page UI, and initial Playwright auth + product tests in parallel — unblocking the first real storefront by day 27.
+Today the team ships product CRUD + image API, order dashboard backend, and verify/product/order UIs in three parallel streams, while tester writes Playwright coverage and reviewer validates same-day.

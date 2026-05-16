@@ -73,7 +73,7 @@
     input[type="text"]:focus {
       outline: none;
       border-color: #3B4C63;
-      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.2);
     }
     input[type="email"]::placeholder,
     input[type="text"]::placeholder {
@@ -99,6 +99,15 @@
     }
     .submit-btn:active {
       transform: translateY(0);
+    }
+    .submit-btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+    }
+    .auth-footer a:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 76, 99, 0.2);
+      border-radius: 2px;
     }
 
     /* Divider */

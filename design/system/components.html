@@ -20,6 +20,10 @@
     .btn-primary { background: #10B981; color: white; }
     .btn-primary:hover { background: #059669; box-shadow: 0 2px 8px rgba(16,185,129,0.2); }
     .btn-primary:disabled { background: #D1D5DB; cursor: not-allowed; }
+    .btn-primary:focus { outline: none; box-shadow: 0 0 0 3px rgba(16,185,129,0.3); border-radius: 6px; }
+    .btn-secondary:focus { outline: none; box-shadow: 0 0 0 3px rgba(59,76,99,0.2); border-radius: 6px; }
+    .btn-ghost:focus { outline: none; box-shadow: 0 0 0 2px rgba(59,76,99,0.2); border-radius: 6px; }
+    .btn-danger:focus { outline: none; box-shadow: 0 0 0 3px rgba(244,63,94,0.3); border-radius: 6px; }
     .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
     .btn-secondary:hover { background: #F9FAFB; }
     .btn-ghost { background: transparent; color: #3B4C63; padding: 8px 12px; }
@@ -29,7 +33,9 @@
     .form-field { margin-bottom: 24px; display: flex; flex-direction: column; }
     label { font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
     input, textarea, select { padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
-    input:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    input:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.2); }
+    select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.2); }
+    textarea:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.2); }
     input::placeholder { color: #94A3B8; }
     .form-error input { border-color: #F43F5E; background: #FEF2F2; }
     .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
@@ -82,13 +88,15 @@
     <!-- BUTTONS -->
     <section class="component-section" id="buttons">
       <h2>Buttons</h2>
-      <p>All buttons: 44px minimum touch target, visible focus state (outline #3B4C63), transition on hover.</p>
+      <p>All buttons: 44px minimum touch target, visible focus state, transition on hover.</p>
+      <p style="font-size: 12px; color: #94A3B8; margin: 16px 0;">💡 <strong>TIP:</strong> Click any button below and press Tab to see focus state. Every button shows a colored box-shadow outline on focus (emerald for primary, slate blue for secondary/ghost).</p>
       <h3>Primary Button</h3>
       <div class="component-demo">
         <button class="btn btn-primary">Save Changes</button>
         <button class="btn btn-primary">Add Product</button>
         <button class="btn btn-primary" disabled>Disabled</button>
       </div>
+      <p style="font-size: 12px; color: #64748B;">Focus indicator: 3px emerald box-shadow, 200ms transition</p>
       <h3>Secondary Button</h3>
       <div class="component-demo">
         <button class="btn btn-secondary">Cancel</button>
@@ -252,6 +260,131 @@
       <h3>Button with Loading</h3>
       <div class="component-demo">
         <button class="btn btn-primary" disabled><span class="spinner" style="margin-right: 8px;"></span>Saving...</button>
+      </div>
+    </section>
+
+    <!-- MODALS / DIALOGS -->
+    <section class="component-section" id="modals">
+      <h2>Modals & Dialogs</h2>
+      <p>Use modals for confirmations, alerts, or forms. Always include a backdrop overlay (semi-transparent) to focus user attention.</p>
+      <h3>Confirmation Modal</h3>
+      <div class="component-demo" style="display: block; position: relative; background: #E2E8F0; padding: 64px; min-height: 300px;">
+        <div style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+          padding: 32px;
+          max-width: 400px;
+          z-index: 10;
+        ">
+          <h3 style="margin: 0 0 12px 0; font-size: 20px;">Delete Product?</h3>
+          <p style="color: #64748B; margin: 0 0 24px 0; font-size: 14px;">This action cannot be undone. Are you sure?</p>
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); border-radius: 6px;"></div>
+      </div>
+      <p style="font-size: 12px; color: #94A3B8; margin-top: 12px; font-style: italic;">Gray area shows modal backdrop (semi-transparent overlay)</p>
+
+      <h3>Alert Modal (Success)</h3>
+      <div class="component-demo" style="display: block; position: relative; background: #E2E8F0; padding: 64px; min-height: 280px;">
+        <div style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+          padding: 32px;
+          max-width: 400px;
+          text-align: center;
+          z-index: 10;
+        ">
+          <div style="font-size: 48px; margin-bottom: 16px;">✓</div>
+          <h3 style="margin: 0 0 12px 0; font-size: 20px;">Success!</h3>
+          <p style="color: #64748B; margin: 0 0 24px 0; font-size: 14px;">Your product has been created and is now live on your shop.</p>
+          <button class="btn btn-primary" style="width: 100%;">View Product</button>
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); border-radius: 6px;"></div>
+      </div>
+
+      <h3>Alert Modal (Error)</h3>
+      <div class="component-demo" style="display: block; position: relative; background: #E2E8F0; padding: 64px; min-height: 280px;">
+        <div style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+          padding: 32px;
+          max-width: 400px;
+          text-align: center;
+          z-index: 10;
+        ">
+          <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+          <h3 style="margin: 0 0 12px 0; font-size: 20px; color: #F43F5E;">Error</h3>
+          <p style="color: #64748B; margin: 0 0 24px 0; font-size: 14px;">Unable to save product. Please check your connection and try again.</p>
+          <button class="btn btn-primary" style="width: 100%;">Retry</button>
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); border-radius: 6px;"></div>
+      </div>
+    </section>
+
+    <!-- DROPDOWNS / MENUS -->
+    <section class="component-section" id="dropdowns">
+      <h2>Dropdowns & Context Menus</h2>
+      <div class="component-demo" style="display: block;">
+        <div style="position: relative; display: inline-block;">
+          <button class="btn btn-secondary">⋮ More Actions</button>
+          <div style="
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-top: 8px;
+            min-width: 160px;
+            z-index: 10;
+          ">
+            <a href="#" style="
+              display: block;
+              padding: 12px 16px;
+              color: #3B4C63;
+              text-decoration: none;
+              border-bottom: 1px solid #F3F4F6;
+              font-size: 14px;
+              transition: background 0.2s;
+            " onmouseover="this.style.background='#F9FAFB'" onmouseout="this.style.background=''">Edit</a>
+            <a href="#" style="
+              display: block;
+              padding: 12px 16px;
+              color: #3B4C63;
+              text-decoration: none;
+              border-bottom: 1px solid #F3F4F6;
+              font-size: 14px;
+              transition: background 0.2s;
+            " onmouseover="this.style.background='#F9FAFB'" onmouseout="this.style.background=''">Duplicate</a>
+            <a href="#" style="
+              display: block;
+              padding: 12px 16px;
+              color: #F43F5E;
+              text-decoration: none;
+              font-size: 14px;
+              transition: background 0.2s;
+            " onmouseover="this.style.background='#FEE2E2'" onmouseout="this.style.background=''">Delete</a>
+          </div>
+        </div>
       </div>
     </section>
   </div>

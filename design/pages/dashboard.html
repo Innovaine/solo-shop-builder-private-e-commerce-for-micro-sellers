@@ -100,6 +100,19 @@
       background: #FAF9F7;
       border-color: #3B4C63;
     }
+    .btn-small:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.2);
+      border-color: #3B4C63;
+    }
+    .btn-primary:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+    }
+    .nav-link:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 76, 99, 0.2);
+    }
 
     /* Main Content */
     main {
@@ -252,9 +265,9 @@
   </style>
 </head>
 <body>
-  <aside class="sidebar">
+  <aside class="sidebar" aria-label="Main navigation">
     <div class="logo">Solo Shop</div>
-    <nav class="nav-menu">
+    <nav class="nav-menu" aria-label="Seller dashboard menu">
       <li class="nav-item">
         <a href="#" class="nav-link active">Orders</a>
       </li>
@@ -312,33 +325,81 @@
     </div>
 
     <!-- Products Section -->
-    <div class="section">
-      <div class="section-title">Products</div>
-      <div class="empty-state">
-        <div class="empty-icon">📦</div>
-        <div class="empty-title">No products yet</div>
-        <div class="empty-text">
-          Add your first product to start selling. Include a title, price, description, and image.
-        </div>
-        <button class="btn-primary">Add Your First Product</button>
+    <section class="section">
+      <h2 class="section-title">Products</h2>
+      <!-- With products state -->
+      <div style="background: white; border-radius: 8px; border: 1px solid #E2E8F0; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead style="background: #F9FAFB; border-bottom: 1px solid #E5E7EB;">
+            <tr>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Product</th>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Price</th>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 500;">Handmade Ceramic Mug</td>
+              <td style="padding: 12px 16px; font-size: 14px; color: #10B981; font-weight: 600;">$24.99</td>
+              <td style="padding: 12px 16px; font-size: 14px;"><span style="background: #D1FAE5; color: #065F46; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">12 in stock</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 500;">Vintage Leather Wallet</td>
+              <td style="padding: 12px 16px; font-size: 14px; color: #10B981; font-weight: 600;">$45.00</td>
+              <td style="padding: 12px 16px; font-size: 14px;"><span style="background: #FEF3C7; color: #92400E; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">3 in stock</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+      <div style="text-align: center; padding: 16px;">
+        <a href="/dashboard/products" style="color: #3B4C63; text-decoration: none; font-weight: 600; font-size: 14px;">View all products →</a>
+      </div>
+    </section>
 
     <!-- Orders Section -->
-    <div class="section">
-      <div class="section-title">Recent Orders</div>
-      <div class="empty-state">
-        <div class="empty-icon">📋</div>
-        <div class="empty-title">No orders yet</div>
-        <div class="empty-text">
-          Once you add products and start getting orders, you'll see them here. Manage order status, add tracking info, and communicate with customers.
-        </div>
+    <section class="section">
+      <h2 class="section-title">Recent Orders</h2>
+      <!-- With orders state -->
+      <div style="background: white; border-radius: 8px; border: 1px solid #E2E8F0; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead style="background: #F9FAFB; border-bottom: 1px solid #E5E7EB;">
+            <tr>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Order ID</th>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Customer</th>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Total</th>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #3B4C63;">#ORD-001</td>
+              <td style="padding: 12px 16px; font-size: 14px;">Jane Smith</td>
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">$145.00</td>
+              <td style="padding: 12px 16px; font-size: 14px;"><span style="background: #D1FAE5; color: #065F46; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">Shipped</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #3B4C63;">#ORD-002</td>
+              <td style="padding: 12px 16px; font-size: 14px;">John Doe</td>
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">$89.50</td>
+              <td style="padding: 12px 16px; font-size: 14px;"><span style="background: #FEF3C7; color: #92400E; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">In Progress</span></td>
+            </tr>
+            <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #3B4C63;">#ORD-003</td>
+              <td style="padding: 12px 16px; font-size: 14px;">Sarah Lee</td>
+              <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">$220.00</td>
+              <td style="padding: 12px 16px; font-size: 14px;"><span style="background: #D1FAE5; color: #065F46; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">Delivered</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+      <div style="text-align: center; padding: 16px;">
+        <a href="/dashboard/orders" style="color: #3B4C63; text-decoration: none; font-weight: 600; font-size: 14px;">View all orders →</a>
+      </div>
+    </section>
 
     <!-- Next Steps -->
-    <div class="section">
-      <div class="section-title">Get Started in 3 Steps</div>
+    <section class="section">
+      <h2 class="section-title">Get Started in 3 Steps</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
         <div style="background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px;">
           <div style="font-size: 28px; margin-bottom: 12px;">1️⃣</div>
@@ -356,7 +417,7 @@
           <div style="font-size: 12px; color: #64748B; line-height: 1.6;">View orders, update status, add tracking info.</div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 </body>
 </html>
