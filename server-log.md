@@ -20753,3 +20753,11 @@ STDOUT:
 OK
 ```
 Full output: [`server-runs/2026-05-16T22-57-26-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-16T22-57-26-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
+
+## 2026-05-16T22:58:27.694Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d5a0541` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2660ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps grep solo-shop | head -5
+```
