@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Mobile — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      color: #1F2937;
+    }
+
+    /* Mobile Header (Top Navigation) */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      z-index: 1000;
+    }
+    .header-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .header-menu-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #3B4C63;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Mobile Navigation Drawer (off-canvas) */
+    .mobile-nav {
+      position: fixed;
+      top: 56px;
+      left: -100%;
+      width: 100%;
+      height: calc(100vh - 56px);
+      background: white;
+      border-top: 1px solid #E2E8F0;
+      padding: 16px;
+      transition: left 0.3s ease;
+      z-index: 999;
+      overflow-y: auto;
+    }
+    .mobile-nav.open {
+      left: 0;
+    }
+    .nav-list {
+      list-style: none;
+    }
+    .nav-item {
+      margin-bottom: 0;
+    }
+    .nav-link {
+      display: block;
+      padding: 16px 12px;
+      color: #64748B;
+      text-decoration: none;
+      font-size: 16px;
+      border-bottom: 1px solid #F3F4F6;
+      transition: all 0.2s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: #3B4C63;
+      background-color: #F9FAFB;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 56px;
+      padding: 24px 16px 80px;
+      min-height: 100vh;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 24px;
+    }
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    .page-subtitle {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    /* Stat Grid (1 column on mobile) */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #64748B;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 4px;
+    }
+    .stat-change {
+      font-size: 11px;
+      color: #94A3B8;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      background: white;
+      border: 2px dashed #E2E8F0;
+      border-radius: 8px;
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .empty-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+    .empty-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 6px;
+    }
+    .empty-text {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .btn-primary {
+      background-color: #10B981;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+      max-width: 240px;
+    }
+    .btn-primary:active {
+      background-color: #059669;
+      transform: scale(0.98);
+    }
+
+    /* Bottom Navigation / Action Bar */
+    .mobile-bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: white;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding-bottom: env(safe-area-inset-bottom);
+      z-index: 998;
+    }
+    .nav-item-bottom {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      text-decoration: none;
+      color: #64748B;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 8px 0;
+      cursor: pointer;
+    }
+    .nav-item-bottom:active,
+    .nav-item-bottom.active {
+      color: #3B4C63;
+    }
+    .nav-icon {
+      font-size: 20px;
+    }
+
+    /* Getting Started Steps (mobile stacked) */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .step-card {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+    }
+    .step-emoji {
+      font-size: 28px;
+      min-width: 36px;
+      text-align: center;
+    }
+    .step-content {
+      flex: 1;
+    }
+    .step-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    /* Large tap targets (44px minimum) */
+    @media (max-width: 767px) {
+      /* All buttons and interactive elements are 44px+ height */
+      button, a, [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mobile Header -->
+  <header>
+    <div class="header-logo">Solo Shop</div>
+    <button class="header-menu-btn" id="menuBtn">☰</button>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="#" class="nav-link active">Orders</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Products</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Analytics</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Shop Settings</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Account</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Help</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">Welcome back!</h1>
+      <p class="page-subtitle">Here's your overview</p>
+    </div>
+
+    <!-- Stats Grid (stacked on mobile) -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Revenue</div>
+        <div class="stat-value">$0</div>
+        <div class="stat-change">This month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Orders</div>
+        <div class="stat-value">0</div>
+        <div class="stat-change">This month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Products</div>
+        <div class="stat-value">0</div>
+        <div class="stat-change">In your shop</div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="section">
+      <h2 class="section-title">Products</h2>
+      <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <div class="empty-title">No products yet</div>
+        <div class="empty-text">
+          Add your first product to start selling.
+        </div>
+        <button class="btn-primary">Add Product</button>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="section">
+      <h2 class="section-title">Recent Orders</h2>
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <div class="empty-title">No orders yet</div>
+        <div class="empty-text">
+          Once you add products and customers place orders, you'll see them here.
+        </div>
+      </div>
+    </div>
+
+    <!-- Getting Started Steps -->
+    <div class="section">
+      <h2 class="section-title">Get Started in 3 Steps</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-emoji">1️⃣</div>
+          <div class="step-content">
+            <div class="step-title">Add Products</div>
+            <div class="step-desc">Upload your first product with images and pricing.</div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-emoji">2️⃣</div>
+          <div class="step-content">
+            <div class="step-title">Share Your Shop</div>
+            <div class="step-desc">Copy your shop link and share with customers.</div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-emoji">3️⃣</div>
+          <div class="step-content">
+            <div class="step-title">Manage Orders</div>
+            <div class="step-desc">View orders and update status as you fulfill them.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="#" class="nav-item-bottom active">
+      <div class="nav-icon">📊</div>
+      <div>Overview</div>
+    </a>
+    <a href="#" class="nav-item-bottom">
+      <div class="nav-icon">📦</div>
+      <div>Products</div>
+    </a>
+    <a href="#" class="nav-item-bottom">
+      <div class="nav-icon">📋</div>
+      <div>Orders</div>
+    </a>
+    <a href="#" class="nav-item-bottom">
+      <div class="nav-icon">⚙️</div>
+      <div>Settings</div>
+    </a>
+  </nav>
+
+  <script>
+    // Toggle mobile nav
+    document.getElementById('menuBtn').addEventListener('click', function() {
+      document.getElementById('mobileNav').classList.toggle('open');
+    });
+    // Close nav when link is clicked
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        document.getElementById('mobileNav').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
