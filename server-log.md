@@ -21825,3 +21825,19 @@ _Pre-SSH: warehouse pushed to GitHub as commit `0c24512` so the server's `git pu
 docker ps --format '.Names\t.Status' | grep solo-shop
 ```
 ERROR: command exited 1
+
+## 2026-05-17T00:57:27.097Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8a9f91c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2381ms)
+```
+docker ps -a | grep solo-shop
+curl -sf http://localhost:3000/api/health || echo "Health check failed"
+```
+STDOUT:
+```
+cac504018013   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About an hour ago   Up About an hour       0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a350e89a9625   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago         Up 2 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{"status":"ok","timestamp":"2026-05-17T00:57:27.422Z","responseTime":"137ms","checks":{"database":{"status":"ok","responseTime":"32ms"},"email":{"status":"ok","responseTime":"105ms"}}}
+```
+Full output: [`server-runs/2026-05-17T00-57-27-app-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-17T00-57-27-app-docker-ps--a-grep-solo-shop-1.log)
