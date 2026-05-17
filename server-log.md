@@ -24523,3 +24523,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `cc4868b` so the server's `git pu
 docker ps --a | grep solo-shop || echo "--- Containers not found"; sleep 10; docker ps | grep solo-shop
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-17T03:33:15.836Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `833490e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12942ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
