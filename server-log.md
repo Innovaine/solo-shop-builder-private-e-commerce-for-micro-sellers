@@ -25021,3 +25021,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `10dd494` so the server's `git pu
 sleep 3 && curl -sf http://localhost:3000/api/health && echo " - OK"
 ```
 ERROR: command exited 7
+
+## 2026-05-17T05:38:14.600Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dfbb05b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 127, 2513ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 curl -sf http://localhost:3000/api/health && echo " - Container health OK"
+```
+STDOUT:
+```
+OCI runtime exec failed: exec failed: unable to start container process: exec: "curl": executable file not found in $PATH
+```
+ERROR: command exited 127
+Full output: [`server-runs/2026-05-17T05-38-14-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-17T05-38-14-app-docker-exec-solo-shop-builder-private-e--1.log)
