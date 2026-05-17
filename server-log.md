@@ -27569,3 +27569,16 @@ STDOUT:
 Started regression tests v2, PID=1271013
 ```
 Full output: [`server-runs/2026-05-17T09-33-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-33-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T09:34:30.869Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `de4e126` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2511ms)
+```
+kill -0 $(cat /tmp/day47-regression-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-17T09-34-30-app-kill--0-cat-tmp-day47-regression-v2.pid--1.log`](server-runs/2026-05-17T09-34-30-app-kill--0-cat-tmp-day47-regression-v2.pid--1.log)
