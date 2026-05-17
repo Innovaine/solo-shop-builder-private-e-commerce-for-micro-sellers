@@ -26216,3 +26216,19 @@ Step 8: Error handling works
 === ALL SMOKE TESTS PASSED ===
 ```
 Full output: [`server-runs/2026-05-17T07-08-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-08-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:17:48.226Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `21604f6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3380ms)
+```
+docker ps --format '{{.Names}}\t{{.Status}}' | grep solo-shop && echo "---" && curl -sf http://localhost:3000/api/health -o /dev/null && echo "✓ Health check OK" || echo "✗ Health check failed"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up About an hour
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 3 hours (healthy)
+---
+✓ Health check OK
+```
+Full output: [`server-runs/2026-05-17T07-17-48-app-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-17T07-17-48-app-docker-ps---format-.Names-t-.Status-grep-1.log)
