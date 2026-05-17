@@ -23555,3 +23555,58 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 4 minutes	0.0.0.
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 18 minutes (healthy)	0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-17T02-14-12-app-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-17T02-14-12-app-docker-ps---format-.Names-t-.Status-t-.P-1.log)
+
+## 2026-05-17T02:14:52.420Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fb09faa` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3003ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma db seed 2>&1 | head -50
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Error: To configure seeding in your project you need to add a "prisma.seed" property in your package.json with the command to execute it:
+
+1. Open the package.json of your project
+2. Add one of the following examples to your package.json:
+
+TypeScript:
+```
+"prisma": {
+  "seed": "ts-node ./prisma/seed.ts"
+}
+```
+If you are using ESM (ECMAScript modules):
+```
+"prisma": {
+  "seed": "node --loader ts-node/esm ./prisma/seed.ts"
+}
+```
+
+And install the required dependencies by running:
+npm i -D ts-node typescript @types/node
+
+JavaScript:
+```
+"prisma": {
+  "seed": "node ./prisma/seed.js"
+}
+```
+
+Bash:
+```
+"prisma": {
+  "seed": "./prisma/seed.sh"
+}
+```
+And run `chmod +x prisma/seed.sh` to make it executable.
+More information in our documentation:
+https://pris.ly/d/seeding
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.14.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+```
+Full output: [`server-runs/2026-05-17T02-14-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-14-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
