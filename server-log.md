@@ -30145,3 +30145,29 @@ _Pre-SSH: warehouse pushed to GitHub as commit `c66a46b` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec app npx prisma migrate resolve --applied 20260517_add_seller_profile_fields
 ```
 ERROR: command exited 1
+
+## 2026-05-17T23:29:22.002Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d08e0e5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 6544ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose run --rm app npx prisma migrate resolve --rolled-back 20260517_add_seller_profile_fields && docker compose run --rm app npx prisma migrate deploy
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+Migration 20260517_add_seller_profile_fields marked as rolled back.
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+6 migrations found in prisma/migrations
+
+Applying migration `20260517_add_seller_profile_fields`
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-17T23-29-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-29-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
