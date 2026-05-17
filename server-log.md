@@ -24616,3 +24616,27 @@ X-Powered-By: Next.js
 Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
 ```
 Full output: [`server-runs/2026-05-17T03-35-38-app-echo-Test-1-Login-page-loads-1.log`](server-runs/2026-05-17T03-35-38-app-echo-Test-1-Login-page-loads-1.log)
+
+## 2026-05-17T03:36:10.197Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d3087aa` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2664ms)
+```
+echo "=== Test login API endpoint ==="
+curl -s -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}' | head -20
+
+echo -e "\n=== Test signup API endpoint ==="
+curl -s -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"newuser@example.com"}' | head -20
+```
+STDOUT:
+```
+=== Test login API endpoint ===
+{"error":"Required"}
+=== Test signup API endpoint ===
+{"message":"Magic link sent. Check your email."}
+```
+Full output: [`server-runs/2026-05-17T03-36-10-app-echo-Test-login-API-endpoint-1.log`](server-runs/2026-05-17T03-36-10-app-echo-Test-login-API-endpoint-1.log)
