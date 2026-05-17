@@ -22890,3 +22890,19 @@ _Pre-SSH: warehouse pushed to GitHub as commit `bd6f2c7` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 docker compose logs --tail=50 app
 ```
+
+## 2026-05-17T01:36:24.774Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `14600c6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2960ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose start app
+docker ps | grep solo-shop
+```
+STDOUT:
+```
+bfbe50bb0146   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About a minute ago   Up Less than a second     0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a350e89a9625   postgres:16-alpine                                           "docker-entrypoint.s…"   3 hours ago          Up 32 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-17T01-36-24-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-36-24-app-cd-solo-shop-builder-private-e-commerce--1.log)
