@@ -29740,3 +29740,77 @@ STDOUT:
 b803316c2c9d   postgres:16-alpine   "docker-entrypoint.s…"   9 hours ago   Up 9 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-17T12-46-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-46-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:46:29.627Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ab2d00a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4107ms) _(showing tail — full 3,638,405B stdout + 0B stderr)_
+```
+cat /tmp/compose-up.log
+```
+STDOUT:
+```
+time="2026-05-15T16:52:10Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+Attaching to app-1, postgres-1
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started 
+app-1  | npm warn exec The following package was not found and will be installed: prisma@7.8.0
+app-1  | npm warn EBADENGINE Unsupported engine {
+app-1  | npm warn EBADENGINE   package: '@prisma/streams-local@0.1.2',
+app-1  | npm warn EBADENGINE   required: { bun: '>=1.3.6', node: '>=22.0.0' },
+app-1  | npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+app-1  | npm warn EBADENGINE }
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+app-1  | npm notice
+app-1  | npm notice New major version of npm available! 10.8.2 -> 11.14.1
+app-1  | npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+app-1  | npm notice To update run: npm install -g npm@11.14.1
+app-1  | npm notice
+[Kapp-1 exited with code 1 (restarting)
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+[Kapp-1 exited with code 1 (restarting)
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add 
+
+…[3,633,285 bytes elided]…
+
+                                                                     | {"requestId":"DC-OmM-HH3Kb2LiN","method":"GET","path":"/api/shops","responseTime":"1ms","timestamp":"2026-05-17T12:28:38.504Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1                                                                        | {"requestId":"5yROF9Yu8JwfExCz","method":"GET","path":"/api/products","responseTime":"0ms","timestamp":"2026-05-17T12:28:38.664Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1                                                                        | {"requestId":"TVUXLam8bpi-ac8D","method":"GET","path":"/api/analytics","responseTime":"0ms","timestamp":"2026-05-17T12:28:39.439Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+```
+Full output: [`server-runs/2026-05-17T12-46-29-app-cat-tmp-compose-up.log-1.log`](server-runs/2026-05-17T12-46-29-app-cat-tmp-compose-up.log-1.log)
