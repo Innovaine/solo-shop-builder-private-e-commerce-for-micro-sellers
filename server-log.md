@@ -27613,3 +27613,18 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-17T09-35-04-app-tail--200-tmp-day47-regression-v2.log-he-1.log`](server-runs/2026-05-17T09-35-04-app-tail--200-tmp-day47-regression-v2.log-he-1.log)
+
+## 2026-05-17T09:37:42.160Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f340b26` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3222ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && rm -rf /tmp/playwright-test-results && rm -rf test-results/* && export PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers && nohup npx playwright test tests/web/day47-mvp-smoke.spec.ts --reporter=list > /tmp/day47-smoke.log 2>&1 &
+echo $! > /tmp/day47-smoke.pid
+echo "Started smoke test, PID=$(cat /tmp/day47-smoke.pid)"
+```
+STDOUT:
+```
+Started smoke test, PID=1272356
+```
+Full output: [`server-runs/2026-05-17T09-37-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-37-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
