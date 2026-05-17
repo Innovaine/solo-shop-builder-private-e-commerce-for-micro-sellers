@@ -22753,3 +22753,14 @@ STDOUT:
 Build v4 started, PID=1158072
 ```
 Full output: [`server-runs/2026-05-17T01-33-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-33-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:33:57.284Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8f0563c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 17095ms)
+```
+sleep 15
+kill -0 $(cat /tmp/day37-build-v4.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/day37-build-v4.log | grep -A 20 -B 5 -E "(error|Error|Successfully|Complete|failed)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
