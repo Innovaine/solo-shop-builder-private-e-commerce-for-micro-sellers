@@ -27391,3 +27391,18 @@ STDOUT:
 Started compose, PID=1268175
 ```
 Full output: [`server-runs/2026-05-17T09-17-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-17-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T09:18:23.165Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `625bd52` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7789ms)
+```
+sleep 5
+docker ps --format '.Names\t.Status'
+```
+STDOUT:
+```
+.Names	.Status
+.Names	.Status
+```
+Full output: [`server-runs/2026-05-17T09-18-23-app-sleep-5-1.log`](server-runs/2026-05-17T09-18-23-app-sleep-5-1.log)
