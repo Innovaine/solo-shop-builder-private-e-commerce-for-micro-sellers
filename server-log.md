@@ -21707,3 +21707,20 @@ STDOUT:
 Tests started, PID=1142324
 ```
 Full output: [`server-runs/2026-05-17T00-47-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T00-47-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T00:48:15.094Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `925bf7e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2254ms)
+```
+kill -0 $(cat /tmp/day37-pw.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 ~/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/day-37/test-run.log 2>/dev/null || echo "Log not ready yet"
+```
+STDOUT:
+```
+RUNNING
+
+Running 17 tests using 4 workers
+F·
+```
+Full output: [`server-runs/2026-05-17T00-48-15-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log`](server-runs/2026-05-17T00-48-15-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log)
