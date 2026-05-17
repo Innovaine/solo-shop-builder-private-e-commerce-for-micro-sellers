@@ -24,6 +24,9 @@ services:
       dockerfile: Dockerfile
     restart: always
 
+    ports:
+      - "3000:3000"
+
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.app.rule=Host(`${HTTPS_APP_HOST_NAME}`)"

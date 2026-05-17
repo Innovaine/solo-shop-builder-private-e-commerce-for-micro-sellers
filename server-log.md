@@ -30567,3 +30567,18 @@ time="2026-05-17T23:55:53Z" level=warning msg="/home/tester/solo-shop-builder-pr
 invalid IP:0
 ```
 Full output: [`server-runs/2026-05-17T23-55-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-55-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:57:17.438Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1c8bd2b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 49343ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Check if npm and playwright test deps are installed
+if [ ! -d "node_modules/@playwright" ]; then
+  echo "Installing Playwright test deps..."
+  npm install -D @playwright/test 2>&1 | tail -20
+fi
+echo "✓ Ready to run tests"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
