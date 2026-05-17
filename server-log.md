@@ -23520,3 +23520,16 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-17T02:11:01.047Z","responseTime":"99ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"97ms"}}}OK
 ```
 Full output: [`server-runs/2026-05-17T02-11-00-app-sleep-5-1.log`](server-runs/2026-05-17T02-11-00-app-sleep-5-1.log)
+
+## 2026-05-17T02:13:37.664Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8eb84f0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: bash: -c: line 1: syntax error near unexpected token `;&'
+bash: -c: line 1: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; docker compose logs --tail=100 app 2>&1 | grep -E "Error|error|failed|Failed|TypeError|ReferenceError" | tail -50; printf "__QADAR_EXIT__%d" $?'
+ (mutating command — not auto-retried; queue it again if you want to try once more), 2375ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; docker compose logs --tail=100 app 2>&1 | grep -E "Error|error|failed|Failed|TypeError|ReferenceError" | tail -50
+```
+ERROR: bash: -c: line 1: syntax error near unexpected token `;&'
+bash: -c: line 1: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; docker compose logs --tail=100 app 2>&1 | grep -E "Error|error|failed|Failed|TypeError|ReferenceError" | tail -50; printf "__QADAR_EXIT__%d" $?'
+ (mutating command — not auto-retried; queue it again if you want to try once more)
