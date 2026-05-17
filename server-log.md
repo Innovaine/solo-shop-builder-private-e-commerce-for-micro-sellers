@@ -22629,3 +22629,55 @@ STDOUT:
 Started final build, PID=1156916
 ```
 Full output: [`server-runs/2026-05-17T01-30-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-30-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:31:16.481Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8b43a1c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 12010ms) _(showing tail — full 3,958B stdout + 0B stderr)_
+```
+sleep 10
+kill -0 $(cat /tmp/day37-final-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day37-final-build.log
+```
+STDOUT:
+```
+…port[39m [33mButton[39m [36mfrom[39m [32m'@/components/ui/Button'[39m[33m;[39m[0m
+#15 16.07 [0m [90m  7 |[39m [36mimport[39m [33mCard[39m [36mfrom[39m [32m'@/components/ui/Card'[39m[33m;[39m[0m
+#15 16.07 [0m[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m [33mFormField[39m [36mfrom[39m [32m'@/components/ui/FormField'[39m[33m;[39m[0m
+#15 16.07 [0m [90m    |[39m        [31m[1m^[22m[39m[0m
+#15 16.07 [0m [90m  9 |[39m[0m
+#15 16.07 [0m [90m 10 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mBrandingPage[39m() {[0m
+#15 16.07 [0m [90m 11 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+16.07 ./app/dashboard/branding/page.tsx:8:8
+16.07 Type error: Module '"/app/app/components/ui/FormField"' has no default export. Did you mean to use 'import { FormField } from "/app/app/components/ui/FormField"' instead?
+16.07 
+16.07 [0m [90m  6 |[39m [36mimport[39m [33mButton[39m [36mfrom[39m [32m'@/components/ui/Button'[39m[33m;[39m[0m
+16.07 [0m [90m  7 |[39m [36mimport[39m [33mCard[39m [36mfrom[39m [32m'@/components/ui/Card'[39m[33m;[39m[0m
+16.07 [0m[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m [33mFormField[39m [36mfrom[39m [32m'@/components/ui/FormField'[39m[33m;[39m[0m
+16.07 [0m [90m    |[39m        [31m[1m^[22m[39m[0m
+16.07 [0m [90m  9 |[39m[0m
+16.07 [0m [90m 10 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mBrandingPage[39m() {[0m
+16.07 [0m [90m 11 |[39m   [36mconst[39m router [33m=[39m useRouter()[33m;[39m[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-17T01-31-16-app-sleep-10-1.log`](server-runs/2026-05-17T01-31-16-app-sleep-10-1.log)
