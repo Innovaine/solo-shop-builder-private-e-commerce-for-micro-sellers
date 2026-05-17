@@ -22260,3 +22260,22 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-17T01-16-56-app-kill--0-cat-tmp-day37-ui-fix-build.pid-2-1.log`](server-runs/2026-05-17T01-16-56-app-kill--0-cat-tmp-day37-ui-fix-build.pid-2-1.log)
+
+## 2026-05-17T01:17:31.410Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c9885cd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2846ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+grep -r "@/app/components" app/auth/ || echo "No more wrong imports"
+```
+STDOUT:
+```
+app/auth/forgot-password/page.tsx:import { Button } from '@/app/components/ui/Button'
+app/auth/forgot-password/page.tsx:import { FormField } from '@/app/components/ui/FormField'
+app/auth/reset-password/page.tsx:import { Button } from '@/app/components/ui/Button'
+app/auth/reset-password/page.tsx:import { FormField } from '@/app/components/ui/FormField'
+app/auth/login/page.tsx:import { Button } from '@/app/components/ui/Button'
+app/auth/login/page.tsx:import { FormField } from '@/app/components/ui/FormField'
+```
+Full output: [`server-runs/2026-05-17T01-17-31-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-17-31-app-cd-solo-shop-builder-private-e-commerce--1.log)

@@ -6,8 +6,8 @@
 import { useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Button } from '@/app/components/ui/Button'
-import { FormField } from '@/app/components/ui/FormField'
+import { Button } from '@/components/ui/Button'
+import { FormField } from '@/components/ui/FormField'
 
 export const dynamic = 'force-dynamic'
 
