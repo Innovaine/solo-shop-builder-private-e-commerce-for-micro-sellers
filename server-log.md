@@ -30242,3 +30242,17 @@ STDOUT:
 DELETE 2
 ```
 Full output: [`server-runs/2026-05-17T23-30-36-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-30-36-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:30:58.381Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e7168ea` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2873ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec postgres psql -U postgres -d soloshop -c "\d \"Shop\"" | grep -E "(displayName|publicDescription)" || echo "Columns not found, will add them"
+```
+STDOUT:
+```
+ displayName       | character varying(100)         |           |          | 
+ publicDescription | text                           |           |          |
+```
+Full output: [`server-runs/2026-05-17T23-30-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-30-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
