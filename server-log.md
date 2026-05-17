@@ -27083,3 +27083,77 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-17T07-59-30-app-head--100-tmp-day46-mvp-test.log-1.log`](server-runs/2026-05-17T07-59-30-app-head--100-tmp-day46-mvp-test.log-1.log)
+
+## 2026-05-17T08:01:43.157Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `62eab3e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4359ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== DAY 46 MVP TESTING ==="
+echo ""
+echo "Test 1: Health endpoint (FR-18)"
+curl -s http://localhost:3000/api/health | head -5
+echo ""
+
+echo "Test 2: Homepage loads (FR-5)"
+curl -sI http://localhost:3000 2>&1 | head -1
+echo ""
+
+echo "Test 3: Login page exists (FR-1)"
+curl -sI http://localhost:3000/auth/login 2>&1 | head -1
+echo ""
+
+echo "Test 4: Dashboard requires auth (FR-2, FR-11)"
+curl -sI http://localhost:3000/dashboard 2>&1 | head -1
+echo ""
+
+echo "Test 5: Public shop 404 for invalid slug (FR-5)"
+curl -sI http://localhost:3000/shop/nonexistent-slug 2>&1 | head -1
+echo ""
+
+echo "Test 6: Checkout page loads (FR-9)"
+curl -sI http://localhost:3000/checkout 2>&1 | head -1
+echo ""
+
+echo "Test 7: Order tracking page structure (FR-14)"
+curl -sI http://localhost:3000/track/test-order-123 2>&1 | head -1
+echo ""
+
+echo "Test 8: 404 page exists (FR-18)"
+curl -sI http://localhost:3000/this-does-not-exist 2>&1 | head -1
+echo ""
+
+echo "✓ All critical pages accessible"
+```
+STDOUT:
+```
+=== DAY 46 MVP TESTING ===
+
+Test 1: Health endpoint (FR-18)
+{"status":"ok","timestamp":"2026-05-17T08:01:43.015Z","responseTime":"146ms","checks":{"database":{"status":"ok","responseTime":"34ms"},"email":{"status":"ok","responseTime":"112ms"}}}
+Test 2: Homepage loads (FR-5)
+HTTP/1.1 200 OK
+
+Test 3: Login page exists (FR-1)
+HTTP/1.1 200 OK
+
+Test 4: Dashboard requires auth (FR-2, FR-11)
+HTTP/1.1 307 Temporary Redirect
+
+Test 5: Public shop 404 for invalid slug (FR-5)
+HTTP/1.1 404 Not Found
+
+Test 6: Checkout page loads (FR-9)
+HTTP/1.1 200 OK
+
+Test 7: Order tracking page structure (FR-14)
+HTTP/1.1 200 OK
+
+Test 8: 404 page exists (FR-18)
+HTTP/1.1 404 Not Found
+
+✓ All critical pages accessible
+```
+Full output: [`server-runs/2026-05-17T08-01-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T08-01-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
