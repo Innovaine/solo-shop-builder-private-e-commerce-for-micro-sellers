@@ -22844,3 +22844,18 @@ STDOUT:
 Started docker compose up
 ```
 Full output: [`server-runs/2026-05-17T01-35-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-35-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:35:27.738Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3c5554e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 7, 2294ms)
+```
+docker ps | grep solo-shop
+curl -sf http://localhost:3000/api/health
+```
+STDOUT:
+```
+a350e89a9625   postgres:16-alpine   "docker-entrypoint.s…"   3 hours ago   Up 31 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+ERROR: command exited 7
+Full output: [`server-runs/2026-05-17T01-35-27-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-17T01-35-27-app-docker-ps-grep-solo-shop-1.log)
