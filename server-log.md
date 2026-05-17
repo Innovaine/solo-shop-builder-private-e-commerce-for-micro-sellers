@@ -23930,3 +23930,30 @@ Cache-Control: s-maxage=31536000, stale-while-revalidate
 ETag: "9ri4s94qsl5jy"
 ```
 Full output: [`server-runs/2026-05-17T02-22-54-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-17T02-22-54-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
+
+## 2026-05-17T02:23:21.998Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4ad0f55` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2723ms)
+```
+echo "Test 2: Create shop page loads" && curl -sI http://localhost:3000/dashboard/create-shop | head -10 && echo -e "\n\nTest 3: Create new seller and test flow" && curl -s -X POST http://localhost:3000/api/auth/signup -H "Content-Type: application/json" -d '{"email":"flowtest@example.com"}'
+```
+STDOUT:
+```
+Test 2: Create shop page loads
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "a7uwde7x9g5k9"
+Content-Type: text/html; charset=utf-8
+Content-Length: 7232
+Date: Sun, 17 May 2026 02:23:21 GMT
+Connection: keep-alive
+
+
+Test 3: Create new seller and test flow
+{"message":"Magic link sent. Check your email."}
+```
+Full output: [`server-runs/2026-05-17T02-23-21-app-echo-Test-2-Create-shop-page-loads-curl--1.log`](server-runs/2026-05-17T02-23-21-app-echo-Test-2-Create-shop-page-loads-curl--1.log)
