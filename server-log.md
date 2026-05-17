@@ -23733,3 +23733,48 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 {"success":true,"hasShop":false}
 ```
 Full output: [`server-runs/2026-05-17T02-16-59-app-curl--v--X-POST-http-localhost-3000-api--1.log`](server-runs/2026-05-17T02-16-59-app-curl--v--X-POST-http-localhost-3000-api--1.log)
+
+## 2026-05-17T02:17:27.959Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `75619ad` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2235ms)
+```
+curl -v -X POST http://localhost:3000/api/shops \
+  -H "Content-Type: application/json" \
+  -H "Cookie: soloshop_session=Fe26.2*1*824cbb8e74eb6a15d5e05bd706e09baf446804ae6fd8f2547be36ab9e28cbb33*zlsnX5ICOMd-yeH6pYw8Ow*4R9hmxex6EAle4Nn3YqdYN-c7dWOBgzUFvfK1wjDHG5LQ7EGBXWBsSl1rsyBUheKPdHDLeQPG-TMg2ADlKZCuKto_q4csG-J2rlRMDsf3OW180CVkN9u1OYL5R9rBx0FjsJvUkZgY312gcayr-J8dg*1780193819580*4b77e3b945f21c2bc0a1e1424f4132c5192f086b42d2c052ad305e21d9cd4201*Dzzk0y1AUt5RcYKpQY2BZM53nepn4vf_D66q8Em9JBY~2" \
+  -d '{"name":"Bug Test Shop","slug":"bug-test-shop"}' 2>&1 | tail -30
+```
+STDOUT:
+```
+* IPv4: 127.0.0.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying [::1]:3000...
+* Connected to localhost (::1) port 3000
+> POST /api/shops HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Cookie: soloshop_session=Fe26.2*1*824cbb8e74eb6a15d5e05bd706e09baf446804ae6fd8f2547be36ab9e28cbb33*zlsnX5ICOMd-yeH6pYw8Ow*4R9hmxex6EAle4Nn3YqdYN-c7dWOBgzUFvfK1wjDHG5LQ7EGBXWBsSl1rsyBUheKPdHDLeQPG-TMg2ADlKZCuKto_q4csG-J2rlRMDsf3OW180CVkN9u1OYL5R9rBx0FjsJvUkZgY312gcayr-J8dg*1780193819580*4b77e3b945f21c2bc0a1e1424f4132c5192f086b42d2c052ad305e21d9cd4201*Dzzk0y1AUt5RcYKpQY2BZM53nepn4vf_D66q8Em9JBY~2
+> Content-Length: 47
+> 
+} [47 bytes data]
+< HTTP/1.1 201 Created
+< access-control-allow-headers: Content-Type, Authorization
+< access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+< access-control-allow-origin: *
+< x-request-id: ihp6q1wgMYhj86AP
+< vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+< content-type: application/json
+< Date: Sun, 17 May 2026 02:17:28 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< Transfer-Encoding: chunked
+< 
+{ [384 bytes data]
+100   431    0   384  100    47  19889   2434 --:--:-- --:--:-- --:--:-- 22684
+* Connection #0 to host localhost left intact
+{"id":"f53f394e-d68b-41c0-84b6-861f821471e6","name":"Bug Test Shop","slug":"bug-test-shop","sellerId":"692bc828-ba33-4170-91e4-379e27aaedfc","description":null,"instagramUrl":null,"facebookUrl":null,"twitterUrl":null,"primaryColor":"#3B4C63","accentColor":"#10B981","logoUrl":null,"emailTemplateBody":null,"createdAt":"2026-05-17T02:17:28.249Z","updatedAt":"2026-05-17T02:17:28.249Z"}
+```
+Full output: [`server-runs/2026-05-17T02-17-27-app-curl--v--X-POST-http-localhost-3000-api--1.log`](server-runs/2026-05-17T02-17-27-app-curl--v--X-POST-http-localhost-3000-api--1.log)

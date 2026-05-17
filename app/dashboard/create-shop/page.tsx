@@ -16,6 +16,26 @@ export default function CreateShopPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+  const [authChecking, setAuthChecking] = useState(true)
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/shops')
+        if (!response.ok) {
+          if (response.status === 401) {
+            router.push('/auth/login?error=session_expired')
+            return
+          }
+        }
+        setAuthChecking(false)
+      } catch {
+        router.push('/auth/login?error=network_error')
+      }
+    }
+    checkAuth()
+  }, [router])
 
   // Auto-generate slug from shop name
   useEffect(() => {
@@ -63,6 +83,20 @@ export default function CreateShopPage() {
   }
 
   const appUrl = typeof window !== 'undefined' ? window.location.origin : 'soloshop.com'
+
+  if (authChecking) {
+    return (
+      <div className="min-h-screen bg-cream flex items-center justify-center p-6">
+        <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-12">
+          <div className="text-center">
+            <div className="text-5xl mb-4">⏳</div>
+            <h1 className="text-2xl font-bold text-charcoal mb-2">Loading...</h1>
+            <p className="text-slate">Verifying your session</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-cream flex items-center justify-center p-6">

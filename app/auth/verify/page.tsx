@@ -43,15 +43,13 @@ function VerifyContent() {
         const data = await response.json()
         setStatus('success')
         
-        // Redirect to appropriate page after 1 second
+        // Redirect immediately using router.push with refresh to ensure session is loaded
+        // Brief delay ensures UI shows success state
         setTimeout(() => {
-          // Use window.location.href for full page reload to ensure session cookie is picked up
-          if (data.hasShop) {
-            window.location.href = '/dashboard'
-          } else {
-            window.location.href = '/dashboard/create-shop'
-          }
-        }, 1000)
+          const targetPath = data.hasShop ? '/dashboard' : '/dashboard/create-shop'
+          router.push(targetPath)
+          router.refresh()
+        }, 500)
       } catch (err) {
         setStatus('error')
         setErrorMessage(err instanceof Error ? err.message : 'Verification failed')
