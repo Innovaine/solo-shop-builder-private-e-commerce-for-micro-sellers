@@ -1,39 +1,39 @@
 # Day 49 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 103
-- **Saved:** 17/05/2026, 3:30:10 PM
+- **Cycle:** 105
+- **Saved:** 18/05/2026, 2:22:56 AM
 
 ---
 
 FINISHED:
-- Day 48 code review verified 4 Stage 1 hardening features shipped and working: password auth (bcrypt 12), password reset (1hr tokens), product variants with inventory validation, shop branding endpoints + storefront display
-- Build passing, containers healthy, database migrated, health check live
-- Core MVP scope (F1–F12) functionally complete per warehouse state; 50/60 tasks closed
-- Deployed and testable at current host
+- Day 48 shipped 4 Stage 1 hardening features: seller password auth (bcrypt 12), password reset (1hr tokens), product variants with inventory (stock validation + atomic decrement), shop branding (color + tagline). All verified in code review; containers healthy; build passing.
+- 48 of 60 total Stage 0 + Stage 1 tasks now closed.
+- Storefront displays seller customizations (branding); checkout atomically validates and decrements variant stock.
 
 PENDING:
-- Host name / DNS for stable testing URL (#142) — blocks customer-facing QA and demo credibility
-- Order CSV export (#140) — seller accounting need, not critical to MVP but high-priority open
-- Design mockups for password reset, seller profile, shop branding UI (#133) — needed to match implemented backend endpoints
-- Seller profile endpoints (#131) and inventory stock validation (#130) — backend features ready to code, waiting on design approval for profile page
-- Playwright test suite for product CRUD, category filter, email verify (#66) — no regression coverage yet for F3, F7, F1
-- CEO demo script + end-to-end flow walk-through (#76) — founder visibility into what actually ships
+- #144 (FR-37: email template editor) — incomplete; seller needs ability to customize order confirmation emails with merge tags + XSS sanitization.
+- #143 (FR-32: product CSV import) — incomplete; seller needs bulk product upload to scale product catalog entry.
+- #140 (FR-30: order CSV export) — incomplete; seller needs fulfillment/accounting export.
+- #133 (DESIGN: password reset + profile + branding UI) — design mockups for reset-password, seller profile, shop branding pages not yet shipped to Figma/repo.
+- #131 (FR-25: seller profile model + endpoints) — backend incomplete; GET/PUT /api/sellers/{id} endpoints not yet written.
+- #130 (FR-24: inventory tracking) — partially shipped (variants + stock field exist); checkout validation logic needs verification.
+- Day 48 code review passed; no blockers listed. Ready to merge and ship.
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineer): Ship #140 (order CSV export — 2-3 hours), #131 (seller profile endpoints — 3-4 hours), #130 (inventory stock validation with atomic checkout — 4-5 hours). These are all backend, all unblocked by design, all reduce seller friction in daily operations. Anil takes all three in parallel; Kenji supports if needed.
-- Stream 2 (designer): Ship #133 mockups in one batch — password reset page, seller profile editor, shop branding customizer. Match existing design patterns from storefront. Mobile-responsive. These unblock #131 and #130 for frontend implementation next cycle. Chiara owns.
-- Stream 3 (tester): Write Playwright coverage for #66 (product CRUD, category filter, email verify) against live deployment. Then write regression tests for inventory checkout (#130) and profile update flow (#131) as engineer ships. Priya executes; test-first approach.
-- Stream 4 (reviewer): Verify CSV export output format and order atomicity (#140), seller profile access control and data validation (#131), inventory stock decrement in transaction (#130). Søren runs final code review end-of-day before merge.
-- Stream 5 (requirements): Confirm #142 host name is provisioned and DNS resolves by EOD — this unblocks demo and customer testing. Kenji owns; escalate if infrastructure delay.
+- Stream 1 (engineer): Ship #143 (FR-32: CSV product import), #140 (FR-30: order CSV export), and #130 (FR-24: finish inventory checkout validation). CSV import validates columns + enums + decimals and creates bulk Product records; CSV export returns orders as downloadable file for fulfillment; inventory checkout rejects if stock == 0 and decrements atomically post-payment. Parallel work: no dependency between these three — start all three today.
+- Stream 2 (designer): Ship mockups for #133 (password reset page, seller profile editor, shop branding customizer). All three mobile-responsive, matching existing design patterns in repo. Reference existing form components + color picker library. Ship to design/ folder by EOD.
+- Stream 3 (tester): Write Playwright tests for FR-32 (CSV parse, validation, error handling), FR-30 (export file generation + content), FR-24 (stock validation at checkout, decrement post-payment), FR-25 (profile GET/PUT, auth boundary). Tests run against live deployed instance.
+- Stream 4 (reviewer): Code review #143, #140, #131, #130 before merge. Verify: CSV parsing handles malformed input; export respects shop ownership; inventory decrements atomically; profile endpoints enforce seller auth. Verdict required before end of day.
+- Stream 5 (requirements): No new requirements writing today; all tasks linked to existing FRs (37, 32, 30, 25, 24). Kenji: confirm task board reflects current state; flag any blockers at standup.
 
 ROLE PLAN:
-- requirements: YES — host provisioning (#142) is a gate for testing credibility; someone must track it to completion today
-- design_qa: NO — design output exists (#133 is in-flight); QA bandwidth better spent on test writing
-- design: YES — #133 is the design blocker; shipping mockups today unblocks profile + branding frontend work tomorrow
-- engineering: YES — three parallel backend tasks (#140, #131, #130) fit the 60–80 tool-call budget and all reduce seller friction; no design dependency
-- review: YES — code review on all three engineer super tasks must happen end-of-day to unblock merge
-- test: YES — regression suite for existing features (#66) + new feature coverage (#130, #131) keep quality signal live as scope grows
+- engineering: YES — 3 high-priority features with clear acceptance criteria; no design dependency; CSV + inventory are Stage 1 shipping blockers.
+- review: YES — four features landing today need verification before merge; code review is gating factor for shipping.
+- design: YES — #133 mockups unblock engineer work on branding + profile endpoints; 3 pages, all same pattern, high velocity expected.
+- test: YES — CSV import/export + inventory validation are risky (data integrity); Playwright tests prevent regressions before we hit paying sellers.
+- requirements: NO — all open tasks already spec'd; Kenji's time better spent unblocking engineer questions mid-day if they arise.
+- design_qa: NO — design review can fold into review role; not a bottleneck today.
 
 ONE-LINE SUMMARY:
-Today the team ships order CSV export, seller profile endpoints, and inventory validation (engineer) in parallel with password-reset/profile/branding UI mockups (designer) and end-to-end Playwright regression tests (tester), while unblocking stable host DNS for demo.
+Today the team ships CSV import + export, finishes inventory validation, and designs 3 seller-facing pages—all in parallel—pushing Stage 1 hardening to ship-ready.
