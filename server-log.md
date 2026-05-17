@@ -22117,3 +22117,19 @@ _Pre-SSH: warehouse pushed to GitHub as commit `7569e46` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T01:04:08.914Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8971c04` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2545ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/compose-up-day37.log 2>&1 &
+echo $! > /tmp/compose-up-day37.pid
+echo "Started compose up, PID=$(cat /tmp/compose-up-day37.pid)"
+```
+STDOUT:
+```
+Started compose up, PID=1149501
+```
+Full output: [`server-runs/2026-05-17T01-04-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-04-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
