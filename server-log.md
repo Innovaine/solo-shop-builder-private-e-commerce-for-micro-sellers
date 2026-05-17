@@ -24428,3 +24428,43 @@ STDOUT:
 Build started, PID=1196028
 ```
 Full output: [`server-runs/2026-05-17T03-30-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-30-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T03:30:53.325Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a174ce5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2205ms) _(showing tail — full 7,444B stdout + 0B stderr)_
+```
+if [ -f /tmp/day41-build.pid ]; then
+  kill -0 $(cat /tmp/day41-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+  tail -80 /tmp/day41-build.log
+fi
+```
+STDOUT:
+```
+…@opentelemetry/api/index.js:1:518)
+#15 18.93     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+#15 18.93   description: "Route /api/analytics couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 18.93   digest: 'DYNAMIC_SERVER_USAGE'
+#15 18.93 }
+#15 18.93    Generating static pages (9/37) 
+#15 18.95 Product export error: n [Error]: Dynamic server usage: Route /api/products/export couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#15 18.95     at l (/app/.next/server/chunks/8948.js:1:37237)
+#15 18.95     at u (/app/.next/server/chunks/8402.js:6:4069)
+#15 18.95     at d (/app/.next/server/app/api/products/export/route.js:1:879)
+#15 18.95     at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34672
+#15 18.95     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#15 18.95     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 18.95     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 18.95     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#15 18.95     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#15 18.95     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+#15 18.95   description: "Route /api/products/export couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 18.95   digest: 'DYNAMIC_SERVER_USAGE'
+#15 18.95 }
+#15 19.04    Generating static pages (18/37) 
+#15 19.11    Generating static pages (27/37) 
+#15 19.18  ✓ Generating static pages (37/37)
+#15 19.44    Finalizing page optimization ...
+#15 19.44    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-17T03-30-53-app-if--f-tmp-day41-build.pid-then-1.log`](server-runs/2026-05-17T03-30-53-app-if--f-tmp-day41-build.pid-then-1.log)
