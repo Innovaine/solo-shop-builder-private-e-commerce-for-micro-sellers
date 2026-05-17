@@ -27628,3 +27628,16 @@ STDOUT:
 Started smoke test, PID=1272356
 ```
 Full output: [`server-runs/2026-05-17T09-37-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-37-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T09:38:36.368Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0b34239` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 25849ms)
+```
+sleep 10 && kill -0 $(cat /tmp/day47-smoke.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-17T09-38-36-app-sleep-10-kill--0-cat-tmp-day47-smoke.pid-1.log`](server-runs/2026-05-17T09-38-36-app-sleep-10-kill--0-cat-tmp-day47-smoke.pid-1.log)
