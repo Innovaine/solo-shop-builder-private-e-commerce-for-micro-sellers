@@ -29377,3 +29377,12 @@ STDOUT:
 Restart queued
 ```
 Full output: [`server-runs/2026-05-17T12-17-59-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-17-59-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:18:52.967Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2646c53` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 7, 10484ms)
+```
+sleep 8 && curl -sf http://localhost:3000/api/health && echo " OK"
+```
+ERROR: command exited 7
