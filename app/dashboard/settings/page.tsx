@@ -98,6 +98,7 @@ export default function SettingsPage() {
                 label="Current Password (if set)"
                 type="password"
                 id="currentPassword"
+                name="currentPassword"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 placeholder="Leave blank if you haven't set one yet"
@@ -108,6 +109,7 @@ export default function SettingsPage() {
                 label="New Password"
                 type="password"
                 id="newPassword"
+                name="newPassword"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="At least 8 characters"
@@ -120,6 +122,7 @@ export default function SettingsPage() {
                 label="Confirm New Password"
                 type="password"
                 id="confirmPassword"
+                name="confirmPassword"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Re-enter new password"

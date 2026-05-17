@@ -123,13 +123,24 @@ export default function ProductsPage() {
               <h1 className="text-3xl font-bold text-charcoal mb-2">Products</h1>
               <p className="text-slate">Manage your shop inventory</p>
             </div>
-            <Button
-              onClick={() => router.push('/dashboard/products/new')}
-              variant="primary"
-              size="lg"
-            >
-              + Add Product
-            </Button>
+            <div className="flex gap-3">
+              {products.length > 0 && (
+                <a
+                  href="/api/products/export"
+                  download
+                  className="inline-flex items-center px-4 py-2 bg-slate-blue text-white rounded-lg hover:bg-slate-blue/90 transition-colors text-sm font-semibold"
+                >
+                  Export CSV
+                </a>
+              )}
+              <Button
+                onClick={() => router.push('/dashboard/products/new')}
+                variant="primary"
+                size="lg"
+              >
+                + Add Product
+              </Button>
+            </div>
           </div>
 
           {products.length === 0 ? (

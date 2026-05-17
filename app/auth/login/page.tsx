@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic'
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [usePassword, setUsePassword] = useState(false) // FR-21: Toggle between magic link and password
+  const [usePassword, setUsePassword] = useState(true) // FR-21: Default to password login for better UX
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -100,6 +100,7 @@ function LoginForm() {
               label="Email Address"
               type="email"
               id="email"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
@@ -112,6 +113,7 @@ function LoginForm() {
                 label="Password"
                 type="password"
                 id="password"
+                name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"

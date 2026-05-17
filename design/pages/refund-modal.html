@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund Order — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background: rgba(0, 0, 0, 0.5);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    /* Modal Dialog */
+    .modal {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 100%;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Modal Header */
+    .modal-header {
+      padding: 28px;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1F2937;
+      margin: 0;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #64748B;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    .modal-close:hover {
+      background: #F9FAFB;
+      color: #1F2937;
+    }
+    .modal-close:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.2);
+    }
+
+    /* Modal Body */
+    .modal-body {
+      padding: 28px;
+    }
+
+    /* Alert */
+    .alert {
+      background: #FEE2E2;
+      border: 1px solid #FECDD3;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .alert-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .alert-content {
+      flex: 1;
+    }
+    .alert-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #991B1B;
+      margin-bottom: 4px;
+    }
+    .alert-text {
+      font-size: 13px;
+      color: #7F1D1D;
+      line-height: 1.5;
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 14px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .help-text {
+      font-size: 13px;
+      color: #64748B;
+      margin-top: 6px;
+    }
+
+    /* Refund Amount Preview */
+    .refund-preview {
+      background: #F0FDF4;
+      border: 1px solid #DCFCE7;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    .refund-preview-label {
+      font-size: 12px;
+      color: #4D7C0F;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .refund-preview-amount {
+      font-size: 24px;
+      font-weight: 700;
+      color: #15803D;
+    }
+
+    /* Modal Footer */
+    .modal-footer {
+      padding: 20px 28px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary {
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+    }
+    .btn-secondary:hover {
+      background: #F9FAFB;
+      border-color: #3B4C63;
+    }
+    .btn-danger {
+      background: #F43F5E;
+      color: white;
+    }
+    .btn-danger:hover {
+      background: #BE123C;
+      transform: translateY(-1px);
+    }
+    .btn-danger:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.3);
+    }
+
+    /* Modal Variant: Success State */
+    .modal.success-state {
+      text-align: center;
+    }
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .success-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #15803D;
+      margin-bottom: 8px;
+    }
+    .success-text {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .modal {
+        max-width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-header {
+        padding: 20px;
+      }
+      .modal-body {
+        padding: 20px;
+      }
+      .modal-footer {
+        padding: 16px 20px;
+        flex-direction: column-reverse;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Modal Backdrop -->
+  <div class="modal-overlay">
+    <!-- Refund Modal -->
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">Refund Order #2024051201</h2>
+        <button class="modal-close" aria-label="Close dialog" onclick="alert('Refund cancelled')">×</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Warning Alert -->
+        <div class="alert">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">Refunds are permanent</div>
+            <div class="alert-text">Once processed, this refund cannot be reversed. The customer will receive the funds to their original payment method within 5-7 business days.</div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="form-group">
+          <label>Order Details</label>
+          <div style="background: #FAF9F7; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+              <span style="color: #64748B;">Customer:</span>
+              <span style="color: #1F2937; font-weight: 600;">Jane Smith</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+              <span style="color: #64748B;">Order Date:</span>
+              <span style="color: #1F2937; font-weight: 600;">May 12, 2024</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px; padding-top: 8px; border-top: 1px solid #E2E8F0;">
+              <span style="color: #64748B;">Total Amount:</span>
+              <span style="color: #1F2937; font-weight: 700; font-size: 16px;">$39.96</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Refund Amount Preview -->
+        <div class="refund-preview">
+          <div class="refund-preview-label">Refund Amount</div>
+          <div class="refund-preview-amount">$39.96</div>
+          <div style="font-size: 13px; color: #4D7C0F; margin-top: 8px;">Full refund (100%)</div>
+        </div>
+
+        <!-- Reason -->
+        <div class="form-group">
+          <label for="refundReason">Reason for Refund (optional)</label>
+          <select id="refundReason" name="refund_reason">
+            <option value="">— Select a reason —</option>
+            <option value="customer_request">Customer requested</option>
+            <option value="damaged">Product damaged</option>
+            <option value="not_received">Product not received</option>
+            <option value="incorrect">Incorrect item sent</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="help-text">This will be logged for your records.</div>
+        </div>
+
+        <!-- Additional Notes -->
+        <div class="form-group">
+          <label for="refundNotes">Internal Notes (optional)</label>
+          <textarea id="refundNotes" name="refund_notes" placeholder="Add any internal notes about this refund..."></textarea>
+          <div class="help-text">These notes are only visible to you.</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="alert('Refund cancelled')">Cancel</button>
+        <button class="btn btn-danger" onclick="alert('Refund processed for $39.96')">Process Refund</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // This is a design reference. In the real app, the form will submit to the API.
+  </script>
+</body>
+</html>
