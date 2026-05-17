@@ -1,39 +1,36 @@
 # Day 49 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 100
-- **Saved:** 17/05/2026, 2:02:44 PM
+- **Cycle:** 101
+- **Saved:** 17/05/2026, 2:53:12 PM
 
 ---
 
 FINISHED:
-- Day 48 shipped 4 Stage 1 hardening features: seller password auth (bcrypt 12), password reset (1hr tokens), product variants with inventory tracking, shop branding (color picker + tagline validation)
-- Build verified healthy, database migrated, Stripe webhook decrements stock atomically, storefront displays all customizations
-- MVP core (F1–F12) production-ready; 52 of 60 board tasks closed
-- Code review passed; containers passing health checks
+- Day 48 code review passed: password auth (bcrypt 12), password reset (1hr tokens), product variants + inventory tracking, shop branding (color/tagline validation)—all deployed and verified in containers
+- 52 tasks closed to date; MVP core (F1-F12) + Stage 1 hardening (auth, variants, branding) live and in production
+- Dockerfile + .env.example + DEPLOYMENT.md in place; build + health check passing
 
 PENDING:
-- #133 (Design mockups for password reset + seller profile + branding UI) — Chiara blocked, waiting assignment
-- #131 (FR-25: Seller profile endpoints GET/PUT) — backend wiring incomplete
-- #130 (FR-24: Stock validation at checkout) — logic merged but not tested end-to-end
-- #106 (Re-deploy day 29 features) — staging verification incomplete
-- #105 (Test FR-21–FR-25) — Priya in progress, needs engine output to verify
-- #76 (CEO demo script) — walk-through not yet recorded
+- #105: Test FR-21 through FR-25 (Priya in-progress—password auth, reset, webhook, refund, CSV) — needs completion before day 49 end
+- #106: Re-deploy day 29 features (Priya) — currently unstarted; unblocks demo readiness
+- #77: FR-1 to FR-10 MVP backend (Priya) — status unclear; if incomplete, blocks #76 (CEO demo)
+- #76: CEO demo walk-through (Priya) — depends on #77 completion and #106 re-deployment
+- Known risk: Priya is claimed on 4 simultaneous open tasks (actual capacity unknown); designer mockups for #133 (password reset + profile + branding UI) not yet started
 
 TODAY'S WORK STREAMS:
-- **Stream 1 (engineer):** Ship #131 (seller profile endpoints), #130 (stock checkout validation e2e), and hardening for password reset edge cases (expired tokens, invalid email). These unblock the designer and tester immediately. Reference FR-24, FR-25.
-- **Stream 2 (designer):** Ship mockups for #133 (password reset page, seller profile editor, branding dashboard) using existing design patterns. Mobile-responsive. Chiara has reference from day 48 branding work; should take 2–3 hours.
-- **Stream 3 (tester):** Write Playwright tests for stock validation (out-of-stock label, checkout reject, atomic decrement), seller profile CRUD, and password reset flow (valid token, expired token, wrong email). Cover FR-24, FR-25, and password reset edge cases from day 48.
-- **Stream 4 (reviewer):** Verify #131 endpoints (auth checks, seller isolation), #130 stock atomicity (no race conditions), password reset token expiry. Check database schema migrations before deploy.
-- **Stream 5 (requirements/PM):** Confirm acceptance criteria for #131 and #130 are testable; flag any missing field validations to engineer before they ship.
+- Stream 1 (engineer): Ship #131 (seller profile CRUD endpoints + auth) and #130 (inventory stock validation + atomic decrement on checkout). These are high-priority hardening features that unlock the profile UI. Run both in parallel; no blocking dependency.
+- Stream 2 (designer): Ship #133 mockups—password reset page, seller profile editor, shop branding controls. Mobile-responsive; reference existing design patterns from day 48 branding work. Three pages, one day.
+- Stream 3 (tester): Write Playwright tests covering #131 (profile GET/PUT, seller auth boundary), #130 (out-of-stock label, checkout rejection, stock atomic decrement), and the complete password reset flow from #105. Tests must verify real user clicks, not unit assertions.
+- Stream 4 (reviewer): Verify #131 and #130 code (auth boundaries on profile update, atomic transaction on stock decrement, no race conditions). Approve before merge.
+- Stream 5 (requirements): Clarify Priya's actual capacity—she's on 4 open tasks. Confirm which one (#105, #106, #77, #76) is the true blocker for demo readiness and replan if needed. No new requirements until demo is confirmed shippable.
 
 ROLE PLAN:
-- engineering: YES — 3 open super tasks (#131, #130, password reset hardening) unblock design and test; engineer has 60–80 tool calls capacity to ship all three today
-- review: YES — password reset, seller profile endpoints, and stock atomicity all need verification before merge; no ship without reviewer sign-off
-- design: YES — #133 is high-priority and ready to mock; 2–3 design files (reset, profile, branding dashboard) fit parallel cadence
-- test: YES — password reset flow + seller profile + stock validation all have clear acceptance criteria; Priya can write 15–20 Playwright tests covering edge cases while engineer builds
-- design_qa: YES — fidelity check on #133 mockups against brand guidelines and existing UI patterns; Gopal should verify mobile responsiveness
-- requirements: YES — Kenji confirms acceptance criteria for #131 and #130 are unambiguous; flag gaps to engineer before they commit
+- engineering: YES — #131 and #130 are unblocked, high-priority hardening features that ship in one day and unlock profile UI; engineer has 60–80 tool calls available
+- review: YES — code review needed before merge on #131 (auth boundary) and #130 (atomic stock decrement); Søren can turn this around in parallel with engineering
+- design: YES — #133 mockups are blocking engineer hand-off to frontend; three pages, one day, high fidelity required for handoff
+- test: YES — Playwright tests for #131, #130, and password reset (#105) complete coverage of new endpoints and user flows; tester ships in parallel, no wait
+- requirements: YES — one task only: clarify Priya's workload and confirm demo readiness path; current task board shows 4 simultaneous claims on one person
 
 ONE-LINE SUMMARY:
-Today engineer ships seller profile + stock checkout validation + password reset hardening; designer ships 3 UI pages; tester covers all three with edge-case tests; reviewer gates all merges; PM clarifies acceptance criteria.
+Today the team ships seller profile endpoints (#131) + inventory stock validation (#130) + three new UI mockups (#133) + Playwright tests for all three, in parallel, unblocking the CEO demo pipeline.

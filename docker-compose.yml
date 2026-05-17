@@ -23,8 +23,21 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    ports:
-      - "127.0.0.1:3000:3000"
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.soloshop.rule=Host(`www.soloshopbox.com`)"
+
+      - "traefik.http.routers.soloshop.entrypoints=websecure"
+
+      - "traefik.http.routers.soloshop.tls=true"
+
+      - "traefik.http.routers.soloshop.tls.certresolver=letsencrypt"
+
+      # App internal port
+
+      - "traefik.http.services.soloshop.loadbalancer.server.port=3000"
+
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/soloshop?schema=public"
       APP_URL: "${APP_URL:-http://localhost:3000}"
