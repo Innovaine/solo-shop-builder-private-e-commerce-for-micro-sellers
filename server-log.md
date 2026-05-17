@@ -23808,3 +23808,51 @@ echo $! > /tmp/day40-fix-build.pid
 echo "Build started, PID=$(cat /tmp/day40-fix-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T02:20:23.019Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `22fc25b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2370ms)
+```
+if [ -f /tmp/day40-fix-build.pid ]; then
+  kill -0 $(cat /tmp/day40-fix-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+  tail -30 /tmp/day40-fix-build.log
+else
+  echo "No PID file found"
+fi
+```
+STDOUT:
+```
+DONE
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.4s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.0s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.4s done
+#30 exporting manifest sha256:48a1bb210b6a48f3a5d4f4624c8a4dbbc2051ff951e2dac9ea41460ce3dc636e done
+#30 exporting config sha256:3f26518f0305b8b3e6d89f855111c39b880dba0fdfac5eb4a5d87eefb8f198b6 done
+#30 exporting attestation manifest sha256:99d50082e3fb6c89b775b21029d8d6c10c905cb10ac4ba749a368b44aa4f4962 0.0s done
+#30 exporting manifest list sha256:0803d8fbbf2de188aeb5f5c8ef4956fddf8321e07c0e26c62e4ddd34a09cebd3 done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#30 DONE 2.1s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-17T02-20-22-app-if--f-tmp-day40-fix-build.pid-then-1.log`](server-runs/2026-05-17T02-20-22-app-if--f-tmp-day40-fix-build.pid-then-1.log)
