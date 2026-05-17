@@ -23120,3 +23120,38 @@ a350e89a9625   postgres:16-alpine                                           "doc
 {"status":"ok","timestamp":"2026-05-17T01:41:54.444Z","responseTime":"181ms","checks":{"database":{"status":"ok","responseTime":"45ms"},"email":{"status":"ok","responseTime":"136ms"}}}
 ```
 Full output: [`server-runs/2026-05-17T01-41-54-app-sleep-5-1.log`](server-runs/2026-05-17T01-41-54-app-sleep-5-1.log)
+
+## 2026-05-17T01:42:45.907Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `91c4242` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2168ms)
+```
+curl -s http://localhost:3000/auth/login 2>&1 | grep -o '<title>.*</title>' | head -1
+curl -sI http://localhost:3000/dashboard/products 2>&1 | head -10
+curl -sI http://localhost:3000/dashboard/orders 2>&1 | head -10
+```
+STDOUT:
+```
+<title>Solo Shop Builder</title>
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "7fjz995td644k"
+Content-Type: text/html; charset=utf-8
+Content-Length: 5353
+Date: Sun, 17 May 2026 01:42:46 GMT
+Connection: keep-alive
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "f4kcnn8miv45d"
+Content-Type: text/html; charset=utf-8
+Content-Length: 5382
+Date: Sun, 17 May 2026 01:42:46 GMT
+Connection: keep-alive
+```
+Full output: [`server-runs/2026-05-17T01-42-45-app-curl--s-http-localhost-3000-auth-login-2-1.log`](server-runs/2026-05-17T01-42-45-app-curl--s-http-localhost-3000-auth-login-2-1.log)
