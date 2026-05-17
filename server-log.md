@@ -21418,3 +21418,19 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-16T23:59:14.803Z","responseTime":"256ms","checks":{"database":{"status":"ok","responseTime":"43ms"},"email":{"status":"ok","responseTime":"213ms"}}}
 ```
 Full output: [`server-runs/2026-05-16T23-59-14-app-curl--sf-http-localhost-3000-api-health--2.log`](server-runs/2026-05-16T23-59-14-app-curl--sf-http-localhost-3000-api-health--2.log)
+
+## 2026-05-17T00:41:14.882Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `018575a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2684ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}\t{{.Ports}}" | grep solo-shop || echo "No containers running"
+curl -sf http://localhost:3000/api/health >/dev/null && echo "App is UP" || echo "App is DOWN"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 58 minutes	0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 2 hours (healthy)	0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+App is UP
+```
+Full output: [`server-runs/2026-05-17T00-41-14-app-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-17T00-41-14-app-docker-ps---format-.Names-t-.Status-t-.P-1.log)
