@@ -26306,3 +26306,34 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-17T07-23-26-app-sleep-10-kill--0-cat-tmp-day45-auth-test-1.log`](server-runs/2026-05-17T07-23-26-app-sleep-10-kill--0-cat-tmp-day45-auth-test-1.log)
+
+## 2026-05-17T07:24:25.941Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b600eae` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3280ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== Day 45 MVP Feature Tests (FR-1 to FR-20) ===" && echo && echo "FR-1 & FR-2: Auth Pages" && curl -sI http://localhost:3000/auth/login 2>&1 | head -1 && curl -sI http://localhost:3000/auth/verify 2>&1 | head -1 && echo && echo "FR-3 & FR-4: Shop Creation" && curl -sI http://localhost:3000/dashboard/create-shop 2>&1 | head -1 && echo && echo "FR-5: Public Storefront" && curl -sI http://localhost:3000/shop/test-shop 2>&1 | head -1 && echo && echo "FR-8-10: Products & Cart" && curl -sI http://localhost:3000/dashboard/products 2>&1 | head -1 && curl -sI http://localhost:3000/checkout 2>&1 | head -1 && echo && echo "FR-11-14: Orders & Tracking" && curl -sI http://localhost:3000/dashboard/orders 2>&1 | head -1 && curl -sI http://localhost:3000/track/test-order-123 2>&1 | head -1
+```
+STDOUT:
+```
+=== Day 45 MVP Feature Tests (FR-1 to FR-20) ===
+
+FR-1 & FR-2: Auth Pages
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+
+FR-3 & FR-4: Shop Creation
+HTTP/1.1 200 OK
+
+FR-5: Public Storefront
+HTTP/1.1 200 OK
+
+FR-8-10: Products & Cart
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+
+FR-11-14: Orders & Tracking
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+```
+Full output: [`server-runs/2026-05-17T07-24-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-24-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
