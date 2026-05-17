@@ -26042,3 +26042,19 @@ Connection: keep-alive
 {"error":"You must be logged in to create a shop."}
 ```
 Full output: [`server-runs/2026-05-17T06-52-08-app-echo-Test-6-Shop-page-non-existent-1.log`](server-runs/2026-05-17T06-52-08-app-echo-Test-6-Shop-page-non-existent-1.log)
+
+## 2026-05-17T07:04:18.383Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fbfc9fa` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3679ms)
+```
+docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' | grep -E 'solo-shop|NAMES' && echo "---" && curl -sf http://localhost:3000/api/health -o /dev/null && echo "✅ Health check OK" || echo "❌ Health check FAIL"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 46 minutes	127.0.0.1:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 3 hours (healthy)	127.0.0.1:5432->5432/tcp
+---
+✅ Health check OK
+```
+Full output: [`server-runs/2026-05-17T07-04-18-app-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-17T07-04-18-app-docker-ps---format-.Names-t-.Status-t-.P-1.log)
