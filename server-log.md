@@ -28130,3 +28130,18 @@ drwxrwxr-x 2 reviewer reviewer 4096 May 16 22:41 20260517_add_profile_branding_f
 -rw-rw-r-- 1 reviewer reviewer  127 May 16 19:35 migration_lock.toml
 ```
 Full output: [`server-runs/2026-05-17T10-21-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-21-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:22:14.301Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `01c10e1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 8929ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c '\d "Shop"' 2>/dev/null | grep -E "tagline|primaryColor|accentColor" | head -5
+```
+STDOUT:
+```
+ primaryColor      | text                           |           |          | '#3B4C63'::text
+ accentColor       | text                           |           |          | '#10B981'::text
+ tagline           | character varying(100)         |           |          |
+```
+Full output: [`server-runs/2026-05-17T10-22-14-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-22-14-app-cd-solo-shop-builder-private-e-commerce--1.log)
