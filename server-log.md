@@ -26936,3 +26936,21 @@ STDOUT:
 Compose up started, PID=1255430
 ```
 Full output: [`server-runs/2026-05-17T07-53-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-53-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:53:24.144Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fc9a90b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 7492ms)
+```
+sleep 5
+docker ps --format '.Names\t.Status'
+curl -sf http://localhost:3000/api/health -o /dev/null && echo "✓ App healthy" || echo "✗ App not responding"
+```
+STDOUT:
+```
+.Names	.Status
+.Names	.Status
+.Names	.Status
+✓ App healthy
+```
+Full output: [`server-runs/2026-05-17T07-53-24-app-sleep-5-1.log`](server-runs/2026-05-17T07-53-24-app-sleep-5-1.log)
