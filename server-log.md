@@ -21996,3 +21996,23 @@ Running 17 tests using 4 workers
 [1A[2K[6/17] [chromium] › tests/web/day37-order-refund.spec.ts:4:7 › FR-24: Order Refund Handling › orders page has refund UI elements
 ```
 Full output: [`server-runs/2026-05-17T00-59-50-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log`](server-runs/2026-05-17T00-59-50-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log)
+
+## 2026-05-17T01:00:12.755Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `10ebb04` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2319ms)
+```
+tail -100 /tmp/day37-pw.log | grep -E "(passed|failed|Error:|PASSED|FAILED)"
+```
+STDOUT:
+```
+    ../../../tmp/playwright-test-results/day37-csv-export-FR-25-Pro-2ba65-ucts-page-has-export-button-chromium/test-failed-1.png
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    ../../../tmp/playwright-test-results/day37-csv-export-FR-25-Pro-757c0--with-products-returns-data-chromium/test-failed-1.png
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    ../../../tmp/playwright-test-results/day37-order-refund-FR-24-O-0060e-page-has-refund-UI-elements-chromium/test-failed-1.png
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+    Error: element(s) not found
+    ../../../tmp/playwright-test-results/day37-password-auth-FR-21--55c17-as-password-input-and-works-chromium/test-failed-1.png
+```
+Full output: [`server-runs/2026-05-17T01-00-12-app-tail--100-tmp-day37-pw.log-grep--E-passe-1.log`](server-runs/2026-05-17T01-00-12-app-tail--100-tmp-day37-pw.log-grep--E-passe-1.log)
