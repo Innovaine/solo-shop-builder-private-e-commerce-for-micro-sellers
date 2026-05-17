@@ -29849,3 +29849,61 @@ STDOUT:
 FAIL
 ```
 Full output: [`server-runs/2026-05-17T12-48-09-app-sleep-5-1.log`](server-runs/2026-05-17T12-48-09-app-sleep-5-1.log)
+
+## 2026-05-17T12:48:52.634Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `322e6b9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2635ms) _(showing tail — full 2,348B stdout + 0B stderr)_
+```
+docker ps -a | grep app
+docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 2>&1 | tail -50
+```
+STDOUT:
+```
+…rom prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+6 migrations found in prisma/migrations
+
+Error: P3009
+
+migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+The `20260517_add_seller_profile_fields` migration started at 2026-05-17 12:47:39.165468 UTC failed
+
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+6 migrations found in prisma/migrations
+
+Error: P3009
+
+migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+The `20260517_add_seller_profile_fields` migration started at 2026-05-17 12:47:39.165468 UTC failed
+
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+6 migrations found in prisma/migrations
+
+Error: P3009
+
+migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+The `20260517_add_seller_profile_fields` migration started at 2026-05-17 12:47:39.165468 UTC failed
+
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+6 migrations found in prisma/migrations
+
+Error: P3009
+
+migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+The `20260517_add_seller_profile_fields` migration started at 2026-05-17 12:47:39.165468 UTC failed
+```
+Full output: [`server-runs/2026-05-17T12-48-52-app-docker-ps--a-grep-app-1.log`](server-runs/2026-05-17T12-48-52-app-docker-ps--a-grep-app-1.log)
