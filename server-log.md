@@ -26353,3 +26353,25 @@ FR-15-17: Email & Notifications
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-17T07-25-02-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-25-02-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:25:22.453Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c247f78` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2662ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== Additional MVP Feature Tests ===" && echo && echo "FR-15-17: Email & Notifications" && curl -s http://localhost:3000/api/health && echo && echo "FR-18: Error Pages" && curl -sI http://localhost:3000/non-existent-page 2>&1 | head -1 && echo && echo "FR-19: Dashboard Pages" && curl -sI http://localhost:3000/dashboard 2>&1 | head -1 && curl -sI http://localhost:3000/dashboard/settings 2>&1 | head -1
+```
+STDOUT:
+```
+=== Additional MVP Feature Tests ===
+
+FR-15-17: Email & Notifications
+{"status":"ok","timestamp":"2026-05-17T07:25:22.559Z","responseTime":"188ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"186ms"}}}
+FR-18: Error Pages
+HTTP/1.1 404 Not Found
+
+FR-19: Dashboard Pages
+HTTP/1.1 307 Temporary Redirect
+HTTP/1.1 200 OK
+```
+Full output: [`server-runs/2026-05-17T07-25-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-25-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
