@@ -27859,3 +27859,19 @@ STDOUT:
  create mode 100644 tests/web/day47-mvp-smoke.spec.ts
 ```
 Full output: [`server-runs/2026-05-17T10-08-26-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-08-26-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:08:59.919Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1037853` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5820ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/build.log 2>&1 &
+echo $! > /tmp/build.pid
+echo "Started build, PID=$(cat /tmp/build.pid)"
+```
+STDOUT:
+```
+Started build, PID=1277413
+```
+Full output: [`server-runs/2026-05-17T10-08-59-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-08-59-app-cd-solo-shop-builder-private-e-commerce--1.log)
