@@ -29615,3 +29615,14 @@ STDOUT:
 #15 18.37    Collecting page data ...
 ```
 Full output: [`server-runs/2026-05-17T12-43-04-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-17T12-43-04-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+
+## 2026-05-17T12:43:37.966Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5e001b1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 17571ms)
+```
+sleep 15
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/build.log | grep -E "(Successfully built|ERROR|Export encountered errors|DONE)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
