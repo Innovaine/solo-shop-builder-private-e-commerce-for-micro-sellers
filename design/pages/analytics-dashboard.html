@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .header h1 { font-size: 28px; font-weight: 700; }
+    .header-controls { display: flex; gap: 12px; }
+    .date-range { padding: 8px 16px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white; cursor: pointer; }
+    .date-range:hover { background: #F9FAFB; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+    .metric-card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; }
+    .metric-label { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 8px; }
+    .metric-value { font-size: 36px; font-weight: 700; color: #1F2937; margin-bottom: 4px; }
+    .metric-change { font-size: 12px; }
+    .metric-change.up { color: #10B981; }
+    .metric-change.down { color: #F43F5E; }
+    .metric-change.neutral { color: #64748B; }
+    
+    .chart-section { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    .chart-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+    .chart-container { height: 300px; background: #F9FAFB; border-radius: 6px; display: flex; align-items: flex-end; justify-content: space-around; padding: 24px 16px; gap: 12px; }
+    .bar { background: #3B4C63; border-radius: 4px 4px 0 0; position: relative; }
+    .bar-label { position: absolute; bottom: -24px; left: 0; right: 0; text-align: center; font-size: 12px; color: #64748B; }
+    .bar-value { position: absolute; top: -20px; left: 0; right: 0; text-align: center; font-size: 12px; font-weight: 600; color: #1F2937; }
+    
+    .table-section { background: white; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; margin-bottom: 24px; }
+    .table-header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; }
+    .table-header h3 { font-size: 16px; font-weight: 600; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E2E8F0; }
+    th { padding: 12px 24px; text-align: left; font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; }
+    td { padding: 16px 24px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    tbody tr:hover { background: #F9FAFB; }
+    
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+    .badge-blue { background: #DBEAFE; color: #1E40AF; }
+    
+    .trend { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; }
+    .trend.up { color: #10B981; }
+    .trend.down { color: #F43F5E; }
+    
+    .layout-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    
+    @media (max-width: 1024px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .layout-2col { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .header-controls { width: 100%; }
+      .date-range { flex: 1; }
+      table { font-size: 12px; }
+      th, td { padding: 8px 12px; }
+      .chart-container { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Analytics</h1>
+    <div class="header-controls">
+      <select class="date-range">
+        <option>Last 30 days</option>
+        <option>Last 90 days</option>
+        <option>This year</option>
+        <option>All time</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Key Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Total Revenue</div>
+        <div class="metric-value">$8,924</div>
+        <div class="metric-change up">↑ 12% from last period</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Total Orders</div>
+        <div class="metric-value">47</div>
+        <div class="metric-change up">↑ 8% from last period</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Average Order Value</div>
+        <div class="metric-value">$190</div>
+        <div class="metric-change neutral">→ No change</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Conversion Rate</div>
+        <div class="metric-value">3.2%</div>
+        <div class="metric-change down">↓ 0.5% from last period</div>
+      </div>
+    </div>
+
+    <!-- Revenue Chart -->
+    <div class="chart-section">
+      <div class="chart-title">Daily Revenue (Last 30 days)</div>
+      <div class="chart-container">
+        <div class="bar" style="height: 45%; ">
+          <div class="bar-value">$240</div>
+          <div class="bar-label">Day 1</div>
+        </div>
+        <div class="bar" style="height: 62%; ">
+          <div class="bar-value">$380</div>
+          <div class="bar-label">Day 2</div>
+        </div>
+        <div class="bar" style="height: 38%; ">
+          <div class="bar-value">$210</div>
+          <div class="bar-label">Day 3</div>
+        </div>
+        <div class="bar" style="height: 78%; ">
+          <div class="bar-value">$520</div>
+          <div class="bar-label">Day 4</div>
+        </div>
+        <div class="bar" style="height: 55%; ">
+          <div class="bar-value">$340</div>
+          <div class="bar-label">Day 5</div>
+        </div>
+        <div class="bar" style="height: 68%; ">
+          <div class="bar-value">$425</div>
+          <div class="bar-label">Day 6</div>
+        </div>
+        <div class="bar" style="height: 42%; ">
+          <div class="bar-value">$290</div>
+          <div class="bar-label">Day 7</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Products & Orders -->
+    <div class="layout-2col">
+      <!-- Top Products -->
+      <div class="table-section">
+        <div class="table-header">
+          <h3>Top Products</h3>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Units Sold</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Handmade Ceramic Bowl</strong></td>
+              <td>12</td>
+              <td>$1,800</td>
+            </tr>
+            <tr>
+              <td><strong>Dinner Plate Set</strong></td>
+              <td>8</td>
+              <td>$960</td>
+            </tr>
+            <tr>
+              <td><strong>Coffee Mug (Speckled)</strong></td>
+              <td>18</td>
+              <td>$450</td>
+            </tr>
+            <tr>
+              <td><strong>Planter with Drainage</strong></td>
+              <td>6</td>
+              <td>$420</td>
+            </tr>
+            <tr>
+              <td><strong>Tea Pot (Grey Ash)</strong></td>
+              <td>3</td>
+              <td>$294</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Order Status Summary -->
+      <div class="table-section">
+        <div class="table-header">
+          <h3>Order Status</h3>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Count</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-blue">Pending</span></td>
+              <td><strong>3</strong></td>
+              <td><span class="trend up">↑ 1</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">Paid</span></td>
+              <td><strong>18</strong></td>
+              <td><span class="trend up">↑ 5</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">In Progress</span></td>
+              <td><strong>12</strong></td>
+              <td><span class="trend neutral">→ 0</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">Shipped</span></td>
+              <td><strong>14</strong></td>
+              <td><span class="trend up">↑ 8</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">Delivered</span></td>
+              <td><strong>0</strong></td>
+              <td><span class="trend neutral">→ 0</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="table-section">
+      <div class="table-header">
+        <h3>Recent Orders</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>#1047</strong></td>
+            <td>Sarah Johnson</td>
+            <td>$240</td>
+            <td><span class="badge badge-blue">Shipped</span></td>
+            <td>May 15, 2026</td>
+          </tr>
+          <tr>
+            <td><strong>#1046</strong></td>
+            <td>Michael Chen</td>
+            <td>$380</td>
+            <td><span class="badge badge-blue">In Progress</span></td>
+            <td>May 14, 2026</td>
+          </tr>
+          <tr>
+            <td><strong>#1045</strong></td>
+            <td>Emma Rodriguez</td>
+            <td>$520</td>
+            <td><span class="badge badge-blue">Paid</span></td>
+            <td>May 13, 2026</td>
+          </tr>
+          <tr>
+            <td><strong>#1044</strong></td>
+            <td>David Park</td>
+            <td>$340</td>
+            <td><span class="badge badge-blue">Delivered</span></td>
+            <td>May 12, 2026</td>
+          </tr>
+          <tr>
+            <td><strong>#1043</strong></td>
+            <td>Jessica Lee</td>
+            <td>$425</td>
+            <td><span class="badge badge-blue">Shipped</span></td>
+            <td>May 11, 2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
