@@ -30006,3 +30006,81 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   11 hours ago   Up 11 hours (healthy)   127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-17T23-27-33-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-27-33-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:27:51.740Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `acf7e2d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4472ms) _(showing tail — full 3,474B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d --build
+```
+STDOUT:
+```
+…   && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#13 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#13 CACHED
+
+#14 [builder 7/7] RUN npm run build
+#14 CACHED
+
+#15 [runner  3/14] RUN npm install -g prisma@5.14.0
+#15 CACHED
+
+#16 [deps 4/4] RUN npm install
+#16 CACHED
+
+#17 [runner  1/14] WORKDIR /app
+#17 CACHED
+
+#18 [runner  8/14] RUN chown nextjs:nodejs .next
+#18 CACHED
+
+#19 [builder 4/7] COPY . .
+#19 CACHED
+
+#20 [builder 5/7] RUN npx prisma generate
+#20 CACHED
+
+#21 [builder 6/7] RUN mkdir -p public
+#21 CACHED
+
+#22 [deps 3/4] COPY package.json ./
+#22 CACHED
+
+#23 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#23 CACHED
+
+#24 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#24 CACHED
+
+#25 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#25 CACHED
+
+#26 [runner  6/14] COPY --from=builder /app/public ./public
+#26 CACHED
+
+#27 [deps 1/4] RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#27 CACHED
+
+#28 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#28 CACHED
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 CACHED
+
+#30 exporting to image
+#30 exporting layers done
+#30 exporting manifest sha256:972f9a0108c2b99df2361aa576eef5eab8923bc176bd28ddc36996fec84b7c83 done
+#30 exporting config sha256:5eb93315c6f64cdd49839525306b7f6b1d1d9f5ef58447946f27ff718a5f9976 done
+#30 exporting attestation manifest sha256:3372f774f21cf151417ec2722717e629bff239209c622babb27c9fbf726c330a 0.0s done
+#30 exporting manifest list sha256:c9b37703022d796cee88535e98f2fceb745d722d519c218001945bb3a96d798e done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 DONE 0.1s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+```
+Full output: [`server-runs/2026-05-17T23-27-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-27-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
