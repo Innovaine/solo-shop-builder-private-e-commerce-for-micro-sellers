@@ -25687,3 +25687,18 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-17T06:17:56.797Z","responseTime":"194ms","checks":{"database":{"status":"ok","responseTime":"52ms"},"email":{"status":"ok","responseTime":"142ms"}}}OK
 ```
 Full output: [`server-runs/2026-05-17T06-17-56-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-17T06-17-56-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
+
+## 2026-05-17T06:27:54.345Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6b64914` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2821ms)
+```
+docker ps --format '.Names\t.Status\t.Ports'
+```
+STDOUT:
+```
+.Names	.Status	.Ports
+.Names	.Status	.Ports
+.Names	.Status	.Ports
+```
+Full output: [`server-runs/2026-05-17T06-27-54-app-docker-ps---format-.Names-t.Status-t.Por-1.log`](server-runs/2026-05-17T06-27-54-app-docker-ps---format-.Names-t.Status-t.Por-1.log)
