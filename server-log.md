@@ -25536,3 +25536,35 @@ DONE
 #15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-17T06-12-25-app-kill--0-cat-tmp-day43-build-v2.pid-2-dev-1.log`](server-runs/2026-05-17T06-12-25-app-kill--0-cat-tmp-day43-build-v2.pid-2-dev-1.log)
+
+## 2026-05-17T06:12:44.488Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8d4ae1c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3121ms)
+```
+grep -A 10 "Type error" /tmp/day43-build-v2.log | head -20
+```
+STDOUT:
+```
+#15 18.40 Type error: Property 'emailTemplate' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+#15 18.40 
+#15 18.40 [0m [90m 61 |[39m[0m
+#15 18.40 [0m [90m 62 |[39m     [90m// 5. Delete shop email templates[39m[0m
+#15 18.40 [0m[31m[1m>[22m[39m[90m 63 |[39m     [36mawait[39m prisma[33m.[39memailTemplate[33m.[39mdeleteMany({[0m
+#15 18.40 [0m [90m    |[39m                  [31m[1m^[22m[39m[0m
+#15 18.40 [0m [90m 64 |[39m       where[33m:[39m {[0m
+#15 18.40 [0m [90m 65 |[39m         shop[33m:[39m {[0m
+#15 18.40 [0m [90m 66 |[39m           sellerId[33m,[39m[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+--
+18.40 Type error: Property 'emailTemplate' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+18.40 
+18.40 [0m [90m 61 |[39m[0m
+18.40 [0m [90m 62 |[39m     [90m// 5. Delete shop email templates[39m[0m
+18.40 [0m[31m[1m>[22m[39m[90m 63 |[39m     [36mawait[39m prisma[33m.[39memailTemplate[33m.[39mdeleteMany({[0m
+18.40 [0m [90m    |[39m                  [31m[1m^[22m[39m[0m
+18.40 [0m [90m 64 |[39m       where[33m:[39m {[0m
+18.40 [0m [90m 65 |[39m         shop[33m:[39m {[0m
+```
+Full output: [`server-runs/2026-05-17T06-12-44-app-grep--A-10-Type-error-tmp-day43-build-v2-1.log`](server-runs/2026-05-17T06-12-44-app-grep--A-10-Type-error-tmp-day43-build-v2-1.log)

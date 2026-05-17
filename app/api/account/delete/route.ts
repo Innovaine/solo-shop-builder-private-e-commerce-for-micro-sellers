@@ -59,31 +59,21 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // 5. Delete shop email templates
-    await prisma.emailTemplate.deleteMany({
-      where: {
-        shop: {
-          sellerId,
-        },
-      },
-    })
-
-    // 6. Delete shops
+    // 5. Delete shops (email templates are part of shop table)
     await prisma.shop.deleteMany({
       where: {
         sellerId,
       },
     })
 
-    // 7. Delete webhooks (if any)
-    await prisma.webhook.deleteMany({
+    // 6. Delete auth tokens
+    await prisma.authToken.deleteMany({
       where: {
-        // Webhooks don't have direct seller relation, so we'll keep them for audit
-        // but in production you might want to filter by shopId if stored
+        sellerId,
       },
     })
 
-    // 8. Finally delete the seller account
+    // 7. Finally delete the seller account
     await prisma.seller.delete({
       where: {
         id: sellerId,

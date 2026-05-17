@@ -125,7 +125,6 @@ export async function POST(request: NextRequest) {
             where: { id: shopId },
             include: {
               seller: true,
-              emailTemplate: true,
             },
           })
 
@@ -148,7 +147,7 @@ Customer: ${customerName || customerEmail}`;
               shop.name,
               orderSummary,
               trackingUrl,
-              shop.emailTemplate?.template || null
+              shop.emailTemplateBody || null
             )
 
             // FR-15: Send notification email to seller
