@@ -24242,3 +24242,51 @@ echo $! > /tmp/day41-build.pid
 echo "Build started, PID=$(cat /tmp/day41-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T03:21:14.483Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2ebb876` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2060ms)
+```
+if [ -f /tmp/day41-build.pid ]; then
+  kill -0 $(cat /tmp/day41-build.pid) 2>/dev/null && echo "BUILDING (PID $(cat /tmp/day41-build.pid))" || echo "BUILD DONE OR FAILED"
+else
+  echo "No build PID file found"
+fi
+tail -30 /tmp/day41-build.log 2>/dev/null || echo "No build log yet"
+```
+STDOUT:
+```
+BUILDING (PID 1192766)
+#15 28.97 ├ ○ /auth/verify                             2.23 kB        89.2 kB
+#15 28.97 ├ ○ /checkout                                3.26 kB        90.2 kB
+#15 28.97 ├ ○ /checkout/success                        2.44 kB        89.4 kB
+#15 28.97 ├ ƒ /dashboard                               1.35 kB        95.1 kB
+#15 28.97 ├ ○ /dashboard/analytics                     2.62 kB        89.6 kB
+#15 28.97 ├ ○ /dashboard/billing                       2.39 kB        89.3 kB
+#15 28.97 ├ ○ /dashboard/branding                      3.36 kB        90.3 kB
+#15 28.97 ├ ○ /dashboard/create-shop                   3.06 kB          90 kB
+#15 28.97 ├ ○ /dashboard/email-template                3.12 kB        90.1 kB
+#15 28.97 ├ ○ /dashboard/orders                        3.32 kB        90.3 kB
+#15 28.97 ├ ○ /dashboard/products                      2.95 kB         103 kB
+#15 28.97 ├ ƒ /dashboard/products/[id]/edit            3 kB             90 kB
+#15 28.97 ├ ○ /dashboard/products/new                  3.24 kB         103 kB
+#15 28.97 ├ ○ /dashboard/profile                       3.11 kB        90.1 kB
+#15 28.97 ├ ○ /dashboard/settings                      2.84 kB        89.8 kB
+#15 28.97 ├ ƒ /shop/[slug]                             184 B          97.2 kB
+#15 28.97 ├ ƒ /shop/[slug]/product/[productId]         675 B          97.6 kB
+#15 28.97 └ ƒ /track/[orderId]                         2.1 kB         89.1 kB
+#15 28.97 + First Load JS shared by all                87 kB
+#15 28.97   ├ chunks/23-3795c35e0df914fe.js            31.4 kB
+#15 28.97   ├ chunks/fd9d1056-f9e28952edc350f2.js      53.6 kB
+#15 28.97   └ other shared chunks (total)              1.89 kB
+#15 28.97 
+#15 28.97 
+#15 28.97 ƒ Middleware                                 27.5 kB
+#15 28.97 
+#15 28.97 ○  (Static)   prerendered as static content
+#15 28.97 ƒ  (Dynamic)  server-rendered on demand
+#15 28.97 
+#15 DONE 29.1s
+```
+Full output: [`server-runs/2026-05-17T03-21-14-app-if--f-tmp-day41-build.pid-then-1.log`](server-runs/2026-05-17T03-21-14-app-if--f-tmp-day41-build.pid-then-1.log)
