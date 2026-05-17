@@ -23979,3 +23979,24 @@ Test 4: Verify token via POST
 {"success":true,"hasShop":false}
 ```
 Full output: [`server-runs/2026-05-17T02-23-47-app-TOKEN-docker-exec-solo-shop-builder-priv-1.log`](server-runs/2026-05-17T02-23-47-app-TOKEN-docker-exec-solo-shop-builder-priv-1.log)
+
+## 2026-05-17T02:24:08.901Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bdf2b0e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2341ms)
+```
+echo "Test 5: Create shop with session"
+curl -v -X POST http://localhost:3000/api/shops \
+  -H "Content-Type: application/json" \
+  -H "Cookie: soloshop_session=Fe26.2*1*d1142804e235f0e1dd5a72dd4370d702d93d8be13e350b9fa53debfad3906eb4*BdxxA74CjcPN28YGBE91fQ*PUrWqTglTu0f1SzhNcZzhYu4GGoazchZ3Bbt5-xBwKibLOsr8N3tJo1J6ap_IGqXD01u-GaCGmatgKgTEm3k9T7G_x7A1rZ_vxyX3_lQfmj3A73vTOfgXYmZCZjMKyLXdl5w3NJTujQAFdmp9dumtg*1780194227614*3eae7be3e21de03d6328b53dbb1fd90f485bac32aa7cb6f7e4118cacad698eed*uvtpBXFav_RacOCudDAGAOAeEbM0Vi--Kap2DfP7vwI~2" \
+  -d '{"name":"Flow Test Shop","slug":"flow-test-shop"}' 2>&1 | grep -E "HTTP|error|success|id|name|slug" | head -15
+```
+STDOUT:
+```
+Test 5: Create shop with session
+> POST /api/shops HTTP/1.1
+< HTTP/1.1 201 Created
+< x-request-id: umBNL9sXleswtPmh
+{"id":"c272e47b-ad7e-4f8d-a679-71207d5f0775","name":"Flow Test Shop","slug":"flow-test-shop","sellerId":"adaa5994-34b5-473e-8de2-39732f03ae87","description":null,"instagramUrl":null,"facebookUrl":null,"twitterUrl":null,"primaryColor":"#3B4C63","accentColor":"#10B981","logoUrl":null,"emailTemplateBody":null,"createdAt":"2026-05-17T02:24:09.192Z","updatedAt":"2026-05-17T02:24:09.192Z"}
+```
+Full output: [`server-runs/2026-05-17T02-24-08-app-echo-Test-5-Create-shop-with-session-1.log`](server-runs/2026-05-17T02-24-08-app-echo-Test-5-Create-shop-with-session-1.log)
