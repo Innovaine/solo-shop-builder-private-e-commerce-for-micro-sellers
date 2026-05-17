@@ -28480,3 +28480,40 @@ STDOUT:
 Tagline not found in storefront
 ```
 Full output: [`server-runs/2026-05-17T10-48-25-app-echo-FR-26-Shop-Branding-Tagline-Test-1.log`](server-runs/2026-05-17T10-48-25-app-echo-FR-26-Shop-Branding-Tagline-Test-1.log)
+
+## 2026-05-17T10:49:26.113Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dae75fd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2843ms)
+```
+echo "=== FR-23 & FR-24: Product Variants & Inventory Test ==="
+echo ""
+echo "Test 1: Variants API endpoint exists and returns proper structure"
+curl -sI http://localhost:3000/api/products/test-id/variants | grep "HTTP"
+echo ""
+
+echo "Test 2: Checkout validates variant availability"
+curl -s -X POST http://localhost:3000/api/checkout \
+  -H "Content-Type: application/json" \
+  -d '{"items":[{"productId":"test","variantId":"test","quantity":1}]}' \
+  | head -c 300
+echo ""
+echo ""
+
+echo "Test 3: Verify variant data structure in checkout code"
+grep -A 5 "variantId" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/api/checkout/route.ts | head -10
+echo ""
+```
+STDOUT:
+```
+=== FR-23 & FR-24: Product Variants & Inventory Test ===
+
+Test 1: Variants API endpoint exists and returns proper structure
+HTTP/1.1 200 OK
+
+Test 2: Checkout validates variant availability
+{"error":"Shop slug is required"}
+
+Test 3: Verify variant data structure in checkout code
+```
+Full output: [`server-runs/2026-05-17T10-49-26-app-echo-FR-23-FR-24-Product-Variants-Invent-1.log`](server-runs/2026-05-17T10-49-26-app-echo-FR-23-FR-24-Product-Variants-Invent-1.log)
