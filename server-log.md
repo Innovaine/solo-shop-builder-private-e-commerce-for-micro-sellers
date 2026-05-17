@@ -22094,3 +22094,17 @@ STDOUT:
   4 passed (1.5m)
 ```
 Full output: [`server-runs/2026-05-17T01-01-33-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log`](server-runs/2026-05-17T01-01-33-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log)
+
+## 2026-05-17T01:03:05.288Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `601c5e6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2429ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+cac504018013   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About an hour ago   Exited (137) 43 seconds ago             solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a350e89a9625   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago         Exited (0) 53 seconds ago               solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-17T01-03-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-03-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
