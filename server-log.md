@@ -24577,3 +24577,42 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-17T03:35:09.558Z","responseTime":"273ms","checks":{"database":{"status":"ok","responseTime":"53ms"},"email":{"status":"ok","responseTime":"220ms"}}}✓ Health check OK
 ```
 Full output: [`server-runs/2026-05-17T03-35-09-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-17T03-35-09-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-17T03:35:38.244Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fda5cdc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2148ms)
+```
+echo "=== Test 1: Login page loads ==="
+curl -sI http://localhost:3000/auth/login | head -5
+
+echo -e "\n=== Test 2: Homepage loads ==="
+curl -sI http://localhost:3000 | head -5
+
+echo -e "\n=== Test 3: Dashboard redirects correctly ==="
+curl -sI http://localhost:3000/dashboard | head -5
+```
+STDOUT:
+```
+=== Test 1: Login page loads ===
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: hbifejCyqIeM6cCJ
+
+=== Test 2: Homepage loads ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+
+=== Test 3: Dashboard redirects correctly ===
+HTTP/1.1 307 Temporary Redirect
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+Location: /auth/login
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+```
+Full output: [`server-runs/2026-05-17T03-35-38-app-echo-Test-1-Login-page-loads-1.log`](server-runs/2026-05-17T03-35-38-app-echo-Test-1-Login-page-loads-1.log)
