@@ -27464,3 +27464,35 @@ STDOUT:
 OK
 ```
 Full output: [`server-runs/2026-05-17T09-21-23-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-17T09-21-23-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-17T09:22:02.916Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7bd5d7f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2849ms)
+```
+echo "Test 1: Homepage"
+curl -sI http://localhost:3000 | head -1
+
+echo "Test 2: Login page"
+curl -sI http://localhost:3000/auth/login | head -1
+
+echo "Test 3: Shop storefront (non-existent)"
+curl -sI http://localhost:3000/shop/test-shop | head -1
+
+echo "Test 4: API endpoints"
+curl -sI http://localhost:3000/api/health | head -1
+curl -sI http://localhost:3000/api/products | head -1
+```
+STDOUT:
+```
+Test 1: Homepage
+HTTP/1.1 200 OK
+Test 2: Login page
+HTTP/1.1 200 OK
+Test 3: Shop storefront (non-existent)
+HTTP/1.1 200 OK
+Test 4: API endpoints
+HTTP/1.1 200 OK
+HTTP/1.1 400 Bad Request
+```
+Full output: [`server-runs/2026-05-17T09-22-02-app-echo-Test-1-Homepage-1.log`](server-runs/2026-05-17T09-22-02-app-echo-Test-1-Homepage-1.log)
