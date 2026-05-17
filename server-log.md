@@ -27650,3 +27650,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `4bb672a` so the server's `git pu
 cat /tmp/day47-smoke.log
 ```
 ERROR: command exited 1
+
+## 2026-05-17T09:48:14.989Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2f435f9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2661ms)
+```
+tail -500 /tmp/day47-smoke.log 2>&1 | head -200
+```
+STDOUT:
+```
+tail: cannot open '/tmp/day47-smoke.log' for reading: No such file or directory
+```
+Full output: [`server-runs/2026-05-17T09-48-14-app-tail--500-tmp-day47-smoke.log-2-1-head---1.log`](server-runs/2026-05-17T09-48-14-app-tail--500-tmp-day47-smoke.log-2-1-head---1.log)
