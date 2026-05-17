@@ -25729,3 +25729,19 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-17T06:29:41.147Z","responseTime":"234ms","checks":{"database":{"status":"ok","responseTime":"34ms"},"email":{"status":"ok","responseTime":"200ms"}}}OK
 ```
 Full output: [`server-runs/2026-05-17T06-29-41-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-17T06-29-41-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-17T06:30:38.541Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3979bd0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 6479ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day44-smoke.spec.ts --reporter=list > /tmp/day44-smoke.log 2>&1 &
+echo $! > /tmp/day44-smoke.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day44-smoke.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=1241087
+```
+Full output: [`server-runs/2026-05-17T06-30-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T06-30-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
