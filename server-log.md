@@ -23155,3 +23155,41 @@ Date: Sun, 17 May 2026 01:42:46 GMT
 Connection: keep-alive
 ```
 Full output: [`server-runs/2026-05-17T01-42-45-app-curl--s-http-localhost-3000-auth-login-2-1.log`](server-runs/2026-05-17T01-42-45-app-curl--s-http-localhost-3000-auth-login-2-1.log)
+
+## 2026-05-17T01:43:30.034Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6fc0375` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2654ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}"
+curl -sf http://localhost:3000/api/health | python3 -m json.tool
+echo "--- Pages check ---"
+curl -sI http://localhost:3000/ | head -1
+curl -sI http://localhost:3000/auth/login | head -1
+curl -sI http://localhost:3000/dashboard | head -1
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 2 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 39 minutes (healthy)
+{
+    "status": "ok",
+    "timestamp": "2026-05-17T01:43:30.087Z",
+    "responseTime": "190ms",
+    "checks": {
+        "database": {
+            "status": "ok",
+            "responseTime": "2ms"
+        },
+        "email": {
+            "status": "ok",
+            "responseTime": "188ms"
+        }
+    }
+}
+--- Pages check ---
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 307 Temporary Redirect
+```
+Full output: [`server-runs/2026-05-17T01-43-30-app-docker-ps---format-.Names-t-.Status-1.log`](server-runs/2026-05-17T01-43-30-app-docker-ps---format-.Names-t-.Status-1.log)
