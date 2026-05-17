@@ -27496,3 +27496,20 @@ HTTP/1.1 200 OK
 HTTP/1.1 400 Bad Request
 ```
 Full output: [`server-runs/2026-05-17T09-22-02-app-echo-Test-1-Homepage-1.log`](server-runs/2026-05-17T09-22-02-app-echo-Test-1-Homepage-1.log)
+
+## 2026-05-17T09:26:20.513Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cd30254` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3129ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --format '.Names\t.Status' && echo "---" && curl -sf http://localhost:3000/api/health -o /dev/null && echo "Health: OK" || echo "Health: FAIL"
+```
+STDOUT:
+```
+.Names	.Status
+.Names	.Status
+.Names	.Status
+---
+Health: OK
+```
+Full output: [`server-runs/2026-05-17T09-26-20-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-26-20-app-cd-solo-shop-builder-private-e-commerce--1.log)
