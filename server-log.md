@@ -27723,3 +27723,18 @@ _Pre-SSH: warehouse pushed to GitHub as commit `c5a3250` so the server's `git pu
 sudo rm -rf /tmp/playwright-test-results && cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && mkdir -p test-results/day-47 && PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day47-mvp-smoke.spec.ts --reporter=list 2>&1 | head -100
 ```
 ERROR: command exited 1
+
+## 2026-05-17T09:50:39.308Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7296168` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3843ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && mkdir -p ~/test-output && PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_HTML_REPORT=~/test-output/report npx playwright test tests/web/day47-mvp-smoke.spec.ts --output=~/test-output --reporter=list 2>&1 | head -150
+```
+STDOUT:
+```
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+Full output: [`server-runs/2026-05-17T09-50-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-50-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
