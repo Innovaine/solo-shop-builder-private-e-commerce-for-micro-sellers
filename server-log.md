@@ -29279,3 +29279,50 @@ STDOUT:
 FAIL
 ```
 Full output: [`server-runs/2026-05-17T12-13-58-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-17T12-13-58-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
+
+## 2026-05-17T12:15:30.300Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `47fd4a4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2833ms) _(showing tail — full 3,452B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps && docker compose logs --tail=50 app
+```
+STDOUT:
+```
+…app-1  | Invalid `prisma.shop.findFirst()` invocation:
+app-1  | 
+app-1  | 
+app-1  | The column `Shop.displayName` does not exist in the current database.
+app-1  |     at In.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6877)
+app-1  |     at In.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6211)
+app-1  |     at In.request (/app/node_modules/@prisma/client/runtime/library.js:122:5919)
+app-1  |     at async l (/app/node_modules/@prisma/client/runtime/library.js:127:11167)
+app-1  |     at async v (/app/.next/server/app/dashboard/page.js:1:10964) {
+app-1  |   code: 'P2022',
+app-1  |   clientVersion: '5.14.0',
+app-1  |   meta: { modelName: 'Shop', column: 'Shop.displayName' },
+app-1  |   digest: '2171152167'
+app-1  | }
+app-1  | prisma:error 
+app-1  | Invalid `prisma.shop.findFirst()` invocation:
+app-1  | 
+app-1  | 
+app-1  | The column `Shop.displayName` does not exist in the current database.
+app-1  | PrismaClientKnownRequestError: 
+app-1  | Invalid `prisma.shop.findFirst()` invocation:
+app-1  | 
+app-1  | 
+app-1  | The column `Shop.displayName` does not exist in the current database.
+app-1  |     at In.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6877)
+app-1  |     at In.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6211)
+app-1  |     at In.request (/app/node_modules/@prisma/client/runtime/library.js:122:5919)
+app-1  |     at async l (/app/node_modules/@prisma/client/runtime/library.js:127:11167)
+app-1  |     at async v (/app/.next/server/app/dashboard/page.js:1:10964) {
+app-1  |   code: 'P2022',
+app-1  |   clientVersion: '5.14.0',
+app-1  |   meta: { modelName: 'Shop', column: 'Shop.displayName' },
+app-1  |   digest: '2171152167'
+app-1  | }
+app-1  | {"requestId":"vvpMiADjjlYN-GfC","method":"GET","path":"/auth/login","responseTime":"0ms","timestamp":"2026-05-17T12:14:54.209Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+```
+Full output: [`server-runs/2026-05-17T12-15-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-15-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
