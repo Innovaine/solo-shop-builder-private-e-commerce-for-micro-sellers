@@ -28113,3 +28113,20 @@ STDOUT:
 ---
 ```
 Full output: [`server-runs/2026-05-17T10-20-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-20-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:21:45.424Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c0594ac` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3016ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la prisma/migrations/ | tail -5
+```
+STDOUT:
+```
+drwxrwxr-x 2 reviewer reviewer 4096 May 16 22:41 20260516_add_password_reset_fields
+drwxrwxr-x 2 reviewer reviewer 4096 May 16 22:41 20260516_add_seller_password_hash
+drwxrwxr-x 2 reviewer reviewer 4096 May 16 22:41 20260517_add_product_variants
+drwxrwxr-x 2 reviewer reviewer 4096 May 16 22:41 20260517_add_profile_branding_fields
+-rw-rw-r-- 1 reviewer reviewer  127 May 16 19:35 migration_lock.toml
+```
+Full output: [`server-runs/2026-05-17T10-21-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-21-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
