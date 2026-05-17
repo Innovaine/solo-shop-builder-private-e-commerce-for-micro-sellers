@@ -28045,3 +28045,24 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 53ms
 ```
 Full output: [`server-runs/2026-05-17T10-17-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-17-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:18:13.714Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `412f96e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 3245ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose exec app npx prisma db push
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+🚀  Your database is now in sync with your Prisma schema. Done in 133ms
+
+Running generate... (Use --skip-generate to skip the generators)
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-17T10-18-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-18-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
