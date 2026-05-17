@@ -24655,3 +24655,33 @@ sleep 2
 docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d postgres -c "SELECT id, email, verified FROM \"Seller\" LIMIT 5;" || echo "Query failed"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T03:37:12.736Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d94f265` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2348ms)
+```
+docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 --tail 30 2>&1 | tail -30
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+5 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+  - Network:      http://0.0.0.0:3000
+
+ ✓ Starting...
+ ✓ Ready in 53ms
+{"requestId":"-pj3ah0Mfaypgi5h","method":"GET","path":"/api/health","responseTime":"2ms","timestamp":"2026-05-17T03:35:09.203Z","userAgent":"curl/8.5.0"}
+{"requestId":"hbifejCyqIeM6cCJ","method":"HEAD","path":"/auth/login","responseTime":"1ms","timestamp":"2026-05-17T03:35:38.342Z","userAgent":"curl/8.5.0"}
+{"requestId":"iOCNFMX3xVc5WA2p","method":"POST","path":"/api/auth/login","responseTime":"1ms","timestamp":"2026-05-17T03:36:10.016Z","userAgent":"curl/8.5.0"}
+{"requestId":"r7084c4L0MxFhiS7","method":"POST","path":"/api/auth/signup","responseTime":"1ms","timestamp":"2026-05-17T03:36:10.052Z","userAgent":"curl/8.5.0"}
+```
+Full output: [`server-runs/2026-05-17T03-37-12-app-docker-logs-solo-shop-builder-private-e--1.log`](server-runs/2026-05-17T03-37-12-app-docker-logs-solo-shop-builder-private-e--1.log)
