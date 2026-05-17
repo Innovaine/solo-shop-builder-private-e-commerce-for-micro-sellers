@@ -28372,3 +28372,53 @@ Test 5: Checkout validates data (expects 400 or 401)
 {"error":"Cart is empty"}
 ```
 Full output: [`server-runs/2026-05-17T10-45-42-app-echo-Day-48-Manual-Smoke-Tests-1.log`](server-runs/2026-05-17T10-45-42-app-echo-Day-48-Manual-Smoke-Tests-1.log)
+
+## 2026-05-17T10:46:48.684Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a4b83c0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4212ms)
+```
+echo "=== FR-21: Password Authentication Deep Test ==="
+echo ""
+echo "Test: Signup with password, then login with password"
+EMAIL="passtest-$(date +%s)@example.com"
+PASSWORD="SecurePass123!"
+
+echo "1. Signup with password..."
+SIGNUP_RESP=$(curl -s -c /tmp/cookies-day48.txt -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"$EMAIL\",\"password\":\"$PASSWORD\"}")
+echo "$SIGNUP_RESP" | head -c 300
+echo ""
+echo ""
+
+echo "2. Login with same password..."
+LOGIN_RESP=$(curl -s -b /tmp/cookies-day48.txt -c /tmp/cookies-day48.txt \
+  -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"$EMAIL\",\"password\":\"$PASSWORD\"}")
+echo "$LOGIN_RESP" | head -c 300
+echo ""
+echo ""
+
+echo "3. Access protected route (should work if authenticated)..."
+curl -s -b /tmp/cookies-day48.txt http://localhost:3000/api/shops | head -c 300
+echo ""
+```
+STDOUT:
+```
+=== FR-21: Password Authentication Deep Test ===
+
+Test: Signup with password, then login with password
+1. Signup with password...
+{"message":"Magic link sent. Check your email."}
+
+
+2. Login with same password...
+{"message":"Login successful","seller":{"id":"9b1e2771-d9b6-4221-83d7-1937dbee4190","email":"passtest-1779014807@example.com"}}
+
+
+3. Access protected route (should work if authenticated)...
+[]
+```
+Full output: [`server-runs/2026-05-17T10-46-48-app-echo-FR-21-Password-Authentication-Deep--1.log`](server-runs/2026-05-17T10-46-48-app-echo-FR-21-Password-Authentication-Deep--1.log)
