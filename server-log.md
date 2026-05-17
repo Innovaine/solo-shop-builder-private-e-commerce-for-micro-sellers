@@ -26970,3 +26970,19 @@ STDOUT:
 Test started, PID=1256042
 ```
 Full output: [`server-runs/2026-05-17T07-54-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-54-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:55:45.831Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `adffadc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 13630ms)
+```
+sleep 10
+kill -0 $(cat /tmp/day46-mvp-test.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day46-mvp-test.log
+```
+STDOUT:
+```
+DONE
+nohup: failed to run command 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers': No such file or directory
+```
+Full output: [`server-runs/2026-05-17T07-55-45-app-sleep-10-1.log`](server-runs/2026-05-17T07-55-45-app-sleep-10-1.log)
