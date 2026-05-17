@@ -30375,3 +30375,57 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-bu
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   11 hours ago    Up 11 hours (healthy)   127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-17T23-34-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-34-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:34:45.487Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `681875f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 7, 2563ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=40 && echo "=== HEALTH CHECK ===" && curl -sf http://localhost:3000/api/health && echo " OK"
+```
+STDOUT:
+```
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 6 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 62ms
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 6 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  | ┌─────────────────────────────────────────────────────────┐
+app-1  | │  Update available 5.14.0 -> 7.8.0                       │
+app-1  | │                                                         │
+app-1  | │  This is a major update - please follow the guide at    │
+app-1  | │  https://pris.ly/d/major-version-upgrade                │
+app-1  | │                                                         │
+app-1  | │  Run the following to update                            │
+app-1  | │    npm i -g prisma@latest                               │
+app-1  | │    npm i @prisma/client@latest                          │
+app-1  | └─────────────────────────────────────────────────────────┘
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 51ms
+=== HEALTH CHECK ===
+```
+ERROR: command exited 7
+Full output: [`server-runs/2026-05-17T23-34-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-34-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
