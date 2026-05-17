@@ -25352,3 +25352,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `bb866c9` so the server's `git pu
 docker ps --format '.Names\t.Status\t.Ports' | grep solo-shop
 ```
 ERROR: command exited 1
+
+## 2026-05-17T06:02:23.477Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e960da8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2460ms)
+```
+docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+6b4e17300521   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   10 minutes ago   Up 9 minutes           127.0.0.1:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+b803316c2c9d   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago      Up 2 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-17T06-02-23-app-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-17T06-02-23-app-docker-ps--a-grep-solo-shop-1.log)
