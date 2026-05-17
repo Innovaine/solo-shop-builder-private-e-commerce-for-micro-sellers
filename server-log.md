@@ -28317,3 +28317,58 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 ls -la tests/web/day48-*.spec.ts
 ```
 ERROR: command exited 2
+
+## 2026-05-17T10:45:43.011Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cd56ae0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3753ms)
+```
+echo "=== Day 48 Manual Smoke Tests ==="
+echo ""
+echo "Test 1: Password auth signup accepts password field"
+curl -s -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"pwtest@example.com","password":"TestPass123!"}' \
+  | head -c 200
+echo ""
+echo ""
+echo "Test 2: Password reset endpoint exists"
+curl -sI http://localhost:3000/auth/forgot-password | head -1
+echo ""
+echo "Test 3: Branding endpoint accepts tagline"
+curl -s -X PUT http://localhost:3000/api/shops/branding \
+  -H "Content-Type: application/json" \
+  -d '{"tagline":"Test tagline"}' \
+  | head -c 200
+echo ""
+echo ""
+echo "Test 4: Product variants endpoint structure"
+curl -sI http://localhost:3000/api/products/test/variants | head -1
+echo ""
+echo "Test 5: Checkout validates data (expects 400 or 401)"
+curl -s -X POST http://localhost:3000/api/checkout \
+  -H "Content-Type: application/json" \
+  -d '{"items":[]}' \
+  | head -c 200
+echo ""
+```
+STDOUT:
+```
+=== Day 48 Manual Smoke Tests ===
+
+Test 1: Password auth signup accepts password field
+{"message":"Magic link sent. Check your email."}
+
+Test 2: Password reset endpoint exists
+HTTP/1.1 200 OK
+
+Test 3: Branding endpoint accepts tagline
+
+
+Test 4: Product variants endpoint structure
+HTTP/1.1 200 OK
+
+Test 5: Checkout validates data (expects 400 or 401)
+{"error":"Cart is empty"}
+```
+Full output: [`server-runs/2026-05-17T10-45-42-app-echo-Day-48-Manual-Smoke-Tests-1.log`](server-runs/2026-05-17T10-45-42-app-echo-Day-48-Manual-Smoke-Tests-1.log)
