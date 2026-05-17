@@ -23670,3 +23670,19 @@ STDOUT:
 {"message":"Magic link sent. Check your email."}
 ```
 Full output: [`server-runs/2026-05-17T02-16-18-app-curl--s--X-POST-http-localhost-3000-api--1.log`](server-runs/2026-05-17T02-16-18-app-curl--s--X-POST-http-localhost-3000-api--1.log)
+
+## 2026-05-17T02:16:37.895Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `abc4eeb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2235ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT token FROM \"AuthToken\" WHERE \"sellerId\" = (SELECT id FROM \"Seller\" WHERE email = 'bugtest@example.com') ORDER BY \"createdAt\" DESC LIMIT 1;"
+```
+STDOUT:
+```
+              token               
+----------------------------------
+ 0pK1Wkfe2rwk0xvvok259XSaVlX8tfGj
+(1 row)
+```
+Full output: [`server-runs/2026-05-17T02-16-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-16-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
