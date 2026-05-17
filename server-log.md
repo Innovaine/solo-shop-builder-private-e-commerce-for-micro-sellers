@@ -28574,3 +28574,19 @@ echo $! > /tmp/build.pid
 echo "Started build, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T11:14:32.774Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f9b565c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2727ms)
+```
+docker ps
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED             STATUS                 PORTS                      NAMES
+24c7492f909a   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About an hour ago   Up 56 minutes          127.0.0.1:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+b803316c2c9d   postgres:16-alpine                                           "docker-entrypoint.s…"   7 hours ago         Up 7 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+2967d9e0bd67   traefik:latest                                               "/entrypoint.sh --ap…"   8 hours ago         Up 7 hours                                        traefik-vwiz-traefik-1
+```
+Full output: [`server-runs/2026-05-17T11-14-32-app-docker-ps-1.log`](server-runs/2026-05-17T11-14-32-app-docker-ps-1.log)
