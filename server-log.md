@@ -27291,3 +27291,19 @@ Fast-forward
  create mode 100644 tests/web/day46-mvp-complete.spec.ts
 ```
 Full output: [`server-runs/2026-05-17T08-56-01-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T08-56-01-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T09:13:01.764Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f66c7ce` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2876ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day47-build.log 2>&1 &
+echo $! > /tmp/day47-build.pid
+echo "Started build, PID=$(cat /tmp/day47-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=1266632
+```
+Full output: [`server-runs/2026-05-17T09-13-01-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-13-01-app-cd-solo-shop-builder-private-e-commerce--1.log)
