@@ -22881,3 +22881,12 @@ time="2026-05-17T01:04:09Z" level=warning msg="/home/tester/solo-shop-builder-pr
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-17T01-35-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-35-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:36:06.415Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bd6f2c7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2059ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose logs --tail=50 app
+```
