@@ -30442,3 +30442,16 @@ STDOUT:
 Health check failed
 ```
 Full output: [`server-runs/2026-05-17T23-35-09-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-17T23-35-09-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
+
+## 2026-05-17T23:35:43.748Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4a3a34a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3059ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec app netstat -tlnp 2>/dev/null | grep 3000 || docker compose exec app ss -tlnp 2>/dev/null | grep 3000 || echo "Port 3000 not listening"
+```
+STDOUT:
+```
+Port 3000 not listening
+```
+Full output: [`server-runs/2026-05-17T23-35-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-35-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
