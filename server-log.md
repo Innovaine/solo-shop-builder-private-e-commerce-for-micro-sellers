@@ -29148,3 +29148,23 @@ STDOUT:
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-17T12-09-46-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-17T12-09-46-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+
+## 2026-05-17T12:10:15.983Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6e554f0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4513ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose run --rm app npx prisma migrate deploy
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+5 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+```
+Full output: [`server-runs/2026-05-17T12-10-15-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-10-15-app-cd-solo-shop-builder-private-e-commerce--1.log)
