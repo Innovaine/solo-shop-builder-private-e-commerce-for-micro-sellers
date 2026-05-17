@@ -26706,3 +26706,16 @@ STDOUT:
   Task #83: ✅ COMPLETE
 ```
 Full output: [`server-runs/2026-05-17T07-48-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-48-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:50:50.297Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3a18943` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2931ms)
+```
+docker ps --format '.Names\t.Status' | grep solo-shop || echo "--- No containers running"
+```
+STDOUT:
+```
+--- No containers running
+```
+Full output: [`server-runs/2026-05-17T07-50-50-app-docker-ps---format-.Names-t.Status-grep--1.log`](server-runs/2026-05-17T07-50-50-app-docker-ps---format-.Names-t.Status-grep--1.log)
