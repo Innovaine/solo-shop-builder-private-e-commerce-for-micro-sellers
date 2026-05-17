@@ -1,42 +1,46 @@
 # Day 41 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 89
-- **Saved:** 17/05/2026, 6:11:51 AM
+- **Cycle:** 90
+- **Saved:** 17/05/2026, 6:28:34 AM
 
 ---
 
 FINISHED:
-- Repo initialized with Docker, env config, and root API scaffolding (app/api/account/password, app/api/analytics stubs exist)
-- 41 tasks closed across 64 prior cycles — institutional muscle memory for shipping exists
-- Day 40 state: 18 open, 1 in-progress (FR-21–FR-25 test suite); no blockers reported
+- Docker image builds (Dockerfile + .dockerignore in place)
+- Environment scaffolding (.env.example, .qadar-* config files)
+- Auth route skeleton (app/api/account/password/route.ts exists)
+- Analytics + deployment docs (DEPLOYMENT.md + README.md)
+- 40 tasks closed across 64 cycles (strong velocity baseline)
 
 PENDING:
-- #82: Docker build blocker (missing dynamic exports) — unblocks everything downstream
-- #59: Import path corrections in checkout + orders pages — payment flow currently broken
-- #123: Login bug assigned to Anil — affects F1 (magic link signup)
-- #106: Redeploy day 29 features (F31–F40) — 10 features waiting for infra confirmation
-- #105: FR-21–FR-25 test suite in-progress with Priya — password auth, webhook, refund, CSV not yet verified
+- #82: Docker build blocker — 3 missing dynamic exports (blocks all deploys)
+- #59: Import path errors in checkout + orders pages (blocks payment flow)
+- #123: Login bug in progress (Anil) — status unknown
+- #105: FR-21 through FR-25 tests in progress (Priya) — status unknown
+- #124: Dashboard error assigned to Anil — status unknown
+- No Playwright test suite written yet (#74 open)
+- No verified end-to-end flow (#80, #76 both open — CEO demo not yet signed off)
 
 TODAY'S WORK STREAMS:
 
-- **Stream 1 (engineer):** Fix #82 (Docker blockers) and #59 (import paths) first thing — these unblock payment. Then attack #77 (FR-1 through FR-10: auth → shop → products → cart → checkout → orders backend in parallel). Anil should ship login, shop creation, product CRUD API, and cart/checkout payload handlers today. Reference: #77, #82, #59.
+- **Stream 1 (engineer):** Fix #82 (Docker dynamic exports) + #59 (import paths) first to unblock deploy, then attack #77 (FR-1 to FR-10: auth + shop + products + cart + checkout + orders backend) and #78 (FR-11 to FR-20: dashboard + tracking + emails). Target shipping auth, product CRUD, and Stripe webhook wiring by EOD.
 
-- **Stream 2 (designer):** Ship mockups for #60 (product CRUD UI), #65 (verify page + product management layout), and #63 (category dropdown) in parallel. These unblock frontend engineer once Anil confirms API contracts. Target: design/pages/product-form.html, design/pages/verify-email.html, design/pages/product-list.html.
+- **Stream 2 (designer):** Ship verify page (#65), product management UI (#65), and storefront product list (#47). These three pages are the critical path for sellers to create + sell. Publish as design/pages/verify.html, design/pages/product-management.html, design/pages/storefront.html.
 
-- **Stream 3 (tester):** Write Playwright test scaffolds for #74 (all 20 MVP features F1–F20) in parallel with engineer shipping. Don't wait for every API to be done — test the happy path signup → shop → product listing first, then expand. Reference: #74, #66 (product CRUD + category filter tests).
+- **Stream 3 (tester):** Write Playwright tests for #77 (auth signup + shop creation), #61 (image upload), #60 (product CRUD), and #64 (category filter). Tests should verify the happy path: seller signs up → creates shop → uploads product with image → sees it on storefront. Reference FR-1, FR-2, FR-3, FR-4, FR-6, FR-7.
 
-- **Stream 4 (reviewer):** Verify #82 Docker fix (confirm all exports present, image builds cleanly), then code-review #77 payload handlers (checkout webhook, order creation) before deployment. Watch import paths in #59 are corrected end-to-end.
+- **Stream 4 (reviewer):** Verify #82 and #59 fixes compile + deploy cleanly, then review #77 and #78 PRs for schema correctness (order table, webhook handler, status enum). One review per feature block, not per commit.
 
-- **Stream 5 (requirements):** Confirm with Kenji: Do we have Stripe test keys live? Does day 40 #105 (password auth tests) need to ship before checkout tests run, or can they run in parallel? One blocker per role maximum.
+- **Stream 5 (requirements):** Confirm with Kenji: are FR-1 through FR-20 the only scope for this week, or does CEO demo require FR-21+ (password auth, refunds)? If demo is signup-only, unblock Priya from #105.
 
 ROLE PLAN:
-- engineering: YES — Docker blocker (#82) and import paths (#59) are killing velocity; Anil can ship 5 backend supertasks in parallel today if unblocked.
-- review: YES — Payment flow (#59, #77) needs verification before demo; Docker fix (#82) must be validated before redeploy attempt.
-- design: YES — Frontend is waiting on #60, #65, #63 mockups; Chiara can ship 3 page layouts today in parallel while engineer builds APIs.
-- test: YES — #74 test scaffold can run alongside engineer's API work; Priya validates #105 (password auth) finish, then pivots to MVP feature tests.
-- requirements: YES — Unblock Kenji to confirm Stripe environment + day 40 rollover status so no surprises mid-week.
-- design_qa: NO — Design fidelity check comes after Chiara ships mockups; premature today.
+- engineering: YES — unblock Docker + imports, then ship backend for auth + products + orders in parallel; 60–80 tool calls available
+- review: YES — verify deployment fix and core backend PRs before merge
+- design: YES — three critical UI pages (verify, product-management, storefront) ship in parallel with backend
+- test: YES — Playwright suite for MVP features (FR-1 to FR-10) must land same day as backend
+- design_qa: NO — no design fidelity issues logged yet; bring in after Chiara ships mockups if needed
+- requirements: YES — one clarification call on scope (is week 1 FR-1–20 or FR-1–25?) before tester writes tests for stretch features
 
 ONE-LINE SUMMARY:
-Today the team unblocks Docker + import paths, ships 5 backend supertasks (auth through orders), 3 frontend page layouts, and MVP test scaffold in parallel.
+Today the team unblocks Docker + imports, ships backend for signup + shop + products + Stripe, ships verify + product UI pages, and writes Playwright tests for the full signup-to-order flow — all in parallel.
