@@ -28281,3 +28281,29 @@ kill -0 $(cat /tmp/day48-tests-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DO
 tail -100 /tmp/day48-tests-v2.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-17T10:33:26.734Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b977f8d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2925ms)
+```
+kill -0 $(cat /tmp/day48-tests-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-17T10-33-26-app-kill--0-cat-tmp-day48-tests-v2.pid-2-dev-1.log`](server-runs/2026-05-17T10-33-26-app-kill--0-cat-tmp-day48-tests-v2.pid-2-dev-1.log)
+
+## 2026-05-17T10:42:35.041Z — Priya ran 1 command(s)
+### Command 1 on app as tester (✓ exit 0, 3095ms)
+```
+cat /tmp/day48-tests-v2.log
+```
+STDOUT:
+```
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+Full output: [`server-runs/2026-05-17T10-42-35-app-cat-tmp-day48-tests-v2.log-1.log`](server-runs/2026-05-17T10-42-35-app-cat-tmp-day48-tests-v2.log-1.log)
