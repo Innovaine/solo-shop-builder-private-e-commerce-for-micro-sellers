@@ -30582,3 +30582,21 @@ fi
 echo "✓ Ready to run tests"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T23:57:41.871Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b1a990b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3984ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Check if we can reach the app via container network
+docker compose exec -T postgres wget -q -O- http://app:3000/api/health 2>&1 | head -20 || echo "Cannot reach app from postgres"
+# Check if port 3000 is published anywhere
+docker ps | grep app
+```
+STDOUT:
+```
+time="2026-05-17T23:57:41Z" level=warning msg="/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+{"status":"ok","timestamp":"2026-05-17T23:57:41.988Z","responseTime":"202ms","checks":{"database":{"status":"ok","responseTime":"40ms"},"email":{"status":"ok","responseTime":"162ms"}}}8cfd83d44184   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   29 minutes ago   Up 23 minutes           3000/tcp                   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+```
+Full output: [`server-runs/2026-05-17T23-57-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-57-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
