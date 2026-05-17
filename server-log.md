@@ -22016,3 +22016,35 @@ STDOUT:
     ../../../tmp/playwright-test-results/day37-password-auth-FR-21--55c17-as-password-input-and-works-chromium/test-failed-1.png
 ```
 Full output: [`server-runs/2026-05-17T01-00-12-app-tail--100-tmp-day37-pw.log-grep--E-passe-1.log`](server-runs/2026-05-17T01-00-12-app-tail--100-tmp-day37-pw.log-grep--E-passe-1.log)
+
+## 2026-05-17T01:00:36.085Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0bed4a0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2034ms)
+```
+tail -20 /tmp/day37-pw.log
+```
+STDOUT:
+```
+    [2m  - waiting for locator('input[type="password"][name="password"]')[22m
+
+
+       7 |     // Should have password input field
+       8 |     const passwordInput = page.locator('input[type="password"][name="password"]');
+    >  9 |     await expect(passwordInput).toBeVisible();
+         |                                 ^
+      10 |     
+      11 |     // Should have email input
+      12 |     const emailInput = page.locator('input[type="email"][name="email"]');
+        at /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day37-password-auth.spec.ts:9:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../tmp/playwright-test-results/day37-password-auth-FR-21--55c17-as-password-input-and-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../tmp/playwright-test-results/day37-password-auth-FR-21--55c17-as-password-input-and-works-chromium/error-context.md
+
+
+[1A[2K[12/17] [chromium] › tests/web/day37-password-auth.spec.ts:55:7 › FR-21: Password Authentication › settings page has password change option
+```
+Full output: [`server-runs/2026-05-17T01-00-36-app-tail--20-tmp-day37-pw.log-1.log`](server-runs/2026-05-17T01-00-36-app-tail--20-tmp-day37-pw.log-1.log)
