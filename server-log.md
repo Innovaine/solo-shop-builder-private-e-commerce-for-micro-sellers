@@ -28711,3 +28711,29 @@ STDOUT:
 Health check failed
 ```
 Full output: [`server-runs/2026-05-17T11-17-45-app-sleep-5-curl--sf-http-localhost-3000-hea-1.log`](server-runs/2026-05-17T11-17-45-app-sleep-5-curl--sf-http-localhost-3000-hea-1.log)
+
+## 2026-05-17T11:18:07.456Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3f4742b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2887ms)
+```
+docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 2>&1 | tail -80
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+5 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+  - Network:      http://0.0.0.0:3000
+
+ ✓ Starting...
+ ✓ Ready in 51ms
+```
+Full output: [`server-runs/2026-05-17T11-18-07-app-docker-logs-solo-shop-builder-private-e--1.log`](server-runs/2026-05-17T11-18-07-app-docker-logs-solo-shop-builder-private-e--1.log)
