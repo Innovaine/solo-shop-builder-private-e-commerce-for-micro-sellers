@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Select Options — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    
+    .header { text-align: center; margin-bottom: 48px; }
+    .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .header p { color: #64748B; font-size: 14px; }
+    
+    .checkout-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    
+    .checkout-form { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 32px; }
+    .checkout-summary { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 32px; height: fit-content; position: sticky; top: 24px; }
+    
+    h2 { font-size: 18px; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    h3 { font-size: 14px; font-weight: 600; color: #1F2937; margin: 24px 0 16px; }
+    
+    .step-number { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #3B4C63; color: white; border-radius: 50%; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    
+    .form-group { margin-bottom: 24px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input[type="text"], input[type="email"], input[type="tel"], select { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus, select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    input::placeholder { color: #94A3B8; }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    /* Variant Selection */
+    .variant-group { margin-bottom: 24px; }
+    .variant-label { display: block; font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 12px; }
+    .variant-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .variant-option { 
+      border: 2px solid #E2E8F0; 
+      padding: 12px 16px; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      background: white; 
+      font-size: 14px; 
+      font-weight: 500; 
+      color: #64748B; 
+      transition: all 0.2s;
+    }
+    .variant-option:hover { border-color: #CBD5E1; background: #F9FAFB; }
+    .variant-option.selected { border-color: #3B4C63; background: #3B4C63; color: white; }
+    .variant-option:disabled { cursor: not-allowed; opacity: 0.5; border-style: dashed; }
+    
+    /* Summary */
+    .summary-section { border-bottom: 1px solid #E2E8F0; padding-bottom: 20px; margin-bottom: 20px; }
+    .summary-section:last-child { border-bottom: none; }
+    
+    .product-summary { display: flex; gap: 16px; margin-bottom: 20px; }
+    .product-image { width: 80px; height: 80px; background: #E2E8F0; border-radius: 6px; flex-shrink: 0; }
+    .product-info { flex: 1; }
+    .product-name { font-weight: 600; color: #1F2937; margin-bottom: 4px; }
+    .product-meta { font-size: 12px; color: #64748B; margin-bottom: 8px; }
+    
+    .item-row { display: flex; justify-content: space-between; font-size: 14px; color: #1F2937; margin-bottom: 8px; }
+    .item-row.total { font-weight: 700; color: #3B4C63; border-top: 2px solid #E2E8F0; padding-top: 12px; margin-top: 12px; }
+    .item-price { font-weight: 500; }
+    
+    .variants-list { font-size: 12px; color: #64748B; list-style: none; margin: 8px 0 0 0; padding: 0; }
+    .variants-list li { margin: 4px 0; }
+    .variants-list li:before { content: "• "; color: #3B4C63; }
+    
+    .button-group { display: flex; gap: 12px; margin-top: 32px; }
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-primary:disabled { background: #D1D5DB; cursor: not-allowed; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    
+    .info-box { background: #D1E9F6; border: 1px solid #7DD3FC; border-radius: 6px; padding: 12px 16px; margin-bottom: 24px; font-size: 13px; color: #0C4A6E; }
+    .info-box.error { background: #FEE2E2; border-color: #FECDD3; color: #991B1B; }
+    
+    .stock-warning { padding: 12px 16px; background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; margin-top: 12px; font-size: 13px; color: #92400E; }
+    
+    @media (max-width: 768px) {
+      .checkout-layout { grid-template-columns: 1fr; }
+      .checkout-summary { position: static; }
+      .product-image { width: 60px; height: 60px; }
+      .button-group { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Checkout</h1>
+      <p>Step 1 of 2: Select product options</p>
+    </div>
+
+    <div class="checkout-layout">
+      <!-- Left: Form -->
+      <div class="checkout-form">
+        <h2>
+          <span class="step-number">1</span>
+          Product Options
+        </h2>
+
+        <div class="info-box">
+          ℹ️ Please select your preferred options below. Availability updates in real-time.
+        </div>
+
+        <!-- Size Variant -->
+        <div class="variant-group">
+          <label class="variant-label">Size <span style="color: #F43F5E;">*</span></label>
+          <div class="variant-options">
+            <button type="button" class="variant-option">Small</button>
+            <button type="button" class="variant-option selected">Medium</button>
+            <button type="button" class="variant-option">Large</button>
+            <button type="button" class="variant-option">Extra Large</button>
+          </div>
+          <div class="form-hint">Measured flat. Check our size guide for details.</div>
+        </div>
+
+        <!-- Color Variant -->
+        <div class="variant-group">
+          <label class="variant-label">Color <span style="color: #F43F5E;">*</span></label>
+          <div class="variant-options">
+            <button type="button" class="variant-option">White</button>
+            <button type="button" class="variant-option selected">Grey</button>
+            <button type="button" class="variant-option">Black</button>
+            <button type="button" class="variant-option">Terracotta</button>
+          </div>
+        </div>
+
+        <!-- Material Variant (Optional) -->
+        <div class="variant-group">
+          <label class="variant-label">Material <span style="color: #94A3B8;">(optional)</span></label>
+          <div class="variant-options">
+            <button type="button" class="variant-option selected">Ceramic</button>
+            <button type="button" class="variant-option">Porcelain</button>
+            <button type="button" class="variant-option">Stoneware</button>
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <select id="quantity">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10+</option>
+          </select>
+        </div>
+
+        <!-- Stock Status -->
+        <div style="padding: 12px 16px; background: #D1FAE5; border: 1px solid #86EFAC; border-radius: 6px; font-size: 13px; color: #065F46;">
+          ✓ Medium + Grey + Ceramic: <strong>12 in stock</strong>
+        </div>
+
+        <div class="button-group">
+          <button class="btn-primary">Continue to Shipping</button>
+          <button class="btn-secondary">Continue Shopping</button>
+        </div>
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div class="checkout-summary">
+        <h2>
+          <span class="step-number">📦</span>
+          Order Summary
+        </h2>
+
+        <div class="summary-section">
+          <div class="product-summary">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <div class="product-name">Ceramic Dinner Plate</div>
+              <div class="product-meta">By Artisan Ceramics Studio</div>
+              <ul class="variants-list">
+                <li>Size: Medium</li>
+                <li>Color: Grey</li>
+                <li>Material: Ceramic</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <span>Price</span>
+            <span class="item-price">$48.00</span>
+          </div>
+          <div class="item-row">
+            <span>Quantity</span>
+            <span class="item-price">1</span>
+          </div>
+          <div class="item-row">
+            <span>Subtotal</span>
+            <span class="item-price">$48.00</span>
+          </div>
+        </div>
+
+        <div class="summary-section">
+          <h3 style="margin: 0 0 12px;">Estimated Total</h3>
+          <div class="item-row total">
+            <span>Total</span>
+            <span>$48.00</span>
+          </div>
+          <div class="form-hint" style="margin-top: 8px;">Shipping & tax calculated next step.</div>
+        </div>
+
+        <div class="summary-section">
+          <div class="info-box">
+            ℹ️ All prices include applicable taxes. Secure payment powered by Stripe.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

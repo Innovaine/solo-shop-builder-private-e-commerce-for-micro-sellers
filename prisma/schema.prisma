@@ -44,6 +44,7 @@ model Shop {
   primaryColor      String?  @default("#3B4C63") // Default: Slate Blue
   accentColor       String?  @default("#10B981") // Default: Emerald
   logoUrl           String?
+  tagline           String?  @db.VarChar(100) // FR-26: Shop tagline (max 100 chars)
   
   // FR-35: Email template customization
   emailTemplateBody String?  @db.Text // Custom order confirmation email body

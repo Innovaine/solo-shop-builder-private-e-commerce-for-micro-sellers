@@ -50,6 +50,9 @@ export async function POST(request: NextRequest) {
         id: { in: productIds },
         shopId: shop.id,
       },
+      include: {
+        variants: true,
+      },
     })
 
     if (products.length !== productIds.length) {
@@ -60,31 +63,63 @@ export async function POST(request: NextRequest) {
     }
 
     // Build line items for Stripe checkout
-    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map((item: any) => {
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = []
+    
+    for (const item of items) {
       const product = products.find((p) => p.id === item.productId)
       
       if (!product) {
         throw new Error(`Product ${item.productId} not found`)
       }
 
-      // Verify price matches (prevent client-side price tampering)
-      if (product.price !== item.price) {
-        throw new Error(`Price mismatch for product ${product.title}`)
+      let finalPrice = product.price
+      let productName = product.title
+      let stockAvailable = product.stock
+
+      // Handle variant if specified
+      if (item.variantId) {
+        const variant = product.variants.find((v) => v.id === item.variantId)
+        if (!variant) {
+          throw new Error(`Variant ${item.variantId} not found for product ${product.title}`)
+        }
+        
+        // Use variant price if set, otherwise fall back to product price
+        finalPrice = variant.price ?? product.price
+        productName = `${product.title} - ${variant.name}: ${variant.value}`
+        stockAvailable = variant.stock
       }
 
-      return {
+      // Check stock availability (FR-24: inventory tracking)
+      if (stockAvailable < item.quantity) {
+        throw new Error(`Insufficient stock for ${productName}. Available: ${stockAvailable}, requested: ${item.quantity}`)
+      }
+
+      // Verify price matches (prevent client-side price tampering)
+      if (finalPrice !== item.price) {
+        throw new Error(`Price mismatch for ${productName}`)
+      }
+
+      lineItems.push({
         price_data: {
           currency: 'usd',
           product_data: {
-            name: product.title,
+            name: productName,
             description: product.description || undefined,
             images: product.imageUrl ? [product.imageUrl] : undefined,
           },
-          unit_amount: product.price, // Price in cents
+          unit_amount: finalPrice, // Price in cents
         },
         quantity: item.quantity,
-      }
-    })
+      })
+    }
+
+    // Store cart items in metadata for webhook processing
+    // (we'll need product/variant IDs to decrement stock)
+    const cartMetadata = items.map((item: any) => ({
+      productId: item.productId,
+      variantId: item.variantId || null,
+      quantity: item.quantity,
+    }))
 
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
@@ -97,6 +132,7 @@ export async function POST(request: NextRequest) {
       metadata: {
         shopId: shop.id,
         shopSlug: shop.slug,
+        cartItems: JSON.stringify(cartMetadata), // Store for stock decrementing
       },
     })
 

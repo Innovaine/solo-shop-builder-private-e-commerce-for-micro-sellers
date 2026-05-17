@@ -6,12 +6,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { nanoid } from 'nanoid'
+import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/db'
 import { sendMagicLinkEmail } from '@/lib/email'
 import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
 
 const signupSchema = z.object({
   email: z.string().email('Invalid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters').optional(),
 })
 
 export async function POST(request: NextRequest) {
@@ -34,7 +36,7 @@ export async function POST(request: NextRequest) {
     }
     
     const body = await request.json()
-    const { email } = signupSchema.parse(body)
+    const { email, password } = signupSchema.parse(body)
 
     // Find or create seller
     let seller = await prisma.seller.findUnique({
@@ -42,8 +44,23 @@ export async function POST(request: NextRequest) {
     })
 
     if (!seller) {
+      // Hash password if provided (NFR-4: bcrypt min 12 rounds)
+      const passwordHash = password 
+        ? await bcrypt.hash(password, 12)
+        : null
+
       seller = await prisma.seller.create({
-        data: { email },
+        data: { 
+          email,
+          passwordHash,
+        },
+      })
+    } else if (password && !seller.passwordHash) {
+      // If seller exists but no password set yet, allow setting it
+      const passwordHash = await bcrypt.hash(password, 12)
+      seller = await prisma.seller.update({
+        where: { id: seller.id },
+        data: { passwordHash },
       })
     }
 

@@ -27,7 +27,7 @@ export async function PATCH(req: NextRequest) {
 
     // Parse request body
     const body = await req.json();
-    const { primaryColor, accentColor, logoUrl } = body;
+    const { primaryColor, accentColor, logoUrl, tagline } = body;
 
     // Validate color format
     const colorRegex = /^#[0-9A-Fa-f]{6}$/;
@@ -62,6 +62,14 @@ export async function PATCH(req: NextRequest) {
       }
     }
 
+    // Validate tagline length (FR-26: max 100 chars)
+    if (tagline && tagline.length > 100) {
+      return NextResponse.json(
+        { error: 'Tagline must be 100 characters or less' },
+        { status: 400 }
+      );
+    }
+
     // Update shop branding
     const updated = await prisma.shop.update({
       where: { id: shop.id },
@@ -69,6 +77,7 @@ export async function PATCH(req: NextRequest) {
         primaryColor: primaryColor || '#3B4C63',
         accentColor: accentColor || '#10B981',
         logoUrl: logoUrl?.trim() || null,
+        tagline: tagline?.trim() || null,
         updatedAt: new Date(),
       },
     });
@@ -80,6 +89,7 @@ export async function PATCH(req: NextRequest) {
         primaryColor: updated.primaryColor,
         accentColor: updated.accentColor,
         logoUrl: updated.logoUrl,
+        tagline: updated.tagline,
       },
     });
   } catch (error: any) {

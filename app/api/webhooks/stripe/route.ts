@@ -68,6 +68,8 @@ export async function POST(request: NextRequest) {
 
         // Extract metadata
         const shopId = session.metadata?.shopId
+        const cartItemsJson = session.metadata?.cartItems
+        
         if (!shopId) {
           console.error('Missing shopId in session metadata')
           break
@@ -93,27 +95,67 @@ export async function POST(request: NextRequest) {
           break
         }
 
-        // Create order with items
-        const order = await prisma.order.create({
-          data: {
-            shopId,
-            customerEmail,
-            customerName,
-            status: 'paid', // Start as paid since checkout completed
-            total,
-            stripePaymentId: session.payment_intent as string,
-            items: {
-              create: lineItems.map((item) => ({
-                productId: item.price?.product as string, // Stripe product ID (not our DB ID)
-                productTitle: item.description || 'Unknown product',
-                price: item.price?.unit_amount || 0,
-                quantity: item.quantity || 1,
-              })),
+        // Parse cart items for stock decrementing
+        let cartItems: Array<{productId: string, variantId: string | null, quantity: number}> = []
+        if (cartItemsJson) {
+          try {
+            cartItems = JSON.parse(cartItemsJson)
+          } catch (e) {
+            console.error('Failed to parse cartItems metadata:', e)
+          }
+        }
+
+        // Create order with items (use transaction for atomicity)
+        const order = await prisma.$transaction(async (tx) => {
+          // Create order
+          const newOrder = await tx.order.create({
+            data: {
+              shopId,
+              customerEmail,
+              customerName,
+              status: 'paid', // Start as paid since checkout completed
+              total,
+              stripePaymentId: session.payment_intent as string,
+              items: {
+                create: lineItems.map((item, idx) => ({
+                  productId: cartItems[idx]?.productId || 'unknown', // Use our DB product ID
+                  productTitle: item.description || 'Unknown product',
+                  price: item.price?.unit_amount || 0,
+                  quantity: item.quantity || 1,
+                })),
+              },
             },
-          },
-          include: {
-            items: true,
-          },
+            include: {
+              items: true,
+            },
+          })
+
+          // FR-24: Decrement stock after successful payment
+          for (const item of cartItems) {
+            if (item.variantId) {
+              // Decrement variant stock
+              await tx.productVariant.update({
+                where: { id: item.variantId },
+                data: {
+                  stock: {
+                    decrement: item.quantity,
+                  },
+                },
+              })
+            } else {
+              // Decrement product stock
+              await tx.product.update({
+                where: { id: item.productId },
+                data: {
+                  stock: {
+                    decrement: item.quantity,
+                  },
+                },
+              })
+            }
+          }
+
+          return newOrder
         })
 
         console.log(`Order created: ${order.id} for shop ${shopId}`)

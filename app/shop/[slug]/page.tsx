@@ -82,11 +82,19 @@ export default async function ShopPage({
         }}
       >
         <h2 className="text-4xl font-bold mb-2">Welcome to {shop.name}</h2>
-        <p className="text-lg opacity-90">
-          {hasProducts
-            ? 'Browse our collection and add items to your cart'
-            : 'Shop coming soon'}
-        </p>
+        
+        {/* FR-26: Tagline display */}
+        {shop.tagline ? (
+          <p className="text-lg opacity-90 italic">
+            {shop.tagline}
+          </p>
+        ) : (
+          <p className="text-lg opacity-90">
+            {hasProducts
+              ? 'Browse our collection and add items to your cart'
+              : 'Shop coming soon'}
+          </p>
+        )}
         
         {/* FR-31: Seller profile display */}
         {shop.description && (
