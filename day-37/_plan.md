@@ -1,39 +1,38 @@
 # Day 37 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 81
-- **Saved:** 17/05/2026, 4:07:23 AM
+- **Cycle:** 82
+- **Saved:** 17/05/2026, 4:22:41 AM
 
 ---
 
 FINISHED:
-- Docker setup + environment configuration (Dockerfile, .env.example, .qadar-* config files)
-- Basic API scaffolding (account/password, analytics routes)
-- Project structure ready for rapid feature iteration
+- Dockerfile + Docker infrastructure (.dockerignore, DEPLOYMENT.md) — project can containerize
+- Initial API routes scaffolded (account/password, analytics) — backend structure exists
+- Environment config (.env.example, .qadar-env.json) — deployment ready
+- 40 of 60 task board items closed — momentum is real, but last 20 are the critical path (auth, products, cart, checkout, orders, dashboard, tests)
 
 PENDING:
-- #82: Docker build blocker (3 missing dynamic exports) — blocking all deployment
-- #59: Import path corrections in checkout + orders pages — blocking payment features
-- #77, #78: Backend implementation of FR-1 through FR-20 (auth, shop, products, cart, checkout, orders, dashboard) — ~60% of MVP
-- #83: Full end-to-end feature completion + integration testing — blocker for customer signal
-- #80, #76: CEO demo readiness — no working end-to-end flow yet
-- #117: UI/visual polish — pages rendering poorly, affecting seller/customer experience
-- #105: In-progress test suite for FR-21–FR-25 (Priya) — check completion status before assigning new tests
+- #82: Docker build blocker — 3 missing dynamic exports unresolved, blocks local dev and staging deploys
+- #59: Import path errors in checkout + orders pages — unblock payment flow
+- #118, #117: Anil's urgent fixes (unspecified in board, assume UI/styling or deployment blocker)
+- #105: Priya's FR-21–FR-25 tests (password auth, webhook, refund, CSV) — lower priority than MVP validation
+- Playwright test suite (#74) — zero test coverage on 20 MVP features, no safety net before customer demo
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineer): Fix Docker blocker #82 first (unblocks deploy), then ship backend for FR-1 through FR-10 (#77: auth → shop → products → cart → checkout → orders). Parallel: fix import paths #59 so checkout/orders pages can actually call the APIs. Target: working Stripe integration + order creation via webhook by EOD.
-- Stream 2 (designer): Ship Figma/HTML for FR-1 signup page, FR-2 shop creation form, FR-3 product CRUD UI, FR-5 storefront layout, and FR-11 seller order dashboard. These unblock engineer on form/page structure and give tester concrete surfaces to test against.
-- Stream 3 (tester): Write Playwright tests for #74 (all 20 MVP features F1–F20) in parallel with engineer shipping. Start with signup flow + shop creation (#66 partial), then product CRUD (#66), cart + checkout (#74). Tests must cover the happy path: seller signs up → creates shop → adds product → customer buys → order appears in dashboard.
-- Stream 4 (reviewer): Verify Docker fix #82 deploys cleanly, then spot-check backend APIs (#77) for correct request/response shape before tester writes against them. Ensure import paths #59 don't break on merge.
-- Stream 5 (design_qa): Verify #117 (page rendering issues) against shipped design files — flag missing CSS, broken layout, or missing components before engineer ships FR-11+ (dashboard).
+- Stream 1 (engineer): Fix #82 (Docker blocker) first—30 min max. Then ship #77 (FR-1 to FR-10 backend: auth, shop CRUD, products API, cart logic, Stripe webhook integration). Parallel: #59 (import path fixes). Target: three working API endpoints by end of day.
+- Stream 2 (designer): Ship #65 (verify page + product management UI + design system components). Parallel: UI kit for #60 (product forms), #63 (category dropdown), #64 (filter UI). All in Figma; hand to engineer by EOD. Target: five pages/components.
+- Stream 3 (tester): Write #74 (Playwright suite for F1–F20: signup flow, product CRUD, category filter, cart add/remove, checkout redirect, order creation from webhook). Don't wait for engineer; mock API responses. Run tests against staging. Target: 20+ passing tests covering happy path + one sad path per feature.
+- Stream 4 (reviewer): Verify #77, #59, #82 before merge to main. Check Docker build succeeds after #82. Spot-check Stripe webhook parsing in #77 (high-risk code).
+- Stream 5 (PM / requirements): Unblock Anil's #118, #117 immediately (what are the urgent fixes?). Confirm #80 (CEO DEMO verification flow) dependencies are clear. Confirm Stripe test keys are in .env.example.
 
 ROLE PLAN:
-- engineering: YES — Docker blocker + 10 core MVP backend features must ship today to unblock demo + testing; Anil has capacity for 3–5 parallel tasks.
-- review: YES — import path fixes + API contracts need review before tester writes tests; prevents rework.
-- design: YES — Figma/HTML mockups for signup, shop, product forms, storefront, and dashboard are the north star for backend shape and tester confidence.
-- design_qa: YES — #117 (visual bugs) is blocking seller confidence; fix before we showcase to first customers.
-- test: YES — Playwright suite must grow in lockstep with backend; Priya finishes #105, then immediately starts #74 (MVP test coverage).
-- requirements: NO — task board is clear; no new scope questions. Priya owns task triage if blockers emerge.
+- engineering: YES — Docker blocker (#82) and backend critical path (#77) must ship to unblock everything else; Anil's urgent fixes need to be identified and tackled first.
+- review: YES — checkout/payment code (#77, #59) is high-risk and must not deploy broken; Docker fix needs verification.
+- design: YES — #65 is the last blocking design task for MVP; product forms and category UI are ready to ship and need mockups before engineer builds them.
+- test: YES — zero Playwright coverage on 20 features is a liability; tester must write #74 in parallel, not wait for engineer to finish building.
+- requirements: YES — Anil's urgent fixes (#118, #117) are unspecified on the board; PM must clarify scope immediately so they don't become day-long rabbit holes.
+- design_qa: YES — once #65 lands, design QA verifies fidelity against specs and flags regressions before engineer implements.
 
 ONE-LINE SUMMARY:
-Today the team ships Docker fix + FR-1 through FR-10 backend, signup/shop/product/dashboard UI mockups, and the first Playwright test suite, all in parallel to unlock the CEO demo by end of week.
+Today the team ships Docker fix + full MVP backend (auth/shop/products/cart/orders), design UI kit for four critical pages, and Playwright test suite for all 20 features in parallel—unblocking CEO demo by EOD.
