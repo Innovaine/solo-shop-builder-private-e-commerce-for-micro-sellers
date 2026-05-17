@@ -30287,3 +30287,45 @@ STDOUT:
 INSERT 0 1
 ```
 Full output: [`server-runs/2026-05-17T23-31-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-31-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:32:16.008Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a68dc36` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 11389ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d app && sleep 8 && docker compose logs app --tail=30
+```
+STDOUT:
+```
+app-1  | 
+app-1  | 6 migrations found in prisma/migrations
+app-1  | 
+app-1  | Applying migration `20260517_add_seller_profile_fields`
+app-1  | Error: P3018
+app-1  | 
+app-1  | A migration failed to apply. New migrations cannot be applied before the error is recovered from. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | 
+app-1  | Migration name: 20260517_add_seller_profile_fields
+app-1  | 
+app-1  | Database error code: 42701
+app-1  | 
+app-1  | Database error:
+app-1  | ERROR: column "displayName" of relation "Shop" already exists
+app-1  | 
+app-1  | DbError { severity: "ERROR", parsed_severity: Some(Error), code: SqlState(E42701), message: "column \"displayName\" of relation \"Shop\" already exists", detail: None, hint: None, position: None, where_: None, schema: None, table: None, column: None, datatype: None, constraint: None, file: Some("tablecmds.c"), line: Some(7347), routine: Some("check_for_column_name_collision") }
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 6 migrations found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260517_add_seller_profile_fields` migration started at 2026-05-17 23:30:41.771841 UTC failed
+app-1  | 
+app-1  |
+```
+Full output: [`server-runs/2026-05-17T23-32-15-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-32-15-app-cd-solo-shop-builder-private-e-commerce--1.log)
