@@ -30455,3 +30455,33 @@ STDOUT:
 Port 3000 not listening
 ```
 Full output: [`server-runs/2026-05-17T23-35-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-35-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:36:41.306Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `81ea8dd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5795ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps && sleep 3 && docker compose logs app --tail=15
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED         STATUS                  PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        8 minutes ago   Up 2 minutes            3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   11 hours ago    Up 11 hours (healthy)   127.0.0.1:5432->5432/tcp
+app-1  | │                                                         │
+app-1  | │  This is a major update - please follow the guide at    │
+app-1  | │  https://pris.ly/d/major-version-upgrade                │
+app-1  | │                                                         │
+app-1  | │  Run the following to update                            │
+app-1  | │    npm i -g prisma@latest                               │
+app-1  | │    npm i @prisma/client@latest                          │
+app-1  | └─────────────────────────────────────────────────────────┘
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 51ms
+app-1  | {"requestId":"ie_pob9YYN25gVB5","method":"GET","path":"/auth/login","responseTime":"3ms","timestamp":"2026-05-17T23:35:22.956Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+```
+Full output: [`server-runs/2026-05-17T23-36-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-36-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
