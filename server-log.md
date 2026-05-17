@@ -26337,3 +26337,19 @@ HTTP/1.1 200 OK
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-17T07-24-25-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-24-25-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:25:02.888Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0b5eaf8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 2451ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== Additional MVP Feature Tests ===" && echo && echo "FR-15-17: Email & Notifications" && curl -s http://localhost:3000/api/health | grep -o "email.*OK" && echo && echo "FR-18: Error Pages" && curl -sI http://localhost:3000/non-existent-page 2>&1 | head -1 && echo && echo "FR-19: Dashboard Pages" && curl -sI http://localhost:3000/dashboard 2>&1 | head -1 && curl -sI http://localhost:3000/dashboard/settings 2>&1 | head -1 && echo && echo "FR-20: Account Management" && curl -s -X GET http://localhost:3000/api/account/delete 2>&1 | head -1 && echo && echo "=== API Health Check ===" && curl -s http://localhost:3000/api/health | head -5
+```
+STDOUT:
+```
+=== Additional MVP Feature Tests ===
+
+FR-15-17: Email & Notifications
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-17T07-25-02-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-25-02-app-cd-solo-shop-builder-private-e-commerce--1.log)
