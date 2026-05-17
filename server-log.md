@@ -23193,3 +23193,16 @@ HTTP/1.1 200 OK
 HTTP/1.1 307 Temporary Redirect
 ```
 Full output: [`server-runs/2026-05-17T01-43-30-app-docker-ps---format-.Names-t-.Status-1.log`](server-runs/2026-05-17T01-43-30-app-docker-ps---format-.Names-t-.Status-1.log)
+
+## 2026-05-17T01:53:27.125Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `16f8007` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2332ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}\t{{.Ports}}" && curl -sf http://localhost:3000/api/health -o /dev/null && echo "Health check: OK" || echo "Health check: FAIL"
+```
+STDOUT:
+```
+Health check: FAIL
+```
+Full output: [`server-runs/2026-05-17T01-53-27-app-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-17T01-53-27-app-docker-ps---format-.Names-t-.Status-t-.P-1.log)
