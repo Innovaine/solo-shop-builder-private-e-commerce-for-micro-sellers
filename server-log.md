@@ -29626,3 +29626,16 @@ kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
 tail -30 /tmp/build.log | grep -E "(Successfully built|ERROR|Export encountered errors|DONE)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T12:43:56.783Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d507730` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2467ms)
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-17T12-43-56-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-17T12-43-56-app-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
