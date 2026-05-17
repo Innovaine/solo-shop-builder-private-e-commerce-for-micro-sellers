@@ -26245,3 +26245,18 @@ STDOUT:
 Started auth tests, PID=1248965
 ```
 Full output: [`server-runs/2026-05-17T07-21-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-21-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:21:30.072Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5de0e81` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2311ms)
+```
+kill -0 $(cat /tmp/day45-auth-test.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day45-auth-test.log
+```
+STDOUT:
+```
+DONE
+nohup: failed to run command 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers': No such file or directory
+```
+Full output: [`server-runs/2026-05-17T07-21-30-app-kill--0-cat-tmp-day45-auth-test.pid-2-de-1.log`](server-runs/2026-05-17T07-21-30-app-kill--0-cat-tmp-day45-auth-test.pid-2-de-1.log)
