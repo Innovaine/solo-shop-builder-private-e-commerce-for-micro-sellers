@@ -23905,3 +23905,28 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 5 seconds
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 26 minutes (healthy)
 ```
 Full output: [`server-runs/2026-05-17T02-21-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-21-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T02:22:54.695Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `44bfe16` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7508ms)
+```
+sleep 5 && curl -sf http://localhost:3000/api/health && echo -e "\n\nTest 1: Verify page loads" && curl -sI http://localhost:3000/auth/verify | head -10
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-17T02:22:54.973Z","responseTime":"184ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"182ms"}}}
+
+Test 1: Verify page loads
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: XL0xVHvftN-oD7hD
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "9ri4s94qsl5jy"
+```
+Full output: [`server-runs/2026-05-17T02-22-54-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-17T02-22-54-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
