@@ -24888,3 +24888,67 @@ STDOUT:
 Build started, PID=1222786
 ```
 Full output: [`server-runs/2026-05-17T05-26-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T05-26-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T05:27:18.066Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `27eda4d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2278ms) _(showing tail — full 3,680B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day42-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"; tail -80 /tmp/day42-build.log
+```
+STDOUT:
+```
+…
+#17 CACHED
+
+#18 [runner  3/14] RUN npm install -g prisma@5.14.0
+#18 CACHED
+
+#19 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#19 CACHED
+
+#20 [runner  5/14
+#19 [runner  6/14] COPY --from=builder /app/public ./public
+#19 DONE 0.0s
+
+#20 [runner  7/#21 [runner  6/14] C#20 DONE 0.2s
+
+#21 [runner  8/14] RUN chown nextjs:nodejs .next
+#21 DONE 0.2s
+
+#22 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#22 DONE 0.2s
+
+#23 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#23 DONE 0.4s
+
+#24 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/st
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=bui
+#27 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#27 DONE 0.0s
+
+#28 exporting to image
+#28 exporting layers
+#28 exporting layers 1.4s done
+#28 exporting manifest sha256:56a3772b0ec3755d4d62eb028bc56f10e7ad99e5acf0c3b3cf07f7e3a179c364 done
+#28 exporting config sha256:30dc3b87400039f8da40eaa940c635f786249ac15c4a34ffa4dd77bd6e6a1f7e 0.0s done
+#28 exporting attestation manifest sha256:1335b79f182591f9b7cd9b27efed508c86b04d90c03caa880ea9be02e8d17ce7 0.0s done
+#28 exporting manifest list sha256:6f2b2a2d6c1626fc2791cefa769d46e789fceb3a98a38b6aed00beaa4f7eb2df done
+#28 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#28 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#28 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#28 DONE 2.1s
+
+#29 resolving provenance for metadata file
+#29 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built 
+1 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-17T05-27-18-app-kill--0-cat-tmp-day42-build.pid-2-dev-nu-1.log`](server-runs/2026-05-17T05-27-18-app-kill--0-cat-tmp-day42-build.pid-2-dev-nu-1.log)
