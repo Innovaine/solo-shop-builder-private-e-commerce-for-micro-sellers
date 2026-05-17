@@ -28080,3 +28080,23 @@ STDOUT:
 …g-emerald disabled:bg-whisper disabled:text-slate px-4 py-2 text-base\",\"children\":\"Go Home\"}]}],[\"$\",\"$L4\",null,{\"href\":\"/dashboard\",\"children\":[\"$\",\"button\",null,{\"disabled\":false,\"className\":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[[\"$\",\"meta\",null,{\"name\":\"robots\",\"content\":\"noindex\"}],\"$L8\"],\"globalErrorComponent\":\"$9\",\"missingSlots\":\"$Wa\"}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
 ```
 Full output: [`server-runs/2026-05-17T10-18-46-app-curl--sf-localhost-3000-health--o-dev-nu-1.log`](server-runs/2026-05-17T10-18-46-app-curl--sf-localhost-3000-health--o-dev-nu-1.log)
+
+## 2026-05-17T10:20:23.386Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e27bf69` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3607ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git log --oneline -5 && echo "---" && git diff HEAD~5..HEAD --name-only | sort
+```
+STDOUT:
+```
+3ec9929 Søren (reviewer, day 30) — pre-SSH sync
+a6dd962 Anil (engineer, day 30) — pre-SSH sync
+4763e9c Anil (engineer, day 30) — pre-SSH sync
+e932c61 Anil (engineer, day 30) — pre-SSH sync
+925ea65 Anil (engineer, day 30) — pre-SSH sync
+---
+day-30/engineering.md
+server-log.md
+```
+Full output: [`server-runs/2026-05-17T10-20-23-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-20-23-app-cd-solo-shop-builder-private-e-commerce--1.log)
