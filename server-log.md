@@ -29439,3 +29439,28 @@ _Pre-SSH: warehouse pushed to GitHub as commit `5f6a937` so the server's `git pu
 curl -sf http://localhost:3000/api/health && echo " ✓ Health OK"
 ```
 ERROR: command exited 7
+
+## 2026-05-17T12:20:26.949Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `76ef340` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2571ms)
+```
+curl -v http://localhost:3000/api/health 2>&1 | head -30
+```
+STDOUT:
+```
+* Host localhost:3000 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying [::1]:3000...
+* connect to ::1 port 3000 from ::1 port 37318 failed: Connection refused
+*   Trying 127.0.0.1:3000...
+* connect to 127.0.0.1 port 3000 from 127.0.0.1 port 50308 failed: Connection refused
+* Failed to connect to localhost port 3000 after 0 ms: Couldn't connect to server
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+* Closing connection
+curl: (7) Failed to connect to localhost port 3000 after 0 ms: Couldn't connect to server
+```
+Full output: [`server-runs/2026-05-17T12-20-26-app-curl--v-http-localhost-3000-api-health-2-1.log`](server-runs/2026-05-17T12-20-26-app-curl--v-http-localhost-3000-api-health-2-1.log)
