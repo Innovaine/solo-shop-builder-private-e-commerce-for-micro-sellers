@@ -30338,3 +30338,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `eabf6d6` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec app npx prisma migrate resolve --applied 20260517_add_seller_profile_fields
 ```
 ERROR: command exited 1
+
+## 2026-05-17T23:33:37.391Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `487114f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2860ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec postgres psql -U postgres -d soloshop -c "UPDATE _prisma_migrations SET finished_at = NOW(), rolled_back_at = NULL WHERE migration_name = '20260517_add_seller_profile_fields' AND finished_at IS NULL;"
+```
+STDOUT:
+```
+UPDATE 1
+```
+Full output: [`server-runs/2026-05-17T23-33-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-33-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
