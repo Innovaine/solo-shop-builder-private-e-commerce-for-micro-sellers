@@ -22048,3 +22048,14 @@ STDOUT:
 [1A[2K[12/17] [chromium] › tests/web/day37-password-auth.spec.ts:55:7 › FR-21: Password Authentication › settings page has password change option
 ```
 Full output: [`server-runs/2026-05-17T01-00-36-app-tail--20-tmp-day37-pw.log-1.log`](server-runs/2026-05-17T01-00-36-app-tail--20-tmp-day37-pw.log-1.log)
+
+## 2026-05-17T01:01:12.361Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0a4ca82` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 11945ms)
+```
+sleep 10
+kill -0 $(cat /tmp/day37-pw.pid) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+grep -E "passed|failed" /tmp/day37-pw.log | tail -5
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
