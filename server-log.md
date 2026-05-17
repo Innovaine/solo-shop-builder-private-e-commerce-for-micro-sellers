@@ -26232,3 +26232,16 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 3 hours (he
 ✓ Health check OK
 ```
 Full output: [`server-runs/2026-05-17T07-17-48-app-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-17T07-17-48-app-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+## 2026-05-17T07:21:09.887Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `59ca3cd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3099ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day45-mvp-auth-shop.spec.ts --reporter=list > /tmp/day45-auth-test.log 2>&1 & echo $! > /tmp/day45-auth-test.pid && echo "Started auth tests, PID=$(cat /tmp/day45-auth-test.pid)"
+```
+STDOUT:
+```
+Started auth tests, PID=1248965
+```
+Full output: [`server-runs/2026-05-17T07-21-09-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-21-09-app-cd-solo-shop-builder-private-e-commerce--1.log)
