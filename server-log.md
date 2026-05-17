@@ -23541,3 +23541,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `72c8413` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=100 app 2>&1 | grep -E "Error|error|failed|Failed|TypeError|ReferenceError" | tail -50
 ```
+
+## 2026-05-17T02:14:12.917Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6de85fc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2150ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}\t{{.Ports}}" | grep solo-shop
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 4 minutes	0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 18 minutes (healthy)	0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-17T02-14-12-app-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-17T02-14-12-app-docker-ps---format-.Names-t-.Status-t-.P-1.log)
