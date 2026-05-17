@@ -26438,3 +26438,33 @@ Profile page:
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-17T07-27-35-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-27-35-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:28:05.778Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d97aa24` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3266ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== ERROR HANDLING (FR-18) ===" && echo "404 page:" && curl -sI http://localhost:3000/non-existent-xyz 2>&1 | head -1 && echo && echo "=== EXTENDED FEATURES ===" && echo "Analytics:" && curl -sI http://localhost:3000/dashboard/analytics 2>&1 | head -1 && echo "Branding:" && curl -sI http://localhost:3000/dashboard/branding 2>&1 | head -1 && echo "Email template:" && curl -sI http://localhost:3000/dashboard/email-template 2>&1 | head -1 && echo "Billing:" && curl -sI http://localhost:3000/dashboard/billing 2>&1 | head -1 && echo && echo "=== API HEALTH CHECK ===" && curl -s http://localhost:3000/api/health && echo && echo && echo "=== ALL TESTS COMPLETE ==="
+```
+STDOUT:
+```
+=== ERROR HANDLING (FR-18) ===
+404 page:
+HTTP/1.1 404 Not Found
+
+=== EXTENDED FEATURES ===
+Analytics:
+HTTP/1.1 200 OK
+Branding:
+HTTP/1.1 200 OK
+Email template:
+HTTP/1.1 200 OK
+Billing:
+HTTP/1.1 200 OK
+
+=== API HEALTH CHECK ===
+{"status":"ok","timestamp":"2026-05-17T07:28:05.947Z","responseTime":"102ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"101ms"}}}
+
+=== ALL TESTS COMPLETE ===
+```
+Full output: [`server-runs/2026-05-17T07-28-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-28-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
