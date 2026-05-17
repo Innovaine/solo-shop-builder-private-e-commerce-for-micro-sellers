@@ -27513,3 +27513,18 @@ STDOUT:
 Health: OK
 ```
 Full output: [`server-runs/2026-05-17T09-26-20-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-26-20-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T09:29:37.769Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ef711a3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2749ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list > /tmp/day47-regression.log 2>&1 &
+echo $! > /tmp/day47-regression.pid
+echo "Started regression tests, PID=$(cat /tmp/day47-regression.pid)"
+```
+STDOUT:
+```
+Started regression tests, PID=1270362
+```
+Full output: [`server-runs/2026-05-17T09-29-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-29-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
