@@ -22859,3 +22859,25 @@ a350e89a9625   postgres:16-alpine   "docker-entrypoint.s…"   3 hours ago   Up 
 ```
 ERROR: command exited 7
 Full output: [`server-runs/2026-05-17T01-35-27-app-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-17T01-35-27-app-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-17T01:35:45.369Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fc7cfc7` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2117ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker ps -a | grep solo-shop
+tail -100 /tmp/compose-up-day37.log
+```
+STDOUT:
+```
+bfbe50bb0146   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About a minute ago   Created                                                                 solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a350e89a9625   postgres:16-alpine                                           "docker-entrypoint.s…"   3 hours ago          Up 32 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+time="2026-05-17T01:04:09Z" level=warning msg="/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-17T01-35-45-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-35-45-app-cd-solo-shop-builder-private-e-commerce--1.log)
