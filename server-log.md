@@ -27541,3 +27541,16 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-17T09-30-44-app-kill--0-cat-tmp-day47-regression.pid-2-d-1.log`](server-runs/2026-05-17T09-30-44-app-kill--0-cat-tmp-day47-regression.pid-2-d-1.log)
+
+## 2026-05-17T09:31:07.128Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `583de6f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4145ms)
+```
+tail -100 /tmp/day47-regression.log
+```
+STDOUT:
+```
+nohup: failed to run command 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers': No such file or directory
+```
+Full output: [`server-runs/2026-05-17T09-31-07-app-tail--100-tmp-day47-regression.log-1.log`](server-runs/2026-05-17T09-31-07-app-tail--100-tmp-day47-regression.log-1.log)
