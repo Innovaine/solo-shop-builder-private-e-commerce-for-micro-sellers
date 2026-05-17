@@ -30547,3 +30547,23 @@ app-1  |  ✓ Ready in 51ms
 app-1  | {"requestId":"ie_pob9YYN25gVB5","method":"GET","path":"/auth/login","responseTime":"3ms","timestamp":"2026-05-17T23:35:22.956Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
 ```
 Full output: [`server-runs/2026-05-17T23-55-10-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-55-10-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:55:52.979Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c0316f9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2795ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Try to curl from inside the container
+docker compose exec -T app curl -sf http://localhost:3000/api/health && echo "✓ App healthy inside container" || echo "✗ App not responding"
+# Also check if there's a port mapping
+docker compose port app 3000 2>&1 || echo "No port mapping for 3000"
+```
+STDOUT:
+```
+OCI runtime exec failed: exec failed: unable to start container process: exec: "curl": executable file not found in $PATH
+✗ App not responding
+time="2026-05-17T23:55:53Z" level=warning msg="/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+invalid IP:0
+```
+Full output: [`server-runs/2026-05-17T23-55-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-55-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
