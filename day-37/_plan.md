@@ -1,39 +1,38 @@
 # Day 37 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 79
-- **Saved:** 17/05/2026, 3:32:20 AM
+- **Cycle:** 80
+- **Saved:** 17/05/2026, 3:55:16 AM
 
 ---
 
 FINISHED:
-- Docker build + deployment pipeline (Dockerfile, .dockerignore, DEPLOYMENT.md) — infrastructure ready
-- Project structure initialized with Next.js API routes (app/api/account/password, app/api/analytics)
-- .qadar integration files present (channel messaging, email, git, environment config) — tooling layer exists
-- 34 tasks closed so far; MVP feature skeleton defined across 20 features (F1–F20)
+- Docker setup complete (.dockerignore, Dockerfile, DEPLOYMENT.md) — infrastructure foundation laid
+- Project scaffolding in place (Next.js app structure, API routes started, .env.example config)
+- Task board created with 60 total tasks: 40 completed, 18 open, 2 in-progress
+- Day 36 validation cycle produced task clarity (board now shows which features are ready to build)
 
 PENDING:
-- #99 CRITICAL: day 29 build broken — import paths + FormField props unresolved; blocks all downstream work
-- #106: day 29 features (F31–F40: profile, branding, email, billing, analytics) not yet re-deployed after build fix
-- #105: FR-21 through FR-25 (password auth, webhook, refund, CSV) untested — test suite not written
-- #83: F1–F20 (MVP auth, shop, products, cart, checkout, orders, dashboard) incomplete and not tested end-to-end
-- #74: Playwright test suite for all 20 MVP features not started
-- #80: CEO DEMO verification flow (signup → order → tracking) not validated
+- #82: Docker build blocker — 3 missing dynamic exports (unblocks all subsequent deploys)
+- #59: Import path errors in checkout + orders pages (blocking FR-9, FR-10 integration)
+- #83: 20 MVP features (F1–F20) marked complete on board but no verification that all are actually shipped and wired together
+- #74: Playwright test suite promised but no tests written yet — test coverage is 0%
+- #105, #104: In-progress tasks (Priya on FR-21–FR-25, Anil on CSV export) — need status check before day 37 starts
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineering): Fix #99 (import paths + FormField props) first — this unblocks F21–F25 and F31–F40. Then attack #100 (password auth F21) and #102 (webhook verification F23) in parallel; these are the hardest backend work and let the tester write real tests. Reference #99, #100, #102.
-- Stream 2 (designer): Ship password reset flow UI (F22), order refund modal (F24), and product CSV preview modal (F25); also verify F11–F12 (seller order dashboard) has proper dropdown styling for status updates. These unblock engineer's backend work and give tester UI to validate against. Reference F22, F24, F25, F11–F12.
-- Stream 3 (tester): Write Playwright tests for F1–F10 (signup, shop creation, products, cart, checkout) immediately — these are the most unstable. Once engineer ships F21–F25, pivot to password auth + webhook + refund flows. Test the CEO DEMO path end-to-end by EOD. Reference #74, #80, F1–F10, F21–F25.
-- Stream 4 (reviewer): Code review #99 the moment it lands (unblock critical path), then spot-check #100 and #102 for webhook signature validation correctness before merge. These are payment-critical.
-- Stream 5 (requirements): Confirm F31–F40 scope is still locked (profile, branding, email, billing, analytics) — if not, flag now. Do not let scope creep into day 37. One line.
+- Stream 1 (engineer): Fix #82 (Docker build blocker — 3 missing dynamic exports), then attack #59 (import path errors), then ship FR-3, FR-4, FR-6 in parallel (product CRUD UI, image upload handler, category dropdown). These unblock the storefront chain. Reference tasks #60, #61, #63.
+- Stream 2 (designer): Ship verify page (email magic link confirmation), product management UI (CRUD form), product detail page, category filter UI, and shopping cart UI. Start with the verify page and product form — these are on the critical path and block #60, #63.
+- Stream 3 (tester): Write Playwright tests for F1 (signup + magic link verify), F3 (product CRUD), F6 (category assignment), F7 (category filter) as engineer ships them. Tests are per-feature, not end-to-end yet — keep cycle time short.
+- Stream 4 (reviewer): Verify #82 (Docker build passes locally and deploys), then review #59 (import paths resolve), then spot-check engineer's FR-3, FR-4, FR-6 code for import hygiene and API contract match.
+- Stream 5 (PM/requirements): Confirm F1–F7 spec is locked (no scope creep on verify flow, image upload limits, category list) so engineer doesn't ask mid-build.
 
 ROLE PLAN:
-- engineering: YES — day 29 build is still broken; #99 is a hard blocker and must be fixed before any feature can ship. We can't test, can't demo, can't move forward without this. Anil alone carries enough capacity to ship #99 + #100 + #102 in parallel today.
-- review: YES — #99 is payment-critical path (webhook signature verification) and too risky to merge without eyes. Søren catches import/dependency errors before they waste tester time.
-- design: YES — F22 (password reset), F24 (refund modal), F25 (CSV preview) are backend-blocking; designer ships UI mockups now so engineer isn't waiting on Figma. Chiara also verifies order dashboard dropdown is production-ready.
-- test: YES — F1–F10 have zero test coverage and are the MVP foundation. Priya writes Playwright now in parallel with engineer's F21–F25 work; by EOD we have a testable CEO DEMO path (F1–F10) + confidence in new payment flows (F21–F25).
-- requirements: YES — day 29 scope (F31–F40) is queued behind #106 re-deploy. Kenji confirms no scope creep into those features; we're 37 days in and can't afford mid-cycle replanning.
-- design_qa: NO — fidelity check happens after designer ships mockups, not before. Too early in the day to block on QA gate.
+- engineering: YES — Docker blocker and import path debt are day-1 kills; shipping FR-3, FR-4, FR-6 in parallel is the fastest path to a functional storefront.
+- review: YES — code review on blocker fixes (Docker, imports) reduces rework cycle and prevents new debt.
+- design: YES — verify page and product forms are the visual blocking points; designer ships 5 pages in parallel while engineer builds.
+- design_qa: YES — fidelity check on product detail and category filter UI before engineer wires them.
+- test: YES — Playwright suite is 0%; day 37 is the day we start writing real user-path tests, not after launch.
+- requirements: YES — F1–F7 scope lock prevents mid-build clarifications.
 
 ONE-LINE SUMMARY:
-Today the team fixes the day-29 build blocker (#99), ships password auth + webhook verification (#100, #102) + refund UI, and writes Playwright tests for the entire MVP checkout flow in parallel.
+Today the team fixes Docker + imports (unblocks all deploys), then ships FR-3/FR-4/FR-6 (product CRUD, image upload, categories) in parallel with design (verify page, product forms, storefront UI) and launches Playwright testing on F1, F3, F6, F7.
