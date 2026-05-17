@@ -21763,3 +21763,56 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; git pull
 ERROR: bash: -c: line 1: syntax error near unexpected token `;&'
 bash: -c: line 1: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers &amp;&amp; git pull; printf "__QADAR_EXIT__%d" $?'
  (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T00:56:44.805Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `49cbc19` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2943ms) _(showing tail — full 3,443B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…day-36/_plan.md                               |  57 +++
+ day-36/engineering.md                         |  62 +++
+ day-36/stage-ship-check.md                    |  15 +
+ day-37/_plan.md                               |  38 ++
+ day-37/design.md                              |  49 +++
+ day-37/engineering.md                         | 100 +++++
+ day-37/review.md                              |  26 ++
+ design/pages/dashboard.html                   |   8 +-
+ design/pages/order-dashboard-inline-edit.html | 225 ++++++++++
+ server-log.md                                 | 578 ++++++++++++++++++++++++++
+ tests/web/day37-csv-export.spec.ts            | 119 ++++++
+ tests/web/day37-order-refund.spec.ts          |  95 +++++
+ tests/web/day37-password-auth.spec.ts         |  82 ++++
+ tests/web/day37-password-reset.spec.ts        |  88 ++++
+ 38 files changed, 2388 insertions(+), 88 deletions(-)
+ create mode 100644 app/api/orders/[id]/refund/route.ts
+ create mode 100644 app/api/products/export/route.ts
+ create mode 100644 day-33/_index.md
+ create mode 100644 day-33/engineering.md
+ create mode 100644 day-33/stage-ship-check.md
+ create mode 100644 day-34/_index.md
+ create mode 100644 day-34/_plan.md
+ create mode 100644 day-34/design.md
+ create mode 100644 day-34/stage-ship-check.md
+ create mode 100644 day-35/_index.md
+ create mode 100644 day-35/_plan.md
+ create mode 100644 day-35/engineering.md
+ create mode 100644 day-35/stage-ship-check.md
+ create mode 100644 day-36/_index.md
+ create mode 100644 day-36/_plan.md
+ create mode 100644 day-36/engineering.md
+ create mode 100644 day-36/stage-ship-check.md
+ create mode 100644 day-37/_plan.md
+ create mode 100644 day-37/design.md
+ create mode 100644 day-37/engineering.md
+ create mode 100644 day-37/review.md
+ create mode 100644 design/pages/order-dashboard-inline-edit.html
+ create mode 100644 tests/web/day37-csv-export.spec.ts
+ create mode 100644 tests/web/day37-order-refund.spec.ts
+ create mode 100644 tests/web/day37-password-auth.spec.ts
+ create mode 100644 tests/web/day37-password-reset.spec.ts
+```
+Full output: [`server-runs/2026-05-17T00-56-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T00-56-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
