@@ -24348,3 +24348,18 @@ STDOUT:
 APP NOT RESPONDING
 ```
 Full output: [`server-runs/2026-05-17T03-23-04-app-docker-ps---format-.Names-t.Status-grep--1.log`](server-runs/2026-05-17T03-23-04-app-docker-ps---format-.Names-t.Status-grep--1.log)
+
+## 2026-05-17T03:23:25.899Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `31008a4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2110ms)
+```
+docker ps -a | grep solo-shop && echo "--- Container logs ---" && docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 2>&1 | tail -30
+```
+STDOUT:
+```
+34bc50fae0d7   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   57 seconds ago   Created                                             solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+3ff6cc85e9a6   postgres:16-alpine                                           "docker-entrypoint.s…"   9 minutes ago    Up 8 minutes (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+--- Container logs ---
+```
+Full output: [`server-runs/2026-05-17T03-23-25-app-docker-ps--a-grep-solo-shop-echo-----Con-1.log`](server-runs/2026-05-17T03-23-25-app-docker-ps--a-grep-solo-shop-echo-----Con-1.log)
