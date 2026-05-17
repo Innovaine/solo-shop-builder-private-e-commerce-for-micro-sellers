@@ -29244,3 +29244,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `d932014` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U soloshop -d soloshop -c "ALTER TABLE \"Shop\" ADD COLUMN IF NOT EXISTS \"displayName\" VARCHAR(100); ALTER TABLE \"Shop\" ADD COLUMN IF NOT EXISTS \"publicDescription\" TEXT;"
 ```
 ERROR: command exited 2
+
+## 2026-05-17T12:12:58.322Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `19ca4b9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12926ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
