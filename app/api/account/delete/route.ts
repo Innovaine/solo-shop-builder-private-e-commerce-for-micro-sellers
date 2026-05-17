@@ -9,9 +9,9 @@ import prisma from '@/lib/db'
 export async function POST(request: NextRequest) {
   try {
     const session = await getSession()
-    const sellerId = session.get('sellerId')
+    const sellerId = session.sellerId
 
-    if (!sellerId) {
+    if (!sellerId || !session.isLoggedIn) {
       return NextResponse.json(
         { error: 'Not authenticated' },
         { status: 401 }
