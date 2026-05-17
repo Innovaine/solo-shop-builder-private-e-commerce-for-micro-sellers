@@ -30171,3 +30171,38 @@ Applying migration `20260517_add_seller_profile_fields`
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-17T23-29-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-29-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:29:51.199Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ab05910` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4641ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose run --rm app npx prisma migrate deploy 2>&1 | head -100
+```
+STDOUT:
+```
+time="2026-05-17T23:29:49Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-run-2565ca0abf93 Creating 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-run-2565ca0abf93 Created 
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+6 migrations found in prisma/migrations
+
+Error: P3009
+
+migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+The `20260517_add_seller_profile_fields` migration started at 2026-05-17 23:29:21.946666 UTC failed
+
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.14.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+```
+Full output: [`server-runs/2026-05-17T23-29-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-29-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
