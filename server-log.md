@@ -21688,3 +21688,22 @@ env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers \
   2>&1 | tail -80
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T00:47:53.342Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9234685` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2252ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers \
+  npx playwright test tests/web/day37-*.spec.ts \
+  --reporter=dot \
+  --output=./test-results/day-37/pw-output > ./test-results/day-37/test-run.log 2>&1 &
+echo $! > /tmp/day37-pw.pid
+echo "Tests started, PID=$(cat /tmp/day37-pw.pid)"
+```
+STDOUT:
+```
+Tests started, PID=1142324
+```
+Full output: [`server-runs/2026-05-17T00-47-53-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T00-47-53-app-cd-solo-shop-builder-private-e-commerce--1.log)
