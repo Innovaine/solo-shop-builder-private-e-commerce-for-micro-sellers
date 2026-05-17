@@ -26614,3 +26614,15 @@ Test 8: Checkout page exists (F9)
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-17T07-44-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-44-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:44:59.583Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2d415d1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: SSH connect timeout after 15000ms (host 187.124.22.3:22) (mutating command — not auto-retried; queue it again if you want to try once more), 15011ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== DATABASE SCHEMA VERIFICATION ==="
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 sh -c "npx prisma db pull --force 2>&1 | grep -E '(model|field|Table)' | head -50 || npx prisma db push --accept-data-loss --skip-generate 2>&1 | tail -20"
+```
+ERROR: SSH connect timeout after 15000ms (host 187.124.22.3:22) (mutating command — not auto-retried; queue it again if you want to try once more)
