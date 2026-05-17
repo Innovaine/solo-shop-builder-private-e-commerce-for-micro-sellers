@@ -26375,3 +26375,33 @@ HTTP/1.1 307 Temporary Redirect
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-17T07-25-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-25-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:26:52.076Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `555de26` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2850ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== COMPREHENSIVE MVP FEATURE VERIFICATION ===" && echo && echo "=== CORE AUTH FLOW (FR-1, FR-2, FR-7) ===" && echo "Login page:" && curl -sI http://localhost:3000/auth/login 2>&1 | head -1 && echo "Verify page:" && curl -sI http://localhost:3000/auth/verify 2>&1 | head -1 && echo "Forgot password:" && curl -sI http://localhost:3000/auth/forgot-password 2>&1 | head -1 && echo && echo "=== SHOP MANAGEMENT (FR-3, FR-4, FR-6) ===" && echo "Create shop page:" && curl -sI http://localhost:3000/dashboard/create-shop 2>&1 | head -1 && echo "Shop API endpoint:" && curl -s -X GET http://localhost:3000/api/shops 2>&1 | head -1 && echo && echo "=== PUBLIC STOREFRONT (FR-5) ===" && echo "Public shop:" && curl -sI http://localhost:3000/shop/test-shop 2>&1 | head -1
+```
+STDOUT:
+```
+=== COMPREHENSIVE MVP FEATURE VERIFICATION ===
+
+=== CORE AUTH FLOW (FR-1, FR-2, FR-7) ===
+Login page:
+HTTP/1.1 200 OK
+Verify page:
+HTTP/1.1 200 OK
+Forgot password:
+HTTP/1.1 200 OK
+
+=== SHOP MANAGEMENT (FR-3, FR-4, FR-6) ===
+Create shop page:
+HTTP/1.1 200 OK
+Shop API endpoint:
+{"error":"You must be logged in to view shops."}
+=== PUBLIC STOREFRONT (FR-5) ===
+Public shop:
+HTTP/1.1 200 OK
+```
+Full output: [`server-runs/2026-05-17T07-26-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-26-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
