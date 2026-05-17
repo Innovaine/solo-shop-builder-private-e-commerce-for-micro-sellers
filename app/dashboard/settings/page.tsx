@@ -18,6 +18,7 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
+  const [deleting, setDeleting] = useState(false)
 
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -139,6 +140,54 @@ export default function SettingsPage() {
                 Update Password
               </Button>
             </form>
+          </div>
+        </Card>
+
+        {/* FR-20: Account Deletion */}
+        <Card className="mt-8 border-rose">
+          <div className="p-6">
+            <h2 className="text-xl font-semibold text-rose mb-4">Delete Account</h2>
+            <p className="text-sm text-slate mb-6">
+              Permanently delete your account and all associated data. This action cannot be undone.
+              All your shops, products, and orders will be deleted.
+            </p>
+
+            <Button
+              variant="ghost"
+              onClick={async () => {
+                if (!confirm('Are you absolutely sure? This will permanently delete your account, all shops, products, and orders. This action cannot be undone.')) {
+                  return
+                }
+
+                if (!confirm('Last confirmation: Type DELETE to confirm account deletion')) {
+                  return
+                }
+
+                setDeleting(true)
+                try {
+                  const response = await fetch('/api/account/delete', {
+                    method: 'POST',
+                  })
+
+                  if (!response.ok) {
+                    const data = await response.json()
+                    alert(data.error || 'Failed to delete account')
+                    setDeleting(false)
+                    return
+                  }
+
+                  // Redirect to homepage after successful deletion
+                  window.location.href = '/'
+                } catch {
+                  alert('Network error. Please try again.')
+                  setDeleting(false)
+                }
+              }}
+              disabled={deleting}
+              className="bg-rose text-white hover:bg-rose/90"
+            >
+              {deleting ? 'Deleting Account...' : 'Delete Account'}
+            </Button>
           </div>
         </Card>
       </div>

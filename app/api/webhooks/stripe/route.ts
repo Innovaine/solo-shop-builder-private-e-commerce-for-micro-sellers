@@ -5,6 +5,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import prisma from '@/lib/db'
+import { sendOrderConfirmationEmail, sendEmail } from '@/lib/email'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-04-10',
@@ -117,8 +118,67 @@ export async function POST(request: NextRequest) {
 
         console.log(`Order created: ${order.id} for shop ${shopId}`)
 
-        // TODO FR-16: Send order confirmation email to seller
-        // TODO FR-16: Send order confirmation email to customer
+        // FR-15 & FR-16: Send order confirmation emails
+        try {
+          // Fetch shop details and seller email
+          const shop = await prisma.shop.findUnique({
+            where: { id: shopId },
+            include: {
+              seller: true,
+              emailTemplate: true,
+            },
+          })
+
+          if (shop) {
+            // Build order summary
+            const orderSummary = `Order ID: ${order.id.slice(0, 8).toUpperCase()}
+Total: ${(total / 100).toFixed(2)}
+
+Items:
+${lineItems.map((item) => `- ${item.description} x${item.quantity} - ${((item.price?.unit_amount || 0) / 100).toFixed(2)}`).join('\n')}
+
+Customer: ${customerName || customerEmail}`;
+
+            const trackingUrl = `${process.env.APP_URL || 'http://localhost:3000'}/track/${order.id}`
+
+            // FR-16: Send confirmation email to customer
+            await sendOrderConfirmationEmail(
+              customerEmail,
+              customerName || 'Customer',
+              shop.name,
+              orderSummary,
+              trackingUrl,
+              shop.emailTemplate?.template || null
+            )
+
+            // FR-15: Send notification email to seller
+            await sendEmail({
+              to: shop.seller.email,
+              subject: `New Order #${order.id.slice(0, 8)} - ${shop.name}`,
+              text: `You have a new order!
+
+${orderSummary}
+
+View and manage this order at: ${process.env.APP_URL || 'http://localhost:3000'}/dashboard/orders`,
+              html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+                  <h2 style="color: #10B981;">New Order Received!</h2>
+                  <div style="background-color: #F9FAFB; padding: 16px; border-radius: 8px; margin: 16px 0;">
+                    <pre style="margin: 0; white-space: pre-wrap; font-family: monospace; font-size: 14px;">${orderSummary}</pre>
+                  </div>
+                  <a href="${process.env.APP_URL || 'http://localhost:3000'}/dashboard/orders" style="display: inline-block; background-color: #10B981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin: 16px 0;">
+                    View Order
+                  </a>
+                </div>
+              `,
+            })
+
+            console.log(`Order confirmation emails sent for order ${order.id}`)
+          }
+        } catch (emailError: any) {
+          // Don't fail the webhook if email fails
+          console.error('Failed to send order confirmation emails:', emailError)
+        }
 
         break
       }
