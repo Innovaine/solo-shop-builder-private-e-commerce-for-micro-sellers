@@ -21735,3 +21735,18 @@ kill -0 $(cat /tmp/day37-pw.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
 tail -80 ~/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/day-37/test-run.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-17T00:49:45.310Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7968bf8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2329ms)
+```
+kill -0 $(cat /tmp/day37-pw.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+wc -l ~/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/day-37/test-run.log 2>/dev/null
+```
+STDOUT:
+```
+DONE
+341 /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/test-results/day-37/test-run.log
+```
+Full output: [`server-runs/2026-05-17T00-49-45-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log`](server-runs/2026-05-17T00-49-45-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log)
