@@ -27968,3 +27968,31 @@ STDOUT:
 Started compose up
 ```
 Full output: [`server-runs/2026-05-17T10-11-57-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-11-57-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:12:25.632Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `467c3a0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2666ms) _(showing tail — full 2,730B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/compose-up.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+docker compose ps
+tail -30 /tmp/compose-up.log
+```
+STDOUT:
+```
+…"method":"GET","path":"/api/health","responseTime":"2ms","timestamp":"2026-05-17T09:21:23.366Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"JRQGrJeb7CnL1s5u","method":"HEAD","path":"/auth/login","responseTime":"1ms","timestamp":"2026-05-17T09:22:03.133Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"3y1td_n3-ODYJHwB","method":"HEAD","path":"/api/health","responseTime":"0ms","timestamp":"2026-05-17T09:22:03.206Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"ZsPHG87_KjMQ7Xf7","method":"HEAD","path":"/api/products","responseTime":"0ms","timestamp":"2026-05-17T09:22:03.347Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"vsCSQTEKRuYj4CpU","method":"GET","path":"/api/health","responseTime":"1ms","timestamp":"2026-05-17T09:26:20.786Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"E3jjHnEbC1rldPiO","method":"HEAD","path":"/auth/login","responseTime":"1ms","timestamp":"2026-05-17T09:51:06.743Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"5aDkOM-ICwsmNVpq","method":"GET","path":"/api/health","responseTime":"2ms","timestamp":"2026-05-17T09:51:06.792Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"zHI6AdtemwBF2sNl","method":"POST","path":"/api/auth/signup","responseTime":"0ms","timestamp":"2026-05-17T09:52:13.291Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"jOSTu_roay3RLT9n","method":"HEAD","path":"/api/shops","responseTime":"1ms","timestamp":"2026-05-17T09:52:13.314Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"zY2XnnYfDdXXO0gv","method":"HEAD","path":"/api/products","responseTime":"1ms","timestamp":"2026-05-17T09:52:13.333Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"bWRDtFefAsJSiOlS","method":"POST","path":"/api/checkout","responseTime":"0ms","timestamp":"2026-05-17T09:52:13.346Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"nV-Ygl4zMAylQI7M","method":"HEAD","path":"/api/orders","responseTime":"0ms","timestamp":"2026-05-17T09:52:13.377Z","userAgent":"curl/8.5.0"}
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+```
+Full output: [`server-runs/2026-05-17T10-12-25-app-kill--0-cat-tmp-compose-up.pid-2-dev-nul-1.log`](server-runs/2026-05-17T10-12-25-app-kill--0-cat-tmp-compose-up.pid-2-dev-nul-1.log)
