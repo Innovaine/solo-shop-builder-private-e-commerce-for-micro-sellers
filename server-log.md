@@ -29235,3 +29235,12 @@ Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:54
 Database schema is up to date!
 ```
 Full output: [`server-runs/2026-05-17T12-11-48-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-11-48-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:12:23.021Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d932014` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 2, 2792ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U soloshop -d soloshop -c "ALTER TABLE \"Shop\" ADD COLUMN IF NOT EXISTS \"displayName\" VARCHAR(100); ALTER TABLE \"Shop\" ADD COLUMN IF NOT EXISTS \"publicDescription\" TEXT;"
+```
+ERROR: command exited 2
