@@ -27406,3 +27406,31 @@ STDOUT:
 .Names	.Status
 ```
 Full output: [`server-runs/2026-05-17T09-18-23-app-sleep-5-1.log`](server-runs/2026-05-17T09-18-23-app-sleep-5-1.log)
+
+## 2026-05-17T09:18:53.289Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `920bb50` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 9784ms) _(showing tail — full 6,631B stdout + 0B stderr)_
+```
+tail -50 /tmp/compose-up.log
+echo "---"
+docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+…tId":"GsDH0cXKjJJcSnix","method":"GET","path":"/api/health","responseTime":"1ms","timestamp":"2026-05-17T08:01:42.865Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"mk-4o2Nu1cWBd4CA","method":"HEAD","path":"/auth/login","responseTime":"0ms","timestamp":"2026-05-17T08:01:43.084Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"B8OOko8mgw0s7BTn","method":"POST","path":"/api/auth/signup","responseTime":"1ms","timestamp":"2026-05-17T08:02:07.038Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"nQyJzx0naKZcV-UI","method":"POST","path":"/api/auth/shops","responseTime":"0ms","timestamp":"2026-05-17T08:02:07.071Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"wNT0YPRzDTi-gLp-","method":"HEAD","path":"/api/products","responseTime":"1ms","timestamp":"2026-05-17T08:02:07.102Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"PSDHhlRuqE0HpGqx","method":"HEAD","path":"/api/checkout","responseTime":"0ms","timestamp":"2026-05-17T08:02:07.119Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"1r0vQjpY-1C9WQe2","method":"HEAD","path":"/api/orders","responseTime":"0ms","timestamp":"2026-05-17T08:02:07.149Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"L_KOJTzEPVjGkWT6","method":"HEAD","path":"/api/auth/logout","responseTime":"1ms","timestamp":"2026-05-17T08:02:07.166Z","userAgent":"curl/8.5.0"}
+app-1       | {"requestId":"d8b4baDBC39a1BEj","method":"HEAD","path":"/api/account/delete","responseTime":"0ms","timestamp":"2026-05-17T08:02:07.183Z","userAgent":"curl/8.5.0"}
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+---
+c9c085117176   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   2 minutes ago   Created                                           solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+b803316c2c9d   postgres:16-alpine                                           "docker-entrypoint.s…"   5 hours ago     Up 5 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-17T09-18-53-app-tail--50-tmp-compose-up.log-1.log`](server-runs/2026-05-17T09-18-53-app-tail--50-tmp-compose-up.log-1.log)
