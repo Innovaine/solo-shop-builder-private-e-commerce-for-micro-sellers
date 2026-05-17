@@ -25627,3 +25627,12 @@ STDOUT:
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-17T06-14-48-app-tail--100-tmp-day43-build-v3.log-grep--E-1.log`](server-runs/2026-05-17T06-14-48-app-tail--100-tmp-day43-build-v3.log-grep--E-1.log)
+
+## 2026-05-17T06:15:40.282Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b6478c4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12987ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
