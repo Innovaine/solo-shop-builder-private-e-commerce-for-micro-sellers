@@ -21394,3 +21394,27 @@ STDOUT:
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-16T23-43-27-app-curl--sI-http-localhost-3000-dashboard-a-1.log`](server-runs/2026-05-16T23-43-27-app-curl--sI-http-localhost-3000-dashboard-a-1.log)
+
+## 2026-05-16T23:59:14.503Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d722f11` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2411ms)
+```
+docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+cac504018013   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   16 minutes ago      Up 16 minutes                0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a350e89a9625   postgres:16-alpine                                           "docker-entrypoint.s…"   About an hour ago   Up About an hour (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-16T23-59-13-app-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-16T23-59-13-app-docker-ps--a-grep-solo-shop-1.log)
+
+### Command 2 on app as engineer (✓ exit 0, 626ms)
+```
+curl -sf http://localhost:3000/api/health || echo "HEALTH ENDPOINT DOWN"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-16T23:59:14.803Z","responseTime":"256ms","checks":{"database":{"status":"ok","responseTime":"43ms"},"email":{"status":"ok","responseTime":"213ms"}}}
+```
+Full output: [`server-runs/2026-05-16T23-59-14-app-curl--sf-http-localhost-3000-api-health--2.log`](server-runs/2026-05-16T23-59-14-app-curl--sf-http-localhost-3000-api-health--2.log)
