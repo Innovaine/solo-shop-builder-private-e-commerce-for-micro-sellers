@@ -25674,3 +25674,16 @@ f56a2c3a8cdf   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 b803316c2c9d   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago          Up 2 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-17T06-17-28-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T06-17-28-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T06:17:56.801Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1358c42` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 9611ms)
+```
+sleep 5 && curl -sf http://localhost:3000/api/health && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-17T06:17:56.797Z","responseTime":"194ms","checks":{"database":{"status":"ok","responseTime":"52ms"},"email":{"status":"ok","responseTime":"142ms"}}}OK
+```
+Full output: [`server-runs/2026-05-17T06-17-56-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-17T06-17-56-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
