@@ -30256,3 +30256,21 @@ STDOUT:
  publicDescription | text                           |           |          |
 ```
 Full output: [`server-runs/2026-05-17T23-30-58-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-30-58-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:31:18.137Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d8f666a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 4642ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose run --rm app npx prisma migrate deploy && docker compose up -d app
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+6 migrations found in prisma/migrations
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-17T23-31-18-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-31-18-app-cd-solo-shop-builder-private-e-commerce--1.log)
