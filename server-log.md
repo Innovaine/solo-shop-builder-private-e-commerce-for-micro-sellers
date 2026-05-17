@@ -22427,3 +22427,36 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-17T01-26-43-app-kill--0-cat-tmp-day37-ui-fix-build.pid-2-1.log`](server-runs/2026-05-17T01-26-43-app-kill--0-cat-tmp-day37-ui-fix-build.pid-2-1.log)
+
+## 2026-05-17T01:27:17.240Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8108d8b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2126ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+grep -r "@/app/components/ui" app/ --include="*.tsx" --include="*.ts" | head -20
+```
+STDOUT:
+```
+app/dashboard/settings/page.tsx:import { Button } from '@/app/components/ui/Button'
+app/dashboard/settings/page.tsx:import { FormField } from '@/app/components/ui/FormField'
+app/dashboard/settings/page.tsx:import { Card } from '@/app/components/ui/Card'
+app/dashboard/settings/page.tsx:import { Header } from '@/app/components/ui/Header'
+app/dashboard/branding/page.tsx:import { Header } from '@/app/components/ui/Header';
+app/dashboard/branding/page.tsx:import { Button } from '@/app/components/ui/Button';
+app/dashboard/branding/page.tsx:import { Card } from '@/app/components/ui/Card';
+app/dashboard/branding/page.tsx:import { FormField } from '@/app/components/ui/FormField';
+app/dashboard/email-template/page.tsx:import { Header } from '@/app/components/ui/Header';
+app/dashboard/email-template/page.tsx:import { Button } from '@/app/components/ui/Button';
+app/dashboard/email-template/page.tsx:import { Card } from '@/app/components/ui/Card';
+app/dashboard/billing/page.tsx:import { Header } from '@/app/components/ui/Header';
+app/dashboard/billing/page.tsx:import { Card } from '@/app/components/ui/Card';
+app/dashboard/billing/page.tsx:import { EmptyState } from '@/app/components/ui/EmptyState';
+app/dashboard/profile/page.tsx:import { Header } from '@/app/components/ui/Header';
+app/dashboard/profile/page.tsx:import { Button } from '@/app/components/ui/Button';
+app/dashboard/profile/page.tsx:import { Card } from '@/app/components/ui/Card';
+app/dashboard/profile/page.tsx:import { FormField } from '@/app/components/ui/FormField';
+app/dashboard/analytics/page.tsx:import { Header } from '@/app/components/ui/Header';
+app/dashboard/analytics/page.tsx:import { Card } from '@/app/components/ui/Card';
+```
+Full output: [`server-runs/2026-05-17T01-27-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-27-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
