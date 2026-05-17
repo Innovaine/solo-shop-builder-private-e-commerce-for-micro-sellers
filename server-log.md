@@ -24118,3 +24118,37 @@ Seed might not exist, trying direct signup...
 {"message":"Magic link sent. Check your email."}
 ```
 Full output: [`server-runs/2026-05-17T03-15-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-15-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T03:16:21.599Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `16612d8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2094ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && curl -v -c /tmp/cookies.txt -b /tmp/cookies.txt -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"seller@example.com","password":"password123"}' 2>&1 | grep -A 5 -B 5 "Set-Cookie\|HTTP/"
+```
+STDOUT:
+```
+* IPv4: 127.0.0.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying [::1]:3000...
+* Connected to localhost (::1) port 3000
+> POST /api/auth/login HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Cookie: soloshop_session=Fe26.2*1*eadac8b7688774c7374a2eef2d6d9287735d6b345a4371a0be67bccdda1fb4dd*7pogfBApQSRlOdriu-isuA*97vndcXCapuZ_WC-YBsDrjASvOpxuR73ziJq9HWS9RzhqWj5YsMKj5L6_sSJyQ8kgW6Tj-Q7DQcF6Op25IR3bXIv9G4-Pv4P4P6L8LjXnwDTfcWGZvo9P_4Q1htdjgLpyENmpF0yia8haD51bomJvQ*1780089980192*9532f26bd8f41f04f46fa91939951f42f05272daffd5f79f3cbdfba22111e270*Zj_ueQs5-d5w7TMwLRFVwFEef9T_9x1a9Gv0Jn_ClEU~2
+> Content-Type: application/json
+> Content-Length: 55
+> 
+} [55 bytes data]
+< HTTP/1.1 401 Unauthorized
+< access-control-allow-headers: Content-Type, Authorization
+< access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+< access-control-allow-origin: *
+< x-request-id: lu4efwVYNQ-Aqedn
+< vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+```
+Full output: [`server-runs/2026-05-17T03-16-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-16-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
