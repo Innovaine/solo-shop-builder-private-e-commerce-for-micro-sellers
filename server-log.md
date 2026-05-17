@@ -27774,3 +27774,37 @@ Test 8: 404 page
 HTTP/1.1 404 Not Found
 ```
 Full output: [`server-runs/2026-05-17T09-51-06-app-echo-Day-47-MVP-Smoke-Test-echo-echo-Tes-1.log`](server-runs/2026-05-17T09-51-06-app-echo-Day-47-MVP-Smoke-Test-echo-echo-Tes-1.log)
+
+## 2026-05-17T09:52:13.084Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bd63c92` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2510ms)
+```
+echo "=== API Endpoints Smoke Test ===" && echo "" && echo "Test 1: POST /api/auth/signup (should return 400 for missing data)" && curl -s -X POST http://localhost:3000/api/auth/signup -H "Content-Type: application/json" -d '{}' | head -c 200 && echo "" && echo "" && echo "Test 2: GET /api/shops (should return 401 unauthorized)" && curl -sI http://localhost:3000/api/shops | head -3 && echo "" && echo "Test 3: GET /api/products (should return 401 unauthorized)" && curl -sI http://localhost:3000/api/products | head -3 && echo "" && echo "Test 4: POST /api/checkout (should not 404)" && curl -s -X POST http://localhost:3000/api/checkout -H "Content-Type: application/json" -d '{"items":[]}' | head -c 200 && echo "" && echo "" && echo "Test 5: GET /api/orders (should return 401)" && curl -sI http://localhost:3000/api/orders | head -3
+```
+STDOUT:
+```
+=== API Endpoints Smoke Test ===
+
+Test 1: POST /api/auth/signup (should return 400 for missing data)
+{"error":"Required"}
+
+Test 2: GET /api/shops (should return 401 unauthorized)
+HTTP/1.1 401 Unauthorized
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+
+Test 3: GET /api/products (should return 401 unauthorized)
+HTTP/1.1 400 Bad Request
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+
+Test 4: POST /api/checkout (should not 404)
+{"error":"Cart is empty"}
+
+Test 5: GET /api/orders (should return 401)
+HTTP/1.1 401 Unauthorized
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+```
+Full output: [`server-runs/2026-05-17T09-52-13-app-echo-API-Endpoints-Smoke-Test-echo-echo-1.log`](server-runs/2026-05-17T09-52-13-app-echo-API-Endpoints-Smoke-Test-echo-echo-1.log)
