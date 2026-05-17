@@ -27996,3 +27996,19 @@ app-1       | {"requestId":"nV-Ygl4zMAylQI7M","method":"HEAD","path":"/api/order
 [Kapp-1 exited with code 137
 ```
 Full output: [`server-runs/2026-05-17T10-12-25-app-kill--0-cat-tmp-compose-up.pid-2-dev-nul-1.log`](server-runs/2026-05-17T10-12-25-app-kill--0-cat-tmp-compose-up.pid-2-dev-nul-1.log)
+
+## 2026-05-17T10:12:59.722Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5fb0e9e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3825ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose ps
+docker compose logs --tail=50 app
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED       STATUS                 PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   6 hours ago   Up 6 hours (healthy)   127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-17T10-12-59-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-12-59-app-cd-solo-shop-builder-private-e-commerce--1.log)
