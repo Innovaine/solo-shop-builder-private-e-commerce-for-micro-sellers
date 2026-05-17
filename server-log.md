@@ -29464,3 +29464,17 @@ STDOUT:
 curl: (7) Failed to connect to localhost port 3000 after 0 ms: Couldn't connect to server
 ```
 Full output: [`server-runs/2026-05-17T12-20-26-app-curl--v-http-localhost-3000-api-health-2-1.log`](server-runs/2026-05-17T12-20-26-app-curl--v-http-localhost-3000-api-health-2-1.log)
+
+## 2026-05-17T12:20:51.076Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8613f53` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 127, 2619ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec app curl -sf http://localhost:3000/api/health && echo " ✓ Health OK from inside container"
+```
+STDOUT:
+```
+OCI runtime exec failed: exec failed: unable to start container process: exec: "curl": executable file not found in $PATH
+```
+ERROR: command exited 127
+Full output: [`server-runs/2026-05-17T12-20-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-20-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
