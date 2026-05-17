@@ -22059,3 +22059,38 @@ kill -0 $(cat /tmp/day37-pw.pid) 2>/dev/null && echo "STILL RUNNING" || echo "DO
 grep -E "passed|failed" /tmp/day37-pw.log | tail -5
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T01:01:33.202Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d6b7aa2` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2319ms) _(showing tail — full 2,652B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day37-pw.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+wc -l /tmp/day37-pw.log
+tail -30 /tmp/day37-pw.log
+```
+STDOUT:
+```
+…lts/day37-password-reset-FR-22-cb851-orgot-password-form-submits-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../tmp/playwright-test-results/day37-password-reset-FR-22-cb851-orgot-password-form-submits-chromium/error-context.md
+
+
+[1A[2K  13 failed
+    [chromium] › tests/web/day37-csv-export.spec.ts:4:7 › FR-25: Product CSV Export › CSV export endpoint exists 
+    [chromium] › tests/web/day37-csv-export.spec.ts:16:7 › FR-25: Product CSV Export › products page has export button 
+    [chromium] › tests/web/day37-csv-export.spec.ts:47:7 › FR-25: Product CSV Export › CSV export returns CSV content type 
+    [chromium] › tests/web/day37-csv-export.spec.ts:80:7 › FR-25: Product CSV Export › CSV export with products returns data 
+    [chromium] › tests/web/day37-order-refund.spec.ts:4:7 › FR-24: Order Refund Handling › orders page has refund UI elements 
+    [chromium] › tests/web/day37-order-refund.spec.ts:44:7 › FR-24: Order Refund Handling › orders page shows refund status column 
+    [chromium] › tests/web/day37-order-refund.spec.ts:72:7 › FR-24: Order Refund Handling › refund modal or button exists in order detail 
+    [chromium] › tests/web/day37-password-auth.spec.ts:4:7 › FR-21: Password Authentication › login page has password input and works 
+    [chromium] › tests/web/day37-password-auth.spec.ts:23:7 › FR-21: Password Authentication › login with password succeeds 
+    [chromium] › tests/web/day37-password-auth.spec.ts:55:7 › FR-21: Password Authentication › settings page has password change option 
+    [chromium] › tests/web/day37-password-reset.spec.ts:4:7 › FR-22: Password Reset Flow › forgot password page exists and has form 
+    [chromium] › tests/web/day37-password-reset.spec.ts:22:7 › FR-22: Password Reset Flow › forgot password form submits 
+    [chromium] › tests/web/day37-password-reset.spec.ts:73:7 › FR-22: Password Reset Flow › links between login and forgot password work 
+  4 passed (1.5m)
+```
+Full output: [`server-runs/2026-05-17T01-01-33-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log`](server-runs/2026-05-17T01-01-33-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log)
