@@ -26405,3 +26405,36 @@ Public shop:
 HTTP/1.1 200 OK
 ```
 Full output: [`server-runs/2026-05-17T07-26-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-26-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:27:35.293Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `62d8398` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2475ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== PRODUCTS & CART (FR-8, FR-9, FR-10) ===" && echo "Products dashboard:" && curl -sI http://localhost:3000/dashboard/products 2>&1 | head -1 && echo "New product page:" && curl -sI http://localhost:3000/dashboard/products/new 2>&1 | head -1 && echo "Checkout page:" && curl -sI http://localhost:3000/checkout 2>&1 | head -1 && echo && echo "=== ORDERS & TRACKING (FR-11, FR-12, FR-13, FR-14) ===" && echo "Order dashboard:" && curl -sI http://localhost:3000/dashboard/orders 2>&1 | head -1 && echo "Order tracking:" && curl -sI http://localhost:3000/track/test-123 2>&1 | head -1 && echo && echo "=== DASHBOARD & SETTINGS (FR-19, FR-20) ===" && echo "Main dashboard:" && curl -sI http://localhost:3000/dashboard 2>&1 | head -1 && echo "Settings page:" && curl -sI http://localhost:3000/dashboard/settings 2>&1 | head -1 && echo "Profile page:" && curl -sI http://localhost:3000/dashboard/profile 2>&1 | head -1
+```
+STDOUT:
+```
+=== PRODUCTS & CART (FR-8, FR-9, FR-10) ===
+Products dashboard:
+HTTP/1.1 200 OK
+New product page:
+HTTP/1.1 200 OK
+Checkout page:
+HTTP/1.1 200 OK
+
+=== ORDERS & TRACKING (FR-11, FR-12, FR-13, FR-14) ===
+Order dashboard:
+HTTP/1.1 200 OK
+Order tracking:
+HTTP/1.1 200 OK
+
+=== DASHBOARD & SETTINGS (FR-19, FR-20) ===
+Main dashboard:
+HTTP/1.1 307 Temporary Redirect
+Settings page:
+HTTP/1.1 200 OK
+Profile page:
+HTTP/1.1 200 OK
+```
+Full output: [`server-runs/2026-05-17T07-27-35-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-27-35-app-cd-solo-shop-builder-private-e-commerce--1.log)
