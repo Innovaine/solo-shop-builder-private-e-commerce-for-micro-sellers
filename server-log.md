@@ -29266,3 +29266,16 @@ STDOUT:
 Started
 ```
 Full output: [`server-runs/2026-05-17T12-13-24-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-13-24-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:13:59.015Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8a44cbe` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7520ms)
+```
+sleep 5 && curl -sf http://localhost:3000/api/health || echo "FAIL"
+```
+STDOUT:
+```
+FAIL
+```
+Full output: [`server-runs/2026-05-17T12-13-58-app-sleep-5-curl--sf-http-localhost-3000-api-1.log`](server-runs/2026-05-17T12-13-58-app-sleep-5-curl--sf-http-localhost-3000-api-1.log)
