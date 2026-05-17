@@ -26537,3 +26537,80 @@ STDOUT:
  create mode 100644 tests/web/day45-mvp-auth-shop.spec.ts
 ```
 Full output: [`server-runs/2026-05-17T07-42-27-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-42-27-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:44:21.979Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `390c7c4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3082ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== MVP FEATURE VERIFICATION ==="
+echo ""
+echo "Test 1: Health check (F18 error handling)"
+curl -sf http://localhost:3000/api/health && echo " ✓ Health OK" || echo " ✗ Health FAIL"
+
+echo ""
+echo "Test 2: Homepage loads (F5 public storefront base)"
+curl -sI http://localhost:3000 2>&1 | head -1
+
+echo ""
+echo "Test 3: Login page exists (F1 signup/login)"
+curl -sI http://localhost:3000/auth/login 2>&1 | head -1
+
+echo ""
+echo "Test 4: Signup API responds (F1)"
+curl -s -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}' | grep -o '"message"' && echo " ✓ Signup API responds" || echo " ✗ Signup API error"
+
+echo ""
+echo "Test 5: Shop API requires auth (F2)"
+curl -s -X POST http://localhost:3000/api/shops \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","slug":"test"}' | grep -o 'logged in' && echo " ✓ Auth required" || echo " ✗ No auth check"
+
+echo ""
+echo "Test 6: Public shop 404 for invalid slug (F5)"
+curl -sI http://localhost:3000/shop/nonexistent-shop-xyz 2>&1 | grep -o '404' && echo " ✓ 404 working" || echo " ✗ 404 not working"
+
+echo ""
+echo "Test 7: Order tracking page structure (F14)"
+curl -sI http://localhost:3000/track/test-order-id 2>&1 | head -1
+
+echo ""
+echo "Test 8: Checkout page exists (F9)"
+curl -sI http://localhost:3000/checkout 2>&1 | head -1
+```
+STDOUT:
+```
+=== MVP FEATURE VERIFICATION ===
+
+Test 1: Health check (F18 error handling)
+{"status":"ok","timestamp":"2026-05-17T07:44:21.499Z","responseTime":"108ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"106ms"}}} ✓ Health OK
+
+Test 2: Homepage loads (F5 public storefront base)
+HTTP/1.1 200 OK
+
+Test 3: Login page exists (F1 signup/login)
+HTTP/1.1 200 OK
+
+Test 4: Signup API responds (F1)
+"message"
+ ✓ Signup API responds
+
+Test 5: Shop API requires auth (F2)
+logged in
+ ✓ Auth required
+
+Test 6: Public shop 404 for invalid slug (F5)
+404
+ ✓ 404 working
+
+Test 7: Order tracking page structure (F14)
+HTTP/1.1 200 OK
+
+Test 8: Checkout page exists (F9)
+HTTP/1.1 200 OK
+```
+Full output: [`server-runs/2026-05-17T07-44-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-44-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
