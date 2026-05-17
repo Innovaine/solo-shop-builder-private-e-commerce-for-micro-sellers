@@ -104,14 +104,16 @@ export default function EmailTemplatePage() {
                 )}
 
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-charcoal">Email Body</label>
-                  <p className="text-xs text-slate">Available variables: {"{{customerName}}"}, {"{{shopName}}"}, {"{{orderSummary}}"}, {"{{trackingUrl}}"}</p>
+                  <label htmlFor="emailBody" className="text-sm font-semibold text-charcoal">Email Body</label>
+                  <p id="emailBody-help" className="text-xs text-slate">Available variables: {"{{customerName}}"}, {"{{shopName}}"}, {"{{orderSummary}}"}, {"{{trackingUrl}}"}</p>
                   <textarea
+                    id="emailBody"
                     value={template}
                     onChange={(e) => setTemplate(e.target.value)}
                     rows={12}
                     className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue font-mono text-sm"
                     placeholder={DEFAULT_TEMPLATE}
+                    aria-describedby="emailBody-help"
                   />
                 </div>
 

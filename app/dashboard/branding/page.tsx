@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Header } from '@/components/ui/Header';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { FormField } from '@/components/ui/FormField';
 
 export default function BrandingPage() {
   const router = useRouter();
@@ -92,59 +93,62 @@ export default function BrandingPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-charcoal">Primary Color</label>
+                <label htmlFor="primaryColor" className="text-sm font-semibold text-charcoal">Primary Color</label>
                 <p className="text-xs text-slate">Main brand color (headers, navigation)</p>
                 <div className="flex gap-3 items-center">
                   <input
                     type="color"
+                    id="primaryColor-picker"
                     value={formData.primaryColor}
                     onChange={(e) => setFormData({ ...formData, primaryColor: e.target.value })}
                     className="h-12 w-20 rounded border border-whisper cursor-pointer"
                   />
-                  <input
+                  <FormField
+                    label=""
+                    id="primaryColor"
                     type="text"
                     value={formData.primaryColor}
                     onChange={(e) => setFormData({ ...formData, primaryColor: e.target.value })}
-                    className="flex-1 px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                     placeholder="#3B4C63"
                     pattern="^#[0-9A-Fa-f]{6}$"
+                    className="flex-1"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-charcoal">Accent Color</label>
+                <label htmlFor="accentColor" className="text-sm font-semibold text-charcoal">Accent Color</label>
                 <p className="text-xs text-slate">Secondary color (buttons, highlights)</p>
                 <div className="flex gap-3 items-center">
                   <input
                     type="color"
+                    id="accentColor-picker"
                     value={formData.accentColor}
                     onChange={(e) => setFormData({ ...formData, accentColor: e.target.value })}
                     className="h-12 w-20 rounded border border-whisper cursor-pointer"
                   />
-                  <input
+                  <FormField
+                    label=""
+                    id="accentColor"
                     type="text"
                     value={formData.accentColor}
                     onChange={(e) => setFormData({ ...formData, accentColor: e.target.value })}
-                    className="flex-1 px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
                     placeholder="#10B981"
                     pattern="^#[0-9A-Fa-f]{6}$"
+                    className="flex-1"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-charcoal">Logo URL</label>
-              <p className="text-xs text-slate">Link to your logo image (HTTPS required, recommended: square PNG/SVG, max 500KB)</p>
-              <input
-                type="url"
-                value={formData.logoUrl}
-                onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
-                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
-                placeholder="https://example.com/logo.png"
-              />
-            </div>
+            <FormField
+              label="Logo URL"
+              type="url"
+              value={formData.logoUrl}
+              onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
+              placeholder="https://example.com/logo.png"
+              helpText="Link to your logo image (HTTPS required, recommended: square PNG/SVG, max 500KB)"
+            />
 
             {/* Preview */}
             {formData.logoUrl && (
