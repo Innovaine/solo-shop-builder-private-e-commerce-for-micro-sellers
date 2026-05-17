@@ -24640,3 +24640,18 @@ STDOUT:
 {"message":"Magic link sent. Check your email."}
 ```
 Full output: [`server-runs/2026-05-17T03-36-10-app-echo-Test-login-API-endpoint-1.log`](server-runs/2026-05-17T03-36-10-app-echo-Test-login-API-endpoint-1.log)
+
+## 2026-05-17T03:36:49.613Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `19ba348` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12518ms)
+```
+echo "=== Checking app logs for errors ==="
+docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 --tail 50 2>&1 | grep -i error || echo "No errors in recent logs"
+
+echo -e "\n=== Test creating a test seller in DB ==="
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma studio --browser none &
+sleep 2
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d postgres -c "SELECT id, email, verified FROM \"Seller\" LIMIT 5;" || echo "Query failed"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
