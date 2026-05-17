@@ -28185,3 +28185,20 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 cat day-48/requirements.md
 ```
 ERROR: command exited 1
+
+## 2026-05-17T10:25:42.047Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1c66941` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2655ms)
+```
+docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}'
+curl -sf http://localhost:3000/api/health && echo "Health OK" || echo "Health FAIL"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 8 minutes	127.0.0.1:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 6 hours (healthy)	127.0.0.1:5432->5432/tcp
+traefik-vwiz-traefik-1	Up 7 hours	
+{"status":"ok","timestamp":"2026-05-17T10:25:42.320Z","responseTime":"126ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"124ms"}}}Health OK
+```
+Full output: [`server-runs/2026-05-17T10-25-42-app-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-17T10-25-42-app-docker-ps---format-.Names-t-.Status-t-.P-1.log)
