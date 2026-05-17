@@ -24015,3 +24015,49 @@ STDOUT:
 Health OK
 ```
 Full output: [`server-runs/2026-05-17T03-12-49-app-docker-ps---format-.Names-t.Status-t.Por-1.log`](server-runs/2026-05-17T03-12-49-app-docker-ps---format-.Names-t.Status-t.Por-1.log)
+
+## 2026-05-17T03:13:42.662Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `54af201` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2069ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && curl -v -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"testpassword123"}' 2>&1 | head -50
+```
+STDOUT:
+```
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3000 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying [::1]:3000...
+* Connected to localhost (::1) port 3000
+> POST /api/auth/login HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 57
+> 
+} [57 bytes data]
+< HTTP/1.1 401 Unauthorized
+< access-control-allow-headers: Content-Type, Authorization
+< access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+< access-control-allow-origin: *
+< x-request-id: ZV8S2mvtQweiD3VQ
+< vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+< content-type: application/json
+< Date: Sun, 17 May 2026 03:13:43 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< Transfer-Encoding: chunked
+< 
+{ [37 bytes data]
+100    94    0    37  100    57   3438   5297 --:--:-- --:--:-- --:--:--  9400
+* Connection #0 to host localhost left intact
+{"error":"Invalid email or password"}
+```
+Full output: [`server-runs/2026-05-17T03-13-42-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-13-42-app-cd-solo-shop-builder-private-e-commerce--1.log)
