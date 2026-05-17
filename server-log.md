@@ -24798,3 +24798,39 @@ HTTP/1.1 200 OK
 All tests passed!
 ```
 Full output: [`server-runs/2026-05-17T03-40-17-app-echo-E2E-Smoke-Test-1.log`](server-runs/2026-05-17T03-40-17-app-echo-E2E-Smoke-Test-1.log)
+
+## 2026-05-17T05:10:11.979Z — Chiara ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c5cc31e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2635ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git log --oneline -20 && echo "---" && docker compose ps
+```
+STDOUT:
+```
+b1f6ce8 Anil (engineer, day 41) — pre-SSH sync
+62e18a9 Anil (engineer, day 41) — pre-SSH sync
+1b69646 Anil (engineer, day 41) — pre-SSH sync
+fce49b0 Anil (engineer, day 41) — pre-SSH sync
+31008a4 Anil (engineer, day 41) — pre-SSH sync
+09105af Anil (engineer, day 41) — pre-SSH sync
+d5c6564 Anil (engineer, day 41) — pre-SSH sync
+b9a3b97 Anil (engineer, day 41) — pre-SSH sync
+2ebb876 Anil (engineer, day 41) — pre-SSH sync
+849e5a0 Anil (engineer, day 41) — pre-SSH sync
+b3b9b3f Anil (engineer, day 41) — pre-SSH sync
+fd3d6cf Anil (engineer, day 41) — pre-SSH sync
+af3696a Anil (engineer, day 41) — pre-SSH sync
+5b94740 Anil (engineer, day 41) — pre-SSH sync
+16612d8 Anil (engineer, day 41) — pre-SSH sync
+6ad311b Anil (engineer, day 41) — pre-SSH sync
+54af201 Anil (engineer, day 41) — pre-SSH sync
+6778f1b Anil (engineer, day 41) — pre-SSH sync
+7f2b8b4 Day 40 — Solo Shop Builder — Private E-commerce for Micro-Sellers (stage ship-candidate)
+bdf2b0e Anil (engineer, day 40) — pre-SSH sync
+---
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED             STATUS                       PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        About an hour ago   Up About an hour             3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   About an hour ago   Up About an hour (healthy)   127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-17T05-10-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T05-10-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
