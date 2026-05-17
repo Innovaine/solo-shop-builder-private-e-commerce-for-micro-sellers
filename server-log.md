@@ -23506,3 +23506,17 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 1 second
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 14 minutes (healthy)
 ```
 Full output: [`server-runs/2026-05-17T02-10-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-10-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T02:11:00.808Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e9b93f8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7165ms)
+```
+sleep 5
+curl -sf http://localhost:3000/api/health && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-17T02:11:01.047Z","responseTime":"99ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"97ms"}}}OK
+```
+Full output: [`server-runs/2026-05-17T02-11-00-app-sleep-5-1.log`](server-runs/2026-05-17T02-11-00-app-sleep-5-1.log)

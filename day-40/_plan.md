@@ -1,40 +1,41 @@
 # Day 40 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 86
-- **Saved:** 17/05/2026, 4:58:53 AM
+- **Cycle:** 87
+- **Saved:** 17/05/2026, 5:12:40 AM
 
 ---
 
 FINISHED:
-- Docker setup + environment configuration (Dockerfile, .env.example, deployment scaffolding ready)
-- 41 tasks closed across auth, product, checkout, and order flows
-- API routes stubbed: account/password, analytics
-- Project structure initialized with Next.js app router
+- Docker setup + environment configuration (Dockerfile, .env.example, deployment infrastructure present)
+- Project scaffolding: Next.js + TypeScript structure in place with API route skeleton (app/api/account/password, app/api/analytics)
+- Task board initialized with 60 total tasks; 40 completed, 18 open, 2 in-progress
+- Magic link auth flow partially complete (#121 in-progress, blocking shop creation #122)
 
 PENDING:
-- #121: Magic link flow broken after verification — blocks seller signup path
-- #82: Docker build missing 3 dynamic exports — blocks local dev and CI/CD
-- #106: Day 29 features (F31-F40) not re-deployed after cycle reset — branding, email, billing, analytics missing from live URL
-- #83: MVP feature completeness unverified — 20 features claimed but no end-to-end confirmation yet
-- #59: Import path errors in checkout + orders — payment flow may be broken
-- #80: CEO demo signup→order→tracking flow not validated live
-- Test suite for F1–F20 not yet written (task #74 open)
+- #122: Shop creation endpoint broken (Anil blocked, critical blocker for MVP validation)
+- #121: Magic link verification flow error (Anil actively working, unblocks F1)
+- #82: Docker build dynamic exports missing (blocks local dev + deployment)
+- #59: Import path errors in checkout + orders pages (unblocks F9, F10)
+- FR-1 through FR-10 backend incomplete (auth, shop CRUD, products, cart, checkout, orders) — #77 in-progress
+- FR-11 through FR-20 seller/customer UI incomplete (dashboard, tracking, emails) — #78 in-progress
+- No Playwright test suite yet for the 20 MVP features (#74)
+- No end-to-end verification of full flow (signup → order → tracking) since #122 blocks shop creation
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineering): Fix #82 (Docker dynamic exports), unblock #121 (magic link verification), then attack #59 (import paths in checkout/orders). These three are hard blockers — once cleared, engineer should ship #63 (category dropdown) + #64 (category filter) + #61 (image upload API) in parallel. Reference: F3, F4, F6, F7 from spec.
-- Stream 2 (designer): Ship #65 (verify page + product management UI + design system components) — this unblocks engineer on #60 (product CRUD forms) and #47 (product list UI). Designer should also prepare storefront category filter mockup for #64.
-- Stream 3 (tester): Write Playwright tests for #77 (FR-1 to FR-10 backend: auth, shop, products, cart, checkout, orders) and #78 (FR-11 to FR-20 seller dashboard + tracking + emails). Cover the happy path: signup → magic link → shop creation → product add → checkout → order status update. Reference product-spec F1–F12.
-- Stream 4 (reviewer): Verify #82 deploys cleanly, confirm #121 magic link works end-to-end after fix, spot-check #59 import paths in payment routes. Then review #60, #63, #64, #61 as they land.
-- Stream 5 (requirements): Confirm F1–F20 MVP scope matches board tasks — no scope creep into F21+ (password auth, webhooks, refunds) until MVP ships live with paying seller.
+- Stream 1 (engineering): Unblock #122 (shop creation) and #82 (Docker build) in parallel, then attack #59 (import paths) and #77 backend stack (F6 category assignment, F8 cart, F9 Stripe checkout). Three concrete wins: shop endpoint live, Docker builds clean, import paths fixed. These unblock designer and tester immediately.
+- Stream 2 (designer): Ship product CRUD form UI (#60), category dropdown (#63), and storefront list page (#47) — these three pages are the visible core of the MVP. Don't wait for backend to be perfect; layout and component structure should be 80% done by EOD.
+- Stream 3 (tester): Write Playwright suite for F1–F5 (signup, shop creation, product list, category filter, storefront) in parallel with engineering shipping those features. Start with smoke tests on shop endpoint (#80 CEO demo flow) once #122 clears.
+- Stream 4 (reviewer): Code review #122 (shop creation) and #82 (Docker) immediately when landed, then spot-check #77 (backend F6–F9). Verify import paths are correct in #59 before merge.
+- Stream 5 (PM/requirements): Confirm F6 (category dropdown) and F7 (filter) spec with Kenji — are categories fixed enum or seller-configurable? This decision unblocks #63 and #64 design work.
 
 ROLE PLAN:
-- engineering: YES — Three hard blockers (#82, #121, #59) must unblock before payload features land; engineer has 60–80 tool calls today, enough for 3–5 features in parallel once blockers clear.
-- review: YES — Blockers need code verification before proceeding; payment flow (#59) especially critical for checkout path.
-- design: YES — #65 unblocks #60 and #47; designer ships verify page + product CRUD mockups + storefront category filter today, runs in parallel with engineering.
-- test: YES — Tester writes Playwright suite for F1–F20 against engineer's shipped code same day; we have zero test coverage and need validation before CEO demo (#76, #80).
-- requirements: YES — Scope check: F21+ (password reset, webhooks, refunds) are open tasks (#105) but should NOT ship until F1–F20 MVP validates with a real seller live; PM confirms priorities with founder.
-- design_qa: YES — Fidelity check on #65 designs against product spec before engineer builds #60, #47.
+- engineering: YES — #122 is a hard blocker; unblocking shop creation + Docker + imports clears the path for designer and tester to validate the flow
+- review: YES — three separate PRs landing (shop, Docker, imports) need same-day verification to stay on track
+- design: YES — product form, category UI, and storefront layout are the customer-facing MVP; ship these in parallel so engineer and tester have something to test against
+- test: YES — Playwright suite for F1–F5 writes against shipping features; starts with #80 (CEO demo validation) once shop endpoint works
+- requirements: YES — one blocking spec question on F6 (categories) needs immediate answer from Kenji so designer and engineer don't guess
+- design_qa: NO — fidelity checking happens day 41 once all three pages exist; no point in QA approval before layout ships
 
 ONE-LINE SUMMARY:
-Today the team unblocks Docker + magic link + payment imports, then ships category UI + product forms + image upload API + test suite in parallel, targeting a live, testable MVP by day 41.
+Today the team unblocks shop creation and Docker build, ships product CRUD + category filter UI, and writes Playwright tests for the full signup-to-storefront flow in parallel.
