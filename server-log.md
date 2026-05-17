@@ -30206,3 +30206,26 @@ npm notice To update run: npm install -g npm@11.14.1
 npm notice
 ```
 Full output: [`server-runs/2026-05-17T23-29-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-29-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:30:15.296Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cc677cc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2647ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec postgres psql -U postgres -d soloshop -c "SELECT migration_name, finished_at, rolled_back_at FROM _prisma_migrations ORDER BY started_at DESC LIMIT 10;"
+```
+STDOUT:
+```
+            migration_name            |          finished_at          |        rolled_back_at         
+--------------------------------------+-------------------------------+-------------------------------
+ 20260517_add_seller_profile_fields   |                               | 
+ 20260517_add_seller_profile_fields   |                               | 2026-05-17 23:29:19.992948+00
+ 20260517_add_profile_branding_fields | 2026-05-16 22:56:58.847582+00 | 
+ 20260517_add_product_variants        | 2026-05-16 22:56:58.840828+00 | 
+ 20260516_add_seller_password_hash    | 2026-05-16 21:00:51.046278+00 | 
+ 20260516_add_password_reset_fields   | 2026-05-16 21:00:51.042152+00 | 
+ 20260516_add_order_tables            | 2026-05-16 17:43:30.486631+00 | 
+ 20260515184722_init                  | 2026-05-15 18:47:22.58628+00  | 
+(8 rows)
+```
+Full output: [`server-runs/2026-05-17T23-30-15-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-30-15-app-cd-solo-shop-builder-private-e-commerce--1.log)
