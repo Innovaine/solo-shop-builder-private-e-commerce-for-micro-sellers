@@ -21954,3 +21954,45 @@ STDOUT:
 Started tests, PID=1142324
 ```
 Full output: [`server-runs/2026-05-17T00-59-34-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T00-59-34-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T00:59:50.771Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c95e23b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2155ms)
+```
+kill -0 $(cat /tmp/day37-pw.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/day37-pw.log
+```
+STDOUT:
+```
+DONE
+
+Running 17 tests using 4 workers
+
+[1A[2K[1/17] [chromium] › tests/web/day37-csv-export.spec.ts:4:7 › FR-25: Product CSV Export › CSV export endpoint exists
+[1A[2K[2/17] [chromium] › tests/web/day37-csv-export.spec.ts:47:7 › FR-25: Product CSV Export › CSV export returns CSV content type
+[1A[2K[3/17] [chromium] › tests/web/day37-csv-export.spec.ts:16:7 › FR-25: Product CSV Export › products page has export button
+[1A[2K[4/17] [chromium] › tests/web/day37-csv-export.spec.ts:80:7 › FR-25: Product CSV Export › CSV export with products returns data
+[1A[2K  1) [chromium] › tests/web/day37-csv-export.spec.ts:4:7 › FR-25: Product CSV Export › CSV export endpoint exists 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected value: [32m404[39m
+    Received array: [31m[200, 401, 403, 500][39m
+
+       7 |     
+       8 |     // Should return 401 (unauthorized) or 200 (success), not 404 or 405
+    >  9 |     expect([200, 401, 403, 500]).toContain(response.status());
+         |                                  ^
+      10 |     
+      11 |     // Should NOT be 404 or 405 (which means endpoint doesn't exist)
+      12 |     expect(response.status()).not.toBe(404);
+        at /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day37-csv-export.spec.ts:9:34
+
+    Error Context: ../../../tmp/playwright-test-results/day37-csv-export-FR-25-Pro-2e81e--CSV-export-endpoint-exists-chromium/error-context.md
+
+
+[1A[2K[5/17] [chromium] › tests/web/day37-csv-export.spec.ts:108:7 › FR-25: Product CSV Export › orders CSV export endpoint exists
+[1A[2K[6/17] [chromium] › tests/web/day37-order-refund.spec.ts:4:7 › FR-24: Order Refund Handling › orders page has refund UI elements
+```
+Full output: [`server-runs/2026-05-17T00-59-50-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log`](server-runs/2026-05-17T00-59-50-app-kill--0-cat-tmp-day37-pw.pid-2-dev-null--1.log)
