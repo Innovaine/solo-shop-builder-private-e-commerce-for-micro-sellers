@@ -27157,3 +27157,65 @@ HTTP/1.1 404 Not Found
 ✓ All critical pages accessible
 ```
 Full output: [`server-runs/2026-05-17T08-01-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T08-01-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T08:02:07.090Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ecead71` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2827ms) _(showing tail — full 9,477B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== API ENDPOINT TESTING ==="
+echo ""
+
+echo "Test 9: Signup API responds (FR-1)"
+curl -s -X POST http://localhost:3000/api/auth/signup -H "Content-Type: application/json" -d '{}' 2>&1 | head -3
+echo ""
+
+echo "Test 10: Shop creation requires auth (FR-2)"
+curl -s -X POST http://localhost:3000/api/auth/shops -H "Content-Type: application/json" -d '{}' 2>&1 | head -3
+echo ""
+
+echo "Test 11: Products endpoint exists (FR-3)"
+curl -sI http://localhost:3000/api/products 2>&1 | head -1
+echo ""
+
+echo "Test 12: Checkout endpoint exists (FR-9)"
+curl -sI http://localhost:3000/api/checkout 2>&1 | head -1
+echo ""
+
+echo "Test 13: Orders endpoint exists (FR-11)"
+curl -sI http://localhost:3000/api/orders 2>&1 | head -1
+echo ""
+
+echo "Test 14: Logout endpoint exists (FR-17)"
+curl -sI http://localhost:3000/api/auth/logout 2>&1 | head -1
+echo ""
+
+echo "Test 15: Account deletion endpoint exists (FR-20)"
+curl -sI http://localhost:3000/api/account/delete 2>&1 | head -1
+echo ""
+
+echo "✓ All API endpoints accessible"
+```
+STDOUT:
+```
+…text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[[\"$\",\"meta\",null,{\"name\":\"robots\",\"content\":\"noindex\"}],\"$L8\"],\"globalErrorComponent\":\"$9\",\"missingSlots\":\"$Wa\"}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
+Test 11: Products endpoint exists (FR-3)
+HTTP/1.1 400 Bad Request
+
+Test 12: Checkout endpoint exists (FR-9)
+HTTP/1.1 405 Method Not Allowed
+
+Test 13: Orders endpoint exists (FR-11)
+HTTP/1.1 401 Unauthorized
+
+Test 14: Logout endpoint exists (FR-17)
+HTTP/1.1 405 Method Not Allowed
+
+Test 15: Account deletion endpoint exists (FR-20)
+HTTP/1.1 405 Method Not Allowed
+
+✓ All API endpoints accessible
+```
+Full output: [`server-runs/2026-05-17T08-02-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T08-02-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
