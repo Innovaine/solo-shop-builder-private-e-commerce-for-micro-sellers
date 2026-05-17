@@ -29992,3 +29992,17 @@ engineer  755745  0.0  0.0 2031856 29812 ?       Sl   May15   0:03 docker compos
 engineer  984815  0.0  0.0 2031856 29624 ?       Sl   May16   0:02 docker compose up app
 ```
 Full output: [`server-runs/2026-05-17T23-27-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-27-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:27:33.203Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5cb1d8b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2755ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED        STATUS                  PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   11 hours ago   Up 11 hours (healthy)   127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-17T23-27-33-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-27-33-app-cd-solo-shop-builder-private-e-commerce--1.log)
