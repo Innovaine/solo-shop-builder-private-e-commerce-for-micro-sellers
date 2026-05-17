@@ -27663,3 +27663,23 @@ STDOUT:
 tail: cannot open '/tmp/day47-smoke.log' for reading: No such file or directory
 ```
 Full output: [`server-runs/2026-05-17T09-48-14-app-tail--500-tmp-day47-smoke.log-2-1-head---1.log`](server-runs/2026-05-17T09-48-14-app-tail--500-tmp-day47-smoke.log-2-1-head---1.log)
+
+## 2026-05-17T09:48:41.992Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `858a785` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 3989ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la /tmp/day47* && ps aux | grep playwright | grep -v grep
+```
+STDOUT:
+```
+-rw-rw-r-- 1 engineer engineer 19873 May 17 09:13 /tmp/day47-build.log
+-rw-rw-r-- 1 engineer engineer     8 May 17 09:13 /tmp/day47-build.pid
+-rw-rw-r-- 1 tester   tester    1184 May 17 09:33 /tmp/day47-regression-v2.log
+-rw-rw-r-- 1 tester   tester       8 May 17 09:33 /tmp/day47-regression-v2.pid
+-rw-rw-r-- 1 tester   tester     120 May 17 09:29 /tmp/day47-regression.log
+-rw-rw-r-- 1 tester   tester       8 May 17 09:29 /tmp/day47-regression.pid
+-rw-rw-r-- 1 tester   tester       8 May 17 09:37 /tmp/day47-smoke.pid
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-17T09-48-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-48-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
