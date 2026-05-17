@@ -25343,3 +25343,12 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-17T05:53:37.267Z","responseTime":"203ms","checks":{"database":{"status":"ok","responseTime":"55ms"},"email":{"status":"ok","responseTime":"148ms"}}}OK
 ```
 Full output: [`server-runs/2026-05-17T05-53-37-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-17T05-53-37-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-17T06:01:59.834Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bb866c9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2823ms)
+```
+docker ps --format '.Names\t.Status\t.Ports' | grep solo-shop
+```
+ERROR: command exited 1
