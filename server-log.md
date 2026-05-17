@@ -26794,3 +26794,64 @@ STDOUT:
 Build started, PID=1254275
 ```
 Full output: [`server-runs/2026-05-17T07-51-30-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-51-30-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:51:51.071Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `255e6b0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2774ms) _(showing tail — full 3,430B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day46-test-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day46-test-build.log
+```
+STDOUT:
+```
+…/npm/cli/releases/tag/v11.14.1
+#13 1.613 npm notice To update run: npm install -g npm@11.14.1
+#13 1.613 npm notice
+#13 DONE 1.7s
+
+#14 [builder 6/7] RUN mkdir -p public
+#14 DONE 0.2s
+
+#15 [builder 7/7] RUN npm run build
+#15 0.313 
+#15 0.313 > solo-shop-builder@0.1.0 build
+#15 0.313 > prisma generate && next build
+#15 0.313 
+#15 0.659 Environment variables loaded from .env
+#15 0.661 Prisma schema loaded from prisma/schema.prisma
+#15 1.001 
+#15 1.001 ✔ Generated Prisma Client (v5.14.0) to ./node_modules/@prisma/client in 92ms
+#15 1.001 
+#15 1.001 Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
+#15 1.001 ```
+#15 1.001 import { PrismaClient } from '@prisma/client'
+#15 1.001 const prisma = new PrismaClient()
+#15 1.001 ```
+#15 1.001 or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+#15 1.001 ```
+#15 1.001 import { PrismaClient } from '@prisma/client/edge'
+#15 1.001 const prisma = new PrismaClient()
+#15 1.001 ```
+#15 1.001 
+#15 1.001 See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+#15 1.001 
+#15 1.001 ┌─────────────────────────────────────────────────────────────┐
+#15 1.001 │  Deploying your app to serverless or edge functions?        │
+#15 1.001 │  Try Prisma Accelerate for connection pooling and caching.  │
+#15 1.001 │  https://pris.ly/cli/--accelerate                           │
+#15 1.001 └─────────────────────────────────────────────────────────────┘
+#15 1.001 
+#15 1.638 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#15 1.639 This information is used to shape Next.js' roadmap and prioritize features.
+#15 1.639 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 1.639 https://nextjs.org/telemetry
+#15 1.639 
+#15 1.688   ▲ Next.js 14.2.3
+#15 1.688   - Environments: .env
+#15 1.688 
+#15 1.753    Creating an optimized production build ...
+#15 13.08  ✓ Compiled successfully
+#15 13.08    Linting and checking validity of types ...
+```
+Full output: [`server-runs/2026-05-17T07-51-51-app-kill--0-cat-tmp-day46-test-build.pid-2-d-1.log`](server-runs/2026-05-17T07-51-51-app-kill--0-cat-tmp-day46-test-build.pid-2-d-1.log)
