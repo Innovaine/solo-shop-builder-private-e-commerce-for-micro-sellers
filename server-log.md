@@ -28422,3 +28422,61 @@ Test: Signup with password, then login with password
 []
 ```
 Full output: [`server-runs/2026-05-17T10-46-48-app-echo-FR-21-Password-Authentication-Deep--1.log`](server-runs/2026-05-17T10-46-48-app-echo-FR-21-Password-Authentication-Deep--1.log)
+
+## 2026-05-17T10:48:25.249Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3c11473` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4067ms)
+```
+echo "=== FR-26: Shop Branding Tagline Test ==="
+echo ""
+
+# First create a seller + shop
+EMAIL2="brandtest-$(date +%s)@example.com"
+PASSWORD2="BrandPass123!"
+SLUG="shop-$(date +%s)"
+
+echo "1. Create seller + shop..."
+curl -s -c /tmp/cookies-brand.txt -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"$EMAIL2\",\"password\":\"$PASSWORD2\"}" > /dev/null
+
+curl -s -b /tmp/cookies-brand.txt -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"$EMAIL2\",\"password\":\"$PASSWORD2\"}" > /dev/null
+
+SHOP_RESP=$(curl -s -b /tmp/cookies-brand.txt -X POST http://localhost:3000/api/shops \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"Test Shop\",\"slug\":\"$SLUG\"}")
+echo "$SHOP_RESP" | head -c 300
+echo ""
+echo ""
+
+echo "2. Set tagline via branding API..."
+BRAND_RESP=$(curl -s -b /tmp/cookies-brand.txt -X PUT http://localhost:3000/api/shops/branding \
+  -H "Content-Type: application/json" \
+  -d '{"tagline":"Handcrafted with care since 2020"}')
+echo "$BRAND_RESP" | head -c 300
+echo ""
+echo ""
+
+echo "3. Visit shop storefront and check for tagline..."
+curl -s http://localhost:3000/shop/$SLUG | grep -o "Handcrafted with care" || echo "Tagline not found in storefront"
+echo ""
+```
+STDOUT:
+```
+=== FR-26: Shop Branding Tagline Test ===
+
+1. Create seller + shop...
+{"error":"You must be logged in to create a shop."}
+
+
+2. Set tagline via branding API...
+
+
+
+3. Visit shop storefront and check for tagline...
+Tagline not found in storefront
+```
+Full output: [`server-runs/2026-05-17T10-48-25-app-echo-FR-26-Shop-Branding-Tagline-Test-1.log`](server-runs/2026-05-17T10-48-25-app-echo-FR-26-Shop-Branding-Tagline-Test-1.log)
