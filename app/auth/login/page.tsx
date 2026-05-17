@@ -5,8 +5,8 @@
 
 import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Button } from '@/components/ui/Button'
-import { FormField } from '@/components/ui/FormField'
+import { Button } from '@/app/components/ui/Button'
+import { FormField } from '@/app/components/ui/FormField'
 
 // Force dynamic rendering because we use searchParams
 export const dynamic = 'force-dynamic'

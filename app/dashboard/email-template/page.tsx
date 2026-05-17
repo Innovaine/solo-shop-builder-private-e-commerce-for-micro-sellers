@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Header } from '@/components/ui/Header';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import { Header } from '@/app/components/ui/Header';
+import { Button } from '@/app/components/ui/Button';
+import { Card } from '@/app/components/ui/Card';
 
 const DEFAULT_TEMPLATE = `Hi {{customerName}},
 

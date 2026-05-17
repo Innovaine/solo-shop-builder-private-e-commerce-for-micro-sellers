@@ -5,8 +5,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
-import { FormField } from '@/components/ui/FormField'
+import { Button } from '@/app/components/ui/Button'
+import { FormField } from '@/app/components/ui/FormField'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')

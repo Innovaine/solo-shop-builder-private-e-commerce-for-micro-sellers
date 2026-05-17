@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Dashboard (Inline Editing) — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif; background: #FAF9F7; color: #1F2937; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: #64748B; font-size: 14px; margin-bottom: 32px; }
+    
+    .card { background: white; border-radius: 8px; border: 1px solid #E2E8F0; padding: 24px; margin-bottom: 24px; }
+    .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+    
+    /* Table */
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; }
+    th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937; text-transform: uppercase; }
+    td { padding: 12px 16px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    tbody tr:hover { background: #F9FAFB; }
+    
+    /* Editable Cell */
+    .edit-cell {
+      position: relative;
+      min-width: 140px;
+    }
+    select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    select:hover {
+      border-color: #CBD5E1;
+    }
+    select:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+    
+    /* Badge / Read-only Status */
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-pending { background: #FEF3C7; color: #92400E; }
+    .badge-paid { background: #DBEAFE; color: #164E63; }
+    .badge-in-progress { background: #CCE5FF; color: #003D82; }
+    .badge-shipped { background: #D1E7DD; color: #0F3919; }
+    .badge-delivered { background: #D1FAE5; color: #065F46; }
+    
+    /* Info Box */
+    .info-box {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: #0369A1;
+      line-height: 1.6;
+    }
+    .info-box strong { font-weight: 600; }
+    
+    /* Edit Indicator */
+    .edit-hint {
+      font-size: 11px;
+      color: #94A3B8;
+      margin-top: 4px;
+      font-style: italic;
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .container { padding: 16px; }
+      table { font-size: 12px; }
+      th, td { padding: 8px 12px; }
+      h1 { font-size: 24px; }
+      .edit-cell { min-width: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Order Dashboard — F11/F12 Feature Reference</h1>
+    <p class="subtitle">Inline status editing for seller order management</p>
+    
+    <div class="card">
+      <h2>Feature F11 & F12: Order Dashboard with Status Updates</h2>
+      <div class="info-box">
+        <strong>✓ F11: Seller order dashboard</strong> — Seller logs in, sees table of all orders (Order ID, Customer, Total, Status). <br/>
+        <strong>✓ F12: Order status updates (dropdown)</strong> — Seller marks order as: pending → paid → in-progress → shipped → delivered. Customer notified on status change.
+      </div>
+      
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 20px;">
+        Below is the canonical design for inline status editing. The engineer should implement the Status column as a <code>&lt;select&gt;</code> dropdown (not a badge display) so sellers can change status without leaving the dashboard.
+      </p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1: Shipped Status -->
+          <tr>
+            <td style="font-weight: 600; color: #3B4C63;">#ORD-1001</td>
+            <td>May 14, 2024</td>
+            <td>Jane Smith</td>
+            <td style="font-weight: 600;">$145.00</td>
+            <td class="edit-cell">
+              <select>
+                <option value="pending">Pending</option>
+                <option value="paid">Paid</option>
+                <option value="in-progress">In Progress</option>
+                <option value="shipped" selected>Shipped</option>
+                <option value="delivered">Delivered</option>
+              </select>
+              <div class="edit-hint">Click to change</div>
+            </td>
+            <td><a href="#" style="color: #3B4C63; text-decoration: none; font-weight: 600; font-size: 13px;">View →</a></td>
+          </tr>
+          
+          <!-- Row 2: In Progress Status -->
+          <tr>
+            <td style="font-weight: 600; color: #3B4C63;">#ORD-1002</td>
+            <td>May 12, 2024</td>
+            <td>John Doe</td>
+            <td style="font-weight: 600;">$89.50</td>
+            <td class="edit-cell">
+              <select>
+                <option value="pending">Pending</option>
+                <option value="paid">Paid</option>
+                <option value="in-progress" selected>In Progress</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+              </select>
+              <div class="edit-hint">Click to change</div>
+            </td>
+            <td><a href="#" style="color: #3B4C63; text-decoration: none; font-weight: 600; font-size: 13px;">View →</a></td>
+          </tr>
+          
+          <!-- Row 3: Pending Status -->
+          <tr>
+            <td style="font-weight: 600; color: #3B4C63;">#ORD-1003</td>
+            <td>May 10, 2024</td>
+            <td>Sarah Lee</td>
+            <td style="font-weight: 600;">$220.00</td>
+            <td class="edit-cell">
+              <select>
+                <option value="pending" selected>Pending</option>
+                <option value="paid">Paid</option>
+                <option value="in-progress">In Progress</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+              </select>
+              <div class="edit-hint">Click to change</div>
+            </td>
+            <td><a href="#" style="color: #3B4C63; text-decoration: none; font-weight: 600; font-size: 13px;">View →</a></td>
+          </tr>
+          
+          <!-- Row 4: Delivered Status -->
+          <tr>
+            <td style="font-weight: 600; color: #3B4C63;">#ORD-1004</td>
+            <td>May 8, 2024</td>
+            <td>Michael Chen</td>
+            <td style="font-weight: 600;">$67.99</td>
+            <td class="edit-cell">
+              <select>
+                <option value="pending">Pending</option>
+                <option value="paid">Paid</option>
+                <option value="in-progress">In Progress</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered" selected>Delivered</option>
+              </select>
+              <div class="edit-hint">Click to change</div>
+            </td>
+            <td><a href="#" style="color: #3B4C63; text-decoration: none; font-weight: 600; font-size: 13px;">View →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="card">
+      <h2>Design Notes for Engineer</h2>
+      <ul style="color: #64748B; font-size: 14px; line-height: 1.8; margin-left: 24px;">
+        <li><strong>Status Column:</strong> Use native HTML <code>&lt;select&gt;</code> element (not a styled button + popup). This ensures accessibility and native mobile behavior.</li>
+        <li><strong>Focus State:</strong> When focused, select has a 3px slate-blue box-shadow and solid border (shown in design/system/components.html).</li>
+        <li><strong>Options:</strong> Always show 5 options in order (Pending, Paid, In Progress, Shipped, Delivered). Pre-select the current status.</li>
+        <li><strong>On Change:</strong> When user selects a new status, POST to <code>/api/orders/{orderId}/status</code> with new status. Show loading state (slight opacity or spinner icon). On success, update the dropdown value. On error, revert and show toast error.</li>
+        <li><strong>Customer Notification:</strong> When status changes, automatically send email to customer (this is F12 requirement). Email template is in design/emails/order-confirmation.html.</li>
+        <li><strong>Mobile:</strong> Select remains full-width on mobile (< 768px). Native dropdown opens with all options visible.</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h2>Related Features (Acceptance Criteria)</h2>
+      <ul style="color: #64748B; font-size: 14px; line-height: 1.8; margin-left: 24px;">
+        <li><strong>F11 ✓:</strong> Seller can view a list of all orders (Order ID, Customer email, Total, Status) without filtering or date range.</li>
+        <li><strong>F12 ✓:</strong> Seller can change status from any state to any state using dropdown. Valid transitions: pending → paid → in-progress → shipped → delivered (but non-sequential transitions allowed for demo).</li>
+        <li><strong>F13 (Tracking):</strong> Separate column (not shown here) for "Tracking ID" input. See design/pages/order-detail.html for full order view with tracking input.</li>
+        <li><strong>F16 (Customer Email):</strong> When status changes, customer receives email with new status. Subject: "Your order #ORD-XXX status updated" Body: "Your order is now [STATUS]."</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

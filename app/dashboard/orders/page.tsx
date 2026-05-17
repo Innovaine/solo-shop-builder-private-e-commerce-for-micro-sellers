@@ -40,6 +40,7 @@ export default function OrdersPage() {
   const [error, setError] = useState<string | null>(null)
   const [editingOrder, setEditingOrder] = useState<string | null>(null)
   const [updatingStatus, setUpdatingStatus] = useState<{ [key: string]: boolean }>({})
+  const [refunding, setRefunding] = useState<{ [key: string]: boolean }>({})
 
   useEffect(() => {
     fetchOrders()
@@ -114,6 +115,34 @@ export default function OrdersPage() {
     }
   }
 
+  const refundOrder = async (orderId: string) => {
+    if (!confirm('Are you sure you want to refund this order? This action cannot be undone.')) {
+      return
+    }
+
+    setRefunding((prev) => ({ ...prev, [orderId]: true }))
+    try {
+      const response = await fetch(`/api/orders/${orderId}/refund`, {
+        method: 'POST',
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Failed to process refund')
+      }
+
+      const data = await response.json()
+      setOrders((prev) =>
+        prev.map((order) => (order.id === orderId ? data.order : order))
+      )
+      alert('Refund processed successfully. Customer will be notified via email.')
+    } catch (err: any) {
+      alert(`Refund failed: ${err.message}`)
+    } finally {
+      setRefunding((prev) => ({ ...prev, [orderId]: false }))
+    }
+  }
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'paid':
@@ -124,6 +153,8 @@ export default function OrdersPage() {
         return 'bg-slate-blue text-white'
       case 'delivered':
         return 'bg-emerald text-white'
+      case 'refunded':
+        return 'bg-slate text-white'
       case 'canceled':
         return 'bg-rose text-white'
       default:
@@ -264,13 +295,25 @@ export default function OrdersPage() {
                         </p>
                       </td>
                       <td className="px-4 py-4">
-                        <Button
-                          variant="ghost"
-                          onClick={() => setEditingOrder(order.id === editingOrder ? null : order.id)}
-                          disabled={updatingStatus[order.id]}
-                        >
-                          {editingOrder === order.id ? 'Cancel' : 'Edit'}
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button
+                            variant="ghost"
+                            onClick={() => setEditingOrder(order.id === editingOrder ? null : order.id)}
+                            disabled={updatingStatus[order.id] || refunding[order.id]}
+                          >
+                            {editingOrder === order.id ? 'Cancel' : 'Edit'}
+                          </Button>
+                          {order.status !== 'refunded' && order.status !== 'canceled' && (
+                            <Button
+                              variant="ghost"
+                              onClick={() => refundOrder(order.id)}
+                              disabled={refunding[order.id] || updatingStatus[order.id]}
+                              className="text-rose hover:bg-rose/10"
+                            >
+                              {refunding[order.id] ? 'Refunding...' : 'Refund'}
+                            </Button>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}
