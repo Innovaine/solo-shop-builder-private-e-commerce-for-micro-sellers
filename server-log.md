@@ -27554,3 +27554,18 @@ STDOUT:
 nohup: failed to run command 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers': No such file or directory
 ```
 Full output: [`server-runs/2026-05-17T09-31-07-app-tail--100-tmp-day47-regression.log-1.log`](server-runs/2026-05-17T09-31-07-app-tail--100-tmp-day47-regression.log-1.log)
+
+## 2026-05-17T09:33:07.738Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dfa5074` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3583ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && export PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers && nohup npx playwright test --reporter=list > /tmp/day47-regression-v2.log 2>&1 &
+echo $! > /tmp/day47-regression-v2.pid
+echo "Started regression tests v2, PID=$(cat /tmp/day47-regression-v2.pid)"
+```
+STDOUT:
+```
+Started regression tests v2, PID=1271013
+```
+Full output: [`server-runs/2026-05-17T09-33-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-33-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
