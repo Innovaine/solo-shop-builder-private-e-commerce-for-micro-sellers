@@ -26468,3 +26468,18 @@ HTTP/1.1 200 OK
 === ALL TESTS COMPLETE ===
 ```
 Full output: [`server-runs/2026-05-17T07-28-05-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T07-28-05-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T07:41:35.985Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `80cd8aa` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 8186ms)
+```
+docker ps --format '.Names\t.Status\t.Ports' | grep solo-shop || echo "--- No containers running"
+curl -sf http://localhost:3000/api/health -o /dev/null && echo "✓ App healthy" || echo "✗ App down"
+```
+STDOUT:
+```
+--- No containers running
+✓ App healthy
+```
+Full output: [`server-runs/2026-05-17T07-41-35-app-docker-ps---format-.Names-t.Status-t.Por-1.log`](server-runs/2026-05-17T07-41-35-app-docker-ps---format-.Names-t.Status-t.Por-1.log)
