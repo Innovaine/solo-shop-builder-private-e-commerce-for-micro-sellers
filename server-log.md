@@ -23878,3 +23878,16 @@ STDOUT:
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 25 minutes (healthy)
 ```
 Full output: [`server-runs/2026-05-17T02-21-10-app-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-17T02-21-10-app-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+## 2026-05-17T02:21:32.346Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `97f33ae` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2432ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app 2>&1 | tail -30
+```
+STDOUT:
+```
+time="2026-05-17T02:21:32Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+```
+Full output: [`server-runs/2026-05-17T02-21-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-21-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
