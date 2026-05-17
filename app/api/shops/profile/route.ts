@@ -27,7 +27,23 @@ export async function PATCH(req: NextRequest) {
 
     // Parse request body
     const body = await req.json();
-    const { description, instagramUrl, facebookUrl, twitterUrl } = body;
+    const { displayName, publicDescription, description, instagramUrl, facebookUrl, twitterUrl } = body;
+
+    // Validate displayName length (FR-31: max 100 chars)
+    if (displayName && displayName.length > 100) {
+      return NextResponse.json(
+        { error: 'Shop name must be 100 characters or less' },
+        { status: 400 }
+      );
+    }
+
+    // Validate publicDescription length (FR-31: max 500 chars)
+    if (publicDescription && publicDescription.length > 500) {
+      return NextResponse.json(
+        { error: 'Shop description must be 500 characters or less' },
+        { status: 400 }
+      );
+    }
 
     // Validate URLs if provided
     const urlFields = { instagramUrl, facebookUrl, twitterUrl };
@@ -48,7 +64,9 @@ export async function PATCH(req: NextRequest) {
     const updated = await prisma.shop.update({
       where: { id: shop.id },
       data: {
-        description: description || null,
+        displayName: displayName?.trim() || null,
+        publicDescription: publicDescription?.trim() || null,
+        description: description || null, // Legacy field
         instagramUrl: instagramUrl?.trim() || null,
         facebookUrl: facebookUrl?.trim() || null,
         twitterUrl: twitterUrl?.trim() || null,
@@ -60,6 +78,8 @@ export async function PATCH(req: NextRequest) {
       message: 'Profile updated successfully',
       shop: {
         id: updated.id,
+        displayName: updated.displayName,
+        publicDescription: updated.publicDescription,
         description: updated.description,
         instagramUrl: updated.instagramUrl,
         facebookUrl: updated.facebookUrl,

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Profile — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 24px; }
+    .header h1 { font-size: 28px; font-weight: 700; margin: 0; }
+    .header p { color: #64748B; font-size: 14px; margin-top: 4px; }
+    
+    .container { max-width: 600px; margin: 32px auto; padding: 0 24px; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 32px; }
+    
+    h2 { font-size: 16px; font-weight: 600; margin: 0 0 20px 0; color: #1F2937; }
+    
+    .form-group { margin-bottom: 24px; }
+    .form-group:last-of-type { margin-bottom: 32px; }
+    
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, textarea { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus, textarea:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    textarea { resize: vertical; min-height: 100px; }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 6px; }
+    .char-count { font-size: 12px; color: #94A3B8; margin-top: 4px; }
+    
+    .button-group { display: flex; gap: 12px; }
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; box-shadow: 0 2px 8px rgba(16,185,129,0.2); }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; border-color: #CBD5E1; }
+    
+    .preview { background: #FAF9F7; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin-top: 32px; }
+    .preview-title { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .preview-header { background: #3B4C63; color: white; padding: 16px; border-radius: 6px; margin-bottom: 12px; }
+    .preview-shop-name { font-size: 18px; font-weight: 700; margin: 0; }
+    .preview-description { font-size: 14px; color: #E5E7EB; margin: 4px 0 0 0; line-height: 1.5; }
+    
+    .success-message { background: #D1FAE5; border: 1px solid #6EE7B7; color: #065F46; padding: 12px 16px; border-radius: 6px; margin-bottom: 24px; font-size: 14px; display: none; }
+    
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .card { padding: 20px; }
+      .header { padding: 16px; }
+      .header h1 { font-size: 24px; }
+      .button-group { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Seller Profile</h1>
+    <p>Customize how your shop appears to customers</p>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div class="success-message" id="successMessage">
+        ✓ Profile updated successfully. Changes appear on your shop page immediately.
+      </div>
+      
+      <form id="profileForm">
+        <h2>Shop Information</h2>
+        
+        <div class="form-group">
+          <label for="displayName">Shop Name</label>
+          <input type="text" id="displayName" name="displayName" value="Artisan Ceramics Studio" placeholder="Your shop name" maxlength="100" required>
+          <div class="char-count"><span id="nameCount">24</span>/100 characters</div>
+          <div class="form-hint">Your shop name appears on your public shop page and in order confirmations.</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="publicDescription">Shop Description</label>
+          <textarea id="publicDescription" name="publicDescription" placeholder="Tell customers about your shop..." maxlength="500">Hand-thrown ceramic pieces made with locally-sourced clay. Each piece is one-of-a-kind.</textarea>
+          <div class="char-count"><span id="descCount">98</span>/500 characters</div>
+          <div class="form-hint">This appears on your public shop page. Share what makes your shop special.</div>
+        </div>
+        
+        <div class="button-group">
+          <button type="submit" class="btn-primary">Save Profile</button>
+          <button type="button" class="btn-secondary" onclick="resetForm()">Cancel</button>
+        </div>
+      </form>
+      
+      <div class="preview">
+        <div class="preview-title">Your Public Shop</div>
+        <div class="preview-header">
+          <h3 class="preview-shop-name" id="previewName">Artisan Ceramics Studio</h3>
+          <p class="preview-description" id="previewDesc">Hand-thrown ceramic pieces made with locally-sourced clay. Each piece is one-of-a-kind.</p>
+        </div>
+        <div style="font-size: 12px; color: #64748B; padding: 12px 0;">
+          This is how customers see your shop page header.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const displayNameInput = document.getElementById('displayName');
+    const publicDescInput = document.getElementById('publicDescription');
+    const previewName = document.getElementById('previewName');
+    const previewDesc = document.getElementById('previewDesc');
+    const nameCount = document.getElementById('nameCount');
+    const descCount = document.getElementById('descCount');
+    const form = document.getElementById('profileForm');
+    const successMessage = document.getElementById('successMessage');
+
+    // Update character counts
+    displayNameInput.addEventListener('input', function() {
+      nameCount.textContent = this.value.length;
+      previewName.textContent = this.value || 'Your shop name';
+    });
+
+    publicDescInput.addEventListener('input', function() {
+      descCount.textContent = this.value.length;
+      previewDesc.textContent = this.value || 'Tell customers about your shop...';
+    });
+
+    // Form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // In production, this would POST to /api/shops/{shopId}/profile
+      console.log('Saving profile:', {
+        displayName: displayNameInput.value,
+        publicDescription: publicDescInput.value
+      });
+      
+      // Show success message
+      successMessage.style.display = 'block';
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 4000);
+    });
+
+    function resetForm() {
+      form.reset();
+      nameCount.textContent = displayNameInput.value.length;
+      descCount.textContent = publicDescInput.value.length;
+      previewName.textContent = displayNameInput.value;
+      previewDesc.textContent = publicDescInput.value;
+    }
+
+    // Initialize preview on page load
+    window.addEventListener('load', function() {
+      previewName.textContent = displayNameInput.value;
+      previewDesc.textContent = publicDescInput.value;
+    });
+  </script>
+</body>
+</html>

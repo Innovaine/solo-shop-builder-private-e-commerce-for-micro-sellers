@@ -82,11 +82,35 @@ export async function GET(request: NextRequest) {
       .sort((a, b) => b.totalQuantity - a.totalQuantity)
       .slice(0, 5)
 
+    // FR-36: Calculate daily revenue for chart (last 30 days)
+    const dailyRevenueMap = new Map<string, number>()
+    
+    // Initialize all 30 days with zero revenue
+    for (let i = 0; i < 30; i++) {
+      const date = new Date()
+      date.setDate(date.getDate() - (29 - i)) // Start from 30 days ago
+      const dateKey = date.toISOString().split('T')[0] // YYYY-MM-DD format
+      dailyRevenueMap.set(dateKey, 0)
+    }
+    
+    // Aggregate revenue by day
+    for (const order of recentOrders) {
+      const dateKey = order.createdAt.toISOString().split('T')[0]
+      const currentRevenue = dailyRevenueMap.get(dateKey) || 0
+      dailyRevenueMap.set(dateKey, currentRevenue + order.total)
+    }
+    
+    // Convert to array sorted by date
+    const dailyRevenue = Array.from(dailyRevenueMap.entries())
+      .map(([date, revenue]) => ({ date, revenue }))
+      .sort((a, b) => a.date.localeCompare(b.date))
+
     return NextResponse.json({
       analytics: {
         totalRevenue, // in cents
         orderCount,
         topProducts,
+        dailyRevenue, // FR-36: Daily revenue data for chart
         periodDays: 30,
       },
     })

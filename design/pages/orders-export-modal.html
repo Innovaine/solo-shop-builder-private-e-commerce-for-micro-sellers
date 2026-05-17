@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Export Orders as CSV — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      background: rgba(0, 0, 0, 0.5);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      max-width: 500px;
+      width: 100%;
+      animation: slideUp 0.3s ease-out;
+    }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .modal-header {
+      padding: 24px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .modal-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1F2937;
+      margin: 0;
+    }
+    .modal-header p {
+      color: #64748B;
+      font-size: 14px;
+      margin: 8px 0 0 0;
+    }
+    .modal-content {
+      padding: 24px;
+    }
+    
+    .info-box {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #0369A1;
+      line-height: 1.6;
+    }
+    .info-box strong {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .checkbox-group:hover {
+      background: #F9FAFB;
+    }
+    
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #10B981;
+      flex-shrink: 0;
+    }
+    
+    .checkbox-label {
+      flex: 1;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .checkbox-label strong {
+      display: block;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 2px;
+    }
+    .checkbox-label span {
+      display: block;
+      font-size: 12px;
+      color: #64748B;
+    }
+    
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+    .btn {
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: #10B981;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #059669;
+    }
+    .btn-primary:disabled {
+      background: #CBD5E1;
+      cursor: not-allowed;
+    }
+    .btn-secondary {
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+    }
+    .btn-secondary:hover {
+      background: #F9FAFB;
+    }
+
+    @media (max-width: 480px) {
+      .modal {
+        max-width: 100%;
+      }
+      .modal-header,
+      .modal-content,
+      .modal-footer {
+        padding: 16px;
+      }
+      .modal-header h2 {
+        font-size: 18px;
+      }
+      .modal-footer {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Export Orders as CSV</h2>
+        <p>Download all your orders for accounting or fulfillment software</p>
+      </div>
+
+      <div class="modal-content">
+        <div class="info-box">
+          <strong>What's included?</strong>
+          <span>Your entire order history will be downloaded as a CSV file compatible with Excel, Google Sheets, and accounting software.</span>
+        </div>
+
+        <form id="exportForm">
+          <div class="form-group">
+            <label>What to export:</label>
+            <label class="checkbox-group">
+              <input type="checkbox" id="includeOrders" name="export" value="orders" checked disabled>
+              <div class="checkbox-label">
+                <strong>All Orders</strong>
+                <span>Date, customer email, items, total, status</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>Include date range:</label>
+            <label class="checkbox-group">
+              <input type="checkbox" id="includeAllHistory" name="allHistory" value="all" checked>
+              <div class="checkbox-label">
+                <strong>All Order History</strong>
+                <span>Every order you've ever received (no date limit)</span>
+              </div>
+            </label>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="downloadCSV()">Download CSV</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    function downloadCSV() {
+      const allHistory = document.getElementById('includeAllHistory').checked;
+      console.log('Downloading CSV - Include all history:', allHistory);
+      
+      // In production, this would:
+      // 1. Send GET /api/orders/export?format=csv
+      // 2. Browser receives file with Content-Disposition: attachment
+      // 3. File downloads as "orders-YYYY-MM-DD.csv"
+      
+      alert(`Downloading orders as CSV...\n\nIn production, this would trigger:\nGET /api/orders/export?format=csv\n\nFile name: orders-${new Date().toISOString().split('T')[0]}.csv`);
+      closeModal();
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Keyboard: Escape to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

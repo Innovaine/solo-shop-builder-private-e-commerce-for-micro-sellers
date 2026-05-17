@@ -12,10 +12,16 @@ interface ProductAnalytics {
   totalRevenue: number;
 }
 
+interface DailyRevenue {
+  date: string;
+  revenue: number;
+}
+
 interface Analytics {
   totalRevenue: number;
   orderCount: number;
   topProducts: ProductAnalytics[];
+  dailyRevenue: DailyRevenue[];
   periodDays: number;
 }
 
@@ -73,6 +79,12 @@ export default function AnalyticsPage() {
 
   const hasOrders = analytics && analytics.orderCount > 0;
   const hasProducts = analytics && analytics.topProducts && analytics.topProducts.length > 0;
+  const hasDailyData = analytics && analytics.dailyRevenue && analytics.dailyRevenue.length > 0;
+
+  // Calculate max revenue for chart scaling
+  const maxRevenue = hasDailyData
+    ? Math.max(...analytics!.dailyRevenue.map(d => d.revenue))
+    : 0;
 
   return (
     <div className="min-h-screen bg-cream">
@@ -88,8 +100,8 @@ export default function AnalyticsPage() {
           <Card>
             <div className="flex items-start justify-between mb-4">
               <div>
-                <div className="text-sm font-semibold text-slate mb-1">TOTAL REVENUE</div>
-                <div className="text-sm text-slate/60">Last 30 days</div>
+                <div className="text-xs font-semibold text-slate mb-1 uppercase tracking-wide">TOTAL REVENUE</div>
+                <div className="text-xs text-slate/60">Last 30 days</div>
               </div>
               <div className="text-3xl">💰</div>
             </div>
@@ -101,12 +113,12 @@ export default function AnalyticsPage() {
           <Card>
             <div className="flex items-start justify-between mb-4">
               <div>
-                <div className="text-sm font-semibold text-slate mb-1">TOTAL ORDERS</div>
-                <div className="text-sm text-slate/60">Last 30 days</div>
+                <div className="text-xs font-semibold text-slate mb-1 uppercase tracking-wide">TOTAL ORDERS</div>
+                <div className="text-xs text-slate/60">Last 30 days</div>
               </div>
               <div className="text-3xl">📦</div>
             </div>
-            <div className="text-4xl font-bold text-slateBlue">
+            <div className="text-4xl font-bold text-slate-blue">
               {analytics?.orderCount || 0}
             </div>
           </Card>
@@ -114,8 +126,8 @@ export default function AnalyticsPage() {
           <Card>
             <div className="flex items-start justify-between mb-4">
               <div>
-                <div className="text-sm font-semibold text-slate mb-1">AVG ORDER VALUE</div>
-                <div className="text-sm text-slate/60">Per transaction</div>
+                <div className="text-xs font-semibold text-slate mb-1 uppercase tracking-wide">AVG ORDER VALUE</div>
+                <div className="text-xs text-slate/60">Per transaction</div>
               </div>
               <div className="text-3xl">💵</div>
             </div>
@@ -124,6 +136,44 @@ export default function AnalyticsPage() {
             </div>
           </Card>
         </div>
+
+        {/* FR-36: Daily Revenue Chart */}
+        {hasDailyData && (
+          <Card className="mb-8">
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-charcoal mb-1">Daily Revenue</h2>
+              <p className="text-slate text-sm">Revenue trends over the last 30 days</p>
+            </div>
+            
+            <div className="bg-cream rounded-lg p-6" style={{ minHeight: '320px' }}>
+              <div className="h-64 flex items-end justify-around gap-2">
+                {analytics!.dailyRevenue.map((day, index) => {
+                  const heightPercent = maxRevenue > 0 ? (day.revenue / maxRevenue) * 100 : 0;
+                  const date = new Date(day.date);
+                  const dayLabel = date.getDate();
+                  
+                  return (
+                    <div key={index} className="flex-1 flex flex-col items-center justify-end h-full relative group">
+                      {/* Bar */}
+                      <div
+                        className="w-full bg-slate-blue rounded-t hover:bg-emerald transition-colors relative"
+                        style={{ height: `${heightPercent}%`, minHeight: day.revenue > 0 ? '4px' : '0' }}
+                      >
+                        {/* Tooltip on hover */}
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-charcoal text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                          ${(day.revenue / 100).toFixed(2)}
+                        </div>
+                      </div>
+                      
+                      {/* Day label */}
+                      <div className="text-xs text-slate mt-2">{dayLabel}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </Card>
+        )}
 
         {/* Top Products */}
         <Card>

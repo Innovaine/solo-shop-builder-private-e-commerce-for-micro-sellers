@@ -81,7 +81,8 @@ export default async function ShopPage({
           background: `linear-gradient(to bottom right, ${primaryColor}, ${accentColor})`
         }}
       >
-        <h2 className="text-4xl font-bold mb-2">Welcome to {shop.name}</h2>
+        {/* FR-31: Display name (falls back to shop.name if not set) */}
+        <h2 className="text-4xl font-bold mb-2">Welcome to {shop.displayName || shop.name}</h2>
         
         {/* FR-26: Tagline display */}
         {shop.tagline ? (
@@ -96,10 +97,10 @@ export default async function ShopPage({
           </p>
         )}
         
-        {/* FR-31: Seller profile display */}
-        {shop.description && (
+        {/* FR-31: Public description (falls back to description if not set) */}
+        {(shop.publicDescription || shop.description) && (
           <p className="text-base opacity-80 mt-4 max-w-2xl mx-auto">
-            {shop.description}
+            {shop.publicDescription || shop.description}
           </p>
         )}
         

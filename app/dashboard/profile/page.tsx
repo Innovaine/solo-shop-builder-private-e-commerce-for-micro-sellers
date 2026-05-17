@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Header from '@/components/ui/Header';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { FormField } from '@/components/ui/FormField';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -14,14 +13,17 @@ export default function ProfilePage() {
   const [success, setSuccess] = useState('');
   
   const [formData, setFormData] = useState({
-    description: '',
-    instagramUrl: '',
-    facebookUrl: '',
-    twitterUrl: '',
+    displayName: '',
+    publicDescription: '',
+  });
+
+  const [charCounts, setCharCounts] = useState({
+    displayName: 0,
+    publicDescription: 0,
   });
 
   useEffect(() => {
-    // ASSUMPTION: Fetch current shop profile data
+    // Load current shop profile data
     async function loadProfile() {
       try {
         const res = await fetch('/api/shops');
@@ -29,11 +31,17 @@ export default function ProfilePage() {
         const shop = await res.json();
         
         if (shop) {
+          const displayName = shop.displayName || shop.name || '';
+          const publicDescription = shop.publicDescription || '';
+          
           setFormData({
-            description: shop.description || '',
-            instagramUrl: shop.instagramUrl || '',
-            facebookUrl: shop.facebookUrl || '',
-            twitterUrl: shop.twitterUrl || '',
+            displayName,
+            publicDescription,
+          });
+          
+          setCharCounts({
+            displayName: displayName.length,
+            publicDescription: publicDescription.length,
           });
         }
       } catch (err) {
@@ -43,11 +51,29 @@ export default function ProfilePage() {
     loadProfile();
   }, []);
 
+  function handleInputChange(field: 'displayName' | 'publicDescription', value: string) {
+    setFormData({ ...formData, [field]: value });
+    setCharCounts({ ...charCounts, [field]: value.length });
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError('');
     setSuccess('');
+
+    // Validate lengths
+    if (formData.displayName.length > 100) {
+      setError('Shop name must be 100 characters or less');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.publicDescription.length > 500) {
+      setError('Shop description must be 500 characters or less');
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch('/api/shops/profile', {
@@ -61,8 +87,8 @@ export default function ProfilePage() {
         throw new Error(data.error || 'Failed to update profile');
       }
 
-      setSuccess('Profile updated successfully');
-      setTimeout(() => setSuccess(''), 3000);
+      setSuccess('Profile updated successfully. Changes appear on your shop page immediately.');
+      setTimeout(() => setSuccess(''), 4000);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -73,81 +99,106 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-cream">
       <Header />
-      <main className="max-w-3xl mx-auto px-4 py-8">
+      <main className="max-w-2xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-charcoal mb-2">Seller Profile</h1>
-          <p className="text-slate">Customize your public-facing shop profile and social links</p>
+          <h1 className="text-3xl font-bold text-charcoal mb-2">Seller Profile</h1>
+          <p className="text-slate text-sm">Customize how your shop appears to customers</p>
         </div>
 
         <Card>
+          {success && (
+            <div className="bg-emerald/10 border border-emerald text-emerald px-4 py-3 rounded mb-6 text-sm">
+              ✓ {success}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-              <div className="bg-rose/10 border border-rose text-rose px-4 py-3 rounded">
+              <div className="bg-rose/10 border border-rose text-rose px-4 py-3 rounded text-sm">
                 {error}
               </div>
             )}
-            
-            {success && (
-              <div className="bg-emerald/10 border border-emerald text-emerald px-4 py-3 rounded">
-                {success}
+
+            <div>
+              <h2 className="text-lg font-semibold text-charcoal mb-5">Shop Information</h2>
+              
+              <div className="space-y-2 mb-6">
+                <label htmlFor="displayName" className="block text-sm font-medium text-charcoal">
+                  Shop Name
+                </label>
+                <input
+                  type="text"
+                  id="displayName"
+                  value={formData.displayName}
+                  onChange={(e) => handleInputChange('displayName', e.target.value)}
+                  placeholder="Your shop name"
+                  maxLength={100}
+                  required
+                  className="w-full px-3 py-2.5 text-sm border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue"
+                />
+                <div className="text-xs text-slate/60">
+                  {charCounts.displayName}/100 characters
+                </div>
+                <div className="text-xs text-slate/80 mt-1">
+                  Your shop name appears on your public shop page and in order confirmations.
+                </div>
               </div>
-            )}
 
-            <div className="space-y-2">
-              <label htmlFor="description" className="text-sm font-semibold text-charcoal">Shop Description</label>
-              <p className="text-xs text-slate">Tell customers about your shop (displayed on your storefront)</p>
-              <textarea
-                id="description"
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                rows={5}
-                className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue"
-                placeholder="We craft hand-made leather goods using traditional techniques..."
-              />
+              <div className="space-y-2">
+                <label htmlFor="publicDescription" className="block text-sm font-medium text-charcoal">
+                  Shop Description
+                </label>
+                <textarea
+                  id="publicDescription"
+                  value={formData.publicDescription}
+                  onChange={(e) => handleInputChange('publicDescription', e.target.value)}
+                  placeholder="Tell customers about your shop..."
+                  maxLength={500}
+                  rows={5}
+                  className="w-full px-3 py-2.5 text-sm border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue resize-vertical"
+                />
+                <div className="text-xs text-slate/60">
+                  {charCounts.publicDescription}/500 characters
+                </div>
+                <div className="text-xs text-slate/80 mt-1">
+                  This appears on your public shop page. Share what makes your shop special.
+                </div>
+              </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <FormField
-                label="Instagram URL"
-                type="url"
-                value={formData.instagramUrl}
-                onChange={(e) => setFormData({ ...formData, instagramUrl: e.target.value })}
-                placeholder="https://instagram.com/yourshop"
-                helpText="Your Instagram profile link"
-              />
-
-              <FormField
-                label="Facebook URL"
-                type="url"
-                value={formData.facebookUrl}
-                onChange={(e) => setFormData({ ...formData, facebookUrl: e.target.value })}
-                placeholder="https://facebook.com/yourshop"
-                helpText="Your Facebook page link"
-              />
-            </div>
-
-            <FormField
-              label="Twitter URL"
-              type="url"
-              value={formData.twitterUrl}
-              onChange={(e) => setFormData({ ...formData, twitterUrl: e.target.value })}
-              placeholder="https://twitter.com/yourshop"
-              helpText="Your Twitter profile link"
-            />
-
-            <div className="flex gap-4">
+            <div className="flex gap-3 pt-2">
               <Button type="submit" disabled={loading}>
                 {loading ? 'Saving...' : 'Save Profile'}
               </Button>
               <Button
                 type="button"
                 onClick={() => router.push('/dashboard')}
-                className="bg-whisper text-charcoal hover:bg-slate/20"
+                className="bg-white text-slate-blue border border-whisper hover:bg-slate/5"
               >
                 Cancel
               </Button>
             </div>
           </form>
+
+          {/* Preview Section */}
+          <div className="mt-8 pt-8 border-t border-whisper">
+            <div className="mb-3">
+              <div className="text-xs font-semibold text-slate uppercase tracking-wide mb-3">
+                Your Public Shop
+              </div>
+            </div>
+            <div className="bg-slate-blue text-white p-4 rounded-lg">
+              <h3 className="text-xl font-bold mb-1">
+                {formData.displayName || 'Your shop name'}
+              </h3>
+              <p className="text-sm text-slate-200 leading-relaxed">
+                {formData.publicDescription || 'Tell customers about your shop...'}
+              </p>
+            </div>
+            <div className="text-xs text-slate/60 mt-3 px-1">
+              This is how customers see your shop page header.
+            </div>
+          </div>
         </Card>
       </main>
     </div>

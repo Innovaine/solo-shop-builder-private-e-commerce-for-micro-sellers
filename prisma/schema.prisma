@@ -35,7 +35,9 @@ model Shop {
   sellerId          String
   
   // FR-31: Seller profile
-  description       String?  @db.Text
+  displayName       String?  @db.VarChar(100) // Public shop display name
+  publicDescription String?  @db.Text // Public shop description (max 500 chars enforced in app layer)
+  description       String?  @db.Text // Legacy field - kept for backwards compatibility
   instagramUrl      String?
   facebookUrl       String?
   twitterUrl        String?
