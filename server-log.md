@@ -25597,3 +25597,16 @@ echo $! > /tmp/day43-build-v3.pid
 echo "Started build v3, PID=$(cat /tmp/day43-build-v3.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T06:14:32.365Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `90b7bab` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 12254ms)
+```
+sleep 10 && kill -0 $(cat /tmp/day43-build-v3.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-17T06-14-32-app-sleep-10-kill--0-cat-tmp-day43-build-v3.-1.log`](server-runs/2026-05-17T06-14-32-app-sleep-10-kill--0-cat-tmp-day43-build-v3.-1.log)
