@@ -24231,3 +24231,14 @@ Fast-forward
  create mode 100644 day-41/_plan.md
 ```
 Full output: [`server-runs/2026-05-17T03-20-18-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-20-18-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T03:20:51.362Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `849e5a0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12428ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day41-build.log 2>&1 &
+echo $! > /tmp/day41-build.pid
+echo "Build started, PID=$(cat /tmp/day41-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
