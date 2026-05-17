@@ -30351,3 +30351,12 @@ STDOUT:
 UPDATE 1
 ```
 Full output: [`server-runs/2026-05-17T23-33-37-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-33-37-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:34:03.799Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4ba95ef` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13064ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose restart app && sleep 10 && docker compose ps && docker compose logs app --tail=20
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
