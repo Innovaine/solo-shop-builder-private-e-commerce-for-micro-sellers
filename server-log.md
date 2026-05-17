@@ -27641,3 +27641,12 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-17T09-38-36-app-sleep-10-kill--0-cat-tmp-day47-smoke.pid-1.log`](server-runs/2026-05-17T09-38-36-app-sleep-10-kill--0-cat-tmp-day47-smoke.pid-1.log)
+
+## 2026-05-17T09:47:49.980Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4bb672a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 2755ms)
+```
+cat /tmp/day47-smoke.log
+```
+ERROR: command exited 1
