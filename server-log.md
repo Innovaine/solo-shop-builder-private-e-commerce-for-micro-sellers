@@ -28012,3 +28012,36 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   6 hours ago   Up 6 hours (healthy)   127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-17T10-12-59-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-12-59-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:17:43.661Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3c39a5c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 8677ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose up -d app
+sleep 5
+docker compose ps
+docker compose logs --tail=100 app
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED         STATUS                 PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        6 minutes ago   Up 5 seconds           127.0.0.1:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   6 hours ago     Up 6 hours (healthy)   127.0.0.1:5432->5432/tcp
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 5 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 53ms
+```
+Full output: [`server-runs/2026-05-17T10-17-43-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-17-43-app-cd-solo-shop-builder-private-e-commerce--1.log)
