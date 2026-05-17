@@ -22197,3 +22197,66 @@ STDOUT:
 Started build, PID=1152035
 ```
 Full output: [`server-runs/2026-05-17T01-16-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-16-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:16:56.646Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5eae7e9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2157ms)
+```
+kill -0 $(cat /tmp/day37-ui-fix-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/day37-ui-fix-build.log
+```
+STDOUT:
+```
+DONE
+#15 6.408 
+#15 6.408 ./app/auth/login/page.tsx
+#15 6.408 Module not found: Can't resolve '@/app/components/ui/Button'
+#15 6.408 
+#15 6.408 https://nextjs.org/docs/messages/module-not-found
+#15 6.408 
+#15 6.408 ./app/auth/login/page.tsx
+#15 6.408 Module not found: Can't resolve '@/app/components/ui/FormField'
+#15 6.408 
+#15 6.408 https://nextjs.org/docs/messages/module-not-found
+#15 6.408 
+#15 6.408 ./app/auth/reset-password/page.tsx
+#15 6.408 Module not found: Can't resolve '@/app/components/ui/Button'
+#15 6.408 
+#15 6.408 https://nextjs.org/docs/messages/module-not-found
+#15 6.408 
+#15 6.420 
+#15 6.420 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+6.408 
+6.408 https://nextjs.org/docs/messages/module-not-found
+6.408 
+6.408 ./app/auth/reset-password/page.tsx
+6.408 Module not found: Can't resolve '@/app/components/ui/Button'
+6.408 
+6.408 https://nextjs.org/docs/messages/module-not-found
+6.408 
+6.420 
+6.420 > Build failed because of webpack errors
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-17T01-16-56-app-kill--0-cat-tmp-day37-ui-fix-build.pid-2-1.log`](server-runs/2026-05-17T01-16-56-app-kill--0-cat-tmp-day37-ui-fix-build.pid-2-1.log)
