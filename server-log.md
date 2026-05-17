@@ -21673,3 +21673,18 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-17T00-46-36-app-rm--rf-tmp-playwright-test-results-1.log`](server-runs/2026-05-17T00-46-36-app-rm--rf-tmp-playwright-test-results-1.log)
+
+## 2026-05-17T00:47:32.276Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c0e6808` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 34406ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Use project-local test results
+env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers \
+  npx playwright test tests/web/day37-password-auth.spec.ts \
+  --reporter=dot \
+  --output=./test-results/day-37/playwright-output \
+  2>&1 | tail -80
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
