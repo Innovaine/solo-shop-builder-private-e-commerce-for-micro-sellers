@@ -28270,3 +28270,14 @@ STDOUT:
 Started Playwright tests v2, PID=1282547
 ```
 Full output: [`server-runs/2026-05-17T10-29-32-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-29-32-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:31:01.470Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `37ea765` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 56130ms)
+```
+sleep 15
+kill -0 $(cat /tmp/day48-tests-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day48-tests-v2.log
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
