@@ -29194,3 +29194,25 @@ Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:54
 No pending migrations to apply.
 ```
 Full output: [`server-runs/2026-05-17T12-10-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-10-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:11:22.598Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `75f3054` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2450ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la prisma/migrations/
+```
+STDOUT:
+```
+total 36
+drwxrwxr-x 8 engineer engineer 4096 May 17 12:10 .
+drwxrwxr-x 3 engineer engineer 4096 May 17 12:07 ..
+drwxrwxr-x 2 engineer engineer 4096 May 16 14:43 20260516_add_order_tables
+drwxrwxr-x 2 engineer engineer 4096 May 16 20:45 20260516_add_password_reset_fields
+drwxrwxr-x 2 engineer engineer 4096 May 16 20:45 20260516_add_seller_password_hash
+drwxrwxr-x 2 engineer engineer 4096 May 16 22:38 20260517_add_product_variants
+drwxrwxr-x 2 engineer engineer 4096 May 16 21:26 20260517_add_profile_branding_fields
+drwxrwxr-x 2 engineer engineer 4096 May 17 12:10 20260517_add_seller_profile_fields
+-rw-rw-r-- 1 engineer engineer  127 May 16 14:44 migration_lock.toml
+```
+Full output: [`server-runs/2026-05-17T12-11-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-11-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
