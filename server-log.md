@@ -24175,3 +24175,20 @@ Script executed successfully.
 └─────────────────────────────────────────────────────────┘
 ```
 Full output: [`server-runs/2026-05-17T03-17-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-17-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T03:18:06.922Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `af3696a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2060ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker logs solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 2>&1 | grep -i "login\|auth\|error" | tail -50
+```
+STDOUT:
+```
+{"requestId":"X8UQi-pnoTrKDlZY","method":"GET","path":"/auth/login","responseTime":"2ms","timestamp":"2026-05-17T03:14:45.963Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+{"requestId":"Fn_uEUXuOQ1FwgZp","method":"POST","path":"/api/auth/login","responseTime":"1ms","timestamp":"2026-05-17T03:14:57.953Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+{"requestId":"PX4tTPLMZVgFy8RV","method":"GET","path":"/auth/login","responseTime":"0ms","timestamp":"2026-05-17T03:14:59.064Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+{"requestId":"GCBs8gHJhg-jfNxv","method":"POST","path":"/api/auth/signup","responseTime":"0ms","timestamp":"2026-05-17T03:15:37.983Z","userAgent":"curl/8.5.0"}
+{"requestId":"lu4efwVYNQ-Aqedn","method":"POST","path":"/api/auth/login","responseTime":"1ms","timestamp":"2026-05-17T03:16:21.784Z","userAgent":"curl/8.5.0"}
+```
+Full output: [`server-runs/2026-05-17T03-18-06-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-18-06-app-cd-solo-shop-builder-private-e-commerce--1.log)
