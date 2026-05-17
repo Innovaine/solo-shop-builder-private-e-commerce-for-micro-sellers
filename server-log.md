@@ -24152,3 +24152,26 @@ STDOUT:
 < vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
 ```
 Full output: [`server-runs/2026-05-17T03-16-21-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-16-21-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T03:17:09.018Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5b94740` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3182ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma db execute --stdin <<< "SELECT email, CASE WHEN \"passwordHash\" IS NULL THEN 'NO PASSWORD' ELSE 'HAS PASSWORD' END as password_status FROM \"Seller\" LIMIT 10;" 2>&1 | grep -v "^Environment" | head -20
+```
+STDOUT:
+```
+Script executed successfully.
+┌─────────────────────────────────────────────────────────┐
+│  Update available 5.14.0 -> 7.8.0                       │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i -g prisma@latest                               │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+```
+Full output: [`server-runs/2026-05-17T03-17-08-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-17-08-app-cd-solo-shop-builder-private-e-commerce--1.log)
