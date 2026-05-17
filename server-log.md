@@ -29517,3 +29517,24 @@ Fast-forward
  create mode 100644 design/pages/csv-import.html
 ```
 Full output: [`server-runs/2026-05-17T12-41-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-41-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:42:19.078Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5f32e16` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2711ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat docker-compose.yml | grep -A 8 "labels:"
+```
+STDOUT:
+```
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`${HTTPS_APP_HOST_NAME}`)"
+      - "traefik.http.routers.app.entrypoints=websecure"
+      - "traefik.http.routers.app.tls=true"
+      - "traefik.http.routers.app.tls.certresolver=letsencrypt"
+      - "traefik.http.services.app.loadbalancer.server.port=${HTTPS_APP_HOST_PORT}"
+
+    environment:
+```
+Full output: [`server-runs/2026-05-17T12-42-19-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-42-19-app-cd-solo-shop-builder-private-e-commerce--1.log)
