@@ -28066,3 +28066,17 @@ Running generate... (Use --skip-generate to skip the generators)
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-17T10-18-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T10-18-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T10:18:46.143Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ba7f33c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5812ms) _(showing tail — full 8,944B stdout + 0B stderr)_
+```
+curl -sf localhost:3000/health -o /dev/null && echo OK || echo FAIL
+curl -s localhost:3000/health | head -20
+```
+STDOUT:
+```
+…g-emerald disabled:bg-whisper disabled:text-slate px-4 py-2 text-base\",\"children\":\"Go Home\"}]}],[\"$\",\"$L4\",null,{\"href\":\"/dashboard\",\"children\":[\"$\",\"button\",null,{\"disabled\":false,\"className\":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[[\"$\",\"meta\",null,{\"name\":\"robots\",\"content\":\"noindex\"}],\"$L8\"],\"globalErrorComponent\":\"$9\",\"missingSlots\":\"$Wa\"}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
+```
+Full output: [`server-runs/2026-05-17T10-18-46-app-curl--sf-localhost-3000-health--o-dev-nu-1.log`](server-runs/2026-05-17T10-18-46-app-curl--sf-localhost-3000-health--o-dev-nu-1.log)
