@@ -143,6 +143,40 @@ input.error {
   animation-delay: 0.4s;
 }
 
+/* ===== Image Upload ===== */
+
+/* Image preview appear */
+@keyframes imagePreviewAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.image-preview {
+  animation: imagePreviewAppear 0.3s ease-out;
+}
+
+/* Upload area drag-over highlight */
+@keyframes uploadAreaPulse {
+  from {
+    background-color: #F8FAFC;
+    border-color: #E2E8F0;
+  }
+  to {
+    background-color: #F0FDF4;
+    border-color: #10B981;
+  }
+}
+
+.upload-area.dragover {
+  animation: uploadAreaPulse 0.2s ease-out forwards;
+}
+
 /* ===== Loading & Processing ===== */
 
 /* Spinner / Loading animation */

@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: soloshop
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -24,7 +24,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/soloshop?schema=public"
       APP_URL: "${APP_URL:-http://localhost:3000}"
@@ -34,6 +34,10 @@ services:
       SMTP_USER: "${SMTP_USER}"
       SMTP_PASS: "${SMTP_PASS}"
       SMTP_FROM: "${SMTP_FROM}"
+      STRIPE_SECRET_KEY: "${STRIPE_SECRET_KEY}"
+      STRIPE_WEBHOOK_SECRET: "${STRIPE_WEBHOOK_SECRET}"
+      MYFATOORAH_API_KEY: "${MYFATOORAH_API_KEY}"
+      MYFATOORAH_API_URL: "${MYFATOORAH_API_URL:-https://apitest.myfatoorah.com}"
     depends_on:
       postgres:
         condition: service_healthy

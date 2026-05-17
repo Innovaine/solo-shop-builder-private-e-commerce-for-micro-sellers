@@ -1,39 +1,37 @@
 # Day 42 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 91
-- **Saved:** 17/05/2026, 8:03:42 AM
+- **Cycle:** 92
+- **Saved:** 17/05/2026, 8:42:49 AM
 
 ---
 
 FINISHED:
-- Dockerfile + deployment scaffolding (day 29–41 work) — project can be containerized and pushed
-- Auth skeleton: magic link signup flow drafted in app/api/account/password/route.ts
-- .qadar JSON metadata files — integration + channel + email logs exist (no manual status tracking needed)
-- 47 of 60 tasks completed; 12 open, 1 in-progress, 0 blocked
-- README.md + DEPLOYMENT.md exist (deployment path is known)
+- Docker infrastructure (Dockerfile, .dockerignore, docker-compose ready for day 42 deployment)
+- Auth skeleton (app/api/account/password/route.ts in place)
+- Project structure and .env setup documented (DEPLOYMENT.md, README.md, _meta.json)
+- 49 tasks closed across 66 cycles; warehouse shows clean root state with no dangling branches
 
 PENDING:
-- #59: Import path corrections in checkout + orders pages (blocks payment features) — Anil must fix first
-- #106: Re-deploy day 29 features (F31-F40: profile, branding, email, billing, analytics) — currently undeployed, unclear if these are in-scope for MVP or stage-bloat
-- #105 (in-progress): FR-21–FR-25 tests (password auth, reset, webhook, refund, CSV) — these are BEYOND MVP scope; Priya should pause and redirect to F1–F20
-- No Playwright test suite exists yet (#74, #66 open) — zero coverage on the critical path (signup → shop → product → checkout → order)
-- Product image upload handler (#61) incomplete — blocks F4, which blocks storefront demo
-- No CEO demo walk-through has been executed (#80, #76 open) — unknown if the 20 MVP features actually chain together end-to-end
+- #106: Re-deploy day 29 features (F31-F40) — status unclear, may be orphaned from earlier cycle
+- #105: FR-21 through FR-25 tests (password auth, refund, CSV) — in progress, Priya needs to complete or hand off
+- #64: FR-7 category filter — in progress, Anil owns, shipping status unknown
+- #83, #77, #78: Core MVP features (F1-F20) — all marked open but no code diff visible in warehouse; need hard status check before day starts
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineer): Fix import paths in #59 (5 min), then ship #61 (product image upload handler → S3) and #60 (product CRUD forms). These unblock the storefront. Reference F3, F4 in product-spec.md. Parallel: Anil also implements #64 (category filter UI on product list) — three features, three hours max.
-- Stream 2 (designer): Ship mockups for product upload form (F3), product detail page (F5), and category filter UI (F7). These are the storefronts + seller-facing forms. No high fidelity needed; wireframe + component layout sufficient. Three files: design/pages/product-form.html, design/pages/product-detail.html, design/pages/category-filter.html.
-- Stream 3 (tester): Write Playwright tests for F3 (product CRUD), F4 (image upload success/fail), F7 (category filter works). Do NOT test F21–F25 (those are out of scope). Cover the happy path: seller adds product with image, customer sees it filtered. Reference #66, #74.
-- Stream 4 (reviewer): Verify #59 import fixes compile. Verify #61 S3 upload endpoint returns signed URL or file path. Verify #60 forms POST to correct endpoints. Spot-check test coverage in #66 Playwright suite.
-- Stream 5 (requirements/PM): Clarify scope of #106 (F31-F40). Those features (billing, analytics, branding) are not MVP — they are Stage 1 scope. Block #106 and redirect Priya to focus #77, #78, #80 (the core 20 MVP features) instead. Confirm with leadership: are we shipping 20 features by end of week, or pivoting to "core 12 + branding + billing"?
+- Stream 1 (engineer): Attack #77 (FR-1–FR-10: auth, shop creation, product CRUD, cart, checkout, orders backend) and #78 (FR-11–FR-20: dashboard, order status, tracking, email). Ship at least 4 backend routes + 2 database schema updates. Reference real Stripe webhook integration and order table.
+- Stream 2 (designer): Ship pages for #76 (signup flow, shop dashboard, product listing, checkout confirmation). 4 Figma-grade HTML pages in design/pages/ — storefront.html, dashboard.html, product-detail.html, order-confirmation.html. These unblock engineer on UI routes.
+- Stream 3 (tester): Write Playwright suite for #74 (F1–F20 happy path: signup → product add → checkout → order visibility). Tests must verify Stripe webhook fires and order appears in seller dashboard within 5 seconds.
+- Stream 4 (reviewer): Verify #77 and #78 merge cleanly (no conflicts), Stripe webhook logging works, and #64 category filter doesn't break storefront list. One code review pass end-of-day.
+- Stream 5 (PM/requirements): Confirm #106 status — if it's truly day-29 bloat, delete it. If it's real, assign to Priya or archive. Lock scope to 20 features for MVP only.
 
 ROLE PLAN:
-- engineering: YES — three open CRUD + upload tasks block storefront. Anil can ship them in parallel today.
-- review: YES — import fixes + S3 handler + form endpoints need quick verification before Priya tests them.
-- design: YES — product form, detail page, and filter UI are not shipped yet; designer needs to deliver wireframes today so engineer isn't blocked.
-- test: YES — no Playwright suite exists; Priya must cover F3, F4, F7 by day 42 end to prove the storefronts work.
-- requirements: YES — #106 is stage-bloat; someone must kill it or clarify why it's in MVP this week.
+- engineering: YES — core MVP backend (F1–F20) is still incomplete; Anil must ship #77 and #78 or we have no product to test or demo.
+- review: YES — #77 and #78 touch auth + Stripe; cannot merge without verification that webhook logic is solid and schema is prod-safe.
+- design: YES — storefront and dashboard pages are blockers for frontend routes; Chiara must ship 4 pages so Anil can wire them to real data.
+- test: YES — Playwright suite for F1–F20 is open (#74); Priya must write tests as engineer ships or we have no confidence the signup→order flow works.
+- requirements: YES — board has 9 open tasks and unclear priority; Kenji must triage #106 (delete or rescue?) and lock scope to 20 MVP features before team ships.
+- design_qa: YES — fidelity check on Chiara's pages against product spec (form labels, button states, error handling) before Anil wires them; Gopal catches mistakes early.
 
 ONE-LINE SUMMARY:
-Today Anil ships product CRUD + image upload + category filter (3 features), Chiara ships product form + detail + filter wireframes, Priya writes tests for all three, Søren verifies imports + S3 endpoint, and Kenji clarifies whether F31-F40 are in this cycle or next.
+Today the team ships FR-1–FR-10 backend (auth, shop, products, checkout, orders), 4 storefront/dashboard page designs, and Playwright coverage for the full signup→order flow in parallel.

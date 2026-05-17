@@ -1,22 +1,29 @@
 // FR-5: Public shop storefront - displays shop products in grid
 // Updated Day 15: Show products, not just empty state
 // Day 17: Integrated UI components (Button)
+// Day 42: FR-7: Category filter
 
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { CartButton } from '@/components/CartButton'
+import CategoryFilter from './CategoryFilter'
 
 export default async function ShopPage({
   params,
+  searchParams,
 }: {
   params: { slug: string }
+  searchParams: { category?: string }
 }) {
   const shop = await prisma.shop.findUnique({
     where: { slug: params.slug },
     include: {
       products: {
+        where: searchParams.category 
+          ? { category: searchParams.category }
+          : {},
         orderBy: {
           createdAt: 'desc',
         },
@@ -28,7 +35,18 @@ export default async function ShopPage({
     notFound()
   }
 
+  // Get unique categories for filter
+  const allProducts = await prisma.product.findMany({
+    where: { shopId: shop.id },
+    select: { category: true },
+  })
+  
+  const categories = Array.from(
+    new Set(allProducts.map(p => p.category).filter(Boolean))
+  ) as string[]
+
   const hasProducts = shop.products.length > 0
+  const selectedCategory = searchParams.category || null
 
   // FR-33: Apply custom branding colors
   const primaryColor = shop.primaryColor || '#3B4C63';
@@ -124,8 +142,25 @@ export default async function ShopPage({
       </section>
 
       <main className="max-w-7xl mx-auto px-6 py-12">
+        {/* FR-7: Category Filter */}
+        {categories.length > 0 && (
+          <CategoryFilter 
+            categories={categories}
+            selectedCategory={selectedCategory}
+            shopSlug={shop.slug}
+          />
+        )}
+
         {hasProducts ? (
           <>
+            {/* Results count */}
+            <div className="mb-6">
+              <p className="text-sm text-slate">
+                Showing {shop.products.length} {shop.products.length === 1 ? 'product' : 'products'}
+                {selectedCategory && ` in ${selectedCategory}`}
+              </p>
+            </div>
+
             {/* Product Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {shop.products.map((product) => (
