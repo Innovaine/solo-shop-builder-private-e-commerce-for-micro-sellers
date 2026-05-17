@@ -30329,3 +30329,12 @@ app-1  |
 app-1  |
 ```
 Full output: [`server-runs/2026-05-17T23-32-15-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-32-15-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:33:03.417Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `eabf6d6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2703ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec app npx prisma migrate resolve --applied 20260517_add_seller_profile_fields
+```
+ERROR: command exited 1
