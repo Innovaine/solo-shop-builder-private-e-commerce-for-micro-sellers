@@ -23957,3 +23957,25 @@ Test 3: Create new seller and test flow
 {"message":"Magic link sent. Check your email."}
 ```
 Full output: [`server-runs/2026-05-17T02-23-21-app-echo-Test-2-Create-shop-page-loads-curl--1.log`](server-runs/2026-05-17T02-23-21-app-echo-Test-2-Create-shop-page-loads-curl--1.log)
+
+## 2026-05-17T02:23:47.332Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6595b77` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2216ms)
+```
+TOKEN=$(docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -t -c "SELECT token FROM \"AuthToken\" WHERE \"sellerId\" = (SELECT id FROM \"Seller\" WHERE email = 'flowtest@example.com') ORDER BY \"createdAt\" DESC LIMIT 1;" | tr -d ' ')
+echo "Token: $TOKEN"
+echo -e "\nTest 4: Verify token via POST"
+curl -v -X POST http://localhost:3000/api/auth/verify -H "Content-Type: application/json" -d "{\"token\":\"$TOKEN\"}" 2>&1 | grep -E "HTTP|set-cookie|success|hasShop"
+```
+STDOUT:
+```
+Token: gpWGHc_MIGNJq2HIJRDG0pCLUS2kKQfV
+
+Test 4: Verify token via POST
+> POST /api/auth/verify HTTP/1.1
+< HTTP/1.1 200 OK
+< set-cookie: soloshop_session=Fe26.2*1*d1142804e235f0e1dd5a72dd4370d702d93d8be13e350b9fa53debfad3906eb4*BdxxA74CjcPN28YGBE91fQ*PUrWqTglTu0f1SzhNcZzhYu4GGoazchZ3Bbt5-xBwKibLOsr8N3tJo1J6ap_IGqXD01u-GaCGmatgKgTEm3k9T7G_x7A1rZ_vxyX3_lQfmj3A73vTOfgXYmZCZjMKyLXdl5w3NJTujQAFdmp9dumtg*1780194227614*3eae7be3e21de03d6328b53dbb1fd90f485bac32aa7cb6f7e4118cacad698eed*uvtpBXFav_RacOCudDAGAOAeEbM0Vi--Kap2DfP7vwI~2; Path=/; Expires=Tue, 16 Jun 2026 02:23:47 GMT; Max-Age=2592000; Secure; HttpOnly; SameSite=strict
+{"success":true,"hasShop":false}
+```
+Full output: [`server-runs/2026-05-17T02-23-47-app-TOKEN-docker-exec-solo-shop-builder-priv-1.log`](server-runs/2026-05-17T02-23-47-app-TOKEN-docker-exec-solo-shop-builder-priv-1.log)
