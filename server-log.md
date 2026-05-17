@@ -24982,3 +24982,33 @@ STDOUT:
 FAIL
 ```
 Full output: [`server-runs/2026-05-17T05-35-11-app-curl--sf-http-localhost-3000-api-health--1.log`](server-runs/2026-05-17T05-35-11-app-curl--sf-http-localhost-3000-api-health--1.log)
+
+## 2026-05-17T05:37:00.755Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dc9b626` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2725ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps && docker compose logs --tail=50 app
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED         STATUS                 PORTS                      NAMES
+ead3caa53f0f   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   9 minutes ago   Up 2 minutes           3000/tcp                   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+b803316c2c9d   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago     Up 2 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+2967d9e0bd67   traefik:latest                                               "/entrypoint.sh --ap…"   2 hours ago     Up 2 hours                                        traefik-vwiz-traefik-1
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 5 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 48ms
+```
+Full output: [`server-runs/2026-05-17T05-37-00-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T05-37-00-app-cd-solo-shop-builder-private-e-commerce--1.log)
