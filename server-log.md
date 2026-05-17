@@ -24751,3 +24751,50 @@ STDOUT:
 (9 rows)
 ```
 Full output: [`server-runs/2026-05-17T03-39-38-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-17T03-39-38-app-docker-exec-solo-shop-builder-private-e--1.log)
+
+## 2026-05-17T03:40:17.455Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `54eebf0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3025ms)
+```
+echo "=== E2E Smoke Test ==="
+echo "1. Homepage"
+curl -sI http://localhost:3000 | grep HTTP
+
+echo -e "\n2. Login page"
+curl -sI http://localhost:3000/auth/login | grep HTTP
+
+echo -e "\n3. Signup endpoint"
+curl -s -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"smoketest@example.com"}' | grep -E "(message|error)"
+
+echo -e "\n4. Health check"
+curl -s http://localhost:3000/api/health | grep -E "(status|ok)"
+
+echo -e "\n5. Check if storefront routes work"
+curl -sI http://localhost:3000/shop/test-shop | head -1
+
+echo -e "\nAll tests passed!"
+```
+STDOUT:
+```
+=== E2E Smoke Test ===
+1. Homepage
+HTTP/1.1 200 OK
+
+2. Login page
+HTTP/1.1 200 OK
+
+3. Signup endpoint
+{"message":"Magic link sent. Check your email."}
+
+4. Health check
+{"status":"ok","timestamp":"2026-05-17T03:40:17.627Z","responseTime":"98ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"97ms"}}}
+
+5. Check if storefront routes work
+HTTP/1.1 200 OK
+
+All tests passed!
+```
+Full output: [`server-runs/2026-05-17T03-40-17-app-echo-E2E-Smoke-Test-1.log`](server-runs/2026-05-17T03-40-17-app-echo-E2E-Smoke-Test-1.log)
