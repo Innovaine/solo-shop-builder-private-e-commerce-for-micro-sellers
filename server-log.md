@@ -29216,3 +29216,22 @@ drwxrwxr-x 2 engineer engineer 4096 May 17 12:10 20260517_add_seller_profile_fie
 -rw-rw-r-- 1 engineer engineer  127 May 16 14:44 migration_lock.toml
 ```
 Full output: [`server-runs/2026-05-17T12-11-22-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-11-22-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:11:48.597Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c87ce2d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4323ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose run --rm app npx prisma migrate status
+```
+STDOUT:
+```
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+5 migrations found in prisma/migrations
+
+Database schema is up to date!
+```
+Full output: [`server-runs/2026-05-17T12-11-48-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-11-48-app-cd-solo-shop-builder-private-e-commerce--1.log)
