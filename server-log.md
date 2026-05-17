@@ -29835,3 +29835,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `fd50d36` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose start app
 ```
+
+## 2026-05-17T12:48:09.688Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c8e684d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7896ms)
+```
+sleep 5
+curl -sf http://localhost:3000/api/health && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+FAIL
+```
+Full output: [`server-runs/2026-05-17T12-48-09-app-sleep-5-1.log`](server-runs/2026-05-17T12-48-09-app-sleep-5-1.log)
