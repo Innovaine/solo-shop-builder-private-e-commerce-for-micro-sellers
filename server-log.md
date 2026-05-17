@@ -25985,3 +25985,60 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 Full output: [`server-runs/2026-05-17T06-50-22-app-echo-Test-1-Homepage-1.log`](server-runs/2026-05-17T06-50-22-app-echo-Test-1-Homepage-1.log)
+
+## 2026-05-17T06:52:08.536Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e83e1a6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2884ms)
+```
+echo "=== Test 6: Shop page (non-existent) ==="
+curl -sI http://localhost:3000/shop/nonexistent-shop-xyz | head -5
+
+echo -e "\n=== Test 7: Signup page ==="
+curl -sI http://localhost:3000/auth/signup | head -10
+
+echo -e "\n=== Test 8: Settings page (unauthorized) ==="
+curl -sI http://localhost:3000/dashboard/settings | head -10
+
+echo -e "\n=== Test 9: API error handling ==="
+curl -s -X POST http://localhost:3000/api/shops \
+  -H "Content-Type: application/json" \
+  -d '{"invalid": "data"}' | head -5
+```
+STDOUT:
+```
+=== Test 6: Shop page (non-existent) ===
+HTTP/1.1 404 Not Found
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+
+=== Test 7: Signup page ===
+HTTP/1.1 404 Not Found
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: kneSM3vlzv9oRGJs
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 May 2026 06:52:08 GMT
+
+=== Test 8: Settings page (unauthorized) ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "f7f2cnthud8eq"
+Content-Type: text/html; charset=utf-8
+Content-Length: 10922
+Date: Sun, 17 May 2026 06:52:08 GMT
+Connection: keep-alive
+
+=== Test 9: API error handling ===
+{"error":"You must be logged in to create a shop."}
+```
+Full output: [`server-runs/2026-05-17T06-52-08-app-echo-Test-6-Shop-page-non-existent-1.log`](server-runs/2026-05-17T06-52-08-app-echo-Test-6-Shop-page-non-existent-1.log)

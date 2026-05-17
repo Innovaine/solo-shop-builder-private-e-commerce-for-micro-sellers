@@ -1,0 +1,92 @@
+=== Day 44 Smoke Test Results ===
+
+Test 1: Homepage
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "12j5nmip2pk88h"
+Content-Type: text/html; charset=utf-8
+Content-Length: 10710
+Date: Sun, 17 May 2026 06:50:21 GMT
+Connection: keep-alive
+
+Test 2: Health Check
+{"status":"ok","timestamp":"2026-05-17T06:50:22.073Z","responseTime":"249ms","checks":{"database":{"status":"ok","responseTime":"32ms"},"email":{"status":"ok","responseTime":"217ms"}}}
+
+Test 3: Login Page
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: MW4FIyRvYnaXQ1SS
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "p8brhk8akw5wo"
+
+Test 4: 404 Page
+HTTP/1.1 404 Not Found
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 May 2026 06:50:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+Test 5: Dashboard (unauthorized)
+HTTP/1.1 307 Temporary Redirect
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+Location: /auth/login
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 May 2026 06:50:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+Test 6: Shop page (non-existent)
+HTTP/1.1 404 Not Found
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+
+Test 7: Signup page
+HTTP/1.1 404 Not Found
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: kneSM3vlzv9oRGJs
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 May 2026 06:52:08 GMT
+
+Test 8: Settings page (unauthorized)
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "f7f2cnthud8eq"
+Content-Type: text/html; charset=utf-8
+Content-Length: 10922
+Date: Sun, 17 May 2026 06:52:08 GMT
+Connection: keep-alive
+
+Test 9: API error handling
+{"error":"You must be logged in to create a shop."}
+
+=== Summary ===
+Total Tests: 9
+Passed: 8
+Failed: 1
+Success Rate: 88.9%
+
+Failed Tests:
+- Test 7: Signup page (404 instead of expected 200)
