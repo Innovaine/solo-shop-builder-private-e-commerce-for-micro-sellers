@@ -26626,3 +26626,20 @@ echo "=== DATABASE SCHEMA VERIFICATION ==="
 docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 sh -c "npx prisma db pull --force 2>&1 | grep -E '(model|field|Table)' | head -50 || npx prisma db push --accept-data-loss --skip-generate 2>&1 | tail -20"
 ```
 ERROR: SSH connect timeout after 15000ms (host 187.124.22.3:22) (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T07:45:35.114Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a2501c4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2429ms)
+```
+docker ps --format '.Names\t.Status' && echo "---" && curl -sf http://localhost:3000/api/health -o /dev/null && echo "App is healthy"
+```
+STDOUT:
+```
+.Names	.Status
+.Names	.Status
+.Names	.Status
+---
+App is healthy
+```
+Full output: [`server-runs/2026-05-17T07-45-35-app-docker-ps---format-.Names-t.Status-echo--1.log`](server-runs/2026-05-17T07-45-35-app-docker-ps---format-.Names-t.Status-echo--1.log)
