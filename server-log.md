@@ -28902,3 +28902,12 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-17T11-23-02-app-kill--0-cat-tmp-day49-tests.pid-2-dev-nu-1.log`](server-runs/2026-05-17T11-23-02-app-kill--0-cat-tmp-day49-tests.pid-2-dev-nu-1.log)
+
+## 2026-05-17T11:23:28.174Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7e153ba` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 3311ms)
+```
+head -200 /tmp/day49-tests.log | grep -E "Running|passed|failed|Day 49"
+```
+ERROR: command exited 1
