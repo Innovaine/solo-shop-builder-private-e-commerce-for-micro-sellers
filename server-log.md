@@ -22181,3 +22181,19 @@ Fast-forward
  create mode 100644 design/pages/refund-modal.html
 ```
 Full output: [`server-runs/2026-05-17T01-16-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-16-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:16:39.052Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b88b37b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2117ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day37-ui-fix-build.log 2>&1 &
+echo $! > /tmp/day37-ui-fix-build.pid
+echo "Started build, PID=$(cat /tmp/day37-ui-fix-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=1152035
+```
+Full output: [`server-runs/2026-05-17T01-16-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-16-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
