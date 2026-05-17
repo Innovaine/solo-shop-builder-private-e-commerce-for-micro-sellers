@@ -30274,3 +30274,16 @@ Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:54
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-17T23-31-18-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-31-18-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:31:50.339Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4f1a126` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2849ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec postgres psql -U postgres -d soloshop -c "INSERT INTO _prisma_migrations (id, checksum, finished_at, migration_name, logs, rolled_back_at, started_at, applied_steps_count) VALUES (gen_random_uuid()::text, '9a8ec8f7e2c5d6b2f0a1e3c7d4b9f1e0', NOW(), '20260517_add_seller_profile_fields', NULL, NULL, NOW(), 1) ON CONFLICT DO NOTHING;"
+```
+STDOUT:
+```
+INSERT 0 1
+```
+Full output: [`server-runs/2026-05-17T23-31-50-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-31-50-app-cd-solo-shop-builder-private-e-commerce--1.log)
