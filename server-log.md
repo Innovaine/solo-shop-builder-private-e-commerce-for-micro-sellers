@@ -27738,3 +27738,39 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-17T09-50-39-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T09-50-39-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T09:51:06.713Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8c78635` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2775ms)
+```
+echo "=== Day 47 MVP Smoke Test ===" && echo "" && echo "Test 1: Homepage loads" && curl -sI http://localhost:3000 | head -1 && echo "" && echo "Test 2: Login page loads" && curl -sI http://localhost:3000/auth/login | head -1 && echo "" && echo "Test 3: Dashboard create-shop page" && curl -sI http://localhost:3000/dashboard/create-shop | head -1 && echo "" && echo "Test 4: Dashboard products page" && curl -sI http://localhost:3000/dashboard/products | head -1 && echo "" && echo "Test 5: API Health check" && curl -s http://localhost:3000/api/health && echo "" && echo "Test 6: Shop page (invalid slug)" && curl -sI http://localhost:3000/shop/nonexistent | head -1 && echo "" && echo "Test 7: Tracking page route" && curl -sI http://localhost:3000/track/test-123 | head -1 && echo "" && echo "Test 8: 404 page" && curl -sI http://localhost:3000/invalid-route-xyz | head -1
+```
+STDOUT:
+```
+=== Day 47 MVP Smoke Test ===
+
+Test 1: Homepage loads
+HTTP/1.1 200 OK
+
+Test 2: Login page loads
+HTTP/1.1 200 OK
+
+Test 3: Dashboard create-shop page
+HTTP/1.1 200 OK
+
+Test 4: Dashboard products page
+HTTP/1.1 200 OK
+
+Test 5: API Health check
+{"status":"ok","timestamp":"2026-05-17T09:51:06.932Z","responseTime":"138ms","checks":{"database":{"status":"ok","responseTime":"35ms"},"email":{"status":"ok","responseTime":"103ms"}}}
+Test 6: Shop page (invalid slug)
+HTTP/1.1 404 Not Found
+
+Test 7: Tracking page route
+HTTP/1.1 200 OK
+
+Test 8: 404 page
+HTTP/1.1 404 Not Found
+```
+Full output: [`server-runs/2026-05-17T09-51-06-app-echo-Day-47-MVP-Smoke-Test-echo-echo-Tes-1.log`](server-runs/2026-05-17T09-51-06-app-echo-Day-47-MVP-Smoke-Test-echo-echo-Tes-1.log)
