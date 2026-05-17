@@ -23103,3 +23103,20 @@ STDOUT:
 Started compose up, PID=1162184
 ```
 Full output: [`server-runs/2026-05-17T01-41-24-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-41-24-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:41:54.306Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7c778b9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7772ms)
+```
+sleep 5
+docker ps | grep solo-shop
+curl -sf http://localhost:3000/api/health | head -20
+```
+STDOUT:
+```
+6bfa65cfa3a9   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About a minute ago   Up 28 seconds             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+a350e89a9625   postgres:16-alpine                                           "docker-entrypoint.s…"   3 hours ago          Up 38 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+{"status":"ok","timestamp":"2026-05-17T01:41:54.444Z","responseTime":"181ms","checks":{"database":{"status":"ok","responseTime":"45ms"},"email":{"status":"ok","responseTime":"136ms"}}}
+```
+Full output: [`server-runs/2026-05-17T01-41-54-app-sleep-5-1.log`](server-runs/2026-05-17T01-41-54-app-sleep-5-1.log)
