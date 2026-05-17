@@ -29975,3 +29975,20 @@ _Pre-SSH: warehouse pushed to GitHub as commit `1b27b34` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build.log 2>&1 & echo $! > /tmp/build.pid && echo "Build started, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T23:27:11.409Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9ce3d30` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2630ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ps aux | grep "docker compose" | grep -v grep || echo "No docker compose process running"
+```
+STDOUT:
+```
+reviewer  730439  0.0  0.0   7740  2068 ?        S    May15   0:00 bash -c cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up > /tmp/compose-up.log 2>&1 & echo "Started"; sleep 8; docker compose logs app 2>&1 | tail -60; printf "__QADAR_EXIT__%d" $?
+reviewer  730441  0.0  0.0 2032368 29192 ?       Sl   May15   0:03 docker compose up
+engineer  753904  0.0  0.0 2032048 29228 ?       Sl   May15   0:03 docker compose up
+engineer  755745  0.0  0.0 2031856 29812 ?       Sl   May15   0:03 docker compose up
+engineer  984815  0.0  0.0 2031856 29624 ?       Sl   May16   0:02 docker compose up app
+```
+Full output: [`server-runs/2026-05-17T23-27-11-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-27-11-app-cd-solo-shop-builder-private-e-commerce--1.log)
