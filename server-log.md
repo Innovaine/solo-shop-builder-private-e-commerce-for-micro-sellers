@@ -23353,3 +23353,21 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 39 seconds 
 {"status":"ok","timestamp":"2026-05-17T01:56:17.135Z","responseTime":"251ms","checks":{"database":{"status":"ok","responseTime":"44ms"},"email":{"status":"ok","responseTime":"207ms"}}}App is UP
 ```
 Full output: [`server-runs/2026-05-17T01-56-16-app-docker-ps---format-.Names-t-.Status-slee-1.log`](server-runs/2026-05-17T01-56-16-app-docker-ps---format-.Names-t-.Status-slee-1.log)
+
+## 2026-05-17T01:57:13.369Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6e0607d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2391ms)
+```
+echo "Test 1: Homepage" && curl -sI http://localhost:3000 | head -1 && echo "Test 2: Login page" && curl -sI http://localhost:3000/auth/login | head -1 && echo "Test 3: API signup" && curl -sI http://localhost:3000/api/auth/signup | head -1
+```
+STDOUT:
+```
+Test 1: Homepage
+HTTP/1.1 200 OK
+Test 2: Login page
+HTTP/1.1 200 OK
+Test 3: API signup
+HTTP/1.1 405 Method Not Allowed
+```
+Full output: [`server-runs/2026-05-17T01-57-13-app-echo-Test-1-Homepage-curl--sI-http-local-1.log`](server-runs/2026-05-17T01-57-13-app-echo-Test-1-Homepage-curl--sI-http-local-1.log)
