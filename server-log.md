@@ -29907,3 +29907,13 @@ migrate found failed migrations in the target database, new migrations will not 
 The `20260517_add_seller_profile_fields` migration started at 2026-05-17 12:47:39.165468 UTC failed
 ```
 Full output: [`server-runs/2026-05-17T12-48-52-app-docker-ps--a-grep-app-1.log`](server-runs/2026-05-17T12-48-52-app-docker-ps--a-grep-app-1.log)
+
+## 2026-05-17T12:49:30.240Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bdd27be` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 3232ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 npx prisma migrate resolve --rolled-back 20260517_add_seller_profile_fields
+```
+ERROR: command exited 1
