@@ -25913,3 +25913,75 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-17T06-49-07-app-head--50-tmp-day44-smoke.log-1.log`](server-runs/2026-05-17T06-49-07-app-head--50-tmp-day44-smoke.log-1.log)
+
+## 2026-05-17T06:50:22.105Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ec3b981` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3278ms)
+```
+echo "=== Test 1: Homepage ==="
+curl -sI http://localhost:3000 | head -10
+
+echo -e "\n=== Test 2: Health Check ==="
+curl -s http://localhost:3000/api/health | head -5
+
+echo -e "\n=== Test 3: Login Page ==="
+curl -sI http://localhost:3000/auth/login | head -10
+
+echo -e "\n=== Test 4: 404 Page ==="
+curl -sI http://localhost:3000/nonexistent-xyz | head -10
+
+echo -e "\n=== Test 5: Dashboard (unauthorized) ==="
+curl -sI http://localhost:3000/dashboard | head -10
+```
+STDOUT:
+```
+=== Test 1: Homepage ===
+HTTP/1.1 200 OK
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "12j5nmip2pk88h"
+Content-Type: text/html; charset=utf-8
+Content-Length: 10710
+Date: Sun, 17 May 2026 06:50:21 GMT
+Connection: keep-alive
+
+=== Test 2: Health Check ===
+{"status":"ok","timestamp":"2026-05-17T06:50:22.073Z","responseTime":"249ms","checks":{"database":{"status":"ok","responseTime":"32ms"},"email":{"status":"ok","responseTime":"217ms"}}}
+=== Test 3: Login Page ===
+HTTP/1.1 200 OK
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: MW4FIyRvYnaXQ1SS
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000, stale-while-revalidate
+ETag: "p8brhk8akw5wo"
+
+=== Test 4: 404 Page ===
+HTTP/1.1 404 Not Found
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 May 2026 06:50:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+=== Test 5: Dashboard (unauthorized) ===
+HTTP/1.1 307 Temporary Redirect
+Vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+Location: /auth/login
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 May 2026 06:50:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-17T06-50-22-app-echo-Test-1-Homepage-1.log`](server-runs/2026-05-17T06-50-22-app-echo-Test-1-Homepage-1.log)
