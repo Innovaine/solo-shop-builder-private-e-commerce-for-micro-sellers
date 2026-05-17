@@ -29386,3 +29386,47 @@ _Pre-SSH: warehouse pushed to GitHub as commit `2646c53` so the server's `git pu
 sleep 8 && curl -sf http://localhost:3000/api/health && echo " OK"
 ```
 ERROR: command exited 7
+
+## 2026-05-17T12:19:17.998Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `32f71d4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2895ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps app && docker compose logs --tail=30 app
+```
+STDOUT:
+```
+NAME                                                           IMAGE                                                        COMMAND                  SERVICE   CREATED         STATUS              PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app       6 minutes ago   Up About a minute   3000/tcp
+app-1  | ┌─────────────────────────────────────────────────────────┐
+app-1  | │  Update available 5.14.0 -> 7.8.0                       │
+app-1  | │                                                         │
+app-1  | │  This is a major update - please follow the guide at    │
+app-1  | │  https://pris.ly/d/major-version-upgrade                │
+app-1  | │                                                         │
+app-1  | │  Run the following to update                            │
+app-1  | │    npm i -g prisma@latest                               │
+app-1  | │    npm i @prisma/client@latest                          │
+app-1  | └─────────────────────────────────────────────────────────┘
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 48ms
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 5 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 61ms
+```
+Full output: [`server-runs/2026-05-17T12-19-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-19-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
