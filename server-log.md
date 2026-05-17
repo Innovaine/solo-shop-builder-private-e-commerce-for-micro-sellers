@@ -22829,3 +22829,18 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 docker compose up -d
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T01:35:07.814Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3fd806e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2172ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/compose-up-day37.log 2>&1 &
+echo "Started docker compose up"
+```
+STDOUT:
+```
+Started docker compose up
+```
+Full output: [`server-runs/2026-05-17T01-35-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-35-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
