@@ -30600,3 +30600,42 @@ time="2026-05-17T23:57:41Z" level=warning msg="/home/tester/solo-shop-builder-pr
 {"status":"ok","timestamp":"2026-05-17T23:57:41.988Z","responseTime":"202ms","checks":{"database":{"status":"ok","responseTime":"40ms"},"email":{"status":"ok","responseTime":"162ms"}}}8cfd83d44184   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   29 minutes ago   Up 23 minutes           3000/tcp                   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
 ```
 Full output: [`server-runs/2026-05-17T23-57-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-57-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:58:40.448Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c8d0d86` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3369ms)
+```
+# Manual smoke tests via container network
+echo "=== Day 49 Manual Smoke Tests ==="
+echo ""
+echo "Test 1: Health endpoint"
+docker compose -f ~/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml exec -T postgres wget -q -O- http://app:3000/api/health 2>&1 | head -5
+echo ""
+echo "Test 2: Analytics page (should return HTML)"
+docker compose -f ~/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml exec -T postgres wget -q -O- http://app:3000/dashboard/analytics 2>&1 | grep -o '<title>.*</title>' | head -1
+echo ""
+echo "Test 3: Billing page (should return HTML)"
+docker compose -f ~/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml exec -T postgres wget -q -O- http://app:3000/dashboard/billing 2>&1 | grep -o '<title>.*</title>' | head -1
+echo ""
+echo "Test 4: Orders export endpoint (should require auth)"
+docker compose -f ~/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml exec -T postgres wget -q -O- http://app:3000/api/orders/export 2>&1 | head -3
+```
+STDOUT:
+```
+=== Day 49 Manual Smoke Tests ===
+
+Test 1: Health endpoint
+time="2026-05-17T23:58:39Z" level=warning msg="/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+{"status":"ok","timestamp":"2026-05-17T23:58:40.189Z","responseTime":"218ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"217ms"}}}
+Test 2: Analytics page (should return HTML)
+<title>Solo Shop Builder — Your own storefront. No marketplace fees.</title>
+
+Test 3: Billing page (should return HTML)
+<title>Solo Shop Builder — Your own storefront. No marketplace fees.</title>
+
+Test 4: Orders export endpoint (should require auth)
+time="2026-05-17T23:58:40Z" level=warning msg="/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+wget: server returned error: HTTP/1.1 401 Unauthorized
+```
+Full output: [`server-runs/2026-05-17T23-58-40-app-Manual-smoke-tests-via-container-network-1.log`](server-runs/2026-05-17T23-58-40-app-Manual-smoke-tests-via-container-network-1.log)
