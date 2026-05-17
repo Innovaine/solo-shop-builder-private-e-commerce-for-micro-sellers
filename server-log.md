@@ -23338,3 +23338,18 @@ _Pre-SSH: warehouse pushed to GitHub as commit `db4d8a4` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up -d > /tmp/day40-up.log 2>&1 & echo $! > /tmp/day40-up.pid && echo "Starting services..."
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T01:56:17.007Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f3610d0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7589ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}" && sleep 5 && curl -sf http://localhost:3000/api/health && echo "App is UP"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 28 seconds
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 39 seconds (healthy)
+{"status":"ok","timestamp":"2026-05-17T01:56:17.135Z","responseTime":"251ms","checks":{"database":{"status":"ok","responseTime":"44ms"},"email":{"status":"ok","responseTime":"207ms"}}}App is UP
+```
+Full output: [`server-runs/2026-05-17T01-56-16-app-docker-ps---format-.Names-t-.Status-slee-1.log`](server-runs/2026-05-17T01-56-16-app-docker-ps---format-.Names-t-.Status-slee-1.log)
