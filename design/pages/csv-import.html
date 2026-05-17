@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import Products from CSV — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 24px; }
+    .header h1 { font-size: 28px; font-weight: 700; margin: 0 0 4px 0; }
+    .header p { color: #64748B; font-size: 14px; margin: 0; }
+    .container { max-width: 700px; margin: 32px auto; padding: 0 24px; }
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 32px; margin-bottom: 24px; }
+    .form-section { margin-bottom: 32px; }
+    .form-section h2 { font-size: 16px; font-weight: 600; margin: 0 0 20px 0; color: #1F2937; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    .upload-zone { border: 2px dashed #E2E8F0; border-radius: 8px; padding: 40px; text-align: center; transition: all 0.2s; cursor: pointer; background: #FAFBFC; }
+    .upload-zone:hover { border-color: #3B4C63; background: #F0F4F8; }
+    .upload-zone.dragover { border-color: #10B981; background: #F0FDF4; }
+    .upload-zone-icon { font-size: 40px; margin-bottom: 12px; }
+    .upload-zone-text { font-weight: 600; color: #1F2937; margin-bottom: 4px; }
+    .upload-zone-hint { font-size: 12px; color: #64748B; }
+    .file-input { display: none; }
+    .file-selected { background: white; border: 1px solid #E2E8F0; border-radius: 6px; padding: 12px 16px; display: none; align-items: center; gap: 12px; margin-top: 12px; }
+    .file-selected.show { display: flex; }
+    .file-icon { font-size: 20px; }
+    .file-info { flex: 1; text-align: left; }
+    .file-name { font-size: 14px; font-weight: 600; color: #1F2937; }
+    .file-size { font-size: 12px; color: #94A3B8; margin-top: 2px; }
+    .file-remove { background: #FEE2E2; color: #F43F5E; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .csv-format { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px; margin-top: 16px; }
+    .csv-format h3 { font-size: 14px; font-weight: 600; margin: 0 0 12px 0; color: #1F2937; }
+    .csv-columns { list-style: none; padding: 0; margin: 0; }
+    .csv-columns li { font-size: 13px; padding: 6px 0; border-bottom: 1px solid #F3F4F6; color: #64748B; }
+    .csv-columns li:last-child { border-bottom: none; }
+    .csv-columns li strong { color: #1F2937; }
+    .required { color: #F43F5E; }
+    .button-group { display: flex; gap: 12px; margin-top: 24px; }
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover:not(:disabled) { background: #059669; }
+    .btn-primary:disabled { background: #D1D5DB; cursor: not-allowed; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .alert { padding: 16px; border-radius: 6px; margin-bottom: 16px; display: none; }
+    .alert.show { display: block; }
+    .alert-error { background: #FEF2F2; border: 1px solid #FECDD3; color: #9F1239; }
+    .alert-success { background: #F0FDF4; border: 1px solid #BBDF37; color: #15803D; }
+    .import-results { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px; margin-top: 24px; display: none; }
+    .import-results.show { display: block; }
+    .result-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #E5E7EB; font-size: 14px; }
+    .result-row:last-child { border-bottom: none; }
+    .result-label { color: #64748B; font-weight: 500; }
+    .result-value { font-weight: 600; color: #1F2937; }
+    .result-errors { background: white; border: 1px solid #FCA5A5; border-radius: 6px; padding: 12px; margin-top: 12px; }
+    .result-errors h4 { font-size: 13px; font-weight: 600; color: #991B1B; margin: 0 0 8px 0; }
+    .error-item { font-size: 12px; color: #7F1D1D; padding: 4px 0; border-bottom: 1px solid #FEE2E2; }
+    .error-item:last-child { border-bottom: none; }
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .card { padding: 24px; }
+      .upload-zone { padding: 28px; }
+      .button-group { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Import Products from CSV</h1>
+    <p>Upload a CSV file to quickly add products to your shop</p>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div id="errorAlert" class="alert alert-error">
+        <strong>Import Failed</strong>
+        <p id="errorMessage"></p>
+      </div>
+      <div id="successAlert" class="alert alert-success" style="display: none;">
+        <strong>✓ Import started!</strong> Your products are being added. You'll see them on your storefront shortly.
+      </div>
+
+      <form id="csvForm">
+        <div class="form-section">
+          <label for="csvFile">Upload CSV File</label>
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-zone-icon">📄</div>
+            <div class="upload-zone-text">Click to upload or drag and drop</div>
+            <div class="upload-zone-hint">CSV file (max 10MB)</div>
+            <input type="file" id="csvFile" class="file-input" accept=".csv" required>
+          </div>
+          <div class="file-selected" id="fileSelected">
+            <div class="file-icon">✓</div>
+            <div class="file-info">
+              <div class="file-name" id="fileName"></div>
+              <div class="file-size" id="fileSize"></div>
+            </div>
+            <button type="button" class="file-remove" id="fileRemove">Remove</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="csv-format">
+            <h3>Expected CSV Format</h3>
+            <p style="font-size: 12px; color: #64748B; margin: 0 0 12px 0;">Your CSV must have headers in the first row:</p>
+            <ul class="csv-columns">
+              <li><strong>title</strong> <span class="required">*</span> — Product name (max 200 chars)</li>
+              <li><strong>price</strong> <span class="required">*</span> — Price in USD (e.g., 19.99)</li>
+              <li><strong>description</strong> <span class="required">*</span> — Description (max 1000 chars)</li>
+              <li><strong>category</strong> <span class="required">*</span> — Handmade, Vintage, Supplies, or Other</li>
+              <li><strong>image_url</strong> — Public image URL (optional)</li>
+            </ul>
+            <p style="font-size: 11px; color: #94A3B8; margin: 12px 0 0 0;">* = required. Invalid rows will be reported as errors but won't block the import.</p>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-primary" id="submitBtn" disabled>Import Products</button>
+          <button type="button" class="btn-secondary" onclick="history.back()">Cancel</button>
+        </div>
+      </form>
+
+      <div class="import-results" id="importResults">
+        <h3 style="margin: 0 0 16px 0; color: #1F2937;">Import Complete</h3>
+        <div class="result-row">
+          <div class="result-label">Products Imported</div>
+          <div class="result-value" id="importedCount">45</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">Errors</div>
+          <div class="result-value" id="errorCount">3</div>
+        </div>
+        <div id="errorsList" class="result-errors" style="display: none;">
+          <h4>Issues to review:</h4>
+          <div id="errorsContent"></div>
+        </div>
+        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+          <button type="button" class="btn-primary" onclick="window.location.href='/dashboard/products'">View Products</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const uploadZone = document.getElementById('uploadZone');
+    const csvFile = document.getElementById('csvFile');
+    const fileSelected = document.getElementById('fileSelected');
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
+    const fileRemove = document.getElementById('fileRemove');
+    const submitBtn = document.getElementById('submitBtn');
+
+    uploadZone.addEventListener('click', () => csvFile.click());
+    uploadZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadZone.classList.add('dragover');
+    });
+    uploadZone.addEventListener('dragleave', () => {
+      uploadZone.classList.remove('dragover');
+    });
+    uploadZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length > 0) {
+        csvFile.files = e.dataTransfer.files;
+        handleFileSelect();
+      }
+    });
+
+    csvFile.addEventListener('change', handleFileSelect);
+
+    function handleFileSelect() {
+      if (csvFile.files && csvFile.files[0]) {
+        const file = csvFile.files[0];
+        if (!file.name.endsWith('.csv')) {
+          alert('Please upload a CSV file');
+          csvFile.value = '';
+          return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+          alert('File must be smaller than 10MB');
+          csvFile.value = '';
+          return;
+        }
+        fileName.textContent = file.name;
+        fileSize.textContent = (file.size / 1024).toFixed(1) + ' KB';
+        fileSelected.classList.add('show');
+        uploadZone.style.display = 'none';
+        submitBtn.disabled = false;
+      }
+    }
+
+    fileRemove.addEventListener('click', (e) => {
+      e.preventDefault();
+      csvFile.value = '';
+      fileSelected.classList.remove('show');
+      uploadZone.style.display = 'block';
+      submitBtn.disabled = true;
+    });
+
+    document.getElementById('csvForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('successAlert').classList.add('show');
+      setTimeout(() => {
+        document.getElementById('csvForm').style.display = 'none';
+        document.getElementById('importResults').classList.add('show');
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

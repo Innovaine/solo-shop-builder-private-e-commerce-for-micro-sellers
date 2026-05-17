@@ -29478,3 +29478,16 @@ OCI runtime exec failed: exec failed: unable to start container process: exec: "
 ```
 ERROR: command exited 127
 Full output: [`server-runs/2026-05-17T12-20-51-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-20-51-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:21:25.677Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `56f9cad` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2502ms)
+```
+curl -sf -H "Host: www.soloshopbox.com" http://localhost/api/health && echo " ✓ Health OK via Traefik"
+```
+STDOUT:
+```
+Moved Permanently ✓ Health OK via Traefik
+```
+Full output: [`server-runs/2026-05-17T12-21-25-app-curl--sf--H-Host-www.soloshopbox.com-htt-1.log`](server-runs/2026-05-17T12-21-25-app-curl--sf--H-Host-www.soloshopbox.com-htt-1.log)

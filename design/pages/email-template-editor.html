@@ -6,185 +6,242 @@
   <title>Email Template Editor — Solo Shop Builder</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif; background-color: #FAF9F7; color: #1F2937; }
-    .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 24px; }
-    .header { grid-column: 1 / -1; margin-bottom: 24px; }
-    .header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
-    .header p { font-size: 14px; color: #64748B; }
-    .panel { background: white; border-radius: 8px; border: 1px solid #E2E8F0; }
-    .panel-header { padding: 20px; border-bottom: 1px solid #E2E8F0; }
-    .panel-header h2 { font-size: 16px; font-weight: 600; margin: 0; }
-    .panel-content { padding: 20px; max-height: 600px; overflow-y: auto; }
-    .form-group { margin-bottom: 16px; }
-    label { display: block; font-size: 13px; font-weight: 600; color: #1F2937; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-    input[type="text"], textarea { width: 100%; padding: 10px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 13px; font-family: inherit; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 24px; }
+    .header h1 { font-size: 28px; font-weight: 700; margin: 0 0 4px 0; }
+    .header p { color: #64748B; font-size: 14px; margin: 0; }
+    .container { max-width: 900px; margin: 32px auto; padding: 0 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; }
+    .card h2 { font-size: 16px; font-weight: 600; margin: 0 0 20px 0; color: #1F2937; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input[type="text"], textarea { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; }
     input[type="text"]:focus, textarea:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
-    textarea { min-height: 80px; resize: vertical; }
-    .preset-section { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #E2E8F0; }
-    .preset-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .template-var { display: inline-flex; align-items: center; gap: 6px; background: #F0F9FF; border: 1px solid #BAE6FD; padding: 6px 10px; border-radius: 4px; font-size: 12px; color: #0369A1; margin-bottom: 8px; margin-right: 8px; cursor: pointer; }
-    .template-var:hover { background: #E0F2FE; }
-    .template-var-code { font-family: monospace; font-weight: 600; }
-    .preview-frame { background: #FAF9F7; padding: 20px; border-radius: 6px; min-height: 400px; overflow-y: auto; }
-    .email-mockup { background: white; max-width: 500px; margin: 0 auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
-    .email-header { background: #3B4C63; color: white; padding: 30px 20px; text-align: center; }
-    .email-header h1 { font-size: 24px; margin: 0 0 4px 0; }
-    .email-header p { font-size: 13px; margin: 0; opacity: 0.9; }
-    .email-content { padding: 24px 20px; }
-    .email-section { margin-bottom: 20px; }
-    .email-section h2 { font-size: 14px; font-weight: 600; margin: 0 0 12px 0; }
-    .email-section p { font-size: 13px; line-height: 1.6; color: #64748B; margin: 0; }
-    .action-buttons { grid-column: 1 / -1; display: flex; gap: 12px; }
-    .btn { padding: 10px 20px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; }
+    textarea { resize: vertical; min-height: 300px; }
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 6px; }
+    .char-count { font-size: 12px; color: #94A3B8; margin-top: 4px; }
+    .merge-tag-reference { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 12px; margin-top: 12px; }
+    .merge-tag-title { font-size: 12px; font-weight: 600; color: #1F2937; margin-bottom: 8px; }
+    .merge-tag-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; }
+    .merge-tag-item { background: white; border: 1px solid #E2E8F0; border-radius: 4px; padding: 6px 8px; font-family: monospace; color: #3B4C63; }
+    .button-group { display: flex; gap: 12px; margin-top: 24px; }
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
     .btn-primary { background: #10B981; color: white; }
     .btn-primary:hover { background: #059669; }
     .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
     .btn-secondary:hover { background: #F9FAFB; }
-    .reset-link { font-size: 12px; color: #64748B; text-decoration: none; cursor: pointer; }
-    .reset-link:hover { color: #3B4C63; text-decoration: underline; }
+    .btn-ghost { background: transparent; color: #3B4C63; padding: 8px 12px; }
+    .preview-card { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+    .preview-title { font-size: 12px; font-weight: 600; text-transform: uppercase; color: #64748B; margin-bottom: 12px; letter-spacing: 0.5px; }
+    .email-preview { background: white; border: 1px solid #E2E8F0; border-radius: 6px; padding: 20px; font-size: 13px; line-height: 1.6; max-height: 400px; overflow-y: auto; }
+    .email-subject { font-weight: 600; color: #1F2937; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #E2E8F0; }
+    .email-body { color: #64748B; }
+    .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; display: none; font-size: 14px; }
+    .alert.show { display: block; }
+    .alert-success { background: #F0FDF4; border: 1px solid #BBDF37; color: #15803D; }
+    .alert-error { background: #FEF2F2; border: 1px solid #FECDD3; color: #9F1239; }
+    .default-template-info { background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 6px; padding: 12px; margin-bottom: 16px; font-size: 13px; color: #92400E; }
     @media (max-width: 1024px) {
-      .container { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .container { padding: 0 16px; }
+      .button-group { flex-wrap: wrap; }
+      button { flex: 1; min-width: 150px; }
     }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h1>Order Confirmation Email Template</h1>
+    <p>Customize the email your customers receive after they purchase</p>
+  </div>
+
   <div class="container">
-    <div class="header">
-      <h1>Email Template Editor</h1>
-      <p>Customize the order confirmation email your customers receive</p>
-    </div>
+    <div class="grid">
+      <!-- EDITOR SECTION -->
+      <div>
+        <div class="card">
+          <h2>Edit Template</h2>
 
-    <!-- Editor Panel -->
-    <div class="panel">
-      <div class="panel-header">
-        <h2>✏️ Customize Template</h2>
+          <div id="successAlert" class="alert alert-success">
+            ✓ Template saved successfully!
+          </div>
+
+          <div class="default-template-info">
+            💡 This is the default template. Any changes you make will be saved and used for future orders.
+          </div>
+
+          <form id="emailForm">
+            <div class="form-group">
+              <label for="subject">Email Subject Line</label>
+              <input type="text" id="subject" name="subject" maxlength="100" value="Order Confirmation from {{shopName}}" required>
+              <div class="form-hint">Max 100 characters. Use merge tags like {{shopName}} to personalize.</div>
+              <div class="char-count"><span id="subjectCount">31</span>/100 characters</div>
+            </div>
+
+            <div class="form-group">
+              <label for="body">Email Body</label>
+              <textarea id="body" name="body" maxlength="5000" required>Hello {{customerName}},
+
+Thank you for your order! Here's a summary:
+
+Order Number: {{orderNumber}}
+Order Date: {{orderDate}}
+Total: {{orderTotal}}
+
+Items:
+{{items}}
+
+Tracking Information:
+Your order will be shipped soon. You can track it here: {{trackingLink}}
+
+Questions?
+If you have any questions about your order, reply to this email or visit {{shopName}}.
+
+Best regards,
+{{shopName}} Team</textarea>
+              <div class="form-hint">Max 5000 characters. You can use HTML tags: &lt;p&gt;, &lt;b&gt;, &lt;i&gt;, &lt;a&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;table&gt;, &lt;br&gt;</div>
+              <div class="char-count"><span id="bodyCount">432</span>/5000 characters</div>
+            </div>
+
+            <div class="merge-tag-reference">
+              <div class="merge-tag-title">Available Merge Tags</div>
+              <div class="merge-tag-list">
+                <div class="merge-tag-item">{{customerName}}</div>
+                <div class="merge-tag-item">{{customerEmail}}</div>
+                <div class="merge-tag-item">{{orderNumber}}</div>
+                <div class="merge-tag-item">{{orderDate}}</div>
+                <div class="merge-tag-item">{{orderTotal}}</div>
+                <div class="merge-tag-item">{{items}}</div>
+                <div class="merge-tag-item">{{trackingLink}}</div>
+                <div class="merge-tag-item">{{shopName}}</div>
+              </div>
+              <div style="font-size: 11px; color: #94A3B8; margin-top: 8px;">Copy any tag and paste it into your template. Tags are replaced with real values when emails are sent.</div>
+            </div>
+
+            <div class="button-group">
+              <button type="submit" class="btn-primary">Save Template</button>
+              <button type="button" class="btn-secondary" onclick="resetForm()">Reset to Default</button>
+              <button type="button" class="btn-ghost" onclick="sendTestEmail()">Send Test Email</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="panel-content">
-        <div class="form-group">
-          <label>Email Subject Line</label>
-          <input type="text" value="Order Confirmed — Thanks for your purchase!" placeholder="e.g., Order Confirmed — Thank you!">
-          <div class="label-hint">This appears in your customer's inbox. Keep it short and clear.</div>
-        </div>
 
-        <div class="form-group">
-          <label>Header Title</label>
-          <input type="text" value="✓ Order Confirmed" placeholder="e.g., Order Received">
-          <div class="label-hint">Appears at the top of the email.</div>
-        </div>
+      <!-- PREVIEW SECTION -->
+      <div>
+        <div class="card">
+          <h2>Preview</h2>
+          <p style="font-size: 13px; color: #64748B; margin-bottom: 20px;">This is how your email will appear to customers (with sample data):</p>
 
-        <div class="form-group">
-          <label>Greeting Message</label>
-          <textarea placeholder="e.g., Thank you for your purchase!">Thank you for your purchase!</textarea>
-          <div class="label-hint">Personal greeting shown after order number (use {customer_name} variable).</div>
-        </div>
-
-        <div class="form-group">
-          <label>Shipping Note</label>
-          <textarea placeholder="e.g., Your order is being prepared...">Your order is being prepared. You'll receive a shipping notification with tracking information as soon as your item ships. Most orders ship within 1-3 business days.</textarea>
-          <div class="label-hint">Tell customers what to expect next.</div>
-        </div>
-
-        <div class="form-group">
-          <label>Questions/Help Text</label>
-          <textarea placeholder="e.g., Have questions?">Have questions about your order?</textarea>
-          <div class="label-hint">Provide contact or help info for customer support.</div>
-        </div>
-
-        <div class="preset-section">
-          <label>Available Variables</label>
-          <p style="font-size: 12px; color: #64748B; margin-bottom: 8px;">Click any variable to insert it into your template:</p>
-          <div>
-            <div class="template-var">
-              <span class="template-var-code">{'{'} customer_name {'}'}</span>
-            </div>
-            <div class="template-var">
-              <span class="template-var-code">{'{'} order_number {'}'}</span>
-            </div>
-            <div class="template-var">
-              <span class="template-var-code">{'{'} order_date {'}'}</span>
-            </div>
-            <div class="template-var">
-              <span class="template-var-code">{'{'} tracking_link {'}'}</span>
-            </div>
-            <div class="template-var">
-              <span class="template-var-code">{'{'} shop_name {'}'}</span>
+          <div class="preview-card">
+            <div class="preview-title">Subject Line</div>
+            <div class="email-preview">
+              <div class="email-subject" id="previewSubject">Order Confirmation from Artisan Ceramics</div>
             </div>
           </div>
-          <p style="font-size: 11px; color: #94A3B8; margin-top: 8px;">Example: "Hi {customer_name}, thanks for ordering!"</p>
-        </div>
-      </div>
-    </div>
 
-    <!-- Preview Panel -->
-    <div class="panel">
-      <div class="panel-header">
-        <h2>👁️ Preview</h2>
-      </div>
-      <div class="panel-content">
-        <div class="preview-frame">
-          <div class="email-mockup">
-            <div class="email-header">
-              <h1>✓ Order Confirmed</h1>
-              <p>Thank you for your purchase!</p>
-            </div>
-            <div class="email-content">
-              <div class="email-section">
-                <h2>Order #ORD-12345</h2>
-                <p style="font-size: 12px; color: #94A3B8; margin: 0;">Placed on May 15, 2026</p>
-              </div>
-              <div class="email-section">
-                <h2>What's Next?</h2>
-                <p>Your order is being prepared. You'll receive a shipping notification with tracking information as soon as your item ships. Most orders ship within 1-3 business days.</p>
-              </div>
-              <div class="email-section">
-                <h2>Questions?</h2>
-                <p>Have questions about your order?</p>
-              </div>
-              <div class="email-section" style="text-align: center; margin-bottom: 0;">
-                <a href="#" style="display: inline-block; background: #10B981; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px;">View Order Status</a>
+          <div class="preview-card">
+            <div class="preview-title">Email Body</div>
+            <div class="email-preview">
+              <div class="email-body" id="previewBody">
+                <p>Hello Jane Smith,</p>
+                <p>Thank you for your order! Here's a summary:</p>
+                <p><b>Order Number:</b> #ORD-1027<br>
+                <b>Order Date:</b> May 17, 2026<br>
+                <b>Total:</b> $145.00</p>
+                <p><b>Items:</b><br>
+                - Hand-thrown ceramic bowl x1<br>
+                - Artisan mug x2</p>
+                <p><b>Tracking Information:</b><br>
+                Your order will be shipped soon. You can track it here: <a href="#">View tracking</a></p>
+                <p>Questions?<br>
+                If you have any questions about your order, reply to this email or visit Artisan Ceramics.</p>
+                <p>Best regards,<br>
+                Artisan Ceramics Team</p>
               </div>
             </div>
           </div>
+
+          <div style="background: #F0FDF4; border: 1px solid #BBDF37; border-radius: 6px; padding: 12px; font-size: 12px; color: #15803D;">
+            💡 <strong>Tip:</strong> Click "Send Test Email" to see how your template looks in a real inbox with actual order data.
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="action-buttons">
-      <button class="btn btn-primary">Save Template</button>
-      <button class="btn btn-secondary">Send Test Email</button>
-      <a href="#" class="reset-link" style="margin-left: auto; padding: 10px 0;">Reset to Default Template</a>
     </div>
   </div>
 
   <script>
-    // Update preview as user types (reference for engineer)
-    const inputs = document.querySelectorAll('input[type="text"], textarea');
-    
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', function() {
-        const emailHeader = document.querySelector('.email-header h1');
-        const emailGreeting = document.querySelector('.email-header p');
-        
-        if (index === 0) {
-          // Subject line (shown in subject)
-        } else if (index === 1) {
-          emailHeader.textContent = this.value;
-        } else if (index === 2) {
-          emailGreeting.textContent = this.value;
-        }
+    const subjectInput = document.getElementById('subject');
+    const bodyInput = document.getElementById('body');
+    const form = document.getElementById('emailForm');
+    const successAlert = document.getElementById('successAlert');
+    const previewSubject = document.getElementById('previewSubject');
+    const previewBody = document.getElementById('previewBody');
+    const subjectCount = document.getElementById('subjectCount');
+    const bodyCount = document.getElementById('bodyCount');
+
+    const sampleData = {
+      customerName: 'Jane Smith',
+      customerEmail: 'jane@example.com',
+      orderNumber: '#ORD-1027',
+      orderDate: 'May 17, 2026',
+      orderTotal: '$145.00',
+      items: '- Hand-thrown ceramic bowl x1\n- Artisan mug x2',
+      trackingLink: '<a href="#">View tracking</a>',
+      shopName: 'Artisan Ceramics'
+    };
+
+    function updateCharCounts() {
+      subjectCount.textContent = subjectInput.value.length;
+      bodyCount.textContent = bodyInput.value.length;
+    }
+
+    function updatePreview() {
+      let subject = subjectInput.value;
+      let body = bodyInput.value;
+
+      Object.keys(sampleData).forEach(key => {
+        const regex = new RegExp('{{' + key + '}}', 'g');
+        subject = subject.replace(regex, sampleData[key]);
+        body = body.replace(regex, sampleData[key]);
       });
+
+      previewSubject.textContent = subject;
+      previewBody.innerHTML = body.replace(/\n/g, '<br>');
+    }
+
+    subjectInput.addEventListener('input', () => {
+      updateCharCounts();
+      updatePreview();
     });
 
-    // Template variable insertion (reference)
-    document.querySelectorAll('.template-var').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const code = this.querySelector('.template-var-code').textContent;
-        // In a real implementation, insert this into the focused textarea
-        console.log('Insert:', code);
-      });
+    bodyInput.addEventListener('input', () => {
+      updateCharCounts();
+      updatePreview();
     });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      successAlert.classList.add('show');
+      setTimeout(() => {
+        successAlert.classList.remove('show');
+      }, 4000);
+    });
+
+    function resetForm() {
+      subjectInput.value = 'Order Confirmation from {{shopName}}';
+      bodyInput.value = 'Hello {{customerName}},\n\nThank you for your order! Here\'s a summary:\n\nOrder Number: {{orderNumber}}\nOrder Date: {{orderDate}}\nTotal: {{orderTotal}}\n\nItems:\n{{items}}\n\nTracking Information:\nYour order will be shipped soon. You can track it here: {{trackingLink}}\n\nQuestions?\nIf you have any questions about your order, reply to this email or visit {{shopName}}.\n\nBest regards,\n{{shopName}} Team';
+      updateCharCounts();
+      updatePreview();
+    }
+
+    function sendTestEmail() {
+      alert('✓ Test email sent to your registered email address.\n\nCheck your inbox in a moment to preview how the template looks with real order data.');
+    }
+
+    updateCharCounts();
+    updatePreview();
   </script>
 </body>
 </html>

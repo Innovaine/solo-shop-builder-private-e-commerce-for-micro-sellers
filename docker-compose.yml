@@ -26,17 +26,11 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.soloshop.rule=Host(`www.soloshopbox.com`)"
-
-      - "traefik.http.routers.soloshop.entrypoints=websecure"
-
-      - "traefik.http.routers.soloshop.tls=true"
-
-      - "traefik.http.routers.soloshop.tls.certresolver=letsencrypt"
-
-      # App internal port
-
-      - "traefik.http.services.soloshop.loadbalancer.server.port=3000"
+      - "traefik.http.routers.app.rule=Host(`${HTTPS_APP_HOST_NAME}`)"
+      - "traefik.http.routers.app.entrypoints=websecure"
+      - "traefik.http.routers.app.tls=true"
+      - "traefik.http.routers.app.tls.certresolver=letsencrypt"
+      - "traefik.http.services.app.loadbalancer.server.port=${HTTPS_APP_HOST_PORT}"
 
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/soloshop?schema=public"
