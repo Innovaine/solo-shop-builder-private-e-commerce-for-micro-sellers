@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/ui/Header';
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import FormField from '@/components/ui/FormField';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { FormField } from '@/components/ui/FormField';
 
 export default function ProfilePage() {
   const router = useRouter();

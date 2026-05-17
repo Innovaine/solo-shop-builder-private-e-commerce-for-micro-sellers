@@ -4,9 +4,9 @@
 // Seller can set or change their password
 
 import { useState } from 'react'
-import Button from '@/components/ui/Button'
-import FormField from '@/components/ui/FormField'
-import Card from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
+import { FormField } from '@/components/ui/FormField'
+import { Card } from '@/components/ui/Card'
 import Header from '@/components/ui/Header'
 
 export const dynamic = 'force-dynamic'
