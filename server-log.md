@@ -23610,3 +23610,23 @@ npm notice To update run: npm install -g npm@11.14.1
 npm notice
 ```
 Full output: [`server-runs/2026-05-17T02-14-52-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-14-52-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T02:15:14.008Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `daba573` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2126ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT email, id FROM \"Seller\" LIMIT 5;"
+```
+STDOUT:
+```
+                email                |                  id                  
+-------------------------------------+--------------------------------------
+ test@example.com                    | e627f26c-cd97-4890-9220-791ee482a4ae
+ testshop@example.com                | 5d086d96-8afe-490f-ad80-83d1de45dfa9
+ test-day10-1778880654@review.test   | 9dc236e0-8d07-403b-876e-3584c995b3b6
+ tester-day10@example.com            | 0e7875d0-24e9-43b7-95b2-af8168b44b98
+ day10-tester-1778881039@example.com | b0282fea-3e59-470b-8b71-e24715c09eff
+(5 rows)
+```
+Full output: [`server-runs/2026-05-17T02-15-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-15-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
