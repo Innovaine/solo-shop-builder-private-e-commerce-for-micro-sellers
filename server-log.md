@@ -23630,3 +23630,28 @@ STDOUT:
 (5 rows)
 ```
 Full output: [`server-runs/2026-05-17T02-15-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-15-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T02:15:38.625Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `58dbd3a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2209ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "SELECT s.email, sh.name, sh.slug FROM \"Seller\" s LEFT JOIN \"Shop\" sh ON s.id = sh.\"sellerId\" LIMIT 10;"
+```
+STDOUT:
+```
+                email                 |   name    |   slug    
+--------------------------------------+-----------+-----------
+ testshop@example.com                 | Test Shop | test-shop
+ test-1778898930631@example.com       |           | 
+ csv-data-1778978875299@example.com   |           | 
+ tester-day10@example.com             |           | 
+ test0@example.com                    |           | 
+ test@example.com                     |           | 
+ csv-export-1778978875293@example.com |           | 
+ ratelimit-1778886685933@example.com  |           | 
+ test1@example.com                    |           | 
+ settings-1778978822425@example.com   |           | 
+(10 rows)
+```
+Full output: [`server-runs/2026-05-17T02-15-38-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T02-15-38-app-cd-solo-shop-builder-private-e-commerce--1.log)
