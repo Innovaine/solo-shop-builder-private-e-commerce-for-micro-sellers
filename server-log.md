@@ -27219,3 +27219,20 @@ HTTP/1.1 405 Method Not Allowed
 ✓ All API endpoints accessible
 ```
 Full output: [`server-runs/2026-05-17T08-02-07-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T08-02-07-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T08:55:34.826Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4b41ca3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2730ms)
+```
+docker ps --format '.Names\t.Status\t.Ports' && echo "---" && df -h / | tail -1
+```
+STDOUT:
+```
+.Names	.Status	.Ports
+.Names	.Status	.Ports
+.Names	.Status	.Ports
+---
+/dev/sda1       387G   69G  318G  18% /
+```
+Full output: [`server-runs/2026-05-17T08-55-34-app-docker-ps---format-.Names-t.Status-t.Por-1.log`](server-runs/2026-05-17T08-55-34-app-docker-ps---format-.Names-t.Status-t.Por-1.log)
