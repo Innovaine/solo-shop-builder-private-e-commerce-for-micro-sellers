@@ -24363,3 +24363,12 @@ STDOUT:
 --- Container logs ---
 ```
 Full output: [`server-runs/2026-05-17T03-23-25-app-docker-ps--a-grep-solo-shop-echo-----Con-1.log`](server-runs/2026-05-17T03-23-25-app-docker-ps--a-grep-solo-shop-echo-----Con-1.log)
+
+## 2026-05-17T03:23:55.990Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fce49b0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 7850ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose start app && sleep 5 && docker ps | grep solo-shop-app
+```
+ERROR: command exited 1
