@@ -29346,3 +29346,12 @@ Running generate... (Use --skip-generate to skip the generators)
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-17T12-16-12-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-16-12-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:16:52.478Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a0710e1` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13105ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose restart app
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
