@@ -25520,3 +25520,19 @@ echo $! > /tmp/day43-build-v2.pid
 echo "Started build v2, PID=$(cat /tmp/day43-build-v2.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-17T06:12:25.311Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `030c30a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2958ms)
+```
+kill -0 $(cat /tmp/day43-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day43-build-v2.log 2>/dev/null | grep -E "(Successfully built|ERROR|Failed to compile|DONE)" || echo "Still building..."
+```
+STDOUT:
+```
+DONE
+#15 18.40 Failed to compile.
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-17T06-12-25-app-kill--0-cat-tmp-day43-build-v2.pid-2-dev-1.log`](server-runs/2026-05-17T06-12-25-app-kill--0-cat-tmp-day43-build-v2.pid-2-dev-1.log)
