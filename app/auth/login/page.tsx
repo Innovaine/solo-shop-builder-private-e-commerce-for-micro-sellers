@@ -4,7 +4,7 @@
 // FR-1: Email magic link signup form
 
 import { useState, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { FormField } from '@/components/ui/FormField'
 
@@ -19,6 +19,7 @@ function LoginForm() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   const errorParam = searchParams.get('error')
   const errorMessages: Record<string, string> = {
@@ -53,8 +54,9 @@ function LoginForm() {
       }
 
       if (usePassword) {
-        // Password login - redirect to dashboard
-        window.location.href = '/dashboard'
+        // Password login - use router.push to maintain session
+        router.push('/dashboard')
+        router.refresh() // Refresh to ensure server components update with new session
       } else {
         // Magic link - show success message
         setSubmitted(true)

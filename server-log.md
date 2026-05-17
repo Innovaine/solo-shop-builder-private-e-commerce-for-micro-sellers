@@ -24192,3 +24192,17 @@ STDOUT:
 {"requestId":"lu4efwVYNQ-Aqedn","method":"POST","path":"/api/auth/login","responseTime":"1ms","timestamp":"2026-05-17T03:16:21.784Z","userAgent":"curl/8.5.0"}
 ```
 Full output: [`server-runs/2026-05-17T03-18-06-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-18-06-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T03:18:44.093Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fd3d6cf` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2252ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && curl -s http://localhost:3000/auth/login | grep -o "<title>.*</title>" && echo "--- Testing password login form exists ---" && curl -s http://localhost:3000/auth/login | grep -i "password" | head -5
+```
+STDOUT:
+```
+<title>Solo Shop Builder — Your own storefront. No marketplace fees.</title>
+--- Testing password login form exists ---
+```
+Full output: [`server-runs/2026-05-17T03-18-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-18-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
