@@ -25788,3 +25788,16 @@ kill -0 $(cat /tmp/day44-smoke.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
 tail -100 /tmp/day44-smoke.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-17T06:47:00.477Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2a23123` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3149ms)
+```
+kill -0 $(cat /tmp/day44-smoke.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-17T06-47-00-app-kill--0-cat-tmp-day44-smoke.pid-2-dev-nu-1.log`](server-runs/2026-05-17T06-47-00-app-kill--0-cat-tmp-day44-smoke.pid-2-dev-nu-1.log)
