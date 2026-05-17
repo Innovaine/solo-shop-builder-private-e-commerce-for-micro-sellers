@@ -24514,3 +24514,12 @@ echo $! > /tmp/compose-up.pid
 sleep 5
 docker ps --format '.Names\t.Status'
 ```
+
+## 2026-05-17T03:32:45.672Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cc4868b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 38697ms)
+```
+docker ps --a | grep solo-shop || echo "--- Containers not found"; sleep 10; docker ps | grep solo-shop
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
