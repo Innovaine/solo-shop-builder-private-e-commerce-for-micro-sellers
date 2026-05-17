@@ -25649,3 +25649,11 @@ STDOUT:
 b803316c2c9d   postgres:16-alpine   "docker-entrypoint.s…"   2 hours ago   Up 2 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-17T06-16-02-app-sleep-5-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-17T06-16-02-app-sleep-5-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-17T06:17:04.713Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `af120a3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3412ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=30 app
+```
