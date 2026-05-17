@@ -21434,3 +21434,67 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 2 hours (he
 App is UP
 ```
 Full output: [`server-runs/2026-05-17T00-41-14-app-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-17T00-41-14-app-docker-ps---format-.Names-t-.Status-t-.P-1.log)
+
+## 2026-05-17T00:43:16.860Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7f57846` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3343ms) _(showing tail — full 8,102B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git pull
+mkdir -p test-results/day-37
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day37-password-auth.spec.ts tests/web/day37-password-reset.spec.ts tests/web/day37-order-refund.spec.ts tests/web/day37-csv-export.spec.ts --reporter=list > /tmp/day37-tests.log 2>&1 &
+echo $! > /tmp/day37-tests.pid
+echo "Started tests, PID=$(cat /tmp/day37-tests.pid)"
+```
+STDOUT:
+```
+…ay-31/_index.md
+ create mode 100644 day-31/_plan.md
+ create mode 100644 day-31/design-compliance.md
+ create mode 100644 day-31/design.md
+ create mode 100644 day-31/design_qa.md
+ create mode 100644 day-31/engineering.md
+ create mode 100644 day-31/review.md
+ create mode 100644 day-31/stage-ship-check.md
+ create mode 100644 day-32/_index.md
+ create mode 100644 day-32/_plan.md
+ create mode 100644 day-32/design-compliance.md
+ create mode 100644 day-32/design_qa.md
+ create mode 100644 day-32/engineering.md
+ create mode 100644 day-32/stage-ship-check.md
+ create mode 100644 day-33/_index.md
+ create mode 100644 day-33/_plan.md
+ create mode 100644 day-33/design-compliance.md
+ create mode 100644 day-33/design_qa.md
+ create mode 100644 day-33/engineering.md
+ create mode 100644 day-33/stage-ship-check.md
+ create mode 100644 day-34/_index.md
+ create mode 100644 day-34/_plan.md
+ create mode 100644 day-34/design.md
+ create mode 100644 day-34/stage-ship-check.md
+ create mode 100644 day-35/_index.md
+ create mode 100644 day-35/_plan.md
+ create mode 100644 day-35/engineering.md
+ create mode 100644 day-35/stage-ship-check.md
+ create mode 100644 day-36/_index.md
+ create mode 100644 day-36/_plan.md
+ create mode 100644 day-36/engineering.md
+ create mode 100644 day-36/stage-ship-check.md
+ create mode 100644 day-37/_plan.md
+ create mode 100644 day-37/design.md
+ create mode 100644 day-37/engineering.md
+ create mode 100644 day-37/review.md
+ create mode 100644 design/pages/csv-export-modal.html
+ create mode 100644 design/pages/order-dashboard-inline-edit.html
+ create mode 100644 design/patterns/form-patterns.html
+ create mode 100644 design/system/color-usage.md
+ create mode 100644 prisma/migrations/20260517_add_product_variants/migration.sql
+ create mode 100644 test-results/day-29/report.md
+ create mode 100644 tests/web/day37-csv-export.spec.ts
+ create mode 100644 tests/web/day37-order-refund.spec.ts
+ create mode 100644 tests/web/day37-password-auth.spec.ts
+ create mode 100644 tests/web/day37-password-reset.spec.ts
+Started tests, PID=1140258
+```
+Full output: [`server-runs/2026-05-17T00-43-16-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T00-43-16-app-cd-solo-shop-builder-private-e-commerce--1.log)
