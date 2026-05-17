@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEO Demo Deck — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      background: #1F2937;
+      overflow: hidden;
+    }
+    .slide-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    section {
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    section.active {
+      display: flex;
+    }
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 32px;
+    }
+    .subtitle {
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      max-width: 900px;
+      margin-bottom: 48px;
+    }
+    .content {
+      max-width: 900px;
+      text-align: left;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .feature {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    .feature h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+    }
+    .feature p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+    }
+    .flow-step {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 16px 0;
+      border-left: 4px solid #10B981;
+    }
+    .flow-step h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .flow-step p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .metric {
+      background: rgba(16, 185, 129, 0.2);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 16px 0;
+      border: 2px solid #10B981;
+      text-align: center;
+    }
+    .metric-value {
+      font-size: 48px;
+      font-weight: 700;
+      color: #10B981;
+      margin-bottom: 8px;
+    }
+    .metric-label {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .controls {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 16px;
+      z-index: 100;
+    }
+    button {
+      padding: 12px 24px;
+      background: white;
+      color: #1F2937;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #10B981;
+      color: white;
+      transform: translateY(-2px);
+    }
+    .slide-counter {
+      position: fixed;
+      top: 32px;
+      right: 32px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .key-point {
+      background: #FEF3C7;
+      color: #92400E;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-left: 4px solid #FCD34D;
+    }
+    .timeline-flow {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 32px 0;
+      align-items: center;
+    }
+    .timeline-node {
+      background: #10B981;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .timeline-connector {
+      flex: 1;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    @media (max-width: 1024px) {
+      h1 {
+        font-size: 40px;
+      }
+      h2 {
+        font-size: 36px;
+      }
+      .subtitle {
+        font-size: 20px;
+      }
+      section {
+        padding: 40px;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <!-- Slide 1: Title -->
+    <section class="active">
+      <h1>🎬 Solo Shop Builder</h1>
+      <p class="subtitle">The marketplace alternative for micro-sellers. Zero fees. Full control. Live in 4 minutes.</p>
+      <div style="margin-top: 64px; font-size: 20px; color: rgba(255, 255, 255, 0.8);">
+        Complete end-to-end demo
+      </div>
+    </section>
+
+    <!-- Slide 2: The Problem -->
+    <section>
+      <h2>The Problem</h2>
+      <div class="content">
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Etsy Seller Reality</h3>
+            <p>6.5% transaction fees → $3,250 lost on $50K revenue. Forced to raise prices or accept lower margins.</p>
+          </div>
+          <div class="feature">
+            <h3>Scattered Tools</h3>
+            <p>Email + spreadsheet + payment processor + shipping tracker. No unified view of their business.</p>
+          </div>
+          <div class="feature">
+            <h3>Zero Portability</h3>
+            <p>Customer emails, sales history, product data locked in marketplace. Switching is painful.</p>
+          </div>
+          <div class="feature">
+            <h3>Long Setup</h3>
+            <p>Shopify takes days to configure. Custom solutions need developers. Too expensive for $15K annual sellers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Our Solution -->
+    <section>
+      <h2>Our Solution</h2>
+      <div class="content">
+        <div class="flow-step">
+          <h4>✓ Signup in 30 seconds</h4>
+          <p>Email magic link. No password. Zero friction.</p>
+        </div>
+        <div class="flow-step">
+          <h4>✓ Live shop in 4 minutes</h4>
+          <p>Shop name + slug → Live at /shop/[slug]. Shareable URL. Ready for orders.</p>
+        </div>
+        <div class="flow-step">
+          <h4>✓ $20/month, zero GMV fees</h4>
+          <p>Fixed cost. Stripe processing only (2.9% + $0.30). Profitable at $350/month revenue.</p>
+        </div>
+        <div class="flow-step">
+          <h4>✓ Own your data</h4>
+          <p>Export customers, orders, analytics anytime. We're infrastructure, not the landlord.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: The Flow -->
+    <section>
+      <h2>The Journey (8 minutes)</h2>
+      <div class="content">
+        <div class="timeline-flow">
+          <div class="timeline-node">1</div>
+          <div class="timeline-connector"></div>
+          <div class="timeline-node">2</div>
+          <div class="timeline-connector"></div>
+          <div class="timeline-node">3</div>
+          <div class="timeline-connector"></div>
+          <div class="timeline-node">4</div>
+        </div>
+        <div style="text-align: center; margin-top: 24px; color: rgba(255, 255, 255, 0.9); font-size: 14px;">
+          Signup → Shop → Product → Live
+        </div>
+
+        <div class="flow-step" style="margin-top: 32px;">
+          <h4>Step 1-3: Seller Setup (4 minutes)</h4>
+          <p>Seller signs up, creates shop, uploads first product. Shop goes live.</p>
+        </div>
+        <div class="flow-step">
+          <h4>Step 4-6: Customer Checkout (2 minutes)</h4>
+          <p>Customer visits shop, adds to cart, pays via Stripe Checkout. Order confirmed.</p>
+        </div>
+        <div class="flow-step">
+          <h4>Step 7-8: Order Management (2 minutes)</h4>
+          <p>Seller marks status, adds tracking ID. Customer gets email with tracking link (no login).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Unit Economics -->
+    <section>
+      <h2>Unit Economics</h2>
+      <div class="content">
+        <div class="metric">
+          <div class="metric-value">$20</div>
+          <div class="metric-label">Seller subscription (monthly)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">~$3</div>
+          <div class="metric-label">Our infrastructure cost per seller</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">$1.7K</div>
+          <div class="metric-label">Gross profit at 100 sellers</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">$17K</div>
+          <div class="metric-label">Gross profit at 1,000 sellers</div>
+        </div>
+        <div class="key-point">
+          ⚡ Profitable path is clear. Unit economics are defensible. Ready to acquire first beta customers.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="slide-counter">
+    <span id="current">1</span> / <span id="total">5</span>
+  </div>
+
+  <div class="controls">
+    <button onclick="previousSlide()">← Previous</button>
+    <button onclick="nextSlide()">Next →</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('section');
+    const totalSlides = slides.length;
+    document.getElementById('total').textContent = totalSlides;
+
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[n].classList.add('active');
+      document.getElementById('current').textContent = n + 1;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    function previousSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') previousSlide();
+    });
+  </script>
+</body>
+</html>

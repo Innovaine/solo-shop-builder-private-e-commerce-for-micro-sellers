@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEO Demo Walkthrough — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 32px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    .header {
+      background: linear-gradient(135deg, #3B4C63 0%, #10B981 100%);
+      color: white;
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    .content {
+      padding: 48px 32px;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .step {
+      background: #F8F9FA;
+      border: 2px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+    .step:hover {
+      border-color: #10B981;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+    }
+    .step-number {
+      display: inline-block;
+      background: #10B981;
+      color: white;
+      font-weight: 700;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+    .step h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    .step p {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .step-detail {
+      font-size: 13px;
+      background: white;
+      border-left: 3px solid #10B981;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .step-link {
+      display: inline-block;
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 12px;
+      background: #E0F2FE;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    .step-link:hover {
+      background: #BAE6FD;
+      color: #0369A1;
+    }
+    .timeline {
+      position: relative;
+      margin: 48px 0;
+      padding: 32px 0;
+      border-top: 2px solid #E2E8F0;
+      border-bottom: 2px solid #E2E8F0;
+    }
+    .timeline h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .timeline-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .timeline-item {
+      text-align: center;
+      padding: 24px;
+    }
+    .timeline-item::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      background: #10B981;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+    }
+    .timeline-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    .timeline-item p {
+      font-size: 12px;
+      color: #64748B;
+    }
+    .critical-notes {
+      background: #FEF3C7;
+      border: 2px solid #FCD34D;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+    .critical-notes h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #92400E;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .critical-notes ul {
+      list-style: none;
+      margin-left: 0;
+    }
+    .critical-notes li {
+      font-size: 14px;
+      color: #78350F;
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+    }
+    .critical-notes li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      color: #92400E;
+    }
+    .cta-section {
+      background: #F0FDF4;
+      border: 2px solid #DCFCE7;
+      border-radius: 8px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .cta-section h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #15803D;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      font-size: 14px;
+      color: #22C55E;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #10B981;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: #059669;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 28px;
+      }
+      .content {
+        padding: 24px;
+      }
+      .flow {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎬 CEO Demo Walkthrough</h1>
+      <p>Complete end-to-end flow: Seller signup → Order tracking</p>
+    </div>
+
+    <div class="content">
+      <div class="flow">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Seller Signup</h3>
+          <p>Seller lands on homepage and clicks "Start Selling Today".</p>
+          <div class="step-detail">
+            ✦ Email magic link (no password)<br>
+            ✦ Instant verification flow<br>
+            ✦ ~30 seconds to complete
+          </div>
+          <a href="../design/pages/signup.html" class="step-link">View Design →</a>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Shop Creation</h3>
+          <p>Seller enters shop name, slug gets auto-generated. Shop goes live with a public URL.</p>
+          <div class="step-detail">
+            ✦ Form: Name, Slug, Description<br>
+            ✦ Real-time slug preview<br>
+            ✦ One-click publish
+          </div>
+          <a href="../design/pages/create-shop.html" class="step-link">View Design →</a>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>First Product Upload</h3>
+          <p>Seller uploads a product with title, price, description, and image. Category assigned.</p>
+          <div class="step-detail">
+            ✦ Drag-drop image upload<br>
+            ✦ Auto-resize to thumbnail<br>
+            ✦ Live preview
+          </div>
+          <a href="../design/pages/product-create.html" class="step-link">View Design →</a>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Public Storefront</h3>
+          <p>Seller's shop goes live. Customer visits /shop/[slug] and sees product grid.</p>
+          <div class="step-detail">
+            ✦ Product grid display<br>
+            ✦ Category filter<br>
+            ✦ Add-to-cart ready
+          </div>
+          <a href="../design/pages/storefront.html" class="step-link">View Design →</a>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>Customer Checkout</h3>
+          <p>Customer adds product to cart and completes payment via Stripe Checkout.</p>
+          <div class="step-detail">
+            ✦ Order summary<br>
+            ✦ Secure Stripe payment<br>
+            ✦ Instant confirmation
+          </div>
+          <a href="../design/pages/checkout.html" class="step-link">View Design →</a>
+        </div>
+
+        <div class="step">
+          <div class="step-number">6</div>
+          <h3>Seller Order Dashboard</h3>
+          <p>Order appears in seller dashboard. Seller marks status: Paid → In Progress → Shipped.</p>
+          <div class="step-detail">
+            ✦ Order table with status<br>
+            ✦ Inline editing<br>
+            ✦ Tracking ID field
+          </div>
+          <a href="../design/pages/dashboard.html" class="step-link">View Design →</a>
+        </div>
+
+        <div class="step">
+          <div class="step-number">7</div>
+          <h3>Order Tracking Link</h3>
+          <p>Seller adds tracking ID. Customer receives email with tracking link.</p>
+          <div class="step-detail">
+            ✦ No customer login needed<br>
+            ✦ Status timeline visible<br>
+            ✦ Public tracking page
+          </div>
+          <a href="../design/pages/order-tracking.html" class="step-link">View Design →</a>
+        </div>
+
+        <div class="step">
+          <div class="step-number">8</div>
+          <h3>Order Confirmation Email</h3>
+          <p>Automated emails sent to both seller and customer with order details and tracking info.</p>
+          <div class="step-detail">
+            ✦ Branded email template<br>
+            ✦ Seller gets order alert<br>
+            ✦ Customer gets tracking link
+          </div>
+          <a href="../design/emails/order-confirmation.html" class="step-link">View Design →</a>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <h2>Complete User Journey</h2>
+        <div class="timeline-items">
+          <div class="timeline-item">
+            <h4>Seller Signup</h4>
+            <p>~30 sec</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Shop Creation</h4>
+            <p>~1 min</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Product Upload</h4>
+            <p>~2 min</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Live Storefront</h4>
+            <p>Instant</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Customer Checkout</h4>
+            <p>~2 min</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Order Dashboard</h4>
+            <p>Instant</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Tracking Link</h4>
+            <p>~1 min</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="critical-notes">
+        <h3>⚡ Critical Demo Points</h3>
+        <ul>
+          <li><strong>Zero friction:</strong> Seller goes from signup to live shop in under 4 minutes</li>
+          <li><strong>No marketplace fees:</strong> Stripe processing only (2.9% + $0.30 per transaction)</li>
+          <li><strong>Real payments:</strong> Stripe Checkout handles all payment security & compliance</li>
+          <li><strong>Instant notifications:</strong> Both parties notified immediately via email</li>
+          <li><strong>Customer privacy:</strong> Tracking link requires no login—frictionless order tracking</li>
+          <li><strong>Mobile-first design:</strong> All flows work seamlessly on mobile (<320px width)</li>
+          <li><strong>Accessibility built-in:</strong> WCAG 2.1 AA compliance across all pages</li>
+        </ul>
+      </div>
+
+      <div class="cta-section">
+        <h3>Ready to Run the Demo?</h3>
+        <p>All design pages are production-ready. Engineer can wire endpoints while maintaining layout/spacing/colors from these mockups.</p>
+        <a href="../day-46/ceo-demo-narrative.md" class="btn">View Demo Script →</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
