@@ -28750,3 +28750,49 @@ STDOUT:
 …g-emerald disabled:bg-whisper disabled:text-slate px-4 py-2 text-base\",\"children\":\"Go Home\"}]}],[\"$\",\"$L4\",null,{\"href\":\"/dashboard\",\"children\":[\"$\",\"button\",null,{\"disabled\":false,\"className\":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[[\"$\",\"meta\",null,{\"name\":\"robots\",\"content\":\"noindex\"}],\"$L8\"],\"globalErrorComponent\":\"$9\",\"missingSlots\":\"$Wa\"}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
 ```
 Full output: [`server-runs/2026-05-17T11-18-39-app-curl--v-http-localhost-3000-health-1.log`](server-runs/2026-05-17T11-18-39-app-curl--v-http-localhost-3000-health-1.log)
+
+## 2026-05-17T11:19:01.224Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fab4cdb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3015ms)
+```
+curl -I http://localhost:3000/api/analytics
+curl -I http://localhost:3000/api/billing
+curl -I http://localhost:3000/api/orders/export
+```
+STDOUT:
+```
+HTTP/1.1 401 Unauthorized
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: EWGId9lbhgOKMbKF
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+Date: Sun, 17 May 2026 11:19:01 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+HTTP/1.1 401 Unauthorized
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: JT5A4_TlllMgXPlw
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+Date: Sun, 17 May 2026 11:19:01 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+HTTP/1.1 401 Unauthorized
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+x-request-id: UjldbaEcMVjDWjWC
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+content-type: application/json
+Date: Sun, 17 May 2026 11:19:01 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
+Full output: [`server-runs/2026-05-17T11-19-01-app-curl--I-http-localhost-3000-api-analytic-1.log`](server-runs/2026-05-17T11-19-01-app-curl--I-http-localhost-3000-api-analytic-1.log)
