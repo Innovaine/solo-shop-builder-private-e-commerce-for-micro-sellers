@@ -22543,3 +22543,56 @@ STDOUT:
 Started build after import fixes, PID=1156010
 ```
 Full output: [`server-runs/2026-05-17T01-29-13-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T01-29-13-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T01:29:35.772Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f58a89a` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 1978ms) _(showing tail — full 3,736B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day37-fixed-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day37-fixed-build.log
+```
+STDOUT:
+```
+… 16.40 Type error: Module '"@/lib/email"' has no exported member 'sendEmail'.
+#15 16.40 
+#15 16.40 [0m [90m  6 |[39m [36mimport[39m [33mStripe[39m [36mfrom[39m [32m'stripe'[39m[0m
+#15 16.40 [0m [90m  7 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m'@/lib/db'[39m[0m
+#15 16.40 [0m[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { sendEmail } [36mfrom[39m [32m'@/lib/email'[39m[0m
+#15 16.40 [0m [90m    |[39m          [31m[1m^[22m[39m[0m
+#15 16.40 [0m [90m  9 |[39m[0m
+#15 16.40 [0m [90m 10 |[39m [36mconst[39m stripe [33m=[39m [36mnew[39m [33mStripe[39m(process[33m.[39menv[33m.[39m[33mSTRIPE_SECRET_KEY[39m[33m![39m[33m,[39m {[0m
+#15 16.40 [0m [90m 11 |[39m   apiVersion[33m:[39m [32m'2024-04-10'[39m[33m,[39m[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+16.40 ./app/api/orders/[id]/refund/route.ts:8:10
+16.40 Type error: Module '"@/lib/email"' has no exported member 'sendEmail'.
+16.40 
+16.40 [0m [90m  6 |[39m [36mimport[39m [33mStripe[39m [36mfrom[39m [32m'stripe'[39m[0m
+16.40 [0m [90m  7 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m'@/lib/db'[39m[0m
+16.40 [0m[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { sendEmail } [36mfrom[39m [32m'@/lib/email'[39m[0m
+16.40 [0m [90m    |[39m          [31m[1m^[22m[39m[0m
+16.40 [0m [90m  9 |[39m[0m
+16.40 [0m [90m 10 |[39m [36mconst[39m stripe [33m=[39m [36mnew[39m [33mStripe[39m(process[33m.[39menv[33m.[39m[33mSTRIPE_SECRET_KEY[39m[33m![39m[33m,[39m {[0m
+16.40 [0m [90m 11 |[39m   apiVersion[33m:[39m [32m'2024-04-10'[39m[33m,[39m[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-17T01-29-35-app-kill--0-cat-tmp-day37-fixed-build.pid-2--1.log`](server-runs/2026-05-17T01-29-35-app-kill--0-cat-tmp-day37-fixed-build.pid-2--1.log)

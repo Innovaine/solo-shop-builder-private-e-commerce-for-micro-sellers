@@ -136,3 +136,21 @@ Best regards,
 
   await transporter.sendMail(mailOptions);
 }
+
+// Generic email sending function for custom use cases (refunds, etc.)
+export async function sendEmail(options: {
+  to: string
+  subject: string
+  text: string
+  html?: string
+}): Promise<void> {
+  const mailOptions = {
+    from: process.env.SMTP_FROM || 'noreply@soloshop.com',
+    to: options.to,
+    subject: options.subject,
+    text: options.text,
+    html: options.html || options.text.replace(/\n/g, '<br/>'),
+  }
+
+  await transporter.sendMail(mailOptions)
+}
