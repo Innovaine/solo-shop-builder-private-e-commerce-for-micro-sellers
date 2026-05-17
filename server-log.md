@@ -30485,3 +30485,18 @@ app-1  |  ✓ Ready in 51ms
 app-1  | {"requestId":"ie_pob9YYN25gVB5","method":"GET","path":"/auth/login","responseTime":"3ms","timestamp":"2026-05-17T23:35:22.956Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
 ```
 Full output: [`server-runs/2026-05-17T23-36-41-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-36-41-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T23:38:33.530Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7405298` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3127ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null || cd ~
+docker ps --format '.Names\t.Status' | grep solo-shop
+curl -sf http://localhost:3000/api/health -o /dev/null && echo "✓ Health check OK" || echo "✗ Health check FAILED"
+```
+STDOUT:
+```
+✗ Health check FAILED
+```
+Full output: [`server-runs/2026-05-17T23-38-33-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-38-33-app-cd-solo-shop-builder-private-e-commerce--1.log)
