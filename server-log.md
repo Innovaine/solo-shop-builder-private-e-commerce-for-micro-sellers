@@ -29168,3 +29168,29 @@ Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:54
 No pending migrations to apply.
 ```
 Full output: [`server-runs/2026-05-17T12-10-15-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-10-15-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:10:55.497Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c248fd0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 5434ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull && docker compose run --rm app npx prisma migrate deploy
+```
+STDOUT:
+```
+Updating 14f84be..c248fd0
+Fast-forward
+ .../migration.sql                                  |   3 +
+ server-log.md                                      | 144 +++++++++++++++++++++
+ 2 files changed, 147 insertions(+)
+ create mode 100644 prisma/migrations/20260517_add_seller_profile_fields/migration.sql
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+
+5 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+```
+Full output: [`server-runs/2026-05-17T12-10-55-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-10-55-app-cd-solo-shop-builder-private-e-commerce--1.log)
