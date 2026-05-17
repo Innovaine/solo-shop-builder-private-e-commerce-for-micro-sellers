@@ -21816,3 +21816,12 @@ STDOUT:
  create mode 100644 tests/web/day37-password-reset.spec.ts
 ```
 Full output: [`server-runs/2026-05-17T00-56-44-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T00-56-44-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T00:57:07.836Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0c24512` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2240ms)
+```
+docker ps --format '.Names\t.Status' | grep solo-shop
+```
+ERROR: command exited 1
