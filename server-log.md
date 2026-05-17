@@ -29430,3 +29430,12 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 61ms
 ```
 Full output: [`server-runs/2026-05-17T12-19-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T12-19-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T12:20:02.212Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5f6a937` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 7, 2399ms)
+```
+curl -sf http://localhost:3000/api/health && echo " ✓ Health OK"
+```
+ERROR: command exited 7
