@@ -24726,3 +24726,28 @@ Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:54
 No pending migrations to apply.
 ```
 Full output: [`server-runs/2026-05-17T03-39-03-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T03-39-03-app-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-17T03:39:38.668Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `af26a21` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2190ms)
+```
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 psql -U postgres -d soloshop -c "\dt" 2>&1
+```
+STDOUT:
+```
+               List of relations
+ Schema |        Name        | Type  |  Owner   
+--------+--------------------+-------+----------
+ public | AuthToken          | table | postgres
+ public | Order              | table | postgres
+ public | OrderItem          | table | postgres
+ public | Product            | table | postgres
+ public | ProductVariant     | table | postgres
+ public | Seller             | table | postgres
+ public | Shop               | table | postgres
+ public | Webhook            | table | postgres
+ public | _prisma_migrations | table | postgres
+(9 rows)
+```
+Full output: [`server-runs/2026-05-17T03-39-38-app-docker-exec-solo-shop-builder-private-e--1.log`](server-runs/2026-05-17T03-39-38-app-docker-exec-solo-shop-builder-private-e--1.log)
