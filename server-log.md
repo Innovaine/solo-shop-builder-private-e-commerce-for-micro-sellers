@@ -24000,3 +24000,18 @@ Test 5: Create shop with session
 {"id":"c272e47b-ad7e-4f8d-a679-71207d5f0775","name":"Flow Test Shop","slug":"flow-test-shop","sellerId":"adaa5994-34b5-473e-8de2-39732f03ae87","description":null,"instagramUrl":null,"facebookUrl":null,"twitterUrl":null,"primaryColor":"#3B4C63","accentColor":"#10B981","logoUrl":null,"emailTemplateBody":null,"createdAt":"2026-05-17T02:24:09.192Z","updatedAt":"2026-05-17T02:24:09.192Z"}
 ```
 Full output: [`server-runs/2026-05-17T02-24-08-app-echo-Test-5-Create-shop-with-session-1.log`](server-runs/2026-05-17T02-24-08-app-echo-Test-5-Create-shop-with-session-1.log)
+
+## 2026-05-17T03:12:49.809Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6778f1b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2488ms)
+```
+docker ps --format '.Names\t.Status\t.Ports' && curl -sf http://localhost:3000/api/health -o /dev/null && echo "Health OK" || echo "Health FAIL"
+```
+STDOUT:
+```
+.Names	.Status	.Ports
+.Names	.Status	.Ports
+Health OK
+```
+Full output: [`server-runs/2026-05-17T03-12-49-app-docker-ps---format-.Names-t.Status-t.Por-1.log`](server-runs/2026-05-17T03-12-49-app-docker-ps---format-.Names-t.Status-t.Por-1.log)
