@@ -200,3 +200,31 @@ STDOUT:
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-18T09-22-36-www.soloshopbox.com-tail--20-tmp-build.log-1.log`](server-runs/2026-05-18T09-22-36-www.soloshopbox.com-tail--20-tmp-build.log-1.log)
+
+## 2026-05-18T09:23:13.802Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `184be1b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13468ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-18T09:23:41.128Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 6101ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/up.log 2>&1 &
+sleep 3
+tail -50 /tmp/up.log
+```
+STDOUT:
+```
+time="2026-05-18T09:23:38Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-18T09-23-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T09-23-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
