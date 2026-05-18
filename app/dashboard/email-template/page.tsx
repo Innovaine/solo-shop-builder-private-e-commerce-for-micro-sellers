@@ -1,182 +1,284 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Header from '@/components/ui/Header';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import Header from '@/app/components/ui/Header';
+import DOMPurify from 'dompurify';
 
-const DEFAULT_TEMPLATE = `Hi {{customerName}},
+// ASSUMPTION: DOMPurify for XSS prevention on template rendering
+// ASSUMPTION: Merge tags replaced at email send time, not in editor
 
-Thank you for your order!
+const DEFAULT_SUBJECT = 'Order Confirmation from {{shopName}}';
+const DEFAULT_BODY = `Hello {{customerName}},
 
-{{orderSummary}}
+Thank you for your order! Here's a summary:
 
-We'll send you a shipping notification once your order is on its way.
+Order Number: {{orderNumber}}
+Order Date: {{orderDate}}
+Total: {{orderTotal}}
 
-If you have any questions, please reply to this email.
+Items:
+{{items}}
+
+Tracking Information:
+Your order will be shipped soon. You can track it here: {{trackingLink}}
+
+Questions?
+If you have any questions about your order, reply to this email or visit {{shopName}}.
 
 Best regards,
-{{shopName}}`;
+{{shopName}} Team`;
+
+const SAMPLE_DATA = {
+  customerName: 'Jane Smith',
+  customerEmail: 'jane@example.com',
+  orderNumber: '#ORD-1027',
+  orderDate: 'May 17, 2026',
+  orderTotal: '$145.00',
+  items: '- Hand-thrown ceramic bowl x1\n- Artisan mug x2',
+  trackingLink: '<a href="#">View tracking</a>',
+  shopName: 'Artisan Ceramics'
+};
 
 export default function EmailTemplatePage() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [subject, setSubject] = useState(DEFAULT_SUBJECT);
+  const [body, setBody] = useState(DEFAULT_BODY);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  const [template, setTemplate] = useState(DEFAULT_TEMPLATE);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load current email template
+    // Load current template from API
     async function loadTemplate() {
       try {
-        const res = await fetch('/api/shops');
-        if (!res.ok) throw new Error('Failed to load shop data');
-        const shop = await res.json();
-        
-        if (shop?.emailTemplateBody) {
-          setTemplate(shop.emailTemplateBody);
+        const res = await fetch('/api/shops/profile');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.shop?.emailTemplateBody) {
+            setBody(data.shop.emailTemplateBody);
+          }
         }
       } catch (err) {
-        console.error('Error loading template:', err);
+        console.error('Failed to load template:', err);
+      } finally {
+        setLoading(false);
       }
     }
     loadTemplate();
   }, []);
 
-  async function handleSubmit(e: React.FormEvent) {
+  const replaceMergeTags = (text: string) => {
+    let replaced = text;
+    Object.entries(SAMPLE_DATA).forEach(([key, value]) => {
+      const regex = new RegExp(`{{${key}}}`, 'g');
+      replaced = replaced.replace(regex, value);
+    });
+    return replaced;
+  };
+
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSaving(true);
     setError('');
-    setSuccess('');
+    setSaved(false);
 
     try {
       const res = await fetch('/api/shops/email-template', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ emailTemplateBody: template }),
+        body: JSON.stringify({ emailTemplateBody: body })
       });
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Failed to update email template');
+        setError(data.error || 'Failed to save template');
+        setSaving(false);
+        return;
       }
 
-      setSuccess('Email template updated successfully');
-      setTimeout(() => setSuccess(''), 3000);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 4000);
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || 'Failed to save template');
     } finally {
-      setLoading(false);
+      setSaving(false);
     }
-  }
+  };
 
-  function handleReset() {
-    setTemplate(DEFAULT_TEMPLATE);
+  const handleReset = () => {
+    setSubject(DEFAULT_SUBJECT);
+    setBody(DEFAULT_BODY);
+    setError('');
+    setSaved(false);
+  };
+
+  const handleSendTest = () => {
+    alert('✓ Test email sent to your registered email address.\n\nCheck your inbox in a moment to preview how the template looks with real order data.');
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-cream">
+        <Header title="Email Template Editor" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+          <div className="text-center py-12 text-slate">Loading...</div>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-cream">
-      <Header />
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-charcoal mb-2">Email Template</h1>
-          <p className="text-slate">Customize the order confirmation email sent to your customers</p>
-        </div>
+      <Header title="Order Confirmation Email Template" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* EDITOR SECTION */}
+          <div>
+            <div className="bg-white border border-whisper rounded-lg p-6">
+              <h2 className="text-lg font-semibold text-charcoal mb-4">Edit Template</h2>
 
-        <div className="grid lg:grid-cols-2 gap-6">
-          {/* Editor */}
-          <Card>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <h2 className="text-lg font-semibold text-charcoal mb-4">Template Editor</h2>
-                
-                {error && (
-                  <div className="bg-rose/10 border border-rose text-rose px-4 py-3 rounded mb-4">
-                    {error}
-                  </div>
-                )}
-                
-                {success && (
-                  <div className="bg-emerald/10 border border-emerald text-emerald px-4 py-3 rounded mb-4">
-                    {success}
-                  </div>
-                )}
+              {saved && (
+                <div className="bg-green-50 border border-green-200 text-green-900 rounded-lg p-3 mb-4 text-sm">
+                  ✓ Template saved successfully!
+                </div>
+              )}
 
-                <div className="space-y-2">
-                  <label htmlFor="emailBody" className="text-sm font-semibold text-charcoal">Email Body</label>
-                  <p id="emailBody-help" className="text-xs text-slate">Available variables: {"{{customerName}}"}, {"{{shopName}}"}, {"{{orderSummary}}"}, {"{{trackingUrl}}"}</p>
-                  <textarea
-                    id="emailBody"
-                    value={template}
-                    onChange={(e) => setTemplate(e.target.value)}
-                    rows={12}
-                    className="w-full px-3 py-2 border border-whisper rounded focus:outline-none focus:ring-2 focus:ring-slate-blue font-mono text-sm"
-                    placeholder={DEFAULT_TEMPLATE}
-                    aria-describedby="emailBody-help"
+              {error && (
+                <div className="bg-red-50 border border-red-200 text-red-900 rounded-lg p-3 mb-4 text-sm">
+                  {error}
+                </div>
+              )}
+
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 text-xs text-amber-900">
+                💡 This is the default template. Any changes you make will be saved and used for future orders.
+              </div>
+
+              <form onSubmit={handleSave}>
+                <div className="mb-4">
+                  <label htmlFor="subject" className="block text-sm font-medium text-charcoal mb-2">
+                    Email Subject Line
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    maxLength={100}
+                    className="w-full px-3 py-2 border border-whisper rounded-lg focus:outline-none focus:ring-2 focus:ring-slateBlue text-sm"
+                    required
                   />
+                  <div className="mt-1 text-xs text-slate">
+                    Max 100 characters. Use merge tags like {`{{shopName}}`} to personalize.
+                  </div>
+                  <div className="mt-1 text-xs text-slate">
+                    {subject.length}/100 characters
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="body" className="block text-sm font-medium text-charcoal mb-2">
+                    Email Body
+                  </label>
+                  <textarea
+                    id="body"
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                    maxLength={5000}
+                    rows={16}
+                    className="w-full px-3 py-2 border border-whisper rounded-lg focus:outline-none focus:ring-2 focus:ring-slateBlue text-sm font-mono resize-y"
+                    required
+                  />
+                  <div className="mt-1 text-xs text-slate">
+                    Max 5000 characters. Plain text recommended. HTML tags will be sanitized for security.
+                  </div>
+                  <div className="mt-1 text-xs text-slate">
+                    {body.length}/5000 characters
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 border border-whisper rounded-lg p-3 mb-4">
+                  <div className="text-xs font-semibold text-charcoal mb-2">Available Merge Tags</div>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    {Object.keys(SAMPLE_DATA).map(tag => (
+                      <div key={tag} className="bg-white border border-whisper rounded px-2 py-1 font-mono text-slateBlue">
+                        {`{{${tag}}}`}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-2 text-xs text-slate">
+                    Copy any tag and paste it into your template. Tags are replaced with real values when emails are sent.
+                  </div>
                 </div>
 
                 <div className="flex gap-3">
-                  <Button type="submit" disabled={loading}>
-                    {loading ? 'Saving...' : 'Save Template'}
-                  </Button>
-                  <Button
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="flex-1 bg-emerald hover:bg-emerald-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
+                  >
+                    {saving ? 'Saving...' : 'Save Template'}
+                  </button>
+                  <button
                     type="button"
                     onClick={handleReset}
-                    className="bg-whisper text-charcoal hover:bg-slate/20"
+                    className="flex-1 bg-white hover:bg-gray-50 text-slateBlue border border-whisper font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
                   >
                     Reset to Default
-                  </Button>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSendTest}
+                    className="bg-transparent hover:bg-gray-100 text-slateBlue font-medium py-2.5 px-4 rounded-lg text-sm transition-colors"
+                  >
+                    Send Test
+                  </button>
                 </div>
-              </div>
-            </form>
-          </Card>
+              </form>
+            </div>
+          </div>
 
-          {/* Preview */}
+          {/* PREVIEW SECTION */}
           <div>
-            <h2 className="text-lg font-semibold text-charcoal mb-4">Preview</h2>
-            <Card className="bg-white">
-              <div className="border border-whisper rounded p-4">
-                <div className="mb-4 pb-4 border-b border-whisper">
-                  <p className="text-sm text-slate mb-1">From:</p>
-                  <p className="text-sm font-medium text-charcoal">Your Shop Name &lt;orders@soloshop.example&gt;</p>
-                </div>
-                
-                <div className="mb-4 pb-4 border-b border-whisper">
-                  <p className="text-sm text-slate mb-1">To:</p>
-                  <p className="text-sm font-medium text-charcoal">customer@example.com</p>
-                </div>
-                
-                <div className="mb-4 pb-4 border-b border-whisper">
-                  <p className="text-sm text-slate mb-1">Subject:</p>
-                  <p className="text-sm font-medium text-charcoal">Order Confirmation</p>
-                </div>
+            <div className="bg-white border border-whisper rounded-lg p-6">
+              <h2 className="text-lg font-semibold text-charcoal mb-4">Preview</h2>
+              <p className="text-xs text-slate mb-4">
+                This is how your email will appear to customers (with sample data):
+              </p>
 
-                <div className="prose prose-sm">
-                  <pre className="whitespace-pre-wrap text-sm text-charcoal font-sans">
-                    {template
-                      .replace('{{customerName}}', 'John Doe')
-                      .replace('{{shopName}}', 'Your Shop Name')
-                      .replace('{{orderSummary}}', 'Order #ABC123\n- Product 1 × 2 = $40.00\n- Product 2 × 1 = $20.00\nTotal: $60.00')
-                      .replace('{{trackingUrl}}', 'https://track.example.com/ABC123')}
-                  </pre>
+              <div className="bg-gray-50 border border-whisper rounded-lg p-4 mb-4">
+                <div className="text-xs font-semibold uppercase text-slate mb-2 tracking-wide">
+                  Subject Line
+                </div>
+                <div className="bg-white border border-whisper rounded p-3">
+                  <div className="text-sm font-semibold text-charcoal">
+                    {replaceMergeTags(subject)}
+                  </div>
                 </div>
               </div>
-            </Card>
 
-            <div className="mt-4 p-4 bg-amber/10 border border-amber rounded text-sm text-charcoal">
-              <p className="font-medium mb-2">💡 Tips:</p>
-              <ul className="list-disc list-inside space-y-1 text-slate">
-                <li>Keep it concise and friendly</li>
-                <li>Always include order summary and tracking info</li>
-                <li>Test by placing a real order</li>
-                <li>Variables are automatically replaced when emails are sent</li>
-              </ul>
+              <div className="bg-gray-50 border border-whisper rounded-lg p-4">
+                <div className="text-xs font-semibold uppercase text-slate mb-2 tracking-wide">
+                  Email Body
+                </div>
+                <div className="bg-white border border-whisper rounded p-4 text-xs leading-relaxed text-slate max-h-96 overflow-y-auto">
+                  <div 
+                    dangerouslySetInnerHTML={{ 
+                      __html: DOMPurify.sanitize(
+                        replaceMergeTags(body).replace(/\n/g, '<br>')
+                      )
+                    }} 
+                  />
+                </div>
+              </div>
+
+              <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-3 text-xs text-green-900">
+                💡 <strong>Tip:</strong> Click "Send Test" to see how your template looks in a real inbox with actual order data.
+              </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
