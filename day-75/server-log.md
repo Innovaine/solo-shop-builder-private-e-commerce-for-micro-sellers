@@ -92,3 +92,20 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-18T21-48-07-www.soloshopbox.com-kill--0-cat-tmp-tsc_check.pid-2-dev-null-1.log`](server-runs/2026-05-18T21-48-07-www.soloshopbox.com-kill--0-cat-tmp-tsc_check.pid-2-dev-null-1.log)
+
+## 2026-05-18T21:48:29.978Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ad8d84f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 1983ms)
+```
+tail -100 /tmp/tsc_check.log 2>&1 | head -80
+```
+STDOUT:
+```
+
+> solo-shop-builder@0.1.0 build
+> prisma generate && next build
+
+sh: 1: prisma: not found
+```
+Full output: [`server-runs/2026-05-18T21-48-29-www.soloshopbox.com-tail--100-tmp-tsc_check.log-2-1-head--80-1.log`](server-runs/2026-05-18T21-48-29-www.soloshopbox.com-tail--100-tmp-tsc_check.log-2-1-head--80-1.log)
