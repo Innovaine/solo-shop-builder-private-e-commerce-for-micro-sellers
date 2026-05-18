@@ -31290,3 +31290,41 @@ STDOUT:
 OK
 ```
 Full output: [`server-runs/2026-05-18T01-12-39-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-3.log`](server-runs/2026-05-18T01-12-39-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-3.log)
+
+## 2026-05-18T01:13:21.355Z — Priya ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b3afbc4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2550ms)
+```
+echo "=== Testing FR-31: Seller Profile ===" && \
+curl -s -X GET "https://www.soloshopbox.com/api/shops/profile" -H "Content-Type: application/json" | head -20
+```
+STDOUT:
+```
+=== Testing FR-31: Seller Profile ===
+```
+Full output: [`server-runs/2026-05-18T01-13-20-www.soloshopbox.com-echo-Testing-FR-31-Seller-Profile-1.log`](server-runs/2026-05-18T01-13-20-www.soloshopbox.com-echo-Testing-FR-31-Seller-Profile-1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 499ms)
+```
+echo "=== Testing FR-36: Analytics Dashboard ===" && \
+curl -s -X GET "https://www.soloshopbox.com/api/analytics" -H "Content-Type: application/json" | head -20
+```
+STDOUT:
+```
+=== Testing FR-36: Analytics Dashboard ===
+{"error":"Authentication required"}
+```
+Full output: [`server-runs/2026-05-18T01-13-20-www.soloshopbox.com-echo-Testing-FR-36-Analytics-Dashboard-2.log`](server-runs/2026-05-18T01-13-20-www.soloshopbox.com-echo-Testing-FR-36-Analytics-Dashboard-2.log)
+
+### Command 3 on www.soloshopbox.com as tester (✓ exit 0, 489ms)
+```
+echo "=== Testing FR-30: Order CSV Export ===" && \
+curl -s -X GET "https://www.soloshopbox.com/api/orders/export" -H "Content-Type: application/json" | head -20
+```
+STDOUT:
+```
+=== Testing FR-30: Order CSV Export ===
+{"error":"Authentication required"}
+```
+Full output: [`server-runs/2026-05-18T01-13-21-www.soloshopbox.com-echo-Testing-FR-30-Order-CSV-Export-3.log`](server-runs/2026-05-18T01-13-21-www.soloshopbox.com-echo-Testing-FR-30-Order-CSV-Export-3.log)
