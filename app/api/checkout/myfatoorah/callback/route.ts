@@ -149,10 +149,11 @@ export async function GET(req: NextRequest) {
     // Send order confirmation email to customer
     try {
       const trackingUrl = `${process.env.APP_URL || 'http://localhost:3000'}/track/${updatedOrder.id}`
+      const orderTotal = ((updatedOrder.total || 0) / 100).toFixed(2)
       const emailText = `Thank you for your order!
 
 Order #${updatedOrder.id.substring(0, 8)} has been confirmed.
-Total: ${(updatedOrder.total / 100).toFixed(2)}
+Total: ${orderTotal}
 
 Track your order: ${trackingUrl}`
 
@@ -164,7 +165,7 @@ Track your order: ${trackingUrl}`
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #3B4C63;">Thank you for your order!</h2>
             <p>Your order <strong>#${updatedOrder.id.substring(0, 8)}</strong> has been confirmed.</p>
-            <p><strong>Total:</strong> ${(updatedOrder.total / 100).toFixed(2)}</p>
+            <p><strong>Total:</strong> ${orderTotal}</p>
             <p><a href="${trackingUrl}" style="color: #10B981;">Track your order</a></p>
           </div>
         `,

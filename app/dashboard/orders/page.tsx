@@ -4,15 +4,11 @@ import { useState, useEffect } from 'react'
 import { Header } from '@/components/ui/Header'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
+import type { Order as PrismaOrder, OrderItem } from '@prisma/client'
 
-interface Order {
-  id: string
-  createdAt: string
-  customerEmail: string
-  status: 'pending' | 'paid' | 'in_progress' | 'shipped' | 'delivered'
-  total: number
-  items: { title: string; quantity: number }[]
-  trackingId?: string
+// Extended Order type that includes the items relation
+type Order = PrismaOrder & {
+  items: Array<{ title: string; quantity: number }>
 }
 
 interface Analytics {
@@ -59,7 +55,10 @@ export default function OrdersPage() {
         }
 
         const ordersData = await ordersRes.json()
-        const analyticsData = await analyticsRes.json()
+        const analyticsResponse = await analyticsRes.json()
+        
+        // Extract analytics object from response (API returns { analytics: {...} })
+        const analyticsData = analyticsResponse.analytics || analyticsResponse
 
         // Extract orders array from response (API returns { orders: [...] })
         const ordersArray = ordersData.orders || []
@@ -208,7 +207,7 @@ export default function OrdersPage() {
             <Card>
               <div className="p-6">
                 <div className="text-sm font-semibold text-gray-600 uppercase">Total Revenue</div>
-                <div className="text-3xl font-bold text-charcoal mt-2">${analytics.totalRevenue.toFixed(2)}</div>
+                <div className="text-3xl font-bold text-charcoal mt-2">${((analytics.totalRevenue || 0) / 100).toFixed(2)}</div>
               </div>
             </Card>
             <Card>
