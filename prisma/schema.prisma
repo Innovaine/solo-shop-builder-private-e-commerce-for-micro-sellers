@@ -129,9 +129,10 @@ model Order {
   customerName      String?
   status            String   @default("pending") // pending, paid, in_progress, shipped, delivered, canceled
   total             Int      // Total in cents
-  stripePaymentId   String?  @unique // Stripe payment_intent ID
+  stripePaymentId   String?  @unique // Stripe payment_intent ID or MyFatoorah invoice ID
   trackingUrl       String?
   trackingId        String?
+  metadata          String?  @db.Text // JSON metadata for payment provider details
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   

@@ -115,14 +115,58 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Store pending order data in session or database
-    // For now, we'll rely on the callback to create the order
-    // In production, you'd want to store this in a pending_orders table
+    // Create pending order in database with payment ID
+    // This will be completed when the callback receives payment confirmation
+    const invoiceId = paymentData.Data.InvoiceId
+    
+    // Store cart items and shop context as JSON metadata
+    const orderMetadata = {
+      shopId: shop.id,
+      shopSlug: shopSlug,
+      items: items.map((item: any) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        title: products.find(p => p.id === item.productId)?.title || 'Unknown',
+        price: products.find(p => p.id === item.productId)?.price || 0,
+      })),
+    }
+
+    // Create a pending order with the MyFatoorah invoice ID as the payment ID
+    // This allows us to find and complete it in the callback
+    const pendingOrder = await prisma.order.create({
+      data: {
+        shopId: shop.id,
+        customerEmail: '', // Will be updated in callback
+        status: 'pending',
+        total: total,
+        stripePaymentId: invoiceId, // Store invoice ID to match in callback
+        metadata: JSON.stringify(orderMetadata),
+      },
+    })
+
+    // Create order items
+    for (const item of items) {
+      const product = products.find((p) => p.id === item.productId)
+      if (product) {
+        await prisma.orderItem.create({
+          data: {
+            orderId: pendingOrder.id,
+            productId: product.id,
+            productTitle: product.title, // Match schema field name
+            quantity: item.quantity,
+            price: product.price,
+          },
+        })
+      }
+    }
+
+    console.log('Created pending order:', pendingOrder.id, 'for MyFatoorah invoice:', invoiceId)
 
     return NextResponse.json({
       paymentUrl: paymentData.Data.PaymentURL,
       invoiceId: paymentData.Data.InvoiceId,
       paymentId: paymentData.Data.PaymentId,
+      orderId: pendingOrder.id,
     })
 
   } catch (error) {
