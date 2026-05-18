@@ -32245,3 +32245,81 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-18T01-55-39-www.soloshopbox.com-head--100-tmp-day51-tests.log-1.log`](server-runs/2026-05-18T01-55-39-www.soloshopbox.com-head--100-tmp-day51-tests.log-1.log)
+
+## 2026-05-18T01:56:22.923Z — Priya ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `507a9aa` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2998ms)
+```
+echo "Test 1: CSV import page loads"
+curl -sI https://www.soloshopbox.com/dashboard/products/import | head -10
+
+echo ""
+echo "Test 2: Email template page loads"
+curl -sI https://www.soloshopbox.com/dashboard/email-template | head -10
+```
+STDOUT:
+```
+Test 1: CSV import page loads
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Mon, 18 May 2026 01:56:22 GMT
+etag: "j6rvd2yvbh85v"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+content-length: 10613
+
+
+Test 2: Email template page loads
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Mon, 18 May 2026 01:56:22 GMT
+etag: "11u2xdlyqav625"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+content-length: 7874
+```
+Full output: [`server-runs/2026-05-18T01-56-21-www.soloshopbox.com-echo-Test-1-CSV-import-page-loads-1.log`](server-runs/2026-05-18T01-56-21-www.soloshopbox.com-echo-Test-1-CSV-import-page-loads-1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 529ms) _(showing tail — full 7,968B stdout + 0B stderr)_
+```
+echo "Test 3: CSV import page contains upload UI"
+curl -s https://www.soloshopbox.com/dashboard/products/import | grep -o 'type="file"' | head -1
+
+echo "Test 4: Email template page contains editor UI"
+curl -s https://www.soloshopbox.com/dashboard/email-template | grep -E '(subject|body|template)' | head -3
+```
+STDOUT:
+```
+…-offset-2 bg-emerald text-white hover:bg-emerald-600 focus:ring-emerald disabled:bg-whisper disabled:text-slate px-4 py-2 text-base\",\"children\":\"Go Home\"}]}],[\"$\",\"$L9\",null,{\"href\":\"/dashboard\",\"children\":[\"$\",\"button\",null,{\"disabled\":false,\"className\":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
+```
+Full output: [`server-runs/2026-05-18T01-56-22-www.soloshopbox.com-echo-Test-3-CSV-import-page-contains-upl-2.log`](server-runs/2026-05-18T01-56-22-www.soloshopbox.com-echo-Test-3-CSV-import-page-contains-upl-2.log)
+
+### Command 3 on www.soloshopbox.com as tester (✓ exit 0, 507ms)
+```
+echo "Test 5: API endpoints exist"
+curl -sI https://www.soloshopbox.com/api/products/import | head -5
+
+echo ""
+curl -sI https://www.soloshopbox.com/api/shops/email-template | head -5
+```
+STDOUT:
+```
+Test 5: API endpoints exist
+HTTP/2 405 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+date: Mon, 18 May 2026 01:56:23 GMT
+
+HTTP/2 405 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+date: Mon, 18 May 2026 01:56:23 GMT
+```
+Full output: [`server-runs/2026-05-18T01-56-22-www.soloshopbox.com-echo-Test-5-API-endpoints-exist-3.log`](server-runs/2026-05-18T01-56-22-www.soloshopbox.com-echo-Test-5-API-endpoints-exist-3.log)
