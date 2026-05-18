@@ -207,3 +207,33 @@ STDOUT:
 #15 24.68    Collecting build traces ...
 ```
 Full output: [`server-runs/2026-05-18T22-07-30-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log`](server-runs/2026-05-18T22-07-30-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log)
+
+## 2026-05-18T22:08:00.160Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2462e8e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error:  (mutating command — not auto-retried; queue it again if you want to try once more), 2292ms)
+```
+if [ -f /tmp/build.pid ]; then
+  pid=$(cat /tmp/build.pid)
+  if kill -0 $pid 2>/dev/null; then
+    echo "STILL RUNNING (PID $pid)"
+    echo "--- Last 20 lines ---"
+    tail -20 /tmp/build.log
+  else
+    echo "BUILD COMPLETED"
+    echo "--- Final status ---"
+    tail -50 /tmp/build.log | tail -20
+    if tail -10 /tmp/build.log | grep -qi "successfully"; then
+      echo "✓ SUCCESS"
+      exit 0
+    else
+      echo "✗ FAILED"
+      exit 1
+    fi
+  fi
+else
+  echo "NO BUILD"
+  exit 1
+fi
+```
+ERROR:  (mutating command — not auto-retried; queue it again if you want to try once more)
