@@ -33518,3 +33518,53 @@ traefik-vwiz-traefik-1	Up 24 hours
 ✗ Health check failed
 ```
 Full output: [`server-runs/2026-05-18T03-59-05-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-curl-1.log`](server-runs/2026-05-18T03-59-05-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-curl-1.log)
+
+## 2026-05-18T03:59:33.541Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `825e554` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2959ms) _(showing tail — full 2,152B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps -a | grep app && echo "--- last build ---" && tail -30 /tmp/day53-review-build.log 2>/dev/null || echo "No build log found" && echo "--- recent build attempts ---" && ls -lt /tmp/*build*.log 2>/dev/null | head -5 || echo "No build logs"
+```
+STDOUT:
+```
+…inutes ago   Created                                             solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+--- last build ---
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.4s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.4s done
+#30 exporting manifest sha256:c8d0ca707a522fa17baa0433c16a976018c97e53588381cc34efcd7e594dc12d done
+#30 exporting config sha256:d29a359a744ec24ac70b7f3d82317c5d7c5ba3aa4a265edf41a043d77df67073 done
+#30 exporting attestation manifest sha256:3fe1b4586faa581c01eb320ea0c8a830ef893863826c8fa68eecb741a4b0936f 0.0s done
+#30 exporting manifest list sha256:d68c3bd912c69a943386d7cccc33f25fa94966ce7546e9b934b488b9fa84feda done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#30 DONE 2.1s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built 
+--- recent build attempts ---
+-rw-rw-r-- 1 reviewer reviewer 20365 May 18 03:47 /tmp/day53-review-build.log
+-rw-rw-r-- 1 engineer engineer 20377 May 18 03:45 /tmp/day53-build-v3.log
+-rw-rw-r-- 1 engineer engineer  6956 May 18 03:40 /tmp/day53-build-v2.log
+-rw-rw-r-- 1 engineer engineer  5395 May 18 03:34 /tmp/day53-build.log
+-rw-rw-r-- 1 engineer engineer  3870 May 18 02:28 /tmp/day52-build.log
+```
+Full output: [`server-runs/2026-05-18T03-59-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-59-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
