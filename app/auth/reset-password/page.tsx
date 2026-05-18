@@ -1,15 +1,36 @@
 'use client'
 
-// FR-24: Reset password page
+// FR-22: Reset password page
 // Seller sets new password with reset token
+// Design: matches design/pages/reset-password.html with strength indicator
 
 import { useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { FormField } from '@/components/ui/FormField'
 
 export const dynamic = 'force-dynamic'
+
+// Password strength calculation
+function calculatePasswordStrength(password: string) {
+  const checks = {
+    length: password.length >= 8,
+    uppercase: /[A-Z]/.test(password),
+    lowercase: /[a-z]/.test(password),
+    number: /[0-9]/.test(password),
+  }
+  
+  const count = Object.values(checks).filter(Boolean).length
+  const allMet = Object.values(checks).every(Boolean)
+  
+  let strength: 'weak' | 'fair' | 'good' | 'strong' = 'weak'
+  if (count <= 1) strength = 'weak'
+  else if (count <= 2) strength = 'fair'
+  else if (count <= 3) strength = 'good'
+  else strength = 'strong'
+  
+  return { checks, strength, allMet }
+}
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams()
@@ -21,6 +42,7 @@ function ResetPasswordForm() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
+  const [showStrength, setShowStrength] = useState(false)
 
   if (!token) {
     return (
@@ -37,6 +59,9 @@ function ResetPasswordForm() {
     )
   }
 
+  const passwordStrength = calculatePasswordStrength(newPassword)
+  const isFormValid = passwordStrength.allMet && newPassword === confirmPassword && confirmPassword.length > 0
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -48,8 +73,8 @@ function ResetPasswordForm() {
       return
     }
 
-    if (newPassword.length < 8) {
-      setError('Password must be at least 8 characters')
+    if (!passwordStrength.allMet) {
+      setError('Password does not meet all requirements')
       setLoading(false)
       return
     }
@@ -101,28 +126,85 @@ function ResetPasswordForm() {
 
         {!success ? (
           <form onSubmit={handleSubmit}>
-            <FormField
-              label="New Password"
-              type="password"
-              id="newPassword"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="At least 8 characters"
-              required
-              autoComplete="new-password"
-              helpText="Minimum 8 characters"
-            />
+            {/* New Password Field with Strength Indicator */}
+            <div className="mb-6">
+              <label htmlFor="newPassword" className="block text-sm font-medium text-charcoal mb-2">
+                New Password
+              </label>
+              <input
+                type="password"
+                id="newPassword"
+                value={newPassword}
+                onChange={(e) => {
+                  setNewPassword(e.target.value)
+                  setShowStrength(e.target.value.length > 0)
+                }}
+                onFocus={() => setShowStrength(newPassword.length > 0)}
+                placeholder="Enter new password"
+                required
+                autoComplete="new-password"
+                className="w-full px-4 py-3 border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue focus:border-transparent transition-all"
+              />
+              
+              {/* Password Strength Indicator */}
+              {showStrength && (
+                <div className="mt-2">
+                  <div className="h-1 bg-whisper rounded-full overflow-hidden mb-2">
+                    <div 
+                      className={`h-full transition-all duration-300 ${
+                        passwordStrength.strength === 'weak' ? 'w-1/4 bg-rose' :
+                        passwordStrength.strength === 'fair' ? 'w-1/2 bg-amber' :
+                        passwordStrength.strength === 'good' ? 'w-3/4 bg-amber' :
+                        'w-full bg-emerald'
+                      }`}
+                    />
+                  </div>
+                  <div className="text-xs text-slate mb-2">
+                    {passwordStrength.strength === 'weak' && '⚠️ Weak password'}
+                    {passwordStrength.strength === 'fair' && '⚠️ Fair password'}
+                    {passwordStrength.strength === 'good' && '✓ Good password'}
+                    {passwordStrength.strength === 'strong' && '✓ Strong password'}
+                  </div>
+                </div>
+              )}
+              
+              {/* Requirements Checklist */}
+              <div className="mt-2 bg-cream border border-whisper rounded-md p-3 text-xs">
+                <div className={`flex items-center gap-2 mb-1 ${passwordStrength.checks.length ? 'text-emerald' : 'text-slate'}`}>
+                  <span>{passwordStrength.checks.length ? '✓' : '○'}</span>
+                  <span>At least 8 characters</span>
+                </div>
+                <div className={`flex items-center gap-2 mb-1 ${passwordStrength.checks.uppercase ? 'text-emerald' : 'text-slate'}`}>
+                  <span>{passwordStrength.checks.uppercase ? '✓' : '○'}</span>
+                  <span>One uppercase letter (A–Z)</span>
+                </div>
+                <div className={`flex items-center gap-2 mb-1 ${passwordStrength.checks.lowercase ? 'text-emerald' : 'text-slate'}`}>
+                  <span>{passwordStrength.checks.lowercase ? '✓' : '○'}</span>
+                  <span>One lowercase letter (a–z)</span>
+                </div>
+                <div className={`flex items-center gap-2 ${passwordStrength.checks.number ? 'text-emerald' : 'text-slate'}`}>
+                  <span>{passwordStrength.checks.number ? '✓' : '○'}</span>
+                  <span>One number (0–9)</span>
+                </div>
+              </div>
+            </div>
 
-            <FormField
-              label="Confirm Password"
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Re-enter new password"
-              required
-              autoComplete="new-password"
-            />
+            {/* Confirm Password Field */}
+            <div className="mb-6">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-charcoal mb-2">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm password"
+                required
+                autoComplete="new-password"
+                className="w-full px-4 py-3 border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue focus:border-transparent transition-all"
+              />
+            </div>
 
             <Button
               type="submit"
@@ -130,6 +212,7 @@ function ResetPasswordForm() {
               variant="primary"
               size="lg"
               className="w-full"
+              disabled={!isFormValid}
             >
               Reset Password
             </Button>
