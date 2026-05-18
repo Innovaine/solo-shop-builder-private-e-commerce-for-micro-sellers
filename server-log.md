@@ -32493,3 +32493,17 @@ STDOUT:
 Compose started, PID=1427885
 ```
 Full output: [`server-runs/2026-05-18T02-32-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T02-32-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T02:32:58.867Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0abc13a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 8013ms)
+```
+sleep 5
+curl -sf https://www.soloshopbox.com/api/health && echo "✓ Health check OK" || echo "✗ Health check failed"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-18T02:32:59.076Z","responseTime":"240ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"238ms"}}}✓ Health check OK
+```
+Full output: [`server-runs/2026-05-18T02-32-58-www.soloshopbox.com-sleep-5-1.log`](server-runs/2026-05-18T02-32-58-www.soloshopbox.com-sleep-5-1.log)
