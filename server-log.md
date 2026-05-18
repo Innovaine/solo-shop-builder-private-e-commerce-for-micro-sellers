@@ -30888,3 +30888,25 @@ _Pre-SSH: warehouse pushed to GitHub as commit `f77be2d` so the server's `git pu
 ```
 curl -sf https://www.soloshopbox.com:3000/auth/reset-password?token=test 2>&1 | head -20
 ```
+
+## 2026-05-18T00:44:12.360Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `642eca9` so the server's `git pull` will pick it up._
+
+### Command 1 on soloshopbox as engineer (✓ exit 0, 5515ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose exec -T app npx playwright test tests/web/day48-password-auth-reset.spec.ts --reporter=list 2>&1 | tail -100
+```
+STDOUT:
+```
+time="2026-05-18T00:44:09Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+npm warn exec The following package was not found and will be installed: playwright@1.60.0
+Error: EACCES: permission denied, rmdir '/app/test-results'
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.14.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+```
+Full output: [`server-runs/2026-05-18T00-44-12-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T00-44-12-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log)
