@@ -33472,3 +33472,12 @@ STDOUT:
 time="2026-05-18T03:53:52Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
 ```
 Full output: [`server-runs/2026-05-18T03-53-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-53-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T03:55:12.583Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8b5e34e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14132ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d app && sleep 10 && docker ps | grep solo-shop
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
