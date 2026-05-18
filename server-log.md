@@ -30926,3 +30926,38 @@ time="2026-05-18T00:44:29Z" level=warning msg="/home/engineer/solo-shop-builder-
 Error: EACCES: permission denied, rmdir '/app/test-results'
 ```
 Full output: [`server-runs/2026-05-18T00-44-30-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T00-44-30-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T00:44:49.966Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e7e024d` so the server's `git pull` will pick it up._
+
+### Command 1 on soloshopbox as engineer (✗ exit 35, 2510ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+# Test forgot-password API exists
+echo "=== Testing forgot-password API ==="
+curl -X POST https://www.soloshopbox.com:3000/api/auth/forgot-password \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}' \
+  -w "\nHTTP Status: %{http_code}\n" 2>/dev/null
+
+echo ""
+echo "=== Testing reset-password API ==="
+# Test reset-password API exists
+curl -X POST https://www.soloshopbox.com:3000/api/auth/reset-password \
+  -H "Content-Type: application/json" \
+  -d '{"token":"invalid-token-test","newPassword":"TestPass123!"}' \
+  -w "\nHTTP Status: %{http_code}\n" 2>/dev/null
+```
+STDOUT:
+```
+=== Testing forgot-password API ===
+
+HTTP Status: 000
+
+=== Testing reset-password API ===
+
+HTTP Status: 000
+```
+ERROR: command exited 35
+Full output: [`server-runs/2026-05-18T00-44-49-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T00-44-49-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log)
