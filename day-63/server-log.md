@@ -212,3 +212,75 @@ export async function POST(request: NextRequest) {
     })
 ```
 Full output: [`server-runs/2026-05-18T15-55-16-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-55-16-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:55:41.047Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `81a614a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2749ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -100 app/api/checkout/route.ts | tail -60
+```
+STDOUT:
+```
+        { error: 'Shop not found' },
+        { status: 404 }
+      )
+    }
+
+    // Verify all products exist and prices match (prevent price manipulation)
+    const productIds = items.map((item: any) => item.productId)
+    const products = await prisma.product.findMany({
+      where: {
+        id: { in: productIds },
+        shopId: shop.id,
+      },
+      include: {
+        variants: true,
+      },
+    })
+
+    if (products.length !== productIds.length) {
+      return NextResponse.json(
+        { error: 'Some products not found or not from this shop' },
+        { status: 400 }
+      )
+    }
+
+    // Build line items for Stripe checkout
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = []
+    
+    for (const item of items) {
+      const product = products.find((p) => p.id === item.productId)
+      
+      if (!product) {
+        throw new Error(`Product ${item.productId} not found`)
+      }
+
+      let finalPrice = product.price
+      let productName = product.title
+      let stockAvailable = product.stock
+
+      // Handle variant if specified
+      if (item.variantId) {
+        const variant = product.variants.find((v) => v.id === item.variantId)
+        if (!variant) {
+          throw new Error(`Variant ${item.variantId} not found for product ${product.title}`)
+        }
+        
+        // Use variant price if set, otherwise fall back to product price
+        finalPrice = variant.price ?? product.price
+        productName = `${product.title} - ${variant.name}: ${variant.value}`
+        stockAvailable = variant.stock
+      }
+
+      // Check stock availability (FR-24: inventory tracking)
+      if (stockAvailable < item.quantity) {
+        throw new Error(`Insufficient stock for ${productName}. Available: ${stockAvailable}, requested: ${item.quantity}`)
+      }
+
+      // Verify price matches (prevent client-side price tampering)
+      if (finalPrice !== item.price) {
+        throw new Error(`Price mismatch for ${productName}`)
+      }
+```
+Full output: [`server-runs/2026-05-18T15-55-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-55-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
