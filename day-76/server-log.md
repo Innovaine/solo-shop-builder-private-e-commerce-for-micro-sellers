@@ -324,3 +324,11 @@ e1af04d3a833   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 c98ed978a89b   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago      Up 2 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-18T22-10-21-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-18T22-10-21-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log)
+
+## 2026-05-18T22:10:48.357Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `41d42b8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2738ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose start app
+```
