@@ -39,6 +39,10 @@ export default function OrdersPage() {
   const [orderCounts, setOrderCounts] = useState<OrderCount>({ paid: 0, in_progress: 0, shipped: 0, delivered: 0 })
   const [error, setError] = useState('')
 
+  const goBack = () => {
+    window.location.href = '/dashboard'
+  }
+
   // Fetch orders and analytics on mount
   useEffect(() => {
     const fetchData = async () => {
@@ -171,11 +175,19 @@ export default function OrdersPage() {
       <Header />
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-charcoal">Orders</h1>
-          <Button onClick={() => window.location.href = '/dashboard/orders?export=csv'}>
-            📥 Export as CSV
-          </Button>
+        <div className="mb-8">
+          <button
+            onClick={goBack}
+            className="mb-4 text-sm text-slate hover:text-charcoal transition-colors flex items-center gap-1"
+          >
+            ← Back to Dashboard
+          </button>
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold text-charcoal">Orders</h1>
+            <Button onClick={() => window.location.href = '/dashboard/orders?export=csv'}>
+              📥 Export as CSV
+            </Button>
+          </div>
         </div>
 
         {error && (
@@ -351,7 +363,7 @@ export default function OrdersPage() {
                       <td className="px-6 py-4 text-sm text-gray-700">
                         {order.items.map(item => `${item.title} (${item.quantity})`).join(', ')}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-charcoal">${order.total.toFixed(2)}</td>
+                      <td className="px-6 py-4 font-semibold text-charcoal">${(order.total / 100).toFixed(2)}</td>
                       <td className="px-6 py-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusBadgeColor(order.status)}`}>
                           {statusLabel[order.status]}

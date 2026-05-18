@@ -11,6 +11,7 @@ interface HeaderProps {
   rightContent?: ReactNode
   sticky?: boolean
   className?: string
+  homeLink?: string  // Optional home link for navigation
 }
 
 export function Header({
@@ -22,7 +23,24 @@ export function Header({
   rightContent,
   sticky = true,
   className,
+  homeLink,
 }: HeaderProps) {
+  const shopContent = shopName && (
+    <div className="flex items-center gap-3">
+      {logoImageUrl && (
+        <img 
+          src={logoImageUrl} 
+          alt={`${shopName} logo`}
+          className="h-10 w-10 object-contain rounded"
+        />
+      )}
+      <div>
+        <h1 className="text-2xl font-bold text-charcoal">{shopName}</h1>
+        <p className="text-slate text-sm mt-0.5">Independent storefront</p>
+      </div>
+    </div>
+  )
+
   return (
     <header
       className={clsx(
@@ -33,21 +51,11 @@ export function Header({
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {leftContent || (
-          shopName && (
-            <div className="flex items-center gap-3">
-              {logoImageUrl && (
-                <img 
-                  src={logoImageUrl} 
-                  alt={`${shopName} logo`}
-                  className="h-10 w-10 object-contain rounded"
-                />
-              )}
-              <div>
-                <h1 className="text-2xl font-bold text-charcoal">{shopName}</h1>
-                <p className="text-slate text-sm mt-0.5">Independent storefront</p>
-              </div>
-            </div>
-          )
+          homeLink ? (
+            <Link href={homeLink} className="hover:opacity-80 transition-opacity">
+              {shopContent}
+            </Link>
+          ) : shopContent
         )}
 
         {rightContent || (

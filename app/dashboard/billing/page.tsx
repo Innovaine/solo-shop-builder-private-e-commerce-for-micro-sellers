@@ -28,6 +28,10 @@ export default function BillingPage() {
   const [data, setData] = useState<BillingData | null>(null);
   const [error, setError] = useState('');
 
+  const goBack = () => {
+    window.location.href = '/dashboard'
+  };
+
   useEffect(() => {
     async function loadBilling() {
       try {
@@ -78,6 +82,12 @@ export default function BillingPage() {
       <Header />
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
+          <button
+            onClick={goBack}
+            className="mb-4 text-sm text-slate hover:text-charcoal transition-colors flex items-center gap-1"
+          >
+            ← Back to Dashboard
+          </button>
           <h1 className="text-4xl font-bold text-charcoal mb-2">Billing Dashboard</h1>
           <p className="text-slate">View your transaction history and revenue summary</p>
         </div>

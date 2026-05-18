@@ -181,7 +181,11 @@ Track your order: ${trackingUrl}`
       message: error.message,
       stack: error.stack,
       name: error.name,
+      code: error.code,
+      type: typeof error,
+      errorObject: JSON.stringify(error, Object.getOwnPropertyNames(error)),
     })
+    console.error('[MyFatoorah Callback] Full error object:', error)
     const baseUrl = process.env.APP_URL || 'https://www.soloshopbox.com'
     return NextResponse.redirect(`${baseUrl}/checkout?error=callback_error`)
   }
