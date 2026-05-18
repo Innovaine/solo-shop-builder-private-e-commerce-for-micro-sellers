@@ -109,3 +109,65 @@ STDOUT:
 sh: 1: prisma: not found
 ```
 Full output: [`server-runs/2026-05-18T21-48-29-www.soloshopbox.com-tail--100-tmp-tsc_check.log-2-1-head--80-1.log`](server-runs/2026-05-18T21-48-29-www.soloshopbox.com-tail--100-tmp-tsc_check.log-2-1-head--80-1.log)
+
+## 2026-05-18T21:48:54.219Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d3165bd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2362ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && head -50 app/api/auth/signup/route.ts
+```
+STDOUT:
+```
+// FR-1: Email magic link signup
+// POST /api/auth/signup with { email }
+// Sends 6-digit magic link token valid for 15 minutes
+// Rate limited: 5 attempts per 15 minutes per IP
+
+import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+import { nanoid } from 'nanoid'
+import bcrypt from 'bcryptjs'
+import { prisma } from '@/lib/db'
+import { sendMagicLinkEmail } from '@/lib/email'
+import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
+
+const signupSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters').optional(),
+})
+
+export async function POST(request: NextRequest) {
+  try {
+    // Rate limiting check
+    const clientId = getClientIdentifier(request)
+    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.AUTH_SIGNUP)
+    
+    if (!rateLimitResult.allowed) {
+      return NextResponse.json(
+        { error: 'Too many signup attempts. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(rateLimitResult.resetAt).toISOString(),
+          }
+        }
+      )
+    }
+    
+    const body = await request.json()
+    const { email, password } = signupSchema.parse(body)
+
+    // Find or create seller
+    let seller = await prisma.seller.findUnique({
+      where: { email },
+    })
+
+    if (!seller) {
+      // Hash password if provided (NFR-4: bcrypt min 12 rounds)
+      const passwordHash = password 
+        ? await bcrypt.hash(password, 12)
+        : null
+```
+Full output: [`server-runs/2026-05-18T21-48-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T21-48-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
