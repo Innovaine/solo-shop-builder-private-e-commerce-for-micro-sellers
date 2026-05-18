@@ -679,3 +679,28 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 15 hours (h
 App not responding
 ```
 Full output: [`server-runs/2026-05-18T18-56-22-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-18T18-56-22-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+## 2026-05-18T18:56:56.432Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `04abcc0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 7803ms) _(showing tail — full 5,901B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps -a | grep solo-shop
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up -d > /tmp/compose-up.log 2>&1 &
+echo "Restart initiated"
+sleep 5
+tail -30 /tmp/compose-up.log
+```
+STDOUT:
+```
+…                                                   | {"requestId":"qz4w2BPYWHJAgQhO","method":"GET","path":"/api/analytics","responseTime":"1ms","timestamp":"2026-05-18T18:37:35.565Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"E81vllHSFnEqPJGt","method":"GET","path":"/api/analytics","responseTime":"2ms","timestamp":"2026-05-18T18:37:51.328Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"E7zBg7vWR6RBEz0E","method":"POST","path":"/api/checkout/myfatoorah","responseTime":"0ms","timestamp":"2026-05-18T18:38:04.528Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | Created pending order: ca37c362-e7e2-42d1-b3c2-201510d2f5eb for MyFatoorah invoice: 6779642
+app-1                                                                        | {"requestId":"Sr-GEZeos-FejxHS","method":"GET","path":"/api/checkout/myfatoorah/callback","responseTime":"1ms","timestamp":"2026-05-18T18:38:29.240Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+postgres-1                                                                   | 2026-05-18 18:40:17.033 UTC [27] LOG:  checkpoint starting: time
+postgres-1                                                                   | 2026-05-18 18:40:19.347 UTC [27] LOG:  checkpoint complete: wrote 24 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.309 s, sync=0.002 s, total=2.315 s; sync files=14, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=41 kB; lsn=0/45F0518, redo lsn=0/45F04E0
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+```
+Full output: [`server-runs/2026-05-18T18-56-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-56-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
