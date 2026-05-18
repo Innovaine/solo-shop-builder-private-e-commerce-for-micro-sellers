@@ -37,3 +37,49 @@ app/shop/[slug]/product/[productId]/page.tsx
 app/track/[orderId]/page.tsx
 ```
 Full output: [`server-runs/2026-05-18T18-44-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-44-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:44:39.189Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `47cafed` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3448ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find app/api -name "route.ts" | sort
+```
+STDOUT:
+```
+app/api/account/delete/route.ts
+app/api/account/password/route.ts
+app/api/analytics/route.ts
+app/api/auth/forgot-password/route.ts
+app/api/auth/login/route.ts
+app/api/auth/logout/route.ts
+app/api/auth/reset-password/route.ts
+app/api/auth/signup/route.ts
+app/api/auth/verify/route.ts
+app/api/billing/route.ts
+app/api/checkout/myfatoorah/callback/route.ts
+app/api/checkout/myfatoorah/route.ts
+app/api/checkout/route.ts
+app/api/health/route.ts
+app/api/orders/[id]/history/route.ts
+app/api/orders/[id]/refund/route.ts
+app/api/orders/[id]/route.ts
+app/api/orders/export/route.ts
+app/api/orders/route.ts
+app/api/products/[id]/route.ts
+app/api/products/[id]/status/route.ts
+app/api/products/[id]/variants/[variantId]/route.ts
+app/api/products/[id]/variants/route.ts
+app/api/products/bulk-status/route.ts
+app/api/products/export/route.ts
+app/api/products/import/route.ts
+app/api/products/route.ts
+app/api/products/upload/route.ts
+app/api/shops/branding/route.ts
+app/api/shops/email-template/route.ts
+app/api/shops/profile/route.ts
+app/api/shops/route.ts
+app/api/shops/status/route.ts
+app/api/webhooks/stripe/route.ts
+```
+Full output: [`server-runs/2026-05-18T18-44-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-44-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
