@@ -42,3 +42,25 @@ npm error 404 tarball, folder, http url, or git url.
 npm error A complete log of this run can be found in: /home/reviewer/.npm/_logs/2026-05-18T15_52_18_839Z-debug-0.log
 ```
 Full output: [`server-runs/2026-05-18T15-52-19-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-52-19-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:52:44.102Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b3c5ccc` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3577ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -50
+```
+STDOUT:
+```
+npm warn exec The following package was not found and will be installed: tsc@2.0.4
+
+[41m                                                                               [0m
+[41m[37m                This is not the tsc command you are looking for                [0m
+[41m                                                                               [0m
+
+To get access to the TypeScript compiler, [34mtsc[0m, from the command line either:
+
+- Use [1mnpm install typescript[0m to first add TypeScript to your project [1mbefore[0m using npx
+- Use [1myarn[0m to avoid accidentally running code from un-installed packages
+```
+Full output: [`server-runs/2026-05-18T15-52-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-52-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
