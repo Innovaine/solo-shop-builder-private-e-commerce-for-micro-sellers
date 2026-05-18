@@ -372,3 +372,57 @@ traefik-vwiz-traefik-1	Up 31 hours
 {"status":"ok","timestamp":"2026-05-18T10:39:31.107Z","responseTime":"216ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"214ms"}}}
 ```
 Full output: [`server-runs/2026-05-18T10-39-30-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-18T10-39-30-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-1.log)
+
+## 2026-05-18T10:40:26.608Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a5b79f7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3485ms) _(showing tail — full 4,409B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…add_logo_image_url/migration.sql      |   2 +
+ prisma/schema.prisma                               |   3 +-
+ requirements.md                                    | 190 +++++---
+ test-results/day-56/report.md                      | 137 ++++++
+ test-results/day-57/report.md                      |  88 ++++
+ tests/web/day57-features.spec.ts                   | 121 +++++
+ tests/web/day58-features.spec.ts                   | 118 +++++
+ 43 files changed, 4830 insertions(+), 174 deletions(-)
+ create mode 100644 day-56/stage-ship-check.md
+ create mode 100644 day-56/test.md
+ create mode 100644 day-57/_index.md
+ create mode 100644 day-57/_plan.md
+ create mode 100644 day-57/connectivity-audit.md
+ create mode 100644 day-57/connectivity_qa.md
+ create mode 100644 day-57/design-compliance.md
+ create mode 100644 day-57/design.md
+ create mode 100644 day-57/design_qa.md
+ create mode 100644 day-57/engineering.md
+ create mode 100644 day-57/requirements.md
+ create mode 100644 day-57/review.md
+ create mode 100644 day-57/server-log.md
+ create mode 100644 day-57/stage-ship-check.md
+ create mode 100644 day-57/test.md
+ create mode 100644 day-58/_plan.md
+ create mode 100644 day-58/connectivity-audit.md
+ create mode 100644 day-58/connectivity_qa.md
+ create mode 100644 day-58/design-compliance.md
+ create mode 100644 day-58/design.md
+ create mode 100644 day-58/design_qa.md
+ create mode 100644 day-58/engineering.md
+ create mode 100644 day-58/requirements.md
+ create mode 100644 day-58/review.md
+ create mode 100644 day-58/server-log.md
+ create mode 100644 design/pages/checkout-webhook-error.html
+ create mode 100644 design/pages/csv-import-errors.html
+ create mode 100644 design/pages/reset-password-expired.html
+ create mode 100644 design/pages/seller-profile-public.html
+ create mode 100644 prisma/migrations/20260518_add_logo_image_url/migration.sql
+ create mode 100644 test-results/day-56/report.md
+ create mode 100644 test-results/day-57/report.md
+ create mode 100644 tests/web/day57-features.spec.ts
+ create mode 100644 tests/web/day58-features.spec.ts
+```
+Full output: [`server-runs/2026-05-18T10-40-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T10-40-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
