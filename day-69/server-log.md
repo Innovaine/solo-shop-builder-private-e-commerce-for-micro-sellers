@@ -36,3 +36,17 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 5 minutes
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 14 hours (healthy)   127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-18T17-55-41-www.soloshopbox.com-echo-App-Health-Check-curl--s-https-www.-1.log`](server-runs/2026-05-18T17-55-41-www.soloshopbox.com-echo-App-Health-Check-curl--s-https-www.-1.log)
+
+## 2026-05-18T17:56:16.928Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ab2d5e4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3376ms)
+```
+echo "=== Recent App Logs ===" && docker logs --tail 50 solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 2>&1 | grep -E "(error|warn|Error|Warning)" || echo "No errors/warnings in recent logs"
+```
+STDOUT:
+```
+=== Recent App Logs ===
+No errors/warnings in recent logs
+```
+Full output: [`server-runs/2026-05-18T17-56-16-www.soloshopbox.com-echo-Recent-App-Logs-docker-logs---tail--1.log`](server-runs/2026-05-18T17-56-16-www.soloshopbox.com-echo-Recent-App-Logs-docker-logs---tail--1.log)
