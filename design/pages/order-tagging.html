@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders with Tagging — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .header h1 { font-size: 28px; font-weight: 700; }
+    .controls { display: flex; gap: 12px; }
+    .filter-select { padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white; }
+    .btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    
+    .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+    
+    .table-card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E2E8F0; }
+    th { padding: 14px 18px; text-align: left; font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; }
+    td { padding: 16px 18px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    tbody tr:hover { background: #F9FAFB; }
+    
+    .order-id { font-weight: 600; color: #3B4C63; }
+    .customer { color: #1F2937; }
+    .amount { font-weight: 600; color: #1F2937; }
+    
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+    .badge-paid { background: #D1FAE5; color: #065F46; }
+    .badge-shipped { background: #DBEAFE; color: #1E40AF; }
+    
+    .tags-cell { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .tag { background: #E0E7FF; color: #312E81; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+    .tag-remove { background: none; border: none; color: #312E81; cursor: pointer; font-size: 14px; padding: 0; }
+    .tag-add { background: none; border: 1px dashed #C7D2FE; color: #6366F1; cursor: pointer; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+    .tag-add:hover { background: #F0F4FF; }
+    
+    .action-btn { background: none; border: none; color: #3B4C63; cursor: pointer; font-size: 13px; text-decoration: underline; }
+    
+    /* Tag Modal */
+    .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000; }
+    .modal.show { display: flex; }
+    .modal-content { background: white; border-radius: 8px; padding: 28px; max-width: 400px; width: 90%; }
+    .modal-header { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #1F2937; }
+    .modal-body { font-size: 14px; color: #64748B; margin-bottom: 20px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .tag-option { background: white; border: 1px solid #E2E8F0; color: #1F2937; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .tag-option:hover { background: #F9FAFB; border-color: #94A3B8; }
+    .tag-option.selected { background: #E0E7FF; border-color: #6366F1; color: #312E81; font-weight: 600; }
+    
+    .new-tag-input { width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 4px; font-size: 13px; margin-bottom: 12px; }
+    .new-tag-input:focus { outline: none; border-color: #6366F1; }
+    
+    .modal-footer { display: flex; gap: 10px; margin-top: 20px; }
+    .modal-footer button { flex: 1; padding: 8px 12px; border: none; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .btn-cancel { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-cancel:hover { background: #F9FAFB; }
+    .btn-apply { background: #6366F1; color: white; }
+    .btn-apply:hover { background: #4F46E5; }
+    
+    @media (max-width: 768px) {
+      .controls { flex-direction: column; }
+      .filter-select { width: 100%; }
+      table { font-size: 12px; }
+      th, td { padding: 10px 12px; }
+      .tags-cell { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Orders</h1>
+    <div class="controls">
+      <select class="filter-select" onchange="filterByTag(this.value)">
+        <option value="">All Tags</option>
+        <option value="vip">VIP Customer</option>
+        <option value="wholesale">Wholesale</option>
+        <option value="gift">Gift</option>
+        <option value="rush">Rush Order</option>
+      </select>
+      <button class="btn btn-primary">+ Export</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Tags</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="order-id">#4527</span></td>
+            <td><span class="customer">Jennifer Lee</span></td>
+            <td><span class="amount">$485.00</span></td>
+            <td><span class="badge badge-shipped">Shipped</span></td>
+            <td>
+              <div class="tags-cell">
+                <span class="tag">VIP Customer <button class="tag-remove">×</button></span>
+                <button class="tag-add" onclick="openTagModal(4527)">+ Add</button>
+              </div>
+            </td>
+            <td><button class="action-btn">View</button></td>
+          </tr>
+          
+          <tr>
+            <td><span class="order-id">#4526</span></td>
+            <td><span class="customer">Robert Smith</span></td>
+            <td><span class="amount">$156.50</span></td>
+            <td><span class="badge badge-paid">Paid</span></td>
+            <td>
+              <div class="tags-cell">
+                <span class="tag">Wholesale <button class="tag-remove">×</button></span>
+                <span class="tag">Rush Order <button class="tag-remove">×</button></span>
+                <button class="tag-add" onclick="openTagModal(4526)">+ Add</button>
+              </div>
+            </td>
+            <td><button class="action-btn">View</button></td>
+          </tr>
+          
+          <tr>
+            <td><span class="order-id">#4525</span></td>
+            <td><span class="customer">Patricia Johnson</span></td>
+            <td><span class="amount">$92.00</span></td>
+            <td><span class="badge badge-paid">Paid</span></td>
+            <td>
+              <div class="tags-cell">
+                <span class="tag">Gift <button class="tag-remove">×</button></span>
+                <button class="tag-add" onclick="openTagModal(4525)">+ Add</button>
+              </div>
+            </td>
+            <td><button class="action-btn">View</button></td>
+          </tr>
+          
+          <tr>
+            <td><span class="order-id">#4524</span></td>
+            <td><span class="customer">Marcus Davis</span></td>
+            <td><span class="amount">$234.75</span></td>
+            <td><span class="badge badge-shipped">Shipped</span></td>
+            <td>
+              <div class="tags-cell">
+                <button class="tag-add" onclick="openTagModal(4524)">+ Add Tag</button>
+              </div>
+            </td>
+            <td><button class="action-btn">View</button></td>
+          </tr>
+          
+          <tr>
+            <td><span class="order-id">#4523</span></td>
+            <td><span class="customer">Sarah Wilson</span></td>
+            <td><span class="amount">$168.50</span></td>
+            <td><span class="badge badge-paid">Paid</span></td>
+            <td>
+              <div class="tags-cell">
+                <span class="tag">VIP Customer <button class="tag-remove">×</button></span>
+                <span class="tag">Wholesale <button class="tag-remove">×</button></span>
+                <button class="tag-add" onclick="openTagModal(4523)">+ Add</button>
+              </div>
+            </td>
+            <td><button class="action-btn">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tag Modal -->
+  <div class="modal" id="tagModal" onclick="if(event.target === this) closeTagModal();">
+    <div class="modal-content">
+      <div class="modal-header">Add / Edit Tags</div>
+      <div class="modal-body">Select existing tags or create a new one.</div>
+      
+      <div class="tag-list">
+        <button class="tag-option" onclick="toggleTag(this)">VIP Customer</button>
+        <button class="tag-option" onclick="toggleTag(this)">Wholesale</button>
+        <button class="tag-option" onclick="toggleTag(this)">Gift</button>
+        <button class="tag-option" onclick="toggleTag(this)">Rush Order</button>
+        <button class="tag-option" onclick="toggleTag(this)">International</button>
+        <button class="tag-option" onclick="toggleTag(this)">Return Request</button>
+      </div>
+      
+      <input type="text" class="new-tag-input" placeholder="Or type a new tag..." id="newTagInput">
+      
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeTagModal()">Cancel</button>
+        <button class="btn-apply" onclick="applyTags()">Apply Tags</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentOrderId = null;
+    
+    function openTagModal(orderId) {
+      currentOrderId = orderId;
+      document.getElementById('tagModal').classList.add('show');
+    }
+    
+    function closeTagModal() {
+      document.getElementById('tagModal').classList.remove('show');
+      document.querySelectorAll('.tag-option.selected').forEach(el => el.classList.remove('selected'));
+      document.getElementById('newTagInput').value = '';
+    }
+    
+    function toggleTag(element) {
+      element.classList.toggle('selected');
+    }
+    
+    function applyTags() {
+      const selected = document.querySelectorAll('.tag-option.selected');
+      const tags = Array.from(selected).map(el => el.textContent);
+      console.log('Apply tags to order', currentOrderId, ':', tags);
+      closeTagModal();
+    }
+    
+    function filterByTag(tagValue) {
+      console.log('Filter by tag:', tagValue);
+      // Engineer will implement actual filtering logic
+    }
+  </script>
+</body>
+</html>

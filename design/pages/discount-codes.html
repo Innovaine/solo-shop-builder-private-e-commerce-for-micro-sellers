@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Codes — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .header h1 { font-size: 28px; font-weight: 700; }
+    .btn-primary { background: #10B981; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
+    .btn-primary:hover { background: #059669; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    
+    .info-box { background: #D1E9F6; border: 1px solid #7DD3FC; border-radius: 6px; padding: 16px; margin-bottom: 24px; font-size: 14px; color: #0C4A6E; }
+    
+    .codes-table { background: white; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; }
+    .table-header { background: #F9FAFB; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; }
+    .table-header h3 { font-size: 16px; font-weight: 600; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #F9FAFB; }
+    th { padding: 12px 24px; text-align: left; font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; }
+    td { padding: 16px 24px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    tbody tr:hover { background: #F9FAFB; }
+    
+    .code-name { font-weight: 600; color: #1F2937; }
+    .code-value { background: #F0FDF4; padding: 4px 12px; border-radius: 4px; color: #15803D; font-weight: 500; font-size: 13px; }
+    .code-type { font-size: 13px; color: #64748B; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+    .badge-active { background: #D1FAE5; color: #065F46; }
+    .badge-inactive { background: #F3F4F6; color: #64748B; }
+    
+    .action-btn { background: none; border: none; color: #3B4C63; cursor: pointer; font-size: 14px; text-decoration: underline; padding: 0; }
+    .action-btn:hover { color: #1F2937; }
+    
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; }
+    .stat-label { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; margin-bottom: 8px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: #1F2937; }
+    
+    .empty-state { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 60px 24px; text-align: center; }
+    .empty-state h3 { font-size: 18px; font-weight: 600; color: #1F2937; margin-bottom: 8px; }
+    .empty-state p { font-size: 14px; color: #64748B; margin-bottom: 20px; }
+    
+    @media (max-width: 768px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      table { font-size: 12px; }
+      th, td { padding: 8px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Discount Codes</h1>
+    <button class="btn-primary" onclick="openCreateModal()">+ Create Code</button>
+  </div>
+
+  <div class="container">
+    <div class="info-box">
+      ℹ️ Create discount codes to encourage purchases. Share codes with customers via email, social media, or promotions. Track usage and redemptions in real-time.
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Active Codes</div>
+        <div class="stat-value">3</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Redeemed</div>
+        <div class="stat-value">47</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Discount Amount</div>
+        <div class="stat-value">$582</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Avg Discount</div>
+        <div class="stat-value">$12.38</div>
+      </div>
+    </div>
+
+    <!-- Codes Table -->
+    <div class="codes-table">
+      <div class="table-header">
+        <h3>Your Discount Codes</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Type</th>
+            <th>Value</th>
+            <th>Usage</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SPRING20</strong></td>
+            <td><span class="code-type">Percentage off</span></td>
+            <td><span class="code-value">20% off</span></td>
+            <td>15 / 50 uses</td>
+            <td><span class="badge badge-active">Active</span></td>
+            <td><button class="action-btn">Edit</button> | <button class="action-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td><strong>WELCOME10</strong></td>
+            <td><span class="code-type">Fixed amount</span></td>
+            <td><span class="code-value">$10 off</span></td>
+            <td>28 / Unlimited</td>
+            <td><span class="badge badge-active">Active</span></td>
+            <td><button class="action-btn">Edit</button> | <button class="action-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td><strong>SUMMER15</strong></td>
+            <td><span class="code-type">Percentage off</span></td>
+            <td><span class="code-value">15% off</span></td>
+            <td>4 / 100 uses</td>
+            <td><span class="badge badge-active">Active</span></td>
+            <td><button class="action-btn">Edit</button> | <button class="action-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td><strong>HOLIDAY25</strong></td>
+            <td><span class="code-type">Percentage off</span></td>
+            <td><span class="code-value">25% off</span></td>
+            <td>0 / 200 uses</td>
+            <td><span class="badge badge-inactive">Inactive</span></td>
+            <td><button class="action-btn">Edit</button> | <button class="action-btn">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Create Code Modal -->
+  <div style="display: none;" id="createModal" onclick="closeCreateModal(event);" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;">
+    <div onclick="event.stopPropagation();" style="background: white; border-radius: 8px; padding: 32px; max-width: 500px; width: 90%;">
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #1F2937;">Create Discount Code</h2>
+      
+      <form onsubmit="event.preventDefault(); closeCreateModal();" style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 14px; font-weight: 500; color: #1F2937;">Code (e.g., SAVE20)</label>
+          <input type="text" placeholder="e.g., SPRING20" required style="padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit;">
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 14px; font-weight: 500; color: #1F2937;">Discount Type</label>
+          <select required style="padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit;">
+            <option>Percentage off</option>
+            <option>Fixed amount off</option>
+          </select>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 14px; font-weight: 500; color: #1F2937;">Discount Value</label>
+          <input type="number" placeholder="20 or 10" required style="padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit;">
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 14px; font-weight: 500; color: #1F2937;">Max Uses (leave blank for unlimited)</label>
+          <input type="number" style="padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit;">
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 12px;">
+          <button type="button" onclick="closeCreateModal();" style="flex: 1; padding: 10px; background: white; color: #3B4C63; border: 1px solid #E2E8F0; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancel</button>
+          <button type="submit" style="flex: 1; padding: 10px; background: #10B981; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Create Code</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openCreateModal() {
+      document.getElementById('createModal').style.display = 'flex';
+    }
+    function closeCreateModal(event) {
+      if (!event || event.target === document.getElementById('createModal')) {
+        document.getElementById('createModal').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

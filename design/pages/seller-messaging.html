@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .header h1 { font-size: 28px; font-weight: 700; }
+    .header-controls { display: flex; gap: 12px; }
+    .search-box { padding: 8px 16px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; width: 240px; background: white; }
+    .search-box::placeholder { color: #94A3B8; }
+    
+    .container { display: grid; grid-template-columns: 280px 1fr; gap: 0; max-width: 1400px; margin: 0 auto; height: calc(100vh - 72px); }
+    
+    .sidebar { background: white; border-right: 1px solid #E2E8F0; overflow-y: auto; }
+    .thread-list { display: flex; flex-direction: column; }
+    
+    .thread-item { border-bottom: 1px solid #E2E8F0; padding: 16px; cursor: pointer; transition: background 0.2s; }
+    .thread-item:hover { background: #F9FAFB; }
+    .thread-item.active { background: #F0FDF4; border-left: 3px solid #10B981; padding-left: 13px; }
+    
+    .thread-customer { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 4px; }
+    .thread-preview { font-size: 12px; color: #64748B; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .thread-time { font-size: 11px; color: #94A3B8; }
+    
+    .unread-badge { display: inline-block; width: 8px; height: 8px; background: #EF4444; border-radius: 50%; margin-right: 8px; }
+    
+    .main-area { display: flex; flex-direction: column; }
+    
+    .thread-header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .thread-header h2 { font-size: 18px; font-weight: 600; color: #1F2937; }
+    .thread-info { font-size: 12px; color: #64748B; }
+    .header-actions { display: flex; gap: 12px; }
+    
+    .btn { border: none; padding: 8px 16px; font-size: 12px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-ghost { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-ghost:hover { background: #F9FAFB; }
+    
+    .messages-area { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    
+    .message { display: flex; gap: 12px; margin-bottom: 12px; }
+    .message.seller { justify-content: flex-end; }
+    .message-bubble { max-width: 60%; padding: 12px 16px; border-radius: 8px; font-size: 14px; line-height: 1.5; }
+    .message.customer .message-bubble { background: white; border: 1px solid #E2E8F0; color: #1F2937; }
+    .message.seller .message-bubble { background: #10B981; color: white; }
+    .message-time { font-size: 11px; color: #94A3B8; margin-top: 4px; }
+    
+    .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #94A3B8; text-align: center; }
+    .empty-state p { font-size: 14px; }
+    
+    .compose-area { border-top: 1px solid #E2E8F0; background: white; padding: 16px 24px; display: flex; gap: 12px; }
+    .compose-input { flex: 1; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit; resize: none; max-height: 100px; }
+    .compose-input:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    .btn-send { background: #10B981; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; font-size: 14px; }
+    .btn-send:hover { background: #059669; }
+    .btn-send:disabled { background: #D1D5DB; cursor: not-allowed; }
+    
+    /* Modal Styles */
+    .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000; }
+    .modal.show { display: flex; }
+    .modal-content { background: white; border-radius: 8px; padding: 32px; max-width: 500px; width: 90%; }
+    .modal-header { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #1F2937; }
+    .modal-body { font-size: 14px; color: #64748B; margin-bottom: 20px; }
+    .modal-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 14px; font-weight: 500; color: #1F2937; }
+    .form-group input, .form-group select { padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #3B4C63; }
+    .modal-footer { display: flex; gap: 12px; margin-top: 24px; }
+    .modal-footer button { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-cancel { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-cancel:hover { background: #F9FAFB; }
+    
+    @media (max-width: 1024px) {
+      .container { grid-template-columns: 240px 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .compose-area { flex-direction: column; }
+      .btn-send { width: 100%; }
+      .search-box { width: 100%; }
+      .message-bubble { max-width: 85%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Messages</h1>
+    <div class="header-controls">
+      <input type="text" class="search-box" placeholder="Search conversations...">
+      <button class="btn btn-ghost" onclick="openComposeModal()">+ Compose</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="thread-list">
+        <div class="thread-item active">
+          <div style="display: flex; align-items: center;">
+            <span class="unread-badge"></span>
+            <div>
+              <div class="thread-customer">Sarah Johnson</div>
+              <div class="thread-preview">Question about size options</div>
+              <div class="thread-time">2 minutes ago</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="thread-item">
+          <div>
+            <div class="thread-customer">Michael Chen</div>
+            <div class="thread-preview">Can you ship to Japan?</div>
+            <div class="thread-time">3 hours ago</div>
+          </div>
+        </div>
+        
+        <div class="thread-item">
+          <div>
+            <div class="thread-customer">Emma Rodriguez</div>
+            <div class="thread-preview">Product arrived damaged</div>
+            <div class="thread-time">Yesterday</div>
+          </div>
+        </div>
+        
+        <div class="thread-item">
+          <div>
+            <div class="thread-customer">David Park</div>
+            <div class="thread-preview">Order #4521 status?</div>
+            <div class="thread-time">May 14</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-area">
+      <div class="thread-header">
+        <div>
+          <h2>Sarah Johnson</h2>
+          <div class="thread-info">Order #4523 • Handmade Ceramic Bowl</div>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost">Archive</button>
+          <button class="btn btn-ghost">Resolve</button>
+        </div>
+      </div>
+
+      <div class="messages-area">
+        <div class="message customer">
+          <div>
+            <div class="message-bubble">Hi! Do you have the ceramic bowl in smaller sizes? I have a small shelf and the large one might not fit.</div>
+            <div class="message-time">2:15 PM</div>
+          </div>
+        </div>
+
+        <div class="message seller">
+          <div>
+            <div class="message-bubble">Hi Sarah! Thanks for the question. We do offer the bowl in two sizes: 8" (what you ordered) and 6". Would you like to swap?</div>
+            <div class="message-time">2:20 PM</div>
+          </div>
+        </div>
+
+        <div class="message customer">
+          <div>
+            <div class="message-bubble">That would be perfect! Yes, please swap to the 6" size.</div>
+            <div class="message-time">2:22 PM</div>
+          </div>
+        </div>
+
+        <div class="message seller">
+          <div>
+            <div class="message-bubble">Wonderful! I'll update your order right now. You'll see the updated tracking info in your original order confirmation email.</div>
+            <div class="message-time">2:25 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compose-area">
+        <textarea class="compose-input" placeholder="Type your message..." rows="3"></textarea>
+        <button class="btn-send">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compose Modal -->
+  <div class="modal" id="composeModal">
+    <div class="modal-content">
+      <div class="modal-header">New Message</div>
+      <div class="modal-body">Start a new conversation with a customer from a recent order.</div>
+      <form class="modal-form" onsubmit="event.preventDefault(); closeComposeModal();">
+        <div class="form-group">
+          <label for="customer-select">Select Customer / Order</label>
+          <select id="customer-select" required>
+            <option value="">Choose customer...</option>
+            <option value="4523">Sarah Johnson — Order #4523</option>
+            <option value="4522">Michael Chen — Order #4522</option>
+            <option value="4521">Emma Rodriguez — Order #4521</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message-body">Message</label>
+          <textarea id="message-body" placeholder="Type your message..." rows="4" style="padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit;" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" onclick="closeComposeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openComposeModal() {
+      document.getElementById('composeModal').classList.add('show');
+    }
+
+    function closeComposeModal() {
+      document.getElementById('composeModal').classList.remove('show');
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('composeModal');
+      if (event.target === modal) {
+        modal.classList.remove('show');
+      }
+    }
+  </script>
+</body>
+</html>
