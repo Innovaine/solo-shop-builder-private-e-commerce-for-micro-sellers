@@ -30910,3 +30910,19 @@ npm notice To update run: npm install -g npm@11.14.1
 npm notice
 ```
 Full output: [`server-runs/2026-05-18T00-44-12-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T00-44-12-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T00:44:30.529Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e8ff0f` so the server's `git pull` will pick it up._
+
+### Command 1 on soloshopbox as engineer (✓ exit 0, 4205ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose exec -T -u root app chown -R nextjs:nodejs /app/test-results
+docker compose exec -T app npx playwright test tests/web/day48-password-auth-reset.spec.ts --reporter=list 2>&1 | tail -100
+```
+STDOUT:
+```
+time="2026-05-18T00:44:29Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+Error: EACCES: permission denied, rmdir '/app/test-results'
+```
+Full output: [`server-runs/2026-05-18T00-44-30-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T00-44-30-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log)
