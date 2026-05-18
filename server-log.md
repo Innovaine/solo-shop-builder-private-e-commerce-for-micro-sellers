@@ -31899,3 +31899,17 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 ls -la .next/server/app/dashboard/products/
 ```
 ERROR: command exited 1
+
+## 2026-05-18T01:44:55.708Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `450ff5a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2701ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+731324bb5aa9   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   9 minutes ago   Created                                            solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+5b26a700cbdf   postgres:16-alpine                                           "docker-entrypoint.s…"   13 hours ago    Up 13 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-18T01-44-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T01-44-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
