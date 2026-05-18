@@ -128,3 +128,20 @@ STDOUT:
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-18T16-35-51-www.soloshopbox.com-kill--0-cat-tmp-day64-build.pid-2-dev-nu-1.log`](server-runs/2026-05-18T16-35-51-www.soloshopbox.com-kill--0-cat-tmp-day64-build.pid-2-dev-nu-1.log)
+
+## 2026-05-18T16:36:17.517Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a95bf89` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2709ms)
+```
+if kill -0 $(cat /tmp/day64-build.pid) 2>/dev/null; then echo "BUILD STILL RUNNING"; else echo "BUILD DONE"; tail -30 /tmp/day64-build.log | grep -E "(Successfully|error|Error|failed|DONE)"; fi
+```
+STDOUT:
+```
+BUILD DONE
+#20 DONE 2.3s
+#21 DONE 0.0s
+#30 DONE 2.3s
+#31 DONE 0.0s
+```
+Full output: [`server-runs/2026-05-18T16-36-17-www.soloshopbox.com-if-kill--0-cat-tmp-day64-build.pid-2-dev-1.log`](server-runs/2026-05-18T16-36-17-www.soloshopbox.com-if-kill--0-cat-tmp-day64-build.pid-2-dev-1.log)
