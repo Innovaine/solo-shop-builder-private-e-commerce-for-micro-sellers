@@ -225,3 +225,17 @@ STDOUT:
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 16 hours (healthy)
 ```
 Full output: [`server-runs/2026-05-18T19-54-50-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-18T19-54-50-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+## 2026-05-18T19:55:16.114Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `42f5382` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2442ms)
+```
+docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+82ead4216f1a   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   About a minute ago   Created                                            solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+5b26a700cbdf   postgres:16-alpine                                           "docker-entrypoint.s…"   31 hours ago         Up 16 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-18T19-55-16-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-18T19-55-16-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log)
