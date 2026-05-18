@@ -31013,3 +31013,51 @@ echo "=== Testing reset-password page ==="
 curl -I http://localhost:3000/auth/reset-password?token=test 2>&1 | head -1
 ```
 ERROR: Server 'soloshopbox' not configured for this project.
+
+## 2026-05-18T00:46:22.703Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `da49a0e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 4486ms) _(showing tail — full 21,705B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only && docker ps --format "table {{.Names}}\t{{.Status}}" | grep solo
+```
+STDOUT:
+```
+… mode 100644 design/pages/orders-export-modal.html
+ create mode 100644 design/pages/orders-list.html
+ create mode 100644 design/pages/password-login.html
+ create mode 100644 design/pages/product-variants.html
+ create mode 100644 design/pages/refund-modal.html
+ create mode 100644 design/pages/seller-profile-editor.html
+ create mode 100644 design/patterns/form-validation.html
+ create mode 100644 design/patterns/validation-patterns.html
+ create mode 100644 design/stage1-patterns.md
+ create mode 100644 design/system/csv-patterns.md
+ create mode 100644 design/system/form-error-patterns.md
+ create mode 100644 postcss.config.js
+ create mode 100644 prisma/migrations/20260517_add_seller_profile_fields/migration.sql
+ create mode 100644 public/uploads/.gitkeep
+ create mode 100644 test-results/day-44/report.md
+ create mode 100644 test-results/day-44/smoke-tests.log
+ create mode 100644 test-results/day-45/report.md
+ create mode 100644 test-results/day-46/report.md
+ create mode 100644 test-results/day-47/report.md
+ create mode 100644 test-results/day-48/report.md
+ create mode 100644 test-results/day-49/report.md
+ create mode 100644 tests/web/day37-csv-export.spec.ts
+ create mode 100644 tests/web/day37-order-refund.spec.ts
+ create mode 100644 tests/web/day37-password-auth.spec.ts
+ create mode 100644 tests/web/day37-password-reset.spec.ts
+ create mode 100644 tests/web/day44-smoke.spec.ts
+ create mode 100644 tests/web/day45-ceo-demo-e2e.spec.ts
+ create mode 100644 tests/web/day45-mvp-auth-shop.spec.ts
+ create mode 100644 tests/web/day46-mvp-complete.spec.ts
+ create mode 100644 tests/web/day47-mvp-smoke.spec.ts
+ create mode 100644 tests/web/day48-password-auth-reset.spec.ts
+ create mode 100644 tests/web/day48-profile-branding.spec.ts
+ create mode 100644 tests/web/day48-variants-inventory.spec.ts
+ create mode 100644 tests/web/day49-analytics-billing-export.spec.ts
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 4 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 12 hours (healthy)
+```
+Full output: [`server-runs/2026-05-18T00-46-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T00-46-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)

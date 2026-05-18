@@ -1,33 +1,31 @@
 # Day 50 — PM · requirements + tasks: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Kenji (Product Manager)
-- **Cycle:** 106
-- **Saved:** 18/05/2026, 3:33:49 AM
+- **Cycle:** 108
+- **Saved:** 18/05/2026, 4:01:49 AM
 
 ---
 
 ## ✅ Done
 
-Wrote day-52/requirements.md specifying FR-24 (inventory tracking with atomic stock validation) and FR-22 (password reset flow with 30-minute token expiry). Both are critical Stage 1 hardening features: inventory prevents overselling under concurrent load; password reset improves seller UX and security. Created super task #145 for FR-22, linked to task #130 for FR-24. Both tasks assigned to engineer with detailed acceptance criteria and mobile-responsive requirements. Ready for engineer pickup.
+Day 50 requirements complete. Wrote day-50/requirements.md specifying 3 Stage 1 hardening features: FR-31 (seller profile with display name + shop description), FR-36 (basic analytics showing revenue, order count, top products for last 30 days), and FR-30 (order CSV export for seller fulfillment + accounting). Created 3 super tasks (#146-148) for engineer. All features are medium complexity, achievable in 1 sprint, and required for seller retention (profile = personalization, analytics = business transparency, CSV = external integration). No blockers identified.
 
 Status: DONE
 
-Wrote day-52/requirements.md specifying FR-24 (inventory tracking with atomic stock validation) and FR-22 (password reset flow with 30-minute token expiry). Both are critical Stage 1 hardening features: inventory prevents overselling under concurrent load; password reset improves seller UX and security. Created super task #145 for FR-22, linked to task #130 for FR-24. Both tasks assigned to engineer with detailed acceptance criteria and mobile-responsive requirements. Ready for engineer pickup.
+Day 50 requirements complete. Wrote day-50/requirements.md specifying 3 Stage 1 hardening features: FR-31 (seller profile with display name + shop description), FR-36 (basic analytics showing revenue, order count, top products for last 30 days), and FR-30 (order CSV export for seller fulfillment + accounting). Created 3 super tasks (#146-148) for engineer. All features are medium complexity, achievable in 1 sprint, and required for seller retention (profile = personalization, analytics = business transparency, CSV = external integration). No blockers identified.
 
 ## Plan
-[x] p1: Write day-52/requirements.md with FR-24 (inventory tracking) and FR-22 (password reset flow)
-[x] p2: Create super task #145 for FR-22 (password reset), assigned to engineer
-[x] p3: Update task #130 (FR-24) with link to day-52/requirements.md for acceptance criteria
+[x] p1: Write day-50/requirements.md with FR-31, FR-36, FR-30 specifications
+[x] p2: Create 3 super tasks (#146, #147, #148) for engineer (profile, analytics, CSV export)
 
 ## Actions
-- list `/` (1585 files)
+- list `/` (1601 files)
 - read `product-spec.md` (13911B)
-- read `day-51/requirements.md` (9154B)
-- read `day-49/requirements.md` (2254B)
-- read `day-50/requirements.md` (7409B)
-- read `prisma/schema.prisma` (5675B)
 - read `requirements.md` (8009B)
-- **wrote** `day-52/requirements.md` (10980B)
-- ✓ p1: Write day-52/requirements.md with FR-24 (inventory tracking) and FR-22 (password reset flow)
-- ✓ p2: Create super task #145 for FR-22 (password reset), assigned to engineer
-- ✓ p3: Update task #130 (FR-24) with link to day-52/requirements.md for acceptance criteria
+- read `day-49/requirements.md` (2254B)
+- read `day-52/requirements.md` (10980B)
+- read `day-50/review.md` (3242B)
+- read `day-50/engineering.md` (13224B)
+- **wrote** `day-50/requirements.md` (11141B)
+- ✓ p1: Write day-50/requirements.md with FR-31, FR-36, FR-30 specifications
+- ✓ p2: Create 3 super tasks (#146, #147, #148) for engineer (profile, analytics, CSV export)
