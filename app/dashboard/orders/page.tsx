@@ -7,7 +7,10 @@ import { Card } from '@/components/ui/Card'
 import type { Order as PrismaOrder, OrderItem } from '@prisma/client'
 
 // Extended Order type that includes the items relation
-type Order = PrismaOrder & {
+// Note: API returns JSON-serialized data, so dates are strings
+type Order = Omit<PrismaOrder, 'createdAt' | 'updatedAt'> & {
+  createdAt: string
+  updatedAt: string
   items: Array<{ title: string; quantity: number }>
 }
 

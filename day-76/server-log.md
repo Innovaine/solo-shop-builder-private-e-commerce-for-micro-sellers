@@ -64,3 +64,58 @@ echo $! > /tmp/build.pid
 echo "Build started, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-18T22:05:50.234Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e9ccdb2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2330ms) _(showing tail — full 6,295B stdout + 0B stderr)_
+```
+if [ -f /tmp/build.pid ]; then
+  pid=$(cat /tmp/build.pid)
+  if kill -0 $pid 2>/dev/null; then
+    echo "RUNNING: Build process $pid is active"
+    tail -50 /tmp/build.log
+  else
+    echo "DONE: Build process completed"
+    tail -100 /tmp/build.log
+  fi
+else
+  echo "NO_PID: Build was not started yet"
+fi
+```
+STDOUT:
+```
+…[32m', '[39m)}[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+21.35 ./app/dashboard/orders/page.tsx:360:83
+21.35 Type error: Argument of type 'Date' is not assignable to parameter of type 'string'.
+21.35 
+21.35 [0m [90m 358 |[39m                     [33m<[39m[33mtr[39m key[33m=[39m{order[33m.[39mid} className[33m=[39m[32m"border-b border-gray-200 hover:bg-gray-50"[39m[33m>[39m[0m
+21.35 [0m [90m 359 |[39m                       [33m<[39m[33mtd[39m className[33m=[39m[32m"px-6 py-4 font-semibold text-charcoal"[39m[33m>[39m{order[33m.[39mid[33m.[39msubstring([35m0[39m[33m,[39m [35m8[39m)}[33m<[39m[33m/[39m[33mtd[39m[33m>[39m[0m
+21.35 [0m[31m[1m>[22m[39m[90m 360 |[39m                       [33m<[39m[33mtd[39m className[33m=[39m[32m"px-6 py-4 text-sm text-gray-700"[39m[33m>[39m{formatDate(order[33m.[39mcreatedAt)}[33m<[39m[33m/[39m[33mtd[39m[33m>[39m[0m
+21.35 [0m [90m     |[39m                                                                                   [31m[1m^[22m[39m[0m
+21.35 [0m [90m 361 |[39m                       [33m<[39m[33mtd[39m className[33m=[39m[32m"px-6 py-4 text-sm text-gray-700"[39m[33m>[39m{order[33m.[39mcustomerEmail}[33m<[39m[33m/[39m[33mtd[39m[33m>[39m[0m
+21.35 [0m [90m 362 |[39m                       [33m<[39m[33mtd[39m className[33m=[39m[32m"px-6 py-4 text-sm text-gray-700"[39m[33m>[39m[0m
+21.35 [0m [90m 363 |[39m                         {order[33m.[39mitems[33m.[39mmap(item [33m=>[39m [32m`${item.title} (${item.quantity})`[39m)[33m.[39mjoin([32m', '[39m)}[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-18T22-05-50-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log`](server-runs/2026-05-18T22-05-50-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log)
