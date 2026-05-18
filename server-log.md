@@ -33599,3 +33599,26 @@ _Pre-SSH: warehouse pushed to GitHub as commit `455edfe` so the server's `git pu
 sleep 15 && docker ps --format '{{.Names}}\t{{.Status}}' | grep app && echo "--- health check ---" && curl -sf https://www.soloshopbox.com/api/health && echo ""
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-18T04:03:29.028Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e872423` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3222ms)
+```
+docker ps --format '{{.Names}}\t{{.Status}}' | grep app
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 2 minutes
+```
+Full output: [`server-runs/2026-05-18T04-03-28-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-18T04-03-28-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 935ms)
+```
+curl -sf https://www.soloshopbox.com/api/health
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-18T04:03:28.916Z","responseTime":"296ms","checks":{"database":{"status":"ok","responseTime":"49ms"},"email":{"status":"ok","responseTime":"247ms"}}}
+```
+Full output: [`server-runs/2026-05-18T04-03-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log`](server-runs/2026-05-18T04-03-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log)
