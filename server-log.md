@@ -33772,3 +33772,19 @@ You may need to escape symbols like "$" or "*" and quote the arguments.
 [1A[2K
 ```
 Full output: [`server-runs/2026-05-18T04-12-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T04-12-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T04:18:49.690Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `92759a1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3091ms)
+```
+echo "=== Day 53 Manual Smoke Tests ===" && echo "" && echo "Test 1: FR-152 - Shop status toggle API" && curl -s -X PUT https://www.soloshopbox.com/api/shops/status -H "Content-Type: application/json" -d '{"status":"PAUSED"}' | head -5
+```
+STDOUT:
+```
+=== Day 53 Manual Smoke Tests ===
+
+Test 1: FR-152 - Shop status toggle API
+{"error":"Failed to update shop status"}
+```
+Full output: [`server-runs/2026-05-18T04-18-49-www.soloshopbox.com-echo-Day-53-Manual-Smoke-Tests-echo-echo-1.log`](server-runs/2026-05-18T04-18-49-www.soloshopbox.com-echo-Day-53-Manual-Smoke-Tests-echo-echo-1.log)
