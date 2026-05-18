@@ -2,7 +2,6 @@
 // Handles redirect after customer completes payment on MyFatoorah hosted page
 
 import { NextRequest, NextResponse } from 'next/server'
-import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/db'
 import { sendEmail } from '@/lib/email'
 
@@ -10,12 +9,13 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
     const paymentId = searchParams.get('paymentId')
+    const baseUrl = process.env.APP_URL || 'https://www.soloshopbox.com'
 
     console.log('[MyFatoorah Callback] Received paymentId:', paymentId)
 
     if (!paymentId) {
       console.error('[MyFatoorah Callback] Missing paymentId parameter')
-      return redirect('/checkout?error=payment_failed')
+      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_failed`)
     }
 
     const myfatoorahApiKey = process.env.MYFATOORAH_API_KEY
@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
 
     if (!myfatoorahApiKey) {
       console.error('[MyFatoorah Callback] Missing MYFATOORAH_API_KEY environment variable')
-      return redirect('/checkout?error=configuration_error')
+      return NextResponse.redirect(`${baseUrl}/checkout?error=configuration_error`)
     }
 
     console.log('[MyFatoorah Callback] Querying payment status from:', `${myfatoorahApiUrl}/v3/payments/${paymentId}`)
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
         message: statusData.Message,
         errors: statusData.ValidationErrors,
       })
-      return redirect('/checkout?error=verification_failed')
+      return NextResponse.redirect(`${baseUrl}/checkout?error=verification_failed`)
     }
 
     const invoice = statusData.Data?.Invoice
@@ -57,12 +57,12 @@ export async function GET(req: NextRequest) {
 
     if (!invoice) {
       console.error('[MyFatoorah Callback] Missing Invoice in response data')
-      return redirect('/checkout?error=invalid_response')
+      return NextResponse.redirect(`${baseUrl}/checkout?error=invalid_response`)
     }
 
     if (!transaction) {
       console.error('[MyFatoorah Callback] Missing Transaction in response data')
-      return redirect('/checkout?error=invalid_response')
+      return NextResponse.redirect(`${baseUrl}/checkout?error=invalid_response`)
     }
 
     console.log('[MyFatoorah Callback] Invoice Status:', invoice.Status, 'Transaction Status:', transaction.Status)
@@ -74,7 +74,7 @@ export async function GET(req: NextRequest) {
         transactionStatus: transaction.Status,
         transactionError: transaction.Error,
       })
-      return redirect('/checkout?error=payment_not_completed')
+      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_not_completed`)
     }
 
     // Find pending order by invoice ID or payment ID (stored as stripePaymentId during checkout)
@@ -107,11 +107,11 @@ export async function GET(req: NextRequest) {
       
       if (completedOrder) {
         console.log('[MyFatoorah Callback] Order already completed:', completedOrder.id)
-        return redirect(`/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+        return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
       }
       
       console.error('[MyFatoorah Callback] Order not found in database')
-      return redirect('/checkout?error=order_not_found')
+      return NextResponse.redirect(`${baseUrl}/checkout?error=order_not_found`)
     }
 
     console.log('[MyFatoorah Callback] Found pending order:', pendingOrder.id)
@@ -174,7 +174,7 @@ Track your order: ${trackingUrl}`
       // Don't fail the callback if email fails
     }
 
-    return redirect(`/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+    return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
 
   } catch (error: any) {
     console.error('[MyFatoorah Callback] Unexpected error:', {
@@ -182,6 +182,7 @@ Track your order: ${trackingUrl}`
       stack: error.stack,
       name: error.name,
     })
-    return redirect('/checkout?error=callback_error')
+    const baseUrl = process.env.APP_URL || 'https://www.soloshopbox.com'
+    return NextResponse.redirect(`${baseUrl}/checkout?error=callback_error`)
   }
 }

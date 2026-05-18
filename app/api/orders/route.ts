@@ -4,9 +4,8 @@
 export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 import prisma from '@/lib/db'
-import { verifySession } from '@/lib/auth'
+import { requireAuth } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
   try {
@@ -36,23 +35,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Otherwise, require authentication and return seller's orders
-    const cookieStore = cookies()
-    const sessionCookie = cookieStore.get('session')
-
-    if (!sessionCookie) {
-      return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
-      )
-    }
-
-    const session = await verifySession()
-    if (!session) {
-      return NextResponse.json(
-        { error: 'Invalid session' },
-        { status: 401 }
-      )
-    }
+    const session = await requireAuth()
 
     // Get all shops for this seller
     const shops = await prisma.shop.findMany({

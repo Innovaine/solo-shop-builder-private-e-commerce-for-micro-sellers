@@ -1,21 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 import prisma from '@/lib/db';
-import { verifySession } from '@/lib/auth';
+import { requireAuth } from '@/lib/auth';
 
 // GET /api/billing — Get billing dashboard data (FR-37)
 export async function GET(req: NextRequest) {
   try {
-    // Auth check
-    const sessionCookie = cookies().get('session');
-    if (!sessionCookie) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const session = await verifySession();
-    if (!session) {
-      return NextResponse.json({ error: 'Session expired' }, { status: 401 });
-    }
+    // Auth check - requireAuth throws if unauthorized
+    const session = await requireAuth();
 
     // Get first shop for this seller
     const shop = await prisma.shop.findFirst({
