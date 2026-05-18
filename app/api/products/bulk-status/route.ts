@@ -7,7 +7,7 @@ import prisma from '@/lib/db'
 
 export async function POST(request: NextRequest) {
   try {
-    const sellerId = await requireAuth(request)
+    const { sellerId } = await requireAuth()
     const { productIds, status } = await request.json()
 
     // Validate input

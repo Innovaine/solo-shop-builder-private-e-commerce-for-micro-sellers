@@ -10,7 +10,7 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    const sellerId = await requireAuth(request)
+    const { sellerId } = await requireAuth()
     const { status } = await request.json()
     const productId = params.id
 

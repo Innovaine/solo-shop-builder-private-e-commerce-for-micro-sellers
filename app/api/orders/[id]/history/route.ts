@@ -10,7 +10,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const sellerId = await requireAuth(request)
+    const { sellerId } = await requireAuth()
     const orderId = params.id
 
     // Verify order belongs to seller's shop

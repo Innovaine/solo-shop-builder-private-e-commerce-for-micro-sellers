@@ -7,7 +7,7 @@ import prisma from '@/lib/db'
 
 export async function PUT(request: NextRequest) {
   try {
-    const sellerId = await requireAuth(request)
+    const { sellerId } = await requireAuth()
     const { status } = await request.json()
 
     // Validate status
