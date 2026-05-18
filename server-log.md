@@ -31658,3 +31658,60 @@ kill -0 $(cat /tmp/day51-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DO
 tail -80 /tmp/day51-build-v2.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-18T01:32:54.285Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e51e99` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2741ms) _(showing tail — full 2,233B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day51-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day51-build-v2.log | tail -50
+```
+STDOUT:
+```
+…ting and checking validity of types ...
+#15 19.71 Failed to compile.
+#15 19.71 
+#15 19.71 ./app/api/products/import/route.ts:41:16
+#15 19.71 Type error: Object literal may only specify known properties, but 'seller_id' does not exist in type 'ShopWhereInput'. Did you mean to write 'sellerId'?
+#15 19.71 
+#15 19.71 [0m [90m 39 |[39m     [90m// 3. Check if seller has a shop[39m[0m
+#15 19.71 [0m [90m 40 |[39m     [36mconst[39m shop [33m=[39m [36mawait[39m prisma[33m.[39mshop[33m.[39mfindFirst({[0m
+#15 19.71 [0m[31m[1m>[22m[39m[90m 41 |[39m       where[33m:[39m { seller_id[33m:[39m sellerId }[0m
+#15 19.71 [0m [90m    |[39m                [31m[1m^[22m[39m[0m
+#15 19.71 [0m [90m 42 |[39m     })[33m;[39m[0m
+#15 19.71 [0m [90m 43 |[39m[0m
+#15 19.71 [0m [90m 44 |[39m     [36mif[39m ([33m![39mshop) {[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+19.71 ./app/api/products/import/route.ts:41:16
+19.71 Type error: Object literal may only specify known properties, but 'seller_id' does not exist in type 'ShopWhereInput'. Did you mean to write 'sellerId'?
+19.71 
+19.71 [0m [90m 39 |[39m     [90m// 3. Check if seller has a shop[39m[0m
+19.71 [0m [90m 40 |[39m     [36mconst[39m shop [33m=[39m [36mawait[39m prisma[33m.[39mshop[33m.[39mfindFirst({[0m
+19.71 [0m[31m[1m>[22m[39m[90m 41 |[39m       where[33m:[39m { seller_id[33m:[39m sellerId }[0m
+19.71 [0m [90m    |[39m                [31m[1m^[22m[39m[0m
+19.71 [0m [90m 42 |[39m     })[33m;[39m[0m
+19.71 [0m [90m 43 |[39m[0m
+19.71 [0m [90m 44 |[39m     [36mif[39m ([33m![39mshop) {[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-18T01-32-54-www.soloshopbox.com-kill--0-cat-tmp-day51-build-v2.pid-2-dev-1.log`](server-runs/2026-05-18T01-32-54-www.soloshopbox.com-kill--0-cat-tmp-day51-build-v2.pid-2-dev-1.log)

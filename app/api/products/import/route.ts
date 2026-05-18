@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
 
     // 3. Check if seller has a shop
     const shop = await prisma.shop.findFirst({
-      where: { seller_id: sellerId }
+      where: { sellerId: sellerId }
     });
 
     if (!shop) {
@@ -124,18 +124,19 @@ export async function POST(request: NextRequest) {
         continue;
       }
 
-      // Create product
+      // Create product (price should be in cents)
       try {
         const product = await prisma.product.create({
           data: {
             title: row.title.trim(),
-            price: price,
+            price: Math.round(price * 100), // Convert dollars to cents
             description: row.description.trim(),
             category: row.category,
-            image_url: row.image_url?.trim() || null,
-            shop_id: shop.id,
-            created_at: new Date(),
-            updated_at: new Date()
+            imageUrl: row.image_url?.trim() || null,
+            shopId: shop.id,
+            stock: 0, // Default stock
+            createdAt: new Date(),
+            updatedAt: new Date()
           }
         });
         imported.push(product);
