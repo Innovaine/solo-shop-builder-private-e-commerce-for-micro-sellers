@@ -33193,3 +33193,28 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-18T03-42-32-www.soloshopbox.com-if--f-tmp-day53-build-v2.pid-then-kill---1.log`](server-runs/2026-05-18T03-42-32-www.soloshopbox.com-if--f-tmp-day53-build-v2.pid-then-kill---1.log)
+
+## 2026-05-18T03:43:12.996Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8ae472c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2717ms)
+```
+grep -A 5 "Type error" /tmp/day53-build-v2.log | head -20
+```
+STDOUT:
+```
+#15 19.90 Type error: Cannot find name 'useEffect'.
+#15 19.90 
+#15 19.90 [0m [90m 27 |[39m[0m
+#15 19.90 [0m [90m 28 |[39m   [90m// Load shop status on mount[39m[0m
+#15 19.90 [0m[31m[1m>[22m[39m[90m 29 |[39m   useEffect(() [33m=>[39m {[0m
+#15 19.90 [0m [90m    |[39m   [31m[1m^[22m[39m[0m
+--
+19.90 Type error: Cannot find name 'useEffect'.
+19.90 
+19.90 [0m [90m 27 |[39m[0m
+19.90 [0m [90m 28 |[39m   [90m// Load shop status on mount[39m[0m
+19.90 [0m[31m[1m>[22m[39m[90m 29 |[39m   useEffect(() [33m=>[39m {[0m
+19.90 [0m [90m    |[39m   [31m[1m^[22m[39m[0m
+```
+Full output: [`server-runs/2026-05-18T03-43-12-www.soloshopbox.com-grep--A-5-Type-error-tmp-day53-build-v2.-1.log`](server-runs/2026-05-18T03-43-12-www.soloshopbox.com-grep--A-5-Type-error-tmp-day53-build-v2.-1.log)
