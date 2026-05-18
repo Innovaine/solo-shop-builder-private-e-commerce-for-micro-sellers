@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV Import — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAF9F7;
+      color: #1F2937;
+      line-height: 1.6;
+      padding: 32px 16px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; color: #1F2937; }
+    .subtitle { font-size: 14px; color: #64748B; margin-bottom: 32px; }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Upload Section */
+    .upload-zone {
+      border: 2px dashed #E2E8F0;
+      border-radius: 8px;
+      padding: 32px 24px;
+      text-align: center;
+      background: #F8F9FA;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .upload-zone:hover {
+      border-color: #3B4C63;
+      background: #F0F4F8;
+    }
+    .upload-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .upload-zone h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #1F2937;
+    }
+    .upload-zone p {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 12px;
+    }
+    .upload-input {
+      display: none;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: #3B4C63;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #2D3A4A;
+    }
+    .btn-secondary {
+      background: #E2E8F0;
+      color: #1F2937;
+    }
+    .btn-secondary:hover {
+      background: #D0D9E8;
+    }
+
+    /* Progress */
+    .progress-container {
+      margin-top: 24px;
+    }
+    .progress-label {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #E2E8F0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #10B981;
+      transition: width 0.3s ease;
+    }
+
+    /* Results */
+    .results {
+      margin-top: 24px;
+      padding: 16px;
+      background: #F0F9FF;
+      border-radius: 6px;
+      border-left: 4px solid #10B981;
+    }
+    .results.error {
+      background: #FEF2F2;
+      border-left-color: #F43F5E;
+    }
+    .results.warning {
+      background: #FFFBEB;
+      border-left-color: #F59E0B;
+    }
+    .results h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #10B981;
+    }
+    .results.error h4 {
+      color: #F43F5E;
+    }
+    .results.warning h4 {
+      color: #F59E0B;
+    }
+
+    /* Error List */
+    .error-list {
+      font-size: 13px;
+      color: #64748B;
+      list-style: none;
+      margin: 8px 0 0 0;
+    }
+    .error-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .error-list li:last-child {
+      border-bottom: none;
+    }
+    .error-code {
+      font-family: monospace;
+      font-size: 12px;
+      color: #F43F5E;
+      font-weight: 500;
+    }
+
+    /* CSV Format Reference */
+    .csv-reference {
+      background: #F8F9FA;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 24px;
+      font-size: 13px;
+    }
+    .csv-reference h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1F2937;
+    }
+    .csv-example {
+      background: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      border-left: 3px solid #3B4C63;
+      font-family: monospace;
+      font-size: 12px;
+      color: #64748B;
+      overflow-x: auto;
+      margin-bottom: 8px;
+    }
+    .csv-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    .csv-table th,
+    .csv-table td {
+      text-align: left;
+      padding: 6px 8px;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 12px;
+    }
+    .csv-table th {
+      background: white;
+      font-weight: 600;
+      color: #1F2937;
+    }
+    .csv-table td {
+      color: #64748B;
+    }
+    .required {
+      color: #F43F5E;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      body { padding: 16px 12px; }
+      .card { padding: 16px; }
+      h1 { font-size: 24px; }
+      .upload-zone { padding: 24px 16px; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Import Products from CSV</h1>
+    <p class="subtitle">Bulk upload your product catalog. Maximum 500 products per import.</p>
+
+    <div class="card">
+      <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: #1F2937;">Upload File</h3>
+      
+      <div class="upload-zone" onclick="document.getElementById('csvFile').click()">
+        <div class="upload-icon">📄</div>
+        <h3>Click to upload or drag and drop</h3>
+        <p>CSV files only. Max 5 MB.</p>
+        <input type="file" id="csvFile" class="upload-input" accept=".csv" />
+      </div>
+
+      <div class="csv-reference">
+        <h4>CSV Format</h4>
+        <p style="margin-bottom: 8px;">Your CSV must include these columns (in any order):</p>
+        <table class="csv-table">
+          <thead>
+            <tr>
+              <th>Column Name</th>
+              <th>Required</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>title</strong></td>
+              <td><span class="required">●</span></td>
+              <td>Handmade Ceramic Mug</td>
+            </tr>
+            <tr>
+              <td><strong>price</strong></td>
+              <td><span class="required">●</span></td>
+              <td>24.99</td>
+            </tr>
+            <tr>
+              <td><strong>description</strong></td>
+              <td><span class="required">●</span></td>
+              <td>Wheel-thrown, food-safe glaze</td>
+            </tr>
+            <tr>
+              <td><strong>category</strong></td>
+              <td><span class="required">●</span></td>
+              <td>Handmade|Vintage|Supplies|Other</td>
+            </tr>
+            <tr>
+              <td>image_url</td>
+              <td>Optional</td>
+              <td>https://example.com/mug.jpg</td>
+            </tr>
+            <tr>
+              <td>stock</td>
+              <td>Optional</td>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="csv-example" style="margin-top: 12px;">
+title,price,description,category,image_url,stock<br/>
+Ceramic Mug,24.99,Wheel-thrown mug,Handmade,https://...,15<br/>
+Vintage Button,5.50,Pearlescent button set of 10,Vintage,,8
+        </div>
+      </div>
+    </div>
+
+    <!-- Uploading State -->
+    <div class="card" style="display: none;" id="uploadingState">
+      <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1F2937;">Uploading: products.csv</h3>
+      <div class="progress-container">
+        <div class="progress-label">
+          <span>Processing 45 products</span>
+          <span>25%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 25%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success State -->
+    <div class="card" style="display: none;" id="successState">
+      <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #10B981;">✓ Import Complete</h3>
+      <div class="results">
+        <h4>43 products imported successfully</h4>
+        <ul class="error-list">
+          <li><strong>Created:</strong> 40 new products</li>
+          <li><strong>Updated:</strong> 3 existing products (matched by title)</li>
+          <li><strong>Skipped:</strong> 2 rows (invalid price format)</li>
+        </ul>
+      </div>
+
+      <div class="results warning" style="margin-top: 12px;">
+        <h4>⚠ 2 Warnings</h4>
+        <ul class="error-list">
+          <li><strong>Row 12:</strong> Image URL unreachable. Product created without image.</li>
+          <li><strong>Row 28:</strong> Stock value not a number; defaulted to 0.</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary">Import Another File</button>
+        <button class="btn btn-primary">View Imported Products</button>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div class="card" style="display: none;" id="errorState">
+      <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #F43F5E;">✗ Import Failed</h3>
+      <div class="results error">
+        <h4>CSV validation failed — 5 critical errors:</h4>
+        <ul class="error-list">
+          <li><strong>Row 3:</strong> Missing required column "price" <span class="error-code">MISSING_FIELD</span></li>
+          <li><strong>Row 7:</strong> Invalid category "Jewelry". Allowed: Handmade, Vintage, Supplies, Other <span class="error-code">INVALID_ENUM</span></li>
+          <li><strong>Row 15:</strong> Title is empty <span class="error-code">EMPTY_FIELD</span></li>
+          <li><strong>Row 22:</strong> Price must be a number, got "N/A" <span class="error-code">INVALID_TYPE</span></li>
+          <li><strong>Row 45:</strong> Duplicate title in this import (Row 8) <span class="error-code">DUPLICATE</span></li>
+        </ul>
+      </div>
+
+      <p style="font-size: 13px; color: #64748B; margin-top: 12px;">
+        <strong>Fix these errors in your CSV and try again.</strong> Rows 1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21 are valid and can be imported.
+      </p>
+
+      <div class="actions">
+        <button class="btn btn-secondary">Download Error Report (CSV)</button>
+        <button class="btn btn-primary">Upload Fixed File</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

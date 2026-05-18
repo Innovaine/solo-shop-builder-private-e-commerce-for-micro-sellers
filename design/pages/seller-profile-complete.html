@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Profile — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAF9F7;
+      color: #1F2937;
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+
+    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #1F2937; }
+    .subtitle { font-size: 14px; color: #64748B; margin-bottom: 24px; }
+
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .tab {
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748B;
+      border-bottom: 2px solid transparent;
+    }
+    .tab.active {
+      color: #3B4C63;
+      border-bottom-color: #3B4C63;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form Section */
+    .form-section {
+      margin-bottom: 32px;
+    }
+    .form-section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1F2937;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 12px;
+    }
+    .form-section:last-child h3 {
+      border-bottom: none;
+    }
+
+    /* Form Grid */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .form-grid.full {
+      grid-template-columns: 1fr;
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1F2937;
+    }
+    .form-group .help-text {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 4px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="url"],
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #1F2937;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+
+    /* Image Upload */
+    .image-upload {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .image-preview {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      background: #F0F4F8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #E2E8F0;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .image-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .image-upload-controls {
+      flex: 1;
+    }
+    .upload-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #3B4C63;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      margin-right: 8px;
+    }
+    .upload-btn:hover {
+      background: #2D3A4A;
+    }
+    .remove-btn {
+      background: #E2E8F0;
+      color: #1F2937;
+    }
+    .remove-btn:hover {
+      background: #D0D9E8;
+    }
+    .upload-hint {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 8px;
+    }
+    .file-input {
+      display: none;
+    }
+
+    /* Social Links */
+    .social-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .social-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: flex-end;
+    }
+    .social-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      padding: 10px 0;
+    }
+
+    /* Preview */
+    .preview {
+      background: #F8F9FA;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .preview h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748B;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .preview-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+    .preview-avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 12px;
+      border-radius: 8px;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .preview-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .preview-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    .preview-tagline {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 12px;
+    }
+    .preview-desc {
+      font-size: 13px;
+      color: #1F2937;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .preview-links {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .preview-link {
+      font-size: 12px;
+      padding: 4px 8px;
+      background: #F0F4F8;
+      border-radius: 4px;
+      color: #3B4C63;
+      text-decoration: none;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: #3B4C63;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #2D3A4A;
+    }
+    .btn-secondary {
+      background: #E2E8F0;
+      color: #1F2937;
+    }
+    .btn-secondary:hover {
+      background: #D0D9E8;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .social-item {
+        grid-template-columns: 1fr;
+      }
+      .actions {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+      }
+      .image-upload {
+        flex-direction: column;
+      }
+      .preview-card {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Seller Profile</h1>
+    <p class="subtitle">Customize how your shop appears to customers.</p>
+
+    <div class="tabs">
+      <button class="tab active">Profile</button>
+      <button class="tab">Branding</button>
+      <button class="tab">Settings</button>
+    </div>
+
+    <div class="card">
+      <!-- Profile Section -->
+      <div class="form-section">
+        <h3>Profile Picture</h3>
+        <div class="image-upload">
+          <div class="image-preview">
+            <img src="" alt="Profile" style="display: none;" />
+            <span style="color: #64748B;">📸</span>
+          </div>
+          <div class="image-upload-controls">
+            <button class="upload-btn" onclick="document.getElementById('profileImg').click()">Upload Image</button>
+            <button class="upload-btn remove-btn">Remove</button>
+            <input type="file" id="profileImg" class="file-input" accept="image/*" />
+            <div class="upload-hint">JPG, PNG, max 2 MB. Recommended: 500×500px</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Section -->
+      <div class="form-section">
+        <h3>About You</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Shop Owner Name</label>
+            <input type="text" value="Sarah Chen" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label>Shop Tagline</label>
+            <input type="text" value="Handmade ceramics & functional art" placeholder="One-line description" />
+            <div class="help-text">Appears below your shop name on the storefront</div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>About Your Shop</label>
+          <textarea placeholder="Tell customers about you, your process, your story..." style="min-height: 150px;">I've been hand-throwing ceramics for 8 years. Each piece is unique, food-safe, and made with locally-sourced clay. I ship carefully and stand behind my work.</textarea>
+          <div class="help-text">Markdown supported. Appears on your public shop profile page.</div>
+        </div>
+      </div>
+
+      <!-- Social Section -->
+      <div class="form-section">
+        <h3>Social Media & Links</h3>
+        <ul class="social-list">
+          <li class="social-item">
+            <div class="social-label">Instagram</div>
+            <input type="url" placeholder="https://instagram.com/yourshop" value="https://instagram.com/sarahceramics" />
+          </li>
+          <li class="social-item">
+            <div class="social-label">Facebook</div>
+            <input type="url" placeholder="https://facebook.com/yourpage" value="" />
+          </li>
+          <li class="social-item">
+            <div class="social-label">Website</div>
+            <input type="url" placeholder="https://yourwebsite.com" value="" />
+          </li>
+          <li class="social-item">
+            <div class="social-label">TikTok</div>
+            <input type="url" placeholder="https://tiktok.com/@yourshop" value="" />
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="form-section">
+        <h3>Contact</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Email (Private)</label>
+            <input type="email" value="sarah@ceramicco.com" readonly style="background: #F8F9FA;" />
+            <div class="help-text">Not shown to customers</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div class="preview">
+        <h3>Public Profile Preview</h3>
+        <div class="preview-card">
+          <div class="preview-avatar">
+            📸
+          </div>
+          <div class="preview-name">Sarah Chen</div>
+          <div class="preview-tagline">Handmade ceramics & functional art</div>
+          <p class="preview-desc">
+            I've been hand-throwing ceramics for 8 years. Each piece is unique, food-safe, and made with locally-sourced clay. I ship carefully and stand behind my work.
+          </p>
+          <div class="preview-links">
+            <a href="#" class="preview-link">Instagram</a>
+            <a href="#" class="preview-link">Website</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="btn btn-secondary">Cancel</button>
+        <button class="btn btn-primary">Save Profile</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

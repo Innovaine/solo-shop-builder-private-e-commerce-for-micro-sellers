@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Template Editor — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAF9F7;
+      color: #1F2937;
+      line-height: 1.6;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 24px;
+      padding: 24px;
+    }
+    .main { }
+    .sidebar {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      height: fit-content;
+      position: sticky;
+      top: 24px;
+    }
+
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; color: #1F2937; }
+    .subtitle { font-size: 13px; color: #64748B; margin-bottom: 24px; }
+
+    /* Tab Navigation */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .tab {
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748B;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .tab.active {
+      color: #3B4C63;
+      border-bottom-color: #3B4C63;
+    }
+    .tab:hover {
+      color: #1F2937;
+    }
+
+    /* Editor Card */
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1F2937;
+    }
+    .form-group input[type="text"],
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #1F2937;
+      resize: vertical;
+    }
+    .form-group input[type="text"]:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+
+    /* Rich Text Editor */
+    .editor-toolbar {
+      display: flex;
+      gap: 4px;
+      padding: 8px;
+      background: #F8F9FA;
+      border-radius: 6px 6px 0 0;
+      border-bottom: 1px solid #E2E8F0;
+      flex-wrap: wrap;
+    }
+    .toolbar-btn {
+      padding: 6px 10px;
+      border: 1px solid #E2E8F0;
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+    .toolbar-btn:hover {
+      background: #E2E8F0;
+      border-color: #64748B;
+    }
+
+    .editor-content {
+      padding: 16px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 0 0 6px 6px;
+      min-height: 300px;
+      background: white;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #1F2937;
+      font-family: monospace;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Merge Tags Sidebar */
+    .sidebar h3 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1F2937;
+    }
+    .tag-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .tag-item {
+      padding: 8px;
+      margin-bottom: 6px;
+      background: #F0F4F8;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .tag-item:hover {
+      background: #E0E8F4;
+      border-color: #3B4C63;
+    }
+    .tag-code {
+      display: block;
+      font-family: monospace;
+      font-size: 11px;
+      color: #3B4C63;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .tag-desc {
+      display: block;
+      font-size: 11px;
+      color: #64748B;
+    }
+
+    /* Preview */
+    .preview-container {
+      background: #F8F9FA;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .preview-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+    .email-preview {
+      background: white;
+      padding: 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #1F2937;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: #3B4C63;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #2D3A4A;
+    }
+    .btn-secondary {
+      background: #E2E8F0;
+      color: #1F2937;
+    }
+    .btn-secondary:hover {
+      background: #D0D9E8;
+    }
+
+    /* Mobile */
+    @media (max-width: 1024px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .layout { padding: 16px; }
+      h1 { font-size: 20px; }
+      .tabs { flex-wrap: wrap; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="main">
+      <h1>Email Template: Order Confirmation</h1>
+      <p class="subtitle">Customize the email sent to customers when their order is confirmed.</p>
+
+      <div class="tabs">
+        <button class="tab active">Edit</button>
+        <button class="tab">Preview</button>
+        <button class="tab">Presets</button>
+      </div>
+
+      <!-- Edit Tab -->
+      <div class="card">
+        <div class="form-group">
+          <label>Email Subject Line</label>
+          <input type="text" value="Thank you for your order! #{{order_id}}" />
+        </div>
+
+        <div class="form-group">
+          <label>Email Body</label>
+          <div class="editor-toolbar">
+            <button class="toolbar-btn">B</button>
+            <button class="toolbar-btn">I</button>
+            <button class="toolbar-btn">U</button>
+            <span style="margin-left: 8px; color: #64748B; font-size: 12px;">|</span>
+            <button class="toolbar-btn">Insert Link</button>
+            <button class="toolbar-btn">Insert Image</button>
+          </div>
+          <div class="editor-content">Hi {{customer_name}},
+
+Thank you for shopping with {{shop_name}}! 🎉
+
+We've received your order and it's being prepared.
+
+Order Details:
+Order ID: {{order_id}}
+Date: {{order_date}}
+Total: {{order_total}}
+
+Items:
+{{items_list}}
+
+Tracking Info:
+Track your shipment here: {{tracking_link}}
+
+Questions? Reply to this email or visit your account.
+
+Cheers,
+{{shop_name}} Team</div>
+        </div>
+
+        <div class="preview-container">
+          <div class="preview-title">Live Preview</div>
+          <div class="email-preview">
+            <strong style="font-size: 14px;">Subject:</strong> Thank you for your order! #12345<br/><br/>
+            Hi Sarah,<br/><br/>
+            Thank you for shopping with <strong>Ceramic Co</strong>! 🎉<br/><br/>
+            We've received your order and it's being prepared.<br/><br/>
+            <strong>Order Details:</strong><br/>
+            Order ID: 12345<br/>
+            Date: May 18, 2026<br/>
+            Total: $67.50<br/><br/>
+            <strong>Items:</strong><br/>
+            • Handmade Mug (Qty: 2) — $24.99 ea<br/>
+            • Ceramic Plate (Qty: 1) — $18.00<br/><br/>
+            <strong>Tracking Info:</strong><br/>
+            <a href="#" style="color: #3B4C63; text-decoration: underline;">Track your shipment here</a><br/><br/>
+            Questions? Reply to this email or visit your account.<br/><br/>
+            Cheers,<br/>
+            Ceramic Co Team
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-secondary">Restore Default</button>
+          <button class="btn btn-primary">Save Template</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h3>Merge Tags</h3>
+      <p style="font-size: 12px; color: #64748B; margin-bottom: 12px;">Click any tag to insert it:</p>
+      
+      <ul class="tag-list">
+        <li class="tag-item">
+          <span class="tag-code">{{customer_name}}</span>
+          <span class="tag-desc">Buyer's first name</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{customer_email}}</span>
+          <span class="tag-desc">Buyer's email</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{shop_name}}</span>
+          <span class="tag-desc">Your shop name</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{order_id}}</span>
+          <span class="tag-desc">Order number</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{order_date}}</span>
+          <span class="tag-desc">Purchase date</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{order_total}}</span>
+          <span class="tag-desc">Order amount</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{items_list}}</span>
+          <span class="tag-desc">Product list with qty</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{tracking_link}}</span>
+          <span class="tag-desc">Tracking page URL</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{shipping_address}}</span>
+          <span class="tag-desc">Delivery address</span>
+        </li>
+        <li class="tag-item">
+          <span class="tag-code">{{shop_email}}</span>
+          <span class="tag-desc">Your shop email</span>
+        </li>
+      </ul>
+
+      <hr style="margin: 16px 0; border: none; border-top: 1px solid #E2E8F0;">
+
+      <h3>Rules</h3>
+      <p style="font-size: 12px; color: #64748B;">
+        • Wrap tags in <code style="background: #F0F4F8; padding: 2px 4px; border-radius: 2px;">{{ }}</code><br/>
+        • Never edit tag names<br/>
+        • HTML allowed (use sparingly)<br/>
+        • Max 2000 characters
+      </p>
+    </div>
+  </div>
+</body>
+</html>
