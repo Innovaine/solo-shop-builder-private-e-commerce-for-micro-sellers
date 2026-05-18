@@ -66,3 +66,76 @@ _Pre-SSH: warehouse pushed to GitHub as commit `862cd15` so the server's `git pu
 sleep 30 && kill -0 $(cat /tmp/day65-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-18T16:50:19.007Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `afa3a63` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3012ms)
+```
+tail -50 /tmp/day65-build.log
+```
+STDOUT:
+```
+#18 CACHED
+
+#19 [runner  7/14] RUN mkdir .next
+#19 CACHED
+
+#20 [runner  1/14] WORKDIR /app
+#20 CACHED
+
+#21 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#21 CACHED
+
+#22 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#22 CACHED
+
+#23 [runner  6/14] COPY --from=builder /app/public ./public
+#23 CACHED
+
+#24 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#24 CACHED
+
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.5s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.4s done
+#30 exporting manifest sha256:59365c649c6cb9a52968a36c0b241e931a7adefff71fad4751cbf7a62b58f68a done
+#30 exporting config sha256:8c4c86a8101f0d451d38c4cf6a480de8516dadd9efbbec36647cfc312d27133c done
+#30 exporting attestation manifest sha256:9c6f45453977900ea6d00122f11cd244e9f830c1874a4c98e8377abc72395f87 0.0s done
+#30 exporting manifest list sha256:0c761ecc23c7cebb64e0f2e9b810033b42974f9eb7d1ca374177e0b1a34f62c5 done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#30 DONE 2.1s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-18T16-50-18-www.soloshopbox.com-tail--50-tmp-day65-build.log-1.log`](server-runs/2026-05-18T16-50-18-www.soloshopbox.com-tail--50-tmp-day65-build.log-1.log)
+
+## 2026-05-18T16:50:44.278Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2790ms)
+```
+kill -0 $(cat /tmp/day65-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-18T16-50-44-www.soloshopbox.com-kill--0-cat-tmp-day65-build.pid-2-dev-nu-1.log`](server-runs/2026-05-18T16-50-44-www.soloshopbox.com-kill--0-cat-tmp-day65-build.pid-2-dev-nu-1.log)
