@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Update Order Status — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .container { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+    
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .breadcrumb { font-size: 13px; color: #64748B; margin-bottom: 32px; }
+    
+    .modal {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    
+    .modal-header {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+    }
+    
+    .modal-close {
+      font-size: 24px;
+      cursor: pointer;
+      color: #64748B;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    
+    .modal-body {
+      padding: 32px;
+    }
+    
+    /* SELECTION SUMMARY */
+    .selection-summary {
+      background: #D1FAE5;
+      border: 1px solid #10B981;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .selection-summary strong {
+      color: #065F46;
+      font-size: 15px;
+    }
+    
+    .selection-summary a {
+      color: #059669;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    /* FORM SECTION */
+    .form-section {
+      margin-bottom: 28px;
+    }
+    
+    .form-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-field {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-family: inherit;
+      background: white;
+      color: #1F2937;
+      cursor: pointer;
+    }
+    
+    select:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+    
+    .form-hint {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 6px;
+    }
+    
+    /* STATUS OPTIONS */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    
+    .status-option {
+      background: white;
+      border: 2px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .status-option:hover {
+      border-color: #3B4C63;
+      background: #F9FAFB;
+    }
+    
+    .status-option.selected {
+      border-color: #10B981;
+      background: #F0FDF4;
+    }
+    
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #E2E8F0;
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    
+    .status-option.selected .checkbox {
+      background: #10B981;
+      border-color: #10B981;
+    }
+    
+    .checkbox::after {
+      content: '✓';
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+    }
+    
+    .status-option.selected .checkbox::after {
+      opacity: 1;
+    }
+    
+    .status-label {
+      flex: 1;
+    }
+    
+    .status-label h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 2px;
+    }
+    
+    .status-label p {
+      font-size: 12px;
+      color: #64748B;
+    }
+    
+    /* NOTIFICATION SECTION */
+    .notify-section {
+      background: #F9FAFB;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 28px;
+    }
+    
+    .checkbox-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #1F2937;
+      cursor: pointer;
+    }
+    
+    .checkbox-inline input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      margin: 0;
+      border: 2px solid #E2E8F0;
+      border-radius: 4px;
+    }
+    
+    .checkbox-inline input[type="checkbox"]:checked {
+      background: #10B981;
+      border-color: #10B981;
+    }
+    
+    .divider {
+      border-top: 1px solid #E2E8F0;
+      margin: 28px 0;
+    }
+    
+    /* PREVIEW SECTION */
+    .preview-section {
+      background: #F9FAFB;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 28px;
+    }
+    
+    .preview-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    
+    .preview-list {
+      list-style: none;
+      font-size: 13px;
+      color: #64748B;
+    }
+    
+    .preview-list li {
+      padding: 8px 0;
+      display: flex;
+      gap: 8px;
+    }
+    
+    .preview-list li::before {
+      content: '→';
+      color: #10B981;
+      font-weight: 600;
+      min-width: 20px;
+    }
+    
+    /* BUTTONS */
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    
+    button {
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    .btn-primary {
+      background: #10B981;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #059669;
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+    }
+    
+    .btn-secondary:hover {
+      background: #F9FAFB;
+    }
+    
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .modal-body { padding: 20px; }
+      .status-grid { grid-template-columns: 1fr; }
+      .selection-summary { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .button-group { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bulk Update Order Status</h1>
+    <p class="breadcrumb">Dashboard → Orders → Bulk Update</p>
+
+    <div class="modal">
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h2>Update Status for Multiple Orders</h2>
+        <button class="modal-close">✕</button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+        <!-- SELECTION -->
+        <div class="selection-summary">
+          <strong>✓ 8 orders selected</strong>
+          <a href="#">Clear selection</a>
+        </div>
+
+        <!-- CURRENT STATUS -->
+        <div class="form-section">
+          <h3>Current Status Breakdown</h3>
+          <p style="font-size: 13px; color: #64748B; margin-bottom: 12px;">
+            Your selected orders have different statuses. Here's the breakdown:
+          </p>
+          <ul style="list-style: none; font-size: 13px; color: #64748B; margin-left: 0;">
+            <li style="padding: 8px 0;">
+              <strong style="color: #1F2937;">3 orders</strong> — Pending
+            </li>
+            <li style="padding: 8px 0;">
+              <strong style="color: #1F2937;">4 orders</strong> — Paid
+            </li>
+            <li style="padding: 8px 0;">
+              <strong style="color: #1F2937;">1 order</strong> — In Progress
+            </li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- STATUS SELECTION -->
+        <div class="form-section">
+          <h3>New Status for All Selected Orders</h3>
+          <p style="font-size: 13px; color: #64748B; margin-bottom: 16px;">
+            Choose a status to apply to all 8 orders. This cannot be undone, but you can run bulk updates again.
+          </p>
+
+          <div class="status-grid">
+            <!-- PAID -->
+            <div class="status-option selected">
+              <div class="checkbox"></div>
+              <div class="status-label">
+                <h4>Paid</h4>
+                <p>Payment received & verified</p>
+              </div>
+            </div>
+
+            <!-- IN PROGRESS -->
+            <div class="status-option">
+              <div class="checkbox"></div>
+              <div class="status-label">
+                <h4>In Progress</h4>
+                <p>Processing / preparing for shipment</p>
+              </div>
+            </div>
+
+            <!-- SHIPPED -->
+            <div class="status-option">
+              <div class="checkbox"></div>
+              <div class="status-label">
+                <h4>Shipped</h4>
+                <p>Order sent to customer</p>
+              </div>
+            </div>
+
+            <!-- DELIVERED -->
+            <div class="status-option">
+              <div class="checkbox"></div>
+              <div class="status-label">
+                <h4>Delivered</h4>
+                <p>Confirmed receipt by customer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOTIFICATION -->
+        <div class="notify-section">
+          <label class="checkbox-inline">
+            <input type="checkbox" checked>
+            <span>Notify customers of status change via email</span>
+          </label>
+          <p style="font-size: 12px; color: #64748B; margin-top: 8px;">
+            8 customers will receive an email with their updated order status.
+          </p>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="preview-section">
+          <h3>What Will Happen</h3>
+          <ul class="preview-list">
+            <li>All 8 selected orders will be moved to <strong>"Paid"</strong> status</li>
+            <li>Customers will receive status update emails automatically</li>
+            <li>Orders will appear under the "Paid" filter on your dashboard</li>
+            <li>Your analytics will update to reflect new statuses</li>
+            <li>This action is logged in your activity history (audit trail)</li>
+          </ul>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="button-group">
+          <button class="btn-primary">Update 8 Orders</button>
+          <button class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Status Toggle — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #FAF9F7;
+      color: #1F2937;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #1F2937;
+      line-height: 1.2;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      color: #64748B;
+      margin-top: 8px;
+    }
+
+    .page-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    /* LEFT SIDE: SETTINGS CARD */
+    .settings-card {
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      padding: 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .settings-card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 16px;
+    }
+
+    .settings-card p {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* TOGGLE COMPONENT */
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .toggle-left {
+      flex: 1;
+    }
+
+    .toggle-left h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+
+    .toggle-left p {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-flex;
+      width: 56px;
+      height: 32px;
+      background-color: #E2E8F0;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: none;
+      padding: 3px;
+    }
+
+    .toggle-switch.active {
+      background-color: #10B981;
+    }
+
+    .toggle-switch .slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 26px;
+      height: 26px;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-switch.active .slider {
+      transform: translateX(24px);
+    }
+
+    /* INFO BOXES */
+    .info-box {
+      background-color: #FFFFFF;
+      border-left: 4px solid #F59E0B;
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+
+    .info-box h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+
+    .info-box p {
+      font-size: 13px;
+      color: #64748B;
+      line-height: 1.6;
+    }
+
+    .info-box.active {
+      border-left-color: #10B981;
+      background-color: #F0FDF4;
+    }
+
+    .info-box.active h4 {
+      color: #047857;
+    }
+
+    /* RIGHT SIDE: PREVIEW */
+    .preview-section {
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      padding: 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .preview-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 24px;
+    }
+
+    .storefront-preview {
+      background: linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%);
+      color: #FFFFFF;
+      padding: 24px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+    }
+
+    .storefront-preview h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .storefront-preview p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+
+    .shop-status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #10B981;
+      color: #FFFFFF;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .shop-status-badge.paused {
+      background-color: #F59E0B;
+    }
+
+    .closed-preview {
+      background: #F3F4F6;
+      color: #1F2937;
+      padding: 24px;
+      border-radius: 6px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .closed-preview h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .closed-preview p {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 16px;
+    }
+
+    .closed-message {
+      background-color: #FEF3C7;
+      border: 1px solid #FBBF24;
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 13px;
+      color: #78350F;
+      line-height: 1.5;
+    }
+
+    .divider {
+      border-top: 1px solid #E2E8F0;
+      margin: 24px 0;
+    }
+
+    .timeline {
+      background-color: #F9FAFB;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #3B4C63;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .button.primary {
+      background-color: #10B981;
+      color: #FFFFFF;
+    }
+
+    .button.primary:hover {
+      background-color: #059669;
+    }
+
+    .button.secondary {
+      background-color: #E2E8F0;
+      color: #1F2937;
+      border: 1px solid #CBD5E1;
+    }
+
+    .button.secondary:hover {
+      background-color: #F1F5F9;
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 1024px) {
+      .page-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .settings-card,
+      .preview-section {
+        padding: 20px;
+      }
+
+      .toggle-switch {
+        width: 48px;
+        height: 28px;
+      }
+
+      .toggle-switch .slider {
+        width: 22px;
+        height: 22px;
+      }
+
+      .toggle-switch.active .slider {
+        transform: translateX(20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Shop Status</h1>
+        <p class="breadcrumb">Settings → Shop Status</p>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <!-- LEFT: SETTINGS -->
+      <div class="settings-card">
+        <h2>Shop Visibility</h2>
+        <p>Control whether your shop is open to customers or temporarily paused. When paused, customers cannot browse products or place orders.</p>
+
+        <!-- TOGGLE -->
+        <div class="toggle-row">
+          <div class="toggle-left">
+            <h3>Shop Status</h3>
+            <p>Currently <strong>Active</strong></p>
+          </div>
+          <button class="toggle-switch active">
+            <span class="slider"></span>
+          </button>
+        </div>
+
+        <div class="info-box active">
+          <h4>✓ Shop is active</h4>
+          <p>Your storefront is visible to customers. New orders can be placed at any time.</p>
+        </div>
+
+        <h2 style="margin-top: 32px;">When to Pause Your Shop</h2>
+        <p>Pause your shop if you need time to:</p>
+        <ul style="margin-left: 16px; color: #64748B; font-size: 14px;">
+          <li>Restock products</li>
+          <li>Take a break from orders</li>
+          <li>Update product information or pricing</li>
+          <li>Handle an unexpected issue</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2>Recent Activity</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <span><strong>Shop activated</strong> — Today at 9:42 AM</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <span><strong>Shop paused</strong> — Yesterday at 3:15 PM</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <span><strong>Shop activated</strong> — May 15 at 2:30 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: PREVIEW -->
+      <div class="preview-section">
+        <h2>Shop Storefront Preview</h2>
+
+        <div class="storefront-preview">
+          <h3>Your Handmade Shop</h3>
+          <p>Beautiful, unique items crafted with care.</p>
+          <span class="shop-status-badge">Active</span>
+        </div>
+
+        <p style="font-size: 14px; color: #64748B; margin-bottom: 24px;">
+          This is what customers see when they visit your shop link. When you pause your shop, this message replaces the product list.
+        </p>
+
+        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">When Shop is Paused</h3>
+
+        <div class="closed-preview">
+          <h3>Your Handmade Shop</h3>
+          <p>Temporarily paused for restocking</p>
+          <div class="closed-message">
+            This shop is temporarily closed. We'll be back soon! Check back later for new items.
+          </div>
+        </div>
+
+        <p style="font-size: 13px; color: #64748B; margin-bottom: 16px;">
+          You can customize this pause message in your shop settings. Customers cannot see products or place orders while your shop is paused.
+        </p>
+
+        <div class="divider"></div>
+
+        <div class="buttons">
+          <button class="button primary">Save Changes</button>
+          <button class="button secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

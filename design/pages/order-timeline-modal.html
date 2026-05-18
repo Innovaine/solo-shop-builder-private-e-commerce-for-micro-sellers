@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Timeline — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .container { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+    
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .breadcrumb { font-size: 13px; color: #64748B; margin-bottom: 32px; }
+    
+    .modal {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    
+    .modal-header {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+    }
+    
+    .modal-close {
+      font-size: 24px;
+      cursor: pointer;
+      color: #64748B;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    
+    .modal-body {
+      padding: 32px;
+    }
+    
+    /* ORDER SUMMARY */
+    .order-summary {
+      background: #F9FAFB;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    
+    .summary-item h3 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #64748B;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    
+    .summary-item p {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+    }
+    
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #10B981 0%, #94A3B8 100%);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: -18px;
+      top: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 3px solid white;
+      box-shadow: 0 0 0 1px #E2E8F0;
+    }
+    
+    .timeline-item.pending .timeline-dot {
+      background: #94A3B8;
+    }
+    
+    .timeline-item.cancelled .timeline-dot {
+      background: #F43F5E;
+    }
+    
+    .timeline-content h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    
+    .timeline-content .time {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+    
+    .timeline-content p {
+      font-size: 13px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+    
+    .timeline-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #D1FAE5;
+      color: #065F46;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    
+    .timeline-badge.warning {
+      background: #FEF3C7;
+      color: #78350F;
+    }
+    
+    /* STATE SECTION */
+    .state-section {
+      background: #F9FAFB;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    
+    .state-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    
+    .state-section p {
+      font-size: 13px;
+      color: #64748B;
+      line-height: 1.6;
+    }
+    
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+      margin-top: 12px;
+    }
+    
+    .indicator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+    
+    .status-indicator.pending .indicator-dot {
+      background: #F59E0B;
+    }
+    
+    /* DIVIDER */
+    .divider {
+      border-top: 1px solid #E2E8F0;
+      margin: 32px 0;
+    }
+    
+    /* ACTIONS */
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    
+    button {
+      border: none;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    .btn-primary {
+      background: #10B981;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #059669;
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+    }
+    
+    .btn-secondary:hover {
+      background: #F9FAFB;
+    }
+    
+    .btn-danger {
+      background: white;
+      color: #F43F5E;
+      border: 1px solid #FECACA;
+    }
+    
+    .btn-danger:hover {
+      background: #FEF2F2;
+    }
+    
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .modal-body { padding: 20px; }
+      .order-summary { grid-template-columns: 1fr; gap: 16px; }
+      .action-buttons { flex-direction: column; }
+      button { width: 100%; }
+      .timeline { padding-left: 24px; }
+      .timeline-dot { left: -14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Order Timeline Detail</h1>
+    <p class="breadcrumb">Dashboard → Orders → #ORD-2024-001562 → Timeline</p>
+
+    <div class="modal">
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h2>Order #ORD-2024-001562 Timeline</h2>
+        <button class="modal-close">✕</button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+        <!-- SUMMARY -->
+        <div class="order-summary">
+          <div class="summary-item">
+            <h3>Customer</h3>
+            <p>Sarah Chen</p>
+          </div>
+          <div class="summary-item">
+            <h3>Order Date</h3>
+            <p>May 12, 2024</p>
+          </div>
+          <div class="summary-item">
+            <h3>Current Status</h3>
+            <p style="color: #059669;">Shipped</p>
+          </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <h3 style="font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 20px;">Full Activity Log</h3>
+
+        <div class="timeline">
+          <!-- PAYMENT RECEIVED -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>✓ Payment Received</h4>
+              <p class="time">May 12, 2024 at 2:34 PM</p>
+              <p>Stripe payment #pi_1234567890 captured successfully. Amount: $125.99</p>
+              <span class="timeline-badge">Automatic</span>
+            </div>
+          </div>
+
+          <!-- ORDER CREATED -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Order Created</h4>
+              <p class="time">May 12, 2024 at 2:34 PM</p>
+              <p>Customer completed checkout. Order ID assigned. Confirmation email sent to sarah.chen@email.com</p>
+              <span class="timeline-badge">Automatic</span>
+            </div>
+          </div>
+
+          <!-- MARKED PAID -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Marked as Paid</h4>
+              <p class="time">May 12, 2024 at 3:45 PM</p>
+              <p>You marked this order as paid. Status updated in customer tracking link.</p>
+              <span class="timeline-badge">Manual</span>
+            </div>
+          </div>
+
+          <!-- IN PROGRESS -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Order In Progress</h4>
+              <p class="time">May 13, 2024 at 10:15 AM</p>
+              <p>You moved this order to "In Progress." Customer notification email sent.</p>
+              <span class="timeline-badge">Manual</span>
+            </div>
+          </div>
+
+          <!-- SHIPPED -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>✓ Shipped</h4>
+              <p class="time">May 14, 2024 at 4:22 PM</p>
+              <p>You marked order as shipped. Tracking ID: FDX987654321. Tracking link sent to customer.</p>
+              <span class="timeline-badge">Manual</span>
+            </div>
+          </div>
+
+          <!-- PENDING -->
+          <div class="timeline-item pending">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Awaiting Delivery</h4>
+              <p class="time">Last updated May 14, 2024</p>
+              <p>Tracking shows package in transit. Expected delivery: May 17, 2024.</p>
+              <span class="timeline-badge warning">Pending</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- CURRENT STATE -->
+        <div class="state-section">
+          <h3>Current Order State</h3>
+          <p>Status: <strong>Shipped</strong></p>
+          <div class="status-indicator">
+            <span class="indicator-dot"></span>
+            <span>Awaiting delivery confirmation</span>
+          </div>
+          <p style="margin-top: 12px;">
+            Last action was marking this order as shipped on May 14. FedEx tracking shows on-time delivery. You can:
+          </p>
+          <ul style="margin-left: 16px; margin-top: 12px; color: #64748B; font-size: 13px; line-height: 1.8;">
+            <li>Mark as delivered once package arrives</li>
+            <li>Change or update tracking information</li>
+            <li>Issue a refund if needed</li>
+            <li>Message the customer</li>
+          </ul>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <h3 style="font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 16px;">Actions</h3>
+        <div class="action-buttons">
+          <button class="btn-primary">Mark as Delivered</button>
+          <button class="btn-secondary">Update Tracking</button>
+          <button class="btn-danger">Issue Refund</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

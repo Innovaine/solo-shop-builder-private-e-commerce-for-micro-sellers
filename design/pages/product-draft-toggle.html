@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Publish Status — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-left a { color: #3B4C63; text-decoration: none; font-size: 14px; }
+    .header h1 { font-size: 24px; font-weight: 700; }
+    .header-right { display: flex; gap: 12px; align-items: center; }
+    
+    .container { max-width: 1200px; margin: 24px auto; padding: 0 24px; }
+    
+    h2 { font-size: 18px; font-weight: 600; margin: 24px 0 16px; }
+    h3 { font-size: 16px; font-weight: 600; color: #1F2937; margin: 12px 0 8px; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    
+    /* STATUS BANNER */
+    .status-banner { 
+      background: #FEF3C7; 
+      border: 1px solid #FBBF24; 
+      border-radius: 8px; 
+      padding: 16px 20px; 
+      margin-bottom: 24px; 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      font-size: 14px; 
+      color: #78350F;
+    }
+    
+    .status-banner.published {
+      background: #D1FAE5;
+      border-color: #10B981;
+      color: #065F46;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #F59E0B;
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .status-badge.published {
+      background-color: #10B981;
+    }
+    
+    .form-field { margin-bottom: 20px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, textarea, select { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    /* PUBLISH SECTION */
+    .publish-section {
+      background: #F9FAFB;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+    
+    .publish-section h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+    
+    .publish-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .option-item {
+      background: white;
+      border: 2px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .option-item:hover {
+      border-color: #3B4C63;
+      background: #F9FAFB;
+    }
+    
+    .option-item.selected {
+      border-color: #10B981;
+      background: #F0FDF4;
+    }
+    
+    .radio-custom {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #E2E8F0;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      background: white;
+      transition: all 0.2s;
+    }
+    
+    .option-item.selected .radio-custom {
+      border-color: #10B981;
+      background: #10B981;
+    }
+    
+    .radio-custom::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+    
+    .option-item.selected .radio-custom::after {
+      opacity: 1;
+    }
+    
+    .option-content h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1F2937;
+      margin: 0 0 4px;
+    }
+    
+    .option-content p {
+      font-size: 13px;
+      color: #64748B;
+      margin: 0;
+    }
+    
+    /* PREVIEW SECTION */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    
+    .preview-box {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 20px;
+    }
+    
+    .preview-box h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+    }
+    
+    .preview-storefront {
+      background: #F9FAFB;
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #64748B;
+    }
+    
+    .product-preview {
+      padding: 12px;
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+    }
+    
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #E2E8F0;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    
+    .product-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    
+    .product-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: #3B4C63;
+      margin-bottom: 8px;
+    }
+    
+    .product-status {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #FEF3C7;
+      color: #78350F;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    /* BUTTON STYLES */
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    
+    .button-group { display: flex; gap: 12px; margin-top: 32px; }
+    
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .header-left, .header-right { width: 100%; justify-content: space-between; }
+      .container { padding: 0 16px; }
+      .preview-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <a href="#">← Back to Products</a>
+      <h1>Handmade Ceramic Bowl</h1>
+    </div>
+    <div class="header-right">
+      <span class="status-badge">Draft</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- STATUS MESSAGE -->
+    <div class="status-banner">
+      ⚠️ This product is currently <strong>in draft</strong>. Customers cannot see it in your shop storefront until you publish it.
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="card">
+      <h2>Product Details</h2>
+      <div class="form-field">
+        <label>Product Title</label>
+        <input type="text" value="Handmade Ceramic Bowl (Large)" disabled style="background: #F3F4F6; color: #94A3B8;">
+      </div>
+      <div class="form-field">
+        <label>Price</label>
+        <input type="text" value="$65.00" disabled style="background: #F3F4F6; color: #94A3B8;">
+      </div>
+      <div class="form-field">
+        <label>Stock</label>
+        <input type="text" value="12 in stock" disabled style="background: #F3F4F6; color: #94A3B8;">
+      </div>
+    </div>
+
+    <!-- PUBLISH SECTION -->
+    <div class="card">
+      <h2>Publish Status</h2>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 20px;">
+        Choose whether this product is visible to customers or kept in draft for later.
+      </p>
+
+      <div class="publish-section">
+        <div class="publish-options">
+          
+          <!-- DRAFT OPTION -->
+          <div class="option-item selected">
+            <div class="radio-custom"></div>
+            <div class="option-content">
+              <h4>📋 Draft</h4>
+              <p>Only you can see this product. It won't appear in your shop storefront. Publish it whenever you're ready.</p>
+            </div>
+          </div>
+
+          <!-- PUBLISHED OPTION -->
+          <div class="option-item">
+            <div class="radio-custom"></div>
+            <div class="option-content">
+              <h4>✓ Published</h4>
+              <p>Visible to all customers in your shop. Appears in search results and category filters. Customers can purchase.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <h3 style="margin-top: 28px;">Preview</h3>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">How this product will appear to customers when published</p>
+
+      <div class="preview-grid">
+        <!-- CURRENT STATE (DRAFT) -->
+        <div class="preview-box">
+          <h4>Current (Draft)</h4>
+          <div class="preview-storefront">
+            <strong>Your shop storefront</strong>
+            <p style="margin-top: 8px;">Product does not appear in listings or search.</p>
+          </div>
+        </div>
+
+        <!-- WHEN PUBLISHED -->
+        <div class="preview-box">
+          <h4>When Published</h4>
+          <div class="product-preview">
+            <div class="product-image"></div>
+            <div class="product-title">Handmade Ceramic Bowl</div>
+            <div class="product-price">$65.00</div>
+            <button class="btn-primary" style="width: 100%; padding: 8px;">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="card">
+      <h2>What's Next?</h2>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 12px;">
+        You can edit this product anytime, even after publishing. Publishing is quick—no setup needed.
+      </p>
+      <ul style="list-style-position: inside; color: #64748B; font-size: 14px; line-height: 1.8; margin-left: 12px;">
+        <li>Edit product info: title, price, description, images, variants</li>
+        <li>Add or remove product anytime without losing data</li>
+        <li>Track inventory and orders separately per product</li>
+        <li>Run promotions or discount codes per product</li>
+      </ul>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="button-group">
+      <button class="btn-primary">Publish This Product</button>
+      <button class="btn-secondary">Keep as Draft</button>
+    </div>
+  </div>
+</body>
+</html>

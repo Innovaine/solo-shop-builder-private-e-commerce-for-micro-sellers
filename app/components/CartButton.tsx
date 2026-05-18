@@ -174,20 +174,11 @@ export function CartButton({ shopSlug }: { shopSlug?: string }) {
 
               {/* Actions */}
               <div className="space-y-2 pt-2">
-                {shopSlug && cart.shopSlug === shopSlug && (
-                  <Link href={`/shop/${shopSlug}/checkout`}>
-                    <Button variant="primary" size="lg" className="w-full">
-                      Proceed to Checkout
-                    </Button>
-                  </Link>
-                )}
-                {(!shopSlug || cart.shopSlug !== shopSlug) && cart.shopSlug && (
-                  <Link href={`/shop/${cart.shopSlug}/checkout`}>
-                    <Button variant="primary" size="lg" className="w-full">
-                      Proceed to Checkout
-                    </Button>
-                  </Link>
-                )}
+                <Link href="/checkout">
+                  <Button variant="primary" size="lg" className="w-full">
+                    Proceed to Checkout
+                  </Button>
+                </Link>
                 <Button
                   variant="secondary"
                   size="md"

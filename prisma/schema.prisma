@@ -51,6 +51,9 @@ model Shop {
   // FR-35: Email template customization
   emailTemplateBody String?  @db.Text // Custom order confirmation email body
   
+  // FR-152: Shop status toggle (active/paused)
+  status            String   @default("ACTIVE") // ACTIVE or PAUSED
+  
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   
@@ -71,6 +74,7 @@ model Product {
   imageUrl    String?
   category    String?  // Handmade, Vintage, Supplies, Other
   stock       Int      @default(0)
+  status      String   @default("PUBLISHED") // FR-153: PUBLISHED or DRAFT
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   
@@ -153,6 +157,19 @@ model OrderItem {
   
   @@index([orderId])
   @@index([productId])
+}
+
+// OrderHistory - status change audit trail (FR-154)
+model OrderHistory {
+  id          String   @id @default(uuid())
+  orderId     String
+  statusFrom  String?  // Previous status (null if first status)
+  statusTo    String   // New status
+  note        String?  @db.Text // Optional note from seller
+  createdAt   DateTime @default(now())
+  
+  @@index([orderId])
+  @@index([createdAt])
 }
 
 // Webhook - Stripe event audit trail (NFR-9)

@@ -21,6 +21,49 @@ export default function SettingsPage() {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
   const [deleting, setDeleting] = useState(false)
+  const [shopStatus, setShopStatus] = useState<'ACTIVE' | 'PAUSED'>('ACTIVE')
+  const [statusLoading, setStatusLoading] = useState(false)
+  const [statusMessage, setStatusMessage] = useState('')
+
+  // Load shop status on mount
+  useEffect(() => {
+    fetch('/api/shops')
+      .then(res => res.json())
+      .then(data => {
+        if (data.shop?.status) {
+          setShopStatus(data.shop.status)
+        }
+      })
+      .catch(err => console.error('Failed to load shop status:', err))
+  }, [])
+
+  const handleStatusToggle = async () => {
+    setStatusLoading(true)
+    setStatusMessage('')
+    
+    const newStatus = shopStatus === 'ACTIVE' ? 'PAUSED' : 'ACTIVE'
+    
+    try {
+      const response = await fetch('/api/shops/status', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      })
+      
+      const data = await response.json()
+      
+      if (!response.ok) {
+        setStatusMessage(data.error || 'Failed to update shop status')
+      } else {
+        setShopStatus(newStatus)
+        setStatusMessage(`Shop is now ${newStatus.toLowerCase()}`)
+      }
+    } catch {
+      setStatusMessage('Network error. Please try again.')
+    } finally {
+      setStatusLoading(false)
+    }
+  }
 
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -90,6 +133,42 @@ export default function SettingsPage() {
         </div>
 
         <h1 className="text-3xl font-bold text-charcoal mb-8">Account Settings</h1>
+
+        {/* FR-152: Shop Status Toggle */}
+        <Card className="mb-8">
+          <div className="p-6">
+            <h2 className="text-xl font-semibold text-charcoal mb-4">Shop Status</h2>
+            <p className="text-sm text-slate mb-6">
+              Pause your shop to temporarily hide it from customers. You can reactivate it anytime.
+            </p>
+
+            {statusMessage && (
+              <div className={`border rounded-md p-4 mb-6 text-sm ${
+                statusMessage.includes('error') || statusMessage.includes('Failed')
+                  ? 'bg-rose-50 border-rose-200 text-rose-700'
+                  : 'bg-sage-50 border-sage-200 text-sage-700'
+              }`}>
+                {statusMessage}
+              </div>
+            )}
+
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <span className="text-sm font-semibold text-charcoal">
+                  Status: <span className={shopStatus === 'ACTIVE' ? 'text-sage' : 'text-amber'}>{shopStatus}</span>
+                </span>
+              </div>
+              <Button
+                variant={shopStatus === 'ACTIVE' ? 'secondary' : 'primary'}
+                size="md"
+                onClick={handleStatusToggle}
+                loading={statusLoading}
+              >
+                {shopStatus === 'ACTIVE' ? 'Pause Shop' : 'Activate Shop'}
+              </Button>
+            </div>
+          </div>
+        </Card>
 
         <Card>
           <div className="p-6">

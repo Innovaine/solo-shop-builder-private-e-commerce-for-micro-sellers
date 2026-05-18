@@ -267,6 +267,16 @@
 <body>
   <aside class="sidebar" aria-label="Main navigation">
     <div class="logo">Solo Shop</div>
+    
+    <!-- SHOP STATUS INDICATOR -->
+    <div style="background: #D1FAE5; border: 1px solid #10B981; border-radius: 6px; padding: 12px; margin-bottom: 24px; font-size: 12px; color: #065F46; font-weight: 500;">
+      <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 8px;">
+        <span style="font-size: 16px;">✓</span>
+        <strong>Shop Active</strong>
+      </div>
+      <a href="shop-pause-toggle.html" style="color: #059669; text-decoration: underline; font-size: 11px;">Pause shop</a>
+    </div>
+    
     <nav class="nav-menu" aria-label="Seller dashboard menu">
       <li class="nav-item">
         <a href="#" class="nav-link active">Orders</a>
@@ -356,45 +366,63 @@
       </div>
     </section>
 
+
     <!-- Orders Section -->
     <section class="section">
       <h2 class="section-title">Recent Orders</h2>
+      
+      <!-- BULK ACTIONS BAR -->
+      <div style="background: white; border: 1px solid #E2E8F0; border-bottom: none; border-radius: 8px 8px 0 0; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #64748B;">
+          <input type="checkbox" style="width: 18px; height: 18px;">
+          <span>Select all on this page</span>
+        </label>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span style="font-size: 12px; color: #64748B;">0 selected</span>
+          <a href="bulk-order-status.html" style="padding: 6px 12px; background: #10B981; color: white; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600; cursor: pointer; opacity: 0.5; pointer-events: none;">Bulk Update</a>
+        </div>
+      </div>
+      
       <!-- With orders state -->
-      <div style="background: white; border-radius: 8px; border: 1px solid #E2E8F0; overflow: hidden;">
+      <div style="background: white; border-radius: 0 0 8px 8px; border: 1px solid #E2E8F0; border-top: none; overflow: hidden;">
         <table style="width: 100%; border-collapse: collapse;">
           <thead style="background: #F9FAFB; border-bottom: 1px solid #E5E7EB;">
             <tr>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937; width: 30px;"><input type="checkbox" style="width: 18px; height: 18px;"></th>
               <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Order ID</th>
               <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Customer</th>
               <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Total</th>
               <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Status</th>
-              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Refund</th>
+              <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Timeline</th>
               <th style="padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937;">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px;"><input type="checkbox" style="width: 18px; height: 18px;"></td>
               <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #3B4C63;">#ORD-001</td>
               <td style="padding: 12px 16px; font-size: 14px;">Jane Smith</td>
               <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">$145.00</td>
               <td style="padding: 8px 16px; font-size: 14px;"><select style="padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 13px; background: white; cursor: pointer; transition: all 0.2s ease;" onchange="this.style.borderColor='#3B4C63'" onfocus="this.style.boxShadow='0 0 0 3px rgba(59, 76, 99, 0.1)'" onblur="this.style.boxShadow=''"><option value="pending">Pending</option><option value="paid">Paid</option><option value="in-progress">In Progress</option><option value="shipped" selected>Shipped</option><option value="delivered">Delivered</option></select></td>
-              <td style="padding: 12px 16px; font-size: 13px; color: #64748B;">—</td>
+              <td style="padding: 12px 16px;"><a href="order-timeline-modal.html" style="font-size: 12px; color: #3B4C63; text-decoration: underline; font-weight: 600;">View</a></td>
               <td style="padding: 12px 16px;"><button style="padding: 6px 12px; border: 1px solid #E2E8F0; background: white; border-radius: 4px; font-size: 13px; color: #3B4C63; cursor: pointer; font-weight: 600; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='#F9FAFB'; this.style.borderColor='#3B4C63';" onmouseout="this.style.backgroundColor='white'; this.style.borderColor='#E2E8F0';">Refund</button></td>
             </tr>
             <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px;"><input type="checkbox" style="width: 18px; height: 18px;"></td>
               <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #3B4C63;">#ORD-002</td>
               <td style="padding: 12px 16px; font-size: 14px;">John Doe</td>
               <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">$89.50</td>
               <td style="padding: 8px 16px; font-size: 14px;"><select style="padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 13px; background: white; cursor: pointer; transition: all 0.2s ease;" onchange="this.style.borderColor='#3B4C63'" onfocus="this.style.boxShadow='0 0 0 3px rgba(59, 76, 99, 0.1)'" onblur="this.style.boxShadow=''"><option value="pending">Pending</option><option value="paid">Paid</option><option value="in-progress" selected>In Progress</option><option value="shipped">Shipped</option><option value="delivered">Delivered</option></select></td>
-              <td style="padding: 12px 16px; font-size: 13px; color: #64748B;">—</td>
+              <td style="padding: 12px 16px;"><a href="order-timeline-modal.html" style="font-size: 12px; color: #3B4C63; text-decoration: underline; font-weight: 600;">View</a></td>
               <td style="padding: 12px 16px;"><button style="padding: 6px 12px; border: 1px solid #E2E8F0; background: white; border-radius: 4px; font-size: 13px; color: #3B4C63; cursor: pointer; font-weight: 600; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='#F9FAFB'; this.style.borderColor='#3B4C63';" onmouseout="this.style.backgroundColor='white'; this.style.borderColor='#E2E8F0';">Refund</button></td>
             </tr>
             <tr style="border-bottom: 1px solid #F3F4F6;">
+              <td style="padding: 12px 16px;"><input type="checkbox" style="width: 18px; height: 18px;"></td>
               <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #3B4C63;">#ORD-003</td>
               <td style="padding: 12px 16px; font-size: 14px;">Sarah Lee</td>
               <td style="padding: 12px 16px; font-size: 14px; font-weight: 600;">$220.00</td>
               <td style="padding: 8px 16px; font-size: 14px;"><select style="padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 13px; background: white; cursor: pointer; transition: all 0.2s ease;" onchange="this.style.borderColor='#3B4C63'" onfocus="this.style.boxShadow='0 0 0 3px rgba(59, 76, 99, 0.1)'" onblur="this.style.boxShadow=''"><option value="pending">Pending</option><option value="paid">Paid</option><option value="in-progress">In Progress</option><option value="shipped">Shipped</option><option value="delivered" selected>Delivered</option></select></td>
-              <td style="padding: 12px 16px; font-size: 13px; color: #64748B;">—</td>
+              <td style="padding: 12px 16px;"><a href="order-timeline-modal.html" style="font-size: 12px; color: #3B4C63; text-decoration: underline; font-weight: 600;">View</a></td>
               <td style="padding: 12px 16px;"><button style="padding: 6px 12px; border: 1px solid #E2E8F0; background: white; border-radius: 4px; font-size: 13px; color: #3B4C63; cursor: pointer; font-weight: 600; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='#F9FAFB'; this.style.borderColor='#3B4C63';" onmouseout="this.style.backgroundColor='white'; this.style.borderColor='#E2E8F0';">Refund</button></td>
             </tr>
           </tbody>

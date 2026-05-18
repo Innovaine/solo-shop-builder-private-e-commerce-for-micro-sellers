@@ -18,6 +18,7 @@ interface Product {
   imageUrl: string | null
   category: string | null
   stock: number
+  status?: string // FR-153: PUBLISHED or DRAFT
   createdAt: string
 }
 
@@ -28,6 +29,32 @@ export default function ProductsPage() {
   const [error, setError] = useState('')
   const [shopId, setShopId] = useState('')
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null)
+  const [statusUpdating, setStatusUpdating] = useState<string | null>(null)
+  const [selectedProducts, setSelectedProducts] = useState<Set<string>>(new Set())
+
+  const handleStatusToggle = async (productId: string, currentStatus: string) => {
+    setStatusUpdating(productId)
+    const newStatus = currentStatus === 'PUBLISHED' ? 'DRAFT' : 'PUBLISHED'
+    
+    try {
+      const response = await fetch(`/api/products/${productId}/status`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      })
+      
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Failed to update status')
+      }
+      
+      setProducts(products.map(p => p.id === productId ? { ...p, status: newStatus } : p))
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to update status')
+    } finally {
+      setStatusUpdating(null)
+    }
+  }
 
   useEffect(() => {
     async function fetchProducts() {
@@ -174,6 +201,9 @@ export default function ProductsPage() {
                     <th className="text-left py-3 px-4 text-sm font-semibold text-charcoal">
                       Stock
                     </th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-charcoal">
+                      Status
+                    </th>
                     <th className="text-right py-3 px-4 text-sm font-semibold text-charcoal">
                       Actions
                     </th>
@@ -204,6 +234,19 @@ export default function ProductsPage() {
                         {formatPrice(product.price)}
                       </td>
                       <td className="py-4 px-4 text-sm text-slate">{product.stock}</td>
+                      <td className="py-4 px-4">
+                        <button
+                          onClick={() => handleStatusToggle(product.id, product.status || 'PUBLISHED')}
+                          disabled={statusUpdating === product.id}
+                          className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                            (product.status || 'PUBLISHED') === 'PUBLISHED'
+                              ? 'bg-sage-50 text-sage-700 hover:bg-sage-100'
+                              : 'bg-amber-50 text-amber-700 hover:bg-amber-100'
+                          } disabled:opacity-50 transition-colors`}
+                        >
+                          {statusUpdating === product.id ? '...' : product.status || 'PUBLISHED'}
+                        </button>
+                      </td>
                       <td className="py-4 px-4 text-right">
                         <div className="flex gap-2 justify-end">
                           <button

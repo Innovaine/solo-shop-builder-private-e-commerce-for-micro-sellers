@@ -68,23 +68,37 @@ export async function PATCH(
       )
     }
 
-    // Update order
-    const updatedOrder = await prisma.order.update({
-      where: { id: orderId },
-      data: {
-        ...(status && { status }),
-        ...(trackingId !== undefined && { trackingId }),
-        ...(trackingUrl !== undefined && { trackingUrl }),
-      },
-      include: {
-        items: true,
-        shop: {
-          select: {
-            name: true,
-            slug: true,
+    // Update order and log history (FR-154)
+    const updatedOrder = await prisma.$transaction(async (tx) => {
+      // Log status change if status is being updated
+      if (status && status !== order.status) {
+        await tx.orderHistory.create({
+          data: {
+            orderId,
+            statusFrom: order.status,
+            statusTo: status
+          }
+        })
+      }
+
+      // Update order
+      return await tx.order.update({
+        where: { id: orderId },
+        data: {
+          ...(status && { status }),
+          ...(trackingId !== undefined && { trackingId }),
+          ...(trackingUrl !== undefined && { trackingUrl }),
+        },
+        include: {
+          items: true,
+          shop: {
+            select: {
+              name: true,
+              slug: true,
+            },
           },
         },
-      },
+      })
     })
 
     // TODO: Send notification email to customer when status changes to 'shipped'
