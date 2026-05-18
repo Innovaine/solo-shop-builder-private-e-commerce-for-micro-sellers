@@ -18,6 +18,8 @@ export default function BrandingPage() {
     accentColor: '#10B981',
     logoUrl: '',
   });
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string>('');
 
   useEffect(() => {
     // Load current branding data
@@ -33,6 +35,10 @@ export default function BrandingPage() {
             accentColor: shop.accentColor || '#10B981',
             logoUrl: shop.logoUrl || '',
           });
+          // Set preview from existing uploaded logo
+          if (shop.logoImageUrl) {
+            setLogoPreview(shop.logoImageUrl);
+          }
         }
       } catch (err) {
         console.error('Error loading branding:', err);
@@ -41,6 +47,33 @@ export default function BrandingPage() {
     loadBranding();
   }, []);
 
+  function handleLogoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      setError('Logo file must be less than 2MB');
+      return;
+    }
+
+    // Validate file type
+    if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      setError('Logo must be a PNG or JPEG image');
+      return;
+    }
+
+    setLogoFile(file);
+    setError('');
+
+    // Create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setLogoPreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
@@ -48,10 +81,19 @@ export default function BrandingPage() {
     setSuccess('');
 
     try {
+      // Use FormData for file upload
+      const formDataObj = new FormData();
+      formDataObj.append('primaryColor', formData.primaryColor);
+      formDataObj.append('accentColor', formData.accentColor);
+      formDataObj.append('logoUrl', formData.logoUrl);
+      
+      if (logoFile) {
+        formDataObj.append('logo', logoFile);
+      }
+
       const res = await fetch('/api/shops/branding', {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: formDataObj, // No Content-Type header - browser sets multipart/form-data
       });
 
       if (!res.ok) {
@@ -59,7 +101,15 @@ export default function BrandingPage() {
         throw new Error(data.error || 'Failed to update branding');
       }
 
+      const updatedShop = await res.json();
       setSuccess('Branding updated successfully');
+      
+      // Update preview with new uploaded logo
+      if (updatedShop.logoImageUrl) {
+        setLogoPreview(updatedShop.logoImageUrl);
+      }
+      
+      setLogoFile(null);
       setTimeout(() => setSuccess(''), 3000);
     } catch (err: any) {
       setError(err.message);
@@ -155,23 +205,27 @@ export default function BrandingPage() {
               </div>
             </div>
 
-            <FormField
-              label="Logo URL"
-              type="url"
-              value={formData.logoUrl}
-              onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
-              placeholder="https://example.com/logo.png"
-              helpText="Link to your logo image (HTTPS required, recommended: square PNG/SVG, max 500KB)"
-            />
+            {/* Logo Upload */}
+            <div className="space-y-2">
+              <label htmlFor="logoUpload" className="text-sm font-semibold text-charcoal">Upload Logo</label>
+              <p className="text-xs text-slate">Upload a square PNG or JPEG (max 2MB, displayed at 40x40px)</p>
+              <input
+                type="file"
+                id="logoUpload"
+                accept="image/png,image/jpeg,image/jpg"
+                onChange={handleLogoChange}
+                className="block w-full text-sm text-charcoal file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-emerald file:text-white hover:file:bg-emerald/90 cursor-pointer"
+              />
+            </div>
 
-            {/* Preview */}
-            {formData.logoUrl && (
+            {/* Logo Preview */}
+            {logoPreview && (
               <div className="border border-whisper rounded p-4 bg-white">
                 <p className="text-sm font-medium text-charcoal mb-2">Logo Preview:</p>
                 <img
-                  src={formData.logoUrl}
+                  src={logoPreview}
                   alt="Logo preview"
-                  className="max-h-24 max-w-full object-contain"
+                  className="h-24 w-24 object-contain border border-whisper rounded"
                   onError={(e) => {
                     e.currentTarget.src = '';
                     e.currentTarget.alt = 'Failed to load logo';
@@ -179,6 +233,15 @@ export default function BrandingPage() {
                 />
               </div>
             )}
+
+            <FormField
+              label="Logo URL (Optional)"
+              type="url"
+              value={formData.logoUrl}
+              onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
+              placeholder="https://example.com/logo.png"
+              helpText="Or provide an external logo URL (HTTPS required)"
+            />
 
             {/* Color Preview */}
             <div className="border border-whisper rounded p-4 bg-white">

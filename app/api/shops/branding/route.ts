@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { prisma } from '@/lib/db';
+import { writeFile, mkdir } from 'fs/promises';
+import path from 'path';
+import crypto from 'crypto';
 
-// PATCH /api/shops/branding — Update shop branding (FR-33)
+// PATCH /api/shops/branding — Update shop branding (FR-33 + FR-6+)
 export async function PATCH(req: NextRequest) {
   try {
     // Auth check
@@ -25,9 +28,13 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: 'No shop found' }, { status: 404 });
     }
 
-    // Parse request body
-    const body = await req.json();
-    const { primaryColor, accentColor, logoUrl, tagline } = body;
+    // Parse multipart form data
+    const formData = await req.formData();
+    const primaryColor = formData.get('primaryColor') as string;
+    const accentColor = formData.get('accentColor') as string;
+    const logoUrl = formData.get('logoUrl') as string;
+    const tagline = formData.get('tagline') as string;
+    const logoFile = formData.get('logo') as File | null;
 
     // Validate color format
     const colorRegex = /^#[0-9A-Fa-f]{6}$/;
@@ -70,6 +77,42 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
+    // Handle logo file upload (FR-6+)
+    let logoImageUrl = null;
+    if (logoFile && logoFile.size > 0) {
+      // Validate file size (max 2MB)
+      if (logoFile.size > 2 * 1024 * 1024) {
+        return NextResponse.json(
+          { error: 'Logo file must be less than 2MB' },
+          { status: 400 }
+        );
+      }
+
+      // Validate MIME type
+      if (!['image/png', 'image/jpeg', 'image/jpg'].includes(logoFile.type)) {
+        return NextResponse.json(
+          { error: 'Logo must be a PNG or JPEG image' },
+          { status: 400 }
+        );
+      }
+
+      // Create upload directory
+      const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'shops', shop.id);
+      await mkdir(uploadDir, { recursive: true });
+
+      // Generate unique filename
+      const ext = logoFile.name.split('.').pop() || 'png';
+      const filename = `logo-${crypto.randomBytes(8).toString('hex')}.${ext}`;
+      const filepath = path.join(uploadDir, filename);
+
+      // Save file
+      const buffer = Buffer.from(await logoFile.arrayBuffer());
+      await writeFile(filepath, buffer);
+
+      // Store relative path (served from /public)
+      logoImageUrl = `/uploads/shops/${shop.id}/${filename}`;
+    }
+
     // Update shop branding
     const updated = await prisma.shop.update({
       where: { id: shop.id },
@@ -77,6 +120,7 @@ export async function PATCH(req: NextRequest) {
         primaryColor: primaryColor || '#3B4C63',
         accentColor: accentColor || '#10B981',
         logoUrl: logoUrl?.trim() || null,
+        logoImageUrl: logoImageUrl || undefined, // Only update if new file uploaded
         tagline: tagline?.trim() || null,
         updatedAt: new Date(),
       },
@@ -89,8 +133,10 @@ export async function PATCH(req: NextRequest) {
         primaryColor: updated.primaryColor,
         accentColor: updated.accentColor,
         logoUrl: updated.logoUrl,
+        logoImageUrl: updated.logoImageUrl,
         tagline: updated.tagline,
       },
+      logoImageUrl: updated.logoImageUrl, // Return for frontend preview
     });
   } catch (error: any) {
     console.error('Branding update error:', error);

@@ -45,7 +45,8 @@ model Shop {
   // FR-33: Shop branding
   primaryColor      String?  @default("#3B4C63") // Default: Slate Blue
   accentColor       String?  @default("#10B981") // Default: Emerald
-  logoUrl           String?
+  logoUrl           String?  // External URL (backwards compatibility)
+  logoImageUrl      String?  // FR-6+: Uploaded logo path (local storage)
   tagline           String?  @db.VarChar(100) // FR-26: Shop tagline (max 100 chars)
   
   // FR-35: Email template customization

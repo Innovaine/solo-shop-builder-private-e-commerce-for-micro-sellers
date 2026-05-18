@@ -60,11 +60,11 @@ export default async function ShopPage({
         style={{ backgroundColor: primaryColor }}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-4">
-          {shop.logoUrl && (
+          {(shop.logoImageUrl || shop.logoUrl) && (
             <img
-              src={shop.logoUrl}
+              src={shop.logoImageUrl || shop.logoUrl || ''}
               alt={`${shop.name} logo`}
-              className="h-10 w-10 object-contain"
+              className="h-10 w-10 object-contain rounded"
             />
           )}
           <div>

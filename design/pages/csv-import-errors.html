@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import Results — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 24px; }
+    .header h1 { font-size: 28px; font-weight: 700; margin: 0 0 4px 0; }
+    .header p { color: #64748B; font-size: 14px; margin: 0; }
+    .container { max-width: 800px; margin: 32px auto; padding: 0 24px; }
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 32px; }
+    .result-summary { padding: 20px; border-radius: 8px; margin-bottom: 24px; }
+    .result-summary.mixed { background: #FFFBEB; border: 1px solid #FCD34D; }
+    .result-summary.error { background: #FEF2F2; border: 1px solid #FECDD3; }
+    .result-summary.success { background: #F0FDF4; border: 1px solid #BBDF37; }
+    .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .result-icon { font-size: 28px; }
+    .result-title { font-size: 18px; font-weight: 700; }
+    .result-title.mixed { color: #92400E; }
+    .result-title.error { color: #9F1239; }
+    .result-title.success { color: #15803D; }
+    .result-message { font-size: 14px; line-height: 1.6; }
+    .result-message.mixed { color: #92400E; }
+    .result-message.error { color: #9F1239; }
+    .result-message.success { color: #15803D; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .stat { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; text-align: center; }
+    .stat-value { font-size: 32px; font-weight: 700; color: #1F2937; margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat.success { background: #F0FDF4; border-color: #BBDF37; }
+    .stat.success .stat-value { color: #15803D; }
+    .stat.error { background: #FEF2F2; border-color: #FECDD3; }
+    .stat.error .stat-value { color: #9F1239; }
+    .errors-section { margin-top: 32px; }
+    .errors-section h2 { font-size: 18px; font-weight: 700; margin: 0 0 16px 0; color: #1F2937; }
+    .error-list { background: #FEF2F2; border: 1px solid #FECDD3; border-radius: 8px; overflow: hidden; }
+    .error-item { border-bottom: 1px solid #FECDD3; padding: 16px; }
+    .error-item:last-child { border-bottom: none; }
+    .error-row { display: grid; grid-template-columns: 60px 1fr auto; gap: 16px; align-items: flex-start; }
+    .error-row-number { font-size: 12px; font-weight: 600; color: #7F1D1D; background: #FCA5A5; width: 50px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+    .error-row-content { flex: 1; }
+    .error-row-data { font-size: 13px; color: #7F1D1D; margin-bottom: 6px; font-family: monospace; }
+    .error-row-reason { font-size: 13px; color: #9F1239; margin: 8px 0 0 0; }
+    .error-row-reason strong { color: #7F1D1D; }
+    .error-actions { display: flex; gap: 8px; }
+    .btn-sm { padding: 6px 12px; font-size: 12px; font-weight: 600; border: 1px solid #FECDD3; background: white; color: #9F1239; border-radius: 4px; cursor: pointer; }
+    .btn-sm:hover { background: #FCA5A5; color: white; }
+    .actions { display: flex; gap: 12px; margin-top: 32px; }
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .retry-note { background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 6px; padding: 12px; margin-top: 16px; font-size: 13px; color: #92400E; }
+    .success-count { color: #15803D; font-weight: 700; }
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .card { padding: 20px; }
+      .stats { grid-template-columns: 1fr; }
+      .error-row { grid-template-columns: 1fr; }
+      .error-row-number { width: 100%; }
+      .actions { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Import Results</h1>
+    <p>Summary of your CSV product import</p>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <!-- Mixed result (some imported, some failed) -->
+      <div class="result-summary mixed">
+        <div class="result-header">
+          <div class="result-icon">⚠️</div>
+          <div class="result-title mixed">Import Complete with Errors</div>
+        </div>
+        <div class="result-message mixed">
+          <strong>42 products imported successfully</strong>, but 8 rows had issues and were skipped. Please review the errors below and re-upload those items.
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat success">
+          <div class="stat-value">42</div>
+          <div class="stat-label">Imported</div>
+        </div>
+        <div class="stat error">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Failed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">50</div>
+          <div class="stat-label">Total Rows</div>
+        </div>
+      </div>
+
+      <!-- Error details -->
+      <div class="errors-section">
+        <h2>Issues Found (8)</h2>
+        <div class="error-list">
+          <!-- Error 1: Missing required field -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 5</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Handmade Vase" | $0.00 | Handmade</div>
+                <div class="error-row-reason"><strong>Invalid price:</strong> Price must be a positive number (e.g., 19.99). You entered: $0.00</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error 2: Invalid category -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 12</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Blue Ceramic Bowl" | $45.99 | "Home Decor"</div>
+                <div class="error-row-reason"><strong>Invalid category:</strong> Must be one of: Handmade, Vintage, Supplies, or Other. You entered: "Home Decor"</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error 3: Missing required description -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 18</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Vintage Lamp" | $89.00 | Vintage | [empty]</div>
+                <div class="error-row-reason"><strong>Missing description:</strong> Description is required. Please add a brief description (minimum 10 characters).</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error 4: Title too long -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 23</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Hand-thrown ceramic vase with intricate patterns and glazing, perfect for living room display..."</div>
+                <div class="error-row-reason"><strong>Title too long:</strong> Product name must be 200 characters or less. Your title has 287 characters.</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error 5: Invalid URL -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 31</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Antique Clock" | $150.00 | Vintage | "not-a-valid-url"</div>
+                <div class="error-row-reason"><strong>Invalid image URL:</strong> Image URL must start with http:// or https:// (e.g., https://example.com/image.jpg).</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error 6: Duplicate product -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 38</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Leather Bag" | $125.00 | Handmade</div>
+                <div class="error-row-reason"><strong>Duplicate product:</strong> A product with this exact name and price already exists in your shop or in this import file (row 28).</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error 7: Image not found -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 42</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Silk Scarf" | $65.00 | Handmade | https://old-domain.com/missing-image.jpg</div>
+                <div class="error-row-reason"><strong>Image unreachable:</strong> The image URL you provided returned a 404 error. Verify the URL is correct and the image is publicly accessible.</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error 8: Missing required field -->
+          <div class="error-item">
+            <div class="error-row">
+              <div class="error-row-number">Row 48</div>
+              <div class="error-row-content">
+                <div class="error-row-data">"Handmade Ring" | [empty] | Handmade | "Beautiful gold ring"</div>
+                <div class="error-row-reason"><strong>Missing price:</strong> Price is required for all products. Please enter a price in USD (e.g., 35.99).</div>
+              </div>
+              <div class="error-actions">
+                <button class="btn-sm">Edit CSV</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="retry-note">
+          💡 <strong>Next Steps:</strong> Fix the errors above in your CSV file, then re-upload. The 42 products that imported successfully are already in your shop and visible to customers.
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn-primary">Download Error Report (CSV)</button>
+        <button class="btn-secondary" onclick="window.location.href='/dashboard/products/import'">Upload New File</button>
+        <button class="btn-secondary" onclick="window.location.href='/dashboard/products'">View All Products</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
