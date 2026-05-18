@@ -317,3 +317,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `b386324` so the server's `git pu
 ```
 curl -s https://www.soloshopbox.com/dashboard/orders 2>/dev/null | grep -o "filter\|status\|date.*sort\|Total\|Revenue" | head -20
 ```
+
+## 2026-05-18T10:08:45.080Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b206aa2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3139ms)
+```
+curl -s https://www.soloshopbox.com/dashboard/orders 2>/dev/null | grep -E "(Filter|Sort|Status|Date|Total|Metrics)" | head -10
+```
