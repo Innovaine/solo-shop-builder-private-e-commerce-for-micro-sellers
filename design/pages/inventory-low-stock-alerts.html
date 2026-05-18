@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Alerts — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; }
+    .header h1 { font-size: 24px; font-weight: 700; }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    
+    .alert-banner { background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
+    .alert-banner-title { font-size: 14px; font-weight: 600; color: #92400E; margin-bottom: 8px; }
+    .alert-banner-text { font-size: 13px; color: #78350F; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 20px; color: #1F2937; }
+    
+    .alert-item { padding: 16px; border: 1px solid #E2E8F0; border-radius: 6px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .alert-item.critical { background: #FEE2E2; border-color: #FCA5A5; }
+    .alert-item.warning { background: #FEF3C7; border-color: #FCD34D; }
+    
+    .alert-info { flex: 1; }
+    .alert-product { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 4px; }
+    .alert-detail { font-size: 12px; color: #64748B; }
+    .alert-detail span { font-weight: 500; color: #1F2937; }
+    
+    .alert-icon { font-size: 24px; flex-shrink: 0; }
+    
+    .alert-action { display: flex; gap: 8px; }
+    button { border: none; padding: 12px 20px; font-size: 13px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .btn-text { background: none; color: #3B4C63; padding: 0; text-decoration: underline; }
+    
+    .settings-section { margin-top: 32px; }
+    .settings-section h3 { font-size: 16px; font-weight: 600; color: #1F2937; margin-bottom: 16px; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    .form-group input, .form-group select { width: 100%; max-width: 300px; padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 13px; font-family: inherit; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    .notification-method { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; margin-bottom: 12px; }
+    .notification-method label { display: flex; align-items: center; gap: 12px; margin-bottom: 0; font-size: 14px; cursor: pointer; }
+    .notification-method input[type="radio"] { cursor: pointer; }
+    .notification-method-desc { font-size: 12px; color: #64748B; margin-top: 8px; margin-left: 28px; }
+    
+    .email-preview { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; font-family: monospace; font-size: 12px; line-height: 1.5; color: #64748B; }
+    .email-preview-header { font-weight: 600; color: #1F2937; margin-bottom: 12px; }
+    
+    @media (max-width: 768px) {
+      .alert-item { flex-direction: column; align-items: flex-start; }
+      .alert-action { width: 100%; }
+      .alert-action button { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Inventory Alerts</h1>
+  </div>
+
+  <div class="container">
+    <div class="alert-banner">
+      <div class="alert-banner-title">⚠️ You have 4 products with low stock</div>
+      <div class="alert-banner-text">Products running below your alert threshold will prevent new orders once they hit 0. Review your stock levels below.</div>
+    </div>
+
+    <!-- Active Alerts -->
+    <div class="card">
+      <h2>Critical & Low Stock Alerts</h2>
+      
+      <!-- Critical: Out of Stock -->
+      <div class="alert-item critical">
+        <div class="alert-info">
+          <div class="alert-product">Coffee Mug (Speckled) — OUT OF STOCK</div>
+          <div class="alert-detail">Current stock: <span>0 units</span> • Sold this month: 18 units</div>
+          <div class="alert-detail" style="margin-top: 4px; color: #991B1B;">Last sold 4 hours ago. This product is unavailable for purchase.</div>
+        </div>
+        <div class="alert-icon">🚫</div>
+        <div class="alert-action">
+          <button class="btn-primary">Restock</button>
+          <button class="btn-secondary">View Orders</button>
+        </div>
+      </div>
+
+      <!-- Warning: Low Stock -->
+      <div class="alert-item warning">
+        <div class="alert-info">
+          <div class="alert-product">Dinner Plate Set (White) — LOW STOCK</div>
+          <div class="alert-detail">Current stock: <span>2 units</span> • Alert threshold: 5 units • Sold this month: 8 units</div>
+          <div class="alert-detail" style="margin-top: 4px;">At current velocity, expect to run out in 2-3 days.</div>
+        </div>
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-action">
+          <button class="btn-secondary">Increase Stock</button>
+          <button class="btn-text">Pause Sale</button>
+        </div>
+      </div>
+
+      <!-- Warning: Low Stock -->
+      <div class="alert-item warning">
+        <div class="alert-info">
+          <div class="alert-product">Tea Pot (Grey Ash) — LOW STOCK</div>
+          <div class="alert-detail">Current stock: <span>3 units</span> • Alert threshold: 5 units • Sold this month: 3 units</div>
+          <div class="alert-detail" style="margin-top: 4px;">Stable velocity. About 1 month of inventory remaining.</div>
+        </div>
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-action">
+          <button class="btn-secondary">Increase Stock</button>
+          <button class="btn-text">Pause Sale</button>
+        </div>
+      </div>
+
+      <!-- Warning: Approaching Low Stock -->
+      <div class="alert-item warning">
+        <div class="alert-info">
+          <div class="alert-product">Ceramic Dinner Plate — APPROACHING THRESHOLD</div>
+          <div class="alert-detail">Current stock: <span>6 units</span> • Alert threshold: 5 units • Sold this month: 12 units</div>
+          <div class="alert-detail" style="margin-top: 4px;">High velocity. Plan to reorder soon to avoid stockouts.</div>
+        </div>
+        <div class="alert-icon">📉</div>
+        <div class="alert-action">
+          <button class="btn-secondary">Plan Reorder</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Settings -->
+    <div class="card settings-section">
+      <h3>Alert Settings</h3>
+
+      <div class="form-group">
+        <label for="threshold">Low Stock Alert Threshold</label>
+        <input type="number" id="threshold" value="5" min="1" max="100">
+        <div class="form-hint">You'll receive a notification when any product's stock falls below this number.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Notification Preferences</label>
+        
+        <div class="notification-method">
+          <label>
+            <input type="radio" name="notification" value="email" checked>
+            <span>Email notification</span>
+          </label>
+          <div class="notification-method-desc">Get an email alert each time a product hits your threshold. Immediate notification.</div>
+        </div>
+
+        <div class="notification-method">
+          <label>
+            <input type="radio" name="notification" value="daily">
+            <span>Daily digest</span>
+          </label>
+          <div class="notification-method-desc">Receive one email per day at 8:00 AM listing all low-stock products.</div>
+        </div>
+
+        <div class="notification-method">
+          <label>
+            <input type="radio" name="notification" value="weekly">
+            <span>Weekly digest</span>
+          </label>
+          <div class="notification-method-desc">Get a weekly summary every Monday morning. Good for slower-moving products.</div>
+        </div>
+
+        <div class="notification-method">
+          <label>
+            <input type="radio" name="notification" value="none">
+            <span>No notifications</span>
+          </label>
+          <div class="notification-method-desc">Disable all alerts. You can still check this page anytime.</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button class="btn-primary">Save Preferences</button>
+      </div>
+    </div>
+
+    <!-- Email Preview -->
+    <div class="card">
+      <h3>Email Alert Preview</h3>
+      <div class="email-preview">
+        <div class="email-preview-header">Subject: Low Stock Alert — Ceramic Dinner Plate</div>
+        <div>
+From: alerts@soloshopbox.com<br>
+To: you@example.com<br>
+Date: May 18, 2:15 PM<br>
+<br>
+Hi there,<br>
+<br>
+Your product "Ceramic Dinner Plate" has fallen below your low stock threshold.<br>
+<br>
+📊 Current Status:<br>
+   • Product: Ceramic Dinner Plate (CDP-001)<br>
+   • Current Stock: 6 units<br>
+   • Alert Threshold: 5 units<br>
+   • Sold This Month: 12 units<br>
+   • Estimated Days Until Out of Stock: 15 days<br>
+<br>
+🔗 Quick Actions:<br>
+   [View Product] [Update Stock] [Pause Sale]<br>
+<br>
+Check your Inventory page anytime to manage stock levels.<br>
+<br>
+Solo Shop Builder
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

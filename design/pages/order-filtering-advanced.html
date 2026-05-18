@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders with Advanced Filtering — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; }
+    .header h1 { font-size: 24px; font-weight: 700; }
+    
+    .container { display: grid; grid-template-columns: 220px 1fr; gap: 24px; max-width: 1400px; margin: 0 auto; padding: 24px; }
+    
+    .sidebar { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; height: fit-content; position: sticky; top: 24px; }
+    .sidebar h3 { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+    
+    .filter-group { margin-bottom: 24px; }
+    .filter-option { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; cursor: pointer; }
+    .filter-option input[type="checkbox"] { cursor: pointer; width: 16px; height: 16px; }
+    .filter-option label { cursor: pointer; font-size: 14px; flex: 1; }
+    
+    .filter-count { display: inline-block; background: #E2E8F0; color: #64748B; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; margin-left: auto; }
+    .filter-count.active { background: #3B4C63; color: white; }
+    
+    .filter-divider { height: 1px; background: #E2E8F0; margin: 20px 0; }
+    
+    .main-content { }
+    
+    .controls { display: flex; gap: 12px; align-items: center; margin-bottom: 24px; justify-content: space-between; flex-wrap: wrap; }
+    .search-box { flex: 1; min-width: 200px; }
+    .search-box input { width: 100%; padding: 10px 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; }
+    .search-box input:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    
+    .sort-dropdown { padding: 10px 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; background: white; cursor: pointer; font-family: inherit; }
+    .sort-dropdown:focus { outline: none; border-color: #3B4C63; }
+    
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .btn-text { background: none; color: #3B4C63; padding: 0; font-weight: 500; text-decoration: underline; }
+    .btn-text:hover { color: #1F2937; }
+    
+    .active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; padding: 12px; background: #F9FAFB; border-radius: 6px; }
+    .filter-badge { display: inline-flex; align-items: center; gap: 8px; background: white; border: 1px solid #E2E8F0; padding: 4px 12px; border-radius: 999px; font-size: 13px; }
+    .filter-badge .remove { cursor: pointer; color: #64748B; font-weight: 600; }
+    .filter-badge .remove:hover { color: #1F2937; }
+    
+    .order-list { background: white; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; }
+    .order-row { padding: 16px; border-bottom: 1px solid #E2E8F0; display: grid; grid-template-columns: 120px 1fr 140px 100px 120px; gap: 16px; align-items: center; }
+    .order-row:hover { background: #F9FAFB; }
+    .order-row:last-child { border-bottom: none; }
+    
+    .order-id { font-weight: 600; color: #3B4C63; font-size: 14px; }
+    .order-customer { font-size: 14px; }
+    .order-customer-email { font-size: 12px; color: #64748B; }
+    
+    .order-total { font-weight: 600; color: #1F2937; text-align: right; }
+    
+    .status-badge { display: inline-block; padding: 6px 14px; border-radius: 12px; font-size: 12px; font-weight: 600; text-align: center; }
+    .status-pending { background: #FEF3C7; color: #92400E; }
+    .status-paid { background: #D1FAE5; color: #065F46; }
+    .status-processing { background: #DBEAFE; color: #1E40AF; }
+    .status-shipped { background: #E9D5FF; color: #6B21A8; }
+    .status-delivered { background: #CCFBF1; color: #134E4A; }
+    
+    .order-date { font-size: 13px; color: #64748B; }
+    
+    .empty-state { text-align: center; padding: 48px 24px; }
+    .empty-state h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #1F2937; }
+    .empty-state p { color: #64748B; }
+    
+    @media (max-width: 1024px) {
+      .container { grid-template-columns: 150px 1fr; }
+      .order-row { grid-template-columns: 100px 1fr 100px 80px; gap: 12px; }
+    }
+    
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .order-row { grid-template-columns: 1fr; gap: 8px; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .sort-dropdown { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Orders</h1>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <h3>Filter by Status</h3>
+      
+      <div class="filter-group">
+        <div class="filter-option">
+          <input type="checkbox" id="pending" name="status" checked>
+          <label for="pending">Pending Payment</label>
+          <span class="filter-count">3</span>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="paid" name="status" checked>
+          <label for="paid">Paid</label>
+          <span class="filter-count active">8</span>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="processing" name="status" checked>
+          <label for="processing">Processing</label>
+          <span class="filter-count active">5</span>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="shipped" name="status">
+          <label for="shipped">Shipped</label>
+          <span class="filter-count">6</span>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="delivered" name="status">
+          <label for="delivered">Delivered</label>
+          <span class="filter-count">2</span>
+        </div>
+      </div>
+
+      <div class="filter-divider"></div>
+
+      <div class="filter-group">
+        <button class="btn-text">Clear Filters</button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="controls">
+        <div class="search-box">
+          <input type="text" placeholder="Search by order ID, customer name, or email...">
+        </div>
+        <select class="sort-dropdown">
+          <option>Sort: Newest First</option>
+          <option>Sort: Oldest First</option>
+          <option>Sort: Highest Value</option>
+          <option>Sort: Lowest Value</option>
+        </select>
+        <button class="btn-secondary">📥 Export CSV</button>
+      </div>
+
+      <div class="active-filters">
+        <span class="filter-badge">Pending Payment <span class="remove">×</span></span>
+        <span class="filter-badge">Paid <span class="remove">×</span></span>
+        <span class="filter-badge">Processing <span class="remove">×</span></span>
+        <span class="filter-badge"><a class="btn-text">Clear all</a></span>
+      </div>
+
+      <div class="order-list">
+        <div class="order-row" style="background: #F9FAFB; border-bottom: 2px solid #E2E8F0; font-weight: 600; font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; padding: 12px 16px;">
+          <div>Order ID</div>
+          <div>Customer</div>
+          <div>Total</div>
+          <div>Status</div>
+          <div>Date</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-id">#4521</div>
+          <div>
+            <div class="order-customer">Sarah Johnson</div>
+            <div class="order-customer-email">sarah@example.com</div>
+          </div>
+          <div class="order-total">$89.50</div>
+          <div><span class="status-badge status-paid">Paid</span></div>
+          <div class="order-date">May 18, 2:15 PM</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-id">#4520</div>
+          <div>
+            <div class="order-customer">Michael Chen</div>
+            <div class="order-customer-email">mchen@example.com</div>
+          </div>
+          <div class="order-total">$156.00</div>
+          <div><span class="status-badge status-processing">Processing</span></div>
+          <div class="order-date">May 18, 10:30 AM</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-id">#4519</div>
+          <div>
+            <div class="order-customer">Emma Williams</div>
+            <div class="order-customer-email">emma.w@example.com</div>
+          </div>
+          <div class="order-total">$42.75</div>
+          <div><span class="status-badge status-pending">Pending</span></div>
+          <div class="order-date">May 17, 9:45 PM</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-id">#4518</div>
+          <div>
+            <div class="order-customer">Alex Patel</div>
+            <div class="order-customer-email">alex.patel@example.com</div>
+          </div>
+          <div class="order-total">$234.99</div>
+          <div><span class="status-badge status-processing">Processing</span></div>
+          <div class="order-date">May 16, 3:20 PM</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-id">#4517</div>
+          <div>
+            <div class="order-customer">Jessica Martinez</div>
+            <div class="order-customer-email">jmartinez@example.com</div>
+          </div>
+          <div class="order-total">$78.00</div>
+          <div><span class="status-badge status-paid">Paid</span></div>
+          <div class="order-date">May 15, 6:00 AM</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-id">#4516</div>
+          <div>
+            <div class="order-customer">David Lee</div>
+            <div class="order-customer-email">dlee@example.com</div>
+          </div>
+          <div class="order-total">$55.25</div>
+          <div><span class="status-badge status-pending">Pending</span></div>
+          <div class="order-date">May 14, 2:30 PM</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-id">#4515</div>
+          <div>
+            <div class="order-customer">Lisa Anderson</div>
+            <div class="order-customer-email">lisa.a@example.com</div>
+          </div>
+          <div class="order-total">$112.50</div>
+          <div><span class="status-badge status-processing">Processing</span></div>
+          <div class="order-date">May 13, 11:15 AM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

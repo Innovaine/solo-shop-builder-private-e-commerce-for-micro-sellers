@@ -1,83 +1,81 @@
-# Day 1 — Requirements: Solo Shop Builder
+# Day 56 — Requirements: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 ## Goal today
-A seller can sign up with email, create a shop with a name, and see an empty branded storefront at a public URL.
+Stabilize the MVP order dashboard (verify Day 54/55 features work), fix any broken cart/checkout flows from recent changes, and ship a clean, testable baseline for the next batch of Stage 1 hardening features.
 
 ## Features in scope
-- **F1: Seller email signup (magic link)** — Seller receives passwordless login link via email
-- **F2: Shop creation form** — Seller enters shop name, gets unique /shop/[slug] URL
-- **F3: Public shop storefront (empty state)** — Customer visits /shop/[slug], sees "This shop is empty" + shop name
-- **F4: Shop persistence** — Shop data saved to Postgres database, survives server restart
+
+Three focused pieces of work:
+
+1. **FR-156: Order status filtering with counts** — Seller can filter orders by status (Paid, In Progress, Shipped, Delivered) with badge counts. Features restored on Day 55, needs verification + testing.
+
+2. **FR-157: Dashboard summary metrics** — Seller dashboard shows: total products, total revenue, total orders (last 30 days). Includes metric cards + simple bar chart. Restored on Day 55, needs verification + test.
+
+3. **FR-24: Inventory tracking (atomic validation)** — Product stock count checked at checkout. Stripe checkout validated against current inventory. Order decrement is atomic (no race conditions). If stock depleted, customer sees "Out of stock" message instead of checkout button.
 
 ## Functional requirements
 
 | ID | Feature | Description | Acceptance criteria |
 |---|---|---|---|
-| FR-1 | F1: Seller signup | POST /api/auth/signup with email. Generate 6-digit magic link token (valid 15 min). Send email with link https://app.example.com/auth/verify?token=XXX. Link logs seller in without password. | 1. Email delivered within 5 seconds. 2. Link valid exactly 15 minutes from send. 3. Clicking link sets session cookie, redirects to /dashboard. 4. Session persists on page reload. |
-| FR-2 | F1: Seller login via magic link | GET /auth/verify?token=XXX validates token from email, creates session. | 1. Valid token → session created, cookie set, redirect to /dashboard. 2. Expired/invalid token → 403 with "Link expired, request new one". 3. Browser back button after login redirects to /dashboard (not back to login). |
-| FR-3 | F2: Shop creation | POST /api/shops with { name, slug }. Seller must be logged in (session cookie required). Slug must be unique, lowercase, 3-20 chars, alphanumeric + hyphens. If slug taken or invalid, return 400 with error message. | 1. Valid request creates shop record in database. 2. Seller's session linked to shop. 3. Returns 200 with shop object { id, name, slug, createdAt }. 4. Duplicate slug returns 400 "Slug already taken". 5. Invalid slug (spaces, caps, <3 chars) returns 400 with reason. |
-| FR-4 | F2: Shop creation UI form | Simple form page at /dashboard/create-shop. Fields: shop name (text input), slug (autofill from name, allow edit). Submit button, error display. | 1. Page loads without JavaScript errors. 2. Name → slug auto-populates (convert to lowercase, replace spaces with hyphens). 3. Seller can override slug. 4. Submit sends POST /api/shops, shows loading state. 5. On success, redirects to /dashboard/[shop-slug]. 6. On error, displays error message inline (e.g., "Slug taken"). |
-| FR-5 | F3: Public shop storefront | GET /shop/[slug] serves a public HTML page with shop name, "This shop is empty" message, shop created date. No auth required. | 1. /shop/validslug returns 200 with shop name visible. 2. /shop/invalidslug returns 404 "Shop not found". 3. Page renders in <2 seconds (p95). 4. Page is mobile-responsive (320px width minimum). |
-| FR-6 | F2: Shop persistence | Shop data in Postgres table: id (UUID), name (string), slug (string, unique index), seller_id (FK to sellers), createdAt (timestamp). | 1. Shop persists after server restart. 2. Seller can log back in and see their shop. 3. No shop data loss on deployment. |
-| FR-7 | F1: Session management | Seller session stored in secure HTTP-only cookie. Cookie valid for 30 days. Logout clears cookie. | 1. Cookie set with HttpOnly + Secure flags. 2. SameSite=Strict. 3. Session persists across page reloads until 30 days expire or logout. 4. Logout endpoint clears cookie, next page load shows login page. |
+| FR-156 | Order filtering | Seller dashboard order list has 4 filter buttons: "Paid", "In Progress", "Shipped", "Delivered". Each button shows count of orders in that status (e.g., "Paid (12)"). Clicking a button filters the order table. Unfiltered state shows all orders. | 1. Filter buttons render with correct counts. 2. Clicking a button filters table to only show orders with that status. 3. Count badges update after status change. 4. No "Pending" status option (orders start as "Paid" from webhook). 5. Mobile: buttons stack vertically on <640px. |
+| FR-157 | Dashboard metrics | Seller dashboard top section displays 3 metric cards: (1) "Total Products" with count, (2) "Total Revenue (30d)" with sum of order totals, (3) "Total Orders (30d)" with count of paid orders. Simple design: card title + big number. | 1. Cards render on page load. 2. Numbers recalculate when order status changes. 3. Correct data: revenue only from "Paid" orders, count from last 30 days (ignore older orders). 4. Format: $0,000.00 for revenue, plain integers for counts. 5. Mobile: cards stack vertically on <640px. |
+| FR-24 | Inventory validation at checkout | Before Stripe Checkout redirect: GET /api/products/:id to fetch current stock. If stock >= cart quantity, allow checkout. If stock < quantity, render "Out of Stock — Only X remaining" and hide checkout button. On successful Stripe payment (webhook), atomically decrement stock by order quantity. Prevent double-decrement on duplicate webhooks (idempotent). | 1. Checkout button visible only if stock >= cart qty. 2. If stock becomes 0, customer sees message + no button. 3. On payment success, stock decrements by order qty exactly once (test via duplicate webhook). 4. If stock depletes to 0 during checkout flow, customer must remove items or go back. 5. Seller can manually adjust stock in product editor. |
+
+## Stack chosen (lock this in day 1)
+- **Backend:** Node.js + Express/Fastify in TypeScript (Next.js API routes)
+- **Web frontend:** Next.js 14 (App Router, TypeScript, Tailwind CSS)
+- **Database:** Postgres with Prisma ORM
+- **Payment processing:** Stripe Checkout (hosted)
+- **Email:** Resend or in-process for transactional emails
+- **Hosting:** Vercel (frontend) + containerized backend on private VPS (www.soloshopbox.com)
+- **Why this stack:** Already shipped 55 days in this stack. No learning curve. Fast iteration.
 
 ## Non-functional requirements
 
 | ID | Category | Requirement |
 |---|---|---|
-| NFR-1 | Performance | p95 page load (storefront + dashboard form) < 2 seconds on 4G mobile |
-| NFR-2 | Performance | API response time (auth, shop creation, shop fetch) < 500ms p95 |
-| NFR-3 | Security | Email magic link token is cryptographically random, 6 digits, valid 15 min only |
-| NFR-4 | Security | Session cookie: HttpOnly, Secure (HTTPS only), SameSite=Strict |
-| NFR-5 | Security | Seller can only view/modify shops they own (row-level auth check on FR-3, FR-4) |
-| NFR-6 | Security | No SQL injection (use Prisma parameterized queries) |
-| NFR-7 | Security | No XSS on /shop/[slug] (sanitize shop name if user-input in future, not yet) |
-| NFR-8 | Browser support | Chrome, Safari, Firefox (latest 2 versions) |
-| NFR-9 | Accessibility | Form labels associated with inputs (label htmlFor), error messages linked to inputs (aria-describedby) |
-| NFR-10 | Observability | Log every auth attempt (email, timestamp, success/failure) to stderr with request ID |
-| NFR-11 | Observability | Every API error response includes X-Request-Id header for debugging |
-| NFR-12 | Mobile | Seller dashboard form + storefront render correctly on iOS Safari, Chrome mobile (320px+ width) |
-
-## Stack chosen (lock this in day 1)
-- **Backend:** Node.js + Express/Fastify in TypeScript, deployed to a serverless function or EC2 via Vercel
-- **Web frontend (if applicable):** Next.js (App Router, TypeScript, Tailwind CSS)
-- **Database:** Postgres (via Vercel Postgres or self-hosted in docker-compose). Use Prisma ORM for migrations + type safety.
-- **Authentication:** Email magic link (no external auth provider yet; Resend or SendGrid for email)
-- **Hosting:** Vercel (frontend + serverless functions for backend)
-- **Why this stack:** Team has 15+ cycles shipping with Next.js + Postgres + Prisma. Zero learning curve. Deploy to Vercel = ship to production in <5 minutes. Email magic link avoids password complexity + credential storage for v1.
+| NFR-1 | Performance | Order dashboard filter buttons update table in <200ms (no server round-trip for filters, client-side filtering). |
+| NFR-2 | Performance | Metric cards render within <500ms of page load. |
+| NFR-3 | Performance | Stock validation API call (GET /api/products/:id) responds in <300ms p95. |
+| NFR-4 | Data consistency | Inventory decrement is atomic (database transaction or SELECT FOR UPDATE to prevent race conditions). |
+| NFR-5 | Security | Inventory decrement only happens once per valid Stripe webhook (idempotency key in database). |
+| NFR-6 | Observability | Every stock decrement logged with order ID, product ID, old/new stock, webhook timestamp. |
+| NFR-7 | Mobile | Dashboard filtering + metrics cards mobile-responsive on 320px+ width. Touch targets ≥44px. |
+| NFR-8 | Accessibility | Filter buttons + metric cards have proper ARIA labels and keyboard navigation (Tab + Enter to select filter). |
+| NFR-9 | Error handling | Out of stock → graceful message on storefront, no 500 errors. |
+| NFR-10 | Testing | All 3 features have Playwright tests covering happy path + edge cases (low stock, out of stock, duplicate webhook). |
 
 ## Out of scope (do NOT build today)
-- Product upload UI or CSV import — products will be manually seeded in database for testing
-- Product image handling — no images yet
-- Shopping cart — no cart page or button
-- Stripe integration — no payment processing
-- Order management — no orders yet
-- Seller messaging — not in MVP scope
-- Category management UI — not building today
-- Seller analytics dashboard — not building today
-- Custom domain / subdomain support — fixed /shop/[slug] URL structure
-- SEO optimization (meta tags, robots.txt, etc.) — default meta tags only
-- Email transactional templates (SendGrid, Resend) — plain text for now, HTML later
-- Rate limiting on auth endpoints — no protection against brute force (add week 2)
-- 2FA or password-based auth — magic link only
-- Seller team/collaborators — one seller per shop today
+- Bulk order status updates — no "mark all as shipped" button yet
+- Advanced inventory features (variants with separate stock, SKU tracking) — single stock count per product only
+- Email notifications on stock low — no alerts yet
+- Back-order / waitlist system — out of stock is permanent until seller adds stock
+- Real-time inventory sync (websockets) — standard refresh-to-see-latest
+- Multi-location inventory — single inventory pool per product
+- Seller inventory import (CSV) — stock must be set via product editor UI
+- Promotional discount codes — not in scope
+- Tax calculation at checkout — not included in total
+- Shipping cost estimation — not at checkout
 
-## Open questions (owner, please answer before EOD)
-1. **Email service:** Are we using Resend, SendGrid, or AWS SES for transactional email? (Needed for FR-1 implementation.)
-2. **Database:** Will we use Vercel Postgres (managed, $15/mo) or self-hosted Postgres in docker-compose for dev/staging? (Impacts deployment strategy.)
-3. **Shop URL structure:** Confirmed /shop/[slug] (not subdomains like shop-name.example.com)? (Subdomain DNS/routing is complex; /shop/slug is simpler for week 1.)
-4. **Magic link expiration:** Confirmed 15 minutes? Or different window? (Needs to be short enough for security, long enough users don't miss email.)
-5. **Pre-committed sellers:** Have you confirmed the 3–5 sellers will actually create accounts + test this week? (No signal yet if this is real demand. Researcher flagged this risk.)
+## Open questions (owner, please answer before Wednesday)
+1. **Inventory refresh rate:** When a customer is on checkout, should we re-check stock in real-time every N seconds, or just once at initial page load? (Impacts UX if seller runs low mid-checkout.)
+2. **Stock depletion behavior:** When a product sells out, should we (a) disable the "Add to Cart" button immediately, (b) allow adding but show error at checkout, or (c) allow adding but disable checkout? (Currently planning b — add to cart allowed, checkout blocked.)
+3. **Metric calculation window:** For "Total Revenue (30d)" and "Total Orders (30d)", should we count from today -30 days, or rolling 30 days from last paid order? (Impacts reporting consistency.)
 
-## Definition of done for day 1
-A bulleted list the reviewer + tester use as their checklist:
-- [ ] Seller can navigate to app homepage, sees a "Sign up" button
-- [ ] Seller enters email, receives email with magic link within 5 seconds
-- [ ] Clicking magic link logs seller in, redirects to /dashboard
-- [ ] Seller sees shop creation form with name + slug inputs
-- [ ] Seller creates shop, receives success message, sees shop detail page
-- [ ] Seller can visit /shop/[their-slug] in incognito window (not logged in), sees shop name + empty state message
-- [ ] Session cookie survives page reload (seller stays logged in without re-clicking email link)
-- [ ] All above works on mobile (iOS Safari, Chrome mobile, 320px width)
-- [ ] No console errors or server 500s during happy path
-- [ ] Playwright test: signup → create shop → view public storefront (all 3 features in one test)
+## Definition of done for day 56
+A checklist for reviewer + tester:
+- [ ] FR-156: Order dashboard filter buttons present and clickable, with correct counts
+- [ ] FR-156: Clicking filter changes order table display without page reload
+- [ ] FR-157: Metric cards render with correct numbers (products, revenue, orders)
+- [ ] FR-157: Metrics update when order status changes (manual test in dashboard)
+- [ ] FR-24: Stock level displayed on product detail page (for visibility)
+- [ ] FR-24: "Out of Stock" message appears when stock < cart qty
+- [ ] FR-24: Checkout button hidden when product is out of stock
+- [ ] FR-24: Stock decrements by order qty on successful Stripe payment (check database)
+- [ ] FR-24: Duplicate webhook doesn't double-decrement stock (idempotent)
+- [ ] FR-24: Seller can view/edit product stock in product editor
+- [ ] All features mobile-responsive (< 640px viewport)
+- [ ] All features have passing Playwright tests (regression test suite)
+- [ ] No console errors or TypeScript build errors
+- [ ] App builds and deploys to www.soloshopbox.com without errors
+- [ ] Health check passes, homepage loads, orders dashboard accessible
