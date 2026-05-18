@@ -32062,3 +32062,78 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-18T01:49:45.577Z","responseTime":"174ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"173ms"}}}
 ```
 Full output: [`server-runs/2026-05-18T01-49-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T01-49-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T01:52:11.299Z — Priya ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `136a000` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3659ms) _(showing tail — full 2,186B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…    | 326 +++++++----
+ app/dashboard/products/import/page.tsx      | 264 +++++++++
+ day-50/_index.md                            |   4 +-
+ day-50/stage-ship-check.md                  |  15 +
+ day-50/test.md                              | 155 ++++++
+ day-51/_plan.md                             |  36 ++
+ day-51/design.md                            |  53 ++
+ day-51/engineering.md                       | 506 +++++++++++++++++
+ day-51/requirements.md                      |  90 +--
+ day-51/review.md                            | 107 ++++
+ design/pages/checkout-inventory-status.html | 209 +++++++
+ design/pages/confirmation-modal.html        | 190 +++++++
+ design/pages/csv-import-results.html        | 219 ++++++++
+ design/pages/email-template-presets.html    | 223 ++++++++
+ design/pages/forgot-password.html           |  30 +
+ design/pages/out-of-stock-modal.html        | 114 ++++
+ package.json                                |   7 +-
+ server-log.md                               | 837 ++++++++++++++++++++++++++++
+ test-results/day-50/report.md               | 176 ++++++
+ tests/web/day51-csv-import.spec.ts          |  87 +++
+ tests/web/day51-email-template.spec.ts      | 133 +++++
+ 22 files changed, 3766 insertions(+), 178 deletions(-)
+ create mode 100644 app/api/products/import/route.ts
+ create mode 100644 app/dashboard/products/import/page.tsx
+ create mode 100644 day-50/stage-ship-check.md
+ create mode 100644 day-50/test.md
+ create mode 100644 day-51/_plan.md
+ create mode 100644 day-51/design.md
+ create mode 100644 day-51/engineering.md
+ create mode 100644 day-51/review.md
+ create mode 100644 design/pages/checkout-inventory-status.html
+ create mode 100644 design/pages/confirmation-modal.html
+ create mode 100644 design/pages/csv-import-results.html
+ create mode 100644 design/pages/email-template-presets.html
+ create mode 100644 design/pages/out-of-stock-modal.html
+ create mode 100644 test-results/day-50/report.md
+ create mode 100644 tests/web/day51-csv-import.spec.ts
+ create mode 100644 tests/web/day51-email-template.spec.ts
+```
+Full output: [`server-runs/2026-05-18T01-52-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T01-52-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 467ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+mkdir -p test-results/day-51
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day51-csv-import.spec.ts tests/web/day51-email-template.spec.ts --reporter=list" > /tmp/day51-tests.log 2>&1 &
+echo $! > /tmp/day51-tests.pid
+echo "Started day 51 tests, PID=$(cat /tmp/day51-tests.pid)"
+```
+STDOUT:
+```
+Started day 51 tests, PID=1421069
+```
+Full output: [`server-runs/2026-05-18T01-52-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-18T01-52-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
+
+### Command 3 on www.soloshopbox.com as tester (✓ exit 0, 435ms)
+```
+kill -0 $(cat /tmp/day51-tests.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day51-tests.log
+```
+STDOUT:
+```
+RUNNING
+```
+Full output: [`server-runs/2026-05-18T01-52-11-www.soloshopbox.com-kill--0-cat-tmp-day51-tests.pid-2-dev-nu-3.log`](server-runs/2026-05-18T01-52-11-www.soloshopbox.com-kill--0-cat-tmp-day51-tests.pid-2-dev-nu-3.log)
