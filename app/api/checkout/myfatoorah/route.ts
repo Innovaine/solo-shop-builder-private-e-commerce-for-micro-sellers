@@ -117,6 +117,7 @@ export async function POST(req: NextRequest) {
 
     // Create pending order in database with payment ID
     // This will be completed when the callback receives payment confirmation
+    const paymentId = paymentData.Data.PaymentId
     const invoiceId = paymentData.Data.InvoiceId
     
     // Store cart items and shop context as JSON metadata
@@ -129,9 +130,13 @@ export async function POST(req: NextRequest) {
         title: products.find(p => p.id === item.productId)?.title || 'Unknown',
         price: products.find(p => p.id === item.productId)?.price || 0,
       })),
+      myfatoorah: {
+        invoiceId: invoiceId,
+        paymentId: paymentId,
+      },
     }
 
-    // Create a pending order with the MyFatoorah invoice ID as the payment ID
+    // Create a pending order with the MyFatoorah payment ID as the payment ID
     // This allows us to find and complete it in the callback
     const pendingOrder = await prisma.order.create({
       data: {
@@ -139,7 +144,7 @@ export async function POST(req: NextRequest) {
         customerEmail: '', // Will be updated in callback
         status: 'pending',
         total: total,
-        stripePaymentId: invoiceId, // Store invoice ID to match in callback
+        stripePaymentId: paymentId, // Store payment ID to match in callback
         metadata: JSON.stringify(orderMetadata),
       },
     })

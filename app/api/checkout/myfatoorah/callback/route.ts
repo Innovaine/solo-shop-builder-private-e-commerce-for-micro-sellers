@@ -77,13 +77,10 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(`${baseUrl}/checkout?error=payment_not_completed`)
     }
 
-    // Find pending order by invoice ID or payment ID (stored as stripePaymentId during checkout)
+    // Find pending order by payment ID (stored as stripePaymentId during checkout)
     const pendingOrder = await prisma.order.findFirst({
       where: {
-        OR: [
-          { stripePaymentId: invoice.Id.toString() },
-          { stripePaymentId: `myfatoorah_invoice_${invoice.Id}` },
-        ],
+        stripePaymentId: paymentId,
       },
       include: {
         items: true,
@@ -92,15 +89,11 @@ export async function GET(req: NextRequest) {
     })
 
     if (!pendingOrder) {
-      console.error('[MyFatoorah Callback] No pending order found for invoice:', invoice.Id)
+      console.error('[MyFatoorah Callback] No pending order found for payment ID:', paymentId)
       // Order might have already been completed, check by payment ID
       const completedOrder = await prisma.order.findFirst({
         where: { 
-          OR: [
-            { stripePaymentId: paymentId },
-            { stripePaymentId: invoice.Id.toString() },
-            { stripePaymentId: `myfatoorah_invoice_${invoice.Id}` },
-          ],
+          stripePaymentId: paymentId,
           status: 'paid',
         },
       })

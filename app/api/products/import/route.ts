@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/db';
 import Papa from 'papaparse';
-
-const prisma = new PrismaClient();
 
 // ASSUMPTION: Using PapaParse for CSV parsing (client-side library, but works in Node)
 // ASSUMPTION: File size validation done client-side; server processes uploaded data
