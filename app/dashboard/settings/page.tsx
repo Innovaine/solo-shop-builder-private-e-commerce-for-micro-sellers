@@ -3,7 +3,7 @@
 // FR-22: Account settings - password change
 // Seller can set or change their password
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { FormField } from '@/components/ui/FormField'
