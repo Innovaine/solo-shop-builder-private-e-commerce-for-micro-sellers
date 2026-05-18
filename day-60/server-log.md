@@ -241,3 +241,18 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-18T12-53-23-www.soloshopbox.com-kill--0-cat-tmp-day60-tests.pid-2-dev-nu-1.log`](server-runs/2026-05-18T12-53-23-www.soloshopbox.com-kill--0-cat-tmp-day60-tests.pid-2-dev-nu-1.log)
+
+## 2026-05-18T12:53:49.286Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b1ff2f5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 2, 2897ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+ls -la tests/web/day60-*.spec.ts 2>&1
+```
+STDOUT:
+```
+ls: cannot access 'tests/web/day60-*.spec.ts': No such file or directory
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-18T12-53-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T12-53-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
