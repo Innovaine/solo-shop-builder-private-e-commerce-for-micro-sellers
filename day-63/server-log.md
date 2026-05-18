@@ -620,3 +620,65 @@ export default async function ShopPage({
         style={{ backgroundColor: primaryColor }}
 ```
 Full output: [`server-runs/2026-05-18T15-59-48-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-59-48-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T16:00:11.812Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a1f506c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2461ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -50 app/track/\[orderId\]/page.tsx
+```
+STDOUT:
+```
+'use client'
+
+// FR-14: Customer order tracking page
+// Customer can view order status and tracking info via public link
+
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+import { Card } from '@/components/ui/Card'
+
+interface OrderItem {
+  id: string
+  productTitle: string
+  price: number
+  quantity: number
+}
+
+interface Order {
+  id: string
+  customerEmail: string
+  customerName: string | null
+  status: string
+  total: number
+  trackingId: string | null
+  trackingUrl: string | null
+  createdAt: string
+  items: OrderItem[]
+  shop: {
+    name: string
+    slug: string
+  }
+}
+
+export default function TrackOrderPage() {
+  const params = useParams()
+  const orderId = params.orderId as string
+
+  const [order, setOrder] = useState<Order | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchOrder() {
+      try {
+        const response = await fetch(`/api/orders/${orderId}`)
+        if (!response.ok) {
+          throw new Error('Order not found')
+        }
+        const data = await response.json()
+        setOrder(data.order)
+      } catch (err: any) {
+```
+Full output: [`server-runs/2026-05-18T16-00-11-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T16-00-11-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
