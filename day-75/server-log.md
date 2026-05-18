@@ -41,3 +41,26 @@ STDOUT:
     "nodemailer": "^6.9.13",
 ```
 Full output: [`server-runs/2026-05-18T21-46-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T21-46-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T21:47:20.377Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f24ce2c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2009ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat package.json | grep -A 10 '"scripts"'
+```
+STDOUT:
+```
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:push": "prisma db push"
+  },
+  "dependencies": {
+    "next": "14.2.3",
+```
+Full output: [`server-runs/2026-05-18T21-47-20-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T21-47-20-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
