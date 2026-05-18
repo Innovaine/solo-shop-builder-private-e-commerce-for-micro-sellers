@@ -33446,3 +33446,16 @@ STDOUT:
 APP DOWN
 ```
 Full output: [`server-runs/2026-05-18T03-52-56-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log`](server-runs/2026-05-18T03-52-56-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log)
+
+## 2026-05-18T03:53:17.857Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fabc3e6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2758ms)
+```
+docker ps -a | grep solo-shop
+```
+STDOUT:
+```
+5b26a700cbdf   postgres:16-alpine   "docker-entrypoint.s…"   15 hours ago   Exited (0) About a minute ago             solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-18T03-53-17-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-18T03-53-17-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log)
