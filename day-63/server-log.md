@@ -363,3 +363,25 @@ added 1 package, changed 143 packages, and audited 145 packages in 12s
 33 packages are looking for funding
 ```
 Full output: [`server-runs/2026-05-18T15-56-29-www.soloshopbox.com-kill--0-cat-tmp-npm-install.pid-2-dev-nu-1.log`](server-runs/2026-05-18T15-56-29-www.soloshopbox.com-kill--0-cat-tmp-npm-install.pid-2-dev-nu-1.log)
+
+## 2026-05-18T15:56:54.966Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d4f4af8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 3455ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1
+```
+STDOUT:
+```
+
+[41m                                                                               [0m
+[41m[37m                This is not the tsc command you are looking for                [0m
+[41m                                                                               [0m
+
+To get access to the TypeScript compiler, [34mtsc[0m, from the command line either:
+
+- Use [1mnpm install typescript[0m to first add TypeScript to your project [1mbefore[0m using npx
+- Use [1myarn[0m to avoid accidentally running code from un-installed packages
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-18T15-56-54-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-56-54-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
