@@ -50,3 +50,26 @@ STDOUT:
 No errors/warnings in recent logs
 ```
 Full output: [`server-runs/2026-05-18T17-56-16-www.soloshopbox.com-echo-Recent-App-Logs-docker-logs---tail--1.log`](server-runs/2026-05-18T17-56-16-www.soloshopbox.com-echo-Recent-App-Logs-docker-logs---tail--1.log)
+
+## 2026-05-18T17:56:52.514Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1b06ed1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3298ms)
+```
+echo "=== Test 1: Homepage loads ===" && curl -sI https://www.soloshopbox.com | head -1 && echo -e "\n=== Test 2: Dashboard orders page (should 401 without auth) ===" && curl -sI https://www.soloshopbox.com/dashboard/orders | head -1 && echo -e "\n=== Test 3: API endpoints respond ===" && curl -sI https://www.soloshopbox.com/api/products | head -1 && echo -e "\n=== Test 4: Checkout success page ===" && curl -sI https://www.soloshopbox.com/checkout/success | head -1
+```
+STDOUT:
+```
+=== Test 1: Homepage loads ===
+HTTP/2 200 
+
+=== Test 2: Dashboard orders page (should 401 without auth) ===
+HTTP/2 200 
+
+=== Test 3: API endpoints respond ===
+HTTP/2 400 
+
+=== Test 4: Checkout success page ===
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-18T17-56-52-www.soloshopbox.com-echo-Test-1-Homepage-loads-curl--sI-http-1.log`](server-runs/2026-05-18T17-56-52-www.soloshopbox.com-echo-Test-1-Homepage-loads-curl--sI-http-1.log)
