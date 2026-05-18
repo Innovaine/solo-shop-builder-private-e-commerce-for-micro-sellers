@@ -276,3 +276,36 @@ STDOUT:
 file" id="logoUpload" accept="image/png,image/jpeg,image/jpg" class="block w-full text-sm text-charcoal file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-emerald file:text-white hover:file:bg-emerald/90 cursor-pointer"/></div><div class="flex flex-col gap-1.5 w-full"><label for="field-logo-url-(optional)" class="text-sm font-semibold text-charcoal">Logo URL (Optional)</label><input
 ```
 Full output: [`server-runs/2026-05-18T10-07-04-www.soloshopbox.com-curl--s-https-www.soloshopbox.com-dashbo-1.log`](server-runs/2026-05-18T10-07-04-www.soloshopbox.com-curl--s-https-www.soloshopbox.com-dashbo-1.log)
+
+## 2026-05-18T10:07:28.423Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c7e8ee9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3081ms)
+```
+curl -I -X POST https://www.soloshopbox.com/api/shops/branding 2>/dev/null | head -15
+```
+STDOUT:
+```
+HTTP/2 405 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+date: Mon, 18 May 2026 10:07:28 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+x-request-id: QTx6WrkC8VQwkgnV
+```
+Full output: [`server-runs/2026-05-18T10-07-28-www.soloshopbox.com-curl--I--X-POST-https-www.soloshopbox.co-1.log`](server-runs/2026-05-18T10-07-28-www.soloshopbox.com-curl--I--X-POST-https-www.soloshopbox.co-1.log)
+
+## 2026-05-18T10:07:54.604Z — Søren ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3156ms)
+```
+grep -A 3 "logoImageUrl" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/prisma/schema.prisma
+```
+STDOUT:
+```
+  logoImageUrl      String?  // FR-6+: Uploaded logo path (local storage)
+  tagline           String?  @db.VarChar(100) // FR-26: Shop tagline (max 100 chars)
+  
+  // FR-35: Email template customization
+```
+Full output: [`server-runs/2026-05-18T10-07-54-www.soloshopbox.com-grep--A-3-logoImageUrl-solo-shop-builder-1.log`](server-runs/2026-05-18T10-07-54-www.soloshopbox.com-grep--A-3-logoImageUrl-solo-shop-builder-1.log)
