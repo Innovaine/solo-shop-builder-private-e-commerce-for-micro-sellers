@@ -372,3 +372,20 @@ DONE
 nohup: failed to run command 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers': No such file or directory
 ```
 Full output: [`server-runs/2026-05-18T10-11-54-www.soloshopbox.com-kill--0-cat-tmp-day57-test.pid-2-dev-nul-1.log`](server-runs/2026-05-18T10-11-54-www.soloshopbox.com-kill--0-cat-tmp-day57-test.pid-2-dev-nul-1.log)
+
+## 2026-05-18T10:12:21.387Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e61aa33` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3196ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+rm -f /tmp/day57-test.pid /tmp/day57-test.log
+nohup bash -c 'export PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers && npx playwright test tests/web/day57-features.spec.ts --reporter=list' > /tmp/day57-test.log 2>&1 &
+echo $! > /tmp/day57-test.pid
+echo "Started test PID=$(cat /tmp/day57-test.pid)"
+```
+STDOUT:
+```
+Started test PID=1506486
+```
+Full output: [`server-runs/2026-05-18T10-12-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T10-12-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
