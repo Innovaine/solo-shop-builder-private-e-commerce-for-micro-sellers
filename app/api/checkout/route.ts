@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Verify shop exists
+    // Verify shop exists and is active
     const shop = await prisma.shop.findUnique({
       where: { slug: shopSlug },
     })
@@ -40,6 +40,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Shop not found' },
         { status: 404 }
+      )
+    }
+
+    // Block checkout if shop is inactive
+    if (shop.status !== 'ACTIVE') {
+      return NextResponse.json(
+        { error: 'This shop is currently inactive and cannot accept orders' },
+        { status: 403 }
       )
     }
 

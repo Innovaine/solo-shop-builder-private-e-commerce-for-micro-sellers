@@ -28,6 +28,9 @@ export default async function ProductDetailPage({
     notFound()
   }
 
+  // Check if shop is inactive
+  const isShopActive = product.shop.status === 'ACTIVE'
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -47,6 +50,22 @@ export default async function ProductDetailPage({
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-12">
+        {/* Shop Inactive Warning */}
+        {!isShopActive && (
+          <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-6 mb-8 text-center">
+            <div className="text-4xl mb-3">⚠️</div>
+            <h2 className="text-2xl font-bold text-charcoal mb-2">
+              This shop is currently inactive
+            </h2>
+            <p className="text-slate mb-4">
+              The seller has temporarily paused this shop. You cannot purchase items at this time.
+            </p>
+            <Link href={`/shop/${slug}`}>
+              <Button variant="secondary">Back to Shop</Button>
+            </Link>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Image */}
           <div className="space-y-3">
@@ -120,7 +139,16 @@ export default async function ProductDetailPage({
             </div>
 
             {/* Add to Cart Button */}
-            {product.stock > 0 ? (
+            {!isShopActive ? (
+              <Button
+                variant="primary"
+                size="lg"
+                disabled
+                className="w-full opacity-50 cursor-not-allowed"
+              >
+                Shop Inactive
+              </Button>
+            ) : product.stock > 0 ? (
               <AddToCartButton
                 productId={product.id}
                 productTitle={product.title}
@@ -200,8 +228,8 @@ export default async function ProductDetailPage({
         <p>© 2026 {product.shop.name}. Solo Shop Builder. | Secured by Stripe</p>
       </footer>
 
-      {/* Floating cart button */}
-      <CartButton shopSlug={slug} />
+      {/* Floating cart button - only show if shop is active */}
+      {isShopActive && <CartButton shopSlug={slug} />}
     </div>
   )
 }

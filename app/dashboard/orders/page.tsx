@@ -57,8 +57,11 @@ export default function OrdersPage() {
         const ordersData = await ordersRes.json()
         const analyticsData = await analyticsRes.json()
 
+        // Extract orders array from response (API returns { orders: [...] })
+        const ordersArray = ordersData.orders || []
+        
         // Sort orders by date (most recent first)
-        const sortedOrders = (ordersData || []).sort((a: Order, b: Order) => {
+        const sortedOrders = ordersArray.sort((a: Order, b: Order) => {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         })
 

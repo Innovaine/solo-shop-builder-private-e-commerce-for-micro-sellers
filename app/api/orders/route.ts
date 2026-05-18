@@ -10,6 +10,32 @@ import { verifySession } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
   try {
+    const { searchParams } = new URL(request.url)
+    const paymentId = searchParams.get('paymentId')
+
+    // If paymentId is provided, fetch order by payment ID (no auth required - public receipt)
+    if (paymentId) {
+      const order = await prisma.order.findFirst({
+        where: { stripePaymentId: paymentId },
+        include: {
+          items: true,
+          shop: {
+            select: {
+              name: true,
+              slug: true,
+            },
+          },
+        },
+      })
+
+      if (!order) {
+        return NextResponse.json({ orders: [] })
+      }
+
+      return NextResponse.json({ orders: [order] })
+    }
+
+    // Otherwise, require authentication and return seller's orders
     const cookieStore = cookies()
     const sessionCookie = cookieStore.get('session')
 

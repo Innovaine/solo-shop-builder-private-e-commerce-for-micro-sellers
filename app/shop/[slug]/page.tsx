@@ -40,6 +40,9 @@ export default async function ShopPage({
     notFound()
   }
 
+  // Check if shop is inactive
+  const isShopActive = shop.status === 'ACTIVE'
+
   // Get unique categories for filter
   const allProducts = await prisma.product.findMany({
     where: { shopId: shop.id },
@@ -157,8 +160,21 @@ export default async function ShopPage({
       </section>
 
       <main className="max-w-7xl mx-auto px-6 py-12">
+        {/* Shop Inactive Warning */}
+        {!isShopActive && (
+          <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-6 mb-8 text-center">
+            <div className="text-4xl mb-3">⚠️</div>
+            <h2 className="text-2xl font-bold text-charcoal mb-2">
+              This shop is currently inactive
+            </h2>
+            <p className="text-slate">
+              The seller has temporarily paused this shop. Please check back later.
+            </p>
+          </div>
+        )}
+
         {/* FR-7: Category Filter */}
-        {categories.length > 0 && (
+        {categories.length > 0 && isShopActive && (
           <CategoryFilter 
             categories={categories}
             selectedCategory={selectedCategory}
@@ -166,7 +182,7 @@ export default async function ShopPage({
           />
         )}
 
-        {hasProducts ? (
+        {hasProducts && isShopActive ? (
           <>
             {/* Results count + Sort controls */}
             <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -257,8 +273,8 @@ export default async function ShopPage({
         <p>© 2026 {shop.name}. Solo Shop Builder. | Secured by Stripe</p>
       </footer>
 
-      {/* Floating cart button */}
-      <CartButton shopSlug={shop.slug} />
+      {/* Floating cart button - only show if shop is active */}
+      {isShopActive && <CartButton shopSlug={shop.slug} />}
     </div>
   )
 }
