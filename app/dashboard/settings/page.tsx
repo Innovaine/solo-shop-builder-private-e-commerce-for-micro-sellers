@@ -30,8 +30,9 @@ export default function SettingsPage() {
     fetch('/api/shops')
       .then(res => res.json())
       .then(data => {
-        if (data.shop?.status) {
-          setShopStatus(data.shop.status)
+        // GET /api/shops returns an array of shops
+        if (Array.isArray(data) && data.length > 0 && data[0].status) {
+          setShopStatus(data[0].status)
         }
       })
       .catch(err => console.error('Failed to load shop status:', err))

@@ -80,8 +80,11 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Destroy session
-    session.destroy()
+    // Clear session data
+    session.sellerId = undefined
+    session.email = undefined
+    session.isLoggedIn = false
+    await session.save()
 
     return NextResponse.json(
       { message: 'Account deleted successfully' },

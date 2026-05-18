@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { requireAuth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
@@ -8,22 +8,14 @@ import crypto from 'crypto';
 // PATCH /api/shops/branding — Update shop branding (FR-33 + FR-6+)
 export async function PATCH(req: NextRequest) {
   try {
-    // Auth check
-    const sessionCookie = cookies().get('session');
-    if (!sessionCookie) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    // Auth check using iron-session
+    const { sellerId } = await requireAuth();
 
-    const session = await prisma.authToken.findUnique({
-      where: { token: sessionCookie.value },
-      include: { seller: { include: { shops: true } } },
+    // Find seller's shop
+    const shop = await prisma.shop.findFirst({
+      where: { sellerId },
     });
 
-    if (!session || session.expiresAt < new Date() || session.used) {
-      return NextResponse.json({ error: 'Session expired' }, { status: 401 });
-    }
-
-    const shop = session.seller.shops[0];
     if (!shop) {
       return NextResponse.json({ error: 'No shop found' }, { status: 404 });
     }

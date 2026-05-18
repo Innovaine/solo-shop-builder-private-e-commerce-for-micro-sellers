@@ -135,14 +135,23 @@ export async function POST(request: NextRequest) {
       quantity: item.quantity,
     }))
 
+    // Determine base URL from environment or request headers
+    let baseUrl = process.env.APP_URL
+    if (!baseUrl) {
+      // Fallback: construct from request headers
+      const host = request.headers.get('host')
+      const protocol = request.headers.get('x-forwarded-proto') || 'https'
+      baseUrl = `${protocol}://${host}`
+    }
+
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
       line_items: lineItems,
       customer_email: customerEmail || undefined,
-      success_url: `${process.env.APP_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.APP_URL}/shop/${shopSlug}`,
+      success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/shop/${shopSlug}`,
       metadata: {
         shopId: shop.id,
         shopSlug: shop.slug,

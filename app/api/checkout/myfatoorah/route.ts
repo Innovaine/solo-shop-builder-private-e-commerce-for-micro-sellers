@@ -58,10 +58,18 @@ export async function POST(req: NextRequest) {
       total += product.price * item.quantity
     }
 
+    // Determine base URL from environment or request headers
+    let appUrl = process.env.APP_URL
+    if (!appUrl) {
+      // Fallback: construct from request headers
+      const host = req.headers.get('host')
+      const protocol = req.headers.get('x-forwarded-proto') || 'https'
+      appUrl = `${protocol}://${host}`
+    }
+    
     // Create payment request with MyFatoorah
     const myfatoorahApiKey = process.env.MYFATOORAH_API_KEY
     const myfatoorahApiUrl = process.env.MYFATOORAH_API_URL || 'https://apitest.myfatoorah.com'
-    const appUrl = process.env.APP_URL || 'http://localhost:3000'
 
     if (!myfatoorahApiKey) {
       return NextResponse.json(
