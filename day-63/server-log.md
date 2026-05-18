@@ -130,3 +130,85 @@ app/api/orders/export/route.ts
 app/api/auth/forgot-password/route.ts
 ```
 Full output: [`server-runs/2026-05-18T15-54-53-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-54-53-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:55:16.771Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e6d3d09` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2547ms) _(showing tail — full 2,433B stdout + 0B stderr)_
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -80 app/api/auth/signup/route.ts
+```
+STDOUT:
+```
+…from '@/lib/email'
+import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
+
+const signupSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters').optional(),
+})
+
+export async function POST(request: NextRequest) {
+  try {
+    // Rate limiting check
+    const clientId = getClientIdentifier(request)
+    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.AUTH_SIGNUP)
+    
+    if (!rateLimitResult.allowed) {
+      return NextResponse.json(
+        { error: 'Too many signup attempts. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(rateLimitResult.resetAt).toISOString(),
+          }
+        }
+      )
+    }
+    
+    const body = await request.json()
+    const { email, password } = signupSchema.parse(body)
+
+    // Find or create seller
+    let seller = await prisma.seller.findUnique({
+      where: { email },
+    })
+
+    if (!seller) {
+      // Hash password if provided (NFR-4: bcrypt min 12 rounds)
+      const passwordHash = password 
+        ? await bcrypt.hash(password, 12)
+        : null
+
+      seller = await prisma.seller.create({
+        data: { 
+          email,
+          passwordHash,
+        },
+      })
+    } else if (password && !seller.passwordHash) {
+      // If seller exists but no password set yet, allow setting it
+      const passwordHash = await bcrypt.hash(password, 12)
+      seller = await prisma.seller.update({
+        where: { id: seller.id },
+        data: { passwordHash },
+      })
+    }
+
+    // Generate 6-digit token (using nanoid for security, not actual digits to avoid brute force)
+    const token = nanoid(32)
+    
+    // Token expires in 15 minutes
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000)
+
+    // Create auth token
+    await prisma.authToken.create({
+      data: {
+        token,
+        sellerId: seller.id,
+        expiresAt,
+      },
+    })
+```
+Full output: [`server-runs/2026-05-18T15-55-16-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-55-16-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
