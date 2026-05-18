@@ -548,3 +548,62 @@ STDOUT:
   2 passed (1.5s)
 ```
 Full output: [`server-runs/2026-05-18T10-45-21-www.soloshopbox.com-sleep-10-1.log`](server-runs/2026-05-18T10-45-21-www.soloshopbox.com-sleep-10-1.log)
+
+## 2026-05-18T10:45:51.665Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dd6de87` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3450ms)
+```
+echo "Test 1: Email template page existence"
+curl -I https://www.soloshopbox.com/dashboard/email-template 2>&1 | head -5
+
+echo ""
+echo "Test 2: Profile page existence"
+curl -I https://www.soloshopbox.com/dashboard/profile 2>&1 | head -5
+
+echo ""
+echo "Test 3: Check profile page content for social links"
+curl -s https://www.soloshopbox.com/dashboard/profile | grep -i -o -E '(twitter|instagram|facebook|social)' | head -10
+
+echo ""
+echo "Test 4: API endpoints exist"
+curl -I -X PUT https://www.soloshopbox.com/api/shops/email-template 2>&1 | head -3
+curl -I -X PUT https://www.soloshopbox.com/api/shops/profile 2>&1 | head -3
+```
+STDOUT:
+```
+Test 1: Email template page existence
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  7874    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+
+Test 2: Profile page existence
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 13497    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+
+Test 3: Check profile page content for social links
+twitter
+twitter
+twitter
+Social
+twitter
+Twitter
+twitter
+twitter
+Twitter
+instagram
+
+Test 4: API endpoints exist
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+```
+Full output: [`server-runs/2026-05-18T10-45-51-www.soloshopbox.com-echo-Test-1-Email-template-page-existenc-1.log`](server-runs/2026-05-18T10-45-51-www.soloshopbox.com-echo-Test-1-Email-template-page-existenc-1.log)
