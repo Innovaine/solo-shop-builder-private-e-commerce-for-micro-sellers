@@ -64,3 +64,12 @@ To get access to the TypeScript compiler, [34mtsc[0m, from the command line ei
 - Use [1myarn[0m to avoid accidentally running code from un-installed packages
 ```
 Full output: [`server-runs/2026-05-18T15-52-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-52-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:54:04.287Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f1121b7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 59462ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npm install 2>&1 | tail -20
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
