@@ -33788,3 +33788,215 @@ Test 1: FR-152 - Shop status toggle API
 {"error":"Failed to update shop status"}
 ```
 Full output: [`server-runs/2026-05-18T04-18-49-www.soloshopbox.com-echo-Day-53-Manual-Smoke-Tests-echo-echo-1.log`](server-runs/2026-05-18T04-18-49-www.soloshopbox.com-echo-Day-53-Manual-Smoke-Tests-echo-echo-1.log)
+
+## 2026-05-18T04:26:04.324Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5f483e0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 3484ms)
+```
+cat > /tmp/day53-manual-tests.sh << 'EOF'
+#!/bin/bash
+set -e
+
+BASE_URL="https://www.soloshopbox.com"
+EMAIL="day53-test-$(date +%s)@test.com"
+
+echo "=== Day 53 Manual API Tests ==="
+echo ""
+
+# Test 1: Create seller account
+echo "Test 1: Create seller account..."
+SIGNUP_RES=$(curl -s -X POST "$BASE_URL/api/auth/signup" \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"$EMAIL\"}")
+
+TOKEN=$(echo "$SIGNUP_RES" | grep -o '"verifyToken":"[^"]*"' | cut -d'"' -f4)
+
+if [ -z "$TOKEN" ]; then
+  echo "✗ FAIL: No verify token received"
+  exit 1
+fi
+echo "✓ PASS: Seller created, token: ${TOKEN:0:20}..."
+
+# Test 2: Verify and get session
+echo ""
+echo "Test 2: Verify account and get session..."
+VERIFY_RES=$(curl -s -i -X POST "$BASE_URL/api/auth/verify" \
+  -H "Content-Type: application/json" \
+  -d "{\"token\":\"$TOKEN\"}")
+
+COOKIES=$(echo "$VERIFY_RES" | grep -i "set-cookie" | cut -d' ' -f2-)
+
+if [ -z "$COOKIES" ]; then
+  echo "✗ FAIL: No session cookie received"
+  exit 1
+fi
+echo "✓ PASS: Session obtained"
+
+# Test 3: Create shop
+echo ""
+echo "Test 3: Create shop..."
+SHOP_SLUG="test-shop-$(date +%s)"
+SHOP_RES=$(curl -s -X POST "$BASE_URL/api/shops" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d "{\"slug\":\"$SHOP_SLUG\",\"displayName\":\"Test Shop\",\"description\":\"Testing\"}")
+
+SHOP_ID=$(echo "$SHOP_RES" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+
+if [ -z "$SHOP_ID" ]; then
+  echo "✗ FAIL: Shop creation failed"
+  echo "$SHOP_RES"
+  exit 1
+fi
+echo "✓ PASS: Shop created: $SHOP_ID"
+
+# Test 4: FR-152 - Toggle shop status to PAUSED
+echo ""
+echo "Test 4: FR-152 - Toggle shop status to PAUSED..."
+PAUSE_RES=$(curl -s -X PUT "$BASE_URL/api/shops/status" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d '{"status":"PAUSED"}')
+
+if echo "$PAUSE_RES" | grep -q '"status":"PAUSED"'; then
+  echo "✓ PASS: Shop toggled to PAUSED"
+  echo "$PAUSE_RES"
+else
+  echo "✗ FAIL: Shop status not changed"
+  echo "$PAUSE_RES"
+fi
+
+# Test 5: FR-152 - Toggle shop status back to ACTIVE
+echo ""
+echo "Test 5: FR-152 - Toggle shop status back to ACTIVE..."
+ACTIVE_RES=$(curl -s -X PUT "$BASE_URL/api/shops/status" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d '{"status":"ACTIVE"}')
+
+if echo "$ACTIVE_RES" | grep -q '"status":"ACTIVE"'; then
+  echo "✓ PASS: Shop toggled to ACTIVE"
+else
+  echo "✗ FAIL: Shop status not changed to ACTIVE"
+  echo "$ACTIVE_RES"
+fi
+
+# Test 6: Create product
+echo ""
+echo "Test 6: Create product for status tests..."
+PRODUCT_RES=$(curl -s -X POST "$BASE_URL/api/products" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d '{"title":"Test Product","price":29.99,"description":"Test","category":"Electronics"}')
+
+PRODUCT_ID=$(echo "$PRODUCT_RES" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+
+if [ -z "$PRODUCT_ID" ]; then
+  echo "✗ FAIL: Product creation failed"
+  echo "$PRODUCT_RES"
+  exit 1
+fi
+echo "✓ PASS: Product created: $PRODUCT_ID"
+
+# Test 7: FR-153 - Toggle product status to DRAFT
+echo ""
+echo "Test 7: FR-153 - Toggle product status to DRAFT..."
+DRAFT_RES=$(curl -s -X PUT "$BASE_URL/api/products/$PRODUCT_ID/status" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d '{"status":"DRAFT"}')
+
+if echo "$DRAFT_RES" | grep -q '"status":"DRAFT"'; then
+  echo "✓ PASS: Product toggled to DRAFT"
+  echo "$DRAFT_RES"
+else
+  echo "✗ FAIL: Product status not changed"
+  echo "$DRAFT_RES"
+fi
+
+# Test 8: FR-153 - Toggle product status back to PUBLISHED
+echo ""
+echo "Test 8: FR-153 - Toggle product to PUBLISHED..."
+PUB_RES=$(curl -s -X PUT "$BASE_URL/api/products/$PRODUCT_ID/status" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d '{"status":"PUBLISHED"}')
+
+if echo "$PUB_RES" | grep -q '"status":"PUBLISHED"'; then
+  echo "✓ PASS: Product toggled to PUBLISHED"
+else
+  echo "✗ FAIL: Product not published"
+  echo "$PUB_RES"
+fi
+
+# Test 9: Create second product for bulk test
+echo ""
+echo "Test 9: Create second product for bulk test..."
+PRODUCT2_RES=$(curl -s -X POST "$BASE_URL/api/products" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d '{"title":"Test Product 2","price":19.99,"description":"Test","category":"Electronics"}')
+
+PRODUCT2_ID=$(echo "$PRODUCT2_RES" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+
+if [ -z "$PRODUCT2_ID" ]; then
+  echo "✗ FAIL: Second product creation failed"
+  exit 1
+fi
+echo "✓ PASS: Second product created: $PRODUCT2_ID"
+
+# Test 10: FR-155 - Bulk update product status
+echo ""
+echo "Test 10: FR-155 - Bulk update products to DRAFT..."
+BULK_RES=$(curl -s -X POST "$BASE_URL/api/products/bulk-status" \
+  -H "Content-Type: application/json" \
+  -H "Cookie: $COOKIES" \
+  -d "{\"productIds\":[\"$PRODUCT_ID\",\"$PRODUCT2_ID\"],\"status\":\"DRAFT\"}")
+
+if echo "$BULK_RES" | grep -q '"count":2'; then
+  echo "✓ PASS: Bulk update successful (2 products)"
+  echo "$BULK_RES"
+else
+  echo "✗ FAIL: Bulk update failed"
+  echo "$BULK_RES"
+fi
+
+# Test 11: Check storefront loads
+echo ""
+echo "Test 11: Check storefront loads..."
+STORE_RES=$(curl -s -o /dev/null -w "%{http_code}" "$BASE_URL/shop/$SHOP_SLUG")
+
+if [ "$STORE_RES" = "200" ]; then
+  echo "✓ PASS: Storefront loads (HTTP 200)"
+else
+  echo "✗ FAIL: Storefront returned HTTP $STORE_RES"
+fi
+
+# Test 12: Check cart checkout route (task #158 fix)
+echo ""
+echo "Test 12: Verify cart checkout routes correctly (task #158)..."
+CART_PAGE=$(curl -s "$BASE_URL/shop/$SHOP_SLUG")
+
+if echo "$CART_PAGE" | grep -q "/shop/$SHOP_SLUG/checkout"; then
+  echo "✗ FAIL: Old broken checkout route still present"
+else
+  echo "✓ PASS: No broken /shop/[slug]/checkout routes found"
+fi
+
+echo ""
+echo "=== Test Summary ==="
+echo "All manual API tests completed"
+EOF
+
+chmod +x /tmp/day53-manual-tests.sh && /tmp/day53-manual-tests.sh
+```
+STDOUT:
+```
+=== Day 53 Manual API Tests ===
+
+Test 1: Create seller account...
+✗ FAIL: No verify token received
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-18T04-26-04-www.soloshopbox.com-cat-tmp-day53-manual-tests.sh-EOF-1.log`](server-runs/2026-05-18T04-26-04-www.soloshopbox.com-cat-tmp-day53-manual-tests.sh-EOF-1.log)
