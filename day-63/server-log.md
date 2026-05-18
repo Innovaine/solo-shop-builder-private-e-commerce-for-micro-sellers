@@ -548,3 +548,75 @@ export default function CreateShopPage() {
     try {
 ```
 Full output: [`server-runs/2026-05-18T15-59-24-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-59-24-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:59:48.062Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9a55918` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2507ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -60 app/shop/\[slug\]/page.tsx
+```
+STDOUT:
+```
+// FR-5: Public shop storefront - displays shop products in grid
+// Updated Day 15: Show products, not just empty state
+// Day 17: Integrated UI components (Button)
+// Day 42: FR-7: Category filter
+
+import { notFound } from 'next/navigation'
+import { prisma } from '@/lib/db'
+import Link from 'next/link'
+import { Button } from '@/components/ui/Button'
+import { CartButton } from '@/components/CartButton'
+import CategoryFilter from './CategoryFilter'
+
+export default async function ShopPage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams: { category?: string }
+}) {
+  const shop = await prisma.shop.findUnique({
+    where: { slug: params.slug },
+    include: {
+      products: {
+        where: searchParams.category 
+          ? { category: searchParams.category }
+          : {},
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+    },
+  })
+
+  if (!shop) {
+    notFound()
+  }
+
+  // Get unique categories for filter
+  const allProducts = await prisma.product.findMany({
+    where: { shopId: shop.id },
+    select: { category: true },
+  })
+  
+  const categories = Array.from(
+    new Set(allProducts.map(p => p.category).filter(Boolean))
+  ) as string[]
+
+  const hasProducts = shop.products.length > 0
+  const selectedCategory = searchParams.category || null
+
+  // FR-33: Apply custom branding colors
+  const primaryColor = shop.primaryColor || '#3B4C63';
+  const accentColor = shop.accentColor || '#10B981';
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header with custom branding */}
+      <header
+        className="border-b border-whisper sticky top-0 z-10"
+        style={{ backgroundColor: primaryColor }}
+```
+Full output: [`server-runs/2026-05-18T15-59-48-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-59-48-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
