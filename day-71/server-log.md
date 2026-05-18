@@ -118,3 +118,38 @@ app/auth/login/page.tsx:                  href="/auth/forgot-password"
 app/auth/login/page.tsx:          New to Solo Shop? <a href="/" className="text-slate-blue font-semibold hover:underline">Learn more</a>
 ```
 Full output: [`server-runs/2026-05-18T18-45-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-45-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:45:30.259Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e83d972` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2682ms) _(showing tail — full 2,771B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "router.push\|router.replace" app --include="*.tsx" | head -30
+```
+STDOUT:
+```
+… onClick={() => router.push('/dashboard/products/new')}
+app/dashboard/products/page.tsx:                  onClick={() => router.push('/dashboard/products/new')}
+app/dashboard/products/page.tsx:                            onClick={() => router.push(`/dashboard/products/${product.id}/edit`)}
+app/dashboard/products/import/page.tsx:              onClick={() => router.push('/dashboard/products')}
+app/dashboard/branding/page.tsx:            onClick={() => router.push('/dashboard')}
+app/dashboard/branding/page.tsx:                onClick={() => router.push('/dashboard')}
+app/dashboard/email-template/page.tsx:            onClick={() => router.push('/dashboard')}
+app/dashboard/profile/page.tsx:            onClick={() => router.push('/dashboard')}
+app/dashboard/profile/page.tsx:                onClick={() => router.push('/dashboard')}
+app/dashboard/create-shop/page.tsx:            router.push('/auth/login?error=session_expired')
+app/dashboard/create-shop/page.tsx:        router.push('/auth/login?error=network_error')
+app/dashboard/create-shop/page.tsx:        router.push('/dashboard')
+app/checkout/page.tsx:          <Button variant="primary" onClick={() => router.push('/')}>
+app/checkout/page.tsx:            onClick={() => router.push(`/shop/${cart.shopSlug}`)}
+app/checkout/success/page.tsx:          <Button variant="primary" onClick={() => router.push('/')}>
+app/checkout/success/page.tsx:        <Button variant="primary" onClick={() => router.push('/')} className="w-full">
+app/auth/reset-password/page.tsx:        router.push('/auth/login')
+app/auth/verify/page.tsx:        // Redirect immediately using router.push with refresh to ensure session is loaded
+app/auth/verify/page.tsx:          router.push(targetPath)
+app/auth/verify/page.tsx:                  onClick={() => router.push('/dashboard')}
+app/auth/verify/page.tsx:                  onClick={() => router.push('/auth/login')}
+app/auth/login/page.tsx:        // Password login - use router.push to maintain session
+app/auth/login/page.tsx:        router.push('/dashboard')
+```
+Full output: [`server-runs/2026-05-18T18-45-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-45-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
