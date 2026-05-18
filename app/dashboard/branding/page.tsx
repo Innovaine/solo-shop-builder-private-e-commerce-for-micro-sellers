@@ -72,6 +72,20 @@ export default function BrandingPage() {
     <div className="min-h-screen bg-cream">
       <Header />
       <main className="max-w-3xl mx-auto px-4 py-8">
+        {/* Back button */}
+        <div className="mb-4">
+          <Button
+            variant="ghost"
+            onClick={() => router.push('/dashboard')}
+            className="inline-flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Dashboard
+          </Button>
+        </div>
+
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-charcoal mb-2">Shop Branding</h1>
           <p className="text-slate">Customize your shop's visual identity with colors and logo</p>

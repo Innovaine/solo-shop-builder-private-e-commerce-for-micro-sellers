@@ -4,6 +4,7 @@
 // Seller can set or change their password
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { FormField } from '@/components/ui/FormField'
 import { Card } from '@/components/ui/Card'
@@ -12,6 +13,7 @@ import Header from '@/components/ui/Header'
 export const dynamic = 'force-dynamic'
 
 export default function SettingsPage() {
+  const router = useRouter()
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -73,6 +75,20 @@ export default function SettingsPage() {
       <Header />
       
       <div className="max-w-2xl mx-auto p-6 mt-8">
+        {/* Back button */}
+        <div className="mb-4">
+          <Button
+            variant="ghost"
+            onClick={() => router.push('/dashboard')}
+            className="inline-flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Dashboard
+          </Button>
+        </div>
+
         <h1 className="text-3xl font-bold text-charcoal mb-8">Account Settings</h1>
 
         <Card>

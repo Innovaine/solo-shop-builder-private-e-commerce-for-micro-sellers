@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import DOMPurify from 'dompurify';
 
 // ASSUMPTION: DOMPurify for XSS prevention on template rendering
@@ -39,6 +40,7 @@ const SAMPLE_DATA = {
 };
 
 export default function EmailTemplatePage() {
+  const router = useRouter();
   const [subject, setSubject] = useState(DEFAULT_SUBJECT);
   const [body, setBody] = useState(DEFAULT_BODY);
   const [saving, setSaving] = useState(false);
@@ -136,6 +138,18 @@ export default function EmailTemplatePage() {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {/* Back button */}
+        <div className="mb-4">
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="inline-flex items-center gap-2 px-4 py-2 text-slate-blue hover:text-slate-blue/80 transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Dashboard
+          </button>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* EDITOR SECTION */}
           <div>

@@ -82,6 +82,47 @@
           <div class="char-count"><span id="descCount">98</span>/500 characters</div>
           <div class="form-hint">This appears on your public shop page. Share what makes your shop special.</div>
         </div>
+
+        <h2 style="margin-top: 32px;">Shop Image</h2>
+        
+        <div class="form-group">
+          <label for="profileImage">Shop Logo/Profile Image</label>
+          <div style="display: flex; gap: 16px; align-items: flex-start;">
+            <div style="width: 120px; height: 120px; background: #E2E8F0; border-radius: 8px; border: 2px dashed #CBD5E1; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-size: 48px;" id="imagePreview">
+              🏪
+            </div>
+            <div style="flex: 1;">
+              <input type="file" id="profileImage" name="profileImage" accept="image/jpeg,image/png,image/webp" style="display: block; padding: 8px; border: 1px solid #E2E8F0; border-radius: 6px; width: 100%; max-width: 300px; margin-bottom: 8px;">
+              <div class="form-hint">PNG, JPG, or WebP. Maximum 5MB. Square images work best (e.g., 512×512px).</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="margin-top: 32px;">Social Links</h2>
+        
+        <div class="form-group">
+          <label for="socialTwitter">Twitter (X)</label>
+          <input type="url" id="socialTwitter" name="socialTwitter" placeholder="https://twitter.com/yourhandle" value="https://twitter.com/artisan_ceramics">
+          <div class="form-hint">Link to your Twitter/X profile. Leave blank to hide this link from your shop.</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="socialInstagram">Instagram</label>
+          <input type="url" id="socialInstagram" name="socialInstagram" placeholder="https://instagram.com/yourhandle" value="https://instagram.com/artisan_ceramics">
+          <div class="form-hint">Link to your Instagram profile. Leave blank to hide this link from your shop.</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="socialFacebook">Facebook</label>
+          <input type="url" id="socialFacebook" name="socialFacebook" placeholder="https://facebook.com/yourpage" value="">
+          <div class="form-hint">Link to your Facebook page or business profile. Leave blank to hide this link from your shop.</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="socialEmail">Contact Email</label>
+          <input type="email" id="socialEmail" name="socialEmail" placeholder="hello@example.com" value="hello@ceramics.local">
+          <div class="form-hint">Customers can contact you at this email. Required.</div>
+        </div>
         
         <div class="button-group">
           <button type="submit" class="btn-primary">Save Profile</button>
@@ -90,13 +131,25 @@
       </form>
       
       <div class="preview">
-        <div class="preview-title">Your Public Shop</div>
+        <div class="preview-title">Your Public Shop Header</div>
         <div class="preview-header">
-          <h3 class="preview-shop-name" id="previewName">Artisan Ceramics Studio</h3>
-          <p class="preview-description" id="previewDesc">Hand-thrown ceramic pieces made with locally-sourced clay. Each piece is one-of-a-kind.</p>
+          <div style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px;">
+            <div style="width: 60px; height: 60px; background: #E2E8F0; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-size: 32px; flex-shrink: 0;" id="previewImageSmall">
+              🏪
+            </div>
+            <div style="flex: 1;">
+              <h3 class="preview-shop-name" id="previewName">Artisan Ceramics Studio</h3>
+              <p class="preview-description" id="previewDesc">Hand-thrown ceramic pieces made with locally-sourced clay. Each piece is one-of-a-kind.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px;">
+            <a href="#" style="color: #E5E7EB; text-decoration: none;">🐦 Twitter</a>
+            <a href="#" style="color: #E5E7EB; text-decoration: none;">📷 Instagram</a>
+            <a href="#" style="color: #E5E7EB; text-decoration: none;">✉️ Contact</a>
+          </div>
         </div>
         <div style="font-size: 12px; color: #64748B; padding: 12px 0;">
-          This is how customers see your shop page header.
+          This is how customers see your shop page header and social links.
         </div>
       </div>
     </div>
@@ -105,6 +158,9 @@
   <script>
     const displayNameInput = document.getElementById('displayName');
     const publicDescInput = document.getElementById('publicDescription');
+    const profileImageInput = document.getElementById('profileImage');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImageSmall = document.getElementById('previewImageSmall');
     const previewName = document.getElementById('previewName');
     const previewDesc = document.getElementById('previewDesc');
     const nameCount = document.getElementById('nameCount');
@@ -123,13 +179,32 @@
       previewDesc.textContent = this.value || 'Tell customers about your shop...';
     });
 
+    // Handle image upload preview
+    profileImageInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const img = `<img src="${event.target.result}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`;
+          imagePreview.innerHTML = img;
+          previewImageSmall.innerHTML = img.replace('border-radius: 8px;', 'border-radius: 6px;');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
     // Form submission
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      // In production, this would POST to /api/shops/{shopId}/profile
+      // In production, this would POST to /api/shops/{shopId}/profile with FormData for image upload
       console.log('Saving profile:', {
         displayName: displayNameInput.value,
-        publicDescription: publicDescInput.value
+        publicDescription: publicDescInput.value,
+        profileImage: profileImageInput.files[0] ? profileImageInput.files[0].name : 'none',
+        socialTwitter: document.getElementById('socialTwitter').value,
+        socialInstagram: document.getElementById('socialInstagram').value,
+        socialFacebook: document.getElementById('socialFacebook').value,
+        socialEmail: document.getElementById('socialEmail').value
       });
       
       // Show success message
@@ -145,6 +220,8 @@
       descCount.textContent = publicDescInput.value.length;
       previewName.textContent = displayNameInput.value;
       previewDesc.textContent = publicDescInput.value;
+      imagePreview.innerHTML = '🏪';
+      previewImageSmall.innerHTML = '🏪';
     }
 
     // Initialize preview on page load

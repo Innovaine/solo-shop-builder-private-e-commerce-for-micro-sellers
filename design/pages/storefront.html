@@ -203,6 +203,13 @@
       font-weight: 600;
       margin-top: 8px;
     }
+    .product-badge.out-of-stock {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+    .product-card.disabled {
+      opacity: 0.7;
+    }
 
     /* Footer */
     footer {
@@ -244,17 +251,8 @@
   </section>
 
   <main>
-    <!-- Empty State (no products yet) -->
-    <div class="empty-state">
-      <div class="empty-icon">🛍️</div>
-      <h2 class="empty-title">No Products Yet</h2>
-      <p class="empty-text">
-        This shop is still being set up. Check back soon for new items, or reach out to the seller for custom requests.
-      </p>
-    </div>
-
-    <!-- Alternative: With Categories (shown for reference, hidden when empty) -->
-    <div style="display: none;">
+    <!-- With Categories and Products -->
+    <div>
       <div class="categories">
         <div class="categories-title">Browse by Category</div>
         <div class="category-list">
@@ -301,6 +299,30 @@
               <span>(8 reviews)</span>
             </div>
             <div class="product-badge">In Stock</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">💍</div>
+          <div class="product-info">
+            <div class="product-title">Emerald Statement Brooch</div>
+            <div class="product-price">$62.00</div>
+            <div class="product-rating">
+              <span class="product-stars">★★★★★</span>
+              <span>(15 reviews)</span>
+            </div>
+            <div class="product-badge">In Stock</div>
+          </div>
+        </div>
+        <div class="product-card disabled">
+          <div class="product-image">💎</div>
+          <div class="product-info">
+            <div class="product-title">Ruby Vintage Pendant</div>
+            <div class="product-price">$85.00</div>
+            <div class="product-rating">
+              <span class="product-stars">★★★★★</span>
+              <span>(22 reviews)</span>
+            </div>
+            <div class="product-badge out-of-stock">Out of Stock</div>
           </div>
         </div>
       </div>
