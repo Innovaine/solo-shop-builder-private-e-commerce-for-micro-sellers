@@ -21,7 +21,7 @@ export async function PATCH(
       )
     }
 
-    const session = await verifySession(sessionCookie.value)
+    const session = await verifySession()
     if (!session) {
       return NextResponse.json(
         { error: 'Invalid session' },

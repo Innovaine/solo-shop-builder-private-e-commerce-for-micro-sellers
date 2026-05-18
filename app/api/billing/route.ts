@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const session = await verifySession(sessionCookie.value);
+    const session = await verifySession();
     if (!session) {
       return NextResponse.json({ error: 'Session expired' }, { status: 401 });
     }

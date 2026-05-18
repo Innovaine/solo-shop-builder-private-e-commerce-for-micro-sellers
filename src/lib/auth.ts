@@ -38,8 +38,8 @@ export async function requireAuth(): Promise<{ sellerId: string; email: string }
   }
 }
 
-export async function verifySession(sessionToken: string): Promise<{ sellerId: string; email: string } | null> {
-  // This function verifies a session token (cookie value)
+export async function verifySession(): Promise<{ sellerId: string; email: string } | null> {
+  // This function verifies the current session from cookies
   // For iron-session, the token verification is handled internally by getSession()
   // We just need to check if the session is valid
   try {

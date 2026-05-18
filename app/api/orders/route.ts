@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const session = await verifySession(sessionCookie.value)
+    const session = await verifySession()
     if (!session) {
       return NextResponse.json(
         { error: 'Invalid session' },
