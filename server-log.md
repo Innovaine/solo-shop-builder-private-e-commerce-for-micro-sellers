@@ -32829,3 +32829,40 @@ app/shop/[slug]/product/[productId]/page.tsx
 app/track/[orderId]/page.tsx
 ```
 Full output: [`server-runs/2026-05-18T03-09-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-09-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T03:11:59.822Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `91d2db2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2828ms) _(showing tail — full 2,511B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "href=" app --include="*.tsx" | grep -v node_modules | head -40
+```
+STDOUT:
+```
+…over:underline">
+app/dashboard/orders/page.tsx:              href="/api/orders/export"
+app/dashboard/orders/page.tsx:                                href={order.trackingUrl}
+app/track/[orderId]/page.tsx:                    href={order.trackingUrl}
+app/track/[orderId]/page.tsx:              <a href={`mailto:${order.shop.name.toLowerCase().replace(/\s+/g, '')}@example.com`} className="text-slate-blue hover:underline">
+app/components/CartButton.tsx:                  <Link href={`/shop/${shopSlug}/checkout`}>
+app/components/CartButton.tsx:                  <Link href={`/shop/${cart.shopSlug}/checkout`}>
+app/page.tsx:          <Link href="/auth/login">
+app/page.tsx:          <Link href="/auth/login" className="text-white font-semibold hover:underline">
+app/not-found.tsx:          <Link href="/">
+app/not-found.tsx:          <Link href="/dashboard">
+app/auth/forgot-password/page.tsx:                href="/auth/login"
+app/auth/forgot-password/page.tsx:                href="/auth/login"
+app/auth/reset-password/page.tsx:          <Link href="/auth/forgot-password" className="text-sm text-slate-blue hover:underline">
+app/auth/reset-password/page.tsx:                href="/auth/login"
+app/auth/reset-password/page.tsx:              href="/auth/login"
+app/auth/verify/page.tsx:                  <a href="mailto:support@soloshop.com" className="text-slate-blue hover:underline">
+app/auth/login/page.tsx:                  href="/auth/forgot-password"
+app/auth/login/page.tsx:          New to Solo Shop? <a href="/" className="text-slate-blue font-semibold hover:underline">Learn more</a>
+app/shop/[slug]/page.tsx:                href={shop.instagramUrl}
+app/shop/[slug]/page.tsx:                href={shop.facebookUrl}
+app/shop/[slug]/page.tsx:                href={shop.twitterUrl}
+app/shop/[slug]/page.tsx:                  href={`/shop/${shop.slug}/product/${product.id}`}
+app/shop/[slug]/product/[productId]/page.tsx:            href={`/shop/${slug}`}
+app/shop/[slug]/product/[productId]/page.tsx:              <Link href={`/shop/${slug}`}>
+```
+Full output: [`server-runs/2026-05-18T03-11-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-11-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
