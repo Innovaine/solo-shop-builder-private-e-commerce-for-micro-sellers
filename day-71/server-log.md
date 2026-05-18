@@ -83,3 +83,38 @@ app/api/shops/status/route.ts
 app/api/webhooks/stripe/route.ts
 ```
 Full output: [`server-runs/2026-05-18T18-44-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-44-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:45:04.425Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `39e4d94` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2715ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "href=\"/" app --include="*.tsx" | grep -v "node_modules" | head -40
+```
+STDOUT:
+```
+app/dashboard/products/page.tsx:                  href="/api/products/export"
+app/dashboard/page.tsx:            <Link href="/dashboard/products">
+app/dashboard/page.tsx:          <Link href="/dashboard/products" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/orders" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/analytics" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/branding" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/profile" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/billing" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/email-template" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/settings" className="block">
+app/dashboard/page.tsx:          <Link href="/dashboard/products/import" className="block">
+app/components/CartButton.tsx:                <Link href="/checkout">
+app/page.tsx:          <Link href="/auth/login">
+app/page.tsx:          <Link href="/auth/login" className="text-white font-semibold hover:underline">
+app/not-found.tsx:          <Link href="/">
+app/not-found.tsx:          <Link href="/dashboard">
+app/auth/forgot-password/page.tsx:                href="/auth/login"
+app/auth/forgot-password/page.tsx:                href="/auth/login"
+app/auth/reset-password/page.tsx:          <Link href="/auth/forgot-password" className="text-sm text-slate-blue hover:underline">
+app/auth/reset-password/page.tsx:                href="/auth/login"
+app/auth/reset-password/page.tsx:              href="/auth/login"
+app/auth/login/page.tsx:                  href="/auth/forgot-password"
+app/auth/login/page.tsx:          New to Solo Shop? <a href="/" className="text-slate-blue font-semibold hover:underline">Learn more</a>
+```
+Full output: [`server-runs/2026-05-18T18-45-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-45-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
