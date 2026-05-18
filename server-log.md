@@ -32632,3 +32632,35 @@ _Pre-SSH: warehouse pushed to GitHub as commit `38546df` so the server's `git pu
 sleep 20 && kill -0 $(cat /tmp/day52-tests.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"; tail -100 /tmp/day52-tests.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-18T02:42:54.835Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dccd02a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2719ms)
+```
+kill -0 $(cat /tmp/day52-tests.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"; tail -100 /tmp/day52-tests.log 2>/dev/null | head -80
+```
+STDOUT:
+```
+DONE
+Error: EACCES: permission denied, rmdir '/tmp/playwright-test-results/day37-csv-export-FR-25-Pro-2ba65-ucts-page-has-export-button-chromium'
+
+Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-results/.last-run.json'
+    at open (node:internal/fs/promises:640:25)
+    at Object.writeFile (node:internal/fs/promises:1257:14)
+    at LastRunReporter.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:6153:5)
+    at wrapAsync (/usr/lib/node_modules/playwright/lib/runner/index.js:1614:12)
+    at Multiplexer.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:1582:25)
+    at InternalReporter.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:1749:12)
+    at finishTaskRun (/usr/lib/node_modules/playwright/lib/runner/index.js:5822:26)
+    at runTasks (/usr/lib/node_modules/playwright/lib/runner/index.js:5809:10)
+    at Object.runAllTestsWithConfig (/usr/lib/node_modules/playwright/lib/runner/index.js:6480:18)
+    at runTests (/usr/lib/node_modules/playwright/lib/cli/testActions.js:93:18)
+    at _Command.<anonymous> (/usr/lib/node_modules/playwright/lib/program.js:50:7) {
+  errno: -13,
+  code: 'EACCES',
+  syscall: 'open',
+  path: '/tmp/playwright-test-results/.last-run.json'
+}
+```
+Full output: [`server-runs/2026-05-18T02-42-54-www.soloshopbox.com-kill--0-cat-tmp-day52-tests.pid-2-dev-nu-1.log`](server-runs/2026-05-18T02-42-54-www.soloshopbox.com-kill--0-cat-tmp-day52-tests.pid-2-dev-nu-1.log)
