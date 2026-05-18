@@ -303,3 +303,30 @@ _Pre-SSH: warehouse pushed to GitHub as commit `a3e3012` so the server's `git pu
 sleep 10 && curl -sf https://www.soloshopbox.com/api/health && echo ""
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-18T19:58:53.011Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `eb9ff2c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2516ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo "" || echo "FAILED"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-18T19:58:52.993Z","responseTime":"96ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"95ms"}}}
+```
+Full output: [`server-runs/2026-05-18T19-58-52-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T19-58-52-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-18T19:59:18.421Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2270ms)
+```
+echo "Testing /api/orders without auth:" && curl -s https://www.soloshopbox.com/api/orders && echo "" && echo "Testing /api/billing without auth:" && curl -s https://www.soloshopbox.com/api/billing && echo ""
+```
+STDOUT:
+```
+Testing /api/orders without auth:
+{"error":"Not authenticated"}
+Testing /api/billing without auth:
+{"error":"Unauthorized"}
+```
+Full output: [`server-runs/2026-05-18T19-59-18-www.soloshopbox.com-echo-Testing-api-orders-without-auth-cur-1.log`](server-runs/2026-05-18T19-59-18-www.soloshopbox.com-echo-Testing-api-orders-without-auth-cur-1.log)
