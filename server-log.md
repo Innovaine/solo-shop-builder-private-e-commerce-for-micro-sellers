@@ -33382,3 +33382,45 @@ STDOUT:
 #15 31.57 ├ ƒ /api/auth/verify                         0 B                0 B
 ```
 Full output: [`server-runs/2026-05-18T03-50-44-www.soloshopbox.com-tail--150-tmp-day53-review-build.log-gre-1.log`](server-runs/2026-05-18T03-50-44-www.soloshopbox.com-tail--150-tmp-day53-review-build.log-gre-1.log)
+
+## 2026-05-18T03:51:05.881Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bb38dfd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2648ms)
+```
+tail -30 /tmp/day53-review-build.log
+```
+STDOUT:
+```
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.4s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.4s done
+#30 exporting manifest sha256:c8d0ca707a522fa17baa0433c16a976018c97e53588381cc34efcd7e594dc12d done
+#30 exporting config sha256:d29a359a744ec24ac70b7f3d82317c5d7c5ba3aa4a265edf41a043d77df67073 done
+#30 exporting attestation manifest sha256:3fe1b4586faa581c01eb320ea0c8a830ef893863826c8fa68eecb741a4b0936f 0.0s done
+#30 exporting manifest list sha256:d68c3bd912c69a943386d7cccc33f25fa94966ce7546e9b934b488b9fa84feda done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#30 DONE 2.1s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-18T03-51-05-www.soloshopbox.com-tail--30-tmp-day53-review-build.log-1.log`](server-runs/2026-05-18T03-51-05-www.soloshopbox.com-tail--30-tmp-day53-review-build.log-1.log)
