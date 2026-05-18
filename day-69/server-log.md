@@ -73,3 +73,29 @@ HTTP/2 400
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-18T17-56-52-www.soloshopbox.com-echo-Test-1-Homepage-loads-curl--sI-http-1.log`](server-runs/2026-05-18T17-56-52-www.soloshopbox.com-echo-Test-1-Homepage-loads-curl--sI-http-1.log)
+
+## 2026-05-18T17:57:33.525Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a4b212d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3790ms)
+```
+echo "=== Full Smoke Test Suite ===" && echo -e "\n1. Static pages load properly:" && for page in "" "auth/login" "dashboard/create-shop"; do echo -n "  /$page: " && curl -sI "https://www.soloshopbox.com/$page" | head -1 | grep -o "HTTP/2 [0-9]*"; done && echo -e "\n2. API health endpoints:" && echo -n "  /api/health: " && curl -s https://www.soloshopbox.com/api/health | grep -o '"status":"[^"]*"' | head -1 && echo -e "\n3. Database connectivity:" && docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 pg_isready -U postgres && echo -e "\nAll smoke tests passed ✓"
+```
+STDOUT:
+```
+=== Full Smoke Test Suite ===
+
+1. Static pages load properly:
+  /: HTTP/2 200
+  /auth/login: HTTP/2 200
+  /dashboard/create-shop: HTTP/2 200
+
+2. API health endpoints:
+  /api/health: "status":"ok"
+
+3. Database connectivity:
+/var/run/postgresql:5432 - accepting connections
+
+All smoke tests passed ✓
+```
+Full output: [`server-runs/2026-05-18T17-57-33-www.soloshopbox.com-echo-Full-Smoke-Test-Suite-echo--e-n1.-S-1.log`](server-runs/2026-05-18T17-57-33-www.soloshopbox.com-echo-Full-Smoke-Test-Suite-echo--e-n1.-S-1.log)
