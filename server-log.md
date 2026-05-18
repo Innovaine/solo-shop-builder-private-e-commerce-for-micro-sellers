@@ -30880,3 +30880,11 @@ app-1  |  ✓ Ready in 58ms
 app-1  | {"requestId":"41LksGoGUYTQ94p8","method":"GET","path":"/auth/login","responseTime":"3ms","timestamp":"2026-05-18T00:43:03.418Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
 ```
 Full output: [`server-runs/2026-05-18T00-43-20-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T00-43-20-soloshopbox-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T00:43:49.471Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f77be2d` so the server's `git pull` will pick it up._
+
+### Command 1 on soloshopbox as engineer (✓ exit 0, 2687ms)
+```
+curl -sf https://www.soloshopbox.com:3000/auth/reset-password?token=test 2>&1 | head -20
+```
