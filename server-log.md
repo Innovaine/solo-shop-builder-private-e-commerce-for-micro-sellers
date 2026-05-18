@@ -33342,3 +33342,43 @@ STDOUT:
 BUILD FAILED
 ```
 Full output: [`server-runs/2026-05-18T03-47-44-www.soloshopbox.com-sleep-5-if--f-tmp-day53-review-build.pid-1.log`](server-runs/2026-05-18T03-47-44-www.soloshopbox.com-sleep-5-if--f-tmp-day53-review-build.pid-1.log)
+
+## 2026-05-18T03:50:44.532Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f40aebd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2889ms) _(showing tail — full 2,558B stdout + 0B stderr)_
+```
+tail -150 /tmp/day53-review-build.log | grep -A 20 "error\|Error\|failed"
+```
+STDOUT:
+```
+…od.js:6:34672
+#15 20.62     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#15 20.62     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 20.62     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 20.62     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#15 20.62     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#15 20.62     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+#15 20.62   description: "Route /api/products/export couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 20.62   digest: 'DYNAMIC_SERVER_USAGE'
+#15 20.62 }
+#15 20.75    Generating static pages (21/43) 
+#15 20.87    Generating static pages (32/43) 
+#15 20.91  ✓ Generating static pages (43/43)
+#15 21.23    Finalizing page optimization ...
+#15 21.23    Collecting build traces ...
+#15 31.56 
+#15 31.57 Route (app)                                  Size     First Load JS
+#15 31.57 ┌ ○ /                                        175 B          93.9 kB
+#15 31.57 ├ ○ /_not-found                              137 B          87.1 kB
+#15 31.57 ├ ƒ /api/account/delete                      0 B                0 B
+#15 31.57 ├ ƒ /api/account/password                    0 B                0 B
+#15 31.57 ├ ƒ /api/analytics                           0 B                0 B
+#15 31.57 ├ ƒ /api/auth/forgot-password                0 B                0 B
+#15 31.57 ├ ƒ /api/auth/login                          0 B                0 B
+#15 31.57 ├ ƒ /api/auth/logout                         0 B                0 B
+#15 31.57 ├ ƒ /api/auth/reset-password                 0 B                0 B
+#15 31.57 ├ ƒ /api/auth/signup                         0 B                0 B
+#15 31.57 ├ ƒ /api/auth/verify                         0 B                0 B
+```
+Full output: [`server-runs/2026-05-18T03-50-44-www.soloshopbox.com-tail--150-tmp-day53-review-build.log-gre-1.log`](server-runs/2026-05-18T03-50-44-www.soloshopbox.com-tail--150-tmp-day53-review-build.log-gre-1.log)
