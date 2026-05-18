@@ -153,3 +153,24 @@ app/auth/login/page.tsx:        // Password login - use router.push to maintain 
 app/auth/login/page.tsx:        router.push('/dashboard')
 ```
 Full output: [`server-runs/2026-05-18T18-45-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-45-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:45:58.399Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7ca87d1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2854ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -h "export const \|export async " app/api/auth/login/route.ts app/api/auth/signup/route.ts app/api/checkout/route.ts app/api/orders/route.ts app/api/products/route.ts | head -20
+```
+STDOUT:
+```
+export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest) {
+export const dynamic = 'force-dynamic'
+export async function POST(request: NextRequest) {
+export const dynamic = 'force-dynamic'
+export async function GET(request: NextRequest) {
+export const dynamic = 'force-dynamic'
+export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
+```
+Full output: [`server-runs/2026-05-18T18-45-58-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-45-58-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
