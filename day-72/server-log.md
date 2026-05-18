@@ -263,3 +263,16 @@ traefik-vwiz-traefik-1	Up 40 hours
 App is DOWN
 ```
 Full output: [`server-runs/2026-05-18T19-56-30-www.soloshopbox.com-sleep-3-docker-ps---format-.Names-t-.Sta-1.log`](server-runs/2026-05-18T19-56-30-www.soloshopbox.com-sleep-3-docker-ps---format-.Names-t-.Sta-1.log)
+
+## 2026-05-18T19:56:57.220Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0c26a54` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2168ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app 2>&1 | tail -30
+```
+STDOUT:
+```
+time="2026-05-18T19:56:57Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+```
+Full output: [`server-runs/2026-05-18T19-56-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T19-56-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
