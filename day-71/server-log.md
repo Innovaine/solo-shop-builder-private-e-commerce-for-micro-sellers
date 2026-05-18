@@ -563,3 +563,71 @@ echo $! > /tmp/day71-build.pid
 echo "Build started, PID=$(cat /tmp/day71-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-18T18:54:28.792Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `734048d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2684ms)
+```
+if [ -f /tmp/day71-build.pid ]; then
+  kill -0 $(cat /tmp/day71-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+else
+  echo "NOT_STARTED"
+fi
+tail -50 /tmp/day71-build.log 2>/dev/null || echo "No log yet"
+```
+STDOUT:
+```
+RUNNING
+#15 33.11 
+#15 33.11 ○  (Static)   prerendered as static content
+#15 33.11 ƒ  (Dynamic)  server-rendered on demand
+#15 33.11 
+#15 DONE 33.3s
+
+#16 [runner  1/14] WORKDIR /app
+#16 CACHED
+
+#17 [runner  2/14] RUN apt-get update && apt-get install -y     openssl     ca-certificates     libnss3     libnspr4     libatk1.0-0     libatk-bridge2.0-0     libcups2     libdrm2     libdbus-1-3     libxkbcommon0     libatspi2.0-0     libxcomposite1     libxdamage1     libxfixes3     libxrandr2     libgbm1     libpango-1.0-0     libcairo2     libasound2     && rm -rf /var/lib/apt/lists/*
+#17 CACHED
+
+#18 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#18 CACHED
+
+#19 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#19 CACHED
+
+#20 [runner  7/14] RUN mkdir .next
+#20 CACHED
+
+#21 [runner  3/14] RUN npm install -g prisma@5.14.0
+#21 CACHED
+
+#22 [runner  6/14] COPY --from=builder /app/public ./public
+#22 CACHED
+
+#23 [runner  8/14] RUN chown nextjs:nodejs .next
+#23 CACHED
+
+#24 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#24 CACHED
+
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.4s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+```
+Full output: [`server-runs/2026-05-18T18-54-28-www.soloshopbox.com-if--f-tmp-day71-build.pid-then-1.log`](server-runs/2026-05-18T18-54-28-www.soloshopbox.com-if--f-tmp-day71-build.pid-then-1.log)
