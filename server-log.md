@@ -32922,3 +32922,35 @@ app/auth/login/page.tsx:        router.push('/dashboard')
 app/shop/[slug]/CategoryFilter.tsx:    router.push(`/shop/${shopSlug}?${params.toString()}`)
 ```
 Full output: [`server-runs/2026-05-18T03-16-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-16-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T03:17:14.190Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6be2ecf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2891ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "export.*POST\|export.*GET\|export.*PUT\|export.*DELETE\|export.*PATCH" app/api --include="*.ts" | head -20
+```
+STDOUT:
+```
+app/api/shops/route.ts:export async function GET(request: NextRequest) {
+app/api/shops/route.ts:export async function POST(request: NextRequest) {
+app/api/shops/branding/route.ts:export async function PATCH(req: NextRequest) {
+app/api/shops/email-template/route.ts:export async function PATCH(req: NextRequest) {
+app/api/shops/profile/route.ts:export async function PATCH(req: NextRequest) {
+app/api/products/route.ts:export async function GET(request: NextRequest) {
+app/api/products/route.ts:export async function POST(request: NextRequest) {
+app/api/products/[id]/route.ts:export async function GET(
+app/api/products/[id]/route.ts:export async function PUT(
+app/api/products/[id]/route.ts:export async function DELETE(
+app/api/products/[id]/variants/route.ts:export async function GET(
+app/api/products/[id]/variants/route.ts:export async function POST(
+app/api/products/[id]/variants/[variantId]/route.ts:export async function PATCH(
+app/api/products/[id]/variants/[variantId]/route.ts:export async function DELETE(
+app/api/products/export/route.ts:export async function GET(req: NextRequest) {
+app/api/products/import/route.ts:export async function POST(request: NextRequest) {
+app/api/products/upload/route.ts:export async function POST(request: NextRequest) {
+app/api/account/delete/route.ts:export async function POST(request: NextRequest) {
+app/api/account/password/route.ts:export async function POST(request: NextRequest) {
+app/api/health/route.ts:export async function GET() {
+```
+Full output: [`server-runs/2026-05-18T03-17-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-17-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
