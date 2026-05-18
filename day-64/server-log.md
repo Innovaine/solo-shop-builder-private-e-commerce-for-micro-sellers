@@ -176,3 +176,18 @@ _Pre-SSH: warehouse pushed to GitHub as commit `3bb19a8` so the server's `git pu
 sleep 10 && curl -sf https://www.soloshopbox.com/api/health && echo " - Health check OK" || echo " - Health check FAILED"
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-18T16:39:00.148Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8786972` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3133ms)
+```
+docker ps | grep solo-shop && echo "Container running"
+```
+STDOUT:
+```
+11c36649e562   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   2 minutes ago   Up About a minute       0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+5b26a700cbdf   postgres:16-alpine                                           "docker-entrypoint.s…"   28 hours ago    Up 13 hours (healthy)   127.0.0.1:5432->5432/tcp                      solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+Container running
+```
+Full output: [`server-runs/2026-05-18T16-39-00-www.soloshopbox.com-docker-ps-grep-solo-shop-echo-Container--1.log`](server-runs/2026-05-18T16-39-00-www.soloshopbox.com-docker-ps-grep-solo-shop-echo-Container--1.log)
