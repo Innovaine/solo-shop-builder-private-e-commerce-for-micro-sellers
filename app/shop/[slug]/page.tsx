@@ -9,13 +9,14 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { CartButton } from '@/components/CartButton'
 import CategoryFilter from './CategoryFilter'
+import SortDropdown from './SortDropdown'
 
 export default async function ShopPage({
   params,
   searchParams,
 }: {
   params: { slug: string }
-  searchParams: { category?: string }
+  searchParams: { category?: string; sort?: string }
 }) {
   const shop = await prisma.shop.findUnique({
     where: { slug: params.slug },
@@ -24,9 +25,13 @@ export default async function ShopPage({
         where: searchParams.category 
           ? { category: searchParams.category }
           : {},
-        orderBy: {
-          createdAt: 'desc',
-        },
+        orderBy: searchParams.sort === 'price-low'
+          ? { price: 'asc' }
+          : searchParams.sort === 'price-high'
+          ? { price: 'desc' }
+          : searchParams.sort === 'name'
+          ? { title: 'asc' }
+          : { createdAt: 'desc' }, // Default: newest first
       },
     },
   })
@@ -47,6 +52,7 @@ export default async function ShopPage({
 
   const hasProducts = shop.products.length > 0
   const selectedCategory = searchParams.category || null
+  const selectedSort = searchParams.sort || 'newest'
 
   // FR-33: Apply custom branding colors
   const primaryColor = shop.primaryColor || '#3B4C63';
@@ -162,12 +168,15 @@ export default async function ShopPage({
 
         {hasProducts ? (
           <>
-            {/* Results count */}
-            <div className="mb-6">
+            {/* Results count + Sort controls */}
+            <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <p className="text-sm text-slate">
                 Showing {shop.products.length} {shop.products.length === 1 ? 'product' : 'products'}
                 {selectedCategory && ` in ${selectedCategory}`}
               </p>
+              
+              {/* Sort dropdown */}
+              <SortDropdown shopSlug={shop.slug} />
             </div>
 
             {/* Product Grid */}
@@ -178,19 +187,41 @@ export default async function ShopPage({
                   href={`/shop/${shop.slug}/product/${product.id}`}
                   className="group"
                 >
-                  <div className="bg-white border border-whisper rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200 hover:-translate-y-1">
-                    {/* Product Image Placeholder */}
-                    <div className="aspect-square bg-gradient-to-br from-whisper to-cream flex items-center justify-center text-6xl">
-                      💎
-                    </div>
+                  <div className="bg-white border-2 border-whisper rounded-xl overflow-hidden hover:shadow-2xl hover:border-emerald transition-all duration-300 hover:-translate-y-2">
+                    {/* Product Image */}
+                    {product.imageUrl ? (
+                      <div className="aspect-square overflow-hidden bg-cream">
+                        <img
+                          src={product.imageUrl}
+                          alt={product.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-square bg-gradient-to-br from-whisper via-cream to-whisper flex items-center justify-center text-6xl">
+                        💎
+                      </div>
+                    )}
                     {/* Product Info */}
-                    <div className="p-4">
-                      <h3 className="text-sm font-semibold text-charcoal mb-2 line-clamp-2 group-hover:text-slate transition-colors">
+                    <div className="p-5">
+                      <h3 className="text-base font-bold text-charcoal mb-2 line-clamp-2 group-hover:text-emerald transition-colors">
                         {product.title}
                       </h3>
-                      <p className="text-lg font-bold text-charcoal">
-                        ${(product.price / 100).toFixed(2)}
-                      </p>
+                      {product.description && (
+                        <p className="text-xs text-slate mb-3 line-clamp-2">
+                          {product.description}
+                        </p>
+                      )}
+                      <div className="flex items-center justify-between">
+                        <p className="text-xl font-extrabold text-charcoal">
+                          ${(product.price / 100).toFixed(2)}
+                        </p>
+                        {product.category && (
+                          <span className="text-xs px-2 py-1 bg-cream text-slate rounded-full font-medium">
+                            {product.category}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Link>

@@ -1,10 +1,12 @@
 // Image upload endpoint for product images
 // FR-4: Product image upload handler
+// Day 67: Added S3 upload support with fallback to local filesystem
 
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { existsSync } from 'fs'
+import { uploadToS3, isS3Configured } from '@/src/lib/s3'
 
 // Max file size: 5MB
 const MAX_FILE_SIZE = 5 * 1024 * 1024
@@ -41,25 +43,32 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate unique filename
+    // Convert file to buffer
+    const bytes = await file.arrayBuffer()
+    const buffer = Buffer.from(bytes)
+
+    // Generate unique filename for fallback
     const timestamp = Date.now()
     const originalName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_')
     const filename = `${timestamp}-${originalName}`
 
-    // Ensure uploads directory exists
-    const uploadsDir = join(process.cwd(), 'public', 'uploads')
-    if (!existsSync(uploadsDir)) {
-      await mkdir(uploadsDir, { recursive: true })
+    let url: string
+
+    // Try S3 upload first if configured
+    if (isS3Configured()) {
+      try {
+        const result = await uploadToS3(buffer, originalName, file.type)
+        url = result.url
+        console.log('Image uploaded to S3:', url)
+      } catch (s3Error) {
+        console.error('S3 upload failed, falling back to local storage:', s3Error)
+        // Fall through to local storage
+        url = await saveLocally(buffer, filename)
+      }
+    } else {
+      // S3 not configured, use local storage
+      url = await saveLocally(buffer, filename)
     }
-
-    // Save file
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-    const filepath = join(uploadsDir, filename)
-    await writeFile(filepath, buffer)
-
-    // Return public URL
-    const url = `/uploads/${filename}`
 
     return NextResponse.json({
       success: true,
@@ -73,4 +82,22 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
+}
+
+/**
+ * Save file to local filesystem (fallback)
+ */
+async function saveLocally(buffer: Buffer, filename: string): Promise<string> {
+  // Ensure uploads directory exists
+  const uploadsDir = join(process.cwd(), 'public', 'uploads')
+  if (!existsSync(uploadsDir)) {
+    await mkdir(uploadsDir, { recursive: true })
+  }
+
+  // Save file
+  const filepath = join(uploadsDir, filename)
+  await writeFile(filepath, buffer)
+
+  // Return public URL
+  return `/uploads/${filename}`
 }
