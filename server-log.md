@@ -31328,3 +31328,53 @@ STDOUT:
 {"error":"Authentication required"}
 ```
 Full output: [`server-runs/2026-05-18T01-13-21-www.soloshopbox.com-echo-Testing-FR-30-Order-CSV-Export-3.log`](server-runs/2026-05-18T01-13-21-www.soloshopbox.com-echo-Testing-FR-30-Order-CSV-Export-3.log)
+
+## 2026-05-18T01:14:00.342Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `56de3c9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3114ms)
+```
+echo "=== Testing Dashboard Pages ===" && \
+echo "1. Profile page:" && curl -s -I "https://www.soloshopbox.com/dashboard/profile" 2>&1 | head -15 && \
+echo && echo "2. Analytics page:" && curl -s -I "https://www.soloshopbox.com/dashboard/analytics" 2>&1 | head -15 && \
+echo && echo "3. Orders export:" && curl -s -I "https://www.soloshopbox.com/dashboard/orders" 2>&1 | head -15
+```
+STDOUT:
+```
+=== Testing Dashboard Pages ===
+1. Profile page:
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Mon, 18 May 2026 01:14:00 GMT
+etag: "6g7fmmc84h7wc"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+content-length: 10274
+
+
+2. Analytics page:
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Mon, 18 May 2026 01:14:00 GMT
+etag: "vjyyfoedrb5zy"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+content-length: 7797
+
+
+3. Orders export:
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Mon, 18 May 2026 01:14:00 GMT
+etag: "elooygxcns5xd"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+content-length: 7702
+```
+Full output: [`server-runs/2026-05-18T01-14-00-www.soloshopbox.com-echo-Testing-Dashboard-Pages-1.log`](server-runs/2026-05-18T01-14-00-www.soloshopbox.com-echo-Testing-Dashboard-Pages-1.log)
