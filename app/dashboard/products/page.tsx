@@ -240,7 +240,7 @@ export default function ProductsPage() {
                           disabled={statusUpdating === product.id}
                           className={`text-xs font-semibold px-3 py-1 rounded-full ${
                             (product.status || 'PUBLISHED') === 'PUBLISHED'
-                              ? 'bg-sage-50 text-sage-700 hover:bg-sage-100'
+                              ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
                               : 'bg-amber-50 text-amber-700 hover:bg-amber-100'
                           } disabled:opacity-50 transition-colors`}
                         >

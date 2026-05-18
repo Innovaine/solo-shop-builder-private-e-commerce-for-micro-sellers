@@ -41,6 +41,7 @@ export default function OrdersPage() {
   const [editingOrder, setEditingOrder] = useState<string | null>(null)
   const [updatingStatus, setUpdatingStatus] = useState<{ [key: string]: boolean }>({})
   const [refunding, setRefunding] = useState<{ [key: string]: boolean }>({})
+  const [statusFilter, setStatusFilter] = useState<string>('all') // FR-156: status filter
 
   useEffect(() => {
     fetchOrders()
@@ -53,7 +54,11 @@ export default function OrdersPage() {
         throw new Error('Failed to fetch orders')
       }
       const data = await response.json()
-      setOrders(data.orders)
+      // FR-158: Sort by newest first (smart default)
+      const sortedOrders = data.orders.sort((a: Order, b: Order) => 
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      )
+      setOrders(sortedOrders)
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -162,6 +167,26 @@ export default function OrdersPage() {
     }
   }
 
+  // FR-156: Filter orders by status
+  const filteredOrders = statusFilter === 'all' 
+    ? orders 
+    : orders.filter(order => order.status === statusFilter)
+
+  // FR-156: Count orders by status
+  const statusCounts = {
+    all: orders.length,
+    paid: orders.filter(o => o.status === 'paid').length,
+    in_progress: orders.filter(o => o.status === 'in_progress').length,
+    shipped: orders.filter(o => o.status === 'shipped').length,
+    delivered: orders.filter(o => o.status === 'delivered').length,
+    refunded: orders.filter(o => o.status === 'refunded').length,
+    canceled: orders.filter(o => o.status === 'canceled').length,
+  }
+
+  // FR-158: Calculate summary metrics for filtered orders
+  const totalRevenue = filteredOrders.reduce((sum, order) => sum + order.total, 0)
+  const totalItems = filteredOrders.reduce((sum, order) => sum + order.items.length, 0)
+
   if (loading) {
     return (
       <div className="min-h-screen bg-cream">
@@ -210,7 +235,72 @@ export default function OrdersPage() {
             description="Orders will appear here when customers complete checkout."
           />
         ) : (
-          <Card>
+          <>
+            {/* FR-156: Status filter tabs with counts */}
+            <Card className="mb-6">
+              <div className="flex flex-wrap gap-2 p-4">
+                {[
+                  { value: 'all', label: 'All' },
+                  { value: 'paid', label: 'Paid' },
+                  { value: 'in_progress', label: 'In Progress' },
+                  { value: 'shipped', label: 'Shipped' },
+                  { value: 'delivered', label: 'Delivered' },
+                  { value: 'refunded', label: 'Refunded' },
+                  { value: 'canceled', label: 'Canceled' },
+                ].map(({ value, label }) => (
+                  <button
+                    key={value}
+                    onClick={() => setStatusFilter(value)}
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      statusFilter === value
+                        ? 'bg-slate-blue text-white'
+                        : 'bg-whisper text-slate hover:bg-whisper/80'
+                    }`}
+                  >
+                    {label} ({statusCounts[value as keyof typeof statusCounts]})
+                  </button>
+                ))}
+              </div>
+            </Card>
+
+            {filteredOrders.length === 0 ? (
+              <EmptyState
+                title={`No ${statusFilter === 'all' ? '' : statusFilter.replace('_', ' ')} orders`}
+                description={`No orders with status "${statusFilter.replace('_', ' ')}" found.`}
+              />
+            ) : (
+              <>
+                {/* FR-158: Summary metrics row */}
+                <Card className="mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                    <div>
+                      <div className="text-sm font-semibold text-slate mb-1">
+                        SHOWING ORDERS
+                      </div>
+                      <div className="text-2xl font-bold text-charcoal">
+                        {filteredOrders.length}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate mb-1">
+                        TOTAL ITEMS
+                      </div>
+                      <div className="text-2xl font-bold text-slate-blue">
+                        {totalItems}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate mb-1">
+                        TOTAL REVENUE
+                      </div>
+                      <div className="text-2xl font-bold text-emerald">
+                        ${(totalRevenue / 100).toFixed(2)}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-whisper">
@@ -226,7 +316,7 @@ export default function OrdersPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-whisper">
-                  {orders.map((order) => (
+                  {filteredOrders.map((order) => (
                     <tr key={order.id} className="hover:bg-whisper/50">
                       <td className="px-4 py-4">
                         <span className="text-sm font-mono text-slate">{order.id.slice(0, 8)}</span>
@@ -321,6 +411,8 @@ export default function OrdersPage() {
               </table>
             </div>
           </Card>
+            )}
+          </>
         )}
       </main>
     </div>

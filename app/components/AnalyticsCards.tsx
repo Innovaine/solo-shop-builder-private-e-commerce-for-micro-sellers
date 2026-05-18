@@ -16,6 +16,7 @@ interface ProductAnalytics {
 interface Analytics {
   totalRevenue: number
   orderCount: number
+  productCount: number // FR-157: total products count
   topProducts: ProductAnalytics[]
   periodDays: number
 }
@@ -60,8 +61,8 @@ export default function AnalyticsCards() {
 
   return (
     <div className="space-y-6 mb-8">
-      {/* Key metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Key metrics - FR-157: Added product count */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Total Revenue */}
         <Card padding="lg">
           <div className="text-sm font-semibold text-slate mb-2">
@@ -79,6 +80,16 @@ export default function AnalyticsCards() {
           </div>
           <div className="text-3xl font-bold text-slate-blue">
             {analytics.orderCount}
+          </div>
+        </Card>
+
+        {/* Product Count */}
+        <Card padding="lg">
+          <div className="text-sm font-semibold text-slate mb-2">
+            PRODUCTS
+          </div>
+          <div className="text-3xl font-bold text-amber">
+            {analytics.productCount}
           </div>
         </Card>
 
@@ -108,7 +119,7 @@ export default function AnalyticsCards() {
                 className="flex items-center justify-between py-3 border-b border-whisper last:border-0"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-sage text-white flex items-center justify-center text-sm font-semibold">
+                  <div className="w-8 h-8 rounded-full bg-emerald text-white flex items-center justify-center text-sm font-semibold">
                     #{index + 1}
                   </div>
                   <div>

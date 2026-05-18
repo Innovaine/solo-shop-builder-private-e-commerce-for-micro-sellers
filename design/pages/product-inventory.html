@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Inventory — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+    .header a { color: #3B4C63; text-decoration: none; font-size: 14px; }
+    .header h1 { font-size: 24px; font-weight: 700; flex: 1; }
+    .container { max-width: 800px; margin: 24px auto; padding: 0 24px; }
+    
+    h2 { font-size: 18px; font-weight: 600; margin: 24px 0 16px; }
+    h3 { font-size: 12px; font-weight: 600; color: #1F2937; margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    
+    .product-header { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+    .product-thumb { width: 80px; height: 80px; background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; flex-shrink: 0; }
+    .product-meta { flex: 1; }
+    .product-meta h2 { margin: 0 0 4px 0; }
+    .product-meta p { font-size: 13px; color: #64748B; }
+    
+    .form-field { margin-bottom: 20px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, select { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; background: white; }
+    input:focus, select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    input::placeholder { color: #94A3B8; }
+    
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    .inventory-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    
+    .inventory-metric { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; }
+    .inventory-metric h4 { font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .inventory-metric .value { font-size: 32px; font-weight: 700; color: #3B4C63; }
+    .inventory-metric .unit { font-size: 12px; color: #94A3B8; margin-top: 4px; }
+    
+    .status-badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .status-in-stock { background: #D1FAE5; color: #065F46; }
+    .status-low-stock { background: #FEF3C7; color: #92400E; }
+    .status-out-of-stock { background: #FEE2E2; color: #991B1B; }
+    .status-unlimited { background: #E0E7FF; color: #3730A3; }
+    
+    .variant-stock { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+    .variant-stock-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .variant-stock h4 { font-size: 14px; font-weight: 600; margin: 0; }
+    
+    .alert { border-radius: 6px; padding: 12px 16px; font-size: 14px; margin-bottom: 16px; }
+    .alert-info { background: #DBEAFE; border: 1px solid #93C5FD; color: #1E40AF; }
+    .alert-warning { background: #FEF3C7; border: 1px solid #FCD34D; color: #92400E; }
+    .alert-success { background: #D1FAE5; border: 1px solid #6EE7B7; color: #065F46; }
+    
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    
+    .button-group { display: flex; gap: 12px; margin-top: 32px; }
+    
+    .divider { height: 1px; background: #E2E8F0; margin: 24px 0; }
+    
+    @media (max-width: 768px) {
+      .inventory-grid { grid-template-columns: 1fr; }
+      .product-header { flex-direction: column; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .header h1 { margin-top: 8px; }
+      .container { padding: 0 16px; margin: 16px auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="#">← Back to Products</a>
+    <h1>Manage Inventory</h1>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div class="product-header">
+        <div class="product-thumb"></div>
+        <div class="product-meta">
+          <h2>Handmade Ceramic Bowl (Large)</h2>
+          <p>SKU: BOWL-LG-001 • Category: Handmade</p>
+          <p style="margin-top: 8px;"><strong>$65.00</strong></p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Stock Management</h2>
+      
+      <div class="alert alert-info">
+        ℹ️ Stock is checked atomically during checkout. If inventory reaches 0, customers cannot complete purchases for this product.
+      </div>
+
+      <div class="form-field">
+        <label>Current Stock Count</label>
+        <input type="number" value="12" min="0" placeholder="0">
+        <div class="form-hint">Total units available. Leave empty for unlimited stock.</div>
+      </div>
+
+      <div class="inventory-grid">
+        <div class="inventory-metric">
+          <h4>Available</h4>
+          <div class="value">12</div>
+          <div class="unit">units ready to sell</div>
+        </div>
+        <div class="inventory-metric">
+          <h4>Reserved</h4>
+          <div class="value">0</div>
+          <div class="unit">units in pending orders</div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Low Stock Alert Threshold</label>
+        <input type="number" value="3" min="1" placeholder="1">
+        <div class="form-hint">You'll receive an email when stock drops below this level.</div>
+      </div>
+
+      <div class="form-field">
+        <label>Status</label>
+        <div style="margin-top: 8px;">
+          <span class="status-badge status-in-stock">✓ In Stock</span>
+        </div>
+        <div class="form-hint" style="margin-top: 8px;">Customers can purchase this product.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Variant Stock (if applicable)</h2>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 20px;">Track inventory for each size or color variant separately.</p>
+
+      <div class="variant-stock">
+        <div class="variant-stock-header">
+          <h4>Size: Small</h4>
+          <span class="status-badge status-in-stock">In Stock (8)</span>
+        </div>
+        <div class="form-field">
+          <label>Stock Count</label>
+          <input type="number" value="8" min="0" placeholder="0">
+        </div>
+      </div>
+
+      <div class="variant-stock">
+        <div class="variant-stock-header">
+          <h4>Size: Large</h4>
+          <span class="status-badge status-low-stock">Low Stock (2)</span>
+        </div>
+        <div class="form-field">
+          <label>Stock Count</label>
+          <input type="number" value="2" min="0" placeholder="0">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Recent Inventory Changes</h2>
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+        <thead>
+          <tr style="border-bottom: 2px solid #E2E8F0;">
+            <th style="text-align: left; padding: 12px 0; color: #64748B; font-weight: 600;">Date</th>
+            <th style="text-align: left; padding: 12px 0; color: #64748B; font-weight: 600;">Type</th>
+            <th style="text-align: right; padding: 12px 0; color: #64748B; font-weight: 600;">Change</th>
+            <th style="text-align: right; padding: 12px 0; color: #64748B; font-weight: 600;">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">May 18, 2:15 PM</td>
+            <td style="padding: 12px 0;">Order #4521 paid</td>
+            <td style="text-align: right; color: #F43F5E;">-1</td>
+            <td style="text-align: right; font-weight: 600;">12</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">May 18, 1:30 PM</td>
+            <td style="padding: 12px 0;">Manual adjustment</td>
+            <td style="text-align: right; color: #10B981;">+2</td>
+            <td style="text-align: right; font-weight: 600;">13</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E2E8F0;">
+            <td style="padding: 12px 0;">May 17, 10:00 AM</td>
+            <td style="padding: 12px 0;">Order #4512 paid</td>
+            <td style="text-align: right; color: #F43F5E;">-1</td>
+            <td style="text-align: right; font-weight: 600;">11</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="button-group">
+      <button class="btn-primary">Save Inventory Changes</button>
+      <button class="btn-secondary">Cancel</button>
+    </div>
+  </div>
+</body>
+</html>

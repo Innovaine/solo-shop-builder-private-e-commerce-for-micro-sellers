@@ -106,8 +106,42 @@ export async function POST(request: NextRequest) {
         }
 
         // Create order with items (use transaction for atomicity)
+        // FR-24: Atomic stock validation + decrement
         const order = await prisma.$transaction(async (tx) => {
-          // Create order
+          // First, validate stock availability for all items
+          for (const item of cartItems) {
+            if (item.variantId) {
+              // Check variant stock
+              const variant = await tx.productVariant.findUnique({
+                where: { id: item.variantId },
+                select: { stock: true, name: true, value: true, product: { select: { title: true } } },
+              })
+              
+              if (!variant) {
+                throw new Error(`Variant ${item.variantId} not found`)
+              }
+              
+              if (variant.stock < item.quantity) {
+                throw new Error(`Insufficient stock for ${variant.product.title} - ${variant.name}: ${variant.value}. Available: ${variant.stock}, requested: ${item.quantity}`)
+              }
+            } else {
+              // Check product stock
+              const product = await tx.product.findUnique({
+                where: { id: item.productId },
+                select: { stock: true, title: true },
+              })
+              
+              if (!product) {
+                throw new Error(`Product ${item.productId} not found`)
+              }
+              
+              if (product.stock < item.quantity) {
+                throw new Error(`Insufficient stock for ${product.title}. Available: ${product.stock}, requested: ${item.quantity}`)
+              }
+            }
+          }
+
+          // All stock checks passed - create order
           const newOrder = await tx.order.create({
             data: {
               shopId,
@@ -130,10 +164,10 @@ export async function POST(request: NextRequest) {
             },
           })
 
-          // FR-24: Decrement stock after successful payment
+          // Atomically decrement stock after order creation
           for (const item of cartItems) {
             if (item.variantId) {
-              // Decrement variant stock
+              // Decrement variant stock atomically
               await tx.productVariant.update({
                 where: { id: item.variantId },
                 data: {
@@ -143,7 +177,7 @@ export async function POST(request: NextRequest) {
                 },
               })
             } else {
-              // Decrement product stock
+              // Decrement product stock atomically
               await tx.product.update({
                 where: { id: item.productId },
                 data: {

@@ -56,6 +56,13 @@ export async function GET(request: NextRequest) {
     // Calculate order count
     const orderCount = recentOrders.length
 
+    // FR-157: Count total products in shop
+    const productCount = await prisma.product.count({
+      where: {
+        shopId: shop.id,
+      },
+    })
+
     // Calculate top products by quantity sold
     const productStats = new Map<string, ProductAnalytics>()
 
@@ -109,6 +116,7 @@ export async function GET(request: NextRequest) {
       analytics: {
         totalRevenue, // in cents
         orderCount,
+        productCount, // FR-157: total products count
         topProducts,
         dailyRevenue, // FR-36: Daily revenue data for chart
         periodDays: 30,

@@ -146,7 +146,7 @@ export default function SettingsPage() {
               <div className={`border rounded-md p-4 mb-6 text-sm ${
                 statusMessage.includes('error') || statusMessage.includes('Failed')
                   ? 'bg-rose-50 border-rose-200 text-rose-700'
-                  : 'bg-sage-50 border-sage-200 text-sage-700'
+                  : 'bg-emerald-50 border-emerald-200 text-emerald-700'
               }`}>
                 {statusMessage}
               </div>
@@ -155,7 +155,7 @@ export default function SettingsPage() {
             <div className="flex items-center gap-4">
               <div className="flex-1">
                 <span className="text-sm font-semibold text-charcoal">
-                  Status: <span className={shopStatus === 'ACTIVE' ? 'text-sage' : 'text-amber'}>{shopStatus}</span>
+                  Status: <span className={shopStatus === 'ACTIVE' ? 'text-emerald' : 'text-amber'}>{shopStatus}</span>
                 </span>
               </div>
               <Button
@@ -178,7 +178,7 @@ export default function SettingsPage() {
             </p>
 
             {success && (
-              <div className="bg-sage-50 border border-sage-200 rounded-md p-4 mb-6 text-sm text-sage-700">
+              <div className="bg-emerald-50 border border-emerald-200 rounded-md p-4 mb-6 text-sm text-emerald-700">
                 Password updated successfully!
               </div>
             )}

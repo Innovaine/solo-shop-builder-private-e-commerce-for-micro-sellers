@@ -114,20 +114,116 @@ export default async function DashboardPage() {
           </div>
         </Card>
 
-        {/* Empty state for products */}
-        <EmptyState
-          icon="📦"
-          title="No products yet"
-          description="Product management is coming in the next update. You'll be able to add products with images, prices, and descriptions."
-          footer={
-            <div className="text-sm text-slate">
-              For now, your shop is live at{' '}
-              <a href={shopUrl} target="_blank" rel="noopener noreferrer" className="text-slate-blue hover:underline">
-                {shop.slug}
-              </a>
-            </div>
-          }
-        />
+        {/* Quick actions grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          <Link href="/dashboard/products" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">📦</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Products</h3>
+                  <p className="text-sm text-slate">Manage your shop inventory</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/orders" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">📋</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Orders</h3>
+                  <p className="text-sm text-slate">View and manage orders</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/analytics" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">📊</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Analytics</h3>
+                  <p className="text-sm text-slate">Sales and performance metrics</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/branding" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">🎨</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Branding</h3>
+                  <p className="text-sm text-slate">Customize shop colors and logo</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/profile" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">👤</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Profile</h3>
+                  <p className="text-sm text-slate">Seller bio and contact info</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/billing" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">💳</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Billing</h3>
+                  <p className="text-sm text-slate">Payment methods and invoices</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/email-template" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">✉️</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Email Templates</h3>
+                  <p className="text-sm text-slate">Customize order confirmation emails</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/settings" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">⚙️</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">Settings</h3>
+                  <p className="text-sm text-slate">Account and shop settings</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link href="/dashboard/products/import" className="block">
+            <Card padding="lg" className="hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl">📥</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-charcoal mb-1">CSV Import</h3>
+                  <p className="text-sm text-slate">Bulk import products</p>
+                </div>
+              </div>
+            </Card>
+          </Link>
+        </div>
       </main>
     </div>
   )
