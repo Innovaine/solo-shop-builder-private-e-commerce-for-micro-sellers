@@ -309,3 +309,11 @@ STDOUT:
   // FR-35: Email template customization
 ```
 Full output: [`server-runs/2026-05-18T10-07-54-www.soloshopbox.com-grep--A-3-logoImageUrl-solo-shop-builder-1.log`](server-runs/2026-05-18T10-07-54-www.soloshopbox.com-grep--A-3-logoImageUrl-solo-shop-builder-1.log)
+
+## 2026-05-18T10:08:21.844Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b386324` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3302ms)
+```
+curl -s https://www.soloshopbox.com/dashboard/orders 2>/dev/null | grep -o "filter\|status\|date.*sort\|Total\|Revenue" | head -20
+```
