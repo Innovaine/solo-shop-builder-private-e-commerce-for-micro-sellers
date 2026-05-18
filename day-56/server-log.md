@@ -358,3 +358,17 @@ Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-r
 }
 ```
 Full output: [`server-runs/2026-05-18T09-28-04-www.soloshopbox.com-kill--0-cat-tmp-day56-smoke.pid-2-dev-nu-1.log`](server-runs/2026-05-18T09-28-04-www.soloshopbox.com-kill--0-cat-tmp-day56-smoke.pid-2-dev-nu-1.log)
+
+## 2026-05-18T09:28:35.378Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6777b67` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 2899ms)
+```
+head -100 /tmp/day56-smoke.log | grep -E "passed|failed|Running|tests from"
+```
+ERROR: command exited 1
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 533ms)
+```
+cat /tmp/day56-smoke.log | grep -A 3 "✓\|✗\|passed\|failed" | head -80
+```
