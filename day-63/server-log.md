@@ -403,3 +403,14 @@ _Pre-SSH: warehouse pushed to GitHub as commit `67fb39f` so the server's `git pu
 cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && ls node_modules/.bin/tsc 2>/dev/null && ./node_modules/.bin/tsc --noEmit 2>&1 | head -50
 ```
 ERROR: command exited 2
+
+## 2026-05-18T15:58:35.473Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `608f98c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12867ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup npm install --legacy-peer-deps > /tmp/npm-full.log 2>&1 &
+echo $! > /tmp/npm-full.pid
+echo "Started full npm install, PID=$(cat /tmp/npm-full.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
