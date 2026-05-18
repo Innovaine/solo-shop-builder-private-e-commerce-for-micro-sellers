@@ -9,7 +9,13 @@ import crypto from 'crypto';
 export async function PATCH(req: NextRequest) {
   try {
     // Auth check using iron-session
-    const { sellerId } = await requireAuth();
+    let sellerId: string;
+    try {
+      const auth = await requireAuth();
+      sellerId = auth.sellerId;
+    } catch (authError) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
     // Find seller's shop
     const shop = await prisma.shop.findFirst({

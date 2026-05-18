@@ -12,18 +12,22 @@ import Card from '@/components/ui/Card'
 function SuccessContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const sessionId = searchParams.get('session_id')
+  const sessionId = searchParams.get('session_id') // Stripe
+  const paymentId = searchParams.get('payment_id') // MyFatoorah
+  const provider = searchParams.get('provider') || 'stripe'
   const [hasClearedCart, setHasClearedCart] = useState(false)
+
+  const paymentIdentifier = sessionId || paymentId
 
   useEffect(() => {
     // Clear cart after successful checkout
-    if (sessionId && !hasClearedCart) {
+    if (paymentIdentifier && !hasClearedCart) {
       clearCart()
       setHasClearedCart(true)
     }
-  }, [sessionId, hasClearedCart])
+  }, [paymentIdentifier, hasClearedCart])
 
-  if (!sessionId) {
+  if (!paymentIdentifier) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center px-4">
         <Card className="max-w-md w-full text-center p-8">
@@ -62,8 +66,13 @@ function SuccessContent() {
 
         <div className="bg-whisper p-4 rounded-md mb-6">
           <p className="text-sm text-slate">
-            Session ID: <span className="font-mono text-xs text-charcoal">{sessionId}</span>
+            Payment ID: <span className="font-mono text-xs text-charcoal">{paymentIdentifier}</span>
           </p>
+          {provider && (
+            <p className="text-xs text-slate mt-2">
+              Provider: {provider === 'myfatoorah' ? 'MyFatoorah' : 'Stripe'}
+            </p>
+          )}
         </div>
 
         <Button variant="primary" onClick={() => router.push('/')} className="w-full">

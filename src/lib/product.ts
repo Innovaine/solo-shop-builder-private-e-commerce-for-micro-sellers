@@ -30,9 +30,11 @@ export const productSchema = z.object({
     .max(999999, 'Price must be less than $10,000')
     .int('Price must be a whole number (in cents)'),
   imageUrl: z
-    .string()
-    .url('Invalid image URL')
-    .max(500, 'Image URL too long')
+    .union([
+      z.string().url('Invalid image URL').max(500, 'Image URL too long'),
+      z.literal(''),
+      z.null(),
+    ])
     .optional()
     .nullable(),
   category: z

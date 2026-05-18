@@ -58,6 +58,8 @@ export default function SettingsPage() {
       } else {
         setShopStatus(newStatus)
         setStatusMessage(`Shop is now ${newStatus.toLowerCase()}`)
+        // Force page data refresh to ensure status is persisted
+        router.refresh()
       }
     } catch {
       setStatusMessage('Network error. Please try again.')
@@ -255,7 +257,9 @@ export default function SettingsPage() {
                   return
                 }
 
-                if (!confirm('Last confirmation: Type DELETE to confirm account deletion')) {
+                const confirmation = prompt('Type DELETE in all caps to confirm account deletion')
+                if (confirmation !== 'DELETE') {
+                  alert('Confirmation text did not match. Account not deleted.')
                   return
                 }
 
