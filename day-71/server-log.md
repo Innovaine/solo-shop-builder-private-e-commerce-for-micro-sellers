@@ -740,3 +740,24 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-
 ✓ App healthy
 ```
 Full output: [`server-runs/2026-05-18T18-58-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-58-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:58:30.757Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b0633ec` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2797ms)
+```
+echo "Testing Orders API:"
+curl -s https://www.soloshopbox.com/api/orders -H "Cookie: session=test" | head -100
+
+echo -e "\n\nTesting Billing API:"
+curl -s https://www.soloshopbox.com/api/billing -H "Cookie: session=test" | head -100
+```
+STDOUT:
+```
+Testing Orders API:
+{"error":"Invalid session"}
+
+Testing Billing API:
+{"error":"Session expired"}
+```
+Full output: [`server-runs/2026-05-18T18-58-30-www.soloshopbox.com-echo-Testing-Orders-API-1.log`](server-runs/2026-05-18T18-58-30-www.soloshopbox.com-echo-Testing-Orders-API-1.log)
