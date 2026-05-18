@@ -479,3 +479,45 @@ drwxrwxr-x 2 tester tester 4096 May 18 10:13 .
 drwxrwxr-x 7 tester tester 4096 May 18 10:13 ..
 ```
 Full output: [`server-runs/2026-05-18T10-14-07-www.soloshopbox.com-cat-tmp-day57-test.log-grep--E-passed-fa-1.log`](server-runs/2026-05-18T10-14-07-www.soloshopbox.com-cat-tmp-day57-test.log-grep--E-passed-fa-1.log)
+
+## 2026-05-18T10:14:37.416Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f13f73e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3548ms)
+```
+echo "=== Day 57 Manual Verification ==="
+echo ""
+echo "Test 1: Health check"
+curl -sf https://www.soloshopbox.com/api/health && echo "PASS" || echo "FAIL"
+echo ""
+echo "Test 2: Dashboard orders page loads"
+curl -sI https://www.soloshopbox.com/dashboard/orders | head -1
+echo ""
+echo "Test 3: Dashboard branding page loads"
+curl -sI https://www.soloshopbox.com/dashboard/branding | head -1
+echo ""
+echo "Test 4: Check for filtering UI on orders page"
+curl -s https://www.soloshopbox.com/dashboard/orders | grep -o "All\|Pending\|Paid\|Shipped\|Cancelled" | head -3
+echo ""
+echo "Test 5: Check for logo upload field on branding page"
+curl -s https://www.soloshopbox.com/dashboard/branding | grep -o 'type="file"' | head -1
+```
+STDOUT:
+```
+=== Day 57 Manual Verification ===
+
+Test 1: Health check
+{"status":"ok","timestamp":"2026-05-18T10:14:37.641Z","responseTime":"98ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"97ms"}}}PASS
+
+Test 2: Dashboard orders page loads
+HTTP/2 200 
+
+Test 3: Dashboard branding page loads
+HTTP/2 200 
+
+Test 4: Check for filtering UI on orders page
+
+Test 5: Check for logo upload field on branding page
+type="file"
+```
+Full output: [`server-runs/2026-05-18T10-14-37-www.soloshopbox.com-echo-Day-57-Manual-Verification-1.log`](server-runs/2026-05-18T10-14-37-www.soloshopbox.com-echo-Day-57-Manual-Verification-1.log)
