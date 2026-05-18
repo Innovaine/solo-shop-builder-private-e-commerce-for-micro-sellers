@@ -263,3 +263,16 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-18T10:06:41.508Z","responseTime":"188ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"186ms"}}}
 ```
 Full output: [`server-runs/2026-05-18T10-06-41-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T10-06-41-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-18T10:07:04.706Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c5891f0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3211ms)
+```
+curl -s https://www.soloshopbox.com/dashboard/branding 2>/dev/null | grep -o "logoImageUrl\|file.*input\|logo.*upload" | head -10
+```
+STDOUT:
+```
+file" id="logoUpload" accept="image/png,image/jpeg,image/jpg" class="block w-full text-sm text-charcoal file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-emerald file:text-white hover:file:bg-emerald/90 cursor-pointer"/></div><div class="flex flex-col gap-1.5 w-full"><label for="field-logo-url-(optional)" class="text-sm font-semibold text-charcoal">Logo URL (Optional)</label><input
+```
+Full output: [`server-runs/2026-05-18T10-07-04-www.soloshopbox.com-curl--s-https-www.soloshopbox.com-dashbo-1.log`](server-runs/2026-05-18T10-07-04-www.soloshopbox.com-curl--s-https-www.soloshopbox.com-dashbo-1.log)
