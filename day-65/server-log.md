@@ -189,3 +189,16 @@ CONTAINER ID   IMAGE                                                        COMM
 5b26a700cbdf   postgres:16-alpine                                           "docker-entrypoint.s…"   28 hours ago         Up 13 hours (healthy)   127.0.0.1:5432->5432/tcp                      solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-18T16-52-54-www.soloshopbox.com-sleep-5-docker-ps-grep--E-solo-shop-CONT-1.log`](server-runs/2026-05-18T16-52-54-www.soloshopbox.com-sleep-5-docker-ps-grep--E-solo-shop-CONT-1.log)
+
+## 2026-05-18T16:53:21.373Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3d6e07c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3508ms)
+```
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+OK
+```
+Full output: [`server-runs/2026-05-18T16-53-21-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T16-53-21-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
