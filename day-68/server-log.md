@@ -245,3 +245,12 @@ STDOUT:
 Docker compose starting
 ```
 Full output: [`server-runs/2026-05-18T17-49-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T17-49-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T17:50:36.385Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8977bf0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 8419ms)
+```
+sleep 5 && docker ps --format '.Names\t.Status' | grep solo-shop
+```
+ERROR: command exited 1
