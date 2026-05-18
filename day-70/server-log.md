@@ -299,3 +299,16 @@ Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:54
 No pending migrations to apply.
 ```
 Full output: [`server-runs/2026-05-18T18-21-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-21-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:21:57.894Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9bb49d0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3254ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo " - Health check OK" || echo " - Health check FAILED"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-18T18:21:57.772Z","responseTime":"182ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"181ms"}}} - Health check OK
+```
+Full output: [`server-runs/2026-05-18T18-21-57-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T18-21-57-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
