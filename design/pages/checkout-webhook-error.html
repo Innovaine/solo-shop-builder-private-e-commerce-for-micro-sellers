@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Processing Error — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      background: #FAF9F7;
+      color: #1F2937;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    
+    .error-header {
+      background: linear-gradient(135deg, #FEE2E2 0%, #FECDD3 100%);
+      padding: 40px 32px;
+      text-align: center;
+      border-bottom: 1px solid #FECACA;
+    }
+    
+    .error-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    .error-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #7F1D1D;
+      margin-bottom: 8px;
+    }
+    
+    .error-subtitle {
+      font-size: 14px;
+      color: #9F1239;
+    }
+    
+    .error-body {
+      padding: 32px;
+    }
+    
+    .order-info {
+      background: #F9FAFB;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 13px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    
+    .info-row:last-child {
+      border-bottom: none;
+    }
+    
+    .info-label {
+      color: #64748B;
+      font-weight: 500;
+    }
+    
+    .info-value {
+      color: #1F2937;
+      font-weight: 600;
+      text-align: right;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #FEE2E2;
+      color: #7F1D1D;
+    }
+    
+    .explanation {
+      background: #FEF2F2;
+      border: 1px solid #FECDD3;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #9F1239;
+    }
+    
+    .explanation-title {
+      font-weight: 600;
+      color: #7F1D1D;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .next-steps {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .next-steps-title {
+      font-weight: 600;
+      color: #0369A1;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    
+    .next-steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .next-steps-list li {
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+      color: #0369A1;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    
+    .next-steps-list li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .next-steps-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    button {
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    .btn-primary {
+      background: #10B981;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+    }
+    
+    .btn-secondary:hover {
+      background: #F9FAFB;
+    }
+    
+    .support-footer {
+      padding: 16px 32px;
+      background: #F9FAFB;
+      border-top: 1px solid #E2E8F0;
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+    }
+    
+    .support-footer a {
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .support-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 480px) {
+      .error-header {
+        padding: 32px 24px;
+      }
+      
+      .error-body {
+        padding: 24px;
+      }
+      
+      .error-title {
+        font-size: 24px;
+      }
+      
+      .error-icon {
+        font-size: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ERROR HEADER -->
+    <div class="error-header">
+      <span class="error-icon">⚠️</span>
+      <h1 class="error-title">Order Processing Error</h1>
+      <p class="error-subtitle">Your payment was received, but we couldn't save your order</p>
+    </div>
+    
+    <!-- ERROR BODY -->
+    <div class="error-body">
+      <!-- ORDER INFO -->
+      <div class="order-info">
+        <div class="info-row">
+          <span class="info-label">Order Status</span>
+          <span class="info-value">
+            <span class="status-badge">Processing</span>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Amount Charged</span>
+          <span class="info-value">$111.24</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Transaction ID</span>
+          <span class="info-value">pi_1ABCDef123456</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Your Email</span>
+          <span class="info-value">jane@example.com</span>
+        </div>
+      </div>
+      
+      <!-- EXPLANATION -->
+      <div class="explanation">
+        <span class="explanation-title">What happened:</span>
+        <p>
+          Your payment was successfully processed by Stripe and your card has been charged <strong>$111.24</strong>. 
+          However, we encountered a temporary error while saving your order details to our system. 
+          <strong>Your payment is secure</strong> — we have a full record of the transaction.
+        </p>
+      </div>
+      
+      <!-- NEXT STEPS -->
+      <div class="next-steps">
+        <div class="next-steps-title">What happens next:</div>
+        <ul class="next-steps-list">
+          <li>We're automatically retrying to create your order (this can take a few minutes)</li>
+          <li>You'll receive an order confirmation email once the order is complete</li>
+          <li>If the issue persists, our team will contact you directly</li>
+          <li>If you don't receive a confirmation email within 1 hour, contact support immediately</li>
+        </ul>
+      </div>
+      
+      <!-- ACTIONS -->
+      <div class="action-buttons">
+        <button class="btn-primary" onclick="window.location.href='/dashboard/orders'">
+          Check Your Orders
+        </button>
+        <button class="btn-secondary" onclick="window.location.href='/'">
+          Back to Shop
+        </button>
+      </div>
+    </div>
+    
+    <!-- SUPPORT FOOTER -->
+    <div class="support-footer">
+      <p>
+        Need help? <a href="mailto:support@soloshopbox.com">Email support@soloshopbox.com</a> 
+        or call us at <a href="tel:+1234567890">+1 (234) 567-890</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

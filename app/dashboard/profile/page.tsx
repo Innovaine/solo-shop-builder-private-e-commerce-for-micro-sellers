@@ -15,12 +15,19 @@ export default function ProfilePage() {
   const [formData, setFormData] = useState({
     displayName: '',
     publicDescription: '',
+    twitterUrl: '',
+    instagramUrl: '',
+    facebookUrl: '',
   });
 
   const [charCounts, setCharCounts] = useState({
     displayName: 0,
     publicDescription: 0,
   });
+
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
+  const [currentLogoUrl, setCurrentLogoUrl] = useState<string>('');
 
   useEffect(() => {
     // Load current shop profile data
@@ -37,12 +44,20 @@ export default function ProfilePage() {
           setFormData({
             displayName,
             publicDescription,
+            twitterUrl: shop.twitterUrl || '',
+            instagramUrl: shop.instagramUrl || '',
+            facebookUrl: shop.facebookUrl || '',
           });
           
           setCharCounts({
             displayName: displayName.length,
             publicDescription: publicDescription.length,
           });
+
+          // Set current logo if exists
+          if (shop.logoImageUrl || shop.logoUrl) {
+            setCurrentLogoUrl(shop.logoImageUrl || shop.logoUrl);
+          }
         }
       } catch (err) {
         console.error('Error loading profile:', err);
@@ -51,9 +66,23 @@ export default function ProfilePage() {
     loadProfile();
   }, []);
 
-  function handleInputChange(field: 'displayName' | 'publicDescription', value: string) {
+  function handleInputChange(field: keyof typeof formData, value: string) {
     setFormData({ ...formData, [field]: value });
-    setCharCounts({ ...charCounts, [field]: value.length });
+    if (field === 'displayName' || field === 'publicDescription') {
+      setCharCounts({ ...charCounts, [field]: value.length });
+    }
+  }
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setImagePreview(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -76,6 +105,23 @@ export default function ProfilePage() {
     }
 
     try {
+      // Upload logo first if image file selected
+      if (imageFile) {
+        const formDataImg = new FormData();
+        formDataImg.append('logo', imageFile);
+
+        const uploadRes = await fetch('/api/shops/branding', {
+          method: 'POST',
+          body: formDataImg,
+        });
+
+        if (!uploadRes.ok) {
+          const data = await uploadRes.json();
+          throw new Error(data.error || 'Failed to upload logo');
+        }
+      }
+
+      // Update profile data
       const res = await fetch('/api/shops/profile', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -89,6 +135,9 @@ export default function ProfilePage() {
 
       setSuccess('Profile updated successfully. Changes appear on your shop page immediately.');
       setTimeout(() => setSuccess(''), 4000);
+      
+      // Reset image file state
+      setImageFile(null);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -180,6 +229,96 @@ export default function ProfilePage() {
               </div>
             </div>
 
+            <div>
+              <h2 className="text-lg font-semibold text-charcoal mb-5">Shop Image</h2>
+              
+              <div className="space-y-2">
+                <label htmlFor="profileImage" className="block text-sm font-medium text-charcoal">
+                  Shop Logo/Profile Image
+                </label>
+                <div className="flex gap-4 items-start">
+                  <div className="w-32 h-32 bg-whisper border-2 border-dashed border-slate/30 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    {imagePreview ? (
+                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                    ) : currentLogoUrl ? (
+                      <img src={currentLogoUrl} alt="Current logo" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="text-5xl">🏪</div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <input
+                      type="file"
+                      id="profileImage"
+                      accept="image/jpeg,image/png,image/webp"
+                      onChange={handleImageChange}
+                      className="block w-full text-sm text-slate border border-whisper rounded-md px-3 py-2 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-emerald/10 file:text-emerald hover:file:bg-emerald/20"
+                    />
+                    <div className="text-xs text-slate/80 mt-2">
+                      PNG, JPG, or WebP. Maximum 5MB. Square images work best (e.g., 512×512px).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-lg font-semibold text-charcoal mb-5">Social Links</h2>
+              
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="twitterUrl" className="block text-sm font-medium text-charcoal">
+                    Twitter (X)
+                  </label>
+                  <input
+                    type="url"
+                    id="twitterUrl"
+                    value={formData.twitterUrl}
+                    onChange={(e) => handleInputChange('twitterUrl', e.target.value)}
+                    placeholder="https://twitter.com/yourhandle"
+                    className="w-full px-3 py-2.5 text-sm border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue"
+                  />
+                  <div className="text-xs text-slate/80">
+                    Link to your Twitter/X profile. Leave blank to hide this link from your shop.
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="instagramUrl" className="block text-sm font-medium text-charcoal">
+                    Instagram
+                  </label>
+                  <input
+                    type="url"
+                    id="instagramUrl"
+                    value={formData.instagramUrl}
+                    onChange={(e) => handleInputChange('instagramUrl', e.target.value)}
+                    placeholder="https://instagram.com/yourhandle"
+                    className="w-full px-3 py-2.5 text-sm border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue"
+                  />
+                  <div className="text-xs text-slate/80">
+                    Link to your Instagram profile. Leave blank to hide this link from your shop.
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="facebookUrl" className="block text-sm font-medium text-charcoal">
+                    Facebook
+                  </label>
+                  <input
+                    type="url"
+                    id="facebookUrl"
+                    value={formData.facebookUrl}
+                    onChange={(e) => handleInputChange('facebookUrl', e.target.value)}
+                    placeholder="https://facebook.com/yourpage"
+                    className="w-full px-3 py-2.5 text-sm border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue"
+                  />
+                  <div className="text-xs text-slate/80">
+                    Link to your Facebook page or business profile. Leave blank to hide this link from your shop.
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="flex gap-3 pt-2">
               <Button type="submit" disabled={loading}>
                 {loading ? 'Saving...' : 'Save Profile'}
@@ -198,19 +337,49 @@ export default function ProfilePage() {
           <div className="mt-8 pt-8 border-t border-whisper">
             <div className="mb-3">
               <div className="text-xs font-semibold text-slate uppercase tracking-wide mb-3">
-                Your Public Shop
+                Your Public Shop Header
               </div>
             </div>
             <div className="bg-slate-blue text-white p-4 rounded-lg">
-              <h3 className="text-xl font-bold mb-1">
-                {formData.displayName || 'Your shop name'}
-              </h3>
-              <p className="text-sm text-slate-200 leading-relaxed">
-                {formData.publicDescription || 'Tell customers about your shop...'}
-              </p>
+              <div className="flex gap-4 items-start mb-3">
+                <div className="w-16 h-16 bg-whisper/20 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                  ) : currentLogoUrl ? (
+                    <img src={currentLogoUrl} alt="Logo" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="text-3xl">🏪</div>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-1">
+                    {formData.displayName || 'Your shop name'}
+                  </h3>
+                  <p className="text-sm text-slate-200 leading-relaxed">
+                    {formData.publicDescription || 'Tell customers about your shop...'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-3 pt-3 border-t border-white/10 text-sm">
+                {formData.twitterUrl && (
+                  <a href={formData.twitterUrl} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white">
+                    🐦 Twitter
+                  </a>
+                )}
+                {formData.instagramUrl && (
+                  <a href={formData.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white">
+                    📷 Instagram
+                  </a>
+                )}
+                {formData.facebookUrl && (
+                  <a href={formData.facebookUrl} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white">
+                    📘 Facebook
+                  </a>
+                )}
+              </div>
             </div>
             <div className="text-xs text-slate/60 mt-3 px-1">
-              This is how customers see your shop page header.
+              This is how customers see your shop page header and social links.
             </div>
           </div>
         </Card>

@@ -1,25 +1,27 @@
-# Day 57 — Requirements: Solo Shop Builder — Private E-commerce for Micro-Sellers
+# Day 58 — Requirements: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Kenji (Product Manager)
-- **Cycle:** 115
-- **Day:** 57 (status: consolidation + Stage 1 expansion)
+- **Cycle:** 116
+- **Day:** 58 (status: scaling)
 
 ---
 
 ## Goal today
-Re-implement the Day 54 order dashboard features (FR-156, FR-157, FR-158) that failed to build, and add one more Stage 1 stability feature. Stabilize the live app at www.soloshopbox.com with a clean, tested baseline. MVP is now ~18/20 features; Day 57 focuses on moving into Stage 1 hardening while consolidating recent work.
+Consolidate Stage 1 features and verify MVP + early Stage 1 work is production-grade. Day 57 shipped 4 features (order filtering, metrics, logo upload, smart sorting); Day 58 focuses on **verification**, **hardening**, and **next-tier Stage 1 features**. Priority: ensure the live app at www.soloshopbox.com is stable, all core features work end-to-end, and identify blockers before scaling.
 
 ---
 
 ## Features in scope
 
-**FR-156: Order status filtering with badge counts** — Seller order dashboard has 4 filter buttons (Paid, In Progress, Shipped, Delivered) showing order counts. Clicking a button filters the order list. This was partially implemented on Day 54 but failed to build; needs clean re-implementation on the stable Day 55 baseline.
+**FR-21: Password authentication (seller login option)** — Seller can sign up with email + password instead of magic link. Login with email + password. Existing magic-link flow remains as option. Backward compatible.
 
-**FR-157: Dashboard summary metrics** — Top section of seller dashboard displays 3 metric cards: Total Products, Total Revenue (30d), Total Orders (30d). Each card shows a clean number. Re-implementation on stable baseline.
+**FR-22: Password reset flow (forgot password)** — Seller forgets password, clicks "Forgot password" on login, enters email, receives reset link via email, clicks link, enters new password, logs in. One-time token validation (10 min expiry).
 
-**FR-158: Smart order list sorting** — Orders dashboard defaults to "newest first" (sorted by creation date descending). This ensures sellers see the most recent order immediately, improving UX for fast-moving shops.
+**FR-24 (revisit): Inventory atomic validation** — When customer checks out, system atomically decrements inventory. If out of stock during checkout, payment is rejected with friendly error. Prevents overselling even under concurrent checkout attempts.
 
-**FR-6+: Shop logo upload & storage** — Seller can upload a logo image (PNG/JPG, max 2MB) in shop branding editor. Image stored on server (local filesystem for MVP, upgradeable to S3 later). Logo displayed in shop header + seller dashboard. Bonus feature to advance Stage 1 branding work.
+**FR-27: Seller analytics dashboard (complete)** — Seller sees: total revenue (all-time), order count (all-time), top 5 products by revenue. Cards + simple bar chart. Calculated real-time from database.
+
+**FR-29: Product CSV export** — Seller exports all their products as CSV (title, price, description, category, image_url). Used for backup or migration to other platforms.
 
 ---
 
@@ -27,22 +29,23 @@ Re-implement the Day 54 order dashboard features (FR-156, FR-157, FR-158) that f
 
 | ID | Feature | Description | Acceptance criteria |
 |---|---|---|---|
-| FR-156 | Order filtering | Order dashboard has 4 clickable filter buttons at top: "All", "Paid (N)", "In Progress (N)", "Shipped (N)", "Delivered (N)". Each button shows current count of orders in that status. Clicking a button filters table to show only orders with that status. "All" shows unfiltered list. Client-side filtering (no server round-trip). | 1. Filter buttons render with correct badge counts from current orders list. 2. Clicking a button updates table display instantly (<100ms). 3. Badge counts are accurate after order status change. 4. Mobile: buttons stack vertically or scroll horizontally on <640px. 5. No "Pending" filter (orders start as Paid from webhook). |
-| FR-157 | Dashboard metrics | Seller dashboard displays 3 metric cards in a row at top: (1) "Total Products" with count, (2) "Total Revenue (30d)" with sum formatted as $X,XXX.XX, (3) "Total Orders (30d)" with order count. Cards update when orders change status. Calculated from last 30 days of paid orders only. | 1. Cards render on initial page load. 2. Numbers recalculate when order list updates (real-time or on page refresh). 3. Revenue sums only "Paid" orders, excludes "Refunded". 4. Date window is last 30 calendar days. 5. Mobile: cards stack vertically on <640px. |
-| FR-158 | Order list sort | Orders displayed in descending creation date order (newest first) by default. When orders fetch from API, they are pre-sorted server-side or client-side before render. | 1. Newest order appears at top of list. 2. Order list is sorted by createdAt descending. 3. Works after order status updates. 4. Mobile & desktop both show same sort order. |
-| FR-6+ | Shop logo upload | Seller can upload logo image (PNG/JPG, max 2MB) via file input in /dashboard/branding. Image validated client-side (MIME type) + server-side (file size, type). Stored in `public/uploads/shops/{shopId}/logo.{ext}`. PUT /api/shops/{id}/branding endpoint accepts multipart/form-data with `logo` file field. Logo URL saved to shop.logoImageUrl in database. Logo displayed in shop header (40x40px). | 1. File input in branding UI accepts image files only. 2. Server rejects files >2MB with clear error. 3. Server rejects non-image MIME types. 4. Valid image stored to filesystem + URL saved to DB. 5. Logo renders in shop header immediately after upload. 6. Logo also appears in seller dashboard header. 7. Seller can re-upload to replace logo. |
+| FR-21 | Password signup/login | Seller signup page has two options: (1) "Email magic link" (existing), (2) "Email + password" (new). Password field ≥12 chars on signup, hashed with bcrypt (12 rounds) on save. Login page has email + password fields. POST /api/auth/signup (password variant) and POST /api/auth/login handle password auth. Backward compat: magic link still works for existing sellers. | 1. Signup page shows both options. 2. Password field validated (min 12 chars, feedback on weak passwords). 3. Password hashed in database (never plaintext). 4. Login with email + password works. 5. Magic link still works for existing users. 6. Session cookie same format regardless of auth method. 7. No plaintext password in logs or errors. |
+| FR-22 | Password reset | Login page shows "Forgot password?" link → forgot-password form (email only) → email sent with 10-min reset link → click link opens reset form (new password) → POST /api/auth/reset-password with token + new password → validate token (timestamp, not expired) → update password, clear old token → redirect to login with success message. | 1. Forgot password form accepts email. 2. Email sent within 5 min to that address. 3. Reset link valid for exactly 10 minutes. 4. Reset link single-use (token deleted after first use). 5. Expired/invalid token shows clear error. 6. New password hashed on save. 7. Old sessions NOT invalidated (allow login with new password). |
+| FR-24 | Inventory atomic check | Checkout flow: (1) customer selects product variant, (2) system checks `product.stock >= quantity` before payment, (3) if insufficient, show error "Only N left in stock", cancel payment, (4) if sufficient, proceed to Stripe Checkout, (5) on webhook success, decrement stock atomically (UPDATE ... SET stock = stock - quantity WHERE id = X AND stock >= quantity). If decrement fails (concurrent order), payment is already done; seller manually refunds customer. | 1. Out-of-stock error shown before Stripe redirect. 2. Stock decrements exactly once per order (no duplicates on webhook retry). 3. Concurrent checkouts don't oversell (use SQL atomic update). 4. Seller sees current stock in product edit form. 5. Stock updates instantly in dashboard (reload shows new count). 6. Oversold detection: if stock goes negative, alert seller. |
+| FR-27 | Analytics dashboard | /dashboard/analytics page shows: (1) "Total Revenue (All-time)" card with $X,XXX.XX format, (2) "Total Orders" card, (3) "Top 5 Products by Revenue" with product name + revenue (bar chart or table). Data calculated from all paid/shipped orders. Filters on load: >= created date (all-time). Refresh every page load (no real-time updates, OK). | 1. Cards render with correct numbers. 2. Revenue sums only "Paid" orders, excludes "Refunded". 3. Top 5 list is accurate (by total revenue per product, not quantity). 4. Mobile: stacks vertically on <640px. 5. No division by zero errors (empty shop shows 0s). 6. Page load <2s (optimize queries with indexes). |
+| FR-29 | Product CSV export | Seller clicks "Export as CSV" on products page, downloads file `products-{timestamp}.csv` with columns: title, price, description, category, imageUrl. One row per product. Seller can re-import this CSV with FR-28 on another shop or platform. CSV is UTF-8 encoded. | 1. Export button on products page. 2. CSV file generated correctly (no broken fields, no Unicode errors). 3. Downloadable (no UI errors, correct MIME type). 4. All products included in export. 5. Column order matches spec (title, price, description, category, imageUrl). 6. Empty shop exports header row only (no data rows). |
 
 ---
 
-## Stack chosen (lock this in day 1)
+## Stack chosen (lock in day 1)
 - **Backend:** Node.js + Express/Fastify in TypeScript (Next.js API routes)
 - **Web frontend:** Next.js 14 (App Router, TypeScript, Tailwind CSS)
 - **Database:** Postgres with Prisma ORM
-- **Payment processing:** Stripe Checkout (hosted)
-- **Email:** Resend or in-process for transactional emails
-- **Hosting:** Vercel (frontend) + containerized backend on private VPS (www.soloshopbox.com)
-- **File storage:** Local filesystem `/public/uploads/shops/{shopId}/` (MVP), upgradeable to S3
-- **Why this stack:** Already shipped 56 days in this stack. No learning curve. Fast iteration.
+- **Payment:** Stripe Checkout + Webhooks
+- **Email:** Resend or in-process transactional emails
+- **Hosting:** Vercel (frontend) + containerized backend on VPS (www.soloshopbox.com)
+- **File storage:** Local filesystem `/public/uploads/shops/{shopId}/`
+- **Why:** 58 days in this stack. Proven. No switching.
 
 ---
 
@@ -50,71 +53,109 @@ Re-implement the Day 54 order dashboard features (FR-156, FR-157, FR-158) that f
 
 | ID | Category | Requirement |
 |---|---|---|
-| NFR-1 | Performance | Order filter buttons update table in <100ms (client-side filtering, no re-fetch). |
-| NFR-2 | Performance | Metric cards calculate + render in <300ms on page load. |
-| NFR-3 | Performance | Logo upload form submission responds in <2s (upload + validate + save). |
-| NFR-4 | Security | File upload validated: MIME type whitelist (image/png, image/jpeg only), max size 2MB enforced server-side. |
-| NFR-5 | Security | Uploaded files stored outside web root or served via authenticated endpoint (no direct /public access until final deploy). |
-| NFR-6 | Storage | Uploaded logos persisted across container restarts via named Docker volume (if containerized) or native filesystem. |
-| NFR-7 | Mobile | Dashboard filtering + metrics + logo upload responsive on 320px+ width. Touch targets ≥44px. |
-| NFR-8 | Accessibility | Filter buttons have aria-label + keyboard Tab/Enter support. Logo upload has associated label. |
-| NFR-9 | Error handling | Out-of-range file uploads show friendly message, no 500 errors. |
-| NFR-10 | Testing | All 4 features have Playwright tests (happy path + edge cases: empty orders, multiple statuses, large file rejection). |
+| NFR-1 | Security | Password hashed with bcrypt (min 12 rounds). Reset tokens single-use + 10-min expiry. |
+| NFR-2 | Security | Inventory decrement uses atomic SQL (UPDATE ... WHERE ... AND ...). Prevents race condition oversells. |
+| NFR-3 | Performance | Inventory check on checkout <200ms (no N+1 queries). |
+| NFR-4 | Performance | Analytics queries <1s even with 10K+ orders (add DB indexes on created_at, status). |
+| NFR-5 | Performance | CSV export completes in <5s for 1000 products (stream to file, not load all in memory). |
+| NFR-6 | Email | Reset link email delivered within 5 min. |
+| NFR-7 | Mobile | Password signup/login, reset flow responsive on 320px+ width. Touch targets ≥44px. |
+| NFR-8 | Accessibility | Password fields have associated labels. "Show password" toggle has aria-label. |
+| NFR-9 | Error handling | Reset token expiry shows friendly message (not raw error). Out-of-stock shows clear UX (not confusing). |
+| NFR-10 | Testing | All 5 features have Playwright tests (password signup/login, reset flow, inventory check, analytics load, CSV export). |
 
 ---
 
 ## Out of scope (do NOT build today)
-- Multiple logos per shop variant (seasonal, dark mode) — single logo only
-- Logo crop/resize editor — accept full image as-is
-- Automated image optimization (WebP, AVIF) — serve original JPEG/PNG
-- S3 storage setup — local filesystem only for MVP
-- CDN integration — serve images from same domain
-- Logo caching strategy (cache-control headers) — standard caching
-- Logo as favicon — not in scope for MVP
-- Advanced image metadata preservation (EXIF) — strip metadata on save (privacy)
-- Seller-provided brand colors applied site-wide — colors already in branding (FR-26)
-- Re-try logic for failed uploads — single attempt, refresh page to retry
+- 2FA/TOTP for password auth (FR-23 — Stage 1 later)
+- Social login (Google, GitHub) — password + magic link only
+- Webhook signature verification (FR-24 in spec) — assume trusted for now, harden in Stage 1 later
+- Rate limiting on password login — implement generic rate-limit middleware separately
+- Password complexity rules (uppercase, numbers, symbols) — just require ≥12 chars for MVP
+- Password expiry / forced resets — no expiry, seller controls when to change
+- Inventory overstock alerts — out-of-stock only for now
+- Advanced analytics (charts, filters, date ranges) — simple cards + top 5 products only
+- CSV import validation (duplicate SKU detection) — import as-is, seller responsible for cleanup
+- CSV export scheduled/automated — manual download only
 
 ---
 
 ## Open questions (owner, please answer before Wednesday)
-1. **Logo file size:** Is 2MB limit reasonable, or should it be smaller (1MB) for faster uploads on slow networks?
-2. **Logo aspect ratio:** Should we enforce square (1:1) or accept any aspect ratio and let CSS scale?
-3. **Metric date window:** For "Revenue (30d)", should it be calendar rolling (last 30 days from today) or rolling window from last transaction?
+1. **Password reset email domain:** Should reset link come from (a) marketing@soloshopbox.com, (b) noreply@soloshopbox.com, or (c) support@soloshopbox.com?
+2. **Analytics date filter:** For Day 58, should analytics show all-time, or last 90 days? (All-time simpler for MVP, filters can come later.)
+3. **CSV column order:** Is the proposed order (title, price, description, category, imageUrl) correct, or should it match a specific standard (Shopify, WooCommerce, Etsy)?
 
 ---
 
-## Definition of done for day 57
-A checklist for reviewer + tester:
-- [ ] FR-156: Order filter buttons present and clickable with correct counts
-- [ ] FR-156: Clicking filter changes order table without page reload
-- [ ] FR-156: Filter counts update when order status changes
-- [ ] FR-157: Metric cards display on dashboard with correct numbers
-- [ ] FR-157: Metrics update when orders change status
-- [ ] FR-158: Orders sorted by creation date descending (newest first)
-- [ ] FR-158: Order sort persists after page reload
-- [ ] FR-6+: Logo upload input in /dashboard/branding page
-- [ ] FR-6+: Server rejects files >2MB with error message
-- [ ] FR-6+: Server rejects non-image files (e.g., .pdf, .txt)
-- [ ] FR-6+: Valid image stored to filesystem + URL saved to database
-- [ ] FR-6+: Logo displays in shop storefront header + seller dashboard
-- [ ] FR-6+: Seller can re-upload to replace logo
-- [ ] All features mobile-responsive (< 640px viewport)
-- [ ] All features have passing Playwright tests
-- [ ] No console errors or TypeScript build errors
-- [ ] App builds and deploys to www.soloshopbox.com without errors
-- [ ] Health check passes, homepage loads, dashboard accessible
-- [ ] Order filtering + metrics + logo render correctly in production
+## Definition of done for day 58
+
+Reviewer + tester checklist:
+
+**FR-21: Password authentication**
+- [ ] Signup page shows both "Magic link" and "Email + password" options
+- [ ] Password field validates ≥12 chars with feedback
+- [ ] Password hashed in database (bcrypt 12+ rounds)
+- [ ] Login with email + password works
+- [ ] Magic link still works for existing users
+- [ ] Session cookie same regardless of auth method
+
+**FR-22: Password reset**
+- [ ] Forgot password form on login page
+- [ ] Reset link email sent within 5 minutes
+- [ ] Reset link valid for exactly 10 minutes
+- [ ] Reset link single-use (token cleared after use)
+- [ ] Expired token shows clear error
+- [ ] New password hashed on save
+
+**FR-24: Inventory atomic validation**
+- [ ] Out-of-stock error shown before Stripe redirect
+- [ ] Stock decrements exactly once per order (idempotent)
+- [ ] Concurrent checkouts don't oversell
+- [ ] Stock count visible in product edit form
+- [ ] Stock updates instantly after order
+
+**FR-27: Analytics dashboard**
+- [ ] Analytics page loads at /dashboard/analytics
+- [ ] Total Revenue card shows all-time sum of paid orders
+- [ ] Total Orders card shows order count
+- [ ] Top 5 Products list shows by revenue (not quantity)
+- [ ] Numbers are correct (spot check with database)
+- [ ] Mobile responsive (<640px)
+- [ ] Page loads in <2s
+
+**FR-29: Product CSV export**
+- [ ] Export button visible on products page
+- [ ] CSV file downloads with correct name (products-{timestamp}.csv)
+- [ ] CSV columns are: title, price, description, category, imageUrl
+- [ ] All products included
+- [ ] CSV is valid (opens in Excel/Google Sheets without errors)
+- [ ] Empty shop exports header row only
+
+**Overall**
+- [ ] All 5 features have Playwright tests (happy path + edge cases)
+- [ ] No TypeScript build errors
+- [ ] No console errors in browser
+- [ ] App builds and deploys to www.soloshopbox.com
+- [ ] Health check passes
+- [ ] Full smoke test passes: signup (password option), login, add product, checkout, analytics page, export CSV
 
 ---
 
 ## Rollback plan
-If Day 54 features (FR-156, FR-157, FR-158) cannot be re-implemented cleanly by end of day, fall back to Day 55 baseline (no filtering, no metrics, no smart sort). Logo upload (FR-6+) can be deferred to Day 58 without impact to MVP completion. Priority: get Day 54 features shipped cleanly.
+If any feature cannot ship cleanly by end of day:
+- FR-21/22 (password auth) can be deferred to Day 59 — magic link still works
+- FR-24 (inventory check) is critical for correctness — if not shipping, revert to "disable checkout if out of stock" (simpler)
+- FR-27 (analytics) can be deferred to Day 59 — dashboard still works without it
+- FR-29 (CSV export) can be deferred to Day 59 — seller can use database tool for backup
+
+Priority ship order: FR-24 > FR-21/22 > FR-27 > FR-29
 
 ---
 
 ## Metrics for success
-- 4 features shipped, built, tested, and live at www.soloshopbox.com
+- 5 features shipped, tested, live at www.soloshopbox.com
 - 0 build errors
-- Health check + all integration tests passing
-- Seller can create shop, add products, receive orders, filter orders, see metrics, upload logo (full workflow smoke test passes)
+- All integration tests passing
+- Full smoke test: password signup → login → add product → inventory check → checkout → analytics → CSV export
+- MVP + Stage 1 features working smoothly under load
+- App ready for beta user testing
