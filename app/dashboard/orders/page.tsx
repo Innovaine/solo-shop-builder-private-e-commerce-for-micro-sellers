@@ -301,7 +301,7 @@ export default function OrdersPage() {
                 </Card>
 
                 <Card>
-            <div className="overflow-x-auto">
+                  <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-whisper">
                   <tr>
@@ -409,8 +409,8 @@ export default function OrdersPage() {
                   ))}
                 </tbody>
               </table>
-            </div>
-          </Card>
+                  </div>
+                </Card>
             )}
           </>
         )}
