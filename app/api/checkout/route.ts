@@ -80,7 +80,10 @@ export async function POST(request: NextRequest) {
       if (item.variantId) {
         const variant = product.variants.find((v) => v.id === item.variantId)
         if (!variant) {
-          throw new Error(`Variant ${item.variantId} not found for product ${product.title}`)
+          return NextResponse.json(
+            { error: `Variant ${item.variantId} not found for product ${product.title}` },
+            { status: 400 }
+          )
         }
         
         // Use variant price if set, otherwise fall back to product price
@@ -89,9 +92,20 @@ export async function POST(request: NextRequest) {
         stockAvailable = variant.stock
       }
 
-      // Check stock availability (FR-24: inventory tracking)
+      // FR-24: Atomic inventory validation - check stock BEFORE payment
+      // This prevents payment if stock is insufficient
       if (stockAvailable < item.quantity) {
-        throw new Error(`Insufficient stock for ${productName}. Available: ${stockAvailable}, requested: ${item.quantity}`)
+        return NextResponse.json(
+          { 
+            error: `Insufficient stock for ${productName}`,
+            details: {
+              product: productName,
+              available: stockAvailable,
+              requested: item.quantity,
+            }
+          },
+          { status: 400 }
+        )
       }
 
       // Verify price matches (prevent client-side price tampering)
