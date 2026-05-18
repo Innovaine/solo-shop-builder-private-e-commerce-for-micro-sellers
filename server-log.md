@@ -30639,3 +30639,47 @@ time="2026-05-17T23:58:40Z" level=warning msg="/home/tester/solo-shop-builder-pr
 wget: server returned error: HTTP/1.1 401 Unauthorized
 ```
 Full output: [`server-runs/2026-05-17T23-58-40-app-Manual-smoke-tests-via-container-network-1.log`](server-runs/2026-05-17T23-58-40-app-Manual-smoke-tests-via-container-network-1.log)
+
+## 2026-05-17T23:59:17.260Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `760ae65` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3308ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "=== Day 49 Feature Testing ==="
+echo ""
+echo "FR-36: Analytics page design compliance (text-slate-blue class)"
+docker compose exec -T postgres wget -q -O- http://app:3000/dashboard/analytics 2>&1 | grep -o 'text-slate-blue' | wc -l
+echo "^ Should see at least 1 occurrence of text-slate-blue class"
+echo ""
+echo "FR-30: Order export endpoint exists"
+docker compose exec -T postgres wget -S -O- http://app:3000/api/orders/export 2>&1 | grep -E "HTTP/|Content-Type" | head -3
+echo ""
+echo "FR-28: Billing dashboard page structure"
+docker compose exec -T postgres wget -q -O- http://app:3000/dashboard/billing 2>&1 | grep -i -o -E 'billing|transaction|payment' | head -5
+echo ""
+echo "HTTPS config: Check Traefik labels in docker-compose"
+grep -A 2 "traefik.http.routers.app" docker-compose.yml | head -5
+```
+STDOUT:
+```
+=== Day 49 Feature Testing ===
+
+FR-36: Analytics page design compliance (text-slate-blue class)
+0
+^ Should see at least 1 occurrence of text-slate-blue class
+
+FR-30: Order export endpoint exists
+  HTTP/1.1 401 Unauthorized
+wget: server returned error: HTTP/1.1 401 Unauthorized
+
+FR-28: Billing dashboard page structure
+billing
+billing
+billing
+billing
+billing
+
+HTTPS config: Check Traefik labels in docker-compose
+```
+Full output: [`server-runs/2026-05-17T23-59-17-app-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-17T23-59-17-app-cd-solo-shop-builder-private-e-commerce--1.log)
