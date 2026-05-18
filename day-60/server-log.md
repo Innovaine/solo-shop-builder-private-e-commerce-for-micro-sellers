@@ -256,3 +256,46 @@ ls: cannot access 'tests/web/day60-*.spec.ts': No such file or directory
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-18T12-53-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T12-53-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T12:54:22.375Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0735bd2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3305ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+echo "Test 1: Check login page has password field" && \
+curl -s https://www.soloshopbox.com/auth/login | grep -i 'password' && echo " ✓ Password field found" || echo " ✗ No password field"
+
+echo -e "\nTest 2: Check CSV import page exists" && \
+curl -sI https://www.soloshopbox.com/dashboard/products/import | head -1
+
+echo -e "\nTest 3: Check checkout page exists" && \
+curl -sI https://www.soloshopbox.com/checkout | head -1
+
+echo -e "\nTest 4: Test password auth API endpoint" && \
+curl -s -X POST https://www.soloshopbox.com/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@test.com","password":"test"}' | head -100
+
+echo -e "\nTest 5: Test CSV import API endpoint" && \
+curl -s -X POST https://www.soloshopbox.com/api/products/import \
+  -H "Content-Type: application/json" \
+  -d '{"products":[]}' | head -100
+```
+STDOUT:
+```
+Test 1: Check login page has password field
+ ✗ No password field
+
+Test 2: Check CSV import page exists
+HTTP/2 200 
+
+Test 3: Check checkout page exists
+HTTP/2 200 
+
+Test 4: Test password auth API endpoint
+{"error":"Password must be at least 8 characters"}
+Test 5: Test CSV import API endpoint
+{"error":"Unauthorized"}
+```
+Full output: [`server-runs/2026-05-18T12-54-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T12-54-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
