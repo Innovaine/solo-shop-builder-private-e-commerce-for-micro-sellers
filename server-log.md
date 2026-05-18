@@ -34025,3 +34025,32 @@ Testing signup endpoint:
 * [HTTP/2] [1] [content-length: 28]
 ```
 Full output: [`server-runs/2026-05-18T04-27-18-www.soloshopbox.com-echo-Health-check-curl--s-https-www.solo-1.log`](server-runs/2026-05-18T04-27-18-www.soloshopbox.com-echo-Health-check-curl--s-https-www.solo-1.log)
+
+## 2026-05-18T04:28:01.401Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5c86883` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2037ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== Verifying Day 53 code changes are deployed ===" && echo "" && echo "FR-152: Shop status toggle endpoint" && ls -lh app/api/shops/status/route.ts 2>/dev/null || echo "NOT FOUND" && echo "" && echo "FR-153: Product status toggle endpoint" && ls -lh app/api/products/[id]/status/route.ts 2>/dev/null || echo "NOT FOUND" && echo "" && echo "FR-154: Order history endpoint" && ls -lh app/api/orders/[id]/history/route.ts 2>/dev/null || echo "NOT FOUND" && echo "" && echo "FR-155: Bulk product status endpoint" && ls -lh app/api/products/bulk-status/route.ts 2>/dev/null || echo "NOT FOUND" && echo "" && echo "Cart button fix (task #158):" && grep -n "/checkout" app/components/CartButton.tsx | head -3
+```
+STDOUT:
+```
+=== Verifying Day 53 code changes are deployed ===
+
+FR-152: Shop status toggle endpoint
+NOT FOUND
+
+FR-153: Product status toggle endpoint
+NOT FOUND
+
+FR-154: Order history endpoint
+NOT FOUND
+
+FR-155: Bulk product status endpoint
+NOT FOUND
+
+Cart button fix (task #158):
+178:                  <Link href={`/shop/${shopSlug}/checkout`}>
+185:                  <Link href={`/shop/${cart.shopSlug}/checkout`}>
+```
+Full output: [`server-runs/2026-05-18T04-28-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T04-28-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
