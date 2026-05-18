@@ -33459,3 +33459,16 @@ STDOUT:
 5b26a700cbdf   postgres:16-alpine   "docker-entrypoint.s…"   15 hours ago   Exited (0) About a minute ago             solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-18T03-53-17-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-18T03-53-17-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log)
+
+## 2026-05-18T03:53:52.618Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fe47b2c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3138ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app 2>&1 | tail -100
+```
+STDOUT:
+```
+time="2026-05-18T03:53:52Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+```
+Full output: [`server-runs/2026-05-18T03-53-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-53-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
