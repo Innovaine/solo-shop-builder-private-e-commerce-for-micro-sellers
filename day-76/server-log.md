@@ -237,3 +237,45 @@ else
 fi
 ```
 ERROR:  (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-18T22:08:26.457Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e682c35` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 1957ms)
+```
+tail -30 /tmp/build.log
+```
+STDOUT:
+```
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.5s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.7s done
+#30 exporting manifest sha256:2e07c84656566b518b07006735c84eb9e69d314277a38136b448f5e77d3bfb13 done
+#30 exporting config sha256:0841d0e209264948b75d60f3f0f5403203169652de847b047c8d9818841ebfe9 done
+#30 exporting attestation manifest sha256:803d259dc8bd6519941380077ff8566029b5eec5b01e41a89f284bc2a4c6e0fe 0.0s done
+#30 exporting manifest list sha256:a4d7d6d8784ae1d23b627f9247424169b95d240b6aad178c81e288467e11851c done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#30 DONE 2.5s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-18T22-08-26-www.soloshopbox.com-tail--30-tmp-build.log-1.log`](server-runs/2026-05-18T22-08-26-www.soloshopbox.com-tail--30-tmp-build.log-1.log)
