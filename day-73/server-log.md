@@ -114,3 +114,16 @@ ERROR: Connection timed out (mutating command — not auto-retried; queue it aga
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
 ```
+
+## 2026-05-18T20:22:11.944Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b4f8e4b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2633ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo "Health check OK" || echo "Health check FAILED"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-18T20:22:12.017Z","responseTime":"265ms","checks":{"database":{"status":"ok","responseTime":"3ms"},"email":{"status":"ok","responseTime":"262ms"}}}Health check OK
+```
+Full output: [`server-runs/2026-05-18T20-22-11-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T20-22-11-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
