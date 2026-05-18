@@ -721,3 +721,22 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-
 ✗ App not responding
 ```
 Full output: [`server-runs/2026-05-18T18-57-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-57-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:58:05.270Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b44cf39` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 9308ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d app
+sleep 5
+docker compose ps
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "✓ App healthy" || echo "✗ App not responding"
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED         STATUS                  PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        2 minutes ago   Up 5 seconds            0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   30 hours ago    Up 15 hours (healthy)   127.0.0.1:5432->5432/tcp
+✓ App healthy
+```
+Full output: [`server-runs/2026-05-18T18-58-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-58-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
