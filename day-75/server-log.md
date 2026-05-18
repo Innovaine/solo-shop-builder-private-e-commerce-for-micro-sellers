@@ -171,3 +171,92 @@ export async function POST(request: NextRequest) {
         : null
 ```
 Full output: [`server-runs/2026-05-18T21-48-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T21-48-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T21:49:36.254Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `28fb983` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2124ms) _(showing tail — full 2,589B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== F4: S3 Upload ===" && head -30 app/api/products/upload/route.ts && echo -e "\n=== F9: Stripe Checkout ===" && head -30 app/api/checkout/route.ts && echo -e "\n=== F10: Webhook ===" && head -30 app/api/webhooks/stripe/route.ts
+```
+STDOUT:
+```
+…est.formData()
+    const file = formData.get('file') as File | null
+
+    if (!file) {
+      return NextResponse.json(
+        { error: 'No file provided' },
+        { status: 400 }
+      )
+    }
+
+    // Validate file type
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return NextResponse.json(
+
+=== F9: Stripe Checkout ===
+// POST /api/checkout - Create Stripe checkout session
+// FR-13 & FR-14: Stripe Checkout integration
+
+export const dynamic = 'force-dynamic'
+
+import { NextRequest, NextResponse } from 'next/server'
+import Stripe from 'stripe'
+import prisma from '@/lib/db'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-04-10',
+})
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+    const { items, shopSlug, customerEmail } = body
+
+    // Validate request
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return NextResponse.json(
+        { error: 'Cart is empty' },
+        { status: 400 }
+      )
+    }
+
+    if (!shopSlug) {
+      return NextResponse.json(
+        { error: 'Shop slug is required' },
+        { status: 400 }
+
+=== F10: Webhook ===
+// POST /api/webhooks/stripe - Handle Stripe webhook events
+// FR-15 & FR-16: Webhook order capture with signature verification + audit trail
+// NFR-9: Webhook audit trail
+
+import { NextRequest, NextResponse } from 'next/server'
+import Stripe from 'stripe'
+import prisma from '@/lib/db'
+import { sendOrderConfirmationEmail, sendEmail } from '@/lib/email'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-04-10',
+})
+
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
+
+export async function POST(request: NextRequest) {
+  const body = await request.text()
+  const signature = request.headers.get('stripe-signature')
+
+  if (!signature) {
+    return NextResponse.json(
+      { error: 'Missing stripe-signature header' },
+      { status: 400 }
+    )
+  }
+
+  let event: Stripe.Event
+
+  try {
+    // FR-25 & NFR-6: Verify webhook signature using HMAC
+```
+Full output: [`server-runs/2026-05-18T21-49-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T21-49-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
