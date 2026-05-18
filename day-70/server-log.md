@@ -153,3 +153,45 @@ STDOUT:
 Build started, PID=1587787
 ```
 Full output: [`server-runs/2026-05-18T18-18-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-18-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:18:51.847Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8247015` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3450ms) _(showing tail — full 6,251B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day70-build-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day70-build-v2.log
+```
+STDOUT:
+```
+…ute /api/orders/export couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#15 20.70     at l (/app/.next/server/chunks/8948.js:1:37237)
+#15 20.70     at u (/app/.next/server/chunks/8402.js:6:4069)
+#15 20.70     at o (/app/.next/server/app/api/analytics/route.js:1:3542)
+#15 20.70     at i (/app/.next/server/app/api/analytics/route.js:1:3579)
+#15 20.70     at p (/app/.next/server/app/api/orders/export/route.js:1:932)
+#15 20.70     at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34672
+#15 20.70     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#15 20.70     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 20.70     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 20.70     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+#15 20.70   description: "Route /api/orders/export couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 20.70   digest: 'DYNAMIC_SERVER_USAGE'
+#15 20.70 }
+#15 20.70    Generating static pages (10/43) 
+#15 20.82    Generating static pages (21/43) 
+#15 20.99    Generating static pages (32/43) 
+#15 21.08  ✓ Generating static pages (43/43)
+#15 21.09 (node:248) Warning: NodeVersionSupportWarning: The AWS SDK for JavaScript (v3)
+#15 21.09 versions published after the first week of January 2027
+#15 21.09 will require node >=22. You are running node v20.20.2.
+#15 21.09 
+#15 21.09 To continue receiving updates to AWS services, bug fixes,
+#15 21.09 and security updates please upgrade to node >=22.
+#15 21.09 
+#15 21.09 More information can be found at: https://a.co/c895JFp
+#15 21.09 (Use `node --trace-warnings ...` to show where the warning was created)
+#15 21.52    Finalizing page optimization ...
+#15 21.52    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-18T18-18-51-www.soloshopbox.com-kill--0-cat-tmp-day70-build-v2.pid-2-dev-1.log`](server-runs/2026-05-18T18-18-51-www.soloshopbox.com-kill--0-cat-tmp-day70-build-v2.pid-2-dev-1.log)
