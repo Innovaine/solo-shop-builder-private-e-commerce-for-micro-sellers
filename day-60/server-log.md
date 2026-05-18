@@ -299,3 +299,58 @@ Test 5: Test CSV import API endpoint
 {"error":"Unauthorized"}
 ```
 Full output: [`server-runs/2026-05-18T12-54-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T12-54-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T12:54:53.576Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `479f426` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2873ms)
+```
+echo "=== FR-21 Password Auth Tests ===" && \
+echo "Test: Password login API with valid format" && \
+curl -s -X POST https://www.soloshopbox.com/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"seller@test.com","password":"TestPass123!"}' | jq . 2>/dev/null || cat
+
+echo -e "\n=== FR-32 CSV Import Tests ===" && \
+echo "Test: CSV import requires authentication" && \
+curl -s -X POST https://www.soloshopbox.com/api/products/import \
+  -H "Content-Type: application/json" \
+  -d '{"products":[{"name":"Test","price":10}]}' | jq . 2>/dev/null || cat
+
+echo -e "\n=== FR-24 Inventory Validation Tests ===" && \
+echo "Test: Checkout endpoint exists and validates" && \
+curl -s -X POST https://www.soloshopbox.com/api/checkout \
+  -H "Content-Type: application/json" \
+  -d '{"items":[]}' | jq . 2>/dev/null || cat
+
+echo -e "\n=== Feature Accessibility Tests ===" && \
+echo "Login page: $(curl -sI https://www.soloshopbox.com/auth/login | head -1)" && \
+echo "Import page: $(curl -sI https://www.soloshopbox.com/dashboard/products/import | head -1)" && \
+echo "Checkout page: $(curl -sI https://www.soloshopbox.com/checkout | head -1)"
+```
+STDOUT:
+```
+=== FR-21 Password Auth Tests ===
+Test: Password login API with valid format
+{
+  "error": "Invalid email or password"
+}
+
+=== FR-32 CSV Import Tests ===
+Test: CSV import requires authentication
+{
+  "error": "Unauthorized"
+}
+
+=== FR-24 Inventory Validation Tests ===
+Test: Checkout endpoint exists and validates
+{
+  "error": "Cart is empty"
+}
+
+=== Feature Accessibility Tests ===
+Login page: HTTP/2 200 
+Import page: HTTP/2 200 
+Checkout page: HTTP/2 200
+```
+Full output: [`server-runs/2026-05-18T12-54-53-www.soloshopbox.com-echo-FR-21-Password-Auth-Tests-1.log`](server-runs/2026-05-18T12-54-53-www.soloshopbox.com-echo-FR-21-Password-Auth-Tests-1.log)
