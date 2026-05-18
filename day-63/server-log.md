@@ -73,3 +73,18 @@ _Pre-SSH: warehouse pushed to GitHub as commit `f1121b7` so the server's `git pu
 cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npm install 2>&1 | tail -20
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-18T15:54:28.743Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d5c1412` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2704ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup npm install > /tmp/npm-install.log 2>&1 &
+echo $! > /tmp/npm-install.pid
+echo "Started npm install, PID=$(cat /tmp/npm-install.pid)"
+```
+STDOUT:
+```
+Started npm install, PID=546951
+```
+Full output: [`server-runs/2026-05-18T15-54-28-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-54-28-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
