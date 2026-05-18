@@ -268,3 +268,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `28bfdcc` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -i "CRITICAL\|BLOCKER\|\[WIRING\|\[DESIGN\|\[SEC" day-75/connectivity-audit.md | head -20 || echo "No critical markers found in day-75 audit"
 ```
+
+## 2026-05-18T21:51:21.864Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8398fb4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2279ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && which route-validator schema-sync-check || echo "Tools not in PATH, checking npm..."
+```
+STDOUT:
+```
+Tools not in PATH, checking npm...
+```
+Full output: [`server-runs/2026-05-18T21-51-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T21-51-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
