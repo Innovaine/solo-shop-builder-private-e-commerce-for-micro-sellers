@@ -186,3 +186,52 @@ STDOUT:
 OK
 ```
 Full output: [`server-runs/2026-05-18T10-04-42-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T10-04-42-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-18T10:05:53.219Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b4ca88f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 4122ms) _(showing tail — full 9,623B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only && git log --oneline -5
+```
+STDOUT:
+```
+….md
+ create mode 100644 day-57/engineering.md
+ create mode 100644 day-57/requirements.md
+ create mode 100644 day-57/server-log.md
+ create mode 100644 design/pages/checkout-error-handling.html
+ create mode 100644 design/pages/csv-import-errors.html
+ create mode 100644 design/pages/csv-import-flow.html
+ create mode 100644 design/pages/dashboard-metrics-empty.html
+ create mode 100644 design/pages/dashboard-metrics.html
+ create mode 100644 design/pages/email-template-editor-advanced.html
+ create mode 100644 design/pages/inventory-checkout-flow.html
+ create mode 100644 design/pages/inventory-low-stock-alerts.html
+ create mode 100644 design/pages/order-filtering-advanced.html
+ create mode 100644 design/pages/order-refund-flow.html
+ create mode 100644 design/pages/orders-dashboard-filters.html
+ create mode 100644 design/pages/product-inventory.html
+ create mode 100644 design/pages/product-list-inventory.html
+ create mode 100644 design/pages/seller-profile-complete.html
+ create mode 100644 design/pages/seller-profile-public.html
+ create mode 100644 design/pages/storefront-inventory.html
+ create mode 100644 prisma/migrations/20260518_add_logo_image_url/migration.sql
+ create mode 100644 test-results/day-53/report.md
+ create mode 100644 test-results/day-54/report.md
+ create mode 100644 test-results/day-55/report.md
+ create mode 100644 test-results/day-56/report.md
+ create mode 100644 tests/web/day53-cart-checkout-fix.spec.ts
+ create mode 100644 tests/web/day53-order-history-bulk.spec.ts
+ create mode 100644 tests/web/day53-shop-product-status.spec.ts
+ create mode 100644 tests/web/day54-dashboard-metrics.spec.ts
+ create mode 100644 tests/web/day54-inventory-tracking.spec.ts
+ create mode 100644 tests/web/day54-order-filtering.spec.ts
+ create mode 100644 tests/web/day56-verification-smoke.spec.ts
+b4ca88f Søren (reviewer, day 57) — pre-SSH sync
+49c870d Anil (engineer, day 57) — pre-SSH sync
+303a06a Anil (engineer, day 57) — pre-SSH sync
+d4c1217 Anil (engineer, day 57) — pre-SSH sync
+cd480b5 Anil (engineer, day 57) — pre-SSH sync
+```
+Full output: [`server-runs/2026-05-18T10-05-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T10-05-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
