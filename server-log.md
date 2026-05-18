@@ -31828,3 +31828,25 @@ STDOUT:
 Started compose up, PID=1418190
 ```
 Full output: [`server-runs/2026-05-18T01-37-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T01-37-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T01:39:27.032Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2a8dc99` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2952ms) _(showing tail — full 13,667B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/compose-up.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/compose-up.log
+```
+STDOUT:
+```
+… Version/18."}
+app-1                                                                        | {"requestId":"azZUL4KaXMLwX-15","method":"GET","path":"/auth/login","responseTime":"0ms","timestamp":"2026-05-18T01:14:11.981Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"T6KiXuKPpV4xtDru","method":"POST","path":"/api/auth/login","responseTime":"0ms","timestamp":"2026-05-18T01:14:23.851Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"Pz_rXUsgP3u3TSX4","method":"GET","path":"/api/analytics","responseTime":"1ms","timestamp":"2026-05-18T01:14:24.765Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"TLI2jorEAoiCDNMQ","method":"POST","path":"/api/checkout/myfatoorah","responseTime":"2ms","timestamp":"2026-05-18T01:15:16.237Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"2Ns--G5DwEQRByNu","method":"POST","path":"/api/checkout/myfatoorah","responseTime":"1ms","timestamp":"2026-05-18T01:15:25.256Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"nwJf_rgNfnGs8fQy","method":"GET","path":"/auth/login","responseTime":"0ms","timestamp":"2026-05-18T01:27:01.809Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0."}
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+```
+Full output: [`server-runs/2026-05-18T01-39-27-www.soloshopbox.com-kill--0-cat-tmp-compose-up.pid-2-dev-nul-1.log`](server-runs/2026-05-18T01-39-27-www.soloshopbox.com-kill--0-cat-tmp-compose-up.pid-2-dev-nul-1.log)
