@@ -88,3 +88,45 @@ STDOUT:
 Started npm install, PID=546951
 ```
 Full output: [`server-runs/2026-05-18T15-54-28-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-54-28-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:54:53.347Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0a98b14` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2693ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && find app src -name "*.ts" -o -name "*.tsx" | grep -E "(auth|shop|product|checkout|order)" | head -30
+```
+STDOUT:
+```
+app/dashboard/products/new/page.tsx
+app/dashboard/products/[id]/edit/page.tsx
+app/dashboard/products/page.tsx
+app/dashboard/products/import/page.tsx
+app/dashboard/orders/page.tsx
+app/dashboard/create-shop/page.tsx
+app/track/[orderId]/page.tsx
+app/api/shops/route.ts
+app/api/shops/status/route.ts
+app/api/shops/branding/route.ts
+app/api/shops/email-template/route.ts
+app/api/shops/profile/route.ts
+app/api/products/route.ts
+app/api/products/[id]/route.ts
+app/api/products/[id]/status/route.ts
+app/api/products/[id]/variants/route.ts
+app/api/products/[id]/variants/[variantId]/route.ts
+app/api/products/export/route.ts
+app/api/products/import/route.ts
+app/api/products/bulk-status/route.ts
+app/api/products/upload/route.ts
+app/api/checkout/myfatoorah/route.ts
+app/api/checkout/myfatoorah/callback/route.ts
+app/api/checkout/route.ts
+app/api/orders/route.ts
+app/api/orders/[id]/route.ts
+app/api/orders/[id]/history/route.ts
+app/api/orders/[id]/refund/route.ts
+app/api/orders/export/route.ts
+app/api/auth/forgot-password/route.ts
+```
+Full output: [`server-runs/2026-05-18T15-54-53-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-54-53-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
