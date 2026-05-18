@@ -284,3 +284,66 @@ STDOUT:
       }
 ```
 Full output: [`server-runs/2026-05-18T15-55-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-55-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:56:04.641Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2f603ac` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2509ms) _(showing tail — full 2,782B stdout + 0B stderr)_
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -120 app/api/webhooks/stripe/route.ts | tail -80
+```
+STDOUT:
+```
+… const shopId = session.metadata?.shopId
+        const cartItemsJson = session.metadata?.cartItems
+        
+        if (!shopId) {
+          console.error('Missing shopId in session metadata')
+          break
+        }
+
+        // Retrieve session with line items
+        const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
+          expand: ['line_items'],
+        })
+
+        const lineItems = fullSession.line_items?.data || []
+        const customerEmail = session.customer_email || session.customer_details?.email || 'unknown@example.com'
+        const customerName = session.customer_details?.name || null
+        const total = session.amount_total || 0
+
+        // Check for idempotency: don't create duplicate orders (NFR-25)
+        const existingOrder = await prisma.order.findUnique({
+          where: { stripePaymentId: session.payment_intent as string },
+        })
+
+        if (existingOrder) {
+          console.log(`Order already exists for payment_intent ${session.payment_intent}`)
+          break
+        }
+
+        // Parse cart items for stock decrementing
+        let cartItems: Array<{productId: string, variantId: string | null, quantity: number}> = []
+        if (cartItemsJson) {
+          try {
+            cartItems = JSON.parse(cartItemsJson)
+          } catch (e) {
+            console.error('Failed to parse cartItems metadata:', e)
+          }
+        }
+
+        // Create order with items (use transaction for atomicity)
+        // FR-24: Atomic stock validation + decrement
+        const order = await prisma.$transaction(async (tx) => {
+          // First, validate stock availability for all items
+          for (const item of cartItems) {
+            if (item.variantId) {
+              // Check variant stock
+              const variant = await tx.productVariant.findUnique({
+                where: { id: item.variantId },
+                select: { stock: true, name: true, value: true, product: { select: { title: true } } },
+              })
+              
+              if (!variant) {
+```
+Full output: [`server-runs/2026-05-18T15-56-04-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-56-04-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
