@@ -167,3 +167,12 @@ STDOUT:
 Compose up started
 ```
 Full output: [`server-runs/2026-05-18T16-37-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T16-37-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T16:38:33.852Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3bb19a8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 41091ms)
+```
+sleep 10 && curl -sf https://www.soloshopbox.com/api/health && echo " - Health check OK" || echo " - Health check FAILED"
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
