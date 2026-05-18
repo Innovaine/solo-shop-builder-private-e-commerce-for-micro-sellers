@@ -325,3 +325,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `b206aa2` so the server's `git pu
 ```
 curl -s https://www.soloshopbox.com/dashboard/orders 2>/dev/null | grep -E "(Filter|Sort|Status|Date|Total|Metrics)" | head -10
 ```
+
+## 2026-05-18T10:10:22.439Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1d8eb6c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3887ms)
+```
+docker ps --format ".Names\t.Status\t.Ports" | grep solo-shop
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+OK
+```
+Full output: [`server-runs/2026-05-18T10-10-22-www.soloshopbox.com-docker-ps---format-.Names-t.Status-t.Por-1.log`](server-runs/2026-05-18T10-10-22-www.soloshopbox.com-docker-ps---format-.Names-t.Status-t.Por-1.log)
