@@ -34000,3 +34000,28 @@ Test 1: Create seller account...
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-18T04-26-04-www.soloshopbox.com-cat-tmp-day53-manual-tests.sh-EOF-1.log`](server-runs/2026-05-18T04-26-04-www.soloshopbox.com-cat-tmp-day53-manual-tests.sh-EOF-1.log)
+
+## 2026-05-18T04:27:18.565Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `15e965d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3688ms)
+```
+echo "Health check:" && curl -s https://www.soloshopbox.com/api/health | head -5 && echo "" && echo "Testing signup endpoint:" && curl -v -X POST https://www.soloshopbox.com/api/auth/signup -H "Content-Type: application/json" -d '{"email":"test@example.com"}' 2>&1 | grep -E "(HTTP|error|verifyToken)" | head -10
+```
+STDOUT:
+```
+Health check:
+{"status":"ok","timestamp":"2026-05-18T04:27:17.904Z","responseTime":"113ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"112ms"}}}
+Testing signup endpoint:
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.soloshopbox.com/api/auth/signup
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.soloshopbox.com]
+* [HTTP/2] [1] [:path: /api/auth/signup]
+* [HTTP/2] [1] [user-agent: curl/8.5.0]
+* [HTTP/2] [1] [accept: */*]
+* [HTTP/2] [1] [content-type: application/json]
+* [HTTP/2] [1] [content-length: 28]
+```
+Full output: [`server-runs/2026-05-18T04-27-18-www.soloshopbox.com-echo-Health-check-curl--s-https-www.solo-1.log`](server-runs/2026-05-18T04-27-18-www.soloshopbox.com-echo-Health-check-curl--s-https-www.solo-1.log)
