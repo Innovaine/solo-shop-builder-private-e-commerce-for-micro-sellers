@@ -476,3 +476,75 @@ export default function OrdersPage() {
         if (!ordersRes.ok || !analyticsRes.ok) {
 ```
 Full output: [`server-runs/2026-05-18T15-59-00-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-59-00-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:59:24.138Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `013e193` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2891ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -60 app/dashboard/create-shop/page.tsx
+```
+STDOUT:
+```
+'use client'
+
+// FR-4: Shop creation form matching design/pages/create-shop.html
+// Seller enters shop name + slug, creates shop
+
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/Button'
+import { FormField } from '@/components/ui/FormField'
+
+export default function CreateShopPage() {
+  const router = useRouter()
+  const [shopName, setShopName] = useState('')
+  const [shopSlug, setShopSlug] = useState('')
+  const [slugTouched, setSlugTouched] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState(false)
+  const [authChecking, setAuthChecking] = useState(true)
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/shops')
+        if (!response.ok) {
+          if (response.status === 401) {
+            router.push('/auth/login?error=session_expired')
+            return
+          }
+        }
+        setAuthChecking(false)
+      } catch {
+        router.push('/auth/login?error=network_error')
+      }
+    }
+    checkAuth()
+  }, [router])
+
+  // Auto-generate slug from shop name
+  useEffect(() => {
+    if (!slugTouched) {
+      const generatedSlug = shopName
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .slice(0, 30)
+      setShopSlug(generatedSlug)
+    }
+  }, [shopName, slugTouched])
+
+  const slugValid = /^[a-z0-9-]{3,30}$/.test(shopSlug) && shopSlug.length >= 3
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    try {
+```
+Full output: [`server-runs/2026-05-18T15-59-24-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-59-24-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
