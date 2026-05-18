@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from '@/app/components/ui/Header';
 import DOMPurify from 'dompurify';
 
 // ASSUMPTION: DOMPurify for XSS prevention on template rendering
@@ -119,7 +118,9 @@ export default function EmailTemplatePage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-cream">
-        <Header title="Email Template Editor" />
+        <div className="bg-white border-b border-whisper px-6 py-4">
+          <h1 className="text-2xl font-bold text-charcoal">Email Template Editor</h1>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
           <div className="text-center py-12 text-slate">Loading...</div>
         </div>
@@ -129,7 +130,10 @@ export default function EmailTemplatePage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <Header title="Order Confirmation Email Template" />
+      <div className="bg-white border-b border-whisper px-6 py-4">
+        <h1 className="text-2xl font-bold text-charcoal">Order Confirmation Email Template</h1>
+        <p className="text-slate text-sm mt-1">Customize the email your customers receive after they purchase</p>
+      </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

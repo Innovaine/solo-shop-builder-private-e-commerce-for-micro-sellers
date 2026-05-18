@@ -31569,3 +31569,47 @@ DONE
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-18T01-27-55-www.soloshopbox.com-kill--0-cat-tmp-day51-build.pid-2-dev-nu-1.log`](server-runs/2026-05-18T01-27-55-www.soloshopbox.com-kill--0-cat-tmp-day51-build.pid-2-dev-nu-1.log)
+
+## 2026-05-18T01:28:17.375Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d9bc872` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2421ms)
+```
+grep -A 30 "Build failed" /tmp/day51-build.log | head -50
+```
+STDOUT:
+```
+#15 8.156 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+8.142 
+8.142 https://nextjs.org/docs/messages/module-not-found
+8.142 
+8.142 ./app/dashboard/products/import/page.tsx
+8.142 Module not found: Can't resolve '@/app/components/ui/Header'
+8.142 
+8.142 https://nextjs.org/docs/messages/module-not-found
+8.142 
+8.155 
+8.156 > Build failed because of webpack errors
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-18T01-28-17-www.soloshopbox.com-grep--A-30-Build-failed-tmp-day51-build.-1.log`](server-runs/2026-05-18T01-28-17-www.soloshopbox.com-grep--A-30-Build-failed-tmp-day51-build.-1.log)

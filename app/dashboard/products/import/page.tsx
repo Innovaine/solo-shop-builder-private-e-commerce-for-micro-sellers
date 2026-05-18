@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/app/components/ui/Header';
 
 interface ImportResult {
   success: boolean;
@@ -99,7 +98,9 @@ export default function ImportProductsPage() {
   if (result) {
     return (
       <div className="min-h-screen bg-cream">
-        <Header title="Import Complete" />
+        <div className="bg-white border-b border-whisper px-6 py-4">
+          <h1 className="text-2xl font-bold text-charcoal">Import Complete</h1>
+        </div>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
           <div className="bg-white border border-whisper rounded-lg p-8">
             <div className="mb-6">
@@ -142,7 +143,10 @@ export default function ImportProductsPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <Header title="Import Products from CSV" />
+      <div className="bg-white border-b border-whisper px-6 py-4">
+        <h1 className="text-2xl font-bold text-charcoal">Import Products from CSV</h1>
+        <p className="text-slate text-sm mt-1">Upload a CSV file to quickly add products to your shop</p>
+      </div>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <div className="bg-white border border-whisper rounded-lg p-6 sm:p-8">
           {error && (
