@@ -33266,3 +33266,57 @@ _Pre-SSH: warehouse pushed to GitHub as commit `464e9ab` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day53-build-v3.log 2>&1 & echo $! > /tmp/day53-build-v3.pid && sleep 2 && echo "Build started"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-18T03:46:41.459Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3e036e8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3589ms) _(showing tail — full 5,057B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+```
+STDOUT:
+```
+…t.md                      |  105 ++
+ tests/web/day51-csv-import.spec.ts                 |   87 ++
+ tests/web/day51-email-template.spec.ts             |  133 ++
+ tests/web/day52-ux-back-buttons.spec.ts            |  134 ++
+ 51 files changed, 6786 insertions(+), 129 deletions(-)
+ create mode 100644 app/api/orders/[id]/history/route.ts
+ create mode 100644 app/api/products/[id]/status/route.ts
+ create mode 100644 app/api/products/bulk-status/route.ts
+ create mode 100644 app/api/shops/status/route.ts
+ create mode 100644 day-51/_index.md
+ create mode 100644 day-51/review.md
+ create mode 100644 day-51/stage-ship-check.md
+ create mode 100644 day-51/test.md
+ create mode 100644 day-52/_index.md
+ create mode 100644 day-52/_plan.md
+ create mode 100644 day-52/connectivity-audit.md
+ create mode 100644 day-52/connectivity_qa.md
+ create mode 100644 day-52/design-compliance.md
+ create mode 100644 day-52/design.md
+ create mode 100644 day-52/design_qa.md
+ create mode 100644 day-52/engineering.md
+ create mode 100644 day-52/review.md
+ create mode 100644 day-52/stage-ship-check.md
+ create mode 100644 day-52/test.md
+ create mode 100644 day-53/_plan.md
+ create mode 100644 day-53/connectivity-audit.md
+ create mode 100644 day-53/connectivity_qa.md
+ create mode 100644 day-53/design-compliance.md
+ create mode 100644 day-53/design.md
+ create mode 100644 day-53/design_qa.md
+ create mode 100644 day-53/engineering.md
+ create mode 100644 day-53/requirements.md
+ create mode 100644 design/pages/bulk-order-status.html
+ create mode 100644 design/pages/order-timeline-modal.html
+ create mode 100644 design/pages/product-draft-toggle.html
+ create mode 100644 design/pages/shop-pause-toggle.html
+ create mode 100644 prisma/migrations/20260518_add_status_fields_order_history/migration.sql
+ create mode 100644 test-results/day-51/report.md
+ create mode 100644 test-results/day-52/report.md
+ create mode 100644 tests/web/day51-csv-import.spec.ts
+ create mode 100644 tests/web/day51-email-template.spec.ts
+ create mode 100644 tests/web/day52-ux-back-buttons.spec.ts
+```
+Full output: [`server-runs/2026-05-18T03-46-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T03-46-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
