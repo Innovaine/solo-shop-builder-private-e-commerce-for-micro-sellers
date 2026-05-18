@@ -1,19 +1,44 @@
 // S3 upload utility using AWS SDK v3
 // FR-4: Product image upload to S3
+// Supports both AWS S3 and DigitalOcean Spaces
 
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 
-// Initialize S3 client
+// Check if using DigitalOcean Spaces
+const isDigitalOcean = process.env.S3_PROVIDER === 'digitalocean'
+const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
+
+// Initialize S3 client with appropriate configuration
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION || 'us-east-1',
+  region: isDigitalOcean ? doRegion : (process.env.AWS_REGION || 'us-east-1'),
+  endpoint: isDigitalOcean ? doEndpoint : undefined,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
   },
+  forcePathStyle: false, // DigitalOcean Spaces uses virtual-hosted-style
 })
 
 const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
-const CDN_URL = process.env.AWS_CLOUDFRONT_URL || `https://${BUCKET_NAME}.s3.amazonaws.com`
+
+// Construct CDN URL based on provider
+const getCdnUrl = (): string => {
+  // If explicit CDN URL is provided, use it
+  if (process.env.AWS_CLOUDFRONT_URL) {
+    return process.env.AWS_CLOUDFRONT_URL
+  }
+  
+  // For DigitalOcean Spaces, use the CDN endpoint format
+  if (isDigitalOcean) {
+    return `https://${BUCKET_NAME}.${doRegion}.cdn.digitaloceanspaces.com`
+  }
+  
+  // Default to AWS S3 URL
+  return `https://${BUCKET_NAME}.s3.amazonaws.com`
+}
+
+const CDN_URL = getCdnUrl()
 
 export interface UploadResult {
   url: string

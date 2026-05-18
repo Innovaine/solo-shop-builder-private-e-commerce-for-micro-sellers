@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/db';
+import { verifySession } from '@/lib/auth';
 
 // GET /api/billing — Get billing dashboard data (FR-37)
 export async function GET(req: NextRequest) {
@@ -11,16 +12,16 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const session = await prisma.authToken.findUnique({
-      where: { token: sessionCookie.value },
-      include: { seller: { include: { shops: true } } },
-    });
-
-    if (!session || session.expiresAt < new Date() || session.used) {
+    const session = await verifySession(sessionCookie.value);
+    if (!session) {
       return NextResponse.json({ error: 'Session expired' }, { status: 401 });
     }
 
-    const shop = session.seller.shops[0];
+    // Get first shop for this seller
+    const shop = await prisma.shop.findFirst({
+      where: { sellerId: session.sellerId },
+    });
+    
     if (!shop) {
       return NextResponse.json({ error: 'No shop found' }, { status: 404 });
     }

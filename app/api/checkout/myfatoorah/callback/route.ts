@@ -11,8 +11,10 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const paymentId = searchParams.get('paymentId')
 
+    console.log('[MyFatoorah Callback] Received paymentId:', paymentId)
+
     if (!paymentId) {
-      console.error('MyFatoorah callback: missing paymentId')
+      console.error('[MyFatoorah Callback] Missing paymentId parameter')
       return redirect('/checkout?error=payment_failed')
     }
 
@@ -20,9 +22,11 @@ export async function GET(req: NextRequest) {
     const myfatoorahApiUrl = process.env.MYFATOORAH_API_URL || 'https://apitest.myfatoorah.com'
 
     if (!myfatoorahApiKey) {
-      console.error('MyFatoorah callback: missing API key')
+      console.error('[MyFatoorah Callback] Missing MYFATOORAH_API_KEY environment variable')
       return redirect('/checkout?error=configuration_error')
     }
+
+    console.log('[MyFatoorah Callback] Querying payment status from:', `${myfatoorahApiUrl}/v3/payments/${paymentId}`)
 
     // Query payment status from MyFatoorah
     const statusResponse = await fetch(`${myfatoorahApiUrl}/v3/payments/${paymentId}`, {
@@ -33,16 +37,17 @@ export async function GET(req: NextRequest) {
       },
     })
 
-    if (!statusResponse.ok) {
-      console.error('Failed to fetch payment status from MyFatoorah:', statusResponse.status)
-      return redirect('/checkout?error=verification_failed')
-    }
-
     const statusData = await statusResponse.json()
+    console.log('[MyFatoorah Callback] API Response:', JSON.stringify(statusData))
 
-    if (!statusData.IsSuccess) {
-      console.error('MyFatoorah API returned failure:', statusData)
-      return redirect('/checkout?error=payment_failed')
+    if (!statusResponse.ok || !statusData.IsSuccess) {
+      console.error('[MyFatoorah Callback] API request failed:', {
+        status: statusResponse.status,
+        isSuccess: statusData.IsSuccess,
+        message: statusData.Message,
+        errors: statusData.ValidationErrors,
+      })
+      return redirect('/checkout?error=verification_failed')
     }
 
     const invoice = statusData.Data?.Invoice
@@ -50,20 +55,36 @@ export async function GET(req: NextRequest) {
     const customer = statusData.Data?.Customer
     const amount = statusData.Data?.Amount
 
-    if (!invoice || !transaction) {
-      console.error('MyFatoorah callback: missing invoice or transaction data')
+    if (!invoice) {
+      console.error('[MyFatoorah Callback] Missing Invoice in response data')
       return redirect('/checkout?error=invalid_response')
     }
 
+    if (!transaction) {
+      console.error('[MyFatoorah Callback] Missing Transaction in response data')
+      return redirect('/checkout?error=invalid_response')
+    }
+
+    console.log('[MyFatoorah Callback] Invoice Status:', invoice.Status, 'Transaction Status:', transaction.Status)
+
     // Check if payment was successful
     if (invoice.Status !== 'PAID' || transaction.Status !== 'SUCCESS') {
-      console.error('MyFatoorah callback: payment not completed', { invoiceStatus: invoice.Status, transactionStatus: transaction.Status })
+      console.error('[MyFatoorah Callback] Payment not completed:', {
+        invoiceStatus: invoice.Status,
+        transactionStatus: transaction.Status,
+        transactionError: transaction.Error,
+      })
       return redirect('/checkout?error=payment_not_completed')
     }
 
-    // Find pending order by invoice ID (stored as stripePaymentId during checkout)
+    // Find pending order by invoice ID or payment ID (stored as stripePaymentId during checkout)
     const pendingOrder = await prisma.order.findFirst({
-      where: { stripePaymentId: invoice.Id.toString() },
+      where: {
+        OR: [
+          { stripePaymentId: invoice.Id.toString() },
+          { stripePaymentId: `myfatoorah_invoice_${invoice.Id}` },
+        ],
+      },
       include: {
         items: true,
         shop: true,
@@ -71,29 +92,35 @@ export async function GET(req: NextRequest) {
     })
 
     if (!pendingOrder) {
-      console.error('MyFatoorah callback: no pending order found for invoice', invoice.Id)
+      console.error('[MyFatoorah Callback] No pending order found for invoice:', invoice.Id)
       // Order might have already been completed, check by payment ID
       const completedOrder = await prisma.order.findFirst({
         where: { 
           OR: [
             { stripePaymentId: paymentId },
             { stripePaymentId: invoice.Id.toString() },
+            { stripePaymentId: `myfatoorah_invoice_${invoice.Id}` },
           ],
           status: 'paid',
         },
       })
       
       if (completedOrder) {
-        console.log('MyFatoorah callback: order already completed', completedOrder.id)
+        console.log('[MyFatoorah Callback] Order already completed:', completedOrder.id)
         return redirect(`/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
       }
       
+      console.error('[MyFatoorah Callback] Order not found in database')
       return redirect('/checkout?error=order_not_found')
     }
 
+    console.log('[MyFatoorah Callback] Found pending order:', pendingOrder.id)
+
     // Extract customer info
-    const customerEmail = customer?.Email || 'unknown@example.com'
-    const customerName = customer?.Name || 'Anonymous'
+    const customerEmail = customer?.Email || pendingOrder.customerEmail || 'unknown@example.com'
+    const customerName = customer?.Name || pendingOrder.customerName || 'Anonymous'
+
+    console.log('[MyFatoorah Callback] Updating order with customer:', { email: customerEmail, name: customerName })
 
     // Update order with payment completion info
     const updatedOrder = await prisma.order.update({
@@ -111,12 +138,13 @@ export async function GET(req: NextRequest) {
             transactionId: transaction.Id,
             authorizationId: transaction.AuthorizationId,
             paymentMethod: transaction.PaymentMethod,
+            reference: invoice.Reference,
           },
         }),
       },
     })
 
-    console.log('MyFatoorah callback: order completed', updatedOrder.id, 'for payment', paymentId)
+    console.log('[MyFatoorah Callback] Order completed successfully:', updatedOrder.id, 'for payment:', paymentId)
 
     // Send order confirmation email to customer
     try {
@@ -149,7 +177,11 @@ Track your order: ${trackingUrl}`
     return redirect(`/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
 
   } catch (error: any) {
-    console.error('MyFatoorah callback error:', error.message || error)
+    console.error('[MyFatoorah Callback] Unexpected error:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+    })
     return redirect('/checkout?error=callback_error')
   }
 }
