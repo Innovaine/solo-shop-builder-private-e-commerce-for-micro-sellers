@@ -31939,3 +31939,39 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 59ms
 ```
 Full output: [`server-runs/2026-05-18T01-45-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T01-45-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T01:45:52.060Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `aa545eb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3244ms)
+```
+echo "Test 1: Health check"
+curl -sf https://www.soloshopbox.com/api/health
+
+echo ""
+echo "Test 2: CSV import page"
+curl -sI https://www.soloshopbox.com/dashboard/products/import | head -5
+
+echo ""
+echo "Test 3: Email template page"
+curl -sI https://www.soloshopbox.com/dashboard/email-template | head -5
+```
+STDOUT:
+```
+Test 1: Health check
+{"status":"ok","timestamp":"2026-05-18T01:45:52.166Z","responseTime":"270ms","checks":{"database":{"status":"ok","responseTime":"51ms"},"email":{"status":"ok","responseTime":"219ms"}}}
+Test 2: CSV import page
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Mon, 18 May 2026 01:45:52 GMT
+etag: "j6rvd2yvbh85v"
+
+Test 3: Email template page
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Mon, 18 May 2026 01:45:52 GMT
+etag: "11u2xdlyqav625"
+```
+Full output: [`server-runs/2026-05-18T01-45-52-www.soloshopbox.com-echo-Test-1-Health-check-1.log`](server-runs/2026-05-18T01-45-52-www.soloshopbox.com-echo-Test-1-Health-check-1.log)
