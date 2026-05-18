@@ -301,3 +301,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `4572e23` so the server's `git pu
 ps aux | grep 1629060 | grep -v grep
 ```
 ERROR: command exited 1
+
+## 2026-05-18T22:09:56.805Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d5d1801` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12495ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
