@@ -500,3 +500,51 @@ STDOUT:
 Test PID=1513836
 ```
 Full output: [`server-runs/2026-05-18T10-44-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T10-44-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T10:45:21.685Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c43b419` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 13043ms) _(showing tail — full 4,871B stdout + 0B stderr)_
+```
+sleep 10
+kill -0 $(cat /tmp/day58-run.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+head -100 /tmp/day58-run.log
+```
+STDOUT:
+```
+…t socialInputs = [
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day58-features.spec.ts:46:66
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-output/day58-features-Day-58-Feat-1833d-ocial-links-and-logo-upload-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-output/day58-features-Day-58-Feat-1833d-ocial-links-and-logo-upload-chromium/error-context.md
+
+  2) [chromium] › tests/web/day58-features.spec.ts:104:7 › Day 58 Feature Testing: Email Template Editor + Seller Profile › Smoke Test: Dashboard navigation works 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mfalse[39m
+
+      114 |     const hasProfileNav = await profileLink.count() > 0;
+      115 |     
+    > 116 |     expect(hasEmailTemplateNav || hasProfileNav).toBeTruthy();
+          |                                                  ^
+      117 |   });
+      118 | });
+      119 |
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day58-features.spec.ts:116:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-output/day58-features-Day-58-Feat-3dd8f--Dashboard-navigation-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-output/day58-features-Day-58-Feat-3dd8f--Dashboard-navigation-works-chromium/error-context.md
+
+  2 failed
+    [chromium] › tests/web/day58-features.spec.ts:38:7 › Day 58 Feature Testing: Email Template Editor + Seller Profile › FR-25: Seller Profile page loads with social links and logo upload 
+    [chromium] › tests/web/day58-features.spec.ts:104:7 › Day 58 Feature Testing: Email Template Editor + Seller Profile › Smoke Test: Dashboard navigation works 
+  2 passed (1.5s)
+```
+Full output: [`server-runs/2026-05-18T10-45-21-www.soloshopbox.com-sleep-10-1.log`](server-runs/2026-05-18T10-45-21-www.soloshopbox.com-sleep-10-1.log)
