@@ -385,3 +385,12 @@ To get access to the TypeScript compiler, [34mtsc[0m, from the command line ei
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-18T15-56-54-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-18T15-56-54-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-18T15:57:33.600Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6c40eb5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 17039ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npm install typescript --save-dev 2>&1 | tail -5 && npx tsc --noEmit 2>&1
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
