@@ -95,46 +95,140 @@ export default function ImportProductsPage() {
     }
   };
 
+  const downloadErrorReport = () => {
+    if (!result || !result.errorDetails || result.errorDetails.length === 0) return;
+    
+    const csvContent = [
+      'Row,Field,Error',
+      ...result.errorDetails.map(err => 
+        `${err.row},"${err.field}","${err.message.replace(/"/g, '""')}"`
+      )
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `import-errors-${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   if (result) {
+    const hasErrors = result.errors > 0;
+    const totalRows = result.imported + result.errors;
+    
     return (
       <div className="min-h-screen bg-cream">
-        <div className="bg-white border-b border-whisper px-6 py-4">
-          <h1 className="text-2xl font-bold text-charcoal">Import Complete</h1>
+        <div className="bg-white border-b border-whisper px-6 py-6">
+          <h1 className="text-3xl font-bold text-charcoal">Import Results</h1>
+          <p className="text-slate text-sm mt-1">Summary of your CSV product import</p>
         </div>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
           <div className="bg-white border border-whisper rounded-lg p-8">
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-4 pb-4 border-b border-whisper">
-                <span className="text-slate text-sm">Products Imported</span>
-                <span className="text-charcoal text-lg font-semibold">{result.imported}</span>
+            {/* Result Summary Banner */}
+            {hasErrors ? (
+              <div className="bg-amber-50 border border-amber-300 rounded-lg p-5 mb-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="text-3xl">⚠️</div>
+                  <div className="text-lg font-bold text-amber-900">Import Complete with Errors</div>
+                </div>
+                <div className="text-sm text-amber-900">
+                  <strong>{result.imported} products imported successfully</strong>, but {result.errors} rows had issues and were skipped. 
+                  Please review the errors below and re-upload those items.
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate text-sm">Errors</span>
-                <span className="text-charcoal text-lg font-semibold">{result.errors}</span>
-              </div>
-            </div>
-
-            {result.errorDetails && result.errorDetails.length > 0 && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                <h4 className="text-sm font-semibold text-red-900 mb-2">
-                  Issues to review:
-                </h4>
-                <div className="space-y-2 max-h-60 overflow-y-auto">
-                  {result.errorDetails.map((err, idx) => (
-                    <div key={idx} className="text-xs text-red-800 border-b border-red-100 pb-2 last:border-0">
-                      Row {err.row}, {err.field}: {err.message}
-                    </div>
-                  ))}
+            ) : (
+              <div className="bg-emerald-50 border border-emerald-300 rounded-lg p-5 mb-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="text-3xl">✅</div>
+                  <div className="text-lg font-bold text-emerald-900">Import Successful</div>
+                </div>
+                <div className="text-sm text-emerald-900">
+                  All {result.imported} products have been imported successfully!
                 </div>
               </div>
             )}
 
-            <button
-              onClick={() => router.push('/dashboard/products')}
-              className="w-full bg-emerald hover:bg-emerald-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-            >
-              View Products
-            </button>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className={`${result.imported > 0 ? 'bg-emerald-50 border-emerald-300' : 'bg-gray-50 border-whisper'} border rounded-lg p-4 text-center`}>
+                <div className={`text-4xl font-bold mb-1 ${result.imported > 0 ? 'text-emerald-700' : 'text-slate'}`}>
+                  {result.imported}
+                </div>
+                <div className="text-xs text-slate uppercase tracking-wide font-semibold">Imported</div>
+              </div>
+              <div className={`${result.errors > 0 ? 'bg-rose-50 border-rose-300' : 'bg-gray-50 border-whisper'} border rounded-lg p-4 text-center`}>
+                <div className={`text-4xl font-bold mb-1 ${result.errors > 0 ? 'text-rose-700' : 'text-slate'}`}>
+                  {result.errors}
+                </div>
+                <div className="text-xs text-slate uppercase tracking-wide font-semibold">Failed</div>
+              </div>
+              <div className="bg-gray-50 border border-whisper rounded-lg p-4 text-center">
+                <div className="text-4xl font-bold text-charcoal mb-1">{totalRows}</div>
+                <div className="text-xs text-slate uppercase tracking-wide font-semibold">Total Rows</div>
+              </div>
+            </div>
+
+            {/* Error Details */}
+            {result.errorDetails && result.errorDetails.length > 0 && (
+              <div className="mb-6">
+                <h2 className="text-lg font-bold text-charcoal mb-4">Issues Found ({result.errors})</h2>
+                <div className="bg-rose-50 border border-rose-200 rounded-lg overflow-hidden">
+                  <div className="max-h-96 overflow-y-auto">
+                    {result.errorDetails.map((err, idx) => (
+                      <div key={idx} className="border-b border-rose-200 last:border-b-0 p-4">
+                        <div className="flex gap-4">
+                          <div className="flex-shrink-0">
+                            <div className="bg-rose-200 text-rose-900 text-xs font-semibold px-3 py-1.5 rounded">
+                              Row {err.row}
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm text-rose-900 mb-2">
+                              <strong className="text-rose-800">Field: {err.field}</strong>
+                            </div>
+                            <div className="text-sm text-rose-800">{err.message}</div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 mt-4">
+                  <div className="text-xs text-amber-900">
+                    💡 <strong>Next Steps:</strong> Fix the errors above in your CSV file, then re-upload. 
+                    The {result.imported} products that imported successfully are already in your shop and visible to customers.
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              {hasErrors && (
+                <button
+                  onClick={downloadErrorReport}
+                  className="bg-slate-blue hover:bg-slate-blue/90 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                >
+                  📥 Download Error Report (CSV)
+                </button>
+              )}
+              <button
+                onClick={() => router.push('/dashboard/products/import')}
+                className="bg-white hover:bg-gray-50 border border-whisper text-charcoal font-semibold py-3 px-6 rounded-lg transition-colors"
+              >
+                Upload New File
+              </button>
+              <button
+                onClick={() => router.push('/dashboard/products')}
+                className="bg-emerald hover:bg-emerald-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex-1"
+              >
+                View All Products
+              </button>
+            </div>
           </div>
         </div>
       </div>

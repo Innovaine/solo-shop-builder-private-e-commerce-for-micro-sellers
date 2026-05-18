@@ -32,6 +32,8 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([])
   const [filteredOrders, setFilteredOrders] = useState<Order[]>([])
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'paid' | 'in_progress' | 'shipped' | 'delivered'>('all')
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
   const [loading, setLoading] = useState(true)
   const [analytics, setAnalytics] = useState<Analytics | null>(null)
   const [orderCounts, setOrderCounts] = useState<OrderCount>({ paid: 0, in_progress: 0, shipped: 0, delivered: 0 })
@@ -86,18 +88,44 @@ export default function OrdersPage() {
     fetchData()
   }, [])
 
-  const applyFilter = (orderList: Order[], filter: typeof selectedFilter) => {
-    if (filter === 'all') {
-      setFilteredOrders(orderList)
-    } else {
-      const filtered = orderList.filter(order => order.status === filter)
-      setFilteredOrders(filtered)
+  const applyFilter = (orderList: Order[], filter: typeof selectedFilter, fromDate?: string, toDate?: string) => {
+    let filtered = orderList
+
+    // Apply status filter
+    if (filter !== 'all') {
+      filtered = filtered.filter(order => order.status === filter)
     }
+
+    // Apply date range filter
+    if (fromDate) {
+      const fromTime = new Date(fromDate).getTime()
+      filtered = filtered.filter(order => new Date(order.createdAt).getTime() >= fromTime)
+    }
+
+    if (toDate) {
+      const toTime = new Date(toDate).setHours(23, 59, 59, 999) // End of day
+      filtered = filtered.filter(order => new Date(order.createdAt).getTime() <= toTime)
+    }
+
+    setFilteredOrders(filtered)
   }
 
   const handleFilterChange = (filter: typeof selectedFilter) => {
     setSelectedFilter(filter)
-    applyFilter(orders, filter)
+    applyFilter(orders, filter, dateFrom, dateTo)
+  }
+
+  const handleDateChange = (from: string, to: string) => {
+    setDateFrom(from)
+    setDateTo(to)
+    applyFilter(orders, selectedFilter, from, to)
+  }
+
+  const clearFilters = () => {
+    setSelectedFilter('all')
+    setDateFrom('')
+    setDateTo('')
+    applyFilter(orders, 'all', '', '')
   }
 
   const formatDate = (dateStr: string) => {
@@ -184,58 +212,109 @@ export default function OrdersPage() {
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex gap-2 mb-6 flex-wrap">
-          <button
-            onClick={() => handleFilterChange('all')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-              selectedFilter === 'all'
-                ? 'bg-emerald text-white'
-                : 'bg-white text-charcoal border border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            All
-          </button>
-          <button
-            onClick={() => handleFilterChange('paid')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-              selectedFilter === 'paid'
-                ? 'bg-blue-500 text-white'
-                : 'bg-white text-charcoal border border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            Paid ({orderCounts.paid})
-          </button>
-          <button
-            onClick={() => handleFilterChange('in_progress')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-              selectedFilter === 'in_progress'
-                ? 'bg-purple-500 text-white'
-                : 'bg-white text-charcoal border border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            In Progress ({orderCounts.in_progress})
-          </button>
-          <button
-            onClick={() => handleFilterChange('shipped')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-              selectedFilter === 'shipped'
-                ? 'bg-green-500 text-white'
-                : 'bg-white text-charcoal border border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            Shipped ({orderCounts.shipped})
-          </button>
-          <button
-            onClick={() => handleFilterChange('delivered')}
-            className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-              selectedFilter === 'delivered'
-                ? 'bg-emerald text-white'
-                : 'bg-white text-charcoal border border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            Delivered ({orderCounts.delivered})
-          </button>
+        {/* Filters Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          {/* Date Range Filter */}
+          <div className="mb-6">
+            <label className="block text-sm font-semibold text-charcoal mb-3">Filter by Date Range</label>
+            <div className="flex flex-wrap gap-3 items-end">
+              <div className="flex-1 min-w-[200px]">
+                <label className="block text-xs text-slate mb-1">From</label>
+                <input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => handleDateChange(e.target.value, dateTo)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald focus:border-emerald text-sm"
+                />
+              </div>
+              <div className="flex-1 min-w-[200px]">
+                <label className="block text-xs text-slate mb-1">To</label>
+                <input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => handleDateChange(dateFrom, e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald focus:border-emerald text-sm"
+                />
+              </div>
+              {(dateFrom || dateTo || selectedFilter !== 'all') && (
+                <button
+                  onClick={clearFilters}
+                  className="px-4 py-2 bg-gray-100 text-charcoal rounded-lg hover:bg-gray-200 transition-colors text-sm font-semibold"
+                >
+                  Clear All Filters
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Status Filter Buttons */}
+          <div>
+            <label className="block text-sm font-semibold text-charcoal mb-3">Filter by Status</label>
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => handleFilterChange('all')}
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
+                  selectedFilter === 'all'
+                    ? 'bg-slate-blue text-white'
+                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                }`}
+              >
+                All ({orders.length})
+              </button>
+              <button
+                onClick={() => handleFilterChange('paid')}
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
+                  selectedFilter === 'paid'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                }`}
+              >
+                Paid ({orderCounts.paid})
+              </button>
+              <button
+                onClick={() => handleFilterChange('in_progress')}
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
+                  selectedFilter === 'in_progress'
+                    ? 'bg-purple-500 text-white'
+                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                }`}
+              >
+                In Progress ({orderCounts.in_progress})
+              </button>
+              <button
+                onClick={() => handleFilterChange('shipped')}
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
+                  selectedFilter === 'shipped'
+                    ? 'bg-green-500 text-white'
+                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                }`}
+              >
+                Shipped ({orderCounts.shipped})
+              </button>
+              <button
+                onClick={() => handleFilterChange('delivered')}
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
+                  selectedFilter === 'delivered'
+                    ? 'bg-emerald text-white'
+                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                }`}
+              >
+                Delivered ({orderCounts.delivered})
+              </button>
+            </div>
+          </div>
+
+          {/* Active Filters Display */}
+          {(selectedFilter !== 'all' || dateFrom || dateTo) && (
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <p className="text-sm text-slate">
+                Showing <strong className="text-charcoal">{filteredOrders.length}</strong> of <strong className="text-charcoal">{orders.length}</strong> orders
+                {selectedFilter !== 'all' && <> with status <strong className="text-charcoal">{statusLabel[selectedFilter]}</strong></>}
+                {dateFrom && <> from <strong className="text-charcoal">{formatDate(dateFrom)}</strong></>}
+                {dateTo && <> to <strong className="text-charcoal">{formatDate(dateTo)}</strong></>}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Orders Table */}
