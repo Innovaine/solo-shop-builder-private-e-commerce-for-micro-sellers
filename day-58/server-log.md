@@ -80,3 +80,15 @@ STDOUT:
 Build started, PID=1510197
 ```
 Full output: [`server-runs/2026-05-18T10-30-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T10-30-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T10:31:02.565Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b389bf1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3150ms) _(showing tail — full 18,677B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/build.log
+```
+STDOUT:
+```
+…
