@@ -31858,3 +31858,34 @@ _Pre-SSH: warehouse pushed to GitHub as commit `51ca3e1` so the server's `git pu
 ```
 curl -sf https://www.soloshopbox.com/api/health | head -20
 ```
+
+## 2026-05-18T01:41:40.079Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2ae32a3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2753ms)
+```
+echo "Test 1: Check CSV import page loads"
+curl -sI https://www.soloshopbox.com/dashboard/products/import | head -10
+
+echo ""
+echo "Test 2: Check email template page loads"
+curl -sI https://www.soloshopbox.com/dashboard/email-template | head -10
+```
+STDOUT:
+```
+Test 1: Check CSV import page loads
+HTTP/2 404 
+content-type: text/plain; charset=utf-8
+x-content-type-options: nosniff
+content-length: 19
+date: Mon, 18 May 2026 01:41:40 GMT
+
+
+Test 2: Check email template page loads
+HTTP/2 404 
+content-type: text/plain; charset=utf-8
+x-content-type-options: nosniff
+content-length: 19
+date: Mon, 18 May 2026 01:41:40 GMT
+```
+Full output: [`server-runs/2026-05-18T01-41-40-www.soloshopbox.com-echo-Test-1-Check-CSV-import-page-loads-1.log`](server-runs/2026-05-18T01-41-40-www.soloshopbox.com-echo-Test-1-Check-CSV-import-page-loads-1.log)
