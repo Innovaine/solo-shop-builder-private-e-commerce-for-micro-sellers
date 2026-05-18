@@ -267,3 +267,94 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 2 minutes	0.0.0.
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 6 hours (healthy)	127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-18T09-26-14-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-2.log`](server-runs/2026-05-18T09-26-14-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-2.log)
+
+## 2026-05-18T09:27:38.050Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f19c87e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 4033ms) _(showing tail — full 10,028B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+… mode 100644 day-56/connectivity_qa.md
+ create mode 100644 day-56/design.md
+ create mode 100644 day-56/engineering.md
+ create mode 100644 day-56/requirements.md
+ create mode 100644 day-56/review.md
+ create mode 100644 day-56/server-log.md
+ create mode 100644 design/pages/bulk-order-status.html
+ create mode 100644 design/pages/checkout-error-handling.html
+ create mode 100644 design/pages/csv-import-flow.html
+ create mode 100644 design/pages/dashboard-metrics-empty.html
+ create mode 100644 design/pages/dashboard-metrics.html
+ create mode 100644 design/pages/email-template-editor-advanced.html
+ create mode 100644 design/pages/inventory-checkout-flow.html
+ create mode 100644 design/pages/inventory-low-stock-alerts.html
+ create mode 100644 design/pages/order-filtering-advanced.html
+ create mode 100644 design/pages/order-refund-flow.html
+ create mode 100644 design/pages/order-timeline-modal.html
+ create mode 100644 design/pages/orders-dashboard-filters.html
+ create mode 100644 design/pages/product-draft-toggle.html
+ create mode 100644 design/pages/product-inventory.html
+ create mode 100644 design/pages/product-list-inventory.html
+ create mode 100644 design/pages/seller-profile-complete.html
+ create mode 100644 design/pages/shop-pause-toggle.html
+ create mode 100644 design/pages/storefront-inventory.html
+ create mode 100644 prisma/migrations/20260518_add_status_fields_order_history/migration.sql
+ create mode 100644 test-results/day-52/report.md
+ create mode 100644 test-results/day-53/report.md
+ create mode 100644 test-results/day-54/report.md
+ create mode 100644 test-results/day-55/report.md
+ create mode 100644 tests/web/day53-cart-checkout-fix.spec.ts
+ create mode 100644 tests/web/day53-order-history-bulk.spec.ts
+ create mode 100644 tests/web/day53-shop-product-status.spec.ts
+ create mode 100644 tests/web/day54-dashboard-metrics.spec.ts
+ create mode 100644 tests/web/day54-inventory-tracking.spec.ts
+ create mode 100644 tests/web/day54-order-filtering.spec.ts
+ create mode 100644 tests/web/day56-verification-smoke.spec.ts
+```
+Full output: [`server-runs/2026-05-18T09-27-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T09-27-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 1412ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test tests/web/day56-verification-smoke.spec.ts --reporter=list > /tmp/day56-smoke.log 2>&1 &
+echo $! > /tmp/day56-smoke.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day56-smoke.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=1497688
+```
+Full output: [`server-runs/2026-05-18T09-27-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-18T09-27-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
+
+## 2026-05-18T09:28:04.268Z — Priya ran 1 command(s)
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3020ms)
+```
+kill -0 $(cat /tmp/day56-smoke.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/day56-smoke.log 2>/dev/null || echo "No log yet"
+```
+STDOUT:
+```
+DONE
+Error: EACCES: permission denied, unlink '/tmp/playwright-test-results/.last-run.json'
+
+Error in reporter Error: EACCES: permission denied, open '/tmp/playwright-test-results/.last-run.json'
+    at open (node:internal/fs/promises:640:25)
+    at Object.writeFile (node:internal/fs/promises:1257:14)
+    at LastRunReporter.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:6153:5)
+    at wrapAsync (/usr/lib/node_modules/playwright/lib/runner/index.js:1614:12)
+    at Multiplexer.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:1582:25)
+    at InternalReporter.onEnd (/usr/lib/node_modules/playwright/lib/runner/index.js:1749:12)
+    at finishTaskRun (/usr/lib/node_modules/playwright/lib/runner/index.js:5822:26)
+    at runTasks (/usr/lib/node_modules/playwright/lib/runner/index.js:5809:10)
+    at Object.runAllTestsWithConfig (/usr/lib/node_modules/playwright/lib/runner/index.js:6480:18)
+    at runTests (/usr/lib/node_modules/playwright/lib/cli/testActions.js:93:18)
+    at _Command.<anonymous> (/usr/lib/node_modules/playwright/lib/program.js:50:7) {
+  errno: -13,
+  code: 'EACCES',
+  syscall: 'open',
+  path: '/tmp/playwright-test-results/.last-run.json'
+}
+```
+Full output: [`server-runs/2026-05-18T09-28-04-www.soloshopbox.com-kill--0-cat-tmp-day56-smoke.pid-2-dev-nu-1.log`](server-runs/2026-05-18T09-28-04-www.soloshopbox.com-kill--0-cat-tmp-day56-smoke.pid-2-dev-nu-1.log)
