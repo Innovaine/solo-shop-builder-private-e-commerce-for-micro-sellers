@@ -229,3 +229,54 @@ b2b1258 Anil (engineer, day 58) — pre-SSH sync
 2332746 Anil (engineer, day 58) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-18T10-35-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T10-35-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T10:35:52.691Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a1761b7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3482ms) _(showing tail — full 2,186B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull origin main && git diff HEAD~3..HEAD --stat
+```
+STDOUT:
+```
+…         |  20 ++
+ day-57/review.md                         | 136 +++++++++++++
+ day-57/server-log.md                     | 335 +++++++++++++++++++++++++++++++
+ day-57/stage-ship-check.md               |  15 ++
+ day-57/test.md                           | 157 +++++++++++++++
+ day-58/_plan.md                          |  49 +++++
+ day-58/connectivity-audit.md             |   0
+ day-58/connectivity_qa.md                |  45 +++++
+ day-58/design-compliance.md              | 175 ++++++++++++++++
+ day-58/design.md                         |  42 ++++
+ day-58/design_qa.md                      |  37 ++++
+ day-58/engineering.md                    | 139 +++++++++++++
+ day-58/requirements.md                   |  34 ++++
+ day-58/server-log.md                     | 231 +++++++++++++++++++++
+ design/pages/checkout-webhook-error.html | 311 ++++++++++++++++++++++++++++
+ design/pages/reset-password-expired.html | 243 ++++++++++++++++++++++
+ requirements.md                          | 173 ++++++++++------
+ test-results/day-57/report.md            |  88 ++++++++
+ tests/web/day57-features.spec.ts         | 121 +++++++++++
+ 20 files changed, 2464 insertions(+), 76 deletions(-)
+ create mode 100644 day-57/_index.md
+ create mode 100644 day-57/review.md
+ create mode 100644 day-57/stage-ship-check.md
+ create mode 100644 day-57/test.md
+ create mode 100644 day-58/_plan.md
+ create mode 100644 day-58/connectivity-audit.md
+ create mode 100644 day-58/connectivity_qa.md
+ create mode 100644 day-58/design-compliance.md
+ create mode 100644 day-58/design.md
+ create mode 100644 day-58/design_qa.md
+ create mode 100644 day-58/engineering.md
+ create mode 100644 day-58/requirements.md
+ create mode 100644 day-58/server-log.md
+ create mode 100644 design/pages/checkout-webhook-error.html
+ create mode 100644 design/pages/reset-password-expired.html
+ create mode 100644 test-results/day-57/report.md
+ create mode 100644 tests/web/day57-features.spec.ts
+ day-58/server-log.md | 69 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+```
+Full output: [`server-runs/2026-05-18T10-35-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T10-35-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
