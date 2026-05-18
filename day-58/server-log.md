@@ -109,3 +109,22 @@ _Pre-SSH: warehouse pushed to GitHub as commit `e172a7e` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 docker compose up -d
 ```
+
+## 2026-05-18T10:32:31.574Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2332746` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3562ms)
+```
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "OK" || echo "FAIL"
+curl -I https://www.soloshopbox.com/api/health 2>&1 | head -5
+```
+STDOUT:
+```
+OK
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+access-control-allow-headers: Content-Type, Authorization
+```
+Full output: [`server-runs/2026-05-18T10-32-31-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T10-32-31-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
