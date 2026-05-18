@@ -66,3 +66,56 @@ STDOUT:
 Build started, PID=1586964
 ```
 Full output: [`server-runs/2026-05-18T18-16-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T18-16-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T18:16:35.179Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f3aadae` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3043ms) _(showing tail — full 4,261B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day70-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day70-build.log
+```
+STDOUT:
+```
+…ndefined; }'.
+#15 18.73 
+#15 18.73 [0m [90m 121 |[39m     [90m// Send order confirmation email to customer[39m[0m
+#15 18.73 [0m [90m 122 |[39m     [36mtry[39m {[0m
+#15 18.73 [0m[31m[1m>[22m[39m[90m 123 |[39m       [36mawait[39m sendEmail({[0m
+#15 18.73 [0m [90m     |[39m                       [31m[1m^[22m[39m[0m
+#15 18.73 [0m [90m 124 |[39m         to[33m:[39m customerEmail[33m,[39m[0m
+#15 18.73 [0m [90m 125 |[39m         subject[33m:[39m [32m`Order Confirmation - ${pendingOrder.shop.name}`[39m[33m,[39m[0m
+#15 18.73 [0m [90m 126 |[39m         html[33m:[39m [32m`[39m[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+18.73 Type error: Argument of type '{ to: any; subject: string; html: string; }' is not assignable to parameter of type '{ to: string; subject: string; text: string; html?: string | undefined; }'.
+18.73   Property 'text' is missing in type '{ to: any; subject: string; html: string; }' but required in type '{ to: string; subject: string; text: string; html?: string | undefined; }'.
+18.73 
+18.73 [0m [90m 121 |[39m     [90m// Send order confirmation email to customer[39m[0m
+18.73 [0m [90m 122 |[39m     [36mtry[39m {[0m
+18.73 [0m[31m[1m>[22m[39m[90m 123 |[39m       [36mawait[39m sendEmail({[0m
+18.73 [0m [90m     |[39m                       [31m[1m^[22m[39m[0m
+18.73 [0m [90m 124 |[39m         to[33m:[39m customerEmail[33m,[39m[0m
+18.73 [0m [90m 125 |[39m         subject[33m:[39m [32m`Order Confirmation - ${pendingOrder.shop.name}`[39m[33m,[39m[0m
+18.73 [0m [90m 126 |[39m         html[33m:[39m [32m`[39m[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-18T18-16-35-www.soloshopbox.com-kill--0-cat-tmp-day70-build.pid-2-dev-nu-1.log`](server-runs/2026-05-18T18-16-35-www.soloshopbox.com-kill--0-cat-tmp-day70-build.pid-2-dev-nu-1.log)
