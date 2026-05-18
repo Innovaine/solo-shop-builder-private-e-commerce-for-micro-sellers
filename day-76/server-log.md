@@ -148,3 +148,62 @@ echo $! > /tmp/build.pid
 echo "Build started, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-18T22:07:30.940Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ca83b83` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2064ms) _(showing tail — full 4,055B stdout + 0B stderr)_
+```
+if [ -f /tmp/build.pid ]; then
+  pid=$(cat /tmp/build.pid)
+  if kill -0 $pid 2>/dev/null; then
+    echo "RUNNING: Build in progress (PID $pid)"
+    echo "--- Last 30 lines of build log ---"
+    tail -30 /tmp/build.log
+  else
+    echo "DONE: Build completed"
+    echo "--- Last 80 lines of build log ---"
+    tail -80 /tmp/build.log | grep -E "(Successfully|ERROR|error|failed|CACHED|DONE)"
+    echo "--- Exit status check ---"
+    if tail -5 /tmp/build.log | grep -q "Successfully"; then
+      echo "BUILD SUCCESS"
+    else
+      echo "BUILD MIGHT HAVE FAILED - check full log"
+    fi
+  fi
+else
+  echo "NO PID FILE - build not started"
+fi
+```
+STDOUT:
+```
+…
+#15 23.82     at Object.get (/app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:37835)
+#15 23.82     at p (/app/.next/server/app/api/checkout/myfatoorah/callback/route.js:1:1148)
+#15 23.82     at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34672
+#15 23.82     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#15 23.82     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 23.82     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 23.82     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#15 23.82     at ProxyTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#15 23.82     at /app/node_modules/next/dist/server/lib/trace/tracer.js:122:103
+#15 23.82     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062) {
+#15 23.82   description: "Route /api/checkout/myfatoorah/callback couldn't be rendered statically because it accessed `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 23.82   digest: 'DYNAMIC_SERVER_USAGE'
+#15 23.82 }
+#15 23.96    Generating static pages (21/43) 
+#15 24.07    Generating static pages (32/43) 
+#15 24.25  ✓ Generating static pages (43/43)
+#15 24.25 (node:263) Warning: NodeVersionSupportWarning: The AWS SDK for JavaScript (v3)
+#15 24.25 versions published after the first week of January 2027
+#15 24.25 will require node >=22. You are running node v20.20.2.
+#15 24.25 
+#15 24.25 To continue receiving updates to AWS services, bug fixes,
+#15 24.25 and security updates please upgrade to node >=22.
+#15 24.25 
+#15 24.25 More information can be found at: https://a.co/c895JFp
+#15 24.25 (Use `node --trace-warnings ...` to show where the warning was created)
+#15 24.68    Finalizing page optimization ...
+#15 24.68    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-18T22-07-30-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log`](server-runs/2026-05-18T22-07-30-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log)
