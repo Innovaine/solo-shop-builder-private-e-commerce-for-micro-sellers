@@ -31913,3 +31913,29 @@ STDOUT:
 5b26a700cbdf   postgres:16-alpine                                           "docker-entrypoint.s…"   13 hours ago    Up 13 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-18T01-44-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T01-44-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-18T01:45:25.820Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f22ff6c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 9115ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose start app && sleep 5 && docker compose logs --tail=30 app
+```
+STDOUT:
+```
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 6 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 59ms
+```
+Full output: [`server-runs/2026-05-18T01-45-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-18T01-45-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
