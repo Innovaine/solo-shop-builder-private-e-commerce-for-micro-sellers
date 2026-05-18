@@ -128,3 +128,35 @@ HTTP/2 200
 access-control-allow-headers: Content-Type, Authorization
 ```
 Full output: [`server-runs/2026-05-18T10-32-31-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-18T10-32-31-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-18T10:32:59.240Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b2b1258` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3114ms)
+```
+curl -I https://www.soloshopbox.com/dashboard/email-template 2>&1 | head -5
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  7874    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+```
+Full output: [`server-runs/2026-05-18T10-32-59-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-dashbo-1.log`](server-runs/2026-05-18T10-32-59-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-dashbo-1.log)
+
+## 2026-05-18T10:33:24.539Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3514ms)
+```
+curl -I https://www.soloshopbox.com/dashboard/profile 2>&1 | head -5
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 13497    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+```
+Full output: [`server-runs/2026-05-18T10-33-24-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-dashbo-1.log`](server-runs/2026-05-18T10-33-24-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-dashbo-1.log)
