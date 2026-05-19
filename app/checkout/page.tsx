@@ -22,6 +22,37 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     setCart(getCart())
+    
+    // Check for error in URL query params (from MyFatoorah callback redirect)
+    const urlParams = new URLSearchParams(window.location.search)
+    const errorParam = urlParams.get('error')
+    
+    if (errorParam) {
+      let errorMessage = 'Payment failed. Please try again.'
+      
+      // Map error codes to user-friendly messages
+      if (errorParam === 'payment_cancelled') {
+        errorMessage = 'Payment was cancelled. Please try again when you\'re ready to complete your purchase.'
+      } else if (errorParam === 'payment_expired') {
+        errorMessage = 'Payment session expired. Please try again.'
+      } else if (errorParam.startsWith('payment_declined')) {
+        errorMessage = 'Payment was declined by your bank. Please check your card details and try again, or use a different payment method.'
+      } else if (errorParam === 'payment_not_completed') {
+        errorMessage = 'Payment was not completed. Please try again.'
+      } else if (errorParam === 'order_not_found') {
+        errorMessage = 'Order not found. Your cart may have expired. Please add items to your cart and try again.'
+      } else if (errorParam === 'verification_failed') {
+        errorMessage = 'Payment verification failed. If you were charged, please contact support.'
+      } else if (errorParam === 'callback_error') {
+        errorMessage = 'An error occurred while processing your payment. Please try again or contact support if the issue persists.'
+      }
+      
+      setError(errorMessage)
+      
+      // Clean up URL by removing error param
+      const cleanUrl = window.location.pathname
+      window.history.replaceState({}, '', cleanUrl)
+    }
   }, [])
 
   const handleRemoveItem = (productId: string) => {

@@ -74,7 +74,21 @@ async function handleCallback(req: NextRequest) {
         transactionStatus: transaction.Status,
         transactionError: transaction.Error,
       })
-      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_not_completed`)
+      
+      // Provide specific error messages based on payment failure reason
+      let errorMessage = 'payment_failed'
+      
+      if (invoice.Status === 'CANCELLED' || transaction.Status === 'CANCELLED') {
+        errorMessage = 'payment_cancelled'
+      } else if (invoice.Status === 'EXPIRED' || transaction.Status === 'EXPIRED') {
+        errorMessage = 'payment_expired'
+      } else if (transaction.Error) {
+        // Include transaction error for debugging (truncated to avoid URL length issues)
+        const errorSnippet = transaction.Error.substring(0, 50).replace(/[^a-zA-Z0-9_-]/g, '_')
+        errorMessage = `payment_declined_${errorSnippet}`
+      }
+      
+      return NextResponse.redirect(`${baseUrl}/checkout?error=${errorMessage}`)
     }
 
     // Idempotency check — if order already paid, redirect to success

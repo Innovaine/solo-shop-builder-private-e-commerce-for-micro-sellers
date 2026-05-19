@@ -28,7 +28,7 @@ export default async function OrderDetailPage({
     redirect('/dashboard/create-shop')
   }
 
-  // Fetch order with items
+  // Fetch order with items (OrderItem doesn't have product relation - uses denormalized fields)
   const order = await prisma.order.findUnique({
     where: { id: params.id },
     include: {
