@@ -559,3 +559,59 @@ STDOUT:
 {"error":"Internal server error"}
 ```
 Full output: [`server-runs/2026-05-19T12-41-03-www.soloshopbox.com-echo-Detailed-Error-Analysis-1.log`](server-runs/2026-05-19T12-41-03-www.soloshopbox.com-echo-Detailed-Error-Analysis-1.log)
+
+## 2026-05-19T12:43:43.115Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8dec1e5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3043ms) _(showing tail — full 19,941B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull && route-validator . --json 2>&1 | head -150
+```
+STDOUT:
+```
+…ndards-audit.md
+ create mode 100644 day-76/standards_qa.md
+ create mode 100644 day-77/_index.md
+ create mode 100644 day-77/_plan.md
+ create mode 100644 day-77/connectivity-audit.md
+ create mode 100644 day-77/connectivity_qa.md
+ create mode 100644 day-77/engineering.md
+ create mode 100644 day-77/review.md
+ create mode 100644 day-77/server-log.md
+ create mode 100644 day-77/stage-ship-check.md
+ create mode 100644 day-77/standards-audit.md
+ create mode 100644 day-77/standards_qa.md
+ create mode 100644 day-78/_index.md
+ create mode 100644 day-78/_plan.md
+ create mode 100644 day-78/design.md
+ create mode 100644 day-78/engineering.md
+ create mode 100644 day-78/requirements.md
+ create mode 100644 day-78/review.md
+ create mode 100644 day-78/server-log.md
+ create mode 100644 day-78/test.md
+ create mode 100644 design/pages/discount-codes.html
+ create mode 100644 design/pages/order-tagging.html
+ create mode 100644 design/pages/password-signup-set.html
+ create mode 100644 design/pages/password-signup.html
+ create mode 100644 design/pages/seller-messaging.html
+ create mode 100644 design/system/component-checklist.md
+ create mode 100644 design/system/responsive-audit.md
+ create mode 100644 lib/db.ts
+ create mode 100644 lib/s3.ts
+ create mode 100644 prisma/migrations/20260518_add_order_metadata/migration.sql
+ create mode 100644 scripts/add-test-orders.ts
+ create mode 100644 src/lib/s3.ts
+ create mode 100644 standards.md
+ create mode 100644 test-results/day-58/report.md
+ create mode 100644 test-results/day-60/report.md
+ create mode 100644 test-results/day-78/report.md
+ create mode 100644 tests/web/day58-features.spec.ts
+ create mode 100644 tests/web/day60-csv-import.spec.ts
+ create mode 100644 tests/web/day60-inventory-validation.spec.ts
+ create mode 100644 tests/web/day60-password-auth.spec.ts
+ create mode 100644 tests/web/day78-e2e-regression.spec.ts
+ create mode 100644 tests/web/day78-order-status-regression.spec.ts
+ create mode 100644 tests/web/day78-settings-regression.spec.ts
+bash: line 1: route-validator: command not found
+```
+Full output: [`server-runs/2026-05-19T12-43-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-43-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
