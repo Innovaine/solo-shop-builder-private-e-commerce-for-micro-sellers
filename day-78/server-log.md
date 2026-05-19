@@ -678,3 +678,18 @@ app/api/shops/status/route.ts
 app/api/shops/branding/route.ts
 ```
 Full output: [`server-runs/2026-05-19T12-46-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-46-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T12:46:28.297Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4479e3e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2144ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "cookies()" app/ src/ --include="*.ts" --include="*.tsx" -n 2>/dev/null | head -50
+```
+STDOUT:
+```
+app/api/orders/[id]/route.ts:14:    const cookieStore = cookies()
+app/api/orders/[id]/refund/route.ts:20:    const sessionCookie = cookies().get('session')
+src/lib/auth.ts:25:  return getIronSession<SessionData>(cookies(), sessionOptions)
+```
+Full output: [`server-runs/2026-05-19T12-46-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-46-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
