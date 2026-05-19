@@ -323,3 +323,16 @@ app-1                                                                        | {
 [Kapp-1 exited with code 137
 ```
 Full output: [`server-runs/2026-05-19T14-59-51-www.soloshopbox.com-cat-tmp-compose-up.log-1.log`](server-runs/2026-05-19T14-59-51-www.soloshopbox.com-cat-tmp-compose-up.log-1.log)
+
+## 2026-05-19T15:00:23.659Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `614fa46` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2880ms)
+```
+docker ps -a | grep solo-shop-builder | grep app
+```
+STDOUT:
+```
+9bdccd2b9bd4   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   2 minutes ago   Created                                            solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+```
+Full output: [`server-runs/2026-05-19T15-00-23-www.soloshopbox.com-docker-ps--a-grep-solo-shop-builder-grep-1.log`](server-runs/2026-05-19T15-00-23-www.soloshopbox.com-docker-ps--a-grep-solo-shop-builder-grep-1.log)
