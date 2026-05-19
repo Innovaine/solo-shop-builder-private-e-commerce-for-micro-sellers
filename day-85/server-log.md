@@ -155,3 +155,11 @@ STDOUT:
 30:    // FR-25 & NFR-6: Verify webhook signature using HMAC
 ```
 Full output: [`server-runs/2026-05-19T23-00-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-00-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:00:44.986Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6e9c0c7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2544ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "signature\|verify\|hmac" app/api/checkout/myfatoorah/callback/route.ts | head -10
+```
