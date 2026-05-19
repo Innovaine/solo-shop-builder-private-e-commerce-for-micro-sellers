@@ -1250,3 +1250,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `7d5438d` so the server's `git pu
 grep -rn "NextResponse.redirect" app/ --include="*.ts" --include="*.tsx"
 ```
 ERROR: command exited 2
+
+## 2026-05-19T22:46:56.617Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f17b08b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2592ms)
+```
+grep -rn "redirect(" app/dashboard/ --include="*.tsx" | head -10
+```
