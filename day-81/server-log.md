@@ -384,3 +384,16 @@ c98ed978a89b   postgres:16-alpine                                           "doc
 HTTP:000
 ```
 Full output: [`server-runs/2026-05-19T15-09-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-09-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T15:10:01.903Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `94151b3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2869ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app 2>&1 | tail -80
+```
+STDOUT:
+```
+time="2026-05-19T15:10:02Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+```
+Full output: [`server-runs/2026-05-19T15-10-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-10-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
