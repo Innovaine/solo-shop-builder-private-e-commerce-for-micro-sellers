@@ -371,3 +371,43 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 51ms
 ```
 Full output: [`server-runs/2026-05-19T23-12-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-12-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:13:25.895Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `594ca46` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3039ms)
+```
+curl -v http://localhost:3000/api/health 2>&1 | head -30
+```
+STDOUT:
+```
+* Host localhost:3000 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying [::1]:3000...
+* Connected to localhost (::1) port 3000
+> GET /api/health HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.5.0
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< access-control-allow-headers: Content-Type, Authorization
+< access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+< access-control-allow-origin: *
+< x-request-id: MprT3gkSur7IkaS2
+< vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+< content-type: application/json
+< Date: Tue, 19 May 2026 23:13:25 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< Transfer-Encoding: chunked
+< 
+{ [184 bytes data]
+100   184    0   184    0     0    643      0 --:--:-- --:--:-- --:--:--   645
+* Connection #0 to host localhost left intact
+{"status":"ok","timestamp":"2026-05-19T23:13:25.789Z","responseTime":"174ms","checks":{"database":{"status":"ok","responseTime":"45ms"},"email":{"status":"ok","responseTime":"129ms"}}}
+```
+Full output: [`server-runs/2026-05-19T23-13-25-www.soloshopbox.com-curl--v-http-localhost-3000-api-health-2-1.log`](server-runs/2026-05-19T23-13-25-www.soloshopbox.com-curl--v-http-localhost-3000-api-health-2-1.log)
