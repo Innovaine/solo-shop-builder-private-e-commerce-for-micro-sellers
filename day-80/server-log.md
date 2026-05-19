@@ -209,3 +209,35 @@ HTTP/2 200
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-19T14-18-36-www.soloshopbox.com-echo-Day-80-Smoke-Tests-1.log`](server-runs/2026-05-19T14-18-36-www.soloshopbox.com-echo-Day-80-Smoke-Tests-1.log)
+
+## 2026-05-19T14:19:16.155Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e3f7e8b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 4787ms)
+```
+echo "=== Orders Page Color Token Verification ==="
+echo ""
+echo "Testing orders page content:"
+curl -s https://www.soloshopbox.com/dashboard/orders | grep -o 'class="[^"]*bg-\(whisper\|slate\|charcoal\|cream\|emerald\)[^"]*"' | head -10
+echo ""
+echo "Count of brand token usage:"
+curl -s https://www.soloshopbox.com/dashboard/orders | grep -o 'bg-\(whisper\|slate\|charcoal\|cream\|emerald\)' | wc -l
+echo ""
+echo "Check for remaining gray-* colors (should be minimal):"
+curl -s https://www.soloshopbox.com/dashboard/orders | grep -o 'bg-gray-[0-9]*\|text-gray-[0-9]*' | sort | uniq -c
+```
+STDOUT:
+```
+=== Orders Page Color Token Verification ===
+
+Testing orders page content:
+class="antialiased bg-cream text-charcoal"
+class="min-h-screen bg-cream"
+
+Count of brand token usage:
+8
+
+Check for remaining gray-* colors (should be minimal):
+      1 text-gray-600
+```
+Full output: [`server-runs/2026-05-19T14-19-16-www.soloshopbox.com-echo-Orders-Page-Color-Token-Verificatio-1.log`](server-runs/2026-05-19T14-19-16-www.soloshopbox.com-echo-Orders-Page-Color-Token-Verificatio-1.log)
