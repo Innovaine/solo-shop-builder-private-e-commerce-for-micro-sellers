@@ -805,3 +805,11 @@ app/api/checkout/myfatoorah/callback/route.ts:196:    return NextResponse.redire
 app/api/checkout/myfatoorah/callback/route.ts:209:    return NextResponse.redirect(`${baseUrl}/checkout?error=callback_error`)
 ```
 Full output: [`server-runs/2026-05-19T23-25-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-25-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:26:49.921Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7d4b8e7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2599ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -B5 "redirect(" app/api -r --include="*.ts" 2>/dev/null | grep -A5 "from 'next/navigation'" | head -20
+```
