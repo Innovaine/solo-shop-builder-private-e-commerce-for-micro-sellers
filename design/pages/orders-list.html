@@ -119,11 +119,24 @@
       text-transform: uppercase;
     }
     
-    .badge-pending { background: #FEF3C7; color: #92400E; }
-    .badge-paid { background: #DBEAFE; color: #164E63; }
-    .badge-in-progress { background: #CCE5FF; color: #003D82; }
-    .badge-shipped { background: #D1E7DD; color: #0F3919; }
-    .badge-delivered { background: #D1FAE5; color: #065F46; }
+    .badge-pending { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
+    .badge-paid { background: #DBEAFE; color: #164E63; border: 1px solid #7DD3FC; }
+    .badge-in-progress { background: #CCE5FF; color: #003D82; border: 1px solid #93C5FD; }
+    .badge-shipped { background: #D1E7DD; color: #0F3919; border: 1px solid #A7F3D0; }
+    .badge-delivered { background: #D1FAE5; color: #065F46; border: 1px solid #6EE7B7; }
+    
+    /* Status progression indicator */
+    .status-timeline {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 11px;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+    .timeline-dot { width: 6px; height: 6px; border-radius: 50%; background: #CBD5E1; }
+    .timeline-dot.active { background: #10B981; }
+    .timeline-dot.pending { background: #FCD34D; }
     
     /* Actions */
     .action-button {
@@ -154,6 +167,52 @@
       border-top: 1px solid #E2E8F0;
       font-size: 13px;
       color: #64748B;
+    }
+    
+    /* Bulk Actions */
+    .bulk-action-bar {
+      background: #F0FDF4;
+      border: 1px solid #BBEF63;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+    .bulk-action-bar.active {
+      display: flex;
+    }
+    .bulk-count { font-weight: 600; color: #15803D; }
+    .bulk-actions { display: flex; gap: 8px; margin-left: auto; }
+    .bulk-btn {
+      background: #10B981;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .bulk-btn:hover {
+      background: #059669;
+    }
+    .bulk-btn.secondary {
+      background: white;
+      color: #10B981;
+      border: 1px solid #10B981;
+    }
+    .bulk-btn.secondary:hover {
+      background: #F0FDF4;
+    }
+    
+    /* Checkbox */
+    input[type="checkbox"] {
+      accent-color: #10B981;
+      cursor: pointer;
     }
     
     @media (max-width: 768px) {
@@ -199,7 +258,16 @@
 
   <div class="container">
     <div style="background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
-      <span style="font-size: 13px; color: #64748B;">💡 Default view: most recent orders first. All statuses visible.</span>
+      <span style="font-size: 13px; color: #64748B;">💡 Tip: Select multiple orders to update status, add tags, or export in bulk.</span>
+    </div>
+
+    <div class="bulk-action-bar">
+      <span class="bulk-count"><input type="checkbox" id="selectAll"> <span id="bulkCount">0</span> selected</span>
+      <div class="bulk-actions">
+        <button class="bulk-btn secondary" onclick="updateBulkStatus()">Mark as Shipped</button>
+        <button class="bulk-btn secondary" onclick="addBulkTag()">Add Tag</button>
+        <button class="bulk-btn secondary" onclick="clearSelection()">Clear</button>
+      </div>
     </div>
 
     <div class="card">
@@ -211,6 +279,7 @@
       <table>
         <thead>
           <tr>
+            <th style="width: 32px;"><input type="checkbox" class="row-checkbox"></th>
             <th>Order ID</th>
             <th>Date</th>
             <th>Customer</th>
@@ -222,75 +291,83 @@
         </thead>
         <tbody>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1047</td>
             <td>May 15, 2026</td>
             <td>Sarah Johnson</td>
             <td>Ceramic Bowl (1)</td>
             <td><strong>$145.00</strong></td>
-            <td><span class="badge badge-shipped">Shipped</span></td>
+            <td><span class="badge badge-shipped">Shipped</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1046</td>
             <td>May 14, 2026</td>
             <td>Michael Chen</td>
             <td>Coffee Mug (2), Plate Set (1)</td>
             <td><strong>$380.00</strong></td>
-            <td><span class="badge badge-in-progress">In Progress</span></td>
+            <td><span class="badge badge-in-progress">In Progress</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot pending"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1045</td>
             <td>May 13, 2026</td>
             <td>Emma Rodriguez</td>
             <td>Dinner Plate Set (1)</td>
             <td><strong>$520.00</strong></td>
-            <td><span class="badge badge-paid">Paid</span></td>
+            <td><span class="badge badge-paid">Paid</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot pending"></span><span class="timeline-dot pending"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1044</td>
             <td>May 12, 2026</td>
             <td>David Park</td>
             <td>Planter (1), Tea Pot (1)</td>
             <td><strong>$340.00</strong></td>
-            <td><span class="badge badge-delivered">Delivered</span></td>
+            <td><span class="badge badge-delivered">Delivered</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1043</td>
             <td>May 11, 2026</td>
             <td>Jessica Lee</td>
             <td>Ceramic Bowl (3)</td>
             <td><strong>$425.00</strong></td>
-            <td><span class="badge badge-shipped">Shipped</span></td>
+            <td><span class="badge badge-shipped">Shipped</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1042</td>
             <td>May 10, 2026</td>
             <td>Robert Wilson</td>
             <td>Coffee Mug (1)</td>
             <td><strong>$89.50</strong></td>
-            <td><span class="badge badge-delivered">Delivered</span></td>
+            <td><span class="badge badge-delivered">Delivered</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1041</td>
             <td>May 9, 2026</td>
             <td>Lisa Thompson</td>
             <td>Dinner Plate Set (2)</td>
             <td><strong>$960.00</strong></td>
-            <td><span class="badge badge-in-progress">In Progress</span></td>
+            <td><span class="badge badge-in-progress">In Progress</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot pending"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
             <td class="order-id">#ORD-1040</td>
             <td>May 8, 2026</td>
             <td>James Garcia</td>
             <td>Tea Pot (1)</td>
             <td><strong>$294.00</strong></td>
-            <td><span class="badge badge-pending">Pending</span></td>
+            <td><span class="badge badge-pending">Pending</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot pending"></span><span class="timeline-dot pending"></span><span class="timeline-dot pending"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
         </tbody>
@@ -315,9 +392,48 @@
 
   <!-- Export Modal (referenced but not embedded here) -->
   <script>
+    const bulkBar = document.querySelector('.bulk-action-bar');
+    const bulkCount = document.querySelector('#bulkCount');
+    const selectAll = document.querySelector('#selectAll');
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox:not(#selectAll)');
+
+    function updateBulkUI() {
+      const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+      bulkCount.textContent = checkedCount;
+      if (checkedCount > 0) {
+        bulkBar.classList.add('active');
+      } else {
+        bulkBar.classList.remove('active');
+      }
+      selectAll.checked = checkedCount === rowCheckboxes.length && checkedCount > 0;
+    }
+
+    selectAll.addEventListener('change', function() {
+      rowCheckboxes.forEach(cb => cb.checked = this.checked);
+      updateBulkUI();
+    });
+
+    rowCheckboxes.forEach(cb => {
+      cb.addEventListener('change', updateBulkUI);
+    });
+
+    function updateBulkStatus() {
+      const selected = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+      alert(`Bulk Status Update\n\nWould update ${selected} order(s) to "Shipped" status.`);
+      // In production: API call to update orders
+    }
+
+    function addBulkTag() {
+      const selected = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+      alert(`Add Tag to ${selected} Order(s)\n\nWould open modal to assign tag (e.g., "VIP", "Wholesale", "Gift")`);
+    }
+
+    function clearSelection() {
+      rowCheckboxes.forEach(cb => cb.checked = false);
+      updateBulkUI();
+    }
+
     function openExportModal() {
-      // In production, this would open the modal from orders-export-modal.html
-      // or display it via a modal component
       console.log('Opening CSV export modal...');
       alert('CSV Export Modal\n\nReference design: design/pages/orders-export-modal.html\n\nThis would download orders-YYYY-MM-DD.csv');
     }

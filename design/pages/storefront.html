@@ -156,8 +156,9 @@
       cursor: pointer;
     }
     .product-card:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+      border-color: #3B4C63;
     }
     .product-image {
       aspect-ratio: 1;
@@ -167,9 +168,27 @@
       justify-content: center;
       color: #94A3B8;
       font-size: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(59, 76, 99, 0.04);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .product-card:hover .product-image::after {
+      opacity: 1;
     }
     .product-info {
       padding: 16px;
+      display: flex;
+      flex-direction: column;
     }
     .product-title {
       font-size: 14px;
@@ -177,27 +196,31 @@
       color: #1F2937;
       margin-bottom: 8px;
       line-height: 1.4;
+      flex-grow: 1;
     }
     .product-price {
       font-size: 16px;
       font-weight: 700;
       color: #3B4C63;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .product-rating {
       font-size: 13px;
       color: #64748B;
       margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
     .product-stars {
       color: #F59E0B;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
     .product-badge {
       display: inline-block;
       background: #D1FAE5;
       color: #065F46;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 4px;
       font-size: 11px;
       font-weight: 600;
@@ -208,7 +231,31 @@
       color: #991B1B;
     }
     .product-card.disabled {
-      opacity: 0.7;
+      opacity: 0.6;
+    }
+    .product-card.disabled .add-btn {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .add-btn {
+      display: none;
+      width: 100%;
+      padding: 8px 12px;
+      background: #10B981;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+    .product-card:hover .add-btn {
+      display: block;
+    }
+    .add-btn:hover {
+      background: #059669;
     }
 
     /* Footer */
@@ -275,6 +322,7 @@
               <span>(24 reviews)</span>
             </div>
             <div class="product-badge">In Stock</div>
+            <button class="add-btn">+ Add to Cart</button>
           </div>
         </div>
         <div class="product-card">
@@ -287,6 +335,7 @@
               <span>(12 reviews)</span>
             </div>
             <div class="product-badge">In Stock</div>
+            <button class="add-btn">+ Add to Cart</button>
           </div>
         </div>
         <div class="product-card">
@@ -299,6 +348,7 @@
               <span>(8 reviews)</span>
             </div>
             <div class="product-badge">In Stock</div>
+            <button class="add-btn">+ Add to Cart</button>
           </div>
         </div>
         <div class="product-card">
@@ -311,6 +361,7 @@
               <span>(15 reviews)</span>
             </div>
             <div class="product-badge">In Stock</div>
+            <button class="add-btn">+ Add to Cart</button>
           </div>
         </div>
         <div class="product-card disabled">
@@ -323,6 +374,7 @@
               <span>(22 reviews)</span>
             </div>
             <div class="product-badge out-of-stock">Out of Stock</div>
+            <button class="add-btn" disabled>Out of Stock</button>
           </div>
         </div>
       </div>

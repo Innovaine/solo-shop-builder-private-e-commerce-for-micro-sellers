@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Login Link — Solo Shop Builder</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; margin: 0; padding: 0; }
+    .email-container { max-width: 600px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+    
+    .header { background: linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%); color: white; padding: 40px 24px; text-align: center; }
+    .header h1 { margin: 0; font-size: 24px; font-weight: 700; }
+    .header p { margin: 8px 0 0 0; font-size: 14px; opacity: 0.9; }
+    
+    .content { padding: 40px 24px; }
+    
+    .intro { margin-bottom: 32px; }
+    .intro p { margin: 0 0 16px 0; color: #64748B; font-size: 15px; line-height: 1.6; }
+    
+    .cta-section { text-align: center; margin: 40px 0; }
+    .cta-button { display: inline-block; background: #10B981; color: white; padding: 16px 48px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.2s ease; }
+    .cta-button:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+    
+    .link-section { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 20px; margin: 32px 0; }
+    .link-section p { margin: 0 0 12px 0; color: #64748B; font-size: 13px; }
+    .link-code { background: white; border: 1px solid #E2E8F0; border-radius: 4px; padding: 12px 16px; font-family: 'Courier New', monospace; font-size: 13px; color: #3B4C63; word-break: break-all; overflow-wrap: break-word; }
+    
+    .details { background: #F0FDF4; border: 1px solid #BBEF63; border-radius: 6px; padding: 16px; margin: 24px 0; }
+    .details p { margin: 0; font-size: 13px; color: #15803D; }
+    .details strong { color: #065F46; }
+    
+    .security-notice { background: #EFF6FF; border: 1px solid #BAE6FD; border-radius: 6px; padding: 16px; margin: 24px 0; }
+    .security-notice p { margin: 0; font-size: 13px; color: #0C4A6E; line-height: 1.5; }
+    .security-notice strong { color: #064E3B; }
+    
+    .steps { margin: 32px 0; }
+    .step { display: flex; gap: 16px; margin-bottom: 20px; }
+    .step-number { flex-shrink: 0; width: 32px; height: 32px; background: #3B4C63; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; }
+    .step-content { flex-grow: 1; }
+    .step-title { font-weight: 600; color: #1F2937; font-size: 14px; margin-bottom: 4px; }
+    .step-desc { color: #64748B; font-size: 13px; }
+    
+    .footer { background: #F9FAFB; border-top: 1px solid #E2E8F0; padding: 24px; text-align: center; }
+    .footer p { margin: 0 0 8px 0; color: #64748B; font-size: 12px; }
+    .footer a { color: #3B4C63; text-decoration: none; font-weight: 600; }
+    
+    .footer-links { margin-top: 16px; padding-top: 16px; border-top: 1px solid #E2E8F0; }
+    .footer-links a { margin: 0 12px; font-size: 12px; }
+    
+    @media (max-width: 600px) {
+      .header { padding: 24px 16px; }
+      .content { padding: 24px 16px; }
+      .cta-button { padding: 14px 32px; font-size: 15px; }
+      .step { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="header">
+      <h1>🔐 Your Login Link</h1>
+      <p>Sign in to your Solo Shop in seconds — no password needed</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Intro -->
+      <div class="intro">
+        <p>Hi there! You requested a login link for your Solo Shop account. Click the button below to sign in and start managing your shop.</p>
+        <p>This link expires in 24 hours for your security.</p>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="cta-section">
+        <a href="#" class="cta-button">Sign In Now</a>
+      </div>
+
+      <!-- Fallback Link -->
+      <div class="link-section">
+        <p><strong>Link not working?</strong> Copy and paste this URL into your browser:</p>
+        <div class="link-code">https://www.soloshopbox.com/auth/magic-link/abc123def456ghi789xyz0</div>
+      </div>
+
+      <!-- Key Details -->
+      <div class="details">
+        <p>
+          <strong>✓ Security note:</strong> This is a single-use link that expires in 24 hours. If you didn't request this email, simply ignore it — no one can access your account without this link.
+        </p>
+      </div>
+
+      <!-- How It Works -->
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-title">Click the button above</div>
+            <div class="step-desc">Opens your Solo Shop dashboard securely</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title">Start managing orders</div>
+            <div class="step-desc">View orders, update status, track shipments</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title">No password to remember</div>
+            <div class="step-desc">We'll send you a fresh login link each time you sign in</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="security-notice">
+        <p>
+          <strong>🛡️ Magic links are secure:</strong> Only you have access to this email, so only you can click this link and sign in. It's more secure than passwords because there's nothing for hackers to steal.
+        </p>
+      </div>
+
+      <!-- Need Help -->
+      <div style="background: #FAF9F7; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; margin: 24px 0;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #1F2937; font-size: 14px;">Questions?</p>
+        <p style="margin: 0; color: #64748B; font-size: 13px;">Check out our <a href="#" style="color: #10B981; text-decoration: none; font-weight: 600;">help center</a> or <a href="#" style="color: #10B981; text-decoration: none; font-weight: 600;">contact support</a>.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>
+        <strong>Solo Shop Builder</strong><br>
+        Your single-tenant shop platform for micro-sellers
+      </p>
+      <div class="footer-links">
+        <a href="#">Visit Our Site</a> | <a href="#">Help & Support</a> | <a href="#">Privacy Policy</a>
+      </div>
+      <p style="margin-top: 16px; color: #94A3B8;">
+        © 2026 Solo Shop Builder. All rights reserved.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
