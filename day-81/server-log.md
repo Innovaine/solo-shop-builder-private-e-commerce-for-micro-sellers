@@ -776,3 +776,25 @@ STDOUT:
 38
 ```
 Full output: [`server-runs/2026-05-19T15-17-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T15-17-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-19T15:17:44.827Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `41fc1a3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2979ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "NextResponse.redirect" app/ 2>/dev/null | head -10
+```
+STDOUT:
+```
+app/api/checkout/myfatoorah/callback/route.ts:18:      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_failed`)
+app/api/checkout/myfatoorah/callback/route.ts:26:      return NextResponse.redirect(`${baseUrl}/checkout?error=configuration_error`)
+app/api/checkout/myfatoorah/callback/route.ts:50:      return NextResponse.redirect(`${baseUrl}/checkout?error=verification_failed`)
+app/api/checkout/myfatoorah/callback/route.ts:60:      return NextResponse.redirect(`${baseUrl}/checkout?error=invalid_response`)
+app/api/checkout/myfatoorah/callback/route.ts:65:      return NextResponse.redirect(`${baseUrl}/checkout?error=invalid_response`)
+app/api/checkout/myfatoorah/callback/route.ts:77:      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_not_completed`)
+app/api/checkout/myfatoorah/callback/route.ts:103:        return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+app/api/checkout/myfatoorah/callback/route.ts:107:      return NextResponse.redirect(`${baseUrl}/checkout?error=order_not_found`)
+app/api/checkout/myfatoorah/callback/route.ts:171:    return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+app/api/checkout/myfatoorah/callback/route.ts:184:    return NextResponse.redirect(`${baseUrl}/checkout?error=callback_error`)
+```
+Full output: [`server-runs/2026-05-19T15-17-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T15-17-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
