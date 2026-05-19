@@ -708,3 +708,32 @@ export async function PATCH(req: NextRequest) {
 export async function PATCH(
 ```
 Full output: [`server-runs/2026-05-19T15-13-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-13-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T15:13:34.816Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bec2b78` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 4631ms) _(showing tail — full 11,047B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -80
+```
+STDOUT:
+```
+… type declarations.
+app/api/orders/[id]/refund/route.ts(6,20): error TS2307: Cannot find module 'stripe' or its corresponding type declarations.
+app/api/orders/[id]/refund/route.ts(10,27): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+app/api/orders/[id]/route.ts(4,43): error TS2307: Cannot find module 'next/server' or its corresponding type declarations.
+app/api/orders/[id]/route.ts(56,59): error TS7006: Parameter 'tx' implicitly has an 'any' type.
+app/api/orders/export/route.ts(5,43): error TS2307: Cannot find module 'next/server' or its corresponding type declarations.
+app/api/orders/export/route.ts(59,14): error TS7006: Parameter 'item' implicitly has an 'any' type.
+app/api/orders/route.ts(6,43): error TS2307: Cannot find module 'next/server' or its corresponding type declarations.
+app/api/orders/route.ts(46,32): error TS7006: Parameter 's' implicitly has an 'any' type.
+app/api/products/[id]/route.ts(6,43): error TS2307: Cannot find module 'next/server' or its corresponding type declarations.
+app/api/products/[id]/route.ts(7,19): error TS2307: Cannot find module 'zod' or its corresponding type declarations.
+app/api/products/[id]/route.ts(96,18): error TS18046: 'error' is of type 'unknown'.
+app/api/products/[id]/status/route.ts(4,43): error TS2307: Cannot find module 'next/server' or its corresponding type declarations.
+app/api/products/[id]/variants/[variantId]/route.ts(1,43): error TS2307: Cannot find module 'next/server' or its corresponding type declarations.
+app/api/products/[id]/variants/[variantId]/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
+app/api/products/[id]/variants/route.ts(1,43): error TS2307: Cannot find module 'next/server' or its corresponding type declarations.
+app/api/products/[id]/variants/route.ts(2,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
+```
+Full output: [`server-runs/2026-05-19T15-13-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-13-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
