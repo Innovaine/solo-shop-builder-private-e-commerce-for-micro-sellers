@@ -723,3 +723,39 @@ app/checkout/success/page.tsx:150:                    ${((item.price * item.quan
 app/checkout/success/page.tsx:161:                  ${(orderDetails.total / 100).toFixed(2)}
 ```
 Full output: [`server-runs/2026-05-19T12-46-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-46-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T12:47:22.867Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1c197bc` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2301ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "new PrismaClient" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null
+```
+STDOUT:
+```
+app/api/products/[id]/variants/route.ts:const prisma = new PrismaClient();
+app/api/products/[id]/variants/[variantId]/route.ts:const prisma = new PrismaClient();
+src/lib/db.ts:  new PrismaClient({
+```
+Full output: [`server-runs/2026-05-19T12-47-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-47-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T12:47:55.311Z — Vitali ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2053ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "interface Order\|interface OrderItem\|interface Product\|type Order\|type OrderItem\|type Product" app/ src/ --include="*.ts" --include="*.tsx" -n 2>/dev/null | head -40
+```
+STDOUT:
+```
+app/dashboard/products/page.tsx:13:interface Product {
+app/dashboard/orders/page.tsx:11:type Order = Omit<PrismaOrder, 'createdAt' | 'updatedAt'> & {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/dashboard/analytics/page.tsx:8:interface ProductAnalytics {
+app/track/[orderId]/page.tsx:10:interface OrderItem {
+app/track/[orderId]/page.tsx:17:interface Order {
+app/components/AnalyticsCards.tsx:9:interface ProductAnalytics {
+app/api/analytics/route.ts:9:interface ProductAnalytics {
+app/checkout/success/page.tsx:13:interface OrderDetails {
+src/lib/product.ts:14:export type ProductCategory = typeof PRODUCT_CATEGORIES[number]
+src/lib/product.ts:54:export type ProductInput = z.infer<typeof productSchema>
+```
+Full output: [`server-runs/2026-05-19T12-47-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-47-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
