@@ -82,3 +82,38 @@ app/shop/[slug]/product/[productId]/page.tsx
 app/track/[orderId]/page.tsx
 ```
 Full output: [`server-runs/2026-05-19T22-13-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-13-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T22:14:00.324Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `659d063` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2635ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "href\s*=" app --include="*.tsx" | grep -E 'href\s*=\s*["\`]/' | head -40
+```
+STDOUT:
+```
+app/dashboard/products/page.tsx:170:                  href="/api/products/export"
+app/dashboard/page.tsx:109:            <Link href="/dashboard/products">
+app/dashboard/page.tsx:119:          <Link href="/dashboard/products" className="block">
+app/dashboard/page.tsx:131:          <Link href="/dashboard/orders" className="block">
+app/dashboard/page.tsx:143:          <Link href="/dashboard/analytics" className="block">
+app/dashboard/page.tsx:155:          <Link href="/dashboard/branding" className="block">
+app/dashboard/page.tsx:167:          <Link href="/dashboard/profile" className="block">
+app/dashboard/page.tsx:179:          <Link href="/dashboard/billing" className="block">
+app/dashboard/page.tsx:191:          <Link href="/dashboard/email-template" className="block">
+app/dashboard/page.tsx:203:          <Link href="/dashboard/settings" className="block">
+app/dashboard/page.tsx:215:          <Link href="/dashboard/products/import" className="block">
+app/components/CartButton.tsx:177:                <Link href="/checkout">
+app/page.tsx:18:          <Link href="/auth/login">
+app/page.tsx:53:          <Link href="/auth/login" className="text-white font-semibold hover:underline">
+app/not-found.tsx:18:          <Link href="/">
+app/not-found.tsx:21:          <Link href="/dashboard">
+app/auth/forgot-password/page.tsx:88:                href="/auth/login"
+app/auth/forgot-password/page.tsx:104:                href="/auth/login"
+app/auth/reset-password/page.tsx:54:          <Link href="/auth/forgot-password" className="text-sm text-slate-blue hover:underline">
+app/auth/reset-password/page.tsx:222:                href="/auth/login"
+app/auth/reset-password/page.tsx:237:              href="/auth/login"
+app/auth/login/page.tsx:148:                  href="/auth/forgot-password"
+app/auth/login/page.tsx:168:          New to Solo Shop? <a href="/" className="text-slate-blue font-semibold hover:underline">Learn more</a>
+```
+Full output: [`server-runs/2026-05-19T22-14-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-14-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
