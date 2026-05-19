@@ -497,3 +497,42 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-19T13:43:20.573Z","responseTime":"189ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"187ms"}}}
 ```
 Full output: [`server-runs/2026-05-19T13-43-20-www.soloshopbox.com-docker-ps---format-.Names-t.Status-curl--1.log`](server-runs/2026-05-19T13-43-20-www.soloshopbox.com-docker-ps---format-.Names-t.Status-curl--1.log)
+
+## 2026-05-19T13:43:58.961Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `29e3a36` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2469ms)
+```
+echo "Day 79 Fix Verification Tests"
+echo ""
+echo "Test 1: Orders API returns 401 (not 500) for unauthorized requests"
+curl -I https://www.soloshopbox.com/api/orders 2>&1 | grep -E "HTTP|401|500" | head -3
+echo ""
+echo "Test 2: Orders detail API returns 401 for unauthorized GET"
+curl -I https://www.soloshopbox.com/api/orders/test-id 2>&1 | grep -E "HTTP|401|500" | head -3
+echo ""
+echo "Test 3: Dashboard pages load correctly"
+curl -sI https://www.soloshopbox.com/dashboard/profile 2>&1 | grep -E "HTTP" | head -1
+curl -sI https://www.soloshopbox.com/dashboard/orders 2>&1 | grep -E "HTTP" | head -1
+echo ""
+echo "Test 4: Order tracking still public"
+curl -sI https://www.soloshopbox.com/track/test-order 2>&1 | grep -E "HTTP" | head -1
+```
+STDOUT:
+```
+Day 79 Fix Verification Tests
+
+Test 1: Orders API returns 401 (not 500) for unauthorized requests
+HTTP/2 500 
+
+Test 2: Orders detail API returns 401 for unauthorized GET
+HTTP/2 405 
+
+Test 3: Dashboard pages load correctly
+HTTP/2 200 
+HTTP/2 200 
+
+Test 4: Order tracking still public
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-19T13-43-58-www.soloshopbox.com-echo-Day-79-Fix-Verification-Tests-1.log`](server-runs/2026-05-19T13-43-58-www.soloshopbox.com-echo-Day-79-Fix-Verification-Tests-1.log)
