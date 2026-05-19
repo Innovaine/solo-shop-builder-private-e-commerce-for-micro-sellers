@@ -599,3 +599,34 @@ Test 3: payment_declined error
 Test 4: Checkout page has error display card
 ```
 Full output: [`server-runs/2026-05-19T22-30-24-www.soloshopbox.com-echo-Test-1-payment_cancelled-error-3.log`](server-runs/2026-05-19T22-30-24-www.soloshopbox.com-echo-Test-1-payment_cancelled-error-3.log)
+
+## 2026-05-19T22:31:08.817Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `775b10e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2700ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day84-smoke.spec.ts --reporter=list --output=$HOME/.playwright-out > /tmp/day84-test.log 2>&1 &
+echo $! > /tmp/day84-test.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day84-test.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=1832819
+```
+Full output: [`server-runs/2026-05-19T22-30-58-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-30-58-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 10453ms)
+```
+sleep 10
+kill -0 $(cat /tmp/day84-test.pid) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+tail -100 /tmp/day84-test.log
+```
+STDOUT:
+```
+DONE
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+Full output: [`server-runs/2026-05-19T22-31-08-www.soloshopbox.com-sleep-10-2.log`](server-runs/2026-05-19T22-31-08-www.soloshopbox.com-sleep-10-2.log)
