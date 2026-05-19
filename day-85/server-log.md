@@ -755,3 +755,18 @@ STDOUT:
 app/dashboard/products/import/page.tsx:291:                      {(file.size / 1024).toFixed(1)} KB
 ```
 Full output: [`server-runs/2026-05-19T23-24-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-24-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:25:00.460Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c9c9154` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2435ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "from '@prisma/client'" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -10
+```
+STDOUT:
+```
+app/dashboard/products/page.tsx:12:import type { Product } from '@prisma/client'
+app/dashboard/orders/page.tsx:7:import type { Order as PrismaOrder, OrderItem } from '@prisma/client'
+src/lib/db.ts:5:import { PrismaClient } from '@prisma/client'
+```
+Full output: [`server-runs/2026-05-19T23-25-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-25-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
