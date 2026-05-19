@@ -693,3 +693,33 @@ app/api/orders/[id]/refund/route.ts:20:    const sessionCookie = cookies().get('
 src/lib/auth.ts:25:  return getIronSession<SessionData>(cookies(), sessionOptions)
 ```
 Full output: [`server-runs/2026-05-19T12-46-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-46-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T12:46:56.284Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8d62114` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3586ms) _(showing tail — full 3,524B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "\.toFixed(" app/ src/ --include="*.ts" --include="*.tsx" -n 2>/dev/null | grep -E "(price|total|amount)" | head -30
+```
+STDOUT:
+```
+…oFixed(2)} each
+app/components/CartButton.tsx:155:                        ${((item.price * item.quantity) / 100).toFixed(2)}
+app/components/CartButton.tsx:167:                    ${(total / 100).toFixed(2)}
+app/components/AnalyticsCards.tsx:72:            ${(analytics.totalRevenue / 100).toFixed(2)}
+app/components/AnalyticsCards.tsx:103:              ? ((analytics.totalRevenue / 100) / analytics.orderCount).toFixed(2) 
+app/components/AnalyticsCards.tsx:136:                    ${(product.totalRevenue / 100).toFixed(2)}
+app/api/products/export/route.ts:64:        (product.price / 100).toFixed(2),
+app/api/checkout/myfatoorah/callback/route.ts:145:      const orderTotal = ((updatedOrder.total || 0) / 100).toFixed(2)
+app/api/orders/[id]/refund/route.ts:97:        text: `Hi ${order.customerName || 'there'},\n\nYour refund of $${(order.total / 100).toFixed(2)} has been processed.\n\nRefund ID: ${refund.id}\nOrder ID: ${order.id}\n\nPlease allow 5-10 business days for the refund to appear in your account.\n\nBest regards,\n${shop.name}`,
+app/api/orders/[id]/refund/route.ts:102:            <p>Your refund of <strong>$${(order.total / 100).toFixed(2)}</strong> has been processed.</p>
+app/api/orders/export/route.ts:59:        .map(item => `${item.quantity}x ${item.productTitle} ($${(item.price / 100).toFixed(2)})`)
+app/api/orders/export/route.ts:68:        (order.total / 100).toFixed(2),
+app/api/webhooks/stripe/route.ts:210:Total: ${(total / 100).toFixed(2)}
+app/api/webhooks/stripe/route.ts:213:${lineItems.map((item) => `- ${item.description} x${item.quantity} - ${((item.price?.unit_amount || 0) / 100).toFixed(2)}`).join('\n')}
+app/checkout/page.tsx:116:                      ${((item.price * item.quantity) / 100).toFixed(2)}
+app/checkout/page.tsx:133:                <span className="text-emerald">${(total / 100).toFixed(2)}</span>
+app/checkout/success/page.tsx:150:                    ${((item.price * item.quantity) / 100).toFixed(2)}
+app/checkout/success/page.tsx:161:                  ${(orderDetails.total / 100).toFixed(2)}
+```
+Full output: [`server-runs/2026-05-19T12-46-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-46-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
