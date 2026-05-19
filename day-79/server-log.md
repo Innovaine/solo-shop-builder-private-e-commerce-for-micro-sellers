@@ -459,3 +459,25 @@ vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
 x-powered-by: Next.js
 ```
 Full output: [`server-runs/2026-05-19T13-40-17-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-health-1.log`](server-runs/2026-05-19T13-40-17-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-health-1.log)
+
+## 2026-05-19T13:40:45.410Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4a30265` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2599ms)
+```
+curl -I https://www.soloshopbox.com/api/health 2>&1 | head -10
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+content-type: application/json
+date: Tue, 19 May 2026 13:40:45 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+```
+Full output: [`server-runs/2026-05-19T13-40-45-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-api-he-1.log`](server-runs/2026-05-19T13-40-45-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-api-he-1.log)
