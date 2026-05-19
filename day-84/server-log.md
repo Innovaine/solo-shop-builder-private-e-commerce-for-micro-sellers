@@ -708,3 +708,52 @@ kill -0 $(cat /tmp/day84-test.pid) 2>/dev/null && echo "STILL RUNNING" || echo "
 tail -150 /tmp/day84-test.log | head -100
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-19T22:33:36.603Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `654c7d8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2605ms) _(showing tail — full 8,282B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day84-test.pid) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+wc -l /tmp/day84-test.log
+tail -200 /tmp/day84-test.log
+```
+STDOUT:
+```
+…──────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day84-smoke-Day-84-Fixes-C-6c033-rror-for-unknown-error-code-chromium/error-context.md
+
+  5) [chromium] › tests/web/day84-smoke.spec.ts:53:7 › Day 84 Fixes › Checkout page cleans up error param from URL after display 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.waitFor: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('.bg-rose-50') to be visible[22m
+
+
+      55 |     
+      56 |     // Wait for error to be displayed
+    > 57 |     await page.locator('.bg-rose-50').waitFor()
+         |                                       ^
+      58 |     
+      59 |     // Wait a moment for URL cleanup
+      60 |     await page.waitForTimeout(500)
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day84-smoke.spec.ts:57:39
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../.playwright-out/day84-smoke-Day-84-Fixes-C-f2c86-aram-from-URL-after-display-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day84-smoke-Day-84-Fixes-C-f2c86-aram-from-URL-after-display-chromium/error-context.md
+
+  5 failed
+    [chromium] › tests/web/day84-smoke.spec.ts:9:7 › Day 84 Fixes › Checkout page displays user-friendly error for payment_cancelled 
+    [chromium] › tests/web/day84-smoke.spec.ts:22:7 › Day 84 Fixes › Checkout page displays user-friendly error for payment_expired 
+    [chromium] › tests/web/day84-smoke.spec.ts:32:7 › Day 84 Fixes › Checkout page displays user-friendly error for payment_declined 
+    [chromium] › tests/web/day84-smoke.spec.ts:43:7 › Day 84 Fixes › Checkout page displays generic error for unknown error code 
+    [chromium] › tests/web/day84-smoke.spec.ts:53:7 › Day 84 Fixes › Checkout page cleans up error param from URL after display 
+  2 passed (37.8s)
+```
+Full output: [`server-runs/2026-05-19T22-33-36-www.soloshopbox.com-kill--0-cat-tmp-day84-test.pid-2-dev-nul-1.log`](server-runs/2026-05-19T22-33-36-www.soloshopbox.com-kill--0-cat-tmp-day84-test.pid-2-dev-nul-1.log)
