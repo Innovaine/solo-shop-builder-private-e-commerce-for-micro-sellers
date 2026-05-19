@@ -171,3 +171,53 @@ _Pre-SSH: warehouse pushed to GitHub as commit `205eb73` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat .env.example | grep -E "^[A-Z_]+" | sort
 ```
+
+## 2026-05-19T23:08:34.891Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `301f804` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3493ms) _(showing tail — full 2,488B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…p-check.md                         |  15 +
+ day-84/standards-audit.md                          | 203 +++++
+ day-84/standards_qa.md                             | 150 ++++
+ day-84/task-verification.md                        | 231 +++++
+ day-84/task_verifier.md                            | 360 ++++++++
+ day-84/test.md                                     | 202 +++++
+ day-85/_plan.md                                    |  42 +
+ day-85/connectivity-audit.md                       | 172 ++++
+ day-85/connectivity_qa.md                          | 172 ++++
+ day-85/design.md                                   |  43 +
+ day-85/server-log.md                               | 173 ++++
+ .../pages/checkout-error-display-empty-cart.html   | 266 ++++++
+ design/pages/checkout-recovery-flow.html           | 372 ++++++++
+ design/pages/checkout-success.html                 | 458 ++++++++++
+ design/system/error-handling-spec.md               | 291 ++++++
+ test-results/day-84/report.md                      | 125 +++
+ tests/web/day84-smoke.spec.ts                      |  85 ++
+ 23 files changed, 4640 insertions(+), 1 deletion(-)
+ create mode 100644 day-84/_index.md
+ create mode 100644 day-84/engineering.md
+ create mode 100644 day-84/review.md
+ create mode 100644 day-84/stage-ship-check.md
+ create mode 100644 day-84/standards-audit.md
+ create mode 100644 day-84/standards_qa.md
+ create mode 100644 day-84/task-verification.md
+ create mode 100644 day-84/task_verifier.md
+ create mode 100644 day-84/test.md
+ create mode 100644 day-85/_plan.md
+ create mode 100644 day-85/connectivity-audit.md
+ create mode 100644 day-85/connectivity_qa.md
+ create mode 100644 day-85/design.md
+ create mode 100644 day-85/server-log.md
+ create mode 100644 design/pages/checkout-error-display-empty-cart.html
+ create mode 100644 design/pages/checkout-recovery-flow.html
+ create mode 100644 design/pages/checkout-success.html
+ create mode 100644 design/system/error-handling-spec.md
+ create mode 100644 test-results/day-84/report.md
+ create mode 100644 tests/web/day84-smoke.spec.ts
+```
+Full output: [`server-runs/2026-05-19T23-08-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-08-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
