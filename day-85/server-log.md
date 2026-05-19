@@ -523,3 +523,19 @@ const orders = await prisma.order.findMany({
   where: { shopId },
 ```
 Full output: [`server-runs/2026-05-19T23-18-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-18-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:19:10.780Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fe3f13e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2885ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day85-profile-fix.spec.ts --output=$HOME/.playwright-out --reporter=list > /tmp/day85-test.log 2>&1 &
+echo $! > /tmp/day85-test.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day85-test.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=1844306
+```
+Full output: [`server-runs/2026-05-19T23-19-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-19-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
