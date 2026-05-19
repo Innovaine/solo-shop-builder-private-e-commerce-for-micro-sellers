@@ -438,3 +438,24 @@ STDOUT:
 …g-emerald disabled:bg-whisper disabled:text-slate px-4 py-2 text-base\",\"children\":\"Go Home\"}]}],[\"$\",\"$L4\",null,{\"href\":\"/dashboard\",\"children\":[\"$\",\"button\",null,{\"disabled\":false,\"className\":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[[\"$\",\"meta\",null,{\"name\":\"robots\",\"content\":\"noindex\"}],\"$L8\"],\"globalErrorComponent\":\"$9\",\"missingSlots\":\"$Wa\"}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
 ```
 Full output: [`server-runs/2026-05-19T13-39-49-www.soloshopbox.com-sleep-5-1.log`](server-runs/2026-05-19T13-39-49-www.soloshopbox.com-sleep-5-1.log)
+
+## 2026-05-19T13:40:17.366Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1795cdf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2430ms)
+```
+curl -I https://www.soloshopbox.com/health 2>&1 | head -10
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 404 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-type: text/html; charset=utf-8
+date: Tue, 19 May 2026 13:40:17 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-powered-by: Next.js
+```
+Full output: [`server-runs/2026-05-19T13-40-17-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-health-1.log`](server-runs/2026-05-19T13-40-17-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-health-1.log)
