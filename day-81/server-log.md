@@ -30,3 +30,11 @@ app/api/products/[id]/variants/route.ts:import { PrismaClient } from '@prisma/cl
 app/api/products/[id]/variants/[variantId]/route.ts:import { PrismaClient } from '@prisma/client';
 ```
 Full output: [`server-runs/2026-05-19T14-53-35-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-53-35-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log)
+
+## 2026-05-19T14:54:05.909Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9a78362` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2009ms)
+```
+cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "import.*prisma.*from" app/api/ --include="*.ts" | grep -v "@/lib/db" | grep -v "prisma/client" | head -20
+```

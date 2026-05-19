@@ -150,7 +150,7 @@ export default function OrdersPage() {
       shipped: 'bg-green-100 text-green-800',
       delivered: 'bg-emerald-100 text-emerald-800',
     }
-    return colors[status] || 'bg-gray-100 text-gray-800'
+    return colors[status] || 'bg-whisper text-charcoal'
   }
 
   const statusLabel: Record<Order['status'], string> = {
