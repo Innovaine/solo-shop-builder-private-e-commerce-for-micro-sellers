@@ -226,3 +226,39 @@ sleep 2
 docker compose ps
 ```
 ERROR: command exited 1
+
+## 2026-05-19T12:33:23.247Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3d2de08` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2707ms)
+```
+cat /tmp/up.log 2>/dev/null || echo "No up log"
+echo "--- Recent docker logs for app service ---"
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app 2>&1 || echo "App service not running"
+```
+STDOUT:
+```
+time="2026-05-19T12:32:52Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started 
+--- Recent docker logs for app service ---
+time="2026-05-19T12:33:23Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 9 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 64ms
+```
+Full output: [`server-runs/2026-05-19T12-33-23-www.soloshopbox.com-cat-tmp-up.log-2-dev-null-echo-No-up-log-1.log`](server-runs/2026-05-19T12-33-23-www.soloshopbox.com-cat-tmp-up.log-2-dev-null-echo-No-up-log-1.log)
