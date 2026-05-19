@@ -1,27 +1,20 @@
-# Day 58 — Requirements: Solo Shop Builder — Private E-commerce for Micro-Sellers
+# Day 78 — Requirements: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
-- **By:** Kenji (Product Manager)
-- **Cycle:** 116
-- **Day:** 58 (status: scaling)
+**By:** Kenji (Product Manager)
+**Day:** 78 (status: scaling)
+**Cycle:** 142
 
 ---
 
 ## Goal today
-Consolidate Stage 1 features and verify MVP + early Stage 1 work is production-grade. Day 57 shipped 4 features (order filtering, metrics, logo upload, smart sorting); Day 58 focuses on **verification**, **hardening**, and **next-tier Stage 1 features**. Priority: ensure the live app at www.soloshopbox.com is stable, all core features work end-to-end, and identify blockers before scaling.
+
+**Stabilize MVP, fix open standards issues, and unblock Stage 1 feature work.** Day 77 shipped payment callback fixes and Prisma singleton pattern. Day 78 focus: (1) resolve open standards debt (#224 Prisma import), (2) regression testing across all MVP features (signup, shop creation, product CRUD, checkout, orders, analytics), (3) identify + document blockers for next Stage 1 features. Target: clean build, zero blocking issues, app ready for beta customer outreach.
 
 ---
 
 ## Features in scope
 
-**FR-21: Password authentication (seller login option)** — Seller can sign up with email + password instead of magic link. Login with email + password. Existing magic-link flow remains as option. Backward compatible.
-
-**FR-22: Password reset flow (forgot password)** — Seller forgets password, clicks "Forgot password" on login, enters email, receives reset link via email, clicks link, enters new password, logs in. One-time token validation (10 min expiry).
-
-**FR-24 (revisit): Inventory atomic validation** — When customer checks out, system atomically decrements inventory. If out of stock during checkout, payment is rejected with friendly error. Prevents overselling even under concurrent checkout attempts.
-
-**FR-27: Seller analytics dashboard (complete)** — Seller sees: total revenue (all-time), order count (all-time), top 5 products by revenue. Cards + simple bar chart. Calculated real-time from database.
-
-**FR-29: Product CSV export** — Seller exports all their products as CSV (title, price, description, category, image_url). Used for backup or migration to other platforms.
+**No new features in scope today.** Focus is **stabilization + regression + standards compliance**.
 
 ---
 
@@ -29,23 +22,22 @@ Consolidate Stage 1 features and verify MVP + early Stage 1 work is production-g
 
 | ID | Feature | Description | Acceptance criteria |
 |---|---|---|---|
-| FR-21 | Password signup/login | Seller signup page has two options: (1) "Email magic link" (existing), (2) "Email + password" (new). Password field ≥12 chars on signup, hashed with bcrypt (12 rounds) on save. Login page has email + password fields. POST /api/auth/signup (password variant) and POST /api/auth/login handle password auth. Backward compat: magic link still works for existing sellers. | 1. Signup page shows both options. 2. Password field validated (min 12 chars, feedback on weak passwords). 3. Password hashed in database (never plaintext). 4. Login with email + password works. 5. Magic link still works for existing users. 6. Session cookie same format regardless of auth method. 7. No plaintext password in logs or errors. |
-| FR-22 | Password reset | Login page shows "Forgot password?" link → forgot-password form (email only) → email sent with 10-min reset link → click link opens reset form (new password) → POST /api/auth/reset-password with token + new password → validate token (timestamp, not expired) → update password, clear old token → redirect to login with success message. | 1. Forgot password form accepts email. 2. Email sent within 5 min to that address. 3. Reset link valid for exactly 10 minutes. 4. Reset link single-use (token deleted after first use). 5. Expired/invalid token shows clear error. 6. New password hashed on save. 7. Old sessions NOT invalidated (allow login with new password). |
-| FR-24 | Inventory atomic check | Checkout flow: (1) customer selects product variant, (2) system checks `product.stock >= quantity` before payment, (3) if insufficient, show error "Only N left in stock", cancel payment, (4) if sufficient, proceed to Stripe Checkout, (5) on webhook success, decrement stock atomically (UPDATE ... SET stock = stock - quantity WHERE id = X AND stock >= quantity). If decrement fails (concurrent order), payment is already done; seller manually refunds customer. | 1. Out-of-stock error shown before Stripe redirect. 2. Stock decrements exactly once per order (no duplicates on webhook retry). 3. Concurrent checkouts don't oversell (use SQL atomic update). 4. Seller sees current stock in product edit form. 5. Stock updates instantly in dashboard (reload shows new count). 6. Oversold detection: if stock goes negative, alert seller. |
-| FR-27 | Analytics dashboard | /dashboard/analytics page shows: (1) "Total Revenue (All-time)" card with $X,XXX.XX format, (2) "Total Orders" card, (3) "Top 5 Products by Revenue" with product name + revenue (bar chart or table). Data calculated from all paid/shipped orders. Filters on load: >= created date (all-time). Refresh every page load (no real-time updates, OK). | 1. Cards render with correct numbers. 2. Revenue sums only "Paid" orders, excludes "Refunded". 3. Top 5 list is accurate (by total revenue per product, not quantity). 4. Mobile: stacks vertically on <640px. 5. No division by zero errors (empty shop shows 0s). 6. Page load <2s (optimize queries with indexes). |
-| FR-29 | Product CSV export | Seller clicks "Export as CSV" on products page, downloads file `products-{timestamp}.csv` with columns: title, price, description, category, imageUrl. One row per product. Seller can re-import this CSV with FR-28 on another shop or platform. CSV is UTF-8 encoded. | 1. Export button on products page. 2. CSV file generated correctly (no broken fields, no Unicode errors). 3. Downloadable (no UI errors, correct MIME type). 4. All products included in export. 5. Column order matches spec (title, price, description, category, imageUrl). 6. Empty shop exports header row only (no data rows). |
+| STAB-1 | Fix Prisma import syntax [STANDARDS] | app/api/checkout/route.ts line 9 has incorrect Prisma import syntax (`new PrismaClient()` instead of singleton pattern). Replace with `import prisma from '@/lib/db'` per task #224. | 1. Import changed to singleton pattern. 2. No `new PrismaClient()` in checkout route. 3. TypeScript build passes. 4. Route still functional (test with curl or Playwright). |
+| STAB-2 | Regression test: signup → shop → products → checkout | End-to-end flow: (1) signup with email magic link, (2) create shop, (3) add 2 products, (4) add to cart, (5) checkout with Stripe, (6) order appears in seller dashboard, (7) customer receives confirmation email. Validates all MVP features still work together. | 1. Signup succeeds (email + magic link). 2. Shop created with slug. 3. Products visible on storefront. 4. Cart adds items. 5. Stripe checkout loads. 6. Order webhook processed. 7. Order visible in /dashboard/orders. 8. Email received (check test inbox). |
+| STAB-3 | Regression test: order status flow | Seller dashboard: (1) view all orders, (2) mark order as in-progress, (3) update with tracking ID, (4) mark shipped, (5) customer tracking link shows correct status. Validates order state machine + email notifications. | 1. Orders table loads. 2. Status dropdown works (pending → paid → in-progress → shipped). 3. Tracking ID field accepts URL. 4. Updates save to DB. 5. Customer tracking page reflects new status. 6. Confirmation emails sent. |
+| STAB-4 | Regression test: seller settings pages | Test all dashboard pages load and save without 401/500: (1) /dashboard/profile, (2) /dashboard/settings, (3) /dashboard/branding, (4) /dashboard/billing, (5) /dashboard/email-template. Ensures auth + API responses are correct. | 1. All pages load (no 401 Unauthorized). 2. Form fields render correctly. 3. Save button works (no validation errors). 4. Success message shows. 5. Data persists on page reload. 6. No console errors. |
+| STAB-5 | Build + deploy verification | Full build pipeline: (1) git pull, (2) docker compose build, (3) docker compose up -d, (4) health check /api/health, (5) smoke test key routes. Validates deployment is clean. | 1. No build errors (TypeScript, Next.js). 2. Docker image builds successfully. 3. Container starts within 30s. 4. Health check returns 200 OK. 5. Homepage loads. 6. Admin login works. 7. Shop storefront loads. |
 
 ---
 
 ## Stack chosen (lock in day 1)
-- **Backend:** Node.js + Express/Fastify in TypeScript (Next.js API routes)
-- **Web frontend:** Next.js 14 (App Router, TypeScript, Tailwind CSS)
-- **Database:** Postgres with Prisma ORM
-- **Payment:** Stripe Checkout + Webhooks
-- **Email:** Resend or in-process transactional emails
-- **Hosting:** Vercel (frontend) + containerized backend on VPS (www.soloshopbox.com)
-- **File storage:** Local filesystem `/public/uploads/shops/{shopId}/`
-- **Why:** 58 days in this stack. Proven. No switching.
+- **Backend:** Node.js + TypeScript (Next.js API routes)
+- **Frontend:** Next.js 14 (App Router, Tailwind CSS)
+- **Database:** Postgres 16 + Prisma ORM (singleton pattern in lib/db.ts)
+- **Payment:** Stripe Checkout + Webhooks (Stripe) + MyFatoorah (backup)
+- **Email:** Resend (transactional)
+- **Hosting:** www.soloshopbox.com (Docker on VPS)
+- **Why:** 78 days in this stack. Proven, deployed, live with paying flows.
 
 ---
 
@@ -53,109 +45,124 @@ Consolidate Stage 1 features and verify MVP + early Stage 1 work is production-g
 
 | ID | Category | Requirement |
 |---|---|---|
-| NFR-1 | Security | Password hashed with bcrypt (min 12 rounds). Reset tokens single-use + 10-min expiry. |
-| NFR-2 | Security | Inventory decrement uses atomic SQL (UPDATE ... WHERE ... AND ...). Prevents race condition oversells. |
-| NFR-3 | Performance | Inventory check on checkout <200ms (no N+1 queries). |
-| NFR-4 | Performance | Analytics queries <1s even with 10K+ orders (add DB indexes on created_at, status). |
-| NFR-5 | Performance | CSV export completes in <5s for 1000 products (stream to file, not load all in memory). |
-| NFR-6 | Email | Reset link email delivered within 5 min. |
-| NFR-7 | Mobile | Password signup/login, reset flow responsive on 320px+ width. Touch targets ≥44px. |
-| NFR-8 | Accessibility | Password fields have associated labels. "Show password" toggle has aria-label. |
-| NFR-9 | Error handling | Reset token expiry shows friendly message (not raw error). Out-of-stock shows clear UX (not confusing). |
-| NFR-10 | Testing | All 5 features have Playwright tests (password signup/login, reset flow, inventory check, analytics load, CSV export). |
+| NFR-1 | Standards | No `new PrismaClient()` anywhere in codebase — use singleton in lib/db.ts |
+| NFR-2 | Performance | Build time <5 minutes (docker compose build + push) |
+| NFR-3 | Performance | /api/health returns in <500ms |
+| NFR-4 | Performance | Homepage loads in <2s (p95) |
+| NFR-5 | Reliability | All MVP routes return correct HTTP status (200 for success, 401 for auth, 400 for validation) |
+| NFR-6 | Testing | Regression suite covers: signup → shop → products → checkout → orders → tracking |
+| NFR-7 | Testing | All 5 regressions pass before day end |
+| NFR-8 | Observability | Logs show clear request ID + timestamp on all errors |
 
 ---
 
 ## Out of scope (do NOT build today)
-- 2FA/TOTP for password auth (FR-23 — Stage 1 later)
-- Social login (Google, GitHub) — password + magic link only
-- Webhook signature verification (FR-24 in spec) — assume trusted for now, harden in Stage 1 later
-- Rate limiting on password login — implement generic rate-limit middleware separately
-- Password complexity rules (uppercase, numbers, symbols) — just require ≥12 chars for MVP
-- Password expiry / forced resets — no expiry, seller controls when to change
-- Inventory overstock alerts — out-of-stock only for now
-- Advanced analytics (charts, filters, date ranges) — simple cards + top 5 products only
-- CSV import validation (duplicate SKU detection) — import as-is, seller responsible for cleanup
-- CSV export scheduled/automated — manual download only
+- New features or Stage 1 additions
+- Performance optimization (caching, indexing)
+- Security audit or penetration testing
+- UI/UX improvements
+- Mobile responsiveness refinements
+- Webhook signature verification (already hardened)
 
 ---
 
-## Open questions (owner, please answer before Wednesday)
-1. **Password reset email domain:** Should reset link come from (a) marketing@soloshopbox.com, (b) noreply@soloshopbox.com, or (c) support@soloshopbox.com?
-2. **Analytics date filter:** For Day 58, should analytics show all-time, or last 90 days? (All-time simpler for MVP, filters can come later.)
-3. **CSV column order:** Is the proposed order (title, price, description, category, imageUrl) correct, or should it match a specific standard (Shopify, WooCommerce, Etsy)?
+## Open questions for owner
+1. **Beta customer outreach timeline:** Should we target outreach to first 5 beta sellers on Day 79–80, or wait until Stage 1 features ship?
+2. **Known issue triage:** Are there any known seller complaints or bugs NOT in the task board that should be prioritized?
+3. **Stage 1 priority:** Which Stage 1 features should be next in queue? (Suggested: password auth + reset [FR-21/22] for faster seller login, then inventory validation [FR-24], then analytics hardening [FR-27])
 
 ---
 
-## Definition of done for day 58
+## Definition of done for day 78
 
-Reviewer + tester checklist:
+**Engineer + Reviewer checklist:**
 
-**FR-21: Password authentication**
-- [ ] Signup page shows both "Magic link" and "Email + password" options
-- [ ] Password field validates ≥12 chars with feedback
-- [ ] Password hashed in database (bcrypt 12+ rounds)
-- [ ] Login with email + password works
-- [ ] Magic link still works for existing users
-- [ ] Session cookie same regardless of auth method
+**STAB-1: Fix Prisma import**
+- [ ] Task #224 addressed: app/api/checkout/route.ts imports from @/lib/db
+- [ ] No `new PrismaClient()` in checkout route
+- [ ] All imports in all /api routes use singleton pattern
+- [ ] TypeScript build passes (tsc --noEmit)
 
-**FR-22: Password reset**
-- [ ] Forgot password form on login page
-- [ ] Reset link email sent within 5 minutes
-- [ ] Reset link valid for exactly 10 minutes
-- [ ] Reset link single-use (token cleared after use)
-- [ ] Expired token shows clear error
-- [ ] New password hashed on save
+**STAB-2: End-to-end regression**
+- [ ] Signup → magic link email received
+- [ ] Shop creation successful + slug unique
+- [ ] Product create + edit + delete works
+- [ ] Products visible on /shop/[slug]
+- [ ] Cart add/remove works (localStorage)
+- [ ] Stripe checkout flow completes
+- [ ] Order created from webhook
+- [ ] Order visible in /dashboard/orders
+- [ ] Customer confirmation email received
+- [ ] Tracking link shows order status
 
-**FR-24: Inventory atomic validation**
-- [ ] Out-of-stock error shown before Stripe redirect
-- [ ] Stock decrements exactly once per order (idempotent)
-- [ ] Concurrent checkouts don't oversell
-- [ ] Stock count visible in product edit form
-- [ ] Stock updates instantly after order
+**STAB-3: Order status flow**
+- [ ] Orders load in dashboard
+- [ ] Status dropdown shows all 5 states
+- [ ] Tracking ID field accepts input
+- [ ] Status updates save + persist
+- [ ] Customer tracking page reflects updates
+- [ ] Status change emails sent to customer
 
-**FR-27: Analytics dashboard**
-- [ ] Analytics page loads at /dashboard/analytics
-- [ ] Total Revenue card shows all-time sum of paid orders
-- [ ] Total Orders card shows order count
-- [ ] Top 5 Products list shows by revenue (not quantity)
-- [ ] Numbers are correct (spot check with database)
-- [ ] Mobile responsive (<640px)
-- [ ] Page loads in <2s
+**STAB-4: Settings pages regression**
+- [ ] /dashboard/profile loads (no 401)
+- [ ] /dashboard/settings loads (no 401)
+- [ ] /dashboard/branding loads (no 401)
+- [ ] /dashboard/billing loads (no 401)
+- [ ] /dashboard/email-template loads (no 401)
+- [ ] Each page save button works
+- [ ] Data persists on reload
+- [ ] No console errors
 
-**FR-29: Product CSV export**
-- [ ] Export button visible on products page
-- [ ] CSV file downloads with correct name (products-{timestamp}.csv)
-- [ ] CSV columns are: title, price, description, category, imageUrl
-- [ ] All products included
-- [ ] CSV is valid (opens in Excel/Google Sheets without errors)
-- [ ] Empty shop exports header row only
+**STAB-5: Build + deploy**
+- [ ] Full build succeeds (docker compose build)
+- [ ] No TypeScript errors
+- [ ] Container starts + stays running >5 min
+- [ ] Health check returns 200 OK
+- [ ] Homepage loads
+- [ ] Login page loads
+- [ ] Shop storefront loads
+- [ ] Dashboard loads with auth
 
 **Overall**
-- [ ] All 5 features have Playwright tests (happy path + edge cases)
-- [ ] No TypeScript build errors
-- [ ] No console errors in browser
-- [ ] App builds and deploys to www.soloshopbox.com
-- [ ] Health check passes
-- [ ] Full smoke test passes: signup (password option), login, add product, checkout, analytics page, export CSV
+- [ ] All regression tests passing (Playwright suite)
+- [ ] App deployed to www.soloshopbox.com
+- [ ] Health check: https://www.soloshopbox.com/api/health → 200
+- [ ] No critical errors in logs
+- [ ] Ready for beta customer testing
 
 ---
 
 ## Rollback plan
-If any feature cannot ship cleanly by end of day:
-- FR-21/22 (password auth) can be deferred to Day 59 — magic link still works
-- FR-24 (inventory check) is critical for correctness — if not shipping, revert to "disable checkout if out of stock" (simpler)
-- FR-27 (analytics) can be deferred to Day 59 — dashboard still works without it
-- FR-29 (CSV export) can be deferred to Day 59 — seller can use database tool for backup
-
-Priority ship order: FR-24 > FR-21/22 > FR-27 > FR-29
+If any regression fails critically:
+- Revert to last good commit (git revert)
+- Document failure + root cause in day-78/risks.md
+- File blocker task for next cycle
+- Deploy previous stable version
 
 ---
 
 ## Metrics for success
-- 5 features shipped, tested, live at www.soloshopbox.com
-- 0 build errors
-- All integration tests passing
-- Full smoke test: password signup → login → add product → inventory check → checkout → analytics → CSV export
-- MVP + Stage 1 features working smoothly under load
-- App ready for beta user testing
+- 5 regression tests passed
+- 0 TypeScript errors
+- 0 critical bugs blocking checkout or order flow
+- Build + deploy successful
+- Health check + smoke test passing
+- App stable for beta testing
+- Team confidence: ready to add Stage 1 features next sprint
+
+---
+
+## Dependencies & handoffs
+- **Engineer:** Fix #224, run regression suite, deploy
+- **Tester:** Playwright regression suite (already written), report failures
+- **Reviewer:** Code review on #224 fix, verify no new debt introduced
+- **Designer:** No changes needed (MVP UI stable)
+
+---
+
+## Notes for team
+- Day 78 is a **stabilization day**, not a feature day. Think of it as "sprint consolidation."
+- If regressions pass smoothly, team can begin Day 79 with fresh energy on Stage 1 features.
+- Runway is critical (0.0 months) — we need this app rock-solid before beta customer inbound to prove market fit.
+- Every regression failure is a blocker for Stage 1 planning. Flag early.
+- Let's ship a clean, solid checkpoint today.
