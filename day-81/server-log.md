@@ -349,3 +349,19 @@ STDOUT:
 404FAIL
 ```
 Full output: [`server-runs/2026-05-19T15-00-56-www.soloshopbox.com-curl--f-https-www.soloshopbox.com-api-he-1.log`](server-runs/2026-05-19T15-00-56-www.soloshopbox.com-curl--f-https-www.soloshopbox.com-api-he-1.log)
+
+## 2026-05-19T15:04:11.127Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `96c434d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 4043ms)
+```
+docker ps -a | grep solo-shop
+curl -f https://www.soloshopbox.com/api/health -o /dev/null -w "%{http_code}" 2>/dev/null || echo "FAIL"
+```
+STDOUT:
+```
+9bdccd2b9bd4   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   6 minutes ago   Created                                            solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+c98ed978a89b   postgres:16-alpine                                           "docker-entrypoint.s…"   19 hours ago    Up 19 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+404FAIL
+```
+Full output: [`server-runs/2026-05-19T15-04-11-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-19T15-04-11-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log)
