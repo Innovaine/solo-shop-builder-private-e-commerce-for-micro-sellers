@@ -411,3 +411,20 @@ STDOUT:
 app/api/orders/[id]/refund/route.ts:    const sessionCookie = cookies().get('session')
 ```
 Full output: [`server-runs/2026-05-19T14-26-57-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-26-57-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-19T14:27:23.862Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c8e4594` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2688ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "requireAuth" app/api --include="*.ts" | head -5
+```
+STDOUT:
+```
+app/api/shops/route.ts:import { requireAuth } from '@/lib/auth'
+app/api/shops/route.ts:    const { sellerId } = await requireAuth()
+app/api/shops/route.ts:    const { sellerId } = await requireAuth()
+app/api/shops/status/route.ts:import { requireAuth } from '@/lib/auth'
+app/api/shops/status/route.ts:      const auth = await requireAuth();
+```
+Full output: [`server-runs/2026-05-19T14-27-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-27-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
