@@ -247,3 +247,79 @@ STDOUT:
 c98ed978a89b   postgres:16-alpine   "docker-entrypoint.s…"   19 hours ago   Up 19 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
 ```
 Full output: [`server-runs/2026-05-19T14-59-21-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-59-21-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log)
+
+## 2026-05-19T14:59:51.659Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c661b06` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 4572ms) _(showing tail — full 4,137,094B stdout + 0B stderr)_
+```
+cat /tmp/compose-up.log
+```
+STDOUT:
+```
+time="2026-05-15T16:52:10Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+Attaching to app-1, postgres-1
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started 
+app-1  | npm warn exec The following package was not found and will be installed: prisma@7.8.0
+app-1  | npm warn EBADENGINE Unsupported engine {
+app-1  | npm warn EBADENGINE   package: '@prisma/streams-local@0.1.2',
+app-1  | npm warn EBADENGINE   required: { bun: '>=1.3.6', node: '>=22.0.0' },
+app-1  | npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+app-1  | npm warn EBADENGINE }
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+app-1  | npm notice
+app-1  | npm notice New major version of npm available! 10.8.2 -> 11.14.1
+app-1  | npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+app-1  | npm notice To update run: npm install -g npm@11.14.1
+app-1  | npm notice
+[Kapp-1 exited with code 1 (restarting)
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add this command to your Dockerfile, or switch to an image that already has OpenSSL installed.
+app-1  | Prisma schema loaded from prisma/schema.prisma.
+app-1  | Error: Prisma schema validation - (get-config wasm)
+app-1  | Error code: P1012
+app-1  | error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+app-1  |   -->  prisma/schema.prisma:10
+app-1  |    | 
+app-1  |  9 |   provider = "postgresql"
+app-1  | 10 |   url      = env("DATABASE_URL")
+app-1  |    | 
+app-1  | 
+app-1  | Validation Error Count: 1
+app-1  | [Context: getConfig]
+app-1  | 
+app-1  | Prisma CLI Version : 7.8.0
+[Kapp-1 exited with code 1 (restarting)
+app-1  | prisma:warn Prisma failed to detect the libssl/openssl version to use, and may not work as expected. Defaulting to "openssl-1.1.x".
+app-1  | Please manually install OpenSSL via `apt-get update -y && apt-get install -y openssl` and try installing Prisma again. If you're running Prisma on Docker, add 
+
+…[4,131,974 bytes elided]…
+
+ML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"Fkn9IJLwVUxhk4_w","method":"GET","path":"/api/health","responseTime":"0ms","timestamp":"2026-05-19T14:17:45.350Z","userAgent":"curl/8.5.0"}
+app-1                                                                        | {"requestId":"SZb8mx14ljoavjmb","method":"GET","path":"/api/health","responseTime":"1ms","timestamp":"2026-05-19T14:18:35.721Z","userAgent":"curl/8.5.0"}
+app-1                                                                        | {"requestId":"WEtDkdemEpr2d6gn","method":"HEAD","path":"/auth/login","responseTime":"1ms","timestamp":"2026-05-19T14:18:36.120Z","userAgent":"curl/8.5.0"}
+app-1                                                                        | {"requestId":"gMS5rafzrjtZ1UIe","method":"HEAD","path":"/auth/verify","responseTime":"0ms","timestamp":"2026-05-19T14:18:36.156Z","userAgent":"curl/8.5.0"}
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+```
+Full output: [`server-runs/2026-05-19T14-59-51-www.soloshopbox.com-cat-tmp-compose-up.log-1.log`](server-runs/2026-05-19T14-59-51-www.soloshopbox.com-cat-tmp-compose-up.log-1.log)
