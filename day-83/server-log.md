@@ -544,3 +544,40 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-19T21:39:56.460Z","responseTime":"100ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"99ms"}}} - HEALTH OK
 ```
 Full output: [`server-runs/2026-05-19T21-39-56-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-19T21-39-56-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-19T21:40:30.641Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9101e9b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3016ms)
+```
+echo "=== Test 1: Homepage loads ===" && curl -sI https://www.soloshopbox.com | head -3
+echo ""
+echo "=== Test 2: Dashboard orders page (needs auth) ===" && curl -sI https://www.soloshopbox.com/dashboard/orders | head -3
+echo ""
+echo "=== Test 3: Login page loads ===" && curl -sI https://www.soloshopbox.com/auth/login | head -3
+echo ""
+echo "=== Test 4: Check if order detail route exists (Day 83 fix) ===" && curl -sI https://www.soloshopbox.com/dashboard/orders/123 | head -3
+```
+STDOUT:
+```
+=== Test 1: Homepage loads ===
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+
+=== Test 2: Dashboard orders page (needs auth) ===
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+
+=== Test 3: Login page loads ===
+HTTP/2 200 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+
+=== Test 4: Check if order detail route exists (Day 83 fix) ===
+HTTP/2 307 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-type: text/html; charset=utf-8
+```
+Full output: [`server-runs/2026-05-19T21-40-30-www.soloshopbox.com-echo-Test-1-Homepage-loads-curl--sI-http-1.log`](server-runs/2026-05-19T21-40-30-www.soloshopbox.com-echo-Test-1-Homepage-loads-curl--sI-http-1.log)
