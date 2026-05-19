@@ -230,3 +230,58 @@ STDOUT:
 ✓ Health OK
 ```
 Full output: [`server-runs/2026-05-19T23-54-21-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log`](server-runs/2026-05-19T23-54-21-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log)
+
+## 2026-05-19T23:54:53.742Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f94dd22` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2686ms)
+```
+echo "=== Day 86 Comprehensive API Tests ==="
+
+echo ""
+echo "Test 1: Health endpoint"
+curl -sf https://www.soloshopbox.com/api/health && echo " ✓ OK" || echo " ✗ FAIL"
+
+echo ""
+echo "Test 2: Homepage loads"
+curl -sI https://www.soloshopbox.com | head -1
+
+echo ""
+echo "Test 3: Login page accessible"
+curl -sI https://www.soloshopbox.com/auth/login | head -1
+
+echo ""
+echo "Test 4: Dashboard redirects to login (unauthenticated)"
+curl -sI https://www.soloshopbox.com/dashboard | grep -E "HTTP|Location" | head -2
+
+echo ""
+echo "Test 5: Product upload endpoint exists"
+curl -sI -X POST https://www.soloshopbox.com/api/products/upload | head -1
+
+echo ""
+echo "Test 6: Stripe webhook endpoint exists"
+curl -sI -X POST https://www.soloshopbox.com/api/webhooks/stripe | head -1
+```
+STDOUT:
+```
+=== Day 86 Comprehensive API Tests ===
+
+Test 1: Health endpoint
+{"status":"ok","timestamp":"2026-05-19T23:54:53.377Z","responseTime":"151ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"150ms"}}} ✓ OK
+
+Test 2: Homepage loads
+HTTP/2 200 
+
+Test 3: Login page accessible
+HTTP/2 200 
+
+Test 4: Dashboard redirects to login (unauthenticated)
+HTTP/2 307 
+
+Test 5: Product upload endpoint exists
+HTTP/2 500 
+
+Test 6: Stripe webhook endpoint exists
+HTTP/2 400
+```
+Full output: [`server-runs/2026-05-19T23-54-53-www.soloshopbox.com-echo-Day-86-Comprehensive-API-Tests-1.log`](server-runs/2026-05-19T23-54-53-www.soloshopbox.com-echo-Day-86-Comprehensive-API-Tests-1.log)
