@@ -448,3 +448,47 @@ STDOUT:
 #15 22.62    Collecting build traces ...
 ```
 Full output: [`server-runs/2026-05-19T22-24-52-www.soloshopbox.com-kill--0-cat-tmp-build-day84.pid-2-dev-nu-1.log`](server-runs/2026-05-19T22-24-52-www.soloshopbox.com-kill--0-cat-tmp-build-day84.pid-2-dev-nu-1.log)
+
+## 2026-05-19T22:25:20.040Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dc8fcab` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2438ms)
+```
+kill -0 $(cat /tmp/build-day84.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/build-day84.log
+```
+STDOUT:
+```
+DONE
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.5s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.1s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.6s done
+#30 exporting manifest sha256:ac8806b4c8bbc4f8ca6e579bea5c4632e579c93810cdb711846100f8e99b3bf2 done
+#30 exporting config sha256:31df4a966fa12e618c5ab38dee14b4e588c1e1f0159d815d45d64cffcc40bf48 done
+#30 exporting attestation manifest sha256:84397ec7af3b901cd109f72ffccb0e00297a498f51658cb14bd4003b3e93a9f4 0.0s done
+#30 exporting manifest list sha256:bd5bcc42cc6febb15cd10eaf37a4b7664e148d3a3be95bf2bb37e87a1caeac5a done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#30 DONE 2.3s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-19T22-25-20-www.soloshopbox.com-kill--0-cat-tmp-build-day84.pid-2-dev-nu-1.log`](server-runs/2026-05-19T22-25-20-www.soloshopbox.com-kill--0-cat-tmp-build-day84.pid-2-dev-nu-1.log)
