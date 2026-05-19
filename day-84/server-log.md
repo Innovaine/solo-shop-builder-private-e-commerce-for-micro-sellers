@@ -1225,3 +1225,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `0328499` so the server's `git pu
 grep -rn "toFixed" app/dashboard/orders/page.tsx
 ```
 ERROR: command exited 2
+
+## 2026-05-19T22:45:49.429Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `05e47c8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2617ms)
+```
+grep -rn "cookies()" app/ src/ --include="*.ts" --include="*.tsx" | head -20
+```
