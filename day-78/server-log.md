@@ -636,3 +636,45 @@ To get access to the TypeScript compiler, [34mtsc[0m, from the command line ei
 - Use [1myarn[0m to avoid accidentally running code from un-installed packages
 ```
 Full output: [`server-runs/2026-05-19T12-44-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-44-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T12:46:01.997Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `11c1550` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2353ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find app/ src/ -name "*.ts" -o -name "*.tsx" | head -30
+```
+STDOUT:
+```
+app/error.tsx
+app/dashboard/settings/page.tsx
+app/dashboard/products/new/page.tsx
+app/dashboard/products/[id]/edit/page.tsx
+app/dashboard/products/page.tsx
+app/dashboard/products/import/page.tsx
+app/dashboard/branding/page.tsx
+app/dashboard/email-template/page.tsx
+app/dashboard/billing/page.tsx
+app/dashboard/page.tsx
+app/dashboard/orders/page.tsx
+app/dashboard/profile/page.tsx
+app/dashboard/analytics/page.tsx
+app/dashboard/create-shop/page.tsx
+app/track/[orderId]/page.tsx
+app/components/CartButton.tsx
+app/components/ui/index.ts
+app/components/ui/Modal.tsx
+app/components/ui/Input.tsx
+app/components/ui/Card.tsx
+app/components/ui/FormField.tsx
+app/components/ui/Button.tsx
+app/components/ui/EmptyState.tsx
+app/components/ui/Header.tsx
+app/components/ErrorBoundary.tsx
+app/components/AnalyticsCards.tsx
+app/components/AddToCartButton.tsx
+app/api/shops/route.ts
+app/api/shops/status/route.ts
+app/api/shops/branding/route.ts
+```
+Full output: [`server-runs/2026-05-19T12-46-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-46-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
