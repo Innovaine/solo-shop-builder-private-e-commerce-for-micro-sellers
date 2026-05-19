@@ -481,3 +481,19 @@ date: Tue, 19 May 2026 13:40:45 GMT
 vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
 ```
 Full output: [`server-runs/2026-05-19T13-40-45-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-api-he-1.log`](server-runs/2026-05-19T13-40-45-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-api-he-1.log)
+
+## 2026-05-19T13:43:20.262Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d5ac995` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2727ms)
+```
+docker ps --format '.Names\t.Status' && curl -sf https://www.soloshopbox.com/api/health | head -5
+```
+STDOUT:
+```
+.Names	.Status
+.Names	.Status
+.Names	.Status
+{"status":"ok","timestamp":"2026-05-19T13:43:20.573Z","responseTime":"189ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"187ms"}}}
+```
+Full output: [`server-runs/2026-05-19T13-43-20-www.soloshopbox.com-docker-ps---format-.Names-t.Status-curl--1.log`](server-runs/2026-05-19T13-43-20-www.soloshopbox.com-docker-ps---format-.Names-t.Status-curl--1.log)
