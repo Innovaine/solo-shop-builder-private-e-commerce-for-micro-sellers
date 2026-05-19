@@ -504,3 +504,22 @@ Checking Prisma import pattern in app/api/orders/route.ts:
 Verifying it matches standards.md canonical pattern (named import):
 ```
 Full output: [`server-runs/2026-05-19T23-17-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-17-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:18:09.873Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a4a1629` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2810ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+grep -B2 -A3 "import { prisma }" standards.md | head -10
+```
+STDOUT:
+```
+**Usage**:
+```typescript
+import { prisma } from '@/lib/db'
+
+const orders = await prisma.order.findMany({
+  where: { shopId },
+```
+Full output: [`server-runs/2026-05-19T23-18-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-18-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
