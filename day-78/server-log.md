@@ -345,3 +345,58 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-19T12-38-44-www.soloshopbox.com-kill--0-cat-tmp-day78-e2e.pid-2-dev-null-1.log`](server-runs/2026-05-19T12-38-44-www.soloshopbox.com-kill--0-cat-tmp-day78-e2e.pid-2-dev-null-1.log)
+
+## 2026-05-19T12:39:31.396Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f8badbb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3071ms)
+```
+echo "=== STAB-2: E2E Flow Verification ==="
+echo ""
+echo "Test 1: Homepage accessible"
+curl -sI https://www.soloshopbox.com | head -1
+echo ""
+echo "Test 2: Login page accessible"
+curl -sI https://www.soloshopbox.com/auth/login | head -1
+echo ""
+echo "Test 3: Shop creation requires auth"
+curl -sI https://www.soloshopbox.com/dashboard/create-shop | head -1
+echo ""
+echo "Test 4: Public shop page accessible"
+curl -sI https://www.soloshopbox.com/shop/test-shop | head -1
+echo ""
+echo "Test 5: Checkout page accessible"
+curl -sI https://www.soloshopbox.com/checkout | head -1
+echo ""
+echo "Test 6: Order tracking accessible"
+curl -sI https://www.soloshopbox.com/track/test-order | head -1
+echo ""
+echo "Test 7: Health check API"
+curl -s https://www.soloshopbox.com/api/health | head -50
+```
+STDOUT:
+```
+=== STAB-2: E2E Flow Verification ===
+
+Test 1: Homepage accessible
+HTTP/2 200 
+
+Test 2: Login page accessible
+HTTP/2 200 
+
+Test 3: Shop creation requires auth
+HTTP/2 200 
+
+Test 4: Public shop page accessible
+HTTP/2 200 
+
+Test 5: Checkout page accessible
+HTTP/2 200 
+
+Test 6: Order tracking accessible
+HTTP/2 200 
+
+Test 7: Health check API
+{"status":"ok","timestamp":"2026-05-19T12:39:31.642Z","responseTime":"236ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"235ms"}}}
+```
+Full output: [`server-runs/2026-05-19T12-39-31-www.soloshopbox.com-echo-STAB-2-E2E-Flow-Verification-1.log`](server-runs/2026-05-19T12-39-31-www.soloshopbox.com-echo-STAB-2-E2E-Flow-Verification-1.log)
