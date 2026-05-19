@@ -613,3 +613,80 @@ STDOUT:
             "kind": "api",
 ```
 Full output: [`server-runs/2026-05-19T15-12-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-12-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T15:12:33.910Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7068df9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3733ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | python3 -c "import sys, json; d=json.load(sys.stdin); print('BROKEN:', json.dumps(d.get('broken', []), indent=2)); print('\nORPHANS:', json.dumps(d.get('orphans', []), indent=2)); print('\nMETHOD MISMATCHES:', json.dumps(d.get('methodMismatches', []), indent=2))"
+```
+STDOUT:
+```
+BROKEN: [
+  {
+    "file": "app/shop/[slug]/SortDropdown.tsx",
+    "line": 32,
+    "kind": "router",
+    "target": "/shop/${shopSlug}${queryString"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 63,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 170,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  }
+]
+
+ORPHANS: [
+  {
+    "route": "/auth/reset-password",
+    "kind": "page",
+    "file": "app/auth/reset-password/page.tsx"
+  },
+  {
+    "route": "/auth/verify",
+    "kind": "page",
+    "file": "app/auth/verify/page.tsx"
+  },
+  {
+    "route": "/shop/[slug]/product/[productId]",
+    "kind": "page",
+    "file": "app/shop/[slug]/product/[productId]/page.tsx"
+  }
+]
+
+METHOD MISMATCHES: [
+  {
+    "file": "app/dashboard/email-template/page.tsx",
+    "line": 55,
+    "kind": "fetch",
+    "target": "/api/shops/profile",
+    "method": "GET",
+    "route": "/api/shops/profile",
+    "supportedMethods": [
+      "PATCH"
+    ],
+    "reason": "caller method not exported by route handler"
+  },
+  {
+    "file": "app/track/[orderId]/page.tsx",
+    "line": 44,
+    "kind": "fetch",
+    "target": "/api/orders/${orderId}",
+    "method": "GET",
+    "route": "/api/orders/[id]",
+    "supportedMethods": [
+      "PATCH"
+    ],
+    "reason": "caller method not exported by route handler"
+  }
+]
+```
+Full output: [`server-runs/2026-05-19T15-12-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-12-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
