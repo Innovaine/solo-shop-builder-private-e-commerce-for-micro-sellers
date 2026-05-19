@@ -1292,3 +1292,24 @@ STDOUT:
 0
 ```
 Full output: [`server-runs/2026-05-19T22-47-52-www.soloshopbox.com-grep--rn-from-lib-db-app-api---include-.-1.log`](server-runs/2026-05-19T22-47-52-www.soloshopbox.com-grep--rn-from-lib-db-app-api---include-.-1.log)
+
+## 2026-05-19T22:48:11.998Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4c74099` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 2, 2780ms)
+```
+grep -rn "import prisma" app/api/ --include="*.ts"
+```
+ERROR: command exited 2
+
+## 2026-05-19T22:48:33.077Z — Vitali ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2531ms)
+```
+grep -rn "import.*prisma.*from.*@/lib/db" app/ --include="*.ts" --include="*.tsx" | grep -c "import prisma"
+```
+STDOUT:
+```
+0
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-19T22-48-33-www.soloshopbox.com-grep--rn-import.-prisma.-from.-lib-db-ap-1.log`](server-runs/2026-05-19T22-48-33-www.soloshopbox.com-grep--rn-import.-prisma.-from.-lib-db-ap-1.log)
