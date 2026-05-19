@@ -320,3 +320,65 @@ Stripe Webhooks doc:
 Both docs present on server: ✓
 ```
 Full output: [`server-runs/2026-05-19T23-55-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-55-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:55:36.257Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `57e2d35` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3021ms) _(showing tail — full 4,592B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git pull
+
+echo ""
+echo "=== Documentation files after pull ==="
+ls -lh integrations/s3.md integrations/stripe-webhooks.md 2>&1
+```
+STDOUT:
+```
+…+
+ test-results/day-84/report.md                      | 125 ++++
+ test-results/day-85/report.md                      | 131 ++++
+ tests/web/day85-profile-fix.spec.ts                |  49 ++
+ 42 files changed, 7761 insertions(+), 23 deletions(-)
+ create mode 100644 day-84/_index.md
+ create mode 100644 day-84/stage-ship-check.md
+ create mode 100644 day-84/standards-audit.md
+ create mode 100644 day-84/standards_qa.md
+ create mode 100644 day-84/task-verification.md
+ create mode 100644 day-84/task_verifier.md
+ create mode 100644 day-84/test.md
+ create mode 100644 day-85/_index.md
+ create mode 100644 day-85/_plan.md
+ create mode 100644 day-85/connectivity-audit.md
+ create mode 100644 day-85/connectivity_qa.md
+ create mode 100644 day-85/design.md
+ create mode 100644 day-85/engineering.md
+ create mode 100644 day-85/review.md
+ create mode 100644 day-85/server-log.md
+ create mode 100644 day-85/stage-ship-check.md
+ create mode 100644 day-85/standards-audit.md
+ create mode 100644 day-85/standards_qa.md
+ create mode 100644 day-85/test.md
+ create mode 100644 day-86/_plan.md
+ create mode 100644 day-86/connectivity-audit.md
+ create mode 100644 day-86/connectivity_qa.md
+ create mode 100644 day-86/design.md
+ create mode 100644 day-86/engineering.md
+ create mode 100644 day-86/review.md
+ create mode 100644 day-86/server-log.md
+ create mode 100644 design/emails/magic-link.html
+ create mode 100644 design/pages/checkout-error-display-empty-cart.html
+ create mode 100644 design/pages/checkout-recovery-flow.html
+ create mode 100644 design/pages/checkout-success.html
+ create mode 100644 design/system/error-handling-spec.md
+ create mode 100644 integrations/s3.md
+ create mode 100644 integrations/stripe-webhooks.md
+ create mode 100644 test-results/day-84/report.md
+ create mode 100644 test-results/day-85/report.md
+ create mode 100644 tests/web/day85-profile-fix.spec.ts
+
+=== Documentation files after pull ===
+-rw-rw-r-- 1 tester tester 11K May 19 23:55 integrations/s3.md
+-rw-rw-r-- 1 tester tester 14K May 19 23:55 integrations/stripe-webhooks.md
+```
+Full output: [`server-runs/2026-05-19T23-55-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-55-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
