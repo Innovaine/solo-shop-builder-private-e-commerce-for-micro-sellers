@@ -1258,3 +1258,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `f17b08b` so the server's `git pu
 ```
 grep -rn "redirect(" app/dashboard/ --include="*.tsx" | head -10
 ```
+
+## 2026-05-19T22:47:14.733Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3547396` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2551ms)
+```
+grep -rn "searchParams.get\|params\." app/dashboard/orders/ --include="*.tsx" | head -15
+```
