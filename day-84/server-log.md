@@ -160,3 +160,38 @@ _Pre-SSH: warehouse pushed to GitHub as commit `ce7c2cc` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "fetch\(" app --include="*.tsx" --include="*.ts" | grep -E "api\/" | head -50
 ```
+
+## 2026-05-19T22:15:19.381Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a08b573` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2662ms) _(showing tail — full 2,818B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "fetch" app --include="*.tsx" | grep -i "api" | wc -l && grep -rn "fetch" app --include="*.tsx" | grep -i "api" | head -30
+```
+STDOUT:
+```
+…
+app/dashboard/products/[id]/edit/page.tsx:103:      const response = await fetch(`/api/products/${productId}`, {
+app/dashboard/products/page.tsx:40:      const response = await fetch(`/api/products/${productId}/status`, {
+app/dashboard/products/page.tsx:63:        const shopResponse = await fetch('/api/shops')
+app/dashboard/products/page.tsx:78:        const productsResponse = await fetch(`/api/products?shopId=${shop.id}`)
+app/dashboard/products/page.tsx:102:      const response = await fetch(`/api/products/${productId}`, {
+app/dashboard/products/import/page.tsx:77:      const res = await fetch('/api/products/import', {
+app/dashboard/branding/page.tsx:28:        const res = await fetch('/api/shops');
+app/dashboard/branding/page.tsx:94:      const res = await fetch('/api/shops/branding', {
+app/dashboard/email-template/page.tsx:55:        const res = await fetch('/api/shops/profile');
+app/dashboard/email-template/page.tsx:87:      const res = await fetch('/api/shops/email-template', {
+app/dashboard/billing/page.tsx:38:        const res = await fetch('/api/billing');
+app/dashboard/orders/page.tsx:51:          fetch('/api/orders'),
+app/dashboard/orders/page.tsx:52:          fetch('/api/analytics'),
+app/dashboard/profile/page.tsx:36:        const res = await fetch('/api/shops');
+app/dashboard/profile/page.tsx:113:        const uploadRes = await fetch('/api/shops/branding', {
+app/dashboard/profile/page.tsx:125:      const res = await fetch('/api/shops/profile', {
+app/dashboard/analytics/page.tsx:36:        const res = await fetch('/api/analytics');
+app/dashboard/create-shop/page.tsx:25:        const response = await fetch('/api/shops')
+app/dashboard/create-shop/page.tsx:61:      const response = await fetch('/api/shops', {
+app/track/[orderId]/page.tsx:44:        const response = await fetch(`/api/orders/${orderId}`)
+app/components/AnalyticsCards.tsx:35:      const response = await fetch('/api/analytics')
+app/checkout/success/page.tsx:57:        const response = await fetch(`/api/orders?paymentId=${paymentIdentifier}`)
+```
+Full output: [`server-runs/2026-05-19T22-15-19-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-15-19-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
