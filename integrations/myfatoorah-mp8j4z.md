@@ -21,22 +21,60 @@ Add my Fatoorah key in env
 
 ## Docs
 
-Hosted Payment Page
-Introduction
+# MyFatoorah Integration
 
-The Hosted Payment Page integration provides a simple and secure way to accept online payments with minimal development effort. Using this integration type, you can display a list of available payment methods configured on your MyFatoorah account, allowing your customers to select their preferred method and complete the transaction through a secure hosted page.
+## Goal
+Add MyFatoorah alongside Stripe as a second payment provider on /checkout.
+Customer sees a "Pay with MyFatoorah" option, gets redirected to a MyFatoorah-
+hosted page, returns to /checkout/success with status=paid.
 
+## Env vars the code references
+- MYFATOORAH_API_KEY
+- MYFATOORAH_API_URL
+- MYFATOORAH_WEBHOOK_SECRET
+(actual values are set per-server, not your concern)
+
+## Order ↔ MyFatoorah linking
+- At create-payment time, store `Data.InvoiceId` on the order as canonical reference.
+  Recommended: also pass our internal order UUID in `UserDefinedField` so the
+  inquire response echoes it back — lookup becomes trivial.
+- At callback time, look up the order by `Data.Invoice.Id` (inquire response) OR
+  by our own order ID from `UserDefinedField`. DO NOT look up by `paymentId`
+  from the URL — that value didn't exist at create time and won't match.
+
+## Idempotency
+- MyFatoorah fires BOTH a browser GET redirect AND a server-to-server POST webhook
+  for the same payment. The handler MUST be safe to call twice:
+    if (order.status === 'paid') return redirect(success)
+  before any DB writes or email sends.
+
+## Webhook setup (do this after deploy)
+1. MyFatoorah dashboard → Webhook → URL = https://www.soloshopbox.com/api/checkout/myfatoorah/callback
+2. POST handler must verify the signature header before processing.
+3. See https://docs.myfatoorah.com/edit/webhook for signature algorithm + header name.
+
+## Test cards (sandbox only)
+- 8888880000000001  06/30  PIN 1234  — captured (happy path)
+- 8888880000000001  06/10  PIN 1234  — declined (failure path)
+
+## Acceptance criteria
+- [ ] Create test payment, complete checkout, order status = 'paid' in DB
+- [ ] Order has correct customerEmail from MyFatoorah customer field
+- [ ] Confirmation email sent exactly ONCE (verify by triggering webhook AFTER redirect already fired)
+- [ ] Failure card (06/10) redirects to /checkout?error=mf_payment_failed
+- [ ] Close browser tab BEFORE redirect — order still becomes 'paid' via webhook
+- [ ] POST handler returns 401 on missing/invalid signature
+
+##
 
 Supported Payment Methods:
 
 All payment methods are supported (Cards [Visa, Mastercard, Mada, AMEX], Apple Pay, Google Pay, etc.).
 
+User can select one of the cards
 
 API Version
-Always use the /v3/endpoint for this integration. For example: https://apitest.myfatoorah.com/v3/payments
-
-
-
+Always use the /v3/endpoint for this integration. 
 
 Step 2: Create a Payment Request
 
