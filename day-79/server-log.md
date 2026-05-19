@@ -536,3 +536,66 @@ Test 4: Order tracking still public
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-19T13-43-58-www.soloshopbox.com-echo-Day-79-Fix-Verification-Tests-1.log`](server-runs/2026-05-19T13-43-58-www.soloshopbox.com-echo-Day-79-Fix-Verification-Tests-1.log)
+
+## 2026-05-19T13:44:40.598Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b3b5002` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3098ms)
+```
+echo "Comprehensive Day 79 Regression Tests"
+echo ""
+echo "=== CRITICAL PATH TESTS ==="
+echo ""
+echo "Test 1: Homepage loads"
+curl -sI https://www.soloshopbox.com 2>&1 | grep "HTTP" | head -1
+echo ""
+echo "Test 2: Login page loads"
+curl -sI https://www.soloshopbox.com/auth/login 2>&1 | grep "HTTP" | head -1
+echo ""
+echo "Test 3: Dashboard pages (should redirect or 200)"
+curl -sI https://www.soloshopbox.com/dashboard/profile 2>&1 | grep "HTTP" | head -1
+curl -sI https://www.soloshopbox.com/dashboard/orders 2>&1 | grep "HTTP" | head -1
+curl -sI https://www.soloshopbox.com/dashboard/settings 2>&1 | grep "HTTP" | head -1
+echo ""
+echo "Test 4: Public shop page"
+curl -sI https://www.soloshopbox.com/shop/test-shop 2>&1 | grep "HTTP" | head -1
+echo ""
+echo "Test 5: Checkout page"
+curl -sI https://www.soloshopbox.com/checkout 2>&1 | grep "HTTP" | head -1
+echo ""
+echo "Test 6: Order tracking (public)"
+curl -sI https://www.soloshopbox.com/track/test-order 2>&1 | grep "HTTP" | head -1
+echo ""
+echo "Test 7: Health check API"
+curl -s https://www.soloshopbox.com/api/health | jq -r '.status' 2>/dev/null || echo "ERROR"
+```
+STDOUT:
+```
+Comprehensive Day 79 Regression Tests
+
+=== CRITICAL PATH TESTS ===
+
+Test 1: Homepage loads
+HTTP/2 200 
+
+Test 2: Login page loads
+HTTP/2 200 
+
+Test 3: Dashboard pages (should redirect or 200)
+HTTP/2 200 
+HTTP/2 200 
+HTTP/2 200 
+
+Test 4: Public shop page
+HTTP/2 200 
+
+Test 5: Checkout page
+HTTP/2 200 
+
+Test 6: Order tracking (public)
+HTTP/2 200 
+
+Test 7: Health check API
+ok
+```
+Full output: [`server-runs/2026-05-19T13-44-40-www.soloshopbox.com-echo-Comprehensive-Day-79-Regression-Tes-1.log`](server-runs/2026-05-19T13-44-40-www.soloshopbox.com-echo-Comprehensive-Day-79-Regression-Tes-1.log)
