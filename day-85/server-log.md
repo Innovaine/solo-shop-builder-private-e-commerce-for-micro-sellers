@@ -608,3 +608,26 @@ Test 6: Verify Prisma import in orders/route.ts
 import prisma from '@/lib/db'
 ```
 Full output: [`server-runs/2026-05-19T23-20-16-www.soloshopbox.com-echo-Day-85-Manual-Verification-Tests-1.log`](server-runs/2026-05-19T23-20-16-www.soloshopbox.com-echo-Day-85-Manual-Verification-Tests-1.log)
+
+## 2026-05-19T23:20:39.381Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bc12037` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2558ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+head -10 app/api/orders/route.ts
+```
+STDOUT:
+```
+// GET /api/orders - Fetch all orders for the seller's shops
+// FR-17: Seller order dashboard
+
+export const dynamic = 'force-dynamic'
+
+import { NextRequest, NextResponse } from 'next/server'
+import prisma from '@/lib/db'
+import { requireAuth } from '@/lib/auth'
+
+export async function GET(request: NextRequest) {
+```
+Full output: [`server-runs/2026-05-19T23-20-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-20-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
