@@ -274,3 +274,21 @@ export async function PATCH(req: NextRequest) {
     let sellerId: string;
 ```
 Full output: [`server-runs/2026-05-19T22-17-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-17-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T22:17:29.037Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6b31996` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 2, 2467ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "Back\|←" app/dashboard/orders/\[id\]/page.tsx app/dashboard/products/\[id\]/edit/page.tsx app/shop/\[slug\]/product/\[productId\]/page.tsx
+```
+STDOUT:
+```
+app/dashboard/products/[id]/edit/page.tsx:144:            Back to Products
+app/dashboard/products/[id]/edit/page.tsx:154:        {/* Back button */}
+app/dashboard/products/[id]/edit/page.tsx:165:            Back to Products
+app/shop/[slug]/product/[productId]/page.tsx:43:            ← Back to Shop
+app/shop/[slug]/product/[productId]/page.tsx:64:              <Button variant="secondary">Back to Shop</Button>
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-19T22-17-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-17-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
