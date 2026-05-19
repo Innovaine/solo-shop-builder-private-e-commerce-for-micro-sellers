@@ -389,3 +389,30 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-19T20:51:43.736Z","responseTime":"328ms","checks":{"database":{"status":"ok","responseTime":"48ms"},"email":{"status":"ok","responseTime":"280ms"}}}
 ```
 Full output: [`server-runs/2026-05-19T20-51-43-www.soloshopbox.com-sleep-5-1.log`](server-runs/2026-05-19T20-51-43-www.soloshopbox.com-sleep-5-1.log)
+
+## 2026-05-19T20:52:14.825Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b46455c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2987ms)
+```
+echo "Testing GET /api/shops/email-template (should return 401 without auth):"
+curl -I https://www.soloshopbox.com/api/shops/email-template 2>&1 | head -1
+
+echo -e "\nTesting MyFatoorah callback redirects properly:"
+curl -I "https://www.soloshopbox.com/api/checkout/myfatoorah/callback?paymentId=test" 2>&1 | head -1
+
+echo -e "\nChecking refund endpoint exists (should return 401 without auth):"
+curl -I -X POST https://www.soloshopbox.com/api/orders/test-order-id/refund 2>&1 | head -1
+```
+STDOUT:
+```
+Testing GET /api/shops/email-template (should return 401 without auth):
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+
+Testing MyFatoorah callback redirects properly:
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+
+Checking refund endpoint exists (should return 401 without auth):
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+```
+Full output: [`server-runs/2026-05-19T20-52-14-www.soloshopbox.com-echo-Testing-GET-api-shops-email-templat-1.log`](server-runs/2026-05-19T20-52-14-www.soloshopbox.com-echo-Testing-GET-api-shops-email-templat-1.log)
