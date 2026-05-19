@@ -146,3 +146,20 @@ STDOUT:
 7
 ```
 Full output: [`server-runs/2026-05-19T14-15-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-15-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-19T14:17:45.555Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e11d085` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3790ms)
+```
+docker ps --format '.Names\t.Status' | head -5
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "Health: OK" || echo "Health: FAIL"
+```
+STDOUT:
+```
+.Names	.Status
+.Names	.Status
+.Names	.Status
+Health: OK
+```
+Full output: [`server-runs/2026-05-19T14-17-45-www.soloshopbox.com-docker-ps---format-.Names-t.Status-head--1.log`](server-runs/2026-05-19T14-17-45-www.soloshopbox.com-docker-ps---format-.Names-t.Status-head--1.log)
