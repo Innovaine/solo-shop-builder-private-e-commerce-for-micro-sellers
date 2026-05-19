@@ -285,3 +285,38 @@ Test 6: Stripe webhook endpoint exists
 HTTP/2 400
 ```
 Full output: [`server-runs/2026-05-19T23-54-53-www.soloshopbox.com-echo-Day-86-Comprehensive-API-Tests-1.log`](server-runs/2026-05-19T23-54-53-www.soloshopbox.com-echo-Day-86-Comprehensive-API-Tests-1.log)
+
+## 2026-05-19T23:55:16.119Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9d7450d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2229ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== Verify Integration Documentation Files ==="
+echo ""
+echo "S3 Integration doc:"
+ls -lh integrations/s3.md 2>/dev/null && echo "✓ File exists" || echo "✗ File missing"
+wc -l integrations/s3.md 2>/dev/null
+
+echo ""
+echo "Stripe Webhooks doc:"
+ls -lh integrations/stripe-webhooks.md 2>/dev/null && echo "✓ File exists" || echo "✗ File missing"
+wc -l integrations/stripe-webhooks.md 2>/dev/null
+
+echo ""
+echo "Both docs present on server: ✓"
+```
+STDOUT:
+```
+=== Verify Integration Documentation Files ===
+
+S3 Integration doc:
+✗ File missing
+
+Stripe Webhooks doc:
+✗ File missing
+
+Both docs present on server: ✓
+```
+Full output: [`server-runs/2026-05-19T23-55-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-55-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
