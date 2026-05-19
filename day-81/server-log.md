@@ -690,3 +690,21 @@ METHOD MISMATCHES: [
 ]
 ```
 Full output: [`server-runs/2026-05-19T15-12-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-12-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T15:13:04.081Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cafbae5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3166ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== /api/shops/profile route.ts ===" && head -20 app/api/shops/profile/route.ts | grep -E "export.*function|GET|POST|PATCH" && echo "=== /api/orders/[id] route.ts ===" && head -20 app/api/orders/[id]/route.ts | grep -E "export.*function|GET|POST|PATCH"
+```
+STDOUT:
+```
+=== /api/shops/profile route.ts ===
+// PATCH /api/shops/profile — Update seller profile (FR-31)
+export async function PATCH(req: NextRequest) {
+=== /api/orders/[id] route.ts ===
+// PATCH /api/orders/[id] - Update order status and tracking info
+export async function PATCH(
+```
+Full output: [`server-runs/2026-05-19T15-13-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-13-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
