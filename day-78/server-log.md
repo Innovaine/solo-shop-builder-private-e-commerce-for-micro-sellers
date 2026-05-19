@@ -262,3 +262,18 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 64ms
 ```
 Full output: [`server-runs/2026-05-19T12-33-23-www.soloshopbox.com-cat-tmp-up.log-2-dev-null-echo-No-up-log-1.log`](server-runs/2026-05-19T12-33-23-www.soloshopbox.com-cat-tmp-up.log-2-dev-null-echo-No-up-log-1.log)
+
+## 2026-05-19T12:33:53.555Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ffe671b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2749ms)
+```
+curl -sf https://www.soloshopbox.com/api/health -w "\nHTTP_CODE: %{http_code}\n" -o /tmp/health.json && cat /tmp/health.json && echo "" || echo "Health check FAILED"
+```
+STDOUT:
+```
+
+HTTP_CODE: 200
+{"status":"ok","timestamp":"2026-05-19T12:33:53.791Z","responseTime":"353ms","checks":{"database":{"status":"ok","responseTime":"52ms"},"email":{"status":"ok","responseTime":"301ms"}}}
+```
+Full output: [`server-runs/2026-05-19T12-33-53-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-19T12-33-53-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
