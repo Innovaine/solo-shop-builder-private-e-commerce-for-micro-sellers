@@ -482,3 +482,25 @@ Test 2: Verify endpoint accepts GET method (not just POST/PATCH)
 < allow: GET, HEAD, OPTIONS, PATCH
 ```
 Full output: [`server-runs/2026-05-19T23-17-04-www.soloshopbox.com-echo-Test-1-GET-api-shops-profile-withou-1.log`](server-runs/2026-05-19T23-17-04-www.soloshopbox.com-echo-Test-1-GET-api-shops-profile-withou-1.log)
+
+## 2026-05-19T23:17:35.996Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `53ccc93` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2656ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "Checking Prisma import pattern in app/api/orders/route.ts:"
+grep -n "import.*prisma\|from.*db" app/api/orders/route.ts | head -5
+
+echo ""
+echo "Verifying it matches standards.md canonical pattern (named import):"
+grep -A2 "canonical import pattern" standards.md | head -5
+```
+STDOUT:
+```
+Checking Prisma import pattern in app/api/orders/route.ts:
+7:import prisma from '@/lib/db'
+
+Verifying it matches standards.md canonical pattern (named import):
+```
+Full output: [`server-runs/2026-05-19T23-17-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-17-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
