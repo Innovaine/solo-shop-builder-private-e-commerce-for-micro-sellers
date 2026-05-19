@@ -757,3 +757,30 @@ STDOUT:
   2 passed (37.8s)
 ```
 Full output: [`server-runs/2026-05-19T22-33-36-www.soloshopbox.com-kill--0-cat-tmp-day84-test.pid-2-dev-nul-1.log`](server-runs/2026-05-19T22-33-36-www.soloshopbox.com-kill--0-cat-tmp-day84-test.pid-2-dev-nul-1.log)
+
+## 2026-05-19T22:34:14.239Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7e644ec` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2837ms)
+```
+echo "=== Test 1: Fetch checkout page with payment_cancelled error ==="
+curl -s "https://www.soloshopbox.com/checkout?error=payment_cancelled" | grep -A5 -B5 "Payment was cancelled" | head -15
+
+echo ""
+echo "=== Test 2: Check if page has empty cart message ==="
+curl -s "https://www.soloshopbox.com/checkout?error=payment_cancelled" | grep -o "Your cart is empty" | head -1
+
+echo ""
+echo "=== Test 3: Check page structure - looking for error display ==="
+curl -s "https://www.soloshopbox.com/checkout?error=payment_cancelled" | grep -o 'class="[^"]*rose[^"]*"' | head -5
+```
+STDOUT:
+```
+=== Test 1: Fetch checkout page with payment_cancelled error ===
+
+=== Test 2: Check if page has empty cart message ===
+Your cart is empty
+
+=== Test 3: Check page structure - looking for error display ===
+```
+Full output: [`server-runs/2026-05-19T22-34-14-www.soloshopbox.com-echo-Test-1-Fetch-checkout-page-with-pay-1.log`](server-runs/2026-05-19T22-34-14-www.soloshopbox.com-echo-Test-1-Fetch-checkout-page-with-pay-1.log)
