@@ -902,3 +902,16 @@ app/api/shops/branding/route.ts(6,20): error TS2591: Cannot find name 'crypto'. 
 app/api/shops/branding/route.ts(98,35): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
 ```
 Full output: [`server-runs/2026-05-19T22-37-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-37-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T22:37:49.528Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6d16022` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3029ms)
+```
+curl -sf https://www.soloshopbox.com/api/health | head -20
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-19T22:37:49.795Z","responseTime":"221ms","checks":{"database":{"status":"ok","responseTime":"43ms"},"email":{"status":"ok","responseTime":"178ms"}}}
+```
+Full output: [`server-runs/2026-05-19T22-37-49-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-19T22-37-49-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
