@@ -784,3 +784,40 @@ Your cart is empty
 === Test 3: Check page structure - looking for error display ===
 ```
 Full output: [`server-runs/2026-05-19T22-34-14-www.soloshopbox.com-echo-Test-1-Fetch-checkout-page-with-pay-1.log`](server-runs/2026-05-19T22-34-14-www.soloshopbox.com-echo-Test-1-Fetch-checkout-page-with-pay-1.log)
+
+## 2026-05-19T22:36:13.881Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cadc616` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2736ms)
+```
+docker ps; df -h; uptime; ls ~/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null | head -10 || echo "repo not yet cloned"
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED          STATUS                  PORTS                                         NAMES
+fe93b19b6f82   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   10 minutes ago   Up 9 minutes            0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+c98ed978a89b   postgres:16-alpine                                           "docker-entrypoint.s…"   27 hours ago     Up 27 hours (healthy)   127.0.0.1:5432->5432/tcp                      solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+2967d9e0bd67   traefik:latest                                               "/entrypoint.sh --ap…"   2 days ago       Up 2 days                                                             traefik-vwiz-traefik-1
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           3.2G  1.4M  3.2G   1% /run
+/dev/sda1       387G   91G  296G  24% /
+tmpfs            16G     0   16G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/sda16      881M  117M  703M  15% /boot
+/dev/sda15      105M  6.2M   99M   6% /boot/efi
+tmpfs           3.2G   12K  3.2G   1% /run/user/1003
+tmpfs           3.2G   12K  3.2G   1% /run/user/1000
+tmpfs           3.2G   12K  3.2G   1% /run/user/0
+ 22:36:14 up 6 days, 23:39,  7 users,  load average: 0.05, 0.07, 0.06
+DEPLOYMENT.md
+Dockerfile
+README.md
+_meta.json
+app
+customer-messages.md
+day-01
+day-02
+day-03
+day-04
+```
+Full output: [`server-runs/2026-05-19T22-36-13-www.soloshopbox.com-docker-ps-df--h-uptime-ls-solo-shop-buil-1.log`](server-runs/2026-05-19T22-36-13-www.soloshopbox.com-docker-ps-df--h-uptime-ls-solo-shop-buil-1.log)
