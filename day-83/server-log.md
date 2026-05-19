@@ -651,3 +651,20 @@ d021b4c Priya (tester, day 83) — pre-SSH sync
 9101e9b Priya (tester, day 83) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-19T21-41-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T21-41-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T21:42:11.767Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `63e94dd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2514ms)
+```
+ls -la ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/dashboard/orders/ 2>/dev/null | head -10 || echo "orders/ dir check"
+```
+STDOUT:
+```
+total 28
+drwxrwxr-x  3 tester tester  4096 May 19 21:41 .
+drwxrwxr-x 11 tester tester  4096 May 18 09:27 ..
+drwxrwxr-x  2 tester tester  4096 May 19 21:41 [id]
+-rw-rw-r--  1 tester tester 15783 May 19 21:41 page.tsx
+```
+Full output: [`server-runs/2026-05-19T21-42-11-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-19T21-42-11-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log)
