@@ -503,3 +503,45 @@ HTTP 307
 === All tests complete ===
 ```
 Full output: [`server-runs/2026-05-19T20-54-35-www.soloshopbox.com-echo-Testing-Day-82-Engineer-Fixes-1.log`](server-runs/2026-05-19T20-54-35-www.soloshopbox.com-echo-Testing-Day-82-Engineer-Fixes-1.log)
+
+## 2026-05-19T20:55:04.104Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9fe83e6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2914ms)
+```
+echo "Testing refund endpoint in detail:"
+echo ""
+echo "Test with valid-looking order ID format:"
+curl -s -i -X POST https://www.soloshopbox.com/api/orders/cm3abc123xyz/refund 2>&1 | head -20
+echo ""
+echo "Testing if endpoint requires body:"
+curl -s -i -X POST -H "Content-Type: application/json" -d '{}' https://www.soloshopbox.com/api/orders/cm3abc123xyz/refund 2>&1 | head -20
+```
+STDOUT:
+```
+Testing refund endpoint in detail:
+
+Test with valid-looking order ID format:
+HTTP/2 500 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+content-type: application/json
+date: Tue, 19 May 2026 20:55:04 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+x-request-id: RPnrG2QlgIWl5sUQ
+
+{"error":"Failed to process refund"}
+Testing if endpoint requires body:
+HTTP/2 500 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+content-type: application/json
+date: Tue, 19 May 2026 20:55:04 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+x-request-id: xL_d3pfk3W4q2W85
+
+{"error":"Failed to process refund"}
+```
+Full output: [`server-runs/2026-05-19T20-55-04-www.soloshopbox.com-echo-Testing-refund-endpoint-in-detail-1.log`](server-runs/2026-05-19T20-55-04-www.soloshopbox.com-echo-Testing-refund-endpoint-in-detail-1.log)
