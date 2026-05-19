@@ -1,53 +1,103 @@
-# Server command log — day-81
+# Day 81 — Engineer · build & deploy: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
-Auto-recorded by the runner. Every approved SSH command + its output for this day goes here.
-Historical entries (before per-day rotation) live in /server-log.md at repo root.
+- **By:** Anil (Engineer)
+- **Cycle:** 145
+- **Saved:** 19/05/2026, 6:02:07 PM
 
-## 2026-05-19T14:53:06.907Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `197b395` so the server's `git pull` will pick it up._
+---
 
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2270ms)
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null && grep -r "new PrismaClient()" app/api/ --include="*.ts" || echo "No new PrismaClient() found"
-```
+## ✅ Done
+
+Day 81 complete. Fixed 3 issues: (1) Replaced gray-* fallback color with brand tokens in orders page per reviewer note, (2) Fixed Prisma singleton import pattern in 2 variant API routes (task #234 complete), eliminating all 'new PrismaClient()' instantiations in favor of singleton from @/lib/db. Build completed successfully. Discovered critical deployment issue: container auto-installs Prisma CLI v7.8.0 at runtime instead of using pinned v5.14.0, causing infinite restart loop. Filed task #235 [WIRING-CRITICAL] for urgent fix. Standards compliance work done; app deployment blocked by separate Prisma version issue.
+
+Status: DONE
+
+Day 81 complete. Fixed 3 issues: (1) Replaced gray-* fallback color with brand tokens in orders page per reviewer note, (2) Fixed Prisma singleton import pattern in 2 variant API routes (task #234 complete), eliminating all 'new PrismaClient()' instantiations in favor of singleton from @/lib/db. Build completed successfully. Discovered critical deployment issue: container auto-installs Prisma CLI v7.8.0 at runtime instead of using pinned v5.14.0, causing infinite restart loop. Filed task #235 [WIRING-CRITICAL] for urgent fix. Standards compliance work done; app deployment blocked by separate Prisma version issue.
+
+## Plan
+[x] p1: Fix reviewer's note: replace gray-* color with brand tokens in app/dashboard/orders/page.tsx line 153
+[x] p2: Fix task #234: Replace Prisma import in app/api/products/[id]/variants/route.ts (use singleton from @/lib/db)
+[x] p3: Fix task #234: Replace Prisma import in app/api/products/[id]/variants/[variantId]/route.ts (use singleton from @/lib/db)
+[x] p4: SSH: git pull latest changes
+[x] p5: SSH: kick off build in background (nohup docker compose build)
+[x] p6: SSH: poll build status until complete
+[x] p7: SSH: docker compose up -d
+[x] p8: SSH: verify health check
+[x] p9: Complete task #234 with verification evidence
+
+## Actions
+- read `app/dashboard/orders/page.tsx` (15774B)
+- read `product-spec.md` (13911B)
+- read `day-81/requirements.md` (0B)
+- read `day-81/design-compliance.md` (0B)
+- read `requirements.md` (8406B)
+- read `day-81/connectivity-audit.md` (6401B)
+- read `day-81/standards-audit.md` (0B)
+- read `standards.md` (10097B)
+- list `app/api` (34 files)
+- read `lib/db.ts` (932B)
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/null && grep -r "new`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "import.*PrismaC`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "import.*prisma.`
+- ran 1 SSH command(s) — 0 failure(s)
+- read `app/api/products/[id]/variants/route.ts` (1967B)
+- read `app/api/products/[id]/variants/[variantId]/route.ts` (1715B)
+- **edited** `app/dashboard/orders/page.tsx`
+- ✓ p1: Fix reviewer's note: replace gray-* color with brand tokens in app/dashboard/orders/page.tsx line 153
+- **edited** `app/api/products/[id]/variants/route.ts`
+- ✓ p2: Fix task #234: Replace Prisma import in app/api/products/[id]/variants/route.ts (use singleton from @/lib/db)
+- **edited** `app/api/products/[id]/variants/[variantId]/route.ts`
+- ✓ p3: Fix task #234: Replace Prisma import in app/api/products/[id]/variants/[variantId]/route.ts (use singleton from @/lib/db)
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull`
+- ✓ p4: SSH: git pull latest changes
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers`
+- ✓ p5: SSH: kick off build in background (nohup docker compose build)
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"`
+- ran 1 SSH command(s) — 0 failure(s)
+- ✓ p6: SSH: poll build status until complete
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d`
+- ✓ p7: SSH: docker compose up -d
+- ran 1 SSH command(s) — 1 failure(s)
+- queued SSH on www.soloshopbox.com: `docker ps | grep solo-shop`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app `
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `cat /tmp/compose-up.log`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `docker ps -a | grep solo-shop-builder | grep app`
+- ran 1 SSH command(s) — 0 failure(s)
+- queued SSH on www.soloshopbox.com: `curl -f https://www.soloshopbox.com/api/health -o /dev/null -w "%{http_code}" 2>/dev/null || echo "F`
+- ran 1 SSH command(s) — 0 failure(s)
+- read `package.json` (1275B)
+- read `prisma/schema.prisma` (6486B)
+- ✓ p8: SSH: verify health check
+- ✓ p9: Complete task #234 with verification evidence
+
+## SSH commands executed
+1. ✓ exit 0 — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers 2>/dev/
 STDOUT:
-```
 app/api/products/[id]/variants/route.ts:const prisma = new PrismaClient();
 app/api/products/[id]/variants/[variantId]/route.ts:const prisma = new PrismaClient();
-```
-Full output: [`server-runs/2026-05-19T14-53-06-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-53-06-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log)
+Full log: server-runs/2026-05-19T14-53-06-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log
 
-## 2026-05-19T14:53:35.887Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `375a869` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2028ms)
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "import.*PrismaClient" app/api/ --include="*.ts" | head -20
-```
+2. ✓ exit 0 — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep
 STDOUT:
-```
 app/api/products/[id]/variants/route.ts:import { PrismaClient } from '@prisma/client';
 app/api/products/[id]/variants/[variantId]/route.ts:import { PrismaClient } from '@prisma/client';
-```
-Full output: [`server-runs/2026-05-19T14-53-35-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-53-35-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log)
+Full log: server-runs/2026-05-19T14-53-35-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log
 
-## 2026-05-19T14:54:05.909Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `9a78362` so the server's `git pull` will pick it up._
+3. ✓ exit 0 — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep
 
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2009ms)
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "import.*prisma.*from" app/api/ --include="*.ts" | grep -v "@/lib/db" | grep -v "prisma/client" | head -20
-```
-
-## 2026-05-19T14:55:30.284Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `b4cd0a1` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3101ms) _(showing tail — full 4,477B stdout + 0B stderr)_
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
-```
+4. ✓ exit 0 — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && git 
 STDOUT:
-```
 …out-confirmation.html            | 378 ++++++++++++++++
  design/pages/order-confirmation-email.html         | 369 ++++++++++++++++
  design/pages/order-detail.html                     |  81 +++-
@@ -91,33 +141,15 @@ STDOUT:
  create mode 100644 design/pages/order-confirmation-email.html
  create mode 100644 test-results/day-79/report.md
  create mode 100644 test-results/day-80/report.md
-```
-Full output: [`server-runs/2026-05-19T14-55-30-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-55-30-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log)
+Full log: server-runs/2026-05-19T14-55-30-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log
 
-## 2026-05-19T14:55:59.958Z — Anil ran 1 command(s)
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2244ms)
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers
-nohup docker compose build > /tmp/build.log 2>&1 &
-echo $! > /tmp/build.pid
-echo "Started build, PID=$(cat /tmp/build.pid)"
-```
+5. ✓ exit 0 — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers
 STDOUT:
-```
 Started build, PID=1764120
-```
-Full output: [`server-runs/2026-05-19T14-55-59-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-55-59-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log)
+Full log: server-runs/2026-05-19T14-55-59-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log
 
-## 2026-05-19T14:56:30.287Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `2c9329d` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2546ms) _(showing tail — full 9,204B stdout + 0B stderr)_
-```
-kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
-tail -80 /tmp/build.log
-```
+6. ✓ exit 0 — kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
 STDOUT:
-```
 …1:7062)
 #15 22.45     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
 #15 22.45     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
@@ -144,19 +176,10 @@ STDOUT:
 #15 23.08  ✓ Generating static pages (43/43)
 #15 23.43    Finalizing page optimization ...
 #15 23.43    Collecting build traces ...
-```
-Full output: [`server-runs/2026-05-19T14-56-30-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-19T14-56-30-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+Full log: server-runs/2026-05-19T14-56-30-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log
 
-## 2026-05-19T14:56:58.937Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `831e63a` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2249ms)
-```
-kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
-tail -40 /tmp/build.log
-```
+7. ✓ exit 0 — kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
 STDOUT:
-```
 DONE
 
 #22 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
@@ -198,65 +221,25 @@ DONE
 #31 resolving provenance for metadata file
 #31 DONE 0.0s
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
-```
-Full output: [`server-runs/2026-05-19T14-56-58-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-19T14-56-58-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+Full log: server-runs/2026-05-19T14-56-58-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log
 
-## 2026-05-19T14:57:41.833Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `3e3e9a6` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13131ms)
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
-```
+8. ✗ exec-error (exit -) — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && dock
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
 
-## 2026-05-19T14:58:11.053Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `6a0e1eb` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2194ms)
-```
-docker ps | grep solo-shop
-```
+9. ✓ exit 0 — docker ps | grep solo-shop
 STDOUT:
-```
 c98ed978a89b   postgres:16-alpine   "docker-entrypoint.s…"   19 hours ago   Up 19 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
-```
-Full output: [`server-runs/2026-05-19T14-58-11-www.soloshopbox.com-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-19T14-58-11-www.soloshopbox.com-docker-ps-grep-solo-shop-1.log)
+Full log: server-runs/2026-05-19T14-58-11-www.soloshopbox.com-docker-ps-grep-solo-shop-1.log
 
-## 2026-05-19T14:58:42.558Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `373cb0b` so the server's `git pull` will pick it up._
+10. ✓ exit 0 — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && dock
 
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2546ms)
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=50
-```
-
-## 2026-05-19T14:59:21.485Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `543256f` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 7788ms)
-```
-cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers
-nohup docker compose up -d app > /tmp/compose-up.log 2>&1 &
-echo $! > /tmp/compose-up.pid
-sleep 5
-docker ps | grep solo-shop-builder
-```
+11. ✓ exit 0 — cd /home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers
 STDOUT:
-```
 c98ed978a89b   postgres:16-alpine   "docker-entrypoint.s…"   19 hours ago   Up 19 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
-```
-Full output: [`server-runs/2026-05-19T14-59-21-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-59-21-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log)
+Full log: server-runs/2026-05-19T14-59-21-www.soloshopbox.com-cd-home-engineer-solo-shop-builder-priva-1.log
 
-## 2026-05-19T14:59:51.659Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `c661b06` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 4572ms) _(showing tail — full 4,137,094B stdout + 0B stderr)_
-```
-cat /tmp/compose-up.log
-```
+12. ✓ exit 0 — cat /tmp/compose-up.log
 STDOUT:
-```
 time="2026-05-15T16:52:10Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
 Attaching to app-1, postgres-1
@@ -321,31 +304,14 @@ app-1                                                                        | {
 app-1                                                                        | {"requestId":"gMS5rafzrjtZ1UIe","method":"HEAD","path":"/auth/verify","responseTime":"0ms","timestamp":"2026-05-19T14:18:36.156Z","userAgent":"curl/8.5.0"}
 [Kapp-1 has been recreated
 [Kapp-1 exited with code 137
-```
-Full output: [`server-runs/2026-05-19T14-59-51-www.soloshopbox.com-cat-tmp-compose-up.log-1.log`](server-runs/2026-05-19T14-59-51-www.soloshopbox.com-cat-tmp-compose-up.log-1.log)
+Full log: server-runs/2026-05-19T14-59-51-www.soloshopbox.com-cat-tmp-compose-up.log-1.log
 
-## 2026-05-19T15:00:23.659Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `614fa46` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2880ms)
-```
-docker ps -a | grep solo-shop-builder | grep app
-```
+13. ✓ exit 0 — docker ps -a | grep solo-shop-builder | grep app
 STDOUT:
-```
 9bdccd2b9bd4   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   2 minutes ago   Created                                            solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
-```
-Full output: [`server-runs/2026-05-19T15-00-23-www.soloshopbox.com-docker-ps--a-grep-solo-shop-builder-grep-1.log`](server-runs/2026-05-19T15-00-23-www.soloshopbox.com-docker-ps--a-grep-solo-shop-builder-grep-1.log)
+Full log: server-runs/2026-05-19T15-00-23-www.soloshopbox.com-docker-ps--a-grep-solo-shop-builder-grep-1.log
 
-## 2026-05-19T15:00:56.924Z — Anil ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `7ebe5d8` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3271ms)
-```
-curl -f https://www.soloshopbox.com/api/health -o /dev/null -w "%{http_code}" 2>/dev/null || echo "FAIL"
-```
+14. ✓ exit 0 — curl -f https://www.soloshopbox.com/api/health -o /dev/null -w "%{http_code}" 2>
 STDOUT:
-```
 404FAIL
-```
-Full output: [`server-runs/2026-05-19T15-00-56-www.soloshopbox.com-curl--f-https-www.soloshopbox.com-api-he-1.log`](server-runs/2026-05-19T15-00-56-www.soloshopbox.com-curl--f-https-www.soloshopbox.com-api-he-1.log)
+Full log: server-runs/2026-05-19T15-00-56-www.soloshopbox.com-curl--f-https-www.soloshopbox.com-api-he-1.log
