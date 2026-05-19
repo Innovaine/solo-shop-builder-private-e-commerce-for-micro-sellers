@@ -401,3 +401,25 @@ STDOUT:
 Started docker compose up, PID=1750208
 ```
 Full output: [`server-runs/2026-05-19T13-38-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T13-38-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T13:39:14.903Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `faf043e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2233ms)
+```
+kill -0 $(cat /tmp/up.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+echo "---"
+cat /tmp/up.log
+```
+STDOUT:
+```
+DONE
+---
+time="2026-05-19T13:38:48Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-19T13-39-14-www.soloshopbox.com-kill--0-cat-tmp-up.pid-2-dev-null-echo-R-1.log`](server-runs/2026-05-19T13-39-14-www.soloshopbox.com-kill--0-cat-tmp-up.pid-2-dev-null-echo-R-1.log)
