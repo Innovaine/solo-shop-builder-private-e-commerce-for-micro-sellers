@@ -428,3 +428,30 @@ app/api/shops/status/route.ts:import { requireAuth } from '@/lib/auth'
 app/api/shops/status/route.ts:      const auth = await requireAuth();
 ```
 Full output: [`server-runs/2026-05-19T14-27-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-27-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-19T14:27:51.486Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `82ce6c4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3686ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "\.toFixed" app --include="*.tsx" --include="*.ts" | grep -E "(price|total|amount)" | head -15
+```
+STDOUT:
+```
+app/dashboard/products/[id]/edit/page.tsx:        setPrice((product.price / 100).toFixed(2))
+app/dashboard/billing/page.tsx:              ${((data?.totalRevenue || 0) / 100).toFixed(2)}
+app/dashboard/billing/page.tsx:                        ${(txn.amount / 100).toFixed(2)}
+app/dashboard/orders/page.tsx:                <div className="text-3xl font-bold text-charcoal mt-2">${((analytics.totalRevenue || 0) / 100).toFixed(2)}</div>
+app/dashboard/orders/page.tsx:                      <td className="px-6 py-4 font-semibold text-charcoal">${(order.total / 100).toFixed(2)}</td>
+app/dashboard/analytics/page.tsx:              ${((analytics?.totalRevenue || 0) / 100).toFixed(2)}
+app/dashboard/analytics/page.tsx:                        ${(product.totalRevenue / 100).toFixed(2)}
+app/dashboard/analytics/page.tsx:                        ${((product.totalRevenue / product.totalQuantity) / 100).toFixed(2)} avg
+app/dashboard/analytics/page.tsx:                      You've generated over ${((analytics!.totalRevenue / 100)).toFixed(0)} in the last 30 days.
+app/track/[orderId]/page.tsx:                    ${(item.price / 100).toFixed(2)}
+app/track/[orderId]/page.tsx:              <span>${(order.total / 100).toFixed(2)}</span>
+app/track/[orderId]/page.tsx:              <span className="text-emerald text-xl">${(order.total / 100).toFixed(2)}</span>
+app/components/CartButton.tsx:                        ${(item.price / 100).toFixed(2)} each
+app/components/CartButton.tsx:                        ${((item.price * item.quantity) / 100).toFixed(2)}
+app/components/CartButton.tsx:                    ${(total / 100).toFixed(2)}
+```
+Full output: [`server-runs/2026-05-19T14-27-51-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-27-51-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
