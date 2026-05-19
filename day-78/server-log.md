@@ -312,3 +312,19 @@ Testing sample shop page...
 ✗ Shop route failed (may be 404 if shop doesn't exist - OK)
 ```
 Full output: [`server-runs/2026-05-19T12-34-27-www.soloshopbox.com-echo-Testing-homepage...-1.log`](server-runs/2026-05-19T12-34-27-www.soloshopbox.com-echo-Testing-homepage...-1.log)
+
+## 2026-05-19T12:38:16.160Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `16e55ab` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3704ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day78-e2e-regression.spec.ts --reporter=list --output=$HOME/.playwright-out" > /tmp/day78-e2e.log 2>&1 &
+echo $! > /tmp/day78-e2e.pid
+echo "Started E2E regression test, PID=$(cat /tmp/day78-e2e.pid)"
+```
+STDOUT:
+```
+Started E2E regression test, PID=1740033
+```
+Full output: [`server-runs/2026-05-19T12-38-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T12-38-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
