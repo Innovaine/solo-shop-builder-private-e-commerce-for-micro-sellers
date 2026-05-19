@@ -163,3 +163,49 @@ STDOUT:
 Health: OK
 ```
 Full output: [`server-runs/2026-05-19T14-17-45-www.soloshopbox.com-docker-ps---format-.Names-t.Status-head--1.log`](server-runs/2026-05-19T14-17-45-www.soloshopbox.com-docker-ps---format-.Names-t.Status-head--1.log)
+
+## 2026-05-19T14:18:36.045Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0e6ca78` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3488ms)
+```
+echo "=== Day 80 Smoke Tests ==="
+echo ""
+echo "1. Health Check:"
+curl -sf https://www.soloshopbox.com/api/health | head -5
+echo ""
+echo ""
+echo "2. Homepage:"
+curl -sI https://www.soloshopbox.com | head -1
+echo ""
+echo "3. Dashboard pages:"
+curl -sI https://www.soloshopbox.com/dashboard | head -1
+curl -sI https://www.soloshopbox.com/dashboard/orders | head -1
+curl -sI https://www.soloshopbox.com/dashboard/profile | head -1
+curl -sI https://www.soloshopbox.com/dashboard/settings | head -1
+echo ""
+echo "4. Auth pages:"
+curl -sI https://www.soloshopbox.com/auth/login | head -1
+curl -sI https://www.soloshopbox.com/auth/verify | head -1
+```
+STDOUT:
+```
+=== Day 80 Smoke Tests ===
+
+1. Health Check:
+{"status":"ok","timestamp":"2026-05-19T14:18:35.891Z","responseTime":"168ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"167ms"}}}
+
+2. Homepage:
+HTTP/2 200 
+
+3. Dashboard pages:
+HTTP/2 307 
+HTTP/2 200 
+HTTP/2 200 
+HTTP/2 200 
+
+4. Auth pages:
+HTTP/2 200 
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-19T14-18-36-www.soloshopbox.com-echo-Day-80-Smoke-Tests-1.log`](server-runs/2026-05-19T14-18-36-www.soloshopbox.com-echo-Day-80-Smoke-Tests-1.log)
