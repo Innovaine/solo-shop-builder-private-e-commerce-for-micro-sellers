@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      background: linear-gradient(135deg, #FAF9F7 0%, #F3F0ED 100%);
+      color: #1F2937;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: center;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+      z-index: 50;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    /* Main content */
+    .container {
+      margin-top: 60px;
+    }
+
+    /* Success Card */
+    .success-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+      padding: 40px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+      margin-bottom: 24px;
+    }
+
+    /* Success Icon */
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 24px;
+      animation: scaleIn 0.4s ease-out;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Header */
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1F2937;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #64748B;
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* Order Details */
+    .order-details {
+      background: #F9FAFB;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #E5E7EB;
+      font-size: 14px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .detail-label {
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .detail-value {
+      color: #1F2937;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Order Total */
+    .order-total {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .total-label {
+      font-size: 12px;
+      color: #0369A1;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .total-amount {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0C4A6E;
+    }
+
+    /* What's Next */
+    .next-steps {
+      margin-bottom: 24px;
+    }
+
+    .next-steps-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #3B4C63;
+      margin-bottom: 16px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 12px;
+      background: #F9FAFB;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .step-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: #DCFCE7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #15803D;
+      font-weight: bold;
+    }
+
+    .step-content {
+      color: #1F2937;
+      line-height: 1.5;
+    }
+
+    .step-content strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Info Box */
+    .info-box {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #0369A1;
+      line-height: 1.5;
+    }
+
+    .info-box strong {
+      color: #0C4A6E;
+    }
+
+    /* Action Buttons */
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+      margin-bottom: 24px;
+    }
+
+    .button {
+      padding: 14px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+      text-align: center;
+      font-family: inherit;
+    }
+
+    .button-primary {
+      background-color: #10B981;
+      color: white;
+    }
+
+    .button-primary:hover {
+      background-color: #059669;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background-color: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+    }
+
+    .button-secondary:hover {
+      background-color: #F9FAFB;
+      border-color: #D1D5DB;
+    }
+
+    /* Email Confirmation */
+    .email-confirmation {
+      background: #F9FAFB;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .email-confirmation strong {
+      color: #1F2937;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: #E2E8F0;
+      margin: 32px 0;
+    }
+
+    /* Support Section */
+    .support-section {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    .support-text {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 12px;
+    }
+
+    .support-link {
+      color: #3B4C63;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+      margin: 0 8px;
+    }
+
+    .support-link:hover {
+      color: #10B981;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .success-card {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .success-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 32px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .detail-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .detail-value {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">Solo Shop</div>
+      <div class="breadcrumb">Order Confirmed</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="success-card">
+      <!-- Success Icon -->
+      <div class="success-icon">✓</div>
+
+      <!-- Success Message -->
+      <h1>Order confirmed!</h1>
+      <p class="subtitle">
+        Thank you for your purchase. We're preparing your order for shipment.
+      </p>
+
+      <!-- Order Details -->
+      <div class="order-details">
+        <div class="detail-row">
+          <span class="detail-label">Order Number</span>
+          <span class="detail-value">#ORD-2026-05-19-1847</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Date</span>
+          <span class="detail-value">May 19, 2026</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Items</span>
+          <span class="detail-value">2 products</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Shipped to</span>
+          <span class="detail-value">you@example.com</span>
+        </div>
+      </div>
+
+      <!-- Order Total -->
+      <div class="order-total">
+        <div class="total-label">Total Amount</div>
+        <div class="total-amount">$76.36</div>
+      </div>
+
+      <!-- Email Confirmation -->
+      <div class="email-confirmation">
+        ✓ Confirmation email sent to <strong>you@example.com</strong><br>
+        Check your inbox (and spam folder) for order details and tracking information.
+      </div>
+
+      <!-- What's Next -->
+      <div class="next-steps">
+        <div class="next-steps-title">What happens next</div>
+        <div class="step">
+          <div class="step-icon">1</div>
+          <div class="step-content">
+            <strong>We're packing your order</strong>
+            You'll get a notification when it ships with tracking information.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-icon">2</div>
+          <div class="step-content">
+            <strong>You'll receive tracking</strong>
+            Check your email for shipment notifications with carrier tracking links.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-icon">3</div>
+          <div class="step-content">
+            <strong>Package arrives at your door</strong>
+            Expected delivery in 5–10 business days depending on your location.
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="info-box">
+        <strong>💡 Tip:</strong> Save your order number (#ORD-2026-05-19-1847) to track your shipment. You'll receive an email with a tracking link when your order ships.
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <a href="/track/ORD-2026-05-19-1847" class="button button-primary">Track Your Order</a>
+        <a href="/shop" class="button button-secondary">Continue Shopping</a>
+      </div>
+
+      <!-- Support Section -->
+      <div class="support-section">
+        <p class="support-text">Questions about your order?</p>
+        <a href="/help" class="support-link">Help Center</a>
+        <span style="color: #D1D5DB;">•</span>
+        <a href="/contact" class="support-link">Contact Seller</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

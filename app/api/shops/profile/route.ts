@@ -2,6 +2,49 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 
+// GET /api/shops/profile — Fetch seller profile (FR-31)
+export async function GET(req: NextRequest) {
+  try {
+    // Auth check using iron-session
+    let sellerId: string;
+    try {
+      const auth = await requireAuth();
+      sellerId = auth.sellerId;
+    } catch (authError) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Find seller's shop
+    const shop = await prisma.shop.findFirst({
+      where: { sellerId },
+    });
+
+    if (!shop) {
+      return NextResponse.json({ error: 'No shop found' }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      shop: {
+        id: shop.id,
+        name: shop.name,
+        slug: shop.slug,
+        displayName: shop.displayName,
+        publicDescription: shop.publicDescription,
+        description: shop.description,
+        instagramUrl: shop.instagramUrl,
+        facebookUrl: shop.facebookUrl,
+        twitterUrl: shop.twitterUrl,
+      },
+    });
+  } catch (error: any) {
+    console.error('Profile fetch error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
 // PATCH /api/shops/profile — Update seller profile (FR-31)
 export async function PATCH(req: NextRequest) {
   try {

@@ -163,3 +163,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `6e9c0c7` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "signature\|verify\|hmac" app/api/checkout/myfatoorah/callback/route.ts | head -10
 ```
+
+## 2026-05-19T23:01:07.455Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `205eb73` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2492ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat .env.example | grep -E "^[A-Z_]+" | sort
+```
