@@ -449,3 +449,84 @@ Test 6: Order export API protected
 HTTP/2 401
 ```
 Full output: [`server-runs/2026-05-19T12-40-02-www.soloshopbox.com-echo-STAB-3-Order-Status-Flow-Verificati-1.log`](server-runs/2026-05-19T12-40-02-www.soloshopbox.com-echo-STAB-3-Order-Status-Flow-Verificati-1.log)
+
+## 2026-05-19T12:40:34.441Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `759f8f7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2942ms)
+```
+echo "=== STAB-4: Dashboard Settings Pages Verification ==="
+echo ""
+echo "Test 1: Dashboard home"
+curl -sI https://www.soloshopbox.com/dashboard | head -1
+echo ""
+echo "Test 2: Profile page"
+curl -sI https://www.soloshopbox.com/dashboard/profile | head -1
+echo ""
+echo "Test 3: Settings page"
+curl -sI https://www.soloshopbox.com/dashboard/settings | head -1
+echo ""
+echo "Test 4: Branding page"
+curl -sI https://www.soloshopbox.com/dashboard/branding | head -1
+echo ""
+echo "Test 5: Billing page"
+curl -sI https://www.soloshopbox.com/dashboard/billing | head -1
+echo ""
+echo "Test 6: Email template page"
+curl -sI https://www.soloshopbox.com/dashboard/email-template | head -1
+echo ""
+echo "Test 7: Products page"
+curl -sI https://www.soloshopbox.com/dashboard/products | head -1
+echo ""
+echo "Test 8: Analytics page"
+curl -sI https://www.soloshopbox.com/dashboard/analytics | head -1
+echo ""
+echo "=== API Protection Tests ==="
+echo "Profile API:"
+curl -sI https://www.soloshopbox.com/api/shops/profile | head -1
+echo "Branding API:"
+curl -sI https://www.soloshopbox.com/api/shops/branding | head -1
+echo "Billing API:"
+curl -sI https://www.soloshopbox.com/api/billing | head -1
+echo "Analytics API:"
+curl -sI https://www.soloshopbox.com/api/analytics | head -1
+```
+STDOUT:
+```
+=== STAB-4: Dashboard Settings Pages Verification ===
+
+Test 1: Dashboard home
+HTTP/2 307 
+
+Test 2: Profile page
+HTTP/2 200 
+
+Test 3: Settings page
+HTTP/2 200 
+
+Test 4: Branding page
+HTTP/2 200 
+
+Test 5: Billing page
+HTTP/2 200 
+
+Test 6: Email template page
+HTTP/2 200 
+
+Test 7: Products page
+HTTP/2 200 
+
+Test 8: Analytics page
+HTTP/2 200 
+
+=== API Protection Tests ===
+Profile API:
+HTTP/2 405 
+Branding API:
+HTTP/2 405 
+Billing API:
+HTTP/2 500 
+Analytics API:
+HTTP/2 401
+```
+Full output: [`server-runs/2026-05-19T12-40-34-www.soloshopbox.com-echo-STAB-4-Dashboard-Settings-Pages-Ver-1.log`](server-runs/2026-05-19T12-40-34-www.soloshopbox.com-echo-STAB-4-Dashboard-Settings-Pages-Ver-1.log)
