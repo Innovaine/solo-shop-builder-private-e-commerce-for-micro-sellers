@@ -250,3 +250,56 @@ STDOUT:
 Started build, PID=1748751
 ```
 Full output: [`server-runs/2026-05-19T13-36-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T13-36-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T13:36:38.192Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `eeb2eff` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2195ms) _(showing tail — full 3,686B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/build.log
+```
+STDOUT:
+```
+… using Prisma Client in Node.js (See: https://pris.ly/d/client)
+#15 1.074 ```
+#15 1.074 import { PrismaClient } from '@prisma/client'
+#15 1.074 const prisma = new PrismaClient()
+#15 1.074 ```
+#15 1.074 or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+#15 1.074 ```
+#15 1.074 import { PrismaClient } from '@prisma/client/edge'
+#15 1.074 const prisma = new PrismaClient()
+#15 1.074 ```
+#15 1.074 
+#15 1.074 See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+#15 1.074 
+#15 1.074 ┌─────────────────────────────────────────────────────────────┐
+#15 1.074 │  Deploying your app to serverless or edge functions?        │
+#15 1.074 │  Try Prisma Accelerate for connection pooling and caching.  │
+#15 1.074 │  https://pris.ly/cli/--accelerate                           │
+#15 1.074 └─────────────────────────────────────────────────────────────┘
+#15 1.074 
+#15 1.775 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#15 1.775 This information is used to shape Next.js' roadmap and prioritize features.
+#15 1.775 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 1.775 https://nextjs.org/telemetry
+#15 1.775 
+#15 1.822   ▲ Next.js 14.2.3
+#15 1.822   - Environments: .env
+#15 1.822 
+#15 1.889    Creating an optimized production build ...
+#15 15.19  ✓ Compiled successfully
+#15 15.19    Linting and checking validity of types ...
+#15 21.41    Collecting page data ...
+#15 21.88 (node:256) Warning: NodeVersionSupportWarning: The AWS SDK for JavaScript (v3)
+#15 21.88 versions published after the first week of January 2027
+#15 21.88 will require node >=22. You are running node v20.20.2.
+#15 21.88 
+#15 21.88 To continue receiving updates to AWS services, bug fixes,
+#15 21.88 and security updates please upgrade to node >=22.
+#15 21.88 
+#15 21.88 More information can be found at: https://a.co/c895JFp
+#15 21.88 (Use `node --trace-warnings ...` to show where the warning was created)
+```
+Full output: [`server-runs/2026-05-19T13-36-38-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-19T13-36-38-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
