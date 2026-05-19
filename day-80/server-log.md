@@ -56,3 +56,16 @@ STDOUT:
 Git pull complete
 ```
 Full output: [`server-runs/2026-05-19T14-11-57-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-11-57-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-19T14:12:25.717Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c773c75` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3038ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup npm run build > /tmp/day80-build.log 2>&1 & echo $! > /tmp/day80-build.pid && echo "Build started, PID=$(cat /tmp/day80-build.pid)"
+```
+STDOUT:
+```
+Build started, PID=1755951
+```
+Full output: [`server-runs/2026-05-19T14-12-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-12-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
