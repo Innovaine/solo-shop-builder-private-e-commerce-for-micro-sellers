@@ -517,3 +517,17 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up
 sleep 10 && curl -sf https://www.soloshopbox.com/api/health && echo "✓ Health check OK"
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-19T21:39:22.770Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ed0932f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2856ms)
+```
+docker ps --format "{{.Names}} - {{.Status}}" | grep solo-shop || echo "NO SOLO-SHOP CONTAINERS RUNNING"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 - Up 2 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 - Up 26 hours (healthy)
+```
+Full output: [`server-runs/2026-05-19T21-39-22-www.soloshopbox.com-docker-ps---format-.Names---.Status-grep-1.log`](server-runs/2026-05-19T21-39-22-www.soloshopbox.com-docker-ps---format-.Names---.Status-grep-1.log)
