@@ -915,3 +915,18 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-19T22:37:49.795Z","responseTime":"221ms","checks":{"database":{"status":"ok","responseTime":"43ms"},"email":{"status":"ok","responseTime":"178ms"}}}
 ```
 Full output: [`server-runs/2026-05-19T22-37-49-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-19T22-37-49-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-19T22:38:41.382Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `03712e8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2439ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "payment_cancelled\|payment_expired\|payment_declined" app/checkout/page.tsx | head -20
+```
+STDOUT:
+```
+34:      if (errorParam === 'payment_cancelled') {
+36:      } else if (errorParam === 'payment_expired') {
+38:      } else if (errorParam.startsWith('payment_declined')) {
+```
+Full output: [`server-runs/2026-05-19T22-38-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-38-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
