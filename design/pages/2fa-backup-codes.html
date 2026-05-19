@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save Your Backup Codes — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background: #FAF9F7;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .header-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    .header-subtitle {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Warning */
+    .warning-box {
+      background: #FEF3C7;
+      border: 1px solid #FCD34D;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+    }
+    .warning-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .warning-text {
+      font-size: 13px;
+      color: #78350F;
+      line-height: 1.6;
+    }
+    .warning-text strong {
+      font-weight: 600;
+    }
+
+    /* Code List */
+    .codes-box {
+      background: #FAF9F7;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .codes-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1F2937;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    .codes-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .code-item {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1F2937;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* Button Group */
+    .button-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: #10B981;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background-color: #059669;
+      transform: translateY(-1px);
+    }
+    .btn-primary:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: white;
+      color: #3B4C63;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover {
+      background-color: #FAF9F7;
+      border-color: #CBD5E1;
+    }
+
+    .icon {
+      font-size: 16px;
+    }
+
+    /* Instructions */
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+    .instruction-list {
+      font-size: 13px;
+      color: #64748B;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .instruction-list li {
+      margin-left: 20px;
+      margin-bottom: 8px;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background-color: #E2E8F0;
+      margin: 24px 0;
+    }
+
+    /* Footer */
+    .footer-text {
+      font-size: 12px;
+      color: #64748B;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .footer-text a {
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1F2937;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.3s ease-out;
+    }
+    .toast.show {
+      display: block;
+    }
+    @keyframes slideIn {
+      from {
+        transform: translateX(120%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .card {
+        padding: 24px;
+      }
+      .codes-list {
+        grid-template-columns: 1fr;
+      }
+      .button-row {
+        flex-direction: column;
+      }
+      .toast {
+        left: 24px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="header-title">Save Your Backup Codes</h1>
+      <p class="header-subtitle">Store these codes in a safe place. You'll need them if you lose access to your authenticator app.</p>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-icon">⚠️</div>
+      <div class="warning-text">
+        <strong>Keep these codes safe.</strong> Do not share them with anyone. Each code can only be used once.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="codes-box">
+        <div class="codes-title">Your Backup Codes</div>
+        <div class="codes-list">
+          <div class="code-item">ABCD-1234-EF</div>
+          <div class="code-item">GHIJ-5678-KL</div>
+          <div class="code-item">MNOP-9012-QR</div>
+          <div class="code-item">STUV-3456-WX</div>
+          <div class="code-item">YZAB-7890-CD</div>
+          <div class="code-item">EFGH-1234-IJ</div>
+          <div class="code-item">KLMN-5678-OP</div>
+          <div class="code-item">QRST-9012-UV</div>
+        </div>
+        <div class="button-row">
+          <button class="btn-primary" onclick="copyAllCodes()">
+            <span class="icon">📋</span>
+            <span>Copy All</span>
+          </button>
+          <button class="btn-secondary" onclick="downloadCodes()">
+            <span class="icon">⬇️</span>
+            <span>Download</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="section-title">How to Use Backup Codes</div>
+      <ol class="instruction-list">
+        <li><strong>Store safely:</strong> Save these codes in a password manager, a secure note app, or print them out and store in a safe place.</li>
+        <li><strong>Use when needed:</strong> If you lose your authenticator app, you can enter a backup code instead of a 2FA code to sign in.</li>
+        <li><strong>One-time use:</strong> Each code can only be used once. Once used, it will no longer work.</li>
+        <li><strong>Regenerate:</strong> If you use all your codes, you can generate new ones in your account settings.</li>
+      </ol>
+
+      <div class="divider"></div>
+
+      <div class="section-title">Next Steps</div>
+      <p style="font-size: 13px; color: #64748B; line-height: 1.6; margin-bottom: 24px;">
+        Your two-factor authentication is now active. You'll be asked for a verification code the next time you sign in.
+      </p>
+
+      <div class="button-row">
+        <button class="btn-primary" onclick="finishSetup()" style="flex: 1;">Done</button>
+      </div>
+    </div>
+
+    <div class="footer-text">
+      <p>Need help? <a href="/help">Contact support</a> or see our <a href="/help/2fa">2FA guide</a></p>
+    </div>
+  </div>
+
+  <div class="toast" id="copyToast">✓ Codes copied to clipboard</div>
+
+  <script>
+    // Design reference — engineer will wire actual file download + clipboard
+    function copyAllCodes() {
+      const codes = Array.from(document.querySelectorAll('.code-item'))
+        .map(el => el.textContent)
+        .join('\n');
+      
+      // In real implementation, use Clipboard API
+      navigator.clipboard.writeText(codes).then(() => {
+        showToast('✓ Codes copied to clipboard');
+      });
+    }
+
+    function downloadCodes() {
+      const codes = Array.from(document.querySelectorAll('.code-item'))
+        .map(el => el.textContent)
+        .join('\n');
+      
+      // In real implementation, create blob + download
+      const element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(codes));
+      element.setAttribute('download', 'backup-codes.txt');
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+      showToast('✓ Codes downloaded');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('copyToast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function finishSetup() {
+      // Redirect to dashboard or settings
+      window.location.href = '/dashboard';
+    }
+  </script>
+</body>
+</html>
