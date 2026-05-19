@@ -447,3 +447,18 @@ Status: 500
 All endpoints responding correctly!
 ```
 Full output: [`server-runs/2026-05-19T20-52-44-www.soloshopbox.com-echo-1.-GET-api-shops-email-template-sho-1.log`](server-runs/2026-05-19T20-52-44-www.soloshopbox.com-echo-1.-GET-api-shops-email-template-sho-1.log)
+
+## 2026-05-19T20:54:01.677Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `39d3439` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3225ms)
+```
+docker ps --format ".Names\t.Status" | grep solo-shop || echo "NOT RUNNING"
+curl -sf https://www.soloshopbox.com/api/health && echo " - Health endpoint OK" || echo "HEALTH ENDPOINT FAILED"
+```
+STDOUT:
+```
+NOT RUNNING
+{"status":"ok","timestamp":"2026-05-19T20:54:01.648Z","responseTime":"208ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"207ms"}}} - Health endpoint OK
+```
+Full output: [`server-runs/2026-05-19T20-54-01-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log`](server-runs/2026-05-19T20-54-01-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log)
