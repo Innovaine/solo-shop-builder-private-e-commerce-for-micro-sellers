@@ -400,3 +400,52 @@ Test 7: Health check API
 {"status":"ok","timestamp":"2026-05-19T12:39:31.642Z","responseTime":"236ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"235ms"}}}
 ```
 Full output: [`server-runs/2026-05-19T12-39-31-www.soloshopbox.com-echo-STAB-2-E2E-Flow-Verification-1.log`](server-runs/2026-05-19T12-39-31-www.soloshopbox.com-echo-STAB-2-E2E-Flow-Verification-1.log)
+
+## 2026-05-19T12:40:02.095Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `60f3039` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2567ms)
+```
+echo "=== STAB-3: Order Status Flow Verification ==="
+echo ""
+echo "Test 1: Orders dashboard requires auth"
+curl -sI https://www.soloshopbox.com/dashboard/orders | head -1
+echo ""
+echo "Test 2: Orders API protected"
+curl -sI https://www.soloshopbox.com/api/orders | head -1
+echo ""
+echo "Test 3: Order tracking publicly accessible"
+curl -sI https://www.soloshopbox.com/track/abc123 | head -1
+echo ""
+echo "Test 4: Order detail API exists"
+curl -sI https://www.soloshopbox.com/api/orders/test123 | head -1
+echo ""
+echo "Test 5: Order history API exists"
+curl -sI https://www.soloshopbox.com/api/orders/test123/history | head -1
+echo ""
+echo "Test 6: Order export API protected"
+curl -sI https://www.soloshopbox.com/api/orders/export | head -1
+```
+STDOUT:
+```
+=== STAB-3: Order Status Flow Verification ===
+
+Test 1: Orders dashboard requires auth
+HTTP/2 200 
+
+Test 2: Orders API protected
+HTTP/2 500 
+
+Test 3: Order tracking publicly accessible
+HTTP/2 200 
+
+Test 4: Order detail API exists
+HTTP/2 405 
+
+Test 5: Order history API exists
+HTTP/2 500 
+
+Test 6: Order export API protected
+HTTP/2 401
+```
+Full output: [`server-runs/2026-05-19T12-40-02-www.soloshopbox.com-echo-STAB-3-Order-Status-Flow-Verificati-1.log`](server-runs/2026-05-19T12-40-02-www.soloshopbox.com-echo-STAB-3-Order-Status-Flow-Verificati-1.log)
