@@ -750,3 +750,16 @@ STDOUT:
 ls: cannot access 'node_modules': No such file or directory
 ```
 Full output: [`server-runs/2026-05-19T15-14-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-14-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T15:16:37.991Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9db1e5e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3602ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "cookies()" app/api/ 2>/dev/null | head -20
+```
+STDOUT:
+```
+app/api/orders/[id]/refund/route.ts:20:    const sessionCookie = cookies().get('session')
+```
+Full output: [`server-runs/2026-05-19T15-16-37-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T15-16-37-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
