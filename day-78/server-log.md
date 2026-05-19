@@ -530,3 +530,32 @@ Analytics API:
 HTTP/2 401
 ```
 Full output: [`server-runs/2026-05-19T12-40-34-www.soloshopbox.com-echo-STAB-4-Dashboard-Settings-Pages-Ver-1.log`](server-runs/2026-05-19T12-40-34-www.soloshopbox.com-echo-STAB-4-Dashboard-Settings-Pages-Ver-1.log)
+
+## 2026-05-19T12:41:03.955Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8f80187` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2313ms)
+```
+echo "=== Detailed Error Analysis ==="
+echo ""
+echo "1. Orders API error (should return 401, returns 500):"
+curl -s https://www.soloshopbox.com/api/orders | head -100
+echo ""
+echo "2. Order history API error:"
+curl -s https://www.soloshopbox.com/api/orders/test123/history | head -100
+echo ""
+echo "3. Billing API error:"
+curl -s https://www.soloshopbox.com/api/billing | head -100
+```
+STDOUT:
+```
+=== Detailed Error Analysis ===
+
+1. Orders API error (should return 401, returns 500):
+{"error":"Failed to fetch orders"}
+2. Order history API error:
+{"error":"Failed to fetch order history"}
+3. Billing API error:
+{"error":"Internal server error"}
+```
+Full output: [`server-runs/2026-05-19T12-41-03-www.soloshopbox.com-echo-Detailed-Error-Analysis-1.log`](server-runs/2026-05-19T12-41-03-www.soloshopbox.com-echo-Detailed-Error-Analysis-1.log)
