@@ -258,3 +258,19 @@ app/api/shops/profile/route.ts:6:export async function PATCH(req: NextRequest) {
 app/api/checkout/route.ts:14:export async function POST(request: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-19T22-16-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-16-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T22:17:01.002Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `07d88fd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2685ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -A 3 "export async function" app/api/shops/profile/route.ts | head -20
+```
+STDOUT:
+```
+export async function PATCH(req: NextRequest) {
+  try {
+    // Auth check using iron-session
+    let sellerId: string;
+```
+Full output: [`server-runs/2026-05-19T22-17-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-17-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
