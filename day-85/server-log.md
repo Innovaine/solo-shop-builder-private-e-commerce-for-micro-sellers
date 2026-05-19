@@ -449,3 +449,36 @@ c98ed978a89b   postgres:16-alpine                                           "doc
 {"status":"ok","timestamp":"2026-05-19T23:16:30.970Z","responseTime":"177ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"175ms"}}}OK
 ```
 Full output: [`server-runs/2026-05-19T23-16-31-www.soloshopbox.com-docker-ps-grep-solo-shop-1.log`](server-runs/2026-05-19T23-16-31-www.soloshopbox.com-docker-ps-grep-solo-shop-1.log)
+
+## 2026-05-19T23:17:04.659Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c8cf837` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3103ms)
+```
+echo "Test 1: GET /api/shops/profile without auth (should 401)"
+curl -I https://www.soloshopbox.com/api/shops/profile 2>&1 | head -15
+
+echo ""
+echo "Test 2: Verify endpoint accepts GET method (not just POST/PATCH)"
+curl -X OPTIONS https://www.soloshopbox.com/api/shops/profile -v 2>&1 | grep -i "allow:"
+```
+STDOUT:
+```
+Test 1: GET /api/shops/profile without auth (should 401)
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 401 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+content-type: application/json
+date: Tue, 19 May 2026 23:17:04 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+x-request-id: DXF93zlAV7aLGg1P
+
+
+Test 2: Verify endpoint accepts GET method (not just POST/PATCH)
+< allow: GET, HEAD, OPTIONS, PATCH
+```
+Full output: [`server-runs/2026-05-19T23-17-04-www.soloshopbox.com-echo-Test-1-GET-api-shops-profile-withou-1.log`](server-runs/2026-05-19T23-17-04-www.soloshopbox.com-echo-Test-1-GET-api-shops-profile-withou-1.log)
