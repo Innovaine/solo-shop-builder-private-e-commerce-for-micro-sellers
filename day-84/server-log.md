@@ -308,3 +308,21 @@ app/api/orders/[id]/refund/route.ts:6:import Stripe from 'stripe'
 app/api/webhooks/stripe/route.ts:6:import Stripe from 'stripe'
 ```
 Full output: [`server-runs/2026-05-19T22-18-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-18-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T22:18:32.572Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8ef5a15` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2381ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -A 5 "export async function" app/api/webhooks/stripe/route.ts | head -15
+```
+STDOUT:
+```
+export async function POST(request: NextRequest) {
+  const body = await request.text()
+  const signature = request.headers.get('stripe-signature')
+
+  if (!signature) {
+    return NextResponse.json(
+```
+Full output: [`server-runs/2026-05-19T22-18-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-18-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
