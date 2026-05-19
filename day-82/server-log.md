@@ -462,3 +462,44 @@ NOT RUNNING
 {"status":"ok","timestamp":"2026-05-19T20:54:01.648Z","responseTime":"208ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"207ms"}}} - Health endpoint OK
 ```
 Full output: [`server-runs/2026-05-19T20-54-01-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log`](server-runs/2026-05-19T20-54-01-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log)
+
+## 2026-05-19T20:54:35.531Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6754ed3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2694ms)
+```
+echo "=== Testing Day 82 Engineer Fixes ==="
+echo ""
+echo "Test 1: GET /api/shops/email-template without auth (should return 401)"
+curl -s -o /dev/null -w "HTTP %{http_code}\n" https://www.soloshopbox.com/api/shops/email-template
+echo ""
+echo "Test 2: POST /api/orders/fake-id/refund without auth (should return 401)"
+curl -s -o /dev/null -w "HTTP %{http_code}\n" -X POST https://www.soloshopbox.com/api/orders/fake-id/refund
+echo ""
+echo "Test 3: MyFatoorah callback GET without params (should redirect 307)"
+curl -s -o /dev/null -w "HTTP %{http_code}\n" https://www.soloshopbox.com/api/checkout/myfatoorah/callback
+echo ""
+echo "Test 4: MyFatoorah callback POST without params (should redirect 307)"
+curl -s -o /dev/null -w "HTTP %{http_code}\n" -X POST https://www.soloshopbox.com/api/checkout/myfatoorah/callback
+echo ""
+echo "=== All tests complete ==="
+```
+STDOUT:
+```
+=== Testing Day 82 Engineer Fixes ===
+
+Test 1: GET /api/shops/email-template without auth (should return 401)
+HTTP 401
+
+Test 2: POST /api/orders/fake-id/refund without auth (should return 401)
+HTTP 500
+
+Test 3: MyFatoorah callback GET without params (should redirect 307)
+HTTP 307
+
+Test 4: MyFatoorah callback POST without params (should redirect 307)
+HTTP 307
+
+=== All tests complete ===
+```
+Full output: [`server-runs/2026-05-19T20-54-35-www.soloshopbox.com-echo-Testing-Day-82-Engineer-Fixes-1.log`](server-runs/2026-05-19T20-54-35-www.soloshopbox.com-echo-Testing-Day-82-Engineer-Fixes-1.log)
