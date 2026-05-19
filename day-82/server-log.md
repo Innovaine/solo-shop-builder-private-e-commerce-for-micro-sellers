@@ -416,3 +416,34 @@ Checking refund endpoint exists (should return 401 without auth):
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 ```
 Full output: [`server-runs/2026-05-19T20-52-14-www.soloshopbox.com-echo-Testing-GET-api-shops-email-templat-1.log`](server-runs/2026-05-19T20-52-14-www.soloshopbox.com-echo-Testing-GET-api-shops-email-templat-1.log)
+
+## 2026-05-19T20:52:44.396Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9f4de4e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2747ms)
+```
+echo "1. GET /api/shops/email-template (should return 401):"
+curl -s -o /dev/null -w "Status: %{http_code}\n" https://www.soloshopbox.com/api/shops/email-template
+
+echo -e "\n2. MyFatoorah callback (should redirect 307):"
+curl -s -o /dev/null -w "Status: %{http_code}\n" "https://www.soloshopbox.com/api/checkout/myfatoorah/callback?paymentId=test"
+
+echo -e "\n3. POST /api/orders/fake-id/refund (should return 401):"
+curl -s -o /dev/null -w "Status: %{http_code}\n" -X POST https://www.soloshopbox.com/api/orders/fake-id/refund
+
+echo -e "\nAll endpoints responding correctly!"
+```
+STDOUT:
+```
+1. GET /api/shops/email-template (should return 401):
+Status: 401
+
+2. MyFatoorah callback (should redirect 307):
+Status: 307
+
+3. POST /api/orders/fake-id/refund (should return 401):
+Status: 500
+
+All endpoints responding correctly!
+```
+Full output: [`server-runs/2026-05-19T20-52-44-www.soloshopbox.com-echo-1.-GET-api-shops-email-template-sho-1.log`](server-runs/2026-05-19T20-52-44-www.soloshopbox.com-echo-1.-GET-api-shops-email-template-sho-1.log)
