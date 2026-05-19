@@ -599,3 +599,47 @@ Test 7: Health check API
 ok
 ```
 Full output: [`server-runs/2026-05-19T13-44-40-www.soloshopbox.com-echo-Comprehensive-Day-79-Regression-Tes-1.log`](server-runs/2026-05-19T13-44-40-www.soloshopbox.com-echo-Comprehensive-Day-79-Regression-Tes-1.log)
+
+## 2026-05-19T13:45:12.981Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9901cb7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2522ms)
+```
+echo "=== API ERROR CODE TESTS (Day 79 Fixes) ==="
+echo ""
+echo "Test 1: PATCH /api/orders/[id] - should return 401 for unauthorized"
+curl -X PATCH https://www.soloshopbox.com/api/orders/test-id -H "Content-Type: application/json" -d '{"status":"shipped"}' -s -w "\nHTTP Status: %{http_code}\n" 2>&1 | tail -2
+echo ""
+echo "Test 2: GET /api/orders - auth check behavior"
+curl https://www.soloshopbox.com/api/orders -s -w "\nHTTP Status: %{http_code}\n" 2>&1 | tail -2
+echo ""
+echo "Test 3: GET /api/orders/[id]/history - should return 401"
+curl https://www.soloshopbox.com/api/orders/test-id/history -s -w "\nHTTP Status: %{http_code}\n" 2>&1 | tail -2
+echo ""
+echo "Test 4: Dashboard settings pages still working"
+curl -sI https://www.soloshopbox.com/dashboard/branding 2>&1 | grep "HTTP" | head -1
+curl -sI https://www.soloshopbox.com/dashboard/billing 2>&1 | grep "HTTP" | head -1
+curl -sI https://www.soloshopbox.com/dashboard/analytics 2>&1 | grep "HTTP" | head -1
+```
+STDOUT:
+```
+=== API ERROR CODE TESTS (Day 79 Fixes) ===
+
+Test 1: PATCH /api/orders/[id] - should return 401 for unauthorized
+{"error":"Unauthorized"}
+HTTP Status: 401
+
+Test 2: GET /api/orders - auth check behavior
+{"error":"Failed to fetch orders"}
+HTTP Status: 500
+
+Test 3: GET /api/orders/[id]/history - should return 401
+{"error":"Failed to fetch order history"}
+HTTP Status: 500
+
+Test 4: Dashboard settings pages still working
+HTTP/2 200 
+HTTP/2 200 
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-19T13-45-12-www.soloshopbox.com-echo-API-ERROR-CODE-TESTS-Day-79-Fixes-1.log`](server-runs/2026-05-19T13-45-12-www.soloshopbox.com-echo-API-ERROR-CODE-TESTS-Day-79-Fixes-1.log)
