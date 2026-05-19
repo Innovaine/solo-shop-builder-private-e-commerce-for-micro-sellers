@@ -683,3 +683,28 @@ Fast-forward
 -rw-rw-r-- 1 tester tester 3327 May 19 22:31 tests/web/day84-smoke.spec.ts
 ```
 Full output: [`server-runs/2026-05-19T22-31-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-31-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T22:33:06.456Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ab3577a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2488ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+rm -f /tmp/day84-test.log /tmp/day84-test.pid
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day84-smoke.spec.ts --reporter=list --output=$HOME/.playwright-out > /tmp/day84-test.log 2>&1 &
+echo $! > /tmp/day84-test.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day84-test.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=1833174
+```
+Full output: [`server-runs/2026-05-19T22-32-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-32-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 52601ms)
+```
+sleep 15
+kill -0 $(cat /tmp/day84-test.pid) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+tail -150 /tmp/day84-test.log | head -100
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
