@@ -630,3 +630,56 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-19T22-31-08-www.soloshopbox.com-sleep-10-2.log`](server-runs/2026-05-19T22-31-08-www.soloshopbox.com-sleep-10-2.log)
+
+## 2026-05-19T22:31:40.864Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `98fb508` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3286ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git pull
+ls -la tests/web/day84-smoke.spec.ts 2>/dev/null || echo "File not found after pull"
+```
+STDOUT:
+```
+Updating 459a522..98fb508
+Fast-forward
+ app/api/checkout/myfatoorah/callback/route.ts |  16 +-
+ app/api/checkout/route.ts                     |   2 +-
+ app/checkout/page.tsx                         |  31 ++
+ app/dashboard/orders/[id]/page.tsx            |   2 +-
+ day-83/_index.md                              |  23 +
+ day-83/server-log.md                          |  70 +++
+ day-83/stage-ship-check.md                    |  15 +
+ day-83/standards-audit.md                     | 222 +++++++++
+ day-83/standards_qa.md                        |  55 +++
+ day-83/test.md                                | 146 ++++++
+ day-84/_plan.md                               |  45 ++
+ day-84/connectivity-audit.md                  | 170 +++++++
+ day-84/connectivity_qa.md                     | 307 +++++++++++++
+ day-84/design.md                              |  38 ++
+ day-84/engineering.md                         | 195 ++++++++
+ day-84/review.md                              |  29 ++
+ day-84/server-log.md                          | 632 ++++++++++++++++++++++++++
+ integrations/s3-mpd6s4.md                     | 233 ++++++++++
+ test-results/day-83/report.md                 |  88 ++++
+ tests/web/day84-smoke.spec.ts                 |  85 ++++
+ 20 files changed, 2401 insertions(+), 3 deletions(-)
+ create mode 100644 day-83/_index.md
+ create mode 100644 day-83/stage-ship-check.md
+ create mode 100644 day-83/standards-audit.md
+ create mode 100644 day-83/standards_qa.md
+ create mode 100644 day-83/test.md
+ create mode 100644 day-84/_plan.md
+ create mode 100644 day-84/connectivity-audit.md
+ create mode 100644 day-84/connectivity_qa.md
+ create mode 100644 day-84/design.md
+ create mode 100644 day-84/engineering.md
+ create mode 100644 day-84/review.md
+ create mode 100644 day-84/server-log.md
+ create mode 100644 integrations/s3-mpd6s4.md
+ create mode 100644 test-results/day-83/report.md
+ create mode 100644 tests/web/day84-smoke.spec.ts
+-rw-rw-r-- 1 tester tester 3327 May 19 22:31 tests/web/day84-smoke.spec.ts
+```
+Full output: [`server-runs/2026-05-19T22-31-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-31-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
