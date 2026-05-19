@@ -2,6 +2,42 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 
+// GET /api/shops/email-template — Fetch current email template
+export async function GET(req: NextRequest) {
+  try {
+    // Auth check using iron-session
+    let sellerId: string;
+    try {
+      const auth = await requireAuth();
+      sellerId = auth.sellerId;
+    } catch (authError) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Find seller's shop
+    const shop = await prisma.shop.findFirst({
+      where: { sellerId },
+    });
+
+    if (!shop) {
+      return NextResponse.json({ error: 'No shop found' }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      shop: {
+        id: shop.id,
+        emailTemplateBody: shop.emailTemplateBody || '',
+      },
+    });
+  } catch (error: any) {
+    console.error('Email template fetch error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
 // PATCH /api/shops/email-template — Update email template (FR-35)
 export async function PATCH(req: NextRequest) {
   try {

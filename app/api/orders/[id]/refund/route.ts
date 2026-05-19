@@ -2,10 +2,10 @@
 // Seller initiates refund, customer notified
 
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 import Stripe from 'stripe'
 import { prisma } from '@/lib/db'
 import { sendEmail } from '@/lib/email'
+import { requireAuth } from '@/lib/auth'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-04-10',
@@ -16,22 +16,14 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    // Auth check
-    const sessionCookie = cookies().get('session')
-    if (!sessionCookie) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    // Auth check using requireAuth() helper per standards.md
+    const { sellerId } = await requireAuth()
 
-    const session = await prisma.authToken.findUnique({
-      where: { token: sessionCookie.value },
-      include: { seller: { include: { shops: true } } },
+    // Find seller's shop
+    const shop = await prisma.shop.findFirst({
+      where: { sellerId },
     })
 
-    if (!session || session.expiresAt < new Date() || session.used) {
-      return NextResponse.json({ error: 'Session expired' }, { status: 401 })
-    }
-
-    const shop = session.seller.shops[0]
     if (!shop) {
       return NextResponse.json({ error: 'No shop found' }, { status: 404 })
     }

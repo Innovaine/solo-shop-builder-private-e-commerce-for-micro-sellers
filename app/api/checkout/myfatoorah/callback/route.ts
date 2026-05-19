@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { sendEmail } from '@/lib/email'
 
-export async function GET(req: NextRequest) {
+async function handleCallback(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
     const paymentId = searchParams.get('paymentId')
@@ -183,4 +183,14 @@ Track your order: ${trackingUrl}`
     const baseUrl = process.env.APP_URL || 'https://www.soloshopbox.com'
     return NextResponse.redirect(`${baseUrl}/checkout?error=callback_error`)
   }
+}
+
+// GET /api/checkout/myfatoorah/callback — Handle redirect after payment
+export async function GET(req: NextRequest) {
+  return handleCallback(req)
+}
+
+// POST /api/checkout/myfatoorah/callback — Handle webhook notification
+export async function POST(req: NextRequest) {
+  return handleCallback(req)
 }
