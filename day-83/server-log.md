@@ -447,3 +447,33 @@ Test 1: Orders page accessible
 HTTP/2 404
 ```
 Full output: [`server-runs/2026-05-19T21-34-10-www.soloshopbox.com-echo-Test-1-Orders-page-accessible-curl--3.log`](server-runs/2026-05-19T21-34-10-www.soloshopbox.com-echo-Test-1-Orders-page-accessible-curl--3.log)
+
+## 2026-05-19T21:34:49.792Z — Anil ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `970bd19` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2635ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up -d > /tmp/compose-up.log 2>&1 & echo $! > /tmp/compose-up.pid && echo "Compose up started"
+```
+STDOUT:
+```
+Compose up started
+```
+Full output: [`server-runs/2026-05-19T21-34-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T21-34-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as engineer (✓ exit 0, 5506ms)
+```
+sleep 5 && docker ps --format "{{.Names}} - {{.Status}}"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 - Up 26 hours (healthy)
+traefik-vwiz-traefik-1 - Up 2 days
+```
+Full output: [`server-runs/2026-05-19T21-34-49-www.soloshopbox.com-sleep-5-docker-ps---format-.Names---.Sta-2.log`](server-runs/2026-05-19T21-34-49-www.soloshopbox.com-sleep-5-docker-ps---format-.Names---.Sta-2.log)
+
+### Command 3 on www.soloshopbox.com as engineer (✗ exit 22, 449ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo "Health check OK"
+```
+ERROR: command exited 22
