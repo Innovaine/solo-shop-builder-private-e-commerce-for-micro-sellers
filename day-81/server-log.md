@@ -541,3 +541,75 @@ STDOUT:
     "apiCalls": 34,
 ```
 Full output: [`server-runs/2026-05-19T15-11-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-11-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T15:12:01.639Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b0a04a7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3600ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | python3 -m json.tool 2>/dev/null | head -60
+```
+STDOUT:
+```
+{
+    "summary": {
+        "routes": 57,
+        "pages": 23,
+        "apis": 34,
+        "links": 87,
+        "apiCalls": 34,
+        "broken": 3,
+        "orphans": 3,
+        "methodMismatches": 2
+    },
+    "routes": [
+        {
+            "route": "/api/account/delete",
+            "kind": "api",
+            "file": "app/api/account/delete/route.ts"
+        },
+        {
+            "route": "/api/account/password",
+            "kind": "api",
+            "file": "app/api/account/password/route.ts"
+        },
+        {
+            "route": "/api/analytics",
+            "kind": "api",
+            "file": "app/api/analytics/route.ts"
+        },
+        {
+            "route": "/api/auth/forgot-password",
+            "kind": "api",
+            "file": "app/api/auth/forgot-password/route.ts"
+        },
+        {
+            "route": "/api/auth/login",
+            "kind": "api",
+            "file": "app/api/auth/login/route.ts"
+        },
+        {
+            "route": "/api/auth/logout",
+            "kind": "api",
+            "file": "app/api/auth/logout/route.ts"
+        },
+        {
+            "route": "/api/auth/reset-password",
+            "kind": "api",
+            "file": "app/api/auth/reset-password/route.ts"
+        },
+        {
+            "route": "/api/auth/signup",
+            "kind": "api",
+            "file": "app/api/auth/signup/route.ts"
+        },
+        {
+            "route": "/api/auth/verify",
+            "kind": "api",
+            "file": "app/api/auth/verify/route.ts"
+        },
+        {
+            "route": "/api/billing",
+            "kind": "api",
+```
+Full output: [`server-runs/2026-05-19T15-12-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T15-12-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
