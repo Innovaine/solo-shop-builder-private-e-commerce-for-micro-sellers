@@ -821,3 +821,62 @@ day-03
 day-04
 ```
 Full output: [`server-runs/2026-05-19T22-36-13-www.soloshopbox.com-docker-ps-df--h-uptime-ls-solo-shop-buil-1.log`](server-runs/2026-05-19T22-36-13-www.soloshopbox.com-docker-ps-df--h-uptime-ls-solo-shop-buil-1.log)
+
+## 2026-05-19T22:36:41.575Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0f9ea51` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2942ms) _(showing tail — full 7,964B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…1/stage-ship-check.md
+ create mode 100644 day-81/standards-audit.md
+ create mode 100644 day-81/standards_qa.md
+ create mode 100644 day-81/task-verification.md
+ create mode 100644 day-81/task_verifier.md
+ create mode 100644 day-81/test.md
+ create mode 100644 day-82/_index.md
+ create mode 100644 day-82/_plan.md
+ create mode 100644 day-82/connectivity-audit.md
+ create mode 100644 day-82/connectivity_qa.md
+ create mode 100644 day-82/engineering.md
+ create mode 100644 day-82/server-log.md
+ create mode 100644 day-82/stage-ship-check.md
+ create mode 100644 day-82/standards-audit.md
+ create mode 100644 day-82/standards_qa.md
+ create mode 100644 day-82/test.md
+ create mode 100644 day-83/_index.md
+ create mode 100644 day-83/_plan.md
+ create mode 100644 day-83/connectivity-audit.md
+ create mode 100644 day-83/connectivity_qa.md
+ create mode 100644 day-83/engineering.md
+ create mode 100644 day-83/review.md
+ create mode 100644 day-83/server-log.md
+ create mode 100644 day-83/stage-ship-check.md
+ create mode 100644 day-83/standards-audit.md
+ create mode 100644 day-83/standards_qa.md
+ create mode 100644 day-83/test.md
+ create mode 100644 day-84/_plan.md
+ create mode 100644 day-84/connectivity-audit.md
+ create mode 100644 day-84/connectivity_qa.md
+ create mode 100644 day-84/design.md
+ create mode 100644 day-84/engineering.md
+ create mode 100644 day-84/review.md
+ create mode 100644 day-84/server-log.md
+ create mode 100644 day-84/test.md
+ create mode 100644 design/pages/2fa-backup-codes.html
+ create mode 100644 design/pages/2fa-setup.html
+ create mode 100644 design/pages/2fa-verify.html
+ create mode 100644 design/pages/bulk-upload.html
+ create mode 100644 integrations/s3-mpd6s4.md
+ create mode 100644 integrations/stripe-webhooks-mpd46v.md
+ create mode 100644 test-results/day-80/report.md
+ create mode 100644 test-results/day-81/report.md
+ create mode 100644 test-results/day-82/report.md
+ create mode 100644 test-results/day-83/report.md
+ create mode 100644 test-results/day-84/report.md
+ create mode 100644 tests/web/day84-smoke.spec.ts
+```
+Full output: [`server-runs/2026-05-19T22-36-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-36-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
