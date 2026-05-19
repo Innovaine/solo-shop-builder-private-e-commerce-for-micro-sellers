@@ -806,3 +806,23 @@ _Pre-SSH: warehouse pushed to GitHub as commit `592f9b7` so the server's `git pu
 ```
 cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "\.toFixed(" app/ 2>/dev/null | grep -v "/ 100" | grep -E "(price|total|amount|revenue)" | head -20
 ```
+
+## 2026-05-19T15:18:56.834Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `376b397` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2438ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "interface Order\|interface Shop\|interface Product" app/ 2>/dev/null | head -20
+```
+STDOUT:
+```
+app/dashboard/products/page.tsx:13:interface Product {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/dashboard/analytics/page.tsx:8:interface ProductAnalytics {
+app/track/[orderId]/page.tsx:10:interface OrderItem {
+app/track/[orderId]/page.tsx:17:interface Order {
+app/components/AnalyticsCards.tsx:9:interface ProductAnalytics {
+app/api/analytics/route.ts:9:interface ProductAnalytics {
+app/checkout/success/page.tsx:13:interface OrderDetails {
+```
+Full output: [`server-runs/2026-05-19T15-18-56-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T15-18-56-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
