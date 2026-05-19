@@ -336,3 +336,65 @@ app/api/orders/[id]/history/route.ts:6:import prisma from '@/lib/db'
 app/api/webhooks/stripe/route.ts:7:import prisma from '@/lib/db'
 ```
 Full output: [`server-runs/2026-05-19T14-23-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T14-23-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T14:26:25.431Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cd77ab8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2936ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -50 standards.md
+```
+STDOUT:
+```
+# Solo Shop Builder — Engineering Standards
+
+**Last updated**: Day 75 QA Audit
+**Scope**: MVP stage — canonical patterns for all layers
+**Owner**: Standards QA (Vitali)
+
+## Table of Contents
+
+1. [Authentication & Session](#authentication--session)
+2. [Routing & Redirects](#routing--redirects)
+3. [Route Parameters & Query Strings](#route-parameters--query-strings)
+4. [API Responses & Error Handling](#api-responses--error-handling)
+5. [Data Types & Units](#data-types--units)
+6. [Database Access](#database-access)
+7. [Validation](#validation)
+8. [Rate Limiting](#rate-limiting)
+
+---
+
+## Authentication & Session
+
+### Canonical Pattern: `requireAuth()` helper
+
+**Location**: `src/lib/auth.ts`
+
+**What**: Use the `requireAuth()` function to enforce authenticated requests in API routes and server components.
+
+**Why**: Centralizes session verification, reduces boilerplate, ensures consistent error handling, and makes security audits easier.
+
+**Usage**:
+```typescript
+import { requireAuth } from '@/lib/auth'
+
+// In API route:
+export async function POST(request: NextRequest) {
+  try {
+    const { sellerId, email } = await requireAuth()
+    // Now you know sellerId and email are valid
+  } catch (error) {
+    if (error instanceof Error && error.message === 'Unauthorized') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    // handle other errors
+  }
+}
+
+// In server component:
+import { getSession } from '@/lib/auth'
+const session = await getSession()
+if (!session.isLoggedIn) {
+```
+Full output: [`server-runs/2026-05-19T14-26-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-19T14-26-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
