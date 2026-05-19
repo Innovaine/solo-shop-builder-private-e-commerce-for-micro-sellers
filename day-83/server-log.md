@@ -421,3 +421,29 @@ BUILD FINISHED
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-19T21-33-17-www.soloshopbox.com-if-kill--0-cat-tmp-day83-build-v2.pid-2--1.log`](server-runs/2026-05-19T21-33-17-www.soloshopbox.com-if-kill--0-cat-tmp-day83-build-v2.pid-2--1.log)
+
+## 2026-05-19T21:34:10.487Z — Anil ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e5577f7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13071ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+### Command 2 on www.soloshopbox.com as engineer (✗ exit 22, 7021ms)
+```
+sleep 5 && curl -sf https://www.soloshopbox.com/api/health && echo "Health check OK"
+```
+ERROR: command exited 22
+
+### Command 3 on www.soloshopbox.com as engineer (✓ exit 0, 503ms)
+```
+echo "Test 1: Orders page accessible" && curl -sI https://www.soloshopbox.com/dashboard/orders | head -1
+```
+STDOUT:
+```
+Test 1: Orders page accessible
+HTTP/2 404
+```
+Full output: [`server-runs/2026-05-19T21-34-10-www.soloshopbox.com-echo-Test-1-Orders-page-accessible-curl--3.log`](server-runs/2026-05-19T21-34-10-www.soloshopbox.com-echo-Test-1-Orders-page-accessible-curl--3.log)
