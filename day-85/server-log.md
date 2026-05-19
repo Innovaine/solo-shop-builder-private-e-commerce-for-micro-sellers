@@ -631,3 +631,95 @@ import { requireAuth } from '@/lib/auth'
 export async function GET(request: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-19T23-20-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-20-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:21:10.334Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `203eac0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2618ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git log --oneline -5
+echo ""
+echo "Last commit timestamp:"
+git log -1 --format="%cd"
+echo ""
+echo "Current file content at line 7:"
+sed -n '7p' app/api/orders/route.ts
+```
+STDOUT:
+```
+98fb508 Priya (tester, day 84) — pre-SSH sync
+775b10e Priya (tester, day 84) — pre-SSH sync
+95706b1 Priya (tester, day 84) — pre-SSH sync
+cf7a8f3 Anil (engineer, day 84) — pre-SSH sync
+f3f7b1c Anil (engineer, day 84) — pre-SSH sync
+
+Last commit timestamp:
+Tue May 19 22:31:36 2026 +0000
+
+Current file content at line 7:
+import prisma from '@/lib/db'
+```
+Full output: [`server-runs/2026-05-19T23-21-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-21-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:21:41.115Z — Priya ran 1 command(s)
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3240ms)
+```
+echo "Comprehensive Day 85 Test Report - Current Deployed State"
+echo "=========================================================="
+echo ""
+echo "1. Server Status"
+docker ps --filter "name=solo-shop" --format "{{.Names}}: {{.Status}}"
+echo ""
+echo "2. Health Check"
+curl -s https://www.soloshopbox.com/api/health | jq '{status, db: .checks.database.status, email: .checks.email.status}'
+echo ""
+echo "3. Profile Endpoint Test (Fix #246 claim)"
+echo "   GET /api/shops/profile:"
+curl -I https://www.soloshopbox.com/api/shops/profile 2>&1 | grep -E "HTTP|allow:"
+echo ""
+echo "4. Code Verification (Fix #247 claim)"
+echo "   Current Prisma import in orders/route.ts:"
+grep "import.*prisma" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/api/orders/route.ts
+echo "   Standards.md canonical pattern:"
+grep -A1 "import { prisma }" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/standards.md | head -1
+echo ""
+echo "5. Homepage Test"
+curl -s https://www.soloshopbox.com/ | grep -o '<title>[^<]*</title>'
+echo ""
+echo "6. Auth Test - Login page"
+curl -I https://www.soloshopbox.com/auth/login 2>&1 | head -1
+```
+STDOUT:
+```
+Comprehensive Day 85 Test Report - Current Deployed State
+==========================================================
+
+1. Server Status
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1: Up 10 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1: Up 27 hours (healthy)
+
+2. Health Check
+{
+  "status": "ok",
+  "db": "ok",
+  "email": "ok"
+}
+
+3. Profile Endpoint Test (Fix #246 claim)
+   GET /api/shops/profile:
+HTTP/2 401 
+
+4. Code Verification (Fix #247 claim)
+   Current Prisma import in orders/route.ts:
+import prisma from '@/lib/db'
+   Standards.md canonical pattern:
+import { prisma } from '@/lib/db'
+
+5. Homepage Test
+<title>Solo Shop Builder — Your own storefront. No marketplace fees.</title>
+
+6. Auth Test - Login page
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+```
+Full output: [`server-runs/2026-05-19T23-21-41-www.soloshopbox.com-echo-Comprehensive-Day-85-Test-Report----1.log`](server-runs/2026-05-19T23-21-41-www.soloshopbox.com-echo-Comprehensive-Day-85-Test-Report----1.log)
