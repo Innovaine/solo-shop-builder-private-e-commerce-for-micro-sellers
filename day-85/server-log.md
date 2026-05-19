@@ -248,3 +248,65 @@ STDOUT:
 Started build, PID=1841765
 ```
 Full output: [`server-runs/2026-05-19T23-09-44-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-09-44-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:10:09.903Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1740775` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2607ms) _(showing tail — full 2,817B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/build.log
+```
+STDOUT:
+```
+…sma ./node_modules/.prisma
+#18 CACHED
+
+#19 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#19 CACHED
+
+#20 [deps 4/4] RUN npm install
+#20 CACHED
+
+#21 [runner  6/14] COPY --from=builder /app/public ./public
+#21 CACHED
+
+#22 [runner  1/14] WORKDIR /app
+#22 CACHED
+
+#23 [builder 3/7] COPY --from=deps /app/node_modules ./node_modules
+#23 CACHED
+
+#24 [builder 7/7] RUN npm run build
+#24 CACHED
+
+#25 [deps 1/4] RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#25 CACHED
+
+#26 [deps 3/4] COPY package.json ./
+#26 CACHED
+
+#27 [runner  2/14] RUN apt-get update && apt-get install -y     openssl     ca-certificates     libnss3     libnspr4     libatk1.0-0     libatk-bridge2.0-0     libcups2     libdrm2     libdbus-1-3     libxkbcommon0     libatspi2.0-0     libxcomposite1     libxdamage1     libxfixes3     libxrandr2     libgbm1     libpango-1.0-0     libcairo2     libasound2     && rm -rf /var/lib/apt/lists/*
+#27 CACHED
+
+#28 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#28 CACHED
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 CACHED
+
+#30 exporting to image
+#30 exporting layers done
+#30 exporting manifest sha256:b3670f6bb3d36bdcd89ccdb614d7097850e205ec7c5d64c636cd38b6321514dd done
+#30 exporting config sha256:760af4f1da5725a86ae755da1a692577280e83cb37e0783f065deee4d340badf done
+#30 exporting attestation manifest sha256:b4d33b414a1836c2c9d66b314c01c37464baf1fc1ab42ce5c5e26e61cde0e0ec 0.0s done
+#30 exporting manifest list sha256:2cbf7aa15d3aa57c71c1619541c8f4f337aa938fef5650a899e75f49f7a1dd16 done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.0s done
+#30 DONE 0.1s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-19T23-10-09-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-19T23-10-09-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
