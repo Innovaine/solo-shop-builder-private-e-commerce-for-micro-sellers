@@ -557,3 +557,54 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-19T23-19-47-www.soloshopbox.com-sleep-10-1.log`](server-runs/2026-05-19T23-19-47-www.soloshopbox.com-sleep-10-1.log)
+
+## 2026-05-19T23:20:16.232Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d7e1c37` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3263ms)
+```
+echo "Day 85 Manual Verification Tests"
+echo "================================="
+echo ""
+echo "Test 1: Profile GET endpoint (Fix #246)"
+curl -I https://www.soloshopbox.com/api/shops/profile 2>&1 | grep -E "HTTP|allow:"
+echo ""
+echo "Test 2: Health check"
+curl -s https://www.soloshopbox.com/api/health | jq -r '.status, .checks.database.status'
+echo ""
+echo "Test 3: Homepage loads"
+curl -I https://www.soloshopbox.com/ 2>&1 | head -1
+echo ""
+echo "Test 4: Login page loads"
+curl -s https://www.soloshopbox.com/auth/login | grep -o '<h1[^>]*>.*</h1>' | head -1
+echo ""
+echo "Test 5: Orders API auth check"
+curl -I https://www.soloshopbox.com/api/orders 2>&1 | grep -E "HTTP/2 [0-9]+"
+echo ""
+echo "Test 6: Verify Prisma import in orders/route.ts"
+grep "import.*prisma.*from" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/api/orders/route.ts
+```
+STDOUT:
+```
+Day 85 Manual Verification Tests
+=================================
+
+Test 1: Profile GET endpoint (Fix #246)
+HTTP/2 401 
+
+Test 2: Health check
+ok
+ok
+
+Test 3: Homepage loads
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+
+Test 4: Login page loads
+
+Test 5: Orders API auth check
+HTTP/2 500 
+
+Test 6: Verify Prisma import in orders/route.ts
+import prisma from '@/lib/db'
+```
+Full output: [`server-runs/2026-05-19T23-20-16-www.soloshopbox.com-echo-Day-85-Manual-Verification-Tests-1.log`](server-runs/2026-05-19T23-20-16-www.soloshopbox.com-echo-Day-85-Manual-Verification-Tests-1.log)
