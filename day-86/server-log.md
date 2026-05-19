@@ -420,3 +420,37 @@ app/api/shops/branding/route.ts(6,20): error TS2591: Cannot find name 'crypto'. 
 app/api/shops/branding/route.ts(98,35): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
 ```
 Full output: [`server-runs/2026-05-19T23-57-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-57-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:57:32.192Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `448c523` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2151ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && timeout 30 bash -c 'which route-validator || echo "route-validator not in PATH"' && echo "---" && head -20 tsconfig.json
+```
+STDOUT:
+```
+/usr/local/bin/route-validator
+---
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+```
+Full output: [`server-runs/2026-05-19T23-57-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-57-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
