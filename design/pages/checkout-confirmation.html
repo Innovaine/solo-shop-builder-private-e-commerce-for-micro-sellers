@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmation — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #faf9f7;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 32px 0;
+    }
+    .header-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px;
+      background: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #3b4c63;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #64748b;
+    }
+    /* Order Summary Card */
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .card h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    /* Order Number */
+    .order-number {
+      background: #f5f5f5;
+      border-left: 4px solid #10b981;
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .order-number-label {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+    .order-number-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+    /* Items Table */
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+    .items-table th {
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .items-table td {
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14px;
+    }
+    .item-name {
+      font-weight: 500;
+      color: #1f2937;
+    }
+    .item-qty {
+      text-align: center;
+      color: #64748b;
+    }
+    .item-price {
+      text-align: right;
+      color: #1f2937;
+      font-weight: 500;
+    }
+    /* Order Totals */
+    .totals {
+      margin-top: 16px;
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+    .total-row.subtotal {
+      color: #64748b;
+    }
+    .total-row.shipping {
+      color: #64748b;
+    }
+    .total-row.final {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3b4c63;
+      padding-top: 12px;
+      border-top: 2px solid #e2e8f0;
+    }
+    /* Customer Info */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 0;
+    }
+    .info-block {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px;
+      background: #fafafa;
+    }
+    .info-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .info-value {
+      font-size: 14px;
+      color: #1f2937;
+      word-break: break-word;
+    }
+    /* Next Steps */
+    .next-steps {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .next-steps h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #15803d;
+      margin-bottom: 12px;
+    }
+    .next-steps ol {
+      list-style: decimal;
+      margin-left: 20px;
+      font-size: 14px;
+      color: #1f2937;
+    }
+    .next-steps li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .next-steps li strong {
+      color: #15803d;
+    }
+    /* CTA Button */
+    .cta-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #10b981;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #059669;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .btn-secondary {
+      background: white;
+      color: #3b4c63;
+      border: 2px solid #3b4c63;
+    }
+    .btn-secondary:hover {
+      background: #f5f5f5;
+    }
+    .btn-full {
+      width: 100%;
+    }
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 24px 0 0;
+      border-top: 1px solid #e2e8f0;
+      color: #64748b;
+      font-size: 12px;
+    }
+    .footer p {
+      margin-bottom: 8px;
+    }
+    /* Mobile Responsiveness */
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      .total-row.final {
+        font-size: 16px;
+      }
+      .header-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Success Header -->
+    <div class="header">
+      <div class="header-icon">✓</div>
+      <h1>Order Confirmed</h1>
+      <p class="subtitle">Thank you for your purchase. Your order has been received.</p>
+    </div>
+
+    <!-- Order Summary Card -->
+    <div class="card">
+      <h2>Order Details</h2>
+      
+      <!-- Order Number -->
+      <div class="order-number">
+        <div class="order-number-label">Order Number</div>
+        <div class="order-number-value">ORD-2026-5428</div>
+      </div>
+
+      <!-- Items -->
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th class="item-qty">Qty</th>
+            <th class="item-price">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="item-name">Handwoven Tote Bag (Charcoal)</td>
+            <td class="item-qty">2</td>
+            <td class="item-price">$45.00</td>
+          </tr>
+          <tr>
+            <td class="item-name">Organic Cotton Scarf</td>
+            <td class="item-qty">1</td>
+            <td class="item-price">$32.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Totals -->
+      <div class="totals">
+        <div class="total-row subtotal">
+          <span>Subtotal</span>
+          <span>$122.00</span>
+        </div>
+        <div class="total-row shipping">
+          <span>Shipping</span>
+          <span>$8.00</span>
+        </div>
+        <div class="total-row final">
+          <span>Total Paid</span>
+          <span>$130.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Info -->
+    <div class="card">
+      <h2>Shipping & Contact</h2>
+      <div class="info-grid">
+        <div class="info-block">
+          <div class="info-label">Email</div>
+          <div class="info-value">alex.chen@example.com</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Order Date</div>
+          <div class="info-value">May 19, 2026</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Shipping Address</div>
+          <div class="info-value">
+            123 Oak Street<br>
+            Portland, OR 97214<br>
+            United States
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Estimated Delivery</div>
+          <div class="info-value">May 23–25, 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What's Next -->
+    <div class="next-steps">
+      <h3>What Happens Next</h3>
+      <ol>
+        <li><strong>Confirmation email:</strong> Check your inbox for an order confirmation email with all details and a tracking link.</li>
+        <li><strong>Order preparation:</strong> Your items will be packed and prepared for shipment within 1–2 business days.</li>
+        <li><strong>Tracking updates:</strong> We'll email you when your order ships with a tracking number so you can monitor delivery.</li>
+        <li><strong>Questions?</strong> Reply to your confirmation email or contact the seller directly from your tracking link.</li>
+      </ol>
+    </div>
+
+    <!-- CTAs -->
+    <div class="cta-section">
+      <button class="btn btn-primary btn-full">
+        View Order Tracking
+      </button>
+      <button class="btn btn-secondary btn-full">
+        Continue Shopping
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>This order was placed on Handmade Harbor by Alex Chen.</p>
+      <p>&copy; 2026 Solo Shop Builder. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>

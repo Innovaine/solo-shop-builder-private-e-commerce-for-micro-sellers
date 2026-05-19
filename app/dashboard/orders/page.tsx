@@ -166,7 +166,7 @@ export default function OrdersPage() {
       <div className="min-h-screen bg-cream">
         <Header />
         <main className="max-w-7xl mx-auto px-4 py-8">
-          <p className="text-gray-600">Loading orders...</p>
+          <p className="text-slate">Loading orders...</p>
         </main>
       </div>
     )
@@ -203,19 +203,19 @@ export default function OrdersPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <Card>
               <div className="p-6">
-                <div className="text-sm font-semibold text-gray-600 uppercase">Total Products</div>
+                <div className="text-sm font-semibold text-slate uppercase">Total Products</div>
                 <div className="text-3xl font-bold text-charcoal mt-2">{analytics.totalProducts}</div>
               </div>
             </Card>
             <Card>
               <div className="p-6">
-                <div className="text-sm font-semibold text-gray-600 uppercase">Total Revenue</div>
+                <div className="text-sm font-semibold text-slate uppercase">Total Revenue</div>
                 <div className="text-3xl font-bold text-charcoal mt-2">${((analytics.totalRevenue || 0) / 100).toFixed(2)}</div>
               </div>
             </Card>
             <Card>
               <div className="p-6">
-                <div className="text-sm font-semibold text-gray-600 uppercase">Total Orders</div>
+                <div className="text-sm font-semibold text-slate uppercase">Total Orders</div>
                 <div className="text-3xl font-bold text-charcoal mt-2">{orders.length}</div>
               </div>
             </Card>
@@ -223,14 +223,14 @@ export default function OrdersPage() {
         )}
 
         {/* Order Summary */}
-        <div className="bg-white rounded-lg p-4 mb-6 border border-gray-200">
-          <p className="text-sm text-gray-700">
+        <div className="bg-white rounded-lg p-4 mb-6 border border-whisper">
+          <p className="text-sm text-slate">
             <strong>{orders.length}</strong> total orders · <strong>{orderCounts.paid}</strong> paid · <strong>{orderCounts.in_progress}</strong> in progress · <strong>{orderCounts.shipped}</strong> shipped · <strong>{orderCounts.delivered}</strong> delivered
           </p>
         </div>
 
         {/* Filters Section */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg border border-whisper p-6 mb-6">
           {/* Date Range Filter */}
           <div className="mb-6">
             <label className="block text-sm font-semibold text-charcoal mb-3">Filter by Date Range</label>
@@ -241,7 +241,7 @@ export default function OrdersPage() {
                   type="date"
                   value={dateFrom}
                   onChange={(e) => handleDateChange(e.target.value, dateTo)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald focus:border-emerald text-sm"
+                  className="w-full px-3 py-2 border border-whisper rounded-lg focus:ring-2 focus:ring-emerald focus:border-emerald text-sm"
                 />
               </div>
               <div className="flex-1 min-w-[200px]">
@@ -250,13 +250,13 @@ export default function OrdersPage() {
                   type="date"
                   value={dateTo}
                   onChange={(e) => handleDateChange(dateFrom, e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald focus:border-emerald text-sm"
+                  className="w-full px-3 py-2 border border-whisper rounded-lg focus:ring-2 focus:ring-emerald focus:border-emerald text-sm"
                 />
               </div>
               {(dateFrom || dateTo || selectedFilter !== 'all') && (
                 <button
                   onClick={clearFilters}
-                  className="px-4 py-2 bg-gray-100 text-charcoal rounded-lg hover:bg-gray-200 transition-colors text-sm font-semibold"
+                  className="px-4 py-2 bg-whisper/50 text-charcoal rounded-lg hover:bg-whisper transition-colors text-sm font-semibold"
                 >
                   Clear All Filters
                 </button>
@@ -273,7 +273,7 @@ export default function OrdersPage() {
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'all'
                     ? 'bg-slate-blue text-white'
-                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                    : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
                 All ({orders.length})
@@ -283,7 +283,7 @@ export default function OrdersPage() {
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'paid'
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                    : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
                 Paid ({orderCounts.paid})
@@ -293,7 +293,7 @@ export default function OrdersPage() {
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'in_progress'
                     ? 'bg-purple-500 text-white'
-                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                    : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
                 In Progress ({orderCounts.in_progress})
@@ -303,7 +303,7 @@ export default function OrdersPage() {
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'shipped'
                     ? 'bg-green-500 text-white'
-                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                    : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
                 Shipped ({orderCounts.shipped})
@@ -313,7 +313,7 @@ export default function OrdersPage() {
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'delivered'
                     ? 'bg-emerald text-white'
-                    : 'bg-gray-100 text-charcoal hover:bg-gray-200'
+                    : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
                 Delivered ({orderCounts.delivered})
@@ -323,7 +323,7 @@ export default function OrdersPage() {
 
           {/* Active Filters Display */}
           {(selectedFilter !== 'all' || dateFrom || dateTo) && (
-            <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="mt-4 pt-4 border-t border-whisper">
               <p className="text-sm text-slate">
                 Showing <strong className="text-charcoal">{filteredOrders.length}</strong> of <strong className="text-charcoal">{orders.length}</strong> orders
                 {selectedFilter !== 'all' && <> with status <strong className="text-charcoal">{statusLabel[selectedFilter]}</strong></>}
@@ -340,29 +340,29 @@ export default function OrdersPage() {
             <div className="p-12 text-center">
               <div className="text-3xl mb-4">📦</div>
               <h3 className="text-lg font-semibold text-charcoal mb-2">No orders yet</h3>
-              <p className="text-gray-600">Share your shop link and wait for customers to place their first orders.</p>
+              <p className="text-slate">Share your shop link and wait for customers to place their first orders.</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50 border-b border-gray-200">
+                <thead className="bg-whisper/50 border-b border-whisper">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Order ID</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Customer</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Items</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Total</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Action</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Order ID</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Date</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Customer</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Items</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Total</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredOrders.map((order) => (
-                    <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-50">
+                    <tr key={order.id} className="border-b border-whisper hover:bg-whisper/20">
                       <td className="px-6 py-4 font-semibold text-charcoal">{order.id.substring(0, 8)}</td>
-                      <td className="px-6 py-4 text-sm text-gray-700">{formatDate(order.createdAt)}</td>
-                      <td className="px-6 py-4 text-sm text-gray-700">{order.customerEmail}</td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm text-slate">{formatDate(order.createdAt)}</td>
+                      <td className="px-6 py-4 text-sm text-slate">{order.customerEmail}</td>
+                      <td className="px-6 py-4 text-sm text-slate">
                         {order.items.map(item => `${item.title} (${item.quantity})`).join(', ')}
                       </td>
                       <td className="px-6 py-4 font-semibold text-charcoal">${(order.total / 100).toFixed(2)}</td>

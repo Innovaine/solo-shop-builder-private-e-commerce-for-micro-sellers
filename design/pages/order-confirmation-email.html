@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Order is Confirmed</title>
+  <style>
+    /* Email-safe styles — uses inlined CSS for maximum compatibility */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #faf9f7;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td {
+      padding: 0;
+    }
+    .wrapper {
+      background-color: #faf9f7;
+      padding: 20px 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #3b4c63 0%, #2d3a4f 100%);
+      padding: 32px 24px;
+      text-align: center;
+      color: white;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0 0 8px 0;
+    }
+    .header p {
+      font-size: 16px;
+      margin: 0;
+      opacity: 0.9;
+    }
+    /* Main Content */
+    .content {
+      padding: 32px 24px;
+    }
+    .greeting {
+      font-size: 16px;
+      margin-bottom: 24px;
+      color: #1f2937;
+    }
+    .greeting strong {
+      color: #3b4c63;
+    }
+    /* Order Number Alert */
+    .order-alert {
+      background-color: #f0fdf4;
+      border-left: 4px solid #10b981;
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    .order-alert-label {
+      font-size: 12px;
+      font-weight: bold;
+      color: #15803d;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .order-alert-value {
+      font-size: 20px;
+      font-weight: bold;
+      color: #15803d;
+      font-family: 'Courier New', monospace;
+    }
+    /* Section Headers */
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #3b4c63;
+      margin: 24px 0 16px 0;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    /* Items Table */
+    .items-section {
+      margin-bottom: 24px;
+    }
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+    .items-table th {
+      text-align: left;
+      font-size: 13px;
+      font-weight: bold;
+      color: #64748b;
+      padding: 12px;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .items-table td {
+      padding: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14px;
+    }
+    .item-name {
+      font-weight: bold;
+      color: #1f2937;
+    }
+    .item-qty {
+      text-align: center;
+      color: #64748b;
+    }
+    .item-price {
+      text-align: right;
+      color: #1f2937;
+      font-weight: bold;
+    }
+    /* Totals */
+    .totals {
+      margin-top: 16px;
+      padding: 16px;
+      background-color: #fafafa;
+      border-radius: 4px;
+    }
+    .total-row {
+      display: table;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    .total-label {
+      display: table-cell;
+      font-size: 14px;
+      color: #64748b;
+    }
+    .total-value {
+      display: table-cell;
+      text-align: right;
+      font-size: 14px;
+      color: #64748b;
+    }
+    .total-final {
+      font-size: 18px;
+      font-weight: bold;
+      color: #3b4c63;
+      padding-top: 8px;
+      border-top: 2px solid #e2e8f0;
+    }
+    /* Shipping Info */
+    .info-block {
+      margin-bottom: 16px;
+      padding: 12px;
+      background-color: #fafafa;
+      border-left: 3px solid #e2e8f0;
+      border-radius: 4px;
+    }
+    .info-label {
+      font-size: 12px;
+      font-weight: bold;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .info-value {
+      font-size: 14px;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    /* Next Steps */
+    .next-steps {
+      background-color: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 16px;
+      margin: 24px 0;
+    }
+    .next-steps h3 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e40af;
+      margin: 0 0 12px 0;
+    }
+    .next-steps ol {
+      margin: 0 0 0 20px;
+      padding: 0;
+      font-size: 14px;
+      color: #1f2937;
+    }
+    .next-steps li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .next-steps strong {
+      color: #1e40af;
+    }
+    /* CTA Button */
+    .cta-container {
+      text-align: center;
+      margin: 24px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background-color: #10b981;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background-color: #059669;
+    }
+    /* Footer */
+    .footer-section {
+      background-color: #f5f5f5;
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+    }
+    .footer-text {
+      margin: 0 0 12px 0;
+      line-height: 1.6;
+    }
+    .divider {
+      margin: 12px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table class="container">
+      <!-- Header -->
+      <tr>
+        <td class="header">
+          <h1>Order Confirmed! 🎉</h1>
+          <p>Thank you for shopping with us</p>
+        </td>
+      </tr>
+
+      <!-- Main Content -->
+      <tr>
+        <td class="content">
+          <!-- Greeting -->
+          <p class="greeting">Hi <strong>Alex</strong>,</p>
+          <p>Great news! Your order has been received and confirmed. We're getting it packed and ready to ship.</p>
+
+          <!-- Order Number -->
+          <div class="order-alert">
+            <div class="order-alert-label">Your Order Number</div>
+            <div class="order-alert-value">ORD-2026-5428</div>
+          </div>
+
+          <!-- Order Items -->
+          <div class="items-section">
+            <h2 class="section-title">What You Ordered</h2>
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th style="width: 50%;">Product</th>
+                  <th style="width: 25%; text-align: center;">Qty</th>
+                  <th style="width: 25%; text-align: right;">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="item-name">Handwoven Tote Bag (Charcoal)</td>
+                  <td class="item-qty">2</td>
+                  <td class="item-price">$45.00</td>
+                </tr>
+                <tr>
+                  <td class="item-name">Organic Cotton Scarf</td>
+                  <td class="item-qty">1</td>
+                  <td class="item-price">$32.00</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="totals">
+              <div class="total-row">
+                <span class="total-label">Subtotal</span>
+                <span class="total-value">$122.00</span>
+              </div>
+              <div class="total-row">
+                <span class="total-label">Shipping</span>
+                <span class="total-value">$8.00</span>
+              </div>
+              <div class="total-row total-final">
+                <span class="total-label">Total Paid</span>
+                <span class="total-value">$130.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping Details -->
+          <h2 class="section-title">Shipping Address</h2>
+          <div class="info-block">
+            <div class="info-label">Delivery To</div>
+            <div class="info-value">
+              123 Oak Street<br>
+              Portland, OR 97214<br>
+              United States
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Estimated Delivery</div>
+            <div class="info-value">May 23–25, 2026</div>
+          </div>
+
+          <!-- Next Steps -->
+          <div class="next-steps">
+            <h3>What's Next?</h3>
+            <ol>
+              <li><strong>We're packing it:</strong> Your items will be carefully packed and prepared within 1–2 business days.</li>
+              <li><strong>Tracking incoming:</strong> Once your order ships, you'll receive an email with a tracking number so you can monitor delivery.</li>
+              <li><strong>Questions?</strong> You can reply to this email or message the seller directly from your tracking link.</li>
+            </ol>
+          </div>
+
+          <!-- CTA -->
+          <div class="cta-container">
+            <a href="https://example.com/orders/ORD-2026-5428" class="btn">View Your Order</a>
+          </div>
+
+          <p style="margin-top: 24px; font-size: 14px; color: #64748b;">
+            Keep this email for your records. It contains important information about your order and shipping details.
+          </p>
+        </td>
+      </tr>
+
+      <!-- Footer -->
+      <tr>
+        <td class="footer-section">
+          <p class="footer-text">
+            <strong>Shop:</strong> Handmade Harbor<br>
+            <strong>Seller:</strong> Alex Chen<br>
+          </p>
+          <div class="divider" style="border-bottom: 1px solid #d1d5db;"></div>
+          <p class="footer-text">
+            © 2026 Solo Shop Builder. All rights reserved.<br>
+            <a href="https://example.com" style="color: #3b4c63; text-decoration: none;">Visit Store</a> • <a href="https://example.com/contact" style="color: #3b4c63; text-decoration: none;">Contact Seller</a>
+          </p>
+          <p class="footer-text" style="font-size: 12px; margin-top: 12px;">
+            You received this email because you placed an order on Handmade Harbor. We promise never to spam you.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
