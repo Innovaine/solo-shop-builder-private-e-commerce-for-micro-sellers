@@ -314,3 +314,25 @@ To get access to the TypeScript compiler, [34mtsc[0m, from the command line ei
 - Use [1myarn[0m to avoid accidentally running code from un-installed packages
 ```
 Full output: [`server-runs/2026-05-19T14-22-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T14-22-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T14:23:51.750Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5a54acb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3689ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "import prisma from '@/lib/db'" app/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -20
+```
+STDOUT:
+```
+app/api/shops/status/route.ts:6:import prisma from '@/lib/db'
+app/api/products/[id]/status/route.ts:6:import prisma from '@/lib/db'
+app/api/products/bulk-status/route.ts:6:import prisma from '@/lib/db'
+app/api/account/delete/route.ts:7:import prisma from '@/lib/db'
+app/api/billing/route.ts:2:import prisma from '@/lib/db';
+app/api/checkout/route.ts:8:import prisma from '@/lib/db'
+app/api/orders/route.ts:7:import prisma from '@/lib/db'
+app/api/orders/[id]/route.ts:5:import prisma from '@/lib/db'
+app/api/orders/[id]/history/route.ts:6:import prisma from '@/lib/db'
+app/api/webhooks/stripe/route.ts:7:import prisma from '@/lib/db'
+```
+Full output: [`server-runs/2026-05-19T14-23-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T14-23-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
