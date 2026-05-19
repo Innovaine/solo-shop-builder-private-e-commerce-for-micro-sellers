@@ -151,3 +151,36 @@ STDOUT:
 9:export async function PATCH(req: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-19T13-32-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T13-32-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T13:32:48.698Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f0789ab` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2007ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && wc -l app/api/shops/branding/route.ts && tail -20 app/api/shops/branding/route.ts
+```
+STDOUT:
+```
+146 app/api/shops/branding/route.ts
+    return NextResponse.json({
+      message: 'Branding updated successfully',
+      shop: {
+        id: updated.id,
+        primaryColor: updated.primaryColor,
+        accentColor: updated.accentColor,
+        logoUrl: updated.logoUrl,
+        logoImageUrl: updated.logoImageUrl,
+        tagline: updated.tagline,
+      },
+      logoImageUrl: updated.logoImageUrl, // Return for frontend preview
+    });
+  } catch (error: any) {
+    console.error('Branding update error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+```
+Full output: [`server-runs/2026-05-19T13-32-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T13-32-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)

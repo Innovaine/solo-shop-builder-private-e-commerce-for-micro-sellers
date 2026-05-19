@@ -111,7 +111,7 @@ export default function ProfilePage() {
         formDataImg.append('logo', imageFile);
 
         const uploadRes = await fetch('/api/shops/branding', {
-          method: 'POST',
+          method: 'PATCH',
           body: formDataImg,
         });
 

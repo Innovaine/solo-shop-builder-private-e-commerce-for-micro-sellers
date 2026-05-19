@@ -2,32 +2,16 @@
 // FR-17: Seller order management
 
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 import prisma from '@/lib/db'
-import { verifySession } from '@/lib/auth'
+import { requireAuth } from '@/lib/auth'
 
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const cookieStore = cookies()
-    const sessionCookie = cookieStore.get('session')
-
-    if (!sessionCookie) {
-      return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
-      )
-    }
-
-    const session = await verifySession()
-    if (!session) {
-      return NextResponse.json(
-        { error: 'Invalid session' },
-        { status: 401 }
-      )
-    }
+    // Auth check using canonical requireAuth() pattern
+    const { sellerId } = await requireAuth()
 
     const orderId = params.id
     const body = await request.json()
@@ -52,7 +36,7 @@ export async function PATCH(
       )
     }
 
-    if (order.shop.sellerId !== session.sellerId) {
+    if (order.shop.sellerId !== sellerId) {
       return NextResponse.json(
         { error: 'Not authorized to update this order' },
         { status: 403 }
@@ -105,6 +89,14 @@ export async function PATCH(
 
     return NextResponse.json({ order: updatedOrder })
   } catch (error: any) {
+    // Handle auth errors with 401, not 500
+    if (error instanceof Error && error.message === 'Unauthorized') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    
     console.error('Failed to update order:', error)
     return NextResponse.json(
       { error: 'Failed to update order' },
