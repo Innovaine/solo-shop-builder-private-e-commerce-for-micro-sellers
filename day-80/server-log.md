@@ -78,3 +78,28 @@ _Pre-SSH: warehouse pushed to GitHub as commit `3108b09` so the server's `git pu
 sleep 15 && kill -0 $(cat /tmp/day80-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE" && tail -50 /tmp/day80-build.log | grep -E "(error|Error|SUCCESS|Successfully|✔)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-19T14:13:38.074Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7e11a49` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2913ms)
+```
+kill -0 $(cat /tmp/day80-build.pid) 2>/dev/null && echo "STILL RUNNING" || echo "BUILD COMPLETE" && tail -100 /tmp/day80-build.log
+```
+STDOUT:
+```
+BUILD COMPLETE
+
+> solo-shop-builder@0.1.0 build
+> prisma generate && next build
+
+sh: 1: prisma: not found
+```
+Full output: [`server-runs/2026-05-19T14-13-38-www.soloshopbox.com-kill--0-cat-tmp-day80-build.pid-2-dev-nu-1.log`](server-runs/2026-05-19T14-13-38-www.soloshopbox.com-kill--0-cat-tmp-day80-build.pid-2-dev-nu-1.log)
+
+## 2026-05-19T14:14:16.548Z — Søren ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13292ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day80-docker-build.log 2>&1 & echo $! > /tmp/day80-docker-build.pid && echo "Docker build started, PID=$(cat /tmp/day80-docker-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
