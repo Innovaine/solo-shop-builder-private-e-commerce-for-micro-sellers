@@ -128,3 +128,19 @@ app/api/shops/status/route.ts
 app/api/webhooks/stripe/route.ts
 ```
 Full output: [`server-runs/2026-05-19T20-40-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T20-40-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T20:41:19.971Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9625dff` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2814ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "export async function" app/api/shops/branding/route.ts app/api/shops/profile/route.ts app/api/shops/route.ts 2>/dev/null | head -20
+```
+STDOUT:
+```
+app/api/shops/branding/route.ts:9:export async function PATCH(req: NextRequest) {
+app/api/shops/profile/route.ts:6:export async function PATCH(req: NextRequest) {
+app/api/shops/route.ts:25:export async function GET(request: NextRequest) {
+app/api/shops/route.ts:53:export async function POST(request: NextRequest) {
+```
+Full output: [`server-runs/2026-05-19T20-41-19-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T20-41-19-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
