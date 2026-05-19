@@ -138,3 +138,20 @@ app/api/auth/login/route.ts:17:export async function POST(request: NextRequest) 
 app/api/auth/signup/route.ts:19:export async function POST(request: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-19T22-59-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T22-59-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:00:13.575Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `05f8e33` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3330ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "constructEvent\|signature" app/api/webhooks/stripe/route.ts | head -5
+```
+STDOUT:
+```
+2:// FR-15 & FR-16: Webhook order capture with signature verification + audit trail
+18:  const signature = request.headers.get('stripe-signature')
+20:  if (!signature) {
+22:      { error: 'Missing stripe-signature header' },
+30:    // FR-25 & NFR-6: Verify webhook signature using HMAC
+```
+Full output: [`server-runs/2026-05-19T23-00-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-00-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
