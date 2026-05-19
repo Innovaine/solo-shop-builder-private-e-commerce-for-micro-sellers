@@ -77,10 +77,33 @@ async function handleCallback(req: NextRequest) {
       return NextResponse.redirect(`${baseUrl}/checkout?error=payment_not_completed`)
     }
 
-    // Find pending order by payment ID (stored as stripePaymentId during checkout)
-    const pendingOrder = await prisma.order.findFirst({
+    // Idempotency check — if order already paid, redirect to success
+    // Try to find by InvoiceId first (canonical reference per new docs)
+    let pendingOrder = await prisma.order.findFirst({
       where: {
-        stripePaymentId: paymentId,
+        stripePaymentId: invoice.Id,
+        status: 'paid',
+      },
+      include: {
+        items: true,
+        shop: true,
+      },
+    })
+
+    if (pendingOrder) {
+      console.log('[MyFatoorah Callback] Order already completed:', pendingOrder.id)
+      return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+    }
+
+    // Find pending order by InvoiceId (stored as stripePaymentId during checkout)
+    // OR by UserDefinedField (our order ID) as fallback
+    pendingOrder = await prisma.order.findFirst({
+      where: {
+        OR: [
+          { stripePaymentId: invoice.Id },
+          { id: invoice.UserDefinedField || 'no-match' },
+        ],
+        status: { not: 'paid' },
       },
       include: {
         items: true,
@@ -89,25 +112,11 @@ async function handleCallback(req: NextRequest) {
     })
 
     if (!pendingOrder) {
-      console.error('[MyFatoorah Callback] No pending order found for payment ID:', paymentId)
-      // Order might have already been completed, check by payment ID
-      const completedOrder = await prisma.order.findFirst({
-        where: { 
-          stripePaymentId: paymentId,
-          status: 'paid',
-        },
-      })
-      
-      if (completedOrder) {
-        console.log('[MyFatoorah Callback] Order already completed:', completedOrder.id)
-        return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
-      }
-      
-      console.error('[MyFatoorah Callback] Order not found in database')
+      console.error('[MyFatoorah Callback] No pending order found for invoice:', invoice.Id, 'userDefined:', invoice.UserDefinedField)
       return NextResponse.redirect(`${baseUrl}/checkout?error=order_not_found`)
     }
 
-    console.log('[MyFatoorah Callback] Found pending order:', pendingOrder.id)
+    console.log('[MyFatoorah Callback] Found pending order:', pendingOrder.id, 'for invoice:', invoice.Id)
 
     // Extract customer info
     const customerEmail = customer?.Email || pendingOrder.customerEmail || 'unknown@example.com'
@@ -115,14 +124,14 @@ async function handleCallback(req: NextRequest) {
 
     console.log('[MyFatoorah Callback] Updating order with customer:', { email: customerEmail, name: customerName })
 
-    // Update order with payment completion info
+    // Update order with payment completion info (InvoiceId is canonical reference per new docs)
     const updatedOrder = await prisma.order.update({
       where: { id: pendingOrder.id },
       data: {
         status: 'paid',
         customerEmail: customerEmail,
         customerName: customerName,
-        stripePaymentId: paymentId, // Update with actual payment ID
+        stripePaymentId: invoice.Id, // Store InvoiceId as canonical reference (per new docs)
         metadata: JSON.stringify({
           ...JSON.parse(pendingOrder.metadata || '{}'),
           myfatoorah: {
@@ -132,6 +141,8 @@ async function handleCallback(req: NextRequest) {
             authorizationId: transaction.AuthorizationId,
             paymentMethod: transaction.PaymentMethod,
             reference: invoice.Reference,
+            invoiceStatus: invoice.Status,
+            transactionStatus: transaction.Status,
           },
         }),
       },

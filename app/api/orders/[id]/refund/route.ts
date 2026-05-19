@@ -116,8 +116,14 @@ export async function POST(
       },
     })
   } catch (error: any) {
-    console.error('Refund error:', error)
-    
+    // Handle auth errors with 401, not 500 (follow pattern from /api/orders/[id] PATCH)
+    if (error instanceof Error && error.message === 'Unauthorized') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+
     if (error.type === 'StripeInvalidRequestError') {
       return NextResponse.json(
         { error: `Stripe error: ${error.message}` },
@@ -125,6 +131,7 @@ export async function POST(
       )
     }
 
+    console.error('Refund error:', error)
     return NextResponse.json(
       { error: 'Failed to process refund' },
       { status: 500 }

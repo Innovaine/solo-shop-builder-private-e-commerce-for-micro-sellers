@@ -9,18 +9,7 @@ import { formatPrice } from '@/lib/product'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { EmptyState } from '@/components/ui/EmptyState'
-
-interface Product {
-  id: string
-  title: string
-  description: string | null
-  price: number
-  imageUrl: string | null
-  category: string | null
-  stock: number
-  status?: string // FR-153: PUBLISHED or DRAFT
-  createdAt: string
-}
+import type { Product } from '@prisma/client'
 
 export default function ProductsPage() {
   const router = useRouter()

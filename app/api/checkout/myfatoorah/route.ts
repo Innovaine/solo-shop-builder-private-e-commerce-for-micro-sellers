@@ -78,7 +78,43 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Create payment with MyFatoorah
+    // Create pending order FIRST to get order ID for UserDefinedField
+    const pendingOrder = await prisma.order.create({
+      data: {
+        shopId: shop.id,
+        customerEmail: '', // Will be updated in callback
+        status: 'pending',
+        total: total,
+        metadata: JSON.stringify({
+          shopId: shop.id,
+          shopSlug: shopSlug,
+          items: items.map((item: any) => ({
+            productId: item.productId,
+            quantity: item.quantity,
+            title: products.find(p => p.id === item.productId)?.title || 'Unknown',
+            price: products.find(p => p.id === item.productId)?.price || 0,
+          })),
+        }),
+      },
+    })
+
+    // Create order items
+    for (const item of items) {
+      const product = products.find((p) => p.id === item.productId)
+      if (product) {
+        await prisma.orderItem.create({
+          data: {
+            orderId: pendingOrder.id,
+            productId: product.id,
+            productTitle: product.title,
+            quantity: item.quantity,
+            price: product.price,
+          },
+        })
+      }
+    }
+
+    // Create payment with MyFatoorah (v3 API with UserDefinedField for idempotency)
     const paymentResponse = await fetch(`${myfatoorahApiUrl}/v3/payments`, {
       method: 'POST',
       headers: {
@@ -90,6 +126,7 @@ export async function POST(req: NextRequest) {
         PaymentMethod: 'CARD',
         Order: {
           Amount: total / 100, // Convert cents to dollars
+          UserDefinedField: pendingOrder.id, // Store our order ID for easy lookup in callback
         },
         IntegrationUrls: {
           Redirection: `${appUrl}/api/checkout/myfatoorah/callback`,
@@ -109,61 +146,31 @@ export async function POST(req: NextRequest) {
     const paymentData = await paymentResponse.json()
 
     if (!paymentData.IsSuccess || !paymentData.Data?.PaymentURL) {
+      // Clean up pending order if payment creation failed
+      await prisma.order.delete({ where: { id: pendingOrder.id } })
       return NextResponse.json(
         { error: 'Invalid payment response from MyFatoorah' },
         { status: 500 }
       )
     }
 
-    // Create pending order in database with payment ID
-    // This will be completed when the callback receives payment confirmation
-    const paymentId = paymentData.Data.PaymentId
+    // Store InvoiceId as the canonical payment reference (per new docs)
     const invoiceId = paymentData.Data.InvoiceId
     
-    // Store cart items and shop context as JSON metadata
-    const orderMetadata = {
-      shopId: shop.id,
-      shopSlug: shopSlug,
-      items: items.map((item: any) => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        title: products.find(p => p.id === item.productId)?.title || 'Unknown',
-        price: products.find(p => p.id === item.productId)?.price || 0,
-      })),
-      myfatoorah: {
-        invoiceId: invoiceId,
-        paymentId: paymentId,
-      },
-    }
-
-    // Create a pending order with the MyFatoorah payment ID as the payment ID
-    // This allows us to find and complete it in the callback
-    const pendingOrder = await prisma.order.create({
+    // Update pending order with MyFatoorah InvoiceId (canonical reference per new docs)
+    await prisma.order.update({
+      where: { id: pendingOrder.id },
       data: {
-        shopId: shop.id,
-        customerEmail: '', // Will be updated in callback
-        status: 'pending',
-        total: total,
-        stripePaymentId: paymentId, // Store payment ID to match in callback
-        metadata: JSON.stringify(orderMetadata),
+        stripePaymentId: invoiceId, // Store InvoiceId for lookup in callback
+        metadata: JSON.stringify({
+          ...JSON.parse(pendingOrder.metadata || '{}'),
+          myfatoorah: {
+            invoiceId: invoiceId,
+            userDefinedField: pendingOrder.id, // Our order ID for cross-reference
+          },
+        }),
       },
     })
-
-    // Create order items
-    for (const item of items) {
-      const product = products.find((p) => p.id === item.productId)
-      if (product) {
-        await prisma.orderItem.create({
-          data: {
-            orderId: pendingOrder.id,
-            productId: product.id,
-            productTitle: product.title, // Match schema field name
-            quantity: item.quantity,
-            price: product.price,
-          },
-        })
-      }
-    }
 
     console.log('Created pending order:', pendingOrder.id, 'for MyFatoorah invoice:', invoiceId)
 
