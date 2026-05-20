@@ -250,3 +250,12 @@ pp/node_modules/.prisma ./node_modules/.prisma
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-20T11-19-44-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-2.log`](server-runs/2026-05-20T11-19-44-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-2.log)
+
+## 2026-05-20T11:20:15.129Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0f15218` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13412ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
