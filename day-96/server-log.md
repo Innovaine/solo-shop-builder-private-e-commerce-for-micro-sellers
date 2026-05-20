@@ -1456,3 +1456,58 @@ STDOUT:
 Started Day 96 test run, PID=2005094
 ```
 Full output: [`server-runs/2026-05-20T12-59-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-59-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T13:00:19.630Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `95c3158` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 25815ms) _(showing tail — full 2,729B stdout + 0B stderr)_
+```
+sleep 10 && kill -0 $(cat /tmp/day96-test.pid 2>/dev/null) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+tail -100 /tmp/day96-test.log 2>/dev/null | head -50
+```
+STDOUT:
+```
+…d-fix.spec.ts:16:7 › Day 96 — Image Upload Fixes › Task #276 + #277 + #278: Profile page has consolidated image upload field (5.4s)
+
+
+  1) [chromium] › tests/web/day96-image-upload-fix.spec.ts:16:7 › Day 96 — Image Upload Fixes › Task #276 + #277 + #278: Profile page has consolidated image upload field 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Timeout: 5000ms
+    [32m- Expected  - 4[39m
+    [31m+ Received  + 1[39m
+
+    [2m  Array [[22m
+    [32m-   "Your Shop",[39m
+    [32m-   "Shop",[39m
+    [32m-   "Start",[39m
+    [32m-   "Build",[39m
+    [31m+   "Solo Shop Builder",[39m
+    [2m  ][22m
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+    [2m    14 × locator resolved to 1 element[22m
+
+
+      17 |     // Go to homepage
+      18 |     await page.goto('https://www.soloshopbox.com/');
+    > 19 |     await expect(page.locator('h1')).toContainText(['Your Shop', 'Shop', 'Start', 'Build']);
+         |                                      ^
+      20 |     
+      21 |     // Check auth pages load (we can't test upload without auth, but we can verify page structure)
+      22 |     await page.goto('https://www.soloshopbox.com/auth/login');
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day96-image-upload-fix.spec.ts:19:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../.playwright-out/day96-image-upload-fix-Day-b4aab-olidated-image-upload-field-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day96-image-upload-fix-Day-b4aab-olidated-image-upload-field-chromium/error-context.md
+
+  2) [chromium] › tests/web/day96-image-upload-fix.spec.ts:48:7 › Day 96 — Image Upload Fixes › Smoke test: API endpoints respond correctly
+```
+Full output: [`server-runs/2026-05-20T13-00-19-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day96-test.pid--1.log`](server-runs/2026-05-20T13-00-19-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day96-test.pid--1.log)
