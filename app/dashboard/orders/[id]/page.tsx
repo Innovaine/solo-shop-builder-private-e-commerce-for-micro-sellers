@@ -46,30 +46,10 @@ export default async function OrderDetailPage({
     notFound()
   }
 
-  // Format data for client component
-  const orderData = {
-    id: order.id,
-    customerEmail: order.customerEmail,
-    customerName: order.customerName,
-    status: order.status,
-    total: order.total,
-    stripePaymentId: order.stripePaymentId,
-    trackingId: order.trackingId,
-    createdAt: order.createdAt.toISOString(),
-    updatedAt: order.updatedAt.toISOString(),
-    items: order.items.map((item) => ({
-      id: item.id,
-      productTitle: item.productTitle,
-      quantity: item.quantity,
-      price: item.price,
-      productId: item.productId,
-    })),
-  }
-
   return (
     <div className="min-h-screen bg-cream">
       <div className="max-w-4xl mx-auto p-6">
-        <OrderDetailClient order={orderData} shopId={shop.id} />
+        <OrderDetailClient order={order} shopId={shop.id} />
       </div>
     </div>
   )
