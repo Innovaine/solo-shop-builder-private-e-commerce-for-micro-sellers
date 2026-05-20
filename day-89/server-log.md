@@ -569,3 +569,35 @@ error TS2688: Cannot find type definition file for 'node'.
     Entry point of type library 'node' specified in compilerOptions
 ```
 Full output: [`server-runs/2026-05-20T07-29-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-3.log`](server-runs/2026-05-20T07-29-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-3.log)
+
+## 2026-05-20T07:29:31.413Z — Mehrdad ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f0da12b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2399ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | grep -A 5 '"summary"'
+```
+STDOUT:
+```
+  "summary": {
+    "routes": 58,
+    "pages": 24,
+    "apis": 34,
+    "links": 92,
+    "apiCalls": 36,
+```
+Full output: [`server-runs/2026-05-20T07-29-28-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-29-28-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✗ exit 1, 2542ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | wc -l && npx tsc --noEmit 2>&1
+```
+STDOUT:
+```
+3
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-20T07-29-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-29-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
