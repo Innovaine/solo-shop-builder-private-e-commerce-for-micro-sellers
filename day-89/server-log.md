@@ -858,3 +858,26 @@ app/api/auth/reset-password/route.ts:// POST /api/auth/reset-password with { tok
 app/api/auth/verify/route.ts:// GET /auth/verify?token=XXX
 ```
 Full output: [`server-runs/2026-05-20T07-31-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-31-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T07:32:49.984Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2bac1e5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2647ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "^type.*=\|^interface" app/ src/ --include="*.ts" --include="*.tsx" | grep -E "(Order|Product|Shop|User|Session|Item)" | head -50
+```
+STDOUT:
+```
+app/dashboard/orders/[id]/OrderDetailClient.tsx:11:interface OrderItem {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:19:interface Order {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:32:interface OrderDetailClientProps {
+app/dashboard/orders/page.tsx:11:type Order = Omit<PrismaOrder, 'createdAt' | 'updatedAt'> & {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/dashboard/analytics/page.tsx:8:interface ProductAnalytics {
+app/track/[orderId]/page.tsx:10:interface OrderItem {
+app/track/[orderId]/page.tsx:17:interface Order {
+app/components/AnalyticsCards.tsx:9:interface ProductAnalytics {
+app/api/analytics/route.ts:9:interface ProductAnalytics {
+app/checkout/success/page.tsx:13:interface OrderDetails {
+```
+Full output: [`server-runs/2026-05-20T07-32-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T07-32-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
