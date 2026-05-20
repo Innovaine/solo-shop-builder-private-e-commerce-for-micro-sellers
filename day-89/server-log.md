@@ -898,3 +898,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `b93a816` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "NextResponse\.redirect\|new URL.*redirect" app/ --include="*.tsx" | head -20
 ```
+
+## 2026-05-20T07:33:48.405Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5e2fc1e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2367ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "\.toFixed" app/ src/ --include="*.ts" --include="*.tsx" | grep -E "(price|total|amount|cents)" | grep -v "/ 100\|/ 1000" | head -20
+```
