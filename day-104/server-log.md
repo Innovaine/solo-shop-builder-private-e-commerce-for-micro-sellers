@@ -1741,3 +1741,71 @@ You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-20T21-55-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-55-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:56:38.553Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `505e0ab` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3151ms) _(showing tail — full 6,386B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…e mode 100644 day-101/task_verifier.md
+ create mode 100644 day-101/test.md
+ create mode 100644 day-102/_index.md
+ create mode 100644 day-102/_plan.md
+ create mode 100644 day-102/connectivity-audit.md
+ create mode 100644 day-102/connectivity_qa.md
+ create mode 100644 day-102/design.md
+ create mode 100644 day-102/engineering.md
+ create mode 100644 day-102/review.md
+ create mode 100644 day-102/server-log.md
+ create mode 100644 day-102/stage-ship-check.md
+ create mode 100644 day-102/standards-audit.md
+ create mode 100644 day-102/standards_qa.md
+ create mode 100644 day-102/task-verification.md
+ create mode 100644 day-102/task_verifier.md
+ create mode 100644 day-102/test.md
+ create mode 100644 day-103/_index.md
+ create mode 100644 day-103/_plan.md
+ create mode 100644 day-103/design.md
+ create mode 100644 day-103/engineering.md
+ create mode 100644 day-103/review.md
+ create mode 100644 day-103/server-log.md
+ create mode 100644 day-103/stage-ship-check.md
+ create mode 100644 day-103/standards-audit.md
+ create mode 100644 day-103/standards_qa.md
+ create mode 100644 day-103/task_verifier.md
+ create mode 100644 day-103/test.md
+ create mode 100644 day-104/_plan.md
+ create mode 100644 day-104/connectivity-audit.md
+ create mode 100644 day-104/connectivity_qa.md
+ create mode 100644 day-104/engineering.md
+ create mode 100644 day-104/review.md
+ create mode 100644 day-104/server-log.md
+ create mode 100644 design/pages/checkout-payment-method-selector.html
+ create mode 100644 design/pages/product-create-multi-image.html
+ create mode 100644 design/pages/storefront-redesigned.html
+ delete mode 100644 lib/db.ts
+ delete mode 100644 lib/s3.ts
+ create mode 100644 prisma/migrations/20260521_add_shop_currency/migration.sql
+ create mode 100644 test-results/day-101/report.md
+ create mode 100644 test-results/day-102/report.md
+ create mode 100644 test-results/day-103/report.md
+ create mode 100644 tests/web/day102-new-features.spec.ts
+ create mode 100644 tests/web/day103-new-features.spec.ts
+ create mode 100644 tests/web/day104-crash-fix.spec.ts
+```
+Full output: [`server-runs/2026-05-20T21-56-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-56-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 278ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+ls -la tests/web/day104-crash-fix.spec.ts
+```
+STDOUT:
+```
+-rw-rw-r-- 1 tester tester 3323 May 20 21:56 tests/web/day104-crash-fix.spec.ts
+```
+Full output: [`server-runs/2026-05-20T21-56-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T21-56-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
