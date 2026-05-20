@@ -262,3 +262,14 @@ STDOUT:
 Tests restarted, PID=2017982
 ```
 Full output: [`server-runs/2026-05-20T14-16-30-www.soloshopbox.com-rm--rf-HOME-.playwright-out-2-dev-null-m-1.log`](server-runs/2026-05-20T14-16-30-www.soloshopbox.com-rm--rf-HOME-.playwright-out-2-dev-null-m-1.log)
+
+## 2026-05-20T14:17:56.174Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4b3576e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 54500ms)
+```
+sleep 15
+kill -0 $(cat /tmp/day97-test-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -150 /tmp/day97-test-v2.log
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
