@@ -978,3 +978,18 @@ STDOUT:
 ./src/lib/db.ts
 ```
 Full output: [`server-runs/2026-05-20T18-34-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-34-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T18:36:05.180Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1fef4a3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2906ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "requireAuth()" app/api/ --include='*.ts' 2>/dev/null | head -3
+```
+STDOUT:
+```
+app/api/shops/route.ts:    const { sellerId } = await requireAuth()
+app/api/shops/route.ts:    const { sellerId } = await requireAuth()
+app/api/shops/status/route.ts:      const auth = await requireAuth();
+```
+Full output: [`server-runs/2026-05-20T18-36-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-36-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
