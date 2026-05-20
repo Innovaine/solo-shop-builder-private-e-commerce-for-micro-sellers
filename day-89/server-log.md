@@ -57,3 +57,19 @@ STDOUT:
  create mode 100644 test-results/day-87/report.md
 ```
 Full output: [`server-runs/2026-05-20T07-21-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T07-21-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T07:21:35.800Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `17dd9d9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2463ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/build.log 2>&1 &
+echo $! > /tmp/build.pid
+echo "Started build, PID=$(cat /tmp/build.pid)"
+```
+STDOUT:
+```
+Started build, PID=1912226
+```
+Full output: [`server-runs/2026-05-20T07-21-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T07-21-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
