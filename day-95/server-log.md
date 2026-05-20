@@ -320,3 +320,16 @@ app-1  |  ✓ Starting...
 app-1  |  ✓ Ready in 65ms
 ```
 Full output: [`server-runs/2026-05-20T11-55-42-www.soloshopbox.com-sleep-5-2.log`](server-runs/2026-05-20T11-55-42-www.soloshopbox.com-sleep-5-2.log)
+
+## 2026-05-20T11:57:18.074Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `caf2526` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3112ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo " - Health check OK"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T11:57:18.377Z","responseTime":"220ms","checks":{"database":{"status":"ok","responseTime":"62ms"},"email":{"status":"ok","responseTime":"158ms"}}} - Health check OK
+```
+Full output: [`server-runs/2026-05-20T11-57-18-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T11-57-18-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
