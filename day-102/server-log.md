@@ -539,3 +539,51 @@ STDOUT:
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-20T20-21-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-21-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:21:34.599Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `52bb63f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2694ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+git log --oneline -5
+git status --short | head -20
+ls -la app/api/shops/ | grep -v node_modules
+```
+STDOUT:
+```
+cf52ccb Priya (tester, day 101) — pre-SSH sync
+f9e5fab Priya (tester, day 101) — pre-SSH sync
+7245feb Anil (engineer, day 101) — pre-SSH sync
+f0fac67 Anil (engineer, day 101) — pre-SSH sync
+2df750b Anil (engineer, day 101) — pre-SSH sync
+ D test-results/day-02/report.md
+ D test-results/day-07/report.md
+ D test-results/day-08/report.md
+ D test-results/day-09/report.md
+ D test-results/day-10/report.md
+ D test-results/day-11/report.md
+ D test-results/day-12/report.md
+ D test-results/day-13/report.md
+ D test-results/day-15/report.md
+ D test-results/day-16/report.md
+ D test-results/day-17/report.md
+ D test-results/day-18/report.md
+ D test-results/day-20/report.md
+ D test-results/day-21/report.md
+ D test-results/day-22/report.md
+ D test-results/day-23/report.md
+ D test-results/day-24/report.md
+ D test-results/day-26/blocking-analysis.md
+ D test-results/day-26/report.md
+ D test-results/day-27/report.md
+total 28
+drwxrwxr-x  6 tester tester 4096 May 18 09:27 .
+drwxrwxr-x 12 tester tester 4096 May 16 21:42 ..
+drwxrwxr-x  2 tester tester 4096 May 20 12:58 branding
+drwxrwxr-x  2 tester tester 4096 May 19 21:41 email-template
+drwxrwxr-x  2 tester tester 4096 May 19 23:55 profile
+-rw-rw-r--  1 tester tester 3595 May 16 21:42 route.ts
+drwxrwxr-x  2 tester tester 4096 May 19 21:41 status
+```
+Full output: [`server-runs/2026-05-20T20-21-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-21-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
