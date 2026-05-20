@@ -110,3 +110,23 @@ _Pre-SSH: warehouse pushed to GitHub as commit `5c7441c` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -A 5 "Shop Logo/Profile Image" app/dashboard/profile/page.tsx
 ```
 ERROR: command exited 1
+
+## 2026-05-20T14:06:23.930Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `573e5d5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2949ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "profileImage\|Shop Image\|Logo" app/dashboard/profile/page.tsx | head -15
+```
+STDOUT:
+```
+28:  const [currentLogoUrl, setCurrentLogoUrl] = useState<string>('');
+57:            setCurrentLogoUrl(shop.logoImageUrl || shop.logoUrl);
+200:              <h2 className="text-lg font-semibold text-charcoal mb-5">Shop Logo</h2>
+205:                    {currentLogoUrl ? (
+206:                      <img src={currentLogoUrl} alt="Current logo" className="w-full h-full object-cover" />
+219:                      Change Logo in Branding Settings →
+307:                  {currentLogoUrl ? (
+308:                    <img src={currentLogoUrl} alt="Logo" className="w-full h-full object-cover" />
+```
+Full output: [`server-runs/2026-05-20T14-06-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T14-06-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
