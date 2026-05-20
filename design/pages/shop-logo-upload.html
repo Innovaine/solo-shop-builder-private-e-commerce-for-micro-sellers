@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Logo — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FAF9F7;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container { max-width: 600px; margin: 0 auto; }
+    .header { margin-bottom: 40px; }
+    .header h1 { font-size: 32px; font-weight: 700; color: #1F2937; margin-bottom: 8px; }
+    .header p { font-size: 14px; color: #64748B; }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .section { padding-bottom: 28px; border-bottom: 1px solid #E2E8F0; margin-bottom: 28px; }
+    .section:last-of-type { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+    .section-title { font-size: 14px; font-weight: 600; color: #1F2937; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+    .hint { font-size: 14px; color: #64748B; line-height: 1.6; margin-bottom: 16px; }
+    
+    /* Upload Area */
+    .upload-zone {
+      border: 2px dashed #E2E8F0;
+      border-radius: 8px;
+      padding: 40px 24px;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: pointer;
+      background: white;
+    }
+    .upload-zone:hover { border-color: #3B4C63; background: #F8FAFC; }
+    .upload-zone.dragover { border-color: #10B981; background: #F0FDF4; }
+    .upload-icon { font-size: 48px; margin-bottom: 12px; }
+    .upload-text { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 4px; }
+    .upload-subtext { font-size: 12px; color: #64748B; }
+    
+    input[type="file"] { display: none; }
+    
+    /* Preview */
+    .preview {
+      background: #FAF9F7;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+      display: none;
+    }
+    .preview.show { display: block; }
+    .preview-label { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .preview-image {
+      max-width: 120px;
+      max-height: 120px;
+      margin: 0 auto 12px auto;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+    }
+    .preview-name { font-size: 13px; color: #64748B; margin-bottom: 12px; }
+    
+    /* Button Group */
+    .button-group { display: flex; gap: 12px; margin-top: 24px; }
+    .btn {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .btn-danger { background: white; color: #F43F5E; border: 1px solid #FECDD3; }
+    .btn-danger:hover { background: #FEF2F2; }
+    
+    /* Info Box */
+    .info-box {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #0369A1;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+    
+    /* Shop Preview */
+    .shop-preview {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 24px;
+    }
+    .shop-header {
+      background: #3B4C63;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .shop-logo {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .shop-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .shop-name { font-size: 14px; font-weight: 600; }
+    .shop-label { font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    
+    @media (max-width: 640px) {
+      .card { padding: 24px; }
+      .button-group { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Shop Logo</h1>
+      <p>Upload a logo that appears in your shop header</p>
+    </div>
+
+    <div class="card">
+      <div class="section">
+        <h2 class="section-title">Upload Logo</h2>
+        <p class="hint">
+          This logo will appear in the top-left corner of your shop header (on your public storefront). Choose a square image for best results.
+        </p>
+
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">🖼️</div>
+          <div class="upload-text">Click to upload or drag and drop</div>
+          <div class="upload-subtext">PNG, SVG, or JPEG (max 2MB, recommended 200×200px)</div>
+          <input type="file" id="fileInput" accept=".png,.svg,.jpg,.jpeg">
+        </div>
+
+        <div class="preview" id="preview">
+          <div class="preview-label">Current Upload</div>
+          <img id="previewImage" class="preview-image" alt="Logo preview">
+          <div class="preview-name" id="previewName"></div>
+          <button class="btn btn-danger" id="removeBtn">Remove Logo</button>
+        </div>
+
+        <div class="info-box">
+          💡 <strong>Tip:</strong> Use a transparent PNG (with no background) for a professional look on your shop header.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Preview</h2>
+        <p class="hint">How your logo will appear in your shop:</p>
+        
+        <div class="shop-preview">
+          <div class="shop-header">
+            <div class="shop-logo" id="shopLogo">
+              📦
+            </div>
+            <div class="shop-name">My Shop</div>
+          </div>
+          <div class="shop-label">Your Public Shop Header</div>
+          <p style="font-size: 13px; color: #64748B;">Customers see this when they visit your shop link.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button id="saveBtn" class="btn btn-primary">Save Logo</button>
+      <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+    const previewImage = document.getElementById('previewImage');
+    const previewName = document.getElementById('previewName');
+    const removeBtn = document.getElementById('removeBtn');
+    const shopLogo = document.getElementById('shopLogo');
+
+    uploadZone.addEventListener('click', () => fileInput.click());
+
+    uploadZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadZone.classList.add('dragover');
+    });
+
+    uploadZone.addEventListener('dragleave', () => {
+      uploadZone.classList.remove('dragover');
+    });
+
+    uploadZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length > 0) {
+        fileInput.files = e.dataTransfer.files;
+        loadPreview();
+      }
+    });
+
+    fileInput.addEventListener('change', loadPreview);
+
+    function loadPreview() {
+      if (fileInput.files && fileInput.files[0]) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+          previewName.textContent = file.name;
+          preview.classList.add('show');
+          uploadZone.style.display = 'none';
+          shopLogo.innerHTML = `<img src="${e.target.result}" alt="Logo">`;
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+
+    removeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      fileInput.value = '';
+      preview.classList.remove('show');
+      uploadZone.style.display = 'block';
+      shopLogo.textContent = '📦';
+    });
+  </script>
+</body>
+</html>

@@ -265,6 +265,14 @@
       border-color: #3B4C63;
       box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
     }
+    textarea {
+      font-family: inherit;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
     .btn {
       padding: 10px 16px;
       border: none;
@@ -456,6 +464,14 @@
           </div>
           <button class="btn btn-primary" style="margin-top: 8px;">Save Tracking</button>
           <p class="help-text">Customer will receive this tracking info.</p>
+        </div>
+
+        <!-- Shipment Notes -->
+        <div class="action-card">
+          <div class="action-title">Shipment Notes</div>
+          <textarea placeholder="Add internal notes about shipment, packing, carrier, etc." style="width: 100%; padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 80px; transition: all 0.2s ease;" onfocus="this.style.borderColor='#3B4C63'; this.style.boxShadow='0 0 0 3px rgba(59, 76, 99, 0.1)';" onblur="this.style.borderColor='#E2E8F0'; this.style.boxShadow='none';"></textarea>
+          <button class="btn btn-primary" style="margin-top: 8px;">Save Notes</button>
+          <p class="help-text">Private notes, not visible to customer.</p>
         </div>
 
         <!-- Payment Info -->
