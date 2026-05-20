@@ -628,3 +628,26 @@ STDOUT:
 78:    // Note: ACL removed - DigitalOcean Spaces doesn't support legacy ACLs with IAM.
 ```
 Full output: [`server-runs/2026-05-20T12-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:05:26.987Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f57a919` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2290ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '240,250p' app/dashboard/products/page.tsx
+```
+STDOUT:
+```
+                      <td className="py-4 px-4">
+                        <button
+                          onClick={() => handleStatusToggle(product.id, product.status || 'PUBLISHED')}
+                          disabled={statusUpdating === product.id}
+                          className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                            (product.status || 'PUBLISHED') === 'PUBLISHED'
+                              ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+                              : 'bg-amber-50 text-amber-700 hover:bg-amber-100'
+                          } disabled:opacity-50 transition-colors`}
+                        >
+                          {statusUpdating === product.id ? '...' : product.status || 'PUBLISHED'}
+```
+Full output: [`server-runs/2026-05-20T12-05-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-05-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
