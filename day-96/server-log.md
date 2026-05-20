@@ -270,3 +270,82 @@ drwxrwxr-x 11 engineer engineer  4096 May 18 04:51 ..
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-20T12-35-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T12-35-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
+
+## 2026-05-20T12:36:22.681Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `69c3d30` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2766ms) _(showing tail — full 2,990B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && head -100 app/dashboard/profile/page.tsx
+```
+STDOUT:
+```
+…// Load current shop profile data
+    async function loadProfile() {
+      try {
+        const res = await fetch('/api/shops');
+        if (!res.ok) throw new Error('Failed to load shop data');
+        const shop = await res.json();
+        
+        if (shop) {
+          const displayName = shop.displayName || shop.name || '';
+          const publicDescription = shop.publicDescription || '';
+          
+          setFormData({
+            displayName,
+            publicDescription,
+            twitterUrl: shop.twitterUrl || '',
+            instagramUrl: shop.instagramUrl || '',
+            facebookUrl: shop.facebookUrl || '',
+          });
+          
+          setCharCounts({
+            displayName: displayName.length,
+            publicDescription: publicDescription.length,
+          });
+
+          // Set current logo if exists
+          if (shop.logoImageUrl || shop.logoUrl) {
+            setCurrentLogoUrl(shop.logoImageUrl || shop.logoUrl);
+          }
+        }
+      } catch (err) {
+        console.error('Error loading profile:', err);
+      }
+    }
+    loadProfile();
+  }, []);
+
+  function handleInputChange(field: keyof typeof formData, value: string) {
+    setFormData({ ...formData, [field]: value });
+    if (field === 'displayName' || field === 'publicDescription') {
+      setCharCounts({ ...charCounts, [field]: value.length });
+    }
+  }
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setImagePreview(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    // Validate lengths
+    if (formData.displayName.length > 100) {
+      setError('Shop name must be 100 characters or less');
+      setLoading(false);
+      return;
+    }
+```
+Full output: [`server-runs/2026-05-20T12-36-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-36-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
