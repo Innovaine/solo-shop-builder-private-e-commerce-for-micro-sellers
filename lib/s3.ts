@@ -4,33 +4,49 @@
 
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 
-// Check if using DigitalOcean Spaces or custom S3-compatible provider
-const s3Provider = process.env.S3_PROVIDER || 'aws'
-const isDigitalOcean = s3Provider === 'digitalocean'
+/**
+ * Get S3 client configuration at runtime
+ * This ensures env vars are read when the function is called, not at module load time
+ */
+function getS3Client(): S3Client {
+  // Read env values at runtime
+  const s3Provider = process.env.S3_PROVIDER || 'aws'
+  const isDigitalOcean = s3Provider === 'digitalocean'
 
-// DigitalOcean Spaces configuration
-const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
-const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
+  // DigitalOcean Spaces configuration
+  const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+  const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
 
-// AWS S3 configuration
-const awsRegion = process.env.AWS_REGION || 'us-east-1'
+  // AWS S3 configuration
+  const awsRegion = process.env.AWS_REGION || 'us-east-1'
 
-// Initialize S3 client with appropriate configuration
-const s3Client = new S3Client({
-  region: isDigitalOcean ? doRegion : awsRegion,
-  endpoint: isDigitalOcean ? doEndpoint : undefined,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
-  },
-  // DigitalOcean Spaces does NOT support path-style; it uses virtual-hosted style
-  forcePathStyle: false,
-})
+  return new S3Client({
+    region: isDigitalOcean ? doRegion : awsRegion,
+    endpoint: isDigitalOcean ? doEndpoint : undefined,
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    },
+    // DigitalOcean Spaces does NOT support path-style; it uses virtual-hosted style
+    forcePathStyle: false,
+  })
+}
 
-const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
+/**
+ * Get bucket name at runtime
+ */
+function getBucketName(): string {
+  return process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
+}
 
-// Construct CDN URL based on provider
-const getCdnUrl = (): string => {
+/**
+ * Construct CDN URL based on provider at runtime
+ */
+function getCdnUrl(): string {
+  const s3Provider = process.env.S3_PROVIDER || 'aws'
+  const isDigitalOcean = s3Provider === 'digitalocean'
+  const bucketName = getBucketName()
+  
   // If explicit CDN URL is provided, use it
   if (process.env.AWS_CLOUDFRONT_URL) {
     return process.env.AWS_CLOUDFRONT_URL
@@ -38,14 +54,13 @@ const getCdnUrl = (): string => {
   
   // For DigitalOcean Spaces, use the CDN endpoint format
   if (isDigitalOcean) {
-    return `https://${BUCKET_NAME}.${doRegion}.cdn.digitaloceanspaces.com`
+    const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+    return `https://${bucketName}.${doRegion}.cdn.digitaloceanspaces.com`
   }
   
   // Default to AWS S3 URL
-  return `https://${BUCKET_NAME}.s3.amazonaws.com`
+  return `https://${bucketName}.s3.amazonaws.com`
 }
-
-const CDN_URL = getCdnUrl()
 
 export interface UploadResult {
   url: string
@@ -65,13 +80,18 @@ export async function uploadToS3(
   filename: string,
   mimeType: string
 ): Promise<UploadResult> {
+  // Get runtime values
+  const s3Client = getS3Client()
+  const bucketName = getBucketName()
+  const cdnUrl = getCdnUrl()
+  
   // Sanitize filename and generate unique key
   const timestamp = Date.now()
   const sanitizedName = filename.replace(/[^a-zA-Z0-9.-]/g, '_')
   const key = `products/${timestamp}-${sanitizedName}`
 
   const command = new PutObjectCommand({
-    Bucket: BUCKET_NAME,
+    Bucket: bucketName,
     Key: key,
     Body: buffer,
     ContentType: mimeType,
@@ -82,12 +102,12 @@ export async function uploadToS3(
   await s3Client.send(command)
 
   // Return CDN URL if CloudFront is configured, otherwise S3 direct URL
-  const url = `${CDN_URL}/${key}`
+  const url = `${cdnUrl}/${key}`
 
   return {
     url,
     key,
-    bucket: BUCKET_NAME,
+    bucket: bucketName,
   }
 }
 

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { requireAuth } from '@/lib/auth';
 import Papa from 'papaparse';
+import { z } from 'zod';
 
 // ASSUMPTION: Using PapaParse for CSV parsing (client-side library, but works in Node)
 // ASSUMPTION: File size validation done client-side; server processes uploaded data
@@ -22,19 +24,25 @@ interface ImportError {
 
 const VALID_CATEGORIES = ['Handmade', 'Vintage', 'Supplies', 'Other'];
 
+// Zod schema for CSV row validation
+const csvRowSchema = z.object({
+  title: z.string().min(1, 'Title is required').max(200, 'Title too long (max 200 chars)'),
+  price: z.string().refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
+    message: 'Price must be a positive number',
+  }),
+  description: z.string().min(1, 'Description is required').max(1000, 'Description too long (max 1000 chars)'),
+  category: z.enum(['Handmade', 'Vintage', 'Supplies', 'Other'], {
+    errorMap: () => ({ message: `Invalid category. Must be one of: ${VALID_CATEGORIES.join(', ')}` }),
+  }),
+  image_url: z.string().optional(),
+});
+
 export async function POST(request: NextRequest) {
   try {
-    // 1. Verify authentication
-    const session = request.cookies.get('session');
-    if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    // 1. Verify authentication using requireAuth
+    const { sellerId } = await requireAuth();
 
-    // 2. Get seller from session (ASSUMPTION: session cookie contains seller ID)
-    // In real implementation, would decode JWT or query session store
-    const sellerId = session.value; // SIMPLIFIED for now
-
-    // 3. Check if seller has a shop
+    // 2. Check if seller has a shop
     const shop = await prisma.shop.findFirst({
       where: { sellerId: sellerId }
     });
@@ -84,53 +92,32 @@ export async function POST(request: NextRequest) {
       const row = rows[i];
       const rowNum = i + 2; // +2 because: header row + zero-indexed
 
-      // Validate required fields
-      if (!row.title || row.title.trim().length === 0) {
-        errors.push({ row: rowNum, field: 'title', message: 'Title is required' });
-        continue;
-      }
-      if (row.title.length > 200) {
-        errors.push({ row: rowNum, field: 'title', message: 'Title too long (max 200 chars)' });
-        continue;
-      }
-
-      if (!row.price || isNaN(parseFloat(row.price))) {
-        errors.push({ row: rowNum, field: 'price', message: 'Invalid price (must be a number)' });
-        continue;
-      }
-      const price = parseFloat(row.price);
-      if (price <= 0) {
-        errors.push({ row: rowNum, field: 'price', message: 'Price must be > 0' });
-        continue;
-      }
-
-      if (!row.description || row.description.trim().length === 0) {
-        errors.push({ row: rowNum, field: 'description', message: 'Description is required' });
-        continue;
-      }
-      if (row.description.length > 1000) {
-        errors.push({ row: rowNum, field: 'description', message: 'Description too long (max 1000 chars)' });
-        continue;
-      }
-
-      if (!row.category || !VALID_CATEGORIES.includes(row.category)) {
+      // Validate row using zod schema
+      const validationResult = csvRowSchema.safeParse(row);
+      
+      if (!validationResult.success) {
+        // Extract first error from zod validation
+        const firstError = validationResult.error.errors[0];
         errors.push({ 
           row: rowNum, 
-          field: 'category', 
-          message: `Invalid category. Must be one of: ${VALID_CATEGORIES.join(', ')}` 
+          field: firstError.path[0]?.toString() || 'unknown', 
+          message: firstError.message 
         });
         continue;
       }
+
+      const validatedRow = validationResult.data;
+      const price = parseFloat(validatedRow.price);
 
       // Create product (price should be in cents)
       try {
         const product = await prisma.product.create({
           data: {
-            title: row.title.trim(),
+            title: validatedRow.title.trim(),
             price: Math.round(price * 100), // Convert dollars to cents
-            description: row.description.trim(),
-            category: row.category,
-            imageUrl: row.image_url?.trim() || null,
+            description: validatedRow.description.trim(),
+            category: validatedRow.category,
+            imageUrl: validatedRow.image_url?.trim() || null,
             shopId: shop.id,
             stock: 0, // Default stock
             createdAt: new Date(),
