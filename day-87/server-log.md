@@ -588,3 +588,58 @@ export interface UploadResult {
  * Upload file buffer to S3
 ```
 Full output: [`server-runs/2026-05-20T01-14-19-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-14-19-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:14:37.406Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `802f901` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2298ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat lib/s3.ts | grep -A 20 "PutObjectCommand"
+```
+STDOUT:
+```
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+
+// Check if using DigitalOcean Spaces
+const isDigitalOcean = process.env.S3_PROVIDER === 'digitalocean'
+const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
+
+// Initialize S3 client with appropriate configuration
+const s3Client = new S3Client({
+  region: isDigitalOcean ? doRegion : (process.env.AWS_REGION || 'us-east-1'),
+  endpoint: isDigitalOcean ? doEndpoint : undefined,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+  },
+  forcePathStyle: false, // DigitalOcean Spaces uses virtual-hosted-style
+})
+
+const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
+
+// Construct CDN URL based on provider
+--
+  const command = new PutObjectCommand({
+    Bucket: BUCKET_NAME,
+    Key: key,
+    Body: buffer,
+    ContentType: mimeType,
+    ACL: 'public-read', // Make objects publicly readable
+  })
+
+  await s3Client.send(command)
+
+  // Return CDN URL if CloudFront is configured, otherwise S3 direct URL
+  const url = `${CDN_URL}/${key}`
+
+  return {
+    url,
+    key,
+    bucket: BUCKET_NAME,
+  }
+}
+
+/**
+```
+Full output: [`server-runs/2026-05-20T01-14-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-14-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
