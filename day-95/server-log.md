@@ -363,3 +363,18 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-20T11-58-48-www.soloshopbox.com-sleep-10-1.log`](server-runs/2026-05-20T11-58-48-www.soloshopbox.com-sleep-10-1.log)
+
+## 2026-05-20T11:59:08.107Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `08e47d1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2428ms)
+```
+tail -200 /tmp/day95-test.log
+```
+STDOUT:
+```
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+Full output: [`server-runs/2026-05-20T11-59-08-www.soloshopbox.com-tail--200-tmp-day95-test.log-1.log`](server-runs/2026-05-20T11-59-08-www.soloshopbox.com-tail--200-tmp-day95-test.log-1.log)
