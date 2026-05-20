@@ -944,3 +944,28 @@ app/api/checkout/route.ts(7,20): error TS2307: Cannot find module 'stripe' or it
 app/api/checkout/route.ts(10,27): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
 ```
 Full output: [`server-runs/2026-05-20T01-21-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-21-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:21:33.282Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c5fee27` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2259ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "searchParams.get\|params\." app/api --include="*.ts" | head -20
+```
+STDOUT:
+```
+app/api/products/route.ts:    const shopId = searchParams.get('shopId')
+app/api/products/[id]/route.ts:    const productId = params.id
+app/api/products/[id]/route.ts:    const productId = params.id
+app/api/products/[id]/route.ts:    const productId = params.id
+app/api/products/[id]/status/route.ts:    const productId = params.id
+app/api/products/[id]/variants/route.ts:    const productId = params.id;
+app/api/products/[id]/variants/route.ts:    const productId = params.id;
+app/api/checkout/myfatoorah/callback/route.ts:    const paymentId = searchParams.get('paymentId')
+app/api/orders/route.ts:    const paymentId = searchParams.get('paymentId')
+app/api/orders/[id]/route.ts:    const orderId = params.id
+app/api/orders/[id]/history/route.ts:    const orderId = params.id
+app/api/orders/[id]/refund/route.ts:      where: { id: params.id },
+app/api/auth/verify/route.ts:    const token = searchParams.get('token')
+```
+Full output: [`server-runs/2026-05-20T01-21-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-21-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
