@@ -1700,3 +1700,25 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T21:54:27.128Z","responseTime":"219ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"217ms"}}}
 ```
 Full output: [`server-runs/2026-05-20T21-54-26-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log`](server-runs/2026-05-20T21-54-26-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log)
+
+## 2026-05-20T21:55:02.153Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `489aecd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2670ms)
+```
+curl -sI https://www.soloshopbox.com/ | head -n 1
+echo "---"
+curl -sI https://www.soloshopbox.com/shop/salman | head -n 1
+echo "---"
+curl -sI https://www.soloshopbox.com/dashboard | head -n 2
+```
+STDOUT:
+```
+HTTP/2 200 
+---
+HTTP/2 200 
+---
+HTTP/2 307 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+```
+Full output: [`server-runs/2026-05-20T21-55-02-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log`](server-runs/2026-05-20T21-55-02-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log)
