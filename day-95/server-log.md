@@ -333,3 +333,19 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T11:57:18.377Z","responseTime":"220ms","checks":{"database":{"status":"ok","responseTime":"62ms"},"email":{"status":"ok","responseTime":"158ms"}}} - Health check OK
 ```
 Full output: [`server-runs/2026-05-20T11-57-18-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T11-57-18-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-20T11:58:18.489Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f36c80f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3316ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day95-s3-public-images.spec.ts --output=$HOME/.playwright-out --reporter=list > /tmp/day95-test.log 2>&1" &
+echo $! > /tmp/day95-test.pid
+echo "Started Playwright test, PID=$(cat /tmp/day95-test.pid)"
+```
+STDOUT:
+```
+Started Playwright test, PID=1989073
+```
+Full output: [`server-runs/2026-05-20T11-58-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-58-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
