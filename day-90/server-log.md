@@ -96,3 +96,37 @@ STDOUT:
 #15 22.42    Collecting build traces ...
 ```
 Full output: [`server-runs/2026-05-20T08-46-29-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log`](server-runs/2026-05-20T08-46-29-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log)
+
+## 2026-05-20T08:46:50.933Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7d4c92a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3009ms)
+```
+kill -0 $(cat /tmp/build.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -20 /tmp/build.log
+```
+STDOUT:
+```
+DONE
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.5s done
+#30 exporting manifest sha256:5f03dd2ed61c1f27f4d7323ac680dfb2a9c9cbf3838e2bfbca775c8da62ae6f8 done
+#30 exporting config sha256:df08e13cb4dae9adc9c4778380ce03b420eec1fce6f506444fc1fee2f5f2e6d5 done
+#30 exporting attestation manifest sha256:5c881d543e64710007a6299f86644d277a29c293aed595582a258e78b4b0e8c1 0.0s done
+#30 exporting manifest list sha256:8c3da1991c396653c3ac2deca0e3bc59e28d014d435b8366d6ac00cb92bbe9f6 done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#30 DONE 2.3s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-20T08-46-50-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log`](server-runs/2026-05-20T08-46-50-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log)
