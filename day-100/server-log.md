@@ -356,3 +356,19 @@ app/api/auth/login/route.ts:17:export async function POST(request: NextRequest) 
 app/api/auth/signup/route.ts:19:export async function POST(request: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-20T16-30-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-30-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:30:44.650Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fe3c5e3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2184ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && ls app/auth/forgot-password/ app/dashboard/ app/ 2>&1 | grep -E "page\.tsx|forgot"
+```
+STDOUT:
+```
+page.tsx
+app/auth/forgot-password/:
+page.tsx
+page.tsx
+```
+Full output: [`server-runs/2026-05-20T16-30-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-30-44-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
