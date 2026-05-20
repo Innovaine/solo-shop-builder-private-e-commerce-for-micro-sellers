@@ -198,3 +198,55 @@ Full output: [`server-runs/2026-05-20T11-19-00-www.soloshopbox.com-cd-solo-shop-
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build2.log 2>&1 & echo $! > /tmp/build2.pid && echo "Started build, PID=$(cat /tmp/build2.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T11:19:44.072Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b5b02b5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13048ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build2.log 2>&1 & echo $! > /tmp/build2.pid && echo "Started build, PID=$(cat /tmp/build2.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+### Command 2 on www.soloshopbox.com as engineer (✓ exit 0, 2008ms) _(showing tail — full 4,018B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"; tail -80 /tmp/build2.log
+```
+STDOUT:
+```
+…2 exporting layers 1.6s done
+#22 exporting manifest sha256:afefb6c1a45eae32e4d88b5003266a5853c850105adab57d2d8b7ca912cc597a 0.0s done
+#22 exporting config sha256:123d25dcb39cd6eefc2fbbc35785dc0e959c2817bc4221f0823816aaaa31722b done
+#22 exporting attestation manifest sha256:1e3794bdd9a22c8c8cd58f98afa3680403e9315ad2b5a86e4999a62e5a10ebbe 0.0s done
+#22 exporting manifest list sha256:59bc6d76467a5cb869fb1306af7fb9516d6cafa3c9f5390357ffd238c961a47f done
+#22 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#22 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#22 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#22 DONE 2.3s
+
+#23 resolving provenance for metadata file
+#23 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built 
+pp/node_modules/.prisma ./node_modules/.prisma
+#33 DONE 0.1s
+
+#34 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#34 DONE 0.0s
+
+#35 exporting to image
+#35 exporting layers
+#35 exporting layers 1.6s done
+#35 exporting manifest sha256:afefb6c1a45eae32e4d88b5003266a5853c850105adab57d2d8b7ca912cc597a done
+#35 exporting config sha256:123d25dcb39cd6eefc2fbbc35785dc0e959c2817bc4221f0823816aaaa31722b done
+#35 exporting attestation manifest sha256:43c8e8118419c62296325982388dd339a65504be7f3b1c7d6031a3038faa7ff1 0.0s done
+#35 exporting manifest list sha256:217b9687b3b8ab77d76677894b2eb3f5490826a8c4e28812f62a8d52aef23aad done
+#35 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#35 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#35 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#35 DONE 2.3s
+
+#36 resolving provenance for metadata file
+#36 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-20T11-19-44-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-2.log`](server-runs/2026-05-20T11-19-44-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-2.log)
