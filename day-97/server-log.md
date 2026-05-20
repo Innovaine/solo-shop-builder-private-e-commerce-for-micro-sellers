@@ -312,3 +312,45 @@ STDOUT:
     [chromium] › tests/web/day97-features.spec.ts:239:7 › Day 97 Smoke Tests › should load all dashboard pages without errors
 ```
 Full output: [`server-runs/2026-05-20T14-18-27-www.soloshopbox.com-kill--0-cat-tmp-day97-test-v2.pid-2-dev--1.log`](server-runs/2026-05-20T14-18-27-www.soloshopbox.com-kill--0-cat-tmp-day97-test-v2.pid-2-dev--1.log)
+
+## 2026-05-20T14:19:01.127Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `937f025` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2759ms)
+```
+grep -B5 -A5 "TimeoutError: page.waitForURL" /tmp/day97-test-v2.log | head -30
+```
+STDOUT:
+```
+  ✘  10 [chromium] › tests/web/day97-features.spec.ts:239:7 › Day 97 Smoke Tests › should load all dashboard pages without errors (10.4s)
+
+
+  1) [chromium] › tests/web/day97-features.spec.ts:25:7 › FR-3: Product CRUD › should create a new product 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "https://www.soloshopbox.com/dashboard" until "load"
+    ============================================================
+
+      19 |   await page.fill('input[type="password"]', password);
+--
+
+    Error Context: ../.playwright-out/day97-features-FR-3-Product-CRUD-should-create-a-new-product-chromium/error-context.md
+
+  2) [chromium] › tests/web/day97-features.spec.ts:53:7 › FR-3: Product CRUD › should read/display product details 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "https://www.soloshopbox.com/dashboard" until "load"
+    ============================================================
+
+      19 |   await page.fill('input[type="password"]', password);
+--
+
+    Error Context: ../.playwright-out/day97-features-FR-3-Produc-69b11-ead-display-product-details-chromium/error-context.md
+
+  3) [chromium] › tests/web/day97-features.spec.ts:70:7 › FR-3: Product CRUD › should update product details 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+```
+Full output: [`server-runs/2026-05-20T14-19-01-www.soloshopbox.com-grep--B5--A5-TimeoutError-page.waitForUR-1.log`](server-runs/2026-05-20T14-19-01-www.soloshopbox.com-grep--B5--A5-TimeoutError-page.waitForUR-1.log)
