@@ -194,3 +194,49 @@ STDOUT:
 #15 18.43    Linting and checking validity of types ...
 ```
 Full output: [`server-runs/2026-05-20T07-22-18-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-20T07-22-18-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+
+## 2026-05-20T07:22:38.442Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cb2ca36` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2715ms) _(showing tail — full 10,938B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -150 /tmp/build.log
+```
+STDOUT:
+```
+…     96.6 kB
+#15 39.52 ├ ○ /auth/verify                             2.23 kB        89.2 kB
+#15 39.52 ├ ○ /checkout                                3.62 kB        90.6 kB
+#15 39.52 ├ ○ /checkout/success                        3.06 kB          90 kB
+#15 39.52 ├ ƒ /dashboard                               1.38 kB        95.1 kB
+#15 39.52 ├ ○ /dashboard/analytics                     3.13 kB        96.9 kB
+#15 39.52 ├ ○ /dashboard/billing                       2.62 kB        96.4 kB
+#15 39.52 ├ ○ /dashboard/branding                      3.93 kB        97.7 kB
+#15 39.52 ├ ○ /dashboard/create-shop                   3.06 kB          90 kB
+#15 39.52 ├ ○ /dashboard/email-template                12.4 kB        99.4 kB
+#15 39.52 ├ ○ /dashboard/orders                        3.86 kB        97.6 kB
+#15 39.52 ├ ƒ /dashboard/orders/[id]                   3.08 kB          90 kB
+#15 39.52 ├ ○ /dashboard/products                      3.33 kB         103 kB
+#15 39.52 ├ ƒ /dashboard/products/[id]/edit            3.59 kB        90.5 kB
+#15 39.52 ├ ○ /dashboard/products/import               3.07 kB          90 kB
+#15 39.52 ├ ○ /dashboard/products/new                  3.83 kB         104 kB
+#15 39.52 ├ ○ /dashboard/profile                       4.22 kB          98 kB
+#15 39.52 ├ ○ /dashboard/settings                      3.94 kB        97.7 kB
+#15 39.52 ├ ƒ /shop/[slug]                             1.06 kB          98 kB
+#15 39.52 ├ ƒ /shop/[slug]/product/[productId]         675 B          97.6 kB
+#15 39.52 └ ƒ /track/[orderId]                         2.62 kB        89.6 kB
+#15 39.52 + First Load JS shared by all                87 kB
+#15 39.52   ├ chunks/23-3795c35e0df914fe.js            31.4 kB
+#15 39.52   ├ chunks/fd9d1056-f9e28952edc350f2.js      53.6 kB
+#15 39.52   └ other shared chunks (total)              1.89 kB
+#15 39.52 
+#15 39.52 
+#15 39.52 ƒ Middleware                                 27.4 kB
+#15 39.52 
+#15 39.52 ○  (Static)   prerendered as static content
+#15 39.52 ƒ  (Dynamic)  server-rendered on demand
+#15 39.52 
+#15 DONE 39.7s
+```
+Full output: [`server-runs/2026-05-20T07-22-38-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-20T07-22-38-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
