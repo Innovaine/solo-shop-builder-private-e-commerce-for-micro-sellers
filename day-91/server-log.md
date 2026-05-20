@@ -217,3 +217,26 @@ STDOUT:
 S3 debug logging not yet triggered (no uploads since restart)
 ```
 Full output: [`server-runs/2026-05-20T09-20-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T09-20-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T09:45:09.980Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c410233` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2675ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE '^(const|let|var)[[:space:]]+[A-Za-z_].*process\.env' app/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -30
+```
+STDOUT:
+```
+app/api/checkout/route.ts:10:const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+app/api/orders/[id]/refund/route.ts:10:const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+app/api/webhooks/stripe/route.ts:10:const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+app/api/webhooks/stripe/route.ts:14:const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
+src/lib/s3.ts:15:const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
+src/lib/s3.ts:16:const CDN_URL = process.env.AWS_CLOUDFRONT_URL || `https://${BUCKET_NAME}.s3.amazonaws.com`
+lib/s3.ts:8:const s3Provider = process.env.S3_PROVIDER || 'aws'
+lib/s3.ts:12:const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+lib/s3.ts:13:const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
+lib/s3.ts:16:const awsRegion = process.env.AWS_REGION || 'us-east-1'
+lib/s3.ts:30:const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
+```
+Full output: [`server-runs/2026-05-20T09-45-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T09-45-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
