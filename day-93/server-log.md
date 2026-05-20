@@ -286,3 +286,29 @@ ok
 ✓ App still healthy after import change
 ```
 Full output: [`server-runs/2026-05-20T10-55-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-55-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T10:55:58.914Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3662f4a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2581ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "Checking for duplicate S3 files:"
+find . -name "s3.ts" -type f 2>/dev/null | grep -v node_modules | sort
+echo "---"
+echo "Expected: only src/lib/s3.ts should exist"
+echo "---"
+ls -lh src/lib/s3.ts lib/s3.ts 2>&1
+```
+STDOUT:
+```
+Checking for duplicate S3 files:
+./lib/s3.ts
+./src/lib/s3.ts
+---
+Expected: only src/lib/s3.ts should exist
+---
+-rw-rw-r-- 1 tester tester 2.6K May 19 21:41 lib/s3.ts
+-rw-rw-r-- 1 tester tester 1.8K May 19 21:41 src/lib/s3.ts
+```
+Full output: [`server-runs/2026-05-20T10-55-58-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-55-58-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
