@@ -310,3 +310,36 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 4 minutes
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 4 minutes (healthy)
 ```
 Full output: [`server-runs/2026-05-20T23-54-44-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-20T23-54-44-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+## 2026-05-20T23:55:20.985Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `093a250` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2749ms)
+```
+echo "Test 1: Homepage"
+curl -sI https://www.soloshopbox.com/ | head -1
+
+echo -e "\nTest 2: Login page"
+curl -sI https://www.soloshopbox.com/auth/login | head -1
+
+echo -e "\nTest 3: Dashboard (should redirect to login)"
+curl -sI https://www.soloshopbox.com/dashboard | head -1
+
+echo -e "\nTest 4: Shop list page"
+curl -sI https://www.soloshopbox.com/shop | head -1
+```
+STDOUT:
+```
+Test 1: Homepage
+HTTP/2 200 
+
+Test 2: Login page
+HTTP/2 200 
+
+Test 3: Dashboard (should redirect to login)
+HTTP/2 307 
+
+Test 4: Shop list page
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-20T23-55-20-www.soloshopbox.com-echo-Test-1-Homepage-1.log`](server-runs/2026-05-20T23-55-20-www.soloshopbox.com-echo-Test-1-Homepage-1.log)
