@@ -217,3 +217,26 @@ STDOUT:
  create mode 100644 tests/web/day101-myfatoorah-fixes.spec.ts
 ```
 Full output: [`server-runs/2026-05-20T20-05-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-05-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:05:43.811Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6e097d8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2561ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la app/api/checkout/myfatoorah/callback/route.ts && grep -n "HMAC-SHA256\|webhookSecret\|signature" app/api/checkout/myfatoorah/callback/route.ts | head -10
+```
+STDOUT:
+```
+-rw-rw-r-- 1 engineer engineer 11191 May 20 18:02 app/api/checkout/myfatoorah/callback/route.ts
+221:  // CRITICAL: Verify webhook signature before processing
+222:  // MyFatoorah sends HMAC-SHA256 signature in X-MyFatoorah-Signature header
+224:  const webhookSecret = process.env.MYFATOORAH_WEBHOOK_SECRET
+226:  if (!webhookSecret) {
+234:  // Read raw body for signature verification
+236:  const receivedSignature = req.headers.get('x-myfatoorah-signature') || req.headers.get('x-webhook-signature')
+239:    console.error('[MyFatoorah Webhook] Missing signature header')
+241:      { error: 'Unauthorized: missing signature' },
+246:  // Compute HMAC-SHA256 signature using webhook secret
+248:    .createHmac('sha256', webhookSecret)
+```
+Full output: [`server-runs/2026-05-20T20-05-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-05-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)

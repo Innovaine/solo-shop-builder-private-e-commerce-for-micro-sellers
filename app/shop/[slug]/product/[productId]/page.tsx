@@ -20,6 +20,9 @@ export default async function ProductDetailPage({
     where: { id: productId },
     include: {
       shop: true,
+      images: {
+        orderBy: { displayOrder: 'asc' },
+      },
     },
   })
 
@@ -67,39 +70,48 @@ export default async function ProductDetailPage({
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Product Image */}
+          {/* Product Images Gallery */}
           <div className="space-y-3">
+            {/* Main Image */}
             <div className="aspect-square bg-gradient-to-br from-whisper to-cream rounded-lg flex items-center justify-center border border-whisper overflow-hidden">
-              {product.imageUrl ? (
+              {product.images && product.images.length > 0 ? (
+                <img
+                  src={product.images[0].imageUrl}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : product.imageUrl ? (
                 <img
                   src={product.imageUrl}
                   alt={product.title}
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="text-9xl">💎</div>
+                <div className="text-center text-slate p-8">
+                  <p className="text-sm">No image available</p>
+                </div>
               )}
             </div>
-            {/* Thumbnail placeholders for future image gallery */}
-            <div className="flex gap-2">
-              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center border-2 border-charcoal overflow-hidden">
-                {product.imageUrl ? (
-                  <img
-                    src={product.imageUrl}
-                    alt={product.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="text-3xl">💎</div>
-                )}
+            
+            {/* Thumbnail Gallery */}
+            {product.images && product.images.length > 0 && (
+              <div className="flex gap-2 overflow-x-auto">
+                {product.images.map((image, index) => (
+                  <div
+                    key={image.id}
+                    className={`flex-shrink-0 w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center overflow-hidden cursor-pointer ${
+                      index === 0 ? 'border-2 border-charcoal' : 'border border-whisper'
+                    }`}
+                  >
+                    <img
+                      src={image.imageUrl}
+                      alt={`${product.title} - Image ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
               </div>
-              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center text-3xl border border-whisper opacity-50">
-                ✨
-              </div>
-              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center text-3xl border border-whisper opacity-50">
-                ⭐
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Product Info */}

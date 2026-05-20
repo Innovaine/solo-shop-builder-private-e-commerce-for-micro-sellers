@@ -6,7 +6,7 @@ import { prisma } from '@/lib/db'
 
 export async function POST(req: NextRequest) {
   try {
-    const { shopSlug, items, customerEmail } = await req.json()
+    const { shopSlug, items, customerEmail, paymentMethod } = await req.json()
 
     if (!shopSlug || !items || items.length === 0) {
       return NextResponse.json(
@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        PaymentMethod: 'CARD',
+        PaymentMethod: paymentMethod || 'CARD', // CARD, APPLE_PAY, GOOGLE_PAY, KNET
         Customer: customerEmail ? { Email: customerEmail } : undefined,
         Order: {
           Amount: total / 100, // Convert cents to dollars

@@ -6,7 +6,7 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { clearCart } from '@/lib/cart'
+import { clearCart, getCart } from '@/lib/cart'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 
@@ -32,15 +32,21 @@ function SuccessContent() {
   const sessionId = searchParams.get('session_id') // Stripe
   const paymentId = searchParams.get('payment_id') // MyFatoorah
   const provider = searchParams.get('provider') || 'stripe'
+  const shopSlugParam = searchParams.get('shopSlug') // Shop slug from URL
   const [hasClearedCart, setHasClearedCart] = useState(false)
+  const [shopSlugFromCart, setShopSlugFromCart] = useState<string | null>(null)
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null)
   const [loading, setLoading] = useState(true)
 
   const paymentIdentifier = sessionId || paymentId
 
   useEffect(() => {
-    // Clear cart after successful checkout
+    // Save shop slug from cart BEFORE clearing
     if (paymentIdentifier && !hasClearedCart) {
+      const cart = getCart()
+      if (cart.shopSlug) {
+        setShopSlugFromCart(cart.shopSlug)
+      }
       clearCart()
       setHasClearedCart(true)
     }
@@ -178,13 +184,18 @@ function SuccessContent() {
 
         {/* Action Buttons */}
         <div className="space-y-3">
-          {orderDetails && (
+          {(orderDetails || shopSlugFromCart || shopSlugParam) && (
             <Button 
               variant="primary" 
-              onClick={() => router.push(`/shop/${orderDetails.shop.slug}`)} 
+              onClick={() => {
+                const slug = orderDetails?.shop.slug || shopSlugParam || shopSlugFromCart
+                if (slug) {
+                  router.push(`/shop/${slug}`)
+                }
+              }} 
               className="w-full"
             >
-              Back to {orderDetails.shop.name}
+              {orderDetails ? `Back to ${orderDetails.shop.name}` : 'Back to Shop'}
             </Button>
           )}
           <Button 

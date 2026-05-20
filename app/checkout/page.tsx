@@ -19,9 +19,35 @@ export default function CheckoutPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [paymentProvider, setPaymentProvider] = useState<'stripe' | 'myfatoorah'>('stripe')
+  const [shopCurrency, setShopCurrency] = useState<'USD' | 'KWD'>('USD')
+  const [myfatoorahMethod, setMyfatoorahMethod] = useState<'CARD' | 'APPLE_PAY' | 'GOOGLE_PAY' | 'KNET'>('CARD')
 
   useEffect(() => {
-    setCart(getCart())
+    const cartData = getCart()
+    setCart(cartData)
+    
+    // Fetch shop currency if we have a shop slug
+    const fetchShopCurrency = async () => {
+      if (cartData.shopSlug) {
+        try {
+          const response = await fetch(`/api/shops/${cartData.shopSlug}/currency`)
+          if (response.ok) {
+            const data = await response.json()
+            setShopCurrency(data.currency || 'USD')
+            // Auto-select payment provider based on currency
+            if (data.currency === 'KWD') {
+              setPaymentProvider('myfatoorah')
+            } else {
+              setPaymentProvider('stripe')
+            }
+          }
+        } catch (error) {
+          console.error('Failed to fetch shop currency:', error)
+        }
+      }
+    }
+    
+    fetchShopCurrency()
     
     // Check for error in URL query params (from MyFatoorah callback redirect)
     const urlParams = new URLSearchParams(window.location.search)
@@ -61,6 +87,12 @@ export default function CheckoutPage() {
   }
 
   const handleCheckout = async () => {
+    // Validate email
+    if (!customerEmail || !customerEmail.includes('@')) {
+      setError('Please enter a valid email address')
+      return
+    }
+
     setIsLoading(true)
     setError(null)
 
@@ -77,7 +109,8 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           items: cart.items,
           shopSlug: cart.shopSlug,
-          customerEmail: customerEmail || undefined,
+          customerEmail: customerEmail,
+          paymentMethod: paymentProvider === 'myfatoorah' ? myfatoorahMethod : undefined,
         }),
       })
 
@@ -172,7 +205,7 @@ export default function CheckoutPage() {
             <h2 className="text-xl font-semibold text-charcoal mb-4">Contact Information</h2>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
-                Email address (optional)
+                Email address <span className="text-rose">*</span>
               </label>
               <input
                 type="email"
@@ -180,11 +213,12 @@ export default function CheckoutPage() {
                 value={customerEmail}
                 onChange={(e) => setCustomerEmail(e.target.value)}
                 placeholder="your@email.com"
+                required
                 className="w-full px-4 py-2 border border-whisper rounded-md focus:outline-none focus:ring-2 focus:ring-slate-blue"
                 disabled={isLoading}
               />
               <p className="text-xs text-slate mt-2">
-                We'll send your order confirmation to this email.
+                Required for order confirmation and tracking
               </p>
             </div>
           </div>
@@ -193,38 +227,104 @@ export default function CheckoutPage() {
         <Card className="mb-6">
           <div className="p-6">
             <h2 className="text-xl font-semibold text-charcoal mb-4">Payment Method</h2>
+            
+            {/* Currency notice */}
+            <div className="mb-4 p-3 bg-whisper rounded-md">
+              <p className="text-xs text-slate">
+                💡 This shop uses <strong>{shopCurrency}</strong> currency
+              </p>
+            </div>
+            
             <div className="space-y-3">
-              <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50">
-                <input
-                  type="radio"
-                  name="payment"
-                  value="stripe"
-                  checked={paymentProvider === 'stripe'}
-                  onChange={(e) => setPaymentProvider('stripe')}
-                  className="text-slate-blue"
-                  disabled={isLoading}
-                />
-                <div className="flex-1">
-                  <div className="font-medium text-charcoal">Credit Card (Stripe)</div>
-                  <div className="text-xs text-slate">Visa, Mastercard, Amex</div>
-                </div>
-              </label>
+              {/* Show Stripe only for USD */}
+              {shopCurrency === 'USD' && (
+                <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="stripe"
+                    checked={paymentProvider === 'stripe'}
+                    onChange={(e) => setPaymentProvider('stripe')}
+                    className="text-slate-blue"
+                    disabled={isLoading}
+                  />
+                  <div className="flex-1">
+                    <div className="font-medium text-charcoal">Credit Card (Stripe)</div>
+                    <div className="text-xs text-slate">Visa, Mastercard, Amex</div>
+                  </div>
+                </label>
+              )}
 
-              <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50">
-                <input
-                  type="radio"
-                  name="payment"
-                  value="myfatoorah"
-                  checked={paymentProvider === 'myfatoorah'}
-                  onChange={(e) => setPaymentProvider('myfatoorah')}
-                  className="text-slate-blue"
-                  disabled={isLoading}
-                />
-                <div className="flex-1">
-                  <div className="font-medium text-charcoal">MyFatoorah</div>
-                  <div className="text-xs text-slate">KNET, Visa, Mastercard, Apple Pay</div>
-                </div>
-              </label>
+              {/* Show MyFatoorah only for KWD */}
+              {shopCurrency === 'KWD' && (
+                <>
+                  <div className="text-sm font-medium text-charcoal mb-2">Select Payment Method</div>
+                  
+                  <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50 mb-2">
+                    <input
+                      type="radio"
+                      name="myfatoorah-method"
+                      value="CARD"
+                      checked={myfatoorahMethod === 'CARD'}
+                      onChange={(e) => setMyfatoorahMethod('CARD')}
+                      className="text-slate-blue"
+                      disabled={isLoading}
+                    />
+                    <div className="flex-1">
+                      <div className="font-medium text-charcoal">💳 Credit/Debit Card</div>
+                      <div className="text-xs text-slate">Visa, Mastercard, Amex</div>
+                    </div>
+                  </label>
+
+                  <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50 mb-2">
+                    <input
+                      type="radio"
+                      name="myfatoorah-method"
+                      value="APPLE_PAY"
+                      checked={myfatoorahMethod === 'APPLE_PAY'}
+                      onChange={(e) => setMyfatoorahMethod('APPLE_PAY')}
+                      className="text-slate-blue"
+                      disabled={isLoading}
+                    />
+                    <div className="flex-1">
+                      <div className="font-medium text-charcoal">🍎 Apple Pay</div>
+                      <div className="text-xs text-slate">Fast checkout with Apple Pay</div>
+                    </div>
+                  </label>
+
+                  <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50 mb-2">
+                    <input
+                      type="radio"
+                      name="myfatoorah-method"
+                      value="GOOGLE_PAY"
+                      checked={myfatoorahMethod === 'GOOGLE_PAY'}
+                      onChange={(e) => setMyfatoorahMethod('GOOGLE_PAY')}
+                      className="text-slate-blue"
+                      disabled={isLoading}
+                    />
+                    <div className="flex-1">
+                      <div className="font-medium text-charcoal">🔵 Google Pay</div>
+                      <div className="text-xs text-slate">Quick payment with Google Pay</div>
+                    </div>
+                  </label>
+
+                  <label className="flex items-center gap-3 p-4 border border-whisper rounded-md cursor-pointer hover:bg-whisper/50">
+                    <input
+                      type="radio"
+                      name="myfatoorah-method"
+                      value="KNET"
+                      checked={myfatoorahMethod === 'KNET'}
+                      onChange={(e) => setMyfatoorahMethod('KNET')}
+                      className="text-slate-blue"
+                      disabled={isLoading}
+                    />
+                    <div className="flex-1">
+                      <div className="font-medium text-charcoal">🇰🇼 KNET</div>
+                      <div className="text-xs text-slate">Kuwait's national payment system</div>
+                    </div>
+                  </label>
+                </>
+              )}
             </div>
           </div>
         </Card>
@@ -241,7 +341,7 @@ export default function CheckoutPage() {
           <Button
             variant="primary"
             onClick={handleCheckout}
-            disabled={isLoading}
+            disabled={isLoading || !customerEmail || !customerEmail.includes('@')}
             className="flex-1"
           >
             {isLoading ? 'Processing...' : 'Proceed to payment'}
