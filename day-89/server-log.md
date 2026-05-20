@@ -660,3 +660,69 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-20T07-29-49-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-29-49-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
+
+## 2026-05-20T07:30:09.738Z — Mehrdad ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3fce00b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2377ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | jq '.broken, .orphans, .mismatches' 2>/dev/null | head -80
+```
+STDOUT:
+```
+[
+  {
+    "file": "app/shop/[slug]/SortDropdown.tsx",
+    "line": 32,
+    "kind": "router",
+    "target": "/shop/${shopSlug}${queryString"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 63,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 170,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  }
+]
+[
+  {
+    "route": "/auth/reset-password",
+    "kind": "page",
+    "file": "app/auth/reset-password/page.tsx"
+  },
+  {
+    "route": "/auth/verify",
+    "kind": "page",
+    "file": "app/auth/verify/page.tsx"
+  },
+  {
+    "route": "/dashboard/orders/[id]",
+    "kind": "page",
+    "file": "app/dashboard/orders/[id]/page.tsx"
+  },
+  {
+    "route": "/shop/[slug]/product/[productId]",
+    "kind": "page",
+    "file": "app/shop/[slug]/product/[productId]/page.tsx"
+  }
+]
+null
+```
+Full output: [`server-runs/2026-05-20T07-30-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-30-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✓ exit 0, 706ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npm list @types/node 2>&1 | head -5
+```
+STDOUT:
+```
+solo-shop-builder@0.1.0 /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers
+└── (empty)
+```
+Full output: [`server-runs/2026-05-20T07-30-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-30-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
