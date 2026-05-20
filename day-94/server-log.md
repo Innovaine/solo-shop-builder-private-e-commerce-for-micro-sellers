@@ -452,3 +452,16 @@ STDOUT:
 Error: EPERM: operation not permitted, rmdir '/tmp/playwright-test-results'
 ```
 Full output: [`server-runs/2026-05-20T11-24-39-www.soloshopbox.com-tail--150-tmp-day94-test.log-2-dev-null--2.log`](server-runs/2026-05-20T11-24-39-www.soloshopbox.com-tail--150-tmp-day94-test.log-2-dev-null--2.log)
+
+## 2026-05-20T11:25:07.250Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `25c94bb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 9263ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && rm -rf $HOME/.playwright-out/* && env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day94-engineer-fixes.spec.ts --reporter=list 2>&1 | tee /tmp/day94-test-v2.log
+```
+STDOUT:
+```
+Error: EPERM: operation not permitted, rmdir '/tmp/playwright-test-results'
+```
+Full output: [`server-runs/2026-05-20T11-25-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-25-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
