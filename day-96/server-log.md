@@ -1053,3 +1053,49 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-20T12-47-11-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log`](server-runs/2026-05-20T12-47-11-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log)
+
+## 2026-05-20T12:47:42.165Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `593d2dd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2562ms)
+```
+tail -80 /tmp/build.log | grep -A 5 -B 5 "Error\|Failed\|Cannot"
+```
+STDOUT:
+```
+#15 1.688   - Environments: .env
+#15 1.688 
+#15 1.741    Creating an optimized production build ...
+#15 13.21  ✓ Compiled successfully
+#15 13.21    Linting and checking validity of types ...
+#15 19.32 Failed to compile.
+#15 19.32 
+#15 19.32 ./app/dashboard/profile/page.tsx:110:7
+#15 19.32 Type error: Cannot find name 'setImageFile'.
+#15 19.32 
+#15 19.32 [0m [90m 108 |[39m       [0m
+#15 19.32 [0m [90m 109 |[39m       [90m// Reset image file state[39m[0m
+#15 19.32 [0m[31m[1m>[22m[39m[90m 110 |[39m       setImageFile([36mnull[39m)[33m;[39m[0m
+#15 19.32 [0m [90m     |[39m       [31m[1m^[22m[39m[0m
+#15 19.32 [0m [90m 111 |[39m     } [36mcatch[39m (err[33m:[39m any) {[0m
+#15 19.32 [0m [90m 112 |[39m       setError(err[33m.[39mmessage)[33m;[39m[0m
+#15 19.32 [0m [90m 113 |[39m     } [36mfinally[39m {[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+19.32 ./app/dashboard/profile/page.tsx:110:7
+19.32 Type error: Cannot find name 'setImageFile'.
+19.32 
+19.32 [0m [90m 108 |[39m       [0m
+19.32 [0m [90m 109 |[39m       [90m// Reset image file state[39m[0m
+19.32 [0m[31m[1m>[22m[39m[90m 110 |[39m       setImageFile([36mnull[39m)[33m;[39m[0m
+19.32 [0m [90m     |[39m       [31m[1m^[22m[39m[0m
+19.32 [0m [90m 111 |[39m     } [36mcatch[39m (err[33m:[39m any) {[0m
+19.32 [0m [90m 112 |[39m       setError(err[33m.[39mmessage)[33m;[39m[0m
+19.32 [0m [90m 113 |[39m     } [36mfinally[39m {[0m
+------
+Dockerfile:25
+
+--------------------
+```
+Full output: [`server-runs/2026-05-20T12-47-42-www.soloshopbox.com-tail--80-tmp-build.log-grep--A-5--B-5-Er-1.log`](server-runs/2026-05-20T12-47-42-www.soloshopbox.com-tail--80-tmp-build.log-grep--A-5--B-5-Er-1.log)
