@@ -726,3 +726,43 @@ solo-shop-builder@0.1.0 /home/reviewer/solo-shop-builder-private-e-commerce-for-
 └── (empty)
 ```
 Full output: [`server-runs/2026-05-20T07-30-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-30-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
+
+## 2026-05-20T07:30:36.372Z — Mehrdad ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `20cae72` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2477ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '30,35p' app/shop/[slug]/SortDropdown.tsx
+```
+STDOUT:
+```
+    
+    const queryString = params.toString()
+    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
+  }
+
+  return (
+```
+Full output: [`server-runs/2026-05-20T07-30-35-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-30-35-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✓ exit 0, 429ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '60,65p' app/shop/[slug]/product/[productId]/page.tsx && echo "---" && sed -n '168,173p' app/shop/[slug]/product/[productId]/page.tsx
+```
+STDOUT:
+```
+            <p className="text-slate mb-4">
+              The seller has temporarily paused this shop. You cannot purchase items at this time.
+            </p>
+            <Link href={`/shop/${slug}`}>
+              <Button variant="secondary">Back to Shop</Button>
+            </Link>
+---
+            )}
+            <div className="mt-3">
+              <Link href={`/shop/${slug}`}>
+                <Button
+                  variant="secondary"
+                  size="lg"
+```
+Full output: [`server-runs/2026-05-20T07-30-36-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-30-36-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
