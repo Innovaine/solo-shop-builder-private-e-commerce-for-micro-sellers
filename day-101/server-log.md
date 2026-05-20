@@ -381,3 +381,38 @@ STDOUT:
   3 passed (6.6s)
 ```
 Full output: [`server-runs/2026-05-20T18-14-51-www.soloshopbox.com-grep--A-15-rejects-POST-callback-without-1.log`](server-runs/2026-05-20T18-14-51-www.soloshopbox.com-grep--A-15-rejects-POST-callback-without-1.log)
+
+## 2026-05-20T18:15:36.936Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e46444` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 2, 2967ms)
+```
+echo "Test 1: Check callback with no signature (expect 500 if webhook secret not configured)"
+curl -s -X POST https://www.soloshopbox.com/api/checkout/myfatoorah/callback \
+  -H 'content-type: application/json' \
+  -d '{"paymentId":"test-123"}' | jq . || echo "No JSON response"
+
+echo -e "\nTest 2: Check callback GET works (redirect flow)"
+curl -sI "https://www.soloshopbox.com/api/checkout/myfatoorah/callback?paymentId=test-456" | head -5
+
+echo -e "\nTest 3: Check .env.example has webhook secret documented"
+grep -i "MYFATOORAH_WEBHOOK_SECRET" solo-shop-builder-private-e-commerce-for-micro-sellers/.env.example
+```
+STDOUT:
+```
+Test 1: Check callback with no signature (expect 500 if webhook secret not configured)
+{
+  "error": "Webhook secret not configured"
+}
+
+Test 2: Check callback GET works (redirect flow)
+HTTP/2 307 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+date: Wed, 20 May 2026 18:15:37 GMT
+
+Test 3: Check .env.example has webhook secret documented
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-20T18-15-36-www.soloshopbox.com-echo-Test-1-Check-callback-with-no-signa-1.log`](server-runs/2026-05-20T18-15-36-www.soloshopbox.com-echo-Test-1-Check-callback-with-no-signa-1.log)
