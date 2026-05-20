@@ -485,3 +485,36 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-20T20-58-12-www.soloshopbox.com-kill--0-cat-tmp-day103-tests.pid-2-dev-n-1.log`](server-runs/2026-05-20T20-58-12-www.soloshopbox.com-kill--0-cat-tmp-day103-tests.pid-2-dev-n-1.log)
+
+## 2026-05-20T20:58:50.354Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `599bd0d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2683ms)
+```
+echo "=== Manual Verification: Task #296 Checkout Success Page ===" &&
+echo "" &&
+echo "Test 1: Success page with session ID loads" &&
+curl -sI "https://www.soloshopbox.com/checkout/success?session_id=test123" 2>&1 | head -1 &&
+echo "" &&
+echo "Test 2: Success page without session ID shows error" &&
+curl -sI "https://www.soloshopbox.com/checkout/success" 2>&1 | head -1 &&
+echo "" &&
+echo "=== Manual Verification: Task #297 Shop Storefront ===" &&
+echo "Test 3: Shop page loads (assuming a shop exists)" &&
+curl -sI "https://www.soloshopbox.com/" 2>&1 | head -1
+```
+STDOUT:
+```
+=== Manual Verification: Task #296 Checkout Success Page ===
+
+Test 1: Success page with session ID loads
+HTTP/2 200 
+
+Test 2: Success page without session ID shows error
+HTTP/2 200 
+
+=== Manual Verification: Task #297 Shop Storefront ===
+Test 3: Shop page loads (assuming a shop exists)
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-20T20-58-50-www.soloshopbox.com-echo-Manual-Verification-Task-296-Checko-1.log`](server-runs/2026-05-20T20-58-50-www.soloshopbox.com-echo-Manual-Verification-Task-296-Checko-1.log)
