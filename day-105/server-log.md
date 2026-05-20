@@ -551,3 +551,34 @@ _Pre-SSH: warehouse pushed to GitHub as commit `67e8514` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -type f \( -name "*.ts" -o -name "*.tsx" \) | grep -vE 'node_modules|\.next|dist|build|\.git' | xargs -n1 basename 2>/dev/null | sort | uniq -d | grep -vE '^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware|instrumentation)\.(ts|tsx)$'
 ```
 ERROR: command exited 1
+
+## 2026-05-20T22:48:30.582Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6b857be` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2339ms) _(showing tail — full 2,197B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "\.toFixed" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | grep -E "(price|total|amount|cost)" | head -20
+```
+STDOUT:
+```
+…data?.totalRevenue || 0) / 100).toFixed(2)}
+app/dashboard/billing/page.tsx:169:                        ${(txn.amount / 100).toFixed(2)}
+app/dashboard/orders/page.tsx:213:                <div className="text-3xl font-bold text-charcoal mt-2">${((analytics.totalRevenue || 0) / 100).toFixed(2)}</div>
+app/dashboard/orders/page.tsx:368:                      <td className="px-6 py-4 font-semibold text-charcoal">${(order.total / 100).toFixed(2)}</td>
+app/dashboard/analytics/page.tsx:109:              ${((analytics?.totalRevenue || 0) / 100).toFixed(2)}
+app/dashboard/analytics/page.tsx:224:                        ${(product.totalRevenue / 100).toFixed(2)}
+app/dashboard/analytics/page.tsx:227:                        ${((product.totalRevenue / product.totalQuantity) / 100).toFixed(2)} avg
+app/dashboard/analytics/page.tsx:260:                      You've generated over ${((analytics!.totalRevenue / 100)).toFixed(0)} in the last 30 days.
+app/track/[orderId]/page.tsx:213:                    ${(item.price / 100).toFixed(2)}
+app/track/[orderId]/page.tsx:246:              <span>${(order.total / 100).toFixed(2)}</span>
+app/track/[orderId]/page.tsx:250:              <span className="text-emerald text-xl">${(order.total / 100).toFixed(2)}</span>
+app/components/CartButton.tsx:119:                        ${(item.price / 100).toFixed(2)} each
+app/components/CartButton.tsx:155:                        ${((item.price * item.quantity) / 100).toFixed(2)}
+app/components/CartButton.tsx:167:                    ${(total / 100).toFixed(2)}
+app/components/AnalyticsCards.tsx:72:            ${(analytics.totalRevenue / 100).toFixed(2)}
+app/components/AnalyticsCards.tsx:103:              ? ((analytics.totalRevenue / 100) / analytics.orderCount).toFixed(2) 
+app/components/AnalyticsCards.tsx:136:                    ${(product.totalRevenue / 100).toFixed(2)}
+app/api/products/export/route.ts:64:        (product.price / 100).toFixed(2),
+app/api/checkout/myfatoorah/callback/route.ts:171:      const orderTotal = ((updatedOrder.total || 0) / 100).toFixed(2)
+```
+Full output: [`server-runs/2026-05-20T22-48-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-48-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
