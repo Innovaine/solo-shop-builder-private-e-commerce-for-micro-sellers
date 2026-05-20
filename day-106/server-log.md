@@ -200,3 +200,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `01d02e8` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose down 2>/dev/null; nohup docker compose build > /tmp/day106-build.log 2>&1 & echo $! > /tmp/day106-build.pid && echo "Started build PID=$(cat /tmp/day106-build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T23:19:37.685Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7135502` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2215ms)
+```
+if [ -f /tmp/day106-build.pid ]; then kill -0 $(cat /tmp/day106-build.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE or PID dead"; else echo "NO PID FILE - build may not have started"; fi
+```
+STDOUT:
+```
+BUILD DONE or PID dead
+```
+Full output: [`server-runs/2026-05-20T23-19-37-www.soloshopbox.com-if--f-tmp-day106-build.pid-then-kill--0--1.log`](server-runs/2026-05-20T23-19-37-www.soloshopbox.com-if--f-tmp-day106-build.pid-then-kill--0--1.log)
