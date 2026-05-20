@@ -353,3 +353,31 @@ Not started
 App DOWN
 ```
 Full output: [`server-runs/2026-05-20T20-14-41-www.soloshopbox.com-sleep-10-1.log`](server-runs/2026-05-20T20-14-41-www.soloshopbox.com-sleep-10-1.log)
+
+## 2026-05-20T20:15:14.211Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7eb91ae` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3060ms) _(showing tail — full 13,034B stdout + 0B stderr)_
+```
+tail -50 /tmp/compose-up.log 2>/dev/null || echo "No log found"
+docker ps -a | grep solo
+```
+STDOUT:
+```
+…                                                       | [MyFatoorah Callback] API Response: {"IsSuccess":false,"Message":"Invalid data","ValidationErrors":null,"Data":null}
+app-1                                                                        | [MyFatoorah Callback] API request failed: {
+app-1                                                                        |   status: 400,
+app-1                                                                        |   isSuccess: false,
+app-1                                                                        |   message: 'Invalid data',
+app-1                                                                        |   errors: null
+app-1                                                                        | }
+app-1                                                                        | {"requestId":"mMs9hjwT3sAUH9aO","method":"GET","path":"/api/checkout/myfatoorah/callback","responseTime":"1ms","timestamp":"2026-05-20T19:34:07.072Z","userAgent":"Mozilla/5.0 (compatible)"}
+app-1                                                                        | [MyFatoorah Callback] Received paymentId: null
+app-1                                                                        | [MyFatoorah Callback] Missing paymentId parameter
+app-1                                                                        | {"requestId":"ehUA0uaLYO-Y8RbD","method":"GET","path":"/api/health","responseTime":"1ms","timestamp":"2026-05-20T20:11:11.116Z","userAgent":"curl/8.5.0"}
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+58a22e145a06   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   2 minutes ago   Created                                           solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+3e42fd635ff7   postgres:16-alpine                                           "docker-entrypoint.s…"   5 hours ago     Up 5 hours (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+```
+Full output: [`server-runs/2026-05-20T20-15-14-www.soloshopbox.com-tail--50-tmp-compose-up.log-2-dev-null-e-1.log`](server-runs/2026-05-20T20-15-14-www.soloshopbox.com-tail--50-tmp-compose-up.log-2-dev-null-e-1.log)
