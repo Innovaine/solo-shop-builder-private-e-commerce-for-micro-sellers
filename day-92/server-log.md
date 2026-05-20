@@ -260,3 +260,45 @@ _Pre-SSH: warehouse pushed to GitHub as commit `5b960db` so the server's `git pu
 tail -50 /tmp/day92-build.log | grep -E "(Successfully|built|ERROR|failed)"
 ```
 ERROR: command exited 1
+
+## 2026-05-20T09:59:18.977Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `33012a0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2268ms)
+```
+tail -30 /tmp/day92-build.log
+```
+STDOUT:
+```
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.5s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.6s done
+#30 exporting manifest sha256:967790ecd6a916acfd666b62c32847e6e10aeaf4711a5187d7a88bc75ae4b597 done
+#30 exporting config sha256:4e550f3659a877744bb7e48a38c42847ae47ebe0f1d76d05602603bc16947910 done
+#30 exporting attestation manifest sha256:d4bedf03ada91641039cf628b54735b567bbb681a8de2a38c30dec9f1103d1ce 0.0s done
+#30 exporting manifest list sha256:76f37959563d2d2c9e0418bf9b849e2159b30a605505feb29d7c6da4bbd1631b done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.6s done
+#30 DONE 2.3s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-20T09-59-18-www.soloshopbox.com-tail--30-tmp-day92-build.log-1.log`](server-runs/2026-05-20T09-59-18-www.soloshopbox.com-tail--30-tmp-day92-build.log-1.log)
