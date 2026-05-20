@@ -224,3 +224,36 @@ kill -0 $(cat /tmp/day93-smoke.pid) 2>/dev/null && echo "STILL RUNNING" || echo 
 tail -50 /tmp/day93-smoke.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-20T10:55:14.709Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0a9dfc6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2642ms)
+```
+kill -0 $(cat /tmp/day93-smoke.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day93-smoke.log | grep -E "(passed|failed|test)" | tail -30
+```
+STDOUT:
+```
+DONE
+  4) [chromium] › tests/web/day84-smoke.spec.ts:43:7 › Day 84 Fixes › Checkout page displays generic error for unknown error code 
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+      50 |     expect(errorText).toContain('Payment failed')
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day84-smoke.spec.ts:47:29
+    ../.playwright-out/day84-smoke-Day-84-Fixes-C-6c033-rror-for-unknown-error-code-chromium/test-failed-1.png
+  5) [chromium] › tests/web/day84-smoke.spec.ts:53:7 › Day 84 Fixes › Checkout page cleans up error param from URL after display 
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day84-smoke.spec.ts:57:39
+    ../.playwright-out/day84-smoke-Day-84-Fixes-C-f2c86-aram-from-URL-after-display-chromium/test-failed-1.png
+  6) [chromium] › tests/web/day85-profile-fix.spec.ts:45:7 › Day 85 - Core functionality smoke test › Orders API requires authentication 
+      45 |   test('Orders API requires authentication', async ({ request }) => {
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day85-profile-fix.spec.ts:47:31
+  6 failed
+    [chromium] › tests/web/day84-smoke.spec.ts:9:7 › Day 84 Fixes › Checkout page displays user-friendly error for payment_cancelled 
+    [chromium] › tests/web/day84-smoke.spec.ts:22:7 › Day 84 Fixes › Checkout page displays user-friendly error for payment_expired 
+    [chromium] › tests/web/day84-smoke.spec.ts:32:7 › Day 84 Fixes › Checkout page displays user-friendly error for payment_declined 
+    [chromium] › tests/web/day84-smoke.spec.ts:43:7 › Day 84 Fixes › Checkout page displays generic error for unknown error code 
+    [chromium] › tests/web/day84-smoke.spec.ts:53:7 › Day 84 Fixes › Checkout page cleans up error param from URL after display 
+    [chromium] › tests/web/day85-profile-fix.spec.ts:45:7 › Day 85 - Core functionality smoke test › Orders API requires authentication 
+  7 passed (37.6s)
+```
+Full output: [`server-runs/2026-05-20T10-55-14-www.soloshopbox.com-kill--0-cat-tmp-day93-smoke.pid-2-dev-nu-1.log`](server-runs/2026-05-20T10-55-14-www.soloshopbox.com-kill--0-cat-tmp-day93-smoke.pid-2-dev-nu-1.log)
