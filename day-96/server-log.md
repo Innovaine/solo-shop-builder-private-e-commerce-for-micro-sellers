@@ -1511,3 +1511,23 @@ STDOUT:
   2) [chromium] › tests/web/day96-image-upload-fix.spec.ts:48:7 › Day 96 — Image Upload Fixes › Smoke test: API endpoints respond correctly
 ```
 Full output: [`server-runs/2026-05-20T13-00-19-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day96-test.pid--1.log`](server-runs/2026-05-20T13-00-19-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day96-test.pid--1.log)
+
+## 2026-05-20T13:00:53.913Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f4f3d98` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3247ms)
+```
+kill -0 $(cat /tmp/day96-test.pid 2>/dev/null) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+tail -200 /tmp/day96-test.log | grep -E "passed|failed|Running|tests from"
+```
+STDOUT:
+```
+DONE
+Running 5 tests using 4 workers
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+    ../.playwright-out/day96-image-upload-fix-Day-b4aab-olidated-image-upload-field-chromium/test-failed-1.png
+    ../.playwright-out/day96-image-upload-fix-Day-7da5f-endpoints-respond-correctly-chromium/test-failed-1.png
+  2 failed
+  3 passed (6.2s)
+```
+Full output: [`server-runs/2026-05-20T13-00-53-www.soloshopbox.com-kill--0-cat-tmp-day96-test.pid-2-dev-nul-1.log`](server-runs/2026-05-20T13-00-53-www.soloshopbox.com-kill--0-cat-tmp-day96-test.pid-2-dev-nul-1.log)
