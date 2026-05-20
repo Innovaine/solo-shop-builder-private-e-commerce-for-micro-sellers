@@ -349,3 +349,26 @@ etag: "rmxf7msjbe88h"
 HTTP/2 500
 ```
 Full output: [`server-runs/2026-05-20T20-48-55-www.soloshopbox.com-echo-TEST-1-Health-check-1.log`](server-runs/2026-05-20T20-48-55-www.soloshopbox.com-echo-TEST-1-Health-check-1.log)
+
+## 2026-05-20T20:49:28.072Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `545a283` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2660ms)
+```
+echo "=== TEST: Checkout success page features ===" &&
+curl -s "https://www.soloshopbox.com/checkout/success?session_id=test123&provider=stripe" | grep -c "Order Confirmed" &&
+echo "✓ 'Order Confirmed' title present" &&
+curl -s "https://www.soloshopbox.com/checkout/success?session_id=test123&provider=stripe" | grep -c "Download Receipt" &&
+echo "✓ 'Download Receipt' button present" &&
+curl -s "https://www.soloshopbox.com/checkout/success?session_id=test123&provider=stripe" | grep -c "Continue Shopping" &&
+echo "✓ 'Continue Shopping' button present" &&
+curl -s "https://www.soloshopbox.com/checkout/success?session_id=test123&provider=stripe" | grep -c "Back to Shop" &&
+echo "✓ 'Back to Shop' button present"
+```
+STDOUT:
+```
+=== TEST: Checkout success page features ===
+0
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-20T20-49-28-www.soloshopbox.com-echo-TEST-Checkout-success-page-features-1.log`](server-runs/2026-05-20T20-49-28-www.soloshopbox.com-echo-TEST-Checkout-success-page-features-1.log)
