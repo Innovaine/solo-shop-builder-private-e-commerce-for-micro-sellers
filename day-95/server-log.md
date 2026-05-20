@@ -452,3 +452,76 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
 PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day95-s3-public-images.spec.ts --output=$HOME/.playwright-out --reporter=list 2>&1 | tee /tmp/day95-test-simple.log | head -100
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T12:01:25.707Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `46746d1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3071ms)
+```
+echo "=== Day 95 Manual Smoke Tests ==="
+echo ""
+echo "1. Health check:"
+curl -sf https://www.soloshopbox.com/api/health | head -200
+echo ""
+echo ""
+echo "2. Homepage loads:"
+curl -sI https://www.soloshopbox.com/ | head -10
+echo ""
+echo "3. Upload endpoint exists (expect 401 without auth):"
+curl -sI -X POST https://www.soloshopbox.com/api/products/upload | grep -E "HTTP|content-type"
+echo ""
+echo "4. Dashboard products page (expect redirect to login):"
+curl -sI https://www.soloshopbox.com/dashboard/products | grep -E "HTTP|location"
+```
+STDOUT:
+```
+=== Day 95 Manual Smoke Tests ===
+
+1. Health check:
+{"status":"ok","timestamp":"2026-05-20T12:01:25.920Z","responseTime":"192ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"191ms"}}}
+
+2. Homepage loads:
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Wed, 20 May 2026 12:01:25 GMT
+etag: "h97z27n7mr88h"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+content-length: 10710
+
+
+3. Upload endpoint exists (expect 401 without auth):
+HTTP/2 500 
+content-type: application/json
+
+4. Dashboard products page (expect redirect to login):
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-20T12-01-25-www.soloshopbox.com-echo-Day-95-Manual-Smoke-Tests-1.log`](server-runs/2026-05-20T12-01-25-www.soloshopbox.com-echo-Day-95-Manual-Smoke-Tests-1.log)
+
+## 2026-05-20T12:01:47.910Z — Priya ran 1 command(s)
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2421ms)
+```
+echo "Checking upload endpoint error:"
+curl -s -X POST https://www.soloshopbox.com/api/products/upload | head -50
+echo ""
+echo ""
+echo "Checking if lib/s3.ts changes are in place:"
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "ACL.*public-read" lib/s3.ts
+echo ""
+echo "Checking dashboard products page content:"
+curl -s https://www.soloshopbox.com/dashboard/products | grep -o '<h1[^>]*>.*</h1>' | head -3
+```
+STDOUT:
+```
+Checking upload endpoint error:
+{"error":"Failed to upload image"}
+
+Checking if lib/s3.ts changes are in place:
+116:    ACL: 'public-read',
+
+Checking dashboard products page content:
+```
+Full output: [`server-runs/2026-05-20T12-01-47-www.soloshopbox.com-echo-Checking-upload-endpoint-error-1.log`](server-runs/2026-05-20T12-01-47-www.soloshopbox.com-echo-Checking-upload-endpoint-error-1.log)
