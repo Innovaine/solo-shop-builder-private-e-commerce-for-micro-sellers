@@ -450,3 +450,57 @@ STDOUT:
   await s3Client.send(command)
 ```
 Full output: [`server-runs/2026-05-20T01-12-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-12-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:12:37.420Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `620d609` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3633ms)
+```
+echo "Day 87 - Core Smoke Tests"
+echo ""
+echo "Test 1: Homepage loads"
+curl -sI https://www.soloshopbox.com | head -1
+
+echo ""
+echo "Test 2: Dashboard page (auth required)"
+curl -sI https://www.soloshopbox.com/dashboard | head -1
+
+echo ""
+echo "Test 3: API health check"
+curl -sf https://www.soloshopbox.com/api/health | jq -r '.status' 2>/dev/null || echo "FAIL"
+
+echo ""
+echo "Test 4: API routes accessible"
+curl -sI https://www.soloshopbox.com/api/products | head -1
+
+echo ""
+echo "Test 5: Shop creation page"
+curl -sI https://www.soloshopbox.com/dashboard/create-shop | head -1
+
+echo ""
+echo "Test 6: Check if container is stable (uptime)"
+docker ps --format "{{.Names}}\t{{.Status}}" | grep app-1
+```
+STDOUT:
+```
+Day 87 - Core Smoke Tests
+
+Test 1: Homepage loads
+HTTP/2 200 
+
+Test 2: Dashboard page (auth required)
+HTTP/2 307 
+
+Test 3: API health check
+ok
+
+Test 4: API routes accessible
+HTTP/2 400 
+
+Test 5: Shop creation page
+HTTP/2 200 
+
+Test 6: Check if container is stable (uptime)
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 3 minutes
+```
+Full output: [`server-runs/2026-05-20T01-12-37-www.soloshopbox.com-echo-Day-87---Core-Smoke-Tests-1.log`](server-runs/2026-05-20T01-12-37-www.soloshopbox.com-echo-Day-87---Core-Smoke-Tests-1.log)
