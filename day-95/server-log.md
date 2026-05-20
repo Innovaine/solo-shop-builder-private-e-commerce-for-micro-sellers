@@ -525,3 +525,31 @@ Checking if lib/s3.ts changes are in place:
 Checking dashboard products page content:
 ```
 Full output: [`server-runs/2026-05-20T12-01-47-www.soloshopbox.com-echo-Checking-upload-endpoint-error-1.log`](server-runs/2026-05-20T12-01-47-www.soloshopbox.com-echo-Checking-upload-endpoint-error-1.log)
+
+## 2026-05-20T12:02:10.950Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `eaae17b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2932ms)
+```
+echo "Checking docker container status:"
+docker ps --format 'table {{.Names}}\t{{.Status}}' | grep solo-shop
+echo ""
+echo "Checking when container was started:"
+docker inspect solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 --format='{{.State.StartedAt}}' 2>/dev/null || echo "Container not found"
+echo ""
+echo "Verifying app is serving requests:"
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "✓ App responding" || echo "✗ App not responding"
+```
+STDOUT:
+```
+Checking docker container status:
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 6 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 2 hours (healthy)
+
+Checking when container was started:
+2026-05-20T11:55:37.286086647Z
+
+Verifying app is serving requests:
+✓ App responding
+```
+Full output: [`server-runs/2026-05-20T12-02-10-www.soloshopbox.com-echo-Checking-docker-container-status-1.log`](server-runs/2026-05-20T12-02-10-www.soloshopbox.com-echo-Checking-docker-container-status-1.log)
