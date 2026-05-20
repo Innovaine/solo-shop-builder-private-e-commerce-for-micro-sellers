@@ -1236,3 +1236,55 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-bu
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   6 hours ago          Up 6 hours (healthy)           127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-20T21-32-13-www.soloshopbox.com-sleep-5-cd-solo-shop-builder-private-e-c-1.log`](server-runs/2026-05-20T21-32-13-www.soloshopbox.com-sleep-5-cd-solo-shop-builder-private-e-c-1.log)
+
+## 2026-05-20T21:33:09.063Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a5442a8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 4244ms) _(showing tail — full 5,360B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=100 app
+```
+STDOUT:
+```
+…tabase: https://pris.ly/d/migrate-resolve
+app-1  | The `20260521_add_shop_currency` migration started at 2026-05-20 21:31:38.872387 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 10 migrations found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260521_add_shop_currency` migration started at 2026-05-20 21:31:38.872387 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 10 migrations found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260521_add_shop_currency` migration started at 2026-05-20 21:31:38.872387 UTC failed
+app-1  | 
+app-1  | 
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 10 migrations found in prisma/migrations
+app-1  | 
+app-1  | Error: P3009
+app-1  | 
+app-1  | migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve
+app-1  | The `20260521_add_shop_currency` migration started at 2026-05-20 21:31:38.872387 UTC failed
+app-1  | 
+app-1  |
+```
+Full output: [`server-runs/2026-05-20T21-33-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-33-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
