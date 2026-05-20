@@ -993,3 +993,16 @@ app/api/shops/route.ts:    const { sellerId } = await requireAuth()
 app/api/shops/status/route.ts:      const auth = await requireAuth();
 ```
 Full output: [`server-runs/2026-05-20T18-36-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-36-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T18:36:40.219Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b50ed32` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2605ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "\.toFixed" app/ src/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -v "/ 100\|/ 1000\|formatPrice\|formatCents" | head -10
+```
+STDOUT:
+```
+app/dashboard/products/import/page.tsx:291:                      {(file.size / 1024).toFixed(1)} KB
+```
+Full output: [`server-runs/2026-05-20T18-36-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-36-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
