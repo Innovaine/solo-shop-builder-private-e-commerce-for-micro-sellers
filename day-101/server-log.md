@@ -722,3 +722,63 @@ bb50263 Priya (tester, day 97) — pre-SSH sync
 f17b50a Priya (tester, day 97) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-20T18-21-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-21-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T18:21:53.825Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `72c6714` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2445ms) _(showing tail — full 4,445B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git log --oneline -p -- app/api/checkout/myfatoorah/callback/route.ts | head -100
+```
+STDOUT:
+```
+… })
++
++    if (pendingOrder) {
++      console.log('[MyFatoorah Callback] Order already completed:', pendingOrder.id)
++      return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
++    }
++
++    // Find pending order by InvoiceId (stored as stripePaymentId during checkout)
++    // OR by UserDefinedField (our order ID) as fallback
++    pendingOrder = await prisma.order.findFirst({
++      where: {
++        OR: [
++          { stripePaymentId: invoice.Id },
++          { id: invoice.UserDefinedField || 'no-match' },
++        ],
++        status: { not: 'paid' },
+       },
+       include: {
+         items: true,
+@@ -89,25 +112,11 @@ async function handleCallback(req: NextRequest) {
+     })
+ 
+     if (!pendingOrder) {
+-      console.error('[MyFatoorah Callback] No pending order found for payment ID:', paymentId)
+-      // Order might have already been completed, check by payment ID
+-      const completedOrder = await prisma.order.findFirst({
+-        where: { 
+-          stripePaymentId: paymentId,
+-          status: 'paid',
+-        },
+-      })
+-      
+-      if (completedOrder) {
+-        console.log('[MyFatoorah Callback] Order already completed:', completedOrder.id)
+-        return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+-      }
+-      
+-      console.error('[MyFatoorah Callback] Order not found in database')
++      console.error('[MyFatoorah Callback] No pending order found for invoice:', invoice.Id, 'userDefined:', invoice.UserDefinedField)
+       return NextResponse.redirect(`${baseUrl}/checkout?error=order_not_found`)
+     }
+ 
+-    console.log('[MyFatoorah Callback] Found pending order:', pendingOrder.id)
++    console.log('[MyFatoorah Callback] Found pending order:', pendingOrder.id, 'for invoice:', invoice.Id)
+ 
+     // Extract customer info
+     const customerEmail = customer?.Email || pendingOrder.customerEmail || 'unknown@example.com'
+@@ -115,14 +124,14 @@ async function handleCallback(req: NextRequest) {
+```
+Full output: [`server-runs/2026-05-20T18-21-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-21-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
