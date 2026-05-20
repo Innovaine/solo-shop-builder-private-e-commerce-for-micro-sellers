@@ -498,3 +498,41 @@ Test 4: Homepage loads
 ✓ Homepage accessible
 ```
 Full output: [`server-runs/2026-05-20T11-25-32-www.soloshopbox.com-echo-Test-1-Order-tracking-GET-endpoint-1.log`](server-runs/2026-05-20T11-25-32-www.soloshopbox.com-echo-Test-1-Order-tracking-GET-endpoint-1.log)
+
+## 2026-05-20T11:25:58.758Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `aef37c1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2941ms) _(showing tail — full 7,719B stdout + 0B stderr)_
+```
+echo "Checking checkout success page content:"
+curl -s https://www.soloshopbox.com/checkout/success 2>&1 | head -50
+```
+STDOUT:
+```
+…-offset-2 bg-emerald text-white hover:bg-emerald-600 focus:ring-emerald disabled:bg-whisper disabled:text-slate px-4 py-2 text-base\",\"children\":\"Go Home\"}]}],[\"$\",\"$L9\",null,{\"href\":\"/dashboard\",\"children\":[\"$\",\"button\",null,{\"disabled\":false,\"className\":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
+```
+Full output: [`server-runs/2026-05-20T11-25-57-www.soloshopbox.com-echo-Checking-checkout-success-page-cont-1.log`](server-runs/2026-05-20T11-25-57-www.soloshopbox.com-echo-Checking-checkout-success-page-cont-1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 904ms)
+```
+echo "Testing order tracking page (FR-14):"
+curl -sI https://www.soloshopbox.com/track/test-order-id | head -10
+echo ""
+echo "Testing order API endpoint:"
+curl -s https://www.soloshopbox.com/api/orders/fake-order-id | head -20
+```
+STDOUT:
+```
+Testing order tracking page (FR-14):
+HTTP/2 200 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-type: text/html; charset=utf-8
+date: Wed, 20 May 2026 11:25:59 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-powered-by: Next.js
+
+
+Testing order API endpoint:
+{"error":"Order not found"}
+```
+Full output: [`server-runs/2026-05-20T11-25-58-www.soloshopbox.com-echo-Testing-order-tracking-page-FR-14-2.log`](server-runs/2026-05-20T11-25-58-www.soloshopbox.com-echo-Testing-order-tracking-page-FR-14-2.log)
