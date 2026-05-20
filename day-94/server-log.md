@@ -1164,3 +1164,30 @@ app/shop/[slug]/CategoryFilter.tsx:28:      params.delete('category')
 app/shop/[slug]/CategoryFilter.tsx:31:    router.push(`/shop/${shopSlug}?${params.toString()}`)
 ```
 Full output: [`server-runs/2026-05-20T11-36-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-36-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:36:42.039Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9fc04a2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2255ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "searchParams" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -15
+```
+STDOUT:
+```
+app/api/products/route.ts:16:    const { searchParams } = new URL(request.url)
+app/api/products/route.ts:17:    const shopId = searchParams.get('shopId')
+app/api/checkout/myfatoorah/callback/route.ts:10:    const { searchParams } = new URL(req.url)
+app/api/checkout/myfatoorah/callback/route.ts:11:    const paymentId = searchParams.get('paymentId')
+app/api/orders/route.ts:12:    const { searchParams } = new URL(request.url)
+app/api/orders/route.ts:13:    const paymentId = searchParams.get('paymentId')
+app/api/auth/verify/route.ts:86:    const searchParams = request.nextUrl.searchParams
+app/api/auth/verify/route.ts:87:    const token = searchParams.get('token')
+app/checkout/success/page.tsx:31:  const searchParams = useSearchParams()
+app/checkout/success/page.tsx:32:  const sessionId = searchParams.get('session_id') // Stripe
+app/checkout/success/page.tsx:33:  const paymentId = searchParams.get('payment_id') // MyFatoorah
+app/checkout/success/page.tsx:34:  const provider = searchParams.get('provider') || 'stripe'
+app/auth/reset-password/page.tsx:36:  const searchParams = useSearchParams()
+app/auth/reset-password/page.tsx:38:  const token = searchParams.get('token') || ''
+app/auth/verify/page.tsx:15:  const searchParams = useSearchParams()
+```
+Full output: [`server-runs/2026-05-20T11-36-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-36-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
