@@ -806,3 +806,41 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-20T07-30-55-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-30-55-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
+
+## 2026-05-20T07:31:13.598Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ca37285` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2380ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '20,45p' app/shop/[slug]/SortDropdown.tsx
+```
+STDOUT:
+```
+    
+    // Preserve category filter
+    if (currentCategory) {
+      params.set('category', currentCategory)
+    }
+    
+    // Add sort parameter (unless it's the default 'newest')
+    if (value !== 'newest') {
+      params.set('sort', value)
+    }
+    
+    const queryString = params.toString()
+    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <label htmlFor="sort" className="text-sm text-slate font-medium">
+        Sort by:
+      </label>
+      <select
+        id="sort"
+        value={currentSort}
+        onChange={(e) => handleSortChange(e.target.value)}
+        className="px-3 py-2 border border-whisper rounded-lg text-sm bg-white text-charcoal focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald cursor-pointer"
+      >
+```
+Full output: [`server-runs/2026-05-20T07-31-13-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-31-13-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
