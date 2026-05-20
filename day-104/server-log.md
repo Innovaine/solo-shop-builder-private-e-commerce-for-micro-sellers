@@ -977,3 +977,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `8db6739` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T db psql -U soloshop -d soloshop -c 'ALTER TABLE "Shop" ADD COLUMN IF NOT EXISTS "currency" TEXT NOT NULL DEFAULT '"'"'USD'"'"';'
 ```
 ERROR: command exited 1
+
+## 2026-05-20T21:24:57.134Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9507f7f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3182ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c 'ALTER TABLE "Shop" ADD COLUMN IF NOT EXISTS "currency" TEXT NOT NULL DEFAULT '"'"'USD'"'"';'
+```
+STDOUT:
+```
+ALTER TABLE
+```
+Full output: [`server-runs/2026-05-20T21-24-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-24-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
