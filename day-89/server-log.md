@@ -766,3 +766,43 @@ STDOUT:
                   size="lg"
 ```
 Full output: [`server-runs/2026-05-20T07-30-36-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-30-36-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
+
+## 2026-05-20T07:30:55.222Z — Mehrdad ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c945072` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2627ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '32p' app/shop/[slug]/SortDropdown.tsx && echo "---CONTEXT---" && sed -n '25,35p' app/shop/[slug]/SortDropdown.tsx
+```
+STDOUT:
+```
+    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
+---CONTEXT---
+    
+    // Add sort parameter (unless it's the default 'newest')
+    if (value !== 'newest') {
+      params.set('sort', value)
+    }
+    
+    const queryString = params.toString()
+    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
+  }
+
+  return (
+```
+Full output: [`server-runs/2026-05-20T07-30-54-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-30-54-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✓ exit 0, 500ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | jq '.broken[] | select(.file == "app/shop/[slug]/SortDropdown.tsx")'
+```
+STDOUT:
+```
+{
+  "file": "app/shop/[slug]/SortDropdown.tsx",
+  "line": 32,
+  "kind": "router",
+  "target": "/shop/${shopSlug}${queryString"
+}
+```
+Full output: [`server-runs/2026-05-20T07-30-55-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-30-55-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
