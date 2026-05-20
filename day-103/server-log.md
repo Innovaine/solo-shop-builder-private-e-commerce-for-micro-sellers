@@ -538,3 +538,45 @@ Started full test suite, PID=2086421
 ```
 ERROR: command exited 61
 Full output: [`server-runs/2026-05-20T21-00-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-00-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:01:03.656Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8f317a2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2363ms) _(showing tail — full 4,527B stdout + 0B stderr)_
+```
+cat /tmp/day103-full-suite.log 2>/dev/null | head -50 || echo "Log empty or not created"
+```
+STDOUT:
+```
+…ec.ts:125:7 › MyFatoorah API Health Check › health endpoint shows MyFatoorah env vars configured (168ms)
+  ✓   18 [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:85:7 › MyFatoorah Callback Signature Verification › GET callback does not require signature (redirect flow) (278ms)
+  ✘   20 [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:109:7 › MyFatoorah Customer Email & Data Persistence › checkout page displays MyFatoorah payment option (228ms)
+Testing stopped early after 3 maximum allowed failures.
+  ✘   23 [chromium] › tests/web/day16-smoke.spec.ts:20:7 › Day 16 — Smoke Tests › Login page loads successfully (61ms)
+  ✘   17 [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:100:7 › MyFatoorah Customer Email & Data Persistence › checkout form has customerEmail field visible (867ms)
+  ✘   22 [chromium] › tests/web/day16-smoke.spec.ts:10:7 › Day 16 — Smoke Tests › Homepage loads successfully (314ms)
+
+
+  1) [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:10:7 › MyFatoorah Callback Signature Verification › rejects POST callback without signature header 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m401[39m
+    Received: [31m500[39m
+
+      20 |     })
+      21 |
+    > 22 |     expect(response.status()).toBe(401)
+         |                               ^
+      23 |     const body = await response.json()
+      24 |     expect(body.error).toContain('signature')
+      25 |   })
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day101-myfatoorah-fixes.spec.ts:22:31
+
+    Error Context: ../.playwright-out/day101-myfatoorah-fixes-My-bd9ed-ck-without-signature-header-chromium/error-context.md
+
+  2) [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:27:7 › MyFatoorah Callback Signature Verification › rejects POST callback with invalid signature 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+```
+Full output: [`server-runs/2026-05-20T21-01-03-www.soloshopbox.com-cat-tmp-day103-full-suite.log-2-dev-null-1.log`](server-runs/2026-05-20T21-01-03-www.soloshopbox.com-cat-tmp-day103-full-suite.log-2-dev-null-1.log)
