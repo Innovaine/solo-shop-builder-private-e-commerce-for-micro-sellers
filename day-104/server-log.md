@@ -2058,3 +2058,97 @@ F11 Order dashboard:
 page.tsx
 ```
 Full output: [`server-runs/2026-05-20T22-04-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-04-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:05:06.998Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4193222` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2935ms) _(showing tail — full 4,755B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | head -200
+```
+STDOUT:
+```
+…"route": "/api/products/[id]/status",
+      "kind": "api",
+      "file": "app/api/products/[id]/status/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants/[variantId]",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/[variantId]/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/route.ts"
+    },
+    {
+      "route": "/api/products/bulk-status",
+      "kind": "api",
+      "file": "app/api/products/bulk-status/route.ts"
+    },
+    {
+      "route": "/api/products/export",
+      "kind": "api",
+      "file": "app/api/products/export/route.ts"
+    },
+    {
+      "route": "/api/products/import",
+      "kind": "api",
+      "file": "app/api/products/import/route.ts"
+    },
+    {
+      "route": "/api/products",
+      "kind": "api",
+      "file": "app/api/products/route.ts"
+    },
+    {
+      "route": "/api/products/upload",
+      "kind": "api",
+      "file": "app/api/products/upload/route.ts"
+    },
+    {
+      "route": "/api/shops/[slug]/currency",
+      "kind": "api",
+      "file": "app/api/shops/[slug]/currency/route.ts"
+    },
+    {
+      "route": "/api/shops/branding",
+      "kind": "api",
+      "file": "app/api/shops/branding/route.ts"
+    },
+    {
+      "route": "/api/shops/email-template",
+      "kind": "api",
+      "file": "app/api/shops/email-template/route.ts"
+    },
+    {
+      "route": "/api/shops/profile",
+      "kind": "api",
+      "file": "app/api/shops/profile/route.ts"
+    },
+    {
+      "route": "/api/shops",
+      "kind": "api",
+      "file": "app/api/shops/route.ts"
+    },
+    {
+      "route": "/api/shops/status",
+      "kind": "api",
+      "file": "app/api/shops/status/route.ts"
+    },
+    {
+      "route": "/api/webhooks/stripe",
+      "kind": "api",
+      "file": "app/api/webhooks/stripe/route.ts"
+    },
+    {
+      "route": "/auth/forgot-password",
+      "kind": "page",
+      "file": "app/auth/forgot-password/page.tsx"
+    },
+    {
+      "route": "/auth/login",
+      "kind": "page",
+```
+Full output: [`server-runs/2026-05-20T22-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
