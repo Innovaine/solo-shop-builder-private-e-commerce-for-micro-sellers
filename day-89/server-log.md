@@ -371,3 +371,25 @@ HTTP/2 200
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-20T07-26-38-www.soloshopbox.com-echo-Testing-Auth-Pages-1.log`](server-runs/2026-05-20T07-26-38-www.soloshopbox.com-echo-Testing-Auth-Pages-1.log)
+
+## 2026-05-20T07:27:02.084Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c59133d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2844ms)
+```
+echo "=== Testing Dashboard Pages (expect 401/redirect without auth) ==="
+curl -sI https://www.soloshopbox.com/dashboard | grep -E "HTTP|location"
+curl -sI https://www.soloshopbox.com/dashboard/products | grep -E "HTTP|location"
+curl -sI https://www.soloshopbox.com/dashboard/orders | grep -E "HTTP|location"
+curl -sI https://www.soloshopbox.com/dashboard/analytics | grep -E "HTTP|location"
+```
+STDOUT:
+```
+=== Testing Dashboard Pages (expect 401/redirect without auth) ===
+HTTP/2 307 
+location: /auth/login
+HTTP/2 200 
+HTTP/2 200 
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-20T07-27-02-www.soloshopbox.com-echo-Testing-Dashboard-Pages-expect-401--1.log`](server-runs/2026-05-20T07-27-02-www.soloshopbox.com-echo-Testing-Dashboard-Pages-expect-401--1.log)
