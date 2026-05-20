@@ -1997,3 +1997,25 @@ Order Date:    ${date}
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null)
 ```
 Full output: [`server-runs/2026-05-20T22-02-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-02-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:02:55.815Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8c39391` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2426ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && head -50 app/shop/\[slug\]/page.tsx | grep -E "(header|Header|product|Product|section|Section|Stock|Badge|category|Category)" | head -10
+```
+STDOUT:
+```
+// FR-5: Public shop storefront - displays shop products in grid
+// Updated Day 15: Show products, not just empty state
+// Day 42: FR-7: Category filter
+import CategoryFilter from './CategoryFilter'
+  searchParams: { category?: string; sort?: string }
+      products: {
+        where: searchParams.category 
+          ? { category: searchParams.category }
+  const allProducts = await prisma.product.findMany({
+    select: { category: true },
+```
+Full output: [`server-runs/2026-05-20T22-02-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-02-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
