@@ -246,3 +246,19 @@ DONE
 Error: EPERM: operation not permitted, rmdir '/tmp/playwright-test-results'
 ```
 Full output: [`server-runs/2026-05-20T14-15-57-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day97-test.pid--1.log`](server-runs/2026-05-20T14-15-57-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day97-test.pid--1.log)
+
+## 2026-05-20T14:16:30.860Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9c6af63` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2640ms)
+```
+rm -rf $HOME/.playwright-out 2>/dev/null; mkdir -p $HOME/.playwright-out && cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup bash -c 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day97-features.spec.ts --output=$HOME/.playwright-out --reporter=list' > /tmp/day97-test-v2.log 2>&1 &
+echo $! > /tmp/day97-test-v2.pid
+echo "Tests restarted, PID=$(cat /tmp/day97-test-v2.pid)"
+```
+STDOUT:
+```
+Tests restarted, PID=2017982
+```
+Full output: [`server-runs/2026-05-20T14-16-30-www.soloshopbox.com-rm--rf-HOME-.playwright-out-2-dev-null-m-1.log`](server-runs/2026-05-20T14-16-30-www.soloshopbox.com-rm--rf-HOME-.playwright-out-2-dev-null-m-1.log)
