@@ -82,3 +82,19 @@ STDOUT:
 215:          <Link href="/dashboard/products/import" className="block">
 ```
 Full output: [`server-runs/2026-05-20T12-21-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-21-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:22:10.618Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `739bc55` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2412ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "router.push\|fetch\|POST\|GET" app/checkout/page.tsx | grep -E "POST|GET|fetch|router.push" | head -10
+```
+STDOUT:
+```
+72:      const response = await fetch(endpoint, {
+73:        method: 'POST',
+110:          <Button variant="primary" onClick={() => router.push('/')}>
+235:            onClick={() => router.push(`/shop/${cart.shopSlug}`)}
+```
+Full output: [`server-runs/2026-05-20T12-22-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-22-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
