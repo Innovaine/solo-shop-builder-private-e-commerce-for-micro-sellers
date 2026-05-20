@@ -1659,3 +1659,30 @@ Test 5: Check src/lib/s3.ts exists (should be the only one)
 -rw-rw-r-- 1 tester tester 4062 May 20 11:59 /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/src/lib/s3.ts
 ```
 Full output: [`server-runs/2026-05-20T13-04-32-www.soloshopbox.com-echo-Manual-Day-96-Verification-Tests-1.log`](server-runs/2026-05-20T13-04-32-www.soloshopbox.com-echo-Manual-Day-96-Verification-Tests-1.log)
+
+## 2026-05-20T13:05:06.942Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c5aa7b1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2598ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git log --oneline -3
+echo "---"
+echo "Check if app/lib/s3.ts in git:"
+git ls-files app/lib/ | grep s3
+echo "---"
+echo "Check actual filesystem:"
+ls -la app/lib/ | grep s3
+```
+STDOUT:
+```
+de130fe Priya (tester, day 96) — pre-SSH sync
+a17dccb Priya (tester, day 96) — pre-SSH sync
+a7d094d Priya (tester, day 96) — pre-SSH sync
+---
+Check if app/lib/s3.ts in git:
+app/lib/s3.ts
+---
+Check actual filesystem:
+-rw-rw-r--  1 tester tester 4060 May 20 11:24 s3.ts
+```
+Full output: [`server-runs/2026-05-20T13-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T13-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
