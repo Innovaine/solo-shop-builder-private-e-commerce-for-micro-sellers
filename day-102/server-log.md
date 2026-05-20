@@ -462,3 +462,35 @@ Make sure that arguments are regular expressions matching test files.
 You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 Full output: [`server-runs/2026-05-20T20-19-48-www.soloshopbox.com-kill--0-cat-tmp-day102-tests.pid-2-dev-n-1.log`](server-runs/2026-05-20T20-19-48-www.soloshopbox.com-kill--0-cat-tmp-day102-tests.pid-2-dev-n-1.log)
+
+## 2026-05-20T20:20:25.024Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ce79821` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3302ms) _(showing tail — full 8,062B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+ls -la tests/web/day102* 2>&1 || echo "Test file not in repo yet"
+
+# Manual smoke test 1: Health check
+echo "=== Test 1: Health Check ==="
+curl -sf https://www.soloshopbox.com/api/health | head -5
+
+# Manual smoke test 2: Checkout page loads
+echo "=== Test 2: Checkout Page ==="
+curl -s https://www.soloshopbox.com/checkout | grep -i "email\|payment\|checkout" | head -10
+
+# Manual smoke test 3: Check for currency support in API
+echo "=== Test 3: Currency API Endpoint ==="
+curl -sI https://www.soloshopbox.com/api/shops/test/currency | head -5
+```
+STDOUT:
+```
+…":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script></body></html>
+=== Test 3: Currency API Endpoint ===
+HTTP/2 404 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+```
+Full output: [`server-runs/2026-05-20T20-20-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-20-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
