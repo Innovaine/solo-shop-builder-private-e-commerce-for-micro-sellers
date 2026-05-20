@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Storefront — Category Filter — Solo Shop Builder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      background-color: #FAF9F7;
+      color: #1F2937;
+    }
+
+    .header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 20px 24px;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .header-shop-name {
+      font-size: 14px;
+      color: #64748B;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* Category Filter Section */
+    .filter-section {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .filter-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .category-pill {
+      padding: 8px 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      background: white;
+      color: #64748B;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .category-pill:hover {
+      border-color: #3B4C63;
+      color: #3B4C63;
+    }
+
+    .category-pill.active {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+      font-weight: 600;
+    }
+
+    .category-pill.active::after {
+      content: " ✓";
+    }
+
+    /* Product Grid */
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+    }
+
+    .products-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+      margin: 0;
+    }
+
+    .products-count {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .product-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: #D1D5DB;
+      transform: translateY(-2px);
+    }
+
+    .product-image {
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      color: #94A3B8;
+    }
+
+    .product-info {
+      padding: 12px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: #10B981;
+    }
+
+    /* Empty State */
+    .empty-state {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .empty-state-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1F2937;
+      margin: 0 0 8px 0;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+      color: #64748B;
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .container {
+        padding: 16px;
+      }
+
+      .filter-section {
+        padding: 16px;
+      }
+
+      .category-pills {
+        gap: 6px;
+      }
+
+      .category-pill {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+
+      .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-content">
+      <div>
+        <h1>Emma's Handmade Ceramics</h1>
+        <p class="header-shop-name">Shop by Category</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <label class="filter-label">Filter by Category</label>
+      <div class="category-pills">
+        <div class="category-pill active" data-category="">All Products</div>
+        <div class="category-pill" data-category="handmade">Handmade</div>
+        <div class="category-pill" data-category="vintage">Vintage</div>
+        <div class="category-pill" data-category="supplies">Supplies</div>
+        <div class="category-pill" data-category="other">Other</div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="products-header">
+      <h2>Products</h2>
+      <span class="products-count" id="productCount">12 products</span>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <div class="product-card" data-category="handmade">
+        <div class="product-image">🎨</div>
+        <div class="product-info">
+          <div class="product-title">Hand-Thrown Ceramic Vase</div>
+          <div class="product-price">$65.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="handmade">
+        <div class="product-image">🧵</div>
+        <div class="product-info">
+          <div class="product-title">Knit Wool Sweater</div>
+          <div class="product-price">$85.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="handmade">
+        <div class="product-image">🌿</div>
+        <div class="product-info">
+          <div class="product-title">Pressed Flower Art Print</div>
+          <div class="product-price">$28.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="supplies">
+        <div class="product-image">📌</div>
+        <div class="product-info">
+          <div class="product-title">Craft Paper Bundle (10)</div>
+          <div class="product-price">$15.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="supplies">
+        <div class="product-image">✨</div>
+        <div class="product-info">
+          <div class="product-title">Gold Leaf Decoration Pack</div>
+          <div class="product-price">$22.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="handmade">
+        <div class="product-image">💎</div>
+        <div class="product-info">
+          <div class="product-title">Beaded Macramé Bracelet</div>
+          <div class="product-price">$18.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vintage">
+        <div class="product-image">🪵</div>
+        <div class="product-info">
+          <div class="product-title">Wooden Cutting Board (Walnut)</div>
+          <div class="product-price">$45.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vintage">
+        <div class="product-image">🏺</div>
+        <div class="product-info">
+          <div class="product-title">Antique Glass Vase</div>
+          <div class="product-price">$120.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="handmade">
+        <div class="product-image">☕</div>
+        <div class="product-info">
+          <div class="product-title">Coffee Mug (Glazed)</div>
+          <div class="product-price">$24.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="other">
+        <div class="product-image">🎁</div>
+        <div class="product-info">
+          <div class="product-title">Gift Box Set</div>
+          <div class="product-price">$35.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="vintage">
+        <div class="product-image">📖</div>
+        <div class="product-info">
+          <div class="product-title">Vintage Recipe Book Collection</div>
+          <div class="product-price">$42.00</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="supplies">
+        <div class="product-image">🖌️</div>
+        <div class="product-info">
+          <div class="product-title">Watercolor Paint Set (24 colors)</div>
+          <div class="product-price">$32.00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State (hidden by default) -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-state-icon">📭</div>
+      <h3>No products in this category</h3>
+      <p>Try selecting a different category or browse all products.</p>
+    </div>
+  </div>
+
+  <script>
+    const categoryPills = document.querySelectorAll('.category-pill');
+    const productCards = document.querySelectorAll('.product-card');
+    const productGrid = document.getElementById('productGrid');
+    const emptyState = document.getElementById('emptyState');
+    const productCount = document.getElementById('productCount');
+
+    categoryPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        // Update active state
+        categoryPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        // Filter products
+        const selectedCategory = pill.getAttribute('data-category');
+        let visibleCount = 0;
+
+        productCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          const matches = selectedCategory === '' || cardCategory === selectedCategory;
+          card.style.display = matches ? 'block' : 'none';
+          if (matches) visibleCount++;
+        });
+
+        // Update count and empty state
+        productCount.textContent = `${visibleCount} product${visibleCount !== 1 ? 's' : ''}`;
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+        productGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
+
+        // In production: update URL query param ?category=handmade
+        const url = selectedCategory ? `?category=${selectedCategory}` : '?';
+        window.history.replaceState({}, '', url);
+      });
+    });
+
+    // On load, check for category query param and apply filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialCategory = urlParams.get('category');
+    if (initialCategory) {
+      const pill = Array.from(categoryPills).find(p => p.getAttribute('data-category') === initialCategory);
+      if (pill) pill.click();
+    }
+  </script>
+</body>
+</html>

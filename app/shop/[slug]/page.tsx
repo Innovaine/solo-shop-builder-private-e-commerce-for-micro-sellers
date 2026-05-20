@@ -200,7 +200,7 @@ export default async function ShopPage({
               {shop.products.map((product) => (
                 <Link
                   key={product.id}
-                  href={`/shop/${shop.slug}/product/${product.id}`}
+                  href={`/shop/${params.slug}/product/${product.id}`}
                   className="group"
                 >
                   <div className="bg-white border-2 border-whisper rounded-xl overflow-hidden hover:shadow-2xl hover:border-emerald transition-all duration-300 hover:-translate-y-2">
