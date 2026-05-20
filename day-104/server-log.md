@@ -1622,3 +1622,19 @@ STDOUT:
 ✗ Health check FAILED
 ```
 Full output: [`server-runs/2026-05-20T21-47-01-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-healt-1.log`](server-runs/2026-05-20T21-47-01-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-healt-1.log)
+
+## 2026-05-20T21:47:35.697Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `37e276e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2561ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app | grep -E "Ready|error|Error|currency"
+```
+STDOUT:
+```
+app-1  | Applying migration `20260521_add_shop_currency`
+app-1  |   └─ 20260521_add_shop_currency/
+app-1  |  ✓ Ready in 51ms
+app-1  | {"requestId":"jEHCzgunlmqQ8Sc9","method":"GET","path":"/api/shops/salman/currency","responseTime":"3ms","timestamp":"2026-05-20T21:44:46.258Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+```
+Full output: [`server-runs/2026-05-20T21-47-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-47-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
