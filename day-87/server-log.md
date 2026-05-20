@@ -297,3 +297,21 @@ STDOUT:
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 32 minutes (healthy)
 ```
 Full output: [`server-runs/2026-05-20T01-08-35-www.soloshopbox.com-docker-ps---format-table-.Names-t-.Statu-1.log`](server-runs/2026-05-20T01-08-35-www.soloshopbox.com-docker-ps---format-table-.Names-t-.Statu-1.log)
+
+## 2026-05-20T01:08:57.201Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `78ccf52` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 4390ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d app 2>&1 | tail -20
+```
+STDOUT:
+```
+time="2026-05-20T01:08:56Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-20T01-08-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-08-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
