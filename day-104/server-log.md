@@ -1524,3 +1524,27 @@ RUNNING
 #15 DONE 35.3s
 ```
 Full output: [`server-runs/2026-05-20T21-41-31-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log`](server-runs/2026-05-20T21-41-31-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log)
+
+## 2026-05-20T21:42:03.465Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `aec32f6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2319ms)
+```
+kill -0 $(cat /tmp/build2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -10 /tmp/build2.log
+```
+STDOUT:
+```
+DONE
+#30 exporting attestation manifest sha256:78e0d805506ce92d9c31f4eb3d828cfc4e482c83fe08f5de4f7e375b70d15b6b 0.0s done
+#30 exporting manifest list sha256:27a8fc8fa43637b86dc97ad0b62c5c97cc041054246826ff0fb82bd8d503ca3d done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#30 DONE 2.5s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-20T21-42-03-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log`](server-runs/2026-05-20T21-42-03-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log)
