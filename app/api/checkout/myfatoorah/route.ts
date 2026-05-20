@@ -6,7 +6,7 @@ import { prisma } from '@/lib/db'
 
 export async function POST(req: NextRequest) {
   try {
-    const { shopSlug, items } = await req.json()
+    const { shopSlug, items, customerEmail } = await req.json()
 
     if (!shopSlug || !items || items.length === 0) {
       return NextResponse.json(
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     const pendingOrder = await prisma.order.create({
       data: {
         shopId: shop.id,
-        customerEmail: '', // Will be updated in callback
+        customerEmail: customerEmail || '', // Store real email from form
         status: 'pending',
         total: total,
         metadata: JSON.stringify({
@@ -124,6 +124,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         PaymentMethod: 'CARD',
+        Customer: customerEmail ? { Email: customerEmail } : undefined,
         Order: {
           Amount: total / 100, // Convert cents to dollars
           UserDefinedField: pendingOrder.id, // Store our order ID for easy lookup in callback

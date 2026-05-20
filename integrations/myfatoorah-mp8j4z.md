@@ -21,179 +21,182 @@ Add my Fatoorah key in env
 
 ## Docs
 
-# MyFatoorah Integration
+MyFatoorah Integration — Engineering Spec
+Status: MyFatoorah is partially implemented. This spec describes the correct end state. Sections marked [BUG — FIX THIS] describe code that exists today but is wrong. Do not rebuild working parts from scratch — fix the specific defects called out below.
 
-## Goal
-Add MyFatoorah alongside Stripe as a second payment provider on /checkout.
-Customer sees a "Pay with MyFatoorah" option, gets redirected to a MyFatoorah-
-hosted page, returns to /checkout/success with status=paid.
+1. Goal
+Add MyFatoorah alongside Stripe as a second payment provider on /checkout. The customer picks "MyFatoorah" on the checkout page, is redirected to a MyFatoorah-hosted payment page, completes payment, and returns to /checkout/success with the order recorded as paid in the database — with the correct customer email attached.
+Stripe is the reference implementation. When in doubt, do exactly what the Stripe route does. The MyFatoorah route should mirror it, not diverge from it.
 
-## Env vars the code references
-- MYFATOORAH_API_KEY
-- MYFATOORAH_API_URL
-- MYFATOORAH_WEBHOOK_SECRET
-(actual values are set per-server, not your concern)
+2. Environment variables
+The code references these. Values are set per-server and are not your concern:
+* MYFATOORAH_API_KEY — Bearer token for the MyFatoorah API.
+* MYFATOORAH_API_URL — base URL. Sandbox: https://apitest.myfatoorah.com.
+* MYFATOORAH_WEBHOOK_SECRET — secret used to verify the server-to-server webhook signature (see §8).
+Rule: read every process.env.* value inside the request handler at runtime, never at module scope. Module-scope reads get frozen into the build and break when the server's env changes. (Same rule that bit the Stripe/S3 integrations.)
 
-## Order ↔ MyFatoorah linking
-- At create-payment time, store `Data.InvoiceId` on the order as canonical reference.
-  Recommended: also pass our internal order UUID in `UserDefinedField` so the
-  inquire response echoes it back — lookup becomes trivial.
-- At callback time, look up the order by `Data.Invoice.Id` (inquire response) OR
-  by our own order ID from `UserDefinedField`. DO NOT look up by `paymentId`
-  from the URL — that value didn't exist at create time and won't match.
+3. API version
+Always use the /v3/ endpoints:
+* POST /v3/payments — create a payment, returns a PaymentURL.
+* GET /v3/payments/{paymentId} — inquire payment status after the customer returns.
 
-## Idempotency
-- MyFatoorah fires BOTH a browser GET redirect AND a server-to-server POST webhook
-  for the same payment. The handler MUST be safe to call twice:
-    if (order.status === 'paid') return redirect(success)
-  before any DB writes or email sends.
+4. The data flow (end to end)
+Customer on /checkout
+   │  picks "MyFatoorah", enters email
+   ▼
+POST /api/checkout/myfatoorah        ← our route
+   │  1. validate shop + items + prices
+   │  2. create pending Order (status='pending', customerEmail = the form email)
+   │  3. POST /v3/payments to MyFatoorah  (with Customer.Email + UserDefinedField)
+   │  4. store returned InvoiceId on the Order
+   │  5. return PaymentURL to the browser
+   ▼
+Browser redirects to MyFatoorah hosted page → customer pays
+   │
+   ├─(A) browser GET redirect → /api/checkout/myfatoorah/callback?paymentId=...
+   └─(B) server POST webhook  → /api/checkout/myfatoorah/callback
+   │
+   ▼
+callback handler
+   │  1. (POST only) verify webhook signature → 401 if invalid
+   │  2. GET /v3/payments/{paymentId}  → inquire real status
+   │  3. find our Order by Invoice.Id OR UserDefinedField
+   │  4. if already 'paid' → stop (idempotent)
+   │  5. update Order: status='paid', fill customerEmail/name, decrement stock
+   │  6. send confirmation email ONCE
+   │  7. (GET) redirect to /checkout/success ; (POST) return 200
 
-## Webhook setup (do this after deploy)
-1. MyFatoorah dashboard → Webhook → URL = https://www.soloshopbox.com/api/checkout/myfatoorah/callback
-2. POST handler must verify the signature header before processing.
-3. See https://docs.myfatoorah.com/edit/webhook for signature algorithm + header name.
-
-## Test cards (sandbox only)
-- 8888880000000001  06/30  PIN 1234  — captured (happy path)
-- 8888880000000001  06/10  PIN 1234  — declined (failure path)
-
-## Acceptance criteria
-- [ ] Create test payment, complete checkout, order status = 'paid' in DB
-- [ ] Order has correct customerEmail from MyFatoorah customer field
-- [ ] Confirmation email sent exactly ONCE (verify by triggering webhook AFTER redirect already fired)
-- [ ] Failure card (06/10) redirects to /checkout?error=mf_payment_failed
-- [ ] Close browser tab BEFORE redirect — order still becomes 'paid' via webhook
-- [ ] POST handler returns 401 on missing/invalid signature
-
-##
-
-Supported Payment Methods:
-
-All payment methods are supported (Cards [Visa, Mastercard, Mada, AMEX], Apple Pay, Google Pay, etc.).
-
-User can select one of the cards
-
-API Version
-Always use the /v3/endpoint for this integration. 
-
-Step 2: Create a Payment Request
-
-You need to send a POST request to /v3/payments with the selected payment method and order details. This request will return a PaymentUrl, which you should use to redirect your customer to the hosted payment page.
-Endpoint: POST /v3/payments (Create Payment)
-
-curl --request POST \
-     --url https://apitest.myfatoorah.com/v3/payments \
-     --header 'accept: application/json' \
-     --header 'authorization: Bearer SK_KWT_vVZlnnAqu8jRByOWaRPNId4ShzEDNt256dvnjebuyzo52dXjAfRx2ixW5umjWSUx' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "PaymentMethod": "CARD",
-  "Order": {
-    "Amount": 10
+5. Create payment — POST /api/checkout/myfatoorah
+5.1 Request our route accepts
+The checkout page (app/checkout/page.tsx) already sends this body for both providers:
+{ "shopSlug": "...", "items": [...], "customerEmail": "buyer@example.com" }
+5.2 [BUG — FIX THIS] The route drops customerEmail
+Today app/api/checkout/myfatoorah/route.ts destructures only:
+const { shopSlug, items } = await req.json()   // ← customerEmail is thrown away
+The Stripe route (app/api/checkout/route.ts) correctly reads { items, shopSlug, customerEmail }. That single missing field is why no email is ever saved on a MyFatoorah order. Fix:
+const { shopSlug, items, customerEmail } = await req.json()
+5.3 Create the pending order WITH the email
+Today the pending order is created with customerEmail: ''. It must be created with the real email from the form:
+const pendingOrder = await prisma.order.create({
+  data: {
+    shopId: shop.id,
+    customerEmail: customerEmail || '',   // ← was '' — store the real email
+    status: 'pending',
+    total,
+    metadata: JSON.stringify({ /* shop + items, as today */ }),
   },
-    "IntegrationUrls": {
-         "Redirection": "https://your-website.com/payment-callback"
-    }
+})
+Do not rely on the callback to "fill the email in later" — MyFatoorah only returns an email if we gave it one. The order must own the email from creation.
+5.4 Call POST /v3/payments — and send the Customer object
+The current request body has no Customer object, so MyFatoorah never receives the email. Send it:
+const res = await fetch(`${apiUrl}/v3/payments`, {
+  method: 'POST',
+  headers: {
+    'accept': 'application/json',
+    'authorization': `Bearer ${apiKey}`,
+    'content-type': 'application/json',
+  },
+  body: JSON.stringify({
+    PaymentMethod: 'CARD',
+    Customer: customerEmail ? { Email: customerEmail } : undefined,
+    Order: {
+      Amount: total / 100,            // total is stored in cents → MyFatoorah wants major units
+      UserDefinedField: pendingOrder.id,  // our order UUID — echoed back at inquire time
+    },
+    IntegrationUrls: {
+      Redirection: `${appUrl}/api/checkout/myfatoorah/callback`,
+    },
+  }),
+})
+Notes:
+* Amount is in major currency units (e.g. 10 = 10.000 KWD), not cents. Solo Shop stores total in cents, so divide by 100. Do not send cents.
+* PaymentMethod uses uppercase-with-underscores: CARD, APPLE_PAY, GOOGLE_PAY, KNET, BENEFIT, STC_PAY.
+* UserDefinedField must carry our internal order UUID. This is the canonical fallback for finding the order in the callback.
+* If paymentResponse.IsSuccess is false or there's no Data.PaymentURL, delete the pending order and return an error (as the code already does).
+5.5 Store the InvoiceId
+POST /v3/payments returns Data.InvoiceId. Store it on the order as the canonical payment reference (current code stores it in stripePaymentId — acceptable, keep it consistent):
+await prisma.order.update({
+  where: { id: pendingOrder.id },
+  data: { stripePaymentId: invoiceId },   // canonical MyFatoorah reference
+})
+Return { paymentUrl, invoiceId, orderId } to the browser.
+
+6. Callback / inquire — /api/checkout/myfatoorah/callback
+MyFatoorah hits this twice for one payment:
+* (A) A browser GET redirect after the customer finishes: ?paymentId=07076148071303658773
+* (B) A server-to-server POST webhook (if the webhook is enabled in §8).
+Both must run the same handleCallback logic, and it must be safe to run twice (see §7).
+6.1 Inquire the real status — never trust the redirect alone
+The paymentId in the URL only tells you which payment. You must call:
+GET /v3/payments/{paymentId}
+and read the inquire response, not the URL, for the actual result.
+Treat the payment as successful only if:
+invoice.Status === 'PAID' && transaction.Status === 'SUCCESS'
+Anything else → redirect to /checkout?error=... with a specific reason (payment_cancelled, payment_expired, payment_declined_*). Do not mark the order paid.
+6.2 Finding our order — link by InvoiceId or UserDefinedField, never by paymentId
+The paymentId from the redirect URL did not exist at create time and is not stored on any order — looking up by it will never match. Look up by:
+1. Data.Invoice.Id from the inquire response (matches the stripePaymentId we stored in §5.5), OR
+2. Data.Invoice.UserDefinedField (our order UUID).
+const order = await prisma.order.findFirst({
+  where: {
+    OR: [
+      { stripePaymentId: invoice.Id },
+      { id: invoice.UserDefinedField || 'no-match' },
+    ],
+  },
+  include: { items: true, shop: true },
+})
+If no order is found, redirect to /checkout?error=order_not_found and log the invoice id + UserDefinedField.
+6.3 Completing the order
+When payment is confirmed and the order is found:
+const customerEmail = customer?.Email || order.customerEmail || 'unknown@example.com'
+const customerName  = customer?.Name  || order.customerName  || 'Anonymous'
+Because §5.3 now stores the real email on the order, order.customerEmail is a valid fallback and unknown@example.com should never actually be reached.
+Update the order to status: 'paid', fill customerEmail / customerName, persist the MyFatoorah transaction details into metadata, and decrement product/variant stock — the same atomic stock logic the Stripe webhook uses. Wrap the order update + stock decrement in a single prisma.$transaction.
+[GAP — IMPLEMENT THIS] Stock is not decremented today. The Stripe webhook validates and decrements stock inside a transaction; the MyFatoorah callback does not. A MyFatoorah sale must decrement inventory exactly like a Stripe sale. Reuse the same logic.
+
+7. Idempotency — the handler MUST be safe to run twice
+Because of the GET redirect and the POST webhook, handleCallback runs at least twice per payment. Before any DB write or email send:
+if (order.status === 'paid') {
+  // already completed by the other delivery — do nothing
+  return /* GET: redirect to success | POST: 200 */
 }
-'
- 
-{
-    "IsSuccess": true,
-    "Message": "",
-    "ValidationErrors": null,
-    "Data": {
-        "InvoiceId": "6148108",
-        "PaymentId": null,
-        "PaymentURL": "https://demo.MyFatoorah.com/KWT/ie/050754719614810863-ce9138bf",
-        "PaymentCompleted": false,
-        "TransactionDetails": null
-    }
-}
+Consequences if this is missed: duplicate confirmation emails, double stock decrement. The check above is mandatory and must come before the order update, the stock decrement, and the email send.
 
+8. Webhook setup (do this after deploy)
+The GET redirect depends on the customer's browser completing the round trip. If they close the tab, the order is stuck pending forever. The server-to-server POST webhook is what makes completion reliable — set it up.
+1. MyFatoorah dashboard → Webhook → URL = https://www.soloshopbox.com/api/checkout/myfatoorah/callback
+2. The POST handler must verify the signature header before processing anything. On a missing or invalid signature, return 401 and do nothing else.
+3. Signature algorithm + exact header name: see https://docs.myfatoorah.com/edit/webhook. The secret is MYFATOORAH_WEBHOOK_SECRET.
+[GAP — IMPLEMENT THIS] No signature verification today. The POST handler currently processes unauthenticated requests. Anyone who knows the URL could POST a fake "paid" notification. Signature verification is a hard requirement for the webhook to be safe to enable.
 
-After receiving the PaymentURL, redirect your customer to the PaymentURL to complete the payment on the MyFatoorah-hosted page.
+9. Currency
+MyFatoorah's base/display currency is set by the account (sandbox examples use KWD). Solo Shop prices and total are in USD cents. Confirm with the server owner which currency the MyFatoorah account is configured for, and either:
+* send Order.Currency explicitly to match Solo Shop's pricing, or
+* document that the MyFatoorah account currency must equal Solo Shop's currency.
+Do not silently let a USD-priced cart settle in KWD.
 
-Note
-Use uppercase with underscores for payment method naming, for example: "CARD", "APPLE_PAY", "GOOGLE_PAY", "KNET", "BENEFIT", "STC_PAY", etc.
+10. Test cards (sandbox only)
+* 8888880000000001 exp 06/30 PIN 1234 — captured (happy path)
+* 8888880000000001 exp 06/10 PIN 1234 — declined (failure path)
 
+11. Acceptance criteria
+* [ ] customerEmail is read from the checkout request body in app/api/checkout/myfatoorah/route.ts (§5.2).
+* [ ] The pending order is created with the real customerEmail, not '' (§5.3).
+* [ ] The POST /v3/payments request includes a Customer object carrying the email, and Order.UserDefinedField carries our order UUID (§5.4).
+* [ ] Complete a sandbox checkout with the captured card → order status='paid' in the DB.
+* [ ] The paid order's customerEmail equals the email typed on /checkout (not unknown@example.com).
+* [ ] Product/variant stock is decremented on a MyFatoorah sale, atomically (§6.3).
+* [ ] Confirmation email is sent exactly once — verify by letting the GET redirect AND the POST webhook both fire for the same payment (§7).
+* [ ] The declined card (06/10) redirects to /checkout?error=payment_declined_* and leaves the order not paid.
+* [ ] Close the browser tab before the redirect → the POST webhook still flips the order to paid (§8).
+* [ ] The POST handler returns 401 on a missing or invalid webhook signature and processes nothing (§8).
 
-Step 3: Inquire Payment Status
-
-After the payment is completed, MyFatoorah will redirect the customer to your Redirection URL (the one provided in Step 2) and append a paymentId as a query parameter. Example: https://your-website.com/payment-callback?paymentId=100201923790872553 You should then call the GET/v3/payments/{paymentId} endpoint (Get Payment Details) to check the payment status and get the full invoice and transaction details.
-
-GET /v3/payments/07076148071303658773
-
-curl --request GET \
-     --url https://apitest.myfatoorah.com/v3/payments/[paymentId] \
-     --header 'accept: application/json' \
-     --header 'authorization: Bearer SK_KWT_vVZlnnAqu8jRByOWaRPNId4ShzEDNt256dvnjebuyzo52dXjAfRx2ixW5umjWSUx'
-{
-    "IsSuccess": true,
-    "Message": "",
-    "ValidationErrors": null,
-    "Data": {
-        "Invoice": {
-            "Id": "6389491",
-            "Status": "PAID",
-            "Reference": "2025060917",
-            "CreationDate": "2025-12-24T14:48:17.1230000Z",
-            "ExpirationDate": "2026-06-22T14:48:17.1230000Z",
-            "ExternalIdentifier": null,
-            "UserDefinedField": "",
-            "MetaData": null
-        },
-        "Transaction": {
-            "Id": "102585",
-            "Status": "SUCCESS",
-            "PaymentMethod": "VISA/MASTER",
-            "PaymentId": "07076389491322460173",
-            "ReferenceId": "535814102585",
-            "TrackId": "24-12-2025_3224601",
-            "AuthorizationId": "102585",
-            "TransactionDate": "2025-12-24T14:51:06.5630000Z",
-            "ECI": "02",
-            "IP": {
-                "Address": "41.35.105.183",
-                "Country": "Egypt"
-            },
-            "Error": {
-                "Code": "",
-                "Message": ""
-            },
-            "Card": {
-                "NameOnCard": "das",
-                "Number": "512345xxxxxx0008",
-                "Token": "",
-                "PanHash": "b888aa5f23a817883d4d12c74044bab1ae6ee65dc8d6e11515394aba452b273b",
-                "ExpiryMonth": "12",
-                "ExpiryYear": "34",
-                "Brand": "Mastercard",
-                "Issuer": "Test Bank",
-                "IssuerCountry": "KWT",
-                "FundingMethod": "credit"
-            }
-        },
-        "Customer": {
-            "Reference": "",
-            "Name": "Anonymous",
-            "Mobile": "+201020304050",
-            "Email": "xeraxe9309@fftube.com"
-        },
-        "Amount": {
-            "BaseCurrency": "KWD",
-            "ValueInBaseCurrency": "20",
-            "ServiceCharge": "0.4",
-            "ServiceChargeVAT": "0.06",
-            "ReceivableAmount": "19.54",
-            "DisplayCurrency": "KWD",
-            "ValueInDisplayCurrency": "20",
-            "PayCurrency": "KWD",
-            "ValueInPayCurrency": "20"
-        },
-        "Suppliers": []
-    }
-}
-
-Webhook
-We recommended enabling the Webhook feature to automatically notify your system when a transaction status changes in your application.
+12. Common mistakes — do NOT do these
+* ❌ Reading process.env.MYFATOORAH_* at module scope. Read it at runtime.
+* ❌ Looking up the order by the paymentId from the redirect URL. It never matches. Use Invoice.Id or UserDefinedField.
+* ❌ Trusting the redirect URL to mean "paid". Always inquire GET /v3/payments/{paymentId} and check Invoice.Status === 'PAID' and Transaction.Status === 'SUCCESS'.
+* ❌ Assuming MyFatoorah returns the customer email for free. It only returns an email you sent it (or one the hosted page collected). Capture the email on our side at create time.
+* ❌ Sending Amount in cents. MyFatoorah wants major units.
+* ❌ Writing to the DB or sending email before the status === 'paid' idempotency check.
+* ❌ Enabling the POST webhook without signature verification.
