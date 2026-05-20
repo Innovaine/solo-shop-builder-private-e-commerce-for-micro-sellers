@@ -398,3 +398,18 @@ STDOUT:
 22
 ```
 Full output: [`server-runs/2026-05-20T23-30-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-30-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T23:31:14.079Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f0761cd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2395ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "req.nextUrl.searchParams\|nextUrl.searchParams" app/api/ --include='*.ts' | wc -l && echo "---" && grep -rn "new URL.*searchParams" app/api/ --include='*.ts' | wc -l
+```
+STDOUT:
+```
+1
+---
+0
+```
+Full output: [`server-runs/2026-05-20T23-31-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-31-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
