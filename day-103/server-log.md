@@ -214,3 +214,28 @@ cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up
 sleep 10 && curl -fsS https://www.soloshopbox.com/health -o /dev/null && echo "OK" || echo "FAIL"
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-20T20:46:25.612Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6f9c08f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2286ms)
+```
+curl -fsS https://www.soloshopbox.com/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+FAIL
+```
+Full output: [`server-runs/2026-05-20T20-46-25-www.soloshopbox.com-curl--fsS-https-www.soloshopbox.com-heal-1.log`](server-runs/2026-05-20T20-46-25-www.soloshopbox.com-curl--fsS-https-www.soloshopbox.com-heal-1.log)
+
+### Command 2 on www.soloshopbox.com as engineer (✓ exit 0, 490ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED              STATUS                 PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        About a minute ago   Up About a minute      0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   5 hours ago          Up 5 hours (healthy)   127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-20T20-46-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T20-46-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
