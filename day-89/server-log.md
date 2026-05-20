@@ -890,3 +890,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `1f66029` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "cookies()" app/ --include="*.ts" --include="*.tsx" | grep -v "src/lib/auth.ts"
 ```
 ERROR: command exited 1
+
+## 2026-05-20T07:33:30.460Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b93a816` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2350ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "NextResponse\.redirect\|new URL.*redirect" app/ --include="*.tsx" | head -20
+```
