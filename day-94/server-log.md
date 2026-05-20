@@ -967,3 +967,35 @@ STDOUT:
       "prismaFields": [
 ```
 Full output: [`server-runs/2026-05-20T11-31-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-31-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:33:00.882Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `54d7a86` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2652ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -name "*.ts" -o -name "*.tsx" | grep -v node_modules | grep -v .next | head -200 | xargs grep -l "^interface " | head -20
+```
+STDOUT:
+```
+./app/dashboard/products/import/page.tsx
+./app/dashboard/billing/page.tsx
+./app/dashboard/orders/[id]/OrderDetailClient.tsx
+./app/dashboard/orders/page.tsx
+./app/dashboard/analytics/page.tsx
+./app/track/[orderId]/page.tsx
+./app/components/ui/Modal.tsx
+./app/components/ui/Input.tsx
+./app/components/ui/Card.tsx
+./app/components/ui/FormField.tsx
+./app/components/ui/Button.tsx
+./app/components/ui/EmptyState.tsx
+./app/components/ui/Header.tsx
+./app/components/ErrorBoundary.tsx
+./app/components/AnalyticsCards.tsx
+./app/components/AddToCartButton.tsx
+./app/api/products/import/route.ts
+./app/api/analytics/route.ts
+./app/checkout/success/page.tsx
+./app/shop/[slug]/CategoryFilter.tsx
+```
+Full output: [`server-runs/2026-05-20T11-33-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-33-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
