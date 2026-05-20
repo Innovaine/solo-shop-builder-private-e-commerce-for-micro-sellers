@@ -85,6 +85,22 @@ export async function uploadToS3(
   const bucketName = getBucketName()
   const cdnUrl = getCdnUrl()
   
+  // DEBUG: Print S3 configuration values before calling
+  const s3Provider = process.env.S3_PROVIDER || 'aws'
+  const isDigitalOcean = s3Provider === 'digitalocean'
+  const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+  const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
+  const awsRegion = process.env.AWS_REGION || 'us-east-1'
+  
+  console.log('[S3 Upload Debug] Configuration:', {
+    s3Provider,
+    isDigitalOcean,
+    region: isDigitalOcean ? doRegion : awsRegion,
+    endpoint: isDigitalOcean ? doEndpoint : 'default AWS endpoint',
+    bucket: bucketName,
+    cdnUrl,
+  })
+  
   // Sanitize filename and generate unique key
   const timestamp = Date.now()
   const sanitizedName = filename.replace(/[^a-zA-Z0-9.-]/g, '_')
