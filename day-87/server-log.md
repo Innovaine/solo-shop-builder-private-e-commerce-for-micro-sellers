@@ -86,3 +86,20 @@ no changes added to commit (use "git add" and/or "git commit -a")
 521e33d Anil (engineer, day 86) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-20T01-05-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-05-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:06:09.447Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b180931` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2649ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git reset --hard origin/main && git pull
+```
+STDOUT:
+```
+HEAD is now at 7158ce3 Anil (engineer, day 87) — pre-SSH sync
+Updating 7158ce3..b180931
+Fast-forward
+ day-87/server-log.md | 43 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+```
+Full output: [`server-runs/2026-05-20T01-06-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-06-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
