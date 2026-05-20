@@ -465,3 +465,36 @@ STDOUT:
 Error: EPERM: operation not permitted, rmdir '/tmp/playwright-test-results'
 ```
 Full output: [`server-runs/2026-05-20T11-25-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-25-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:25:32.232Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d71b1aa` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2606ms)
+```
+echo "Test 1: Order tracking GET endpoint"
+curl -sf https://www.soloshopbox.com/api/orders/test-order-123 || echo "HTTP error (expected 404)"
+echo ""
+echo "Test 2: Checkout page loads"
+curl -s https://www.soloshopbox.com/checkout | grep -q "Checkout\|Your cart is empty" && echo "✓ Checkout page loads" || echo "✗ Failed"
+echo ""
+echo "Test 3: Checkout success page loads"  
+curl -s https://www.soloshopbox.com/checkout/success | grep -q "Invalid session\|Order Confirmed" && echo "✓ Success page loads" || echo "✗ Failed"
+echo ""
+echo "Test 4: Homepage loads"
+curl -sf https://www.soloshopbox.com/ -o /dev/null && echo "✓ Homepage accessible" || echo "✗ Failed"
+```
+STDOUT:
+```
+Test 1: Order tracking GET endpoint
+HTTP error (expected 404)
+
+Test 2: Checkout page loads
+✓ Checkout page loads
+
+Test 3: Checkout success page loads
+✗ Failed
+
+Test 4: Homepage loads
+✓ Homepage accessible
+```
+Full output: [`server-runs/2026-05-20T11-25-32-www.soloshopbox.com-echo-Test-1-Order-tracking-GET-endpoint-1.log`](server-runs/2026-05-20T11-25-32-www.soloshopbox.com-echo-Test-1-Order-tracking-GET-endpoint-1.log)
