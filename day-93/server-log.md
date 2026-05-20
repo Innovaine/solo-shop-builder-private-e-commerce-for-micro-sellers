@@ -512,3 +512,35 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-20T10-58-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-58-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T10:58:46.655Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dcda260` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2559ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | jq '.broken'
+```
+STDOUT:
+```
+[
+  {
+    "file": "app/shop/[slug]/SortDropdown.tsx",
+    "line": 32,
+    "kind": "router",
+    "target": "/shop/${shopSlug}${queryString"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 63,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 170,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  }
+]
+```
+Full output: [`server-runs/2026-05-20T10-58-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-58-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
