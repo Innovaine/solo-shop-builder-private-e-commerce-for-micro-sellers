@@ -699,3 +699,17 @@ STDOUT:
 /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/src/lib/s3.ts
 ```
 Full output: [`server-runs/2026-05-20T21-07-01-www.soloshopbox.com-find-solo-shop-builder-private-e-commerc-1.log`](server-runs/2026-05-20T21-07-01-www.soloshopbox.com-find-solo-shop-builder-private-e-commerc-1.log)
+
+## 2026-05-20T21:07:33.178Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `53a1bd0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3588ms)
+```
+grep -r "from.*lib/s3" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/ ~/solo-shop-builder-private-e-commerce-for-micro-sellers/src/ --include='*.ts' --include='*.tsx'
+```
+STDOUT:
+```
+/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/app/api/shops/branding/route.ts:import { uploadToS3, isS3Configured } from '@/lib/s3';
+/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/app/api/products/upload/route.ts:import { uploadToS3, isS3Configured } from '@/lib/s3'
+```
+Full output: [`server-runs/2026-05-20T21-07-33-www.soloshopbox.com-grep--r-from.-lib-s3-solo-shop-builder-p-1.log`](server-runs/2026-05-20T21-07-33-www.soloshopbox.com-grep--r-from.-lib-s3-solo-shop-builder-p-1.log)
