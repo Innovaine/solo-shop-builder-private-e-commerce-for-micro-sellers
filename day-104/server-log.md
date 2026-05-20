@@ -2019,3 +2019,20 @@ import CategoryFilter from './CategoryFilter'
     select: { category: true },
 ```
 Full output: [`server-runs/2026-05-20T22-02-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-02-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:03:25.596Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `53cee87` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2115ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "Stock\|stock\|Badge" app/shop/\[slug\]/page.tsx | head -20
+```
+STDOUT:
+```
+194:                      {/* Stock badge */}
+195:                      {product.stock !== null && product.stock !== undefined && (
+197:                          {product.stock > 0 ? (
+199:                              In Stock
+203:                              Out of Stock
+```
+Full output: [`server-runs/2026-05-20T22-03-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-03-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
