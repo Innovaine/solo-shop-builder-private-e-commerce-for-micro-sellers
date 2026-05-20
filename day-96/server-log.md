@@ -624,3 +624,65 @@ async function saveLocally(buffer: Buffer, filename: string): Promise<string> {
 }
 ```
 Full output: [`server-runs/2026-05-20T12-39-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-39-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:39:41.195Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `82a1d67` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2548ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && head -50 app/api/shops/branding/route.ts
+```
+STDOUT:
+```
+import { NextRequest, NextResponse } from 'next/server';
+import { requireAuth } from '@/lib/auth';
+import { prisma } from '@/lib/db';
+import { writeFile, mkdir } from 'fs/promises';
+import path from 'path';
+import crypto from 'crypto';
+
+// PATCH /api/shops/branding — Update shop branding (FR-33 + FR-6+)
+export async function PATCH(req: NextRequest) {
+  try {
+    // Auth check using iron-session
+    let sellerId: string;
+    try {
+      const auth = await requireAuth();
+      sellerId = auth.sellerId;
+    } catch (authError) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Find seller's shop
+    const shop = await prisma.shop.findFirst({
+      where: { sellerId },
+    });
+
+    if (!shop) {
+      return NextResponse.json({ error: 'No shop found' }, { status: 404 });
+    }
+
+    // Parse multipart form data
+    const formData = await req.formData();
+    const primaryColor = formData.get('primaryColor') as string;
+    const accentColor = formData.get('accentColor') as string;
+    const logoUrl = formData.get('logoUrl') as string;
+    const tagline = formData.get('tagline') as string;
+    const logoFile = formData.get('logo') as File | null;
+
+    // Validate color format
+    const colorRegex = /^#[0-9A-Fa-f]{6}$/;
+    if (primaryColor && !colorRegex.test(primaryColor)) {
+      return NextResponse.json(
+        { error: 'Invalid primary color format. Use hex format (#RRGGBB)' },
+        { status: 400 }
+      );
+    }
+    if (accentColor && !colorRegex.test(accentColor)) {
+      return NextResponse.json(
+        { error: 'Invalid accent color format. Use hex format (#RRGGBB)' },
+        { status: 400 }
+      );
+    }
+```
+Full output: [`server-runs/2026-05-20T12-39-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-39-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
