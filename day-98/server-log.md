@@ -237,3 +237,117 @@ STDOUT:
     },
 ```
 Full output: [`server-runs/2026-05-20T14-41-35-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-41-35-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:42:05.587Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1c409e8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2443ms) _(showing tail — full 2,173B stdout + 0B stderr)_
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | grep -A 50 '"broken":'
+```
+STDOUT:
+```
+…     "kind": "api",
+      "file": "app/api/account/delete/route.ts"
+    },
+    {
+      "route": "/api/account/password",
+      "kind": "api",
+      "file": "app/api/account/password/route.ts"
+    },
+    {
+      "route": "/api/analytics",
+      "kind": "api",
+      "file": "app/api/analytics/route.ts"
+    },
+    {
+      "route": "/api/auth/forgot-password",
+      "kind": "api",
+      "file": "app/api/auth/forgot-password/route.ts"
+    },
+    {
+      "route": "/api/auth/login",
+      "kind": "api",
+      "file": "app/api/auth/login/route.ts"
+    },
+    {
+      "route": "/api/auth/logout",
+      "kind": "api",
+      "file": "app/api/auth/logout/route.ts"
+    },
+    {
+      "route": "/api/auth/reset-password",
+      "kind": "api",
+      "file": "app/api/auth/reset-password/route.ts"
+    },
+    {
+      "route": "/api/auth/signup",
+      "kind": "api",
+      "file": "app/api/auth/signup/route.ts"
+    },
+    {
+      "route": "/api/auth/verify",
+      "kind": "api",
+      "file": "app/api/auth/verify/route.ts"
+    },
+    {
+--
+  "broken": [
+    {
+      "file": "app/shop/[slug]/SortDropdown.tsx",
+      "line": 32,
+      "kind": "router",
+      "target": "/shop/${shopSlug}${queryString"
+    },
+    {
+      "file": "app/shop/[slug]/product/[productId]/page.tsx",
+      "line": 63,
+      "kind": "Link",
+      "target": "/shop/${slug"
+    },
+    {
+      "file": "app/shop/[slug]/product/[productId]/page.tsx",
+      "line": 170,
+      "kind": "Link",
+      "target": "/shop/${slug"
+    }
+  ],
+  "orphans": [
+    {
+      "route": "/auth/reset-password",
+      "kind": "page",
+      "file": "app/auth/reset-password/page.tsx"
+    },
+    {
+      "route": "/auth/verify",
+      "kind": "page",
+      "file": "app/auth/verify/page.tsx"
+    },
+    {
+      "route": "/dashboard/orders/[id]",
+      "kind": "page",
+      "file": "app/dashboard/orders/[id]/page.tsx"
+    },
+    {
+      "route": "/shop/[slug]/product/[productId]",
+      "kind": "page",
+      "file": "app/shop/[slug]/product/[productId]/page.tsx"
+    }
+  ],
+  "methodMismatches": []
+}
+```
+Full output: [`server-runs/2026-05-20T14-42-05-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-42-05-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:42:41.064Z — Mehrdad ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3655ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -80
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-20T14-42-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-42-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
