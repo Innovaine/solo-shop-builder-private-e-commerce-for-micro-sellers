@@ -26,6 +26,60 @@ interface OrderDetails {
   createdAt: string
 }
 
+/**
+ * Generate plain text receipt for download
+ */
+function generateReceipt(order: OrderDetails, provider: string): string {
+  const date = new Date(order.createdAt).toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+  
+  let receipt = `
+╔══════════════════════════════════════════════════════════╗
+║              RECEIPT - ${order.shop.name.toUpperCase().padEnd(31)}║
+╚══════════════════════════════════════════════════════════╝
+
+Order ID:      ${order.id.substring(0, 8)}
+Order Date:    ${date}
+Customer:      ${order.customerEmail}
+Payment:       ${provider.charAt(0).toUpperCase() + provider.slice(1)}
+
+──────────────────────────────────────────────────────────
+
+ITEMS:
+`
+  
+  order.items.forEach((item, index) => {
+    const itemTotal = ((item.price * item.quantity) / 100).toFixed(2)
+    const unitPrice = (item.price / 100).toFixed(2)
+    receipt += `
+${index + 1}. ${item.productTitle}
+   Qty: ${item.quantity} × ${unitPrice} = ${itemTotal}
+`
+  })
+  
+  receipt += `
+──────────────────────────────────────────────────────────
+
+TOTAL PAID:    ${(order.total / 100).toFixed(2)}
+
+──────────────────────────────────────────────────────────
+
+Thank you for your purchase!
+
+Questions? Contact the seller through their shop page.
+
+Generated: ${new Date().toLocaleString('en-US')}
+Powered by Solo Shop Builder
+`
+  
+  return receipt
+}
+
 function SuccessContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -128,41 +182,58 @@ function SuccessContent() {
         {/* Order Receipt */}
         {orderDetails ? (
           <div className="border-t border-b border-gray-200 py-6 mb-6">
-            <div className="mb-4">
-              <h2 className="text-lg font-bold text-charcoal mb-2">Order Summary</h2>
-              <p className="text-sm text-slate">
-                Order ID: <span className="font-mono text-xs">{orderDetails.id.substring(0, 8)}</span>
-              </p>
-              <p className="text-sm text-slate">
-                Date: {new Date(orderDetails.createdAt).toLocaleDateString('en-US', { 
-                  month: 'long', 
-                  day: 'numeric', 
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </p>
+            <div className="mb-6">
+              <h2 className="text-lg font-bold text-charcoal mb-3">Order Details</h2>
+              <div className="bg-whisper p-4 rounded-lg space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-sm text-slate">Order ID:</span>
+                  <span className="font-mono text-xs font-semibold text-charcoal">{orderDetails.id.substring(0, 8)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-slate">Order Date:</span>
+                  <span className="text-sm font-semibold text-charcoal">
+                    {new Date(orderDetails.createdAt).toLocaleDateString('en-US', { 
+                      month: 'long', 
+                      day: 'numeric', 
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-slate">Customer Email:</span>
+                  <span className="text-sm font-semibold text-charcoal">{orderDetails.customerEmail}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-slate">Payment Method:</span>
+                  <span className="text-sm font-semibold text-charcoal capitalize">{provider}</span>
+                </div>
+              </div>
             </div>
 
             {/* Order Items */}
-            <div className="space-y-3 mb-6">
-              {orderDetails.items.map((item, index) => (
-                <div key={index} className="flex justify-between items-start py-2">
-                  <div className="flex-1">
-                    <p className="font-semibold text-charcoal">{item.productTitle}</p>
-                    <p className="text-sm text-slate">Quantity: {item.quantity}</p>
+            <div className="mb-6">
+              <h3 className="text-sm font-bold text-charcoal mb-3 uppercase tracking-wide">Items</h3>
+              <div className="space-y-3">
+                {orderDetails.items.map((item, index) => (
+                  <div key={index} className="flex justify-between items-start py-3 border-b border-gray-100 last:border-0">
+                    <div className="flex-1">
+                      <p className="font-semibold text-charcoal">{item.productTitle}</p>
+                      <p className="text-sm text-slate">Qty: {item.quantity} × ${(item.price / 100).toFixed(2)}</p>
+                    </div>
+                    <p className="font-semibold text-charcoal ml-4">
+                      ${((item.price * item.quantity) / 100).toFixed(2)}
+                    </p>
                   </div>
-                  <p className="font-semibold text-charcoal ml-4">
-                    ${((item.price * item.quantity) / 100).toFixed(2)}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Total */}
-            <div className="border-t border-gray-200 pt-4">
+            <div className="border-t-2 border-gray-200 pt-4">
               <div className="flex justify-between items-center">
-                <p className="text-lg font-bold text-charcoal">Total</p>
+                <p className="text-lg font-bold text-charcoal">Total Paid</p>
                 <p className="text-2xl font-bold text-emerald">
                   ${(orderDetails.total / 100).toFixed(2)}
                 </p>
@@ -184,9 +255,30 @@ function SuccessContent() {
 
         {/* Action Buttons */}
         <div className="space-y-3">
-          {(orderDetails || shopSlugFromCart || shopSlugParam) && (
+          {orderDetails && (
             <Button 
               variant="primary" 
+              onClick={() => {
+                // Generate and download receipt
+                const receiptContent = generateReceipt(orderDetails, provider)
+                const blob = new Blob([receiptContent], { type: 'text/plain' })
+                const url = URL.createObjectURL(blob)
+                const a = document.createElement('a')
+                a.href = url
+                a.download = `receipt-${orderDetails.id.substring(0, 8)}.txt`
+                document.body.appendChild(a)
+                a.click()
+                document.body.removeChild(a)
+                URL.revokeObjectURL(url)
+              }} 
+              className="w-full"
+            >
+              📥 Download Receipt
+            </Button>
+          )}
+          {(orderDetails || shopSlugFromCart || shopSlugParam) && (
+            <Button 
+              variant="secondary" 
               onClick={() => {
                 const slug = orderDetails?.shop.slug || shopSlugParam || shopSlugFromCart
                 if (slug) {

@@ -33,21 +33,16 @@ export default function SortDropdown({ shopSlug }: SortDropdownProps) {
   }
 
   return (
-    <div className="flex items-center gap-2">
-      <label htmlFor="sort" className="text-sm text-slate font-medium">
-        Sort by:
-      </label>
-      <select
-        id="sort"
-        value={currentSort}
-        onChange={(e) => handleSortChange(e.target.value)}
-        className="px-3 py-2 border border-whisper rounded-lg text-sm bg-white text-charcoal focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald cursor-pointer"
-      >
-        <option value="newest">Newest First</option>
-        <option value="price-low">Price: Low to High</option>
-        <option value="price-high">Price: High to Low</option>
-        <option value="name">Name: A to Z</option>
-      </select>
-    </div>
+    <select
+      id="sort"
+      value={currentSort}
+      onChange={(e) => handleSortChange(e.target.value)}
+      className="px-4 py-2 border border-gray-300 rounded-lg text-sm bg-white text-charcoal hover:border-charcoal focus:outline-none focus:ring-2 focus:ring-emerald cursor-pointer transition-colors"
+    >
+      <option value="newest">Sort by: Newest</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+      <option value="name">Most Popular</option>
+    </select>
   )
 }
