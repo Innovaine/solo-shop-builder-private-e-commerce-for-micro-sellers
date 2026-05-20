@@ -902,3 +902,55 @@ STDOUT:
     setLoading(true);
 ```
 Full output: [`server-runs/2026-05-20T12-44-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-44-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:45:12.903Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `09252f9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2637ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '90,130p' app/dashboard/profile/page.tsx
+```
+STDOUT:
+```
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    // Validate lengths
+    if (formData.displayName.length > 100) {
+      setError('Shop name must be 100 characters or less');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.publicDescription.length > 500) {
+      setError('Shop description must be 500 characters or less');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Upload logo first if image file selected
+      if (imageFile) {
+        const formDataImg = new FormData();
+        formDataImg.append('logo', imageFile);
+
+        const uploadRes = await fetch('/api/shops/branding', {
+          method: 'PATCH',
+          body: formDataImg,
+        });
+
+        if (!uploadRes.ok) {
+          const data = await uploadRes.json();
+          throw new Error(data.error || 'Failed to upload logo');
+        }
+      }
+
+      // Update profile data
+      const res = await fetch('/api/shops/profile', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+```
+Full output: [`server-runs/2026-05-20T12-45-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-45-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)

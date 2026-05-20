@@ -91,22 +91,6 @@ export default function ProfilePage() {
     }
 
     try {
-      // Upload logo first if image file selected
-      if (imageFile) {
-        const formDataImg = new FormData();
-        formDataImg.append('logo', imageFile);
-
-        const uploadRes = await fetch('/api/shops/branding', {
-          method: 'PATCH',
-          body: formDataImg,
-        });
-
-        if (!uploadRes.ok) {
-          const data = await uploadRes.json();
-          throw new Error(data.error || 'Failed to upload logo');
-        }
-      }
-
       // Update profile data
       const res = await fetch('/api/shops/profile', {
         method: 'PATCH',
