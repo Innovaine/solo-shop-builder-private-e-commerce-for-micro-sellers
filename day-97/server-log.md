@@ -130,3 +130,12 @@ STDOUT:
 308:                    <img src={currentLogoUrl} alt="Logo" className="w-full h-full object-cover" />
 ```
 Full output: [`server-runs/2026-05-20T14-06-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T14-06-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T14:09:09.971Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `57069e6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 2766ms)
+```
+docker ps --format '.Names\t.Status' | grep solo-shop && curl -sf https://www.soloshopbox.com/api/health | jq .
+```
+ERROR: command exited 1
