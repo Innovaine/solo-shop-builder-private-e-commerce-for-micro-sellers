@@ -69,3 +69,19 @@ STDOUT:
 Build DONE or failed
 ```
 Full output: [`server-runs/2026-05-20T09-53-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T09-53-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T09:53:40.637Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `36a23d3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2708ms)
+```
+tail -100 /tmp/day92-build.log | grep -E "(Successfully built|Successfully tagged|ERROR|failed|error)"
+```
+STDOUT:
+```
+#15 8.544 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+8.544 > Build failed because of webpack errors
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-20T09-53-40-www.soloshopbox.com-tail--100-tmp-day92-build.log-grep--E-Su-1.log`](server-runs/2026-05-20T09-53-40-www.soloshopbox.com-tail--100-tmp-day92-build.log-grep--E-Su-1.log)
