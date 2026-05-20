@@ -1490,3 +1490,37 @@ STDOUT:
 Started build, PID=2100226
 ```
 Full output: [`server-runs/2026-05-20T21-40-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-40-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:41:31.782Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ae37ac9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2787ms)
+```
+kill -0 $(cat /tmp/build2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -20 /tmp/build2.log
+```
+STDOUT:
+```
+RUNNING
+#15 35.21 ├ ƒ /dashboard/products/[id]/edit            3.59 kB        90.5 kB
+#15 35.21 ├ ○ /dashboard/products/import               3.07 kB          90 kB
+#15 35.21 ├ ○ /dashboard/products/new                  3.83 kB         104 kB
+#15 35.21 ├ ○ /dashboard/profile                       3.93 kB        97.7 kB
+#15 35.21 ├ ○ /dashboard/settings                      3.94 kB        97.7 kB
+#15 35.21 ├ ƒ /shop/[slug]                             1.03 kB          98 kB
+#15 35.21 ├ ƒ /shop/[slug]/product/[productId]         675 B          97.6 kB
+#15 35.21 └ ƒ /track/[orderId]                         2.62 kB        89.6 kB
+#15 35.21 + First Load JS shared by all                87 kB
+#15 35.21   ├ chunks/23-3795c35e0df914fe.js            31.4 kB
+#15 35.21   ├ chunks/fd9d1056-f9e28952edc350f2.js      53.6 kB
+#15 35.21   └ other shared chunks (total)              1.89 kB
+#15 35.21 
+#15 35.21 
+#15 35.21 ƒ Middleware                                 27.4 kB
+#15 35.21 
+#15 35.21 ○  (Static)   prerendered as static content
+#15 35.21 ƒ  (Dynamic)  server-rendered on demand
+#15 35.21 
+#15 DONE 35.3s
+```
+Full output: [`server-runs/2026-05-20T21-41-31-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log`](server-runs/2026-05-20T21-41-31-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log)
