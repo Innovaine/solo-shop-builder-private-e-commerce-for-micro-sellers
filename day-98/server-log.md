@@ -551,3 +551,11 @@ STDOUT:
 -rw-rw-r--   1 reviewer reviewer  3387 May 20 14:21 connectivity_qa.md
 ```
 Full output: [`server-runs/2026-05-20T14-52-59-www.soloshopbox.com-ls--la-home-reviewer-solo-shop-builder-p-1.log`](server-runs/2026-05-20T14-52-59-www.soloshopbox.com-ls--la-home-reviewer-solo-shop-builder-p-1.log)
+
+## 2026-05-20T14:55:01.034Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `576bb56` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2711ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE '^(const|let|var)[[:space:]]+[A-Za-z_].*process\.env' app/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -20
+```
