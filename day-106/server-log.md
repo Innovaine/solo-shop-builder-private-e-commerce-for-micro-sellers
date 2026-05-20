@@ -262,3 +262,17 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-20T23-20-08-www.soloshopbox.com-tail--100-tmp-day106-build.log-2-dev-nul-1.log`](server-runs/2026-05-20T23-20-08-www.soloshopbox.com-tail--100-tmp-day106-build.log-2-dev-nul-1.log)
+
+## 2026-05-20T23:21:54.297Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `329f6d0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3007ms)
+```
+docker ps --filter "name=solo-shop" --format "{{.Names}}\t{{.Status}}"
+curl -sf https://www.soloshopbox.com/api/health 2>&1 || echo "FAILED"
+```
+STDOUT:
+```
+FAILED
+```
+Full output: [`server-runs/2026-05-20T23-21-54-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log`](server-runs/2026-05-20T23-21-54-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log)
