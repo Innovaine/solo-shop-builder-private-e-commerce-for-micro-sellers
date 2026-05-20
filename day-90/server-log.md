@@ -161,3 +161,15 @@ _Pre-SSH: warehouse pushed to GitHub as commit `e34e423` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app
 ```
+
+## 2026-05-20T08:48:27.097Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `63a80ee` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 5880ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up -d > /tmp/compose-up.log 2>&1 &
+echo $! > /tmp/compose-up.pid
+sleep 3
+docker compose ps
+```
+ERROR: command exited 1
