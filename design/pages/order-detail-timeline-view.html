@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Timeline — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #FAF9F7; color: #1F2937; }
+    
+    .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+    header { background: white; border-bottom: 1px solid #E2E8F0; padding: 24px; margin-bottom: 24px; }
+    header h1 { font-size: 28px; font-weight: 700; margin: 0 0 8px 0; }
+    header p { font-size: 14px; color: #64748B; margin: 0; }
+    
+    .order-header { background: white; padding: 24px; border-radius: 8px; border: 1px solid #E2E8F0; margin-bottom: 24px; }
+    .order-header h2 { font-size: 18px; margin: 0 0 16px 0; }
+    .order-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+    .info-cell { border-right: 1px solid #E2E8F0; padding-right: 16px; }
+    .info-cell:last-child { border-right: none; }
+    .info-label { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .info-value { font-size: 16px; font-weight: 600; color: #1F2937; }
+    
+    .timeline-section { background: white; padding: 32px; border-radius: 8px; border: 1px solid #E2E8F0; }
+    .timeline-section h3 { font-size: 18px; font-weight: 600; margin: 0 0 24px 0; }
+    
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before { content: ''; position: absolute; left: 13px; top: 30px; bottom: 0; width: 2px; background: linear-gradient(to bottom, #10B981 0%, #10B981 50%, #E2E8F0 50%, #E2E8F0 100%); }
+    
+    .timeline-item { margin-bottom: 32px; position: relative; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    
+    .timeline-marker { position: absolute; left: -39px; top: 0; width: 28px; height: 28px; background: #10B981; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 0 1px #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    
+    .timeline-marker.future { background: white; border: 2px solid #E2E8F0; }
+    .timeline-marker.future::after { content: ''; position: absolute; inset: -2px; border-radius: 50%; background: linear-gradient(90deg, transparent 25%, #10B981 25%, #10B981 75%, transparent 75%); -webkit-mask-image: conic-gradient(#000 0deg, #000 45deg, transparent 45deg, transparent 315deg, #000 315deg); mask-image: conic-gradient(#000 0deg, #000 45deg, transparent 45deg, transparent 315deg, #000 315deg); }
+    
+    .timeline-marker.current { background: #10B981; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 1px #E2E8F0; } 50% { box-shadow: 0 0 0 4px rgba(16,185,129,0.2); } }
+    
+    .timeline-content { }
+    .timeline-time { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; }
+    .timeline-status { font-size: 18px; font-weight: 700; color: #1F2937; margin: 4px 0 8px 0; }
+    .timeline-desc { font-size: 14px; color: #64748B; }
+    
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-top: 8px; }
+    .badge-success { background: #D1FAE5; color: #065F46; }
+    .badge-pending { background: #FEF3C7; color: #92400E; }
+    .badge-processing { background: #DBEAFE; color: #1E40AF; }
+    
+    .action-row { margin-top: 12px; padding-top: 12px; border-top: 1px solid #F3F4F6; display: flex; gap: 8px; }
+    .action-link { font-size: 13px; font-weight: 600; color: #3B4C63; text-decoration: none; padding: 4px 8px; border-radius: 4px; transition: all 0.2s; }
+    .action-link:hover { background: #F3F4F6; }
+    
+    .customer-notification { background: #F0FDF4; border-left: 4px solid #10B981; padding: 12px; border-radius: 4px; font-size: 12px; color: #15803D; margin-top: 8px; }
+    .customer-notification strong { display: block; margin-bottom: 3px; }
+    
+    .future-state { opacity: 0.6; }
+    
+    @media (max-width: 768px) {
+      .order-info-grid { grid-template-columns: 1fr; }
+      .info-cell { border-right: none; border-bottom: 1px solid #E2E8F0; padding-right: 0; padding-bottom: 16px; margin-bottom: 16px; }
+      .info-cell:last-child { border-bottom: none; }
+      .timeline { padding-left: 30px; }
+      .timeline::before { left: 6px; }
+      .timeline-marker { left: -36px; width: 24px; height: 24px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Order Status Timeline</h1>
+    <p>Track the journey of order #ORD-2847 from payment to delivery</p>
+  </header>
+
+  <div class="container">
+    <!-- Order Summary -->
+    <div class="order-header">
+      <h2>Order #ORD-2847</h2>
+      <div class="order-info-grid">
+        <div class="info-cell">
+          <div class="info-label">Customer</div>
+          <div class="info-value">Sarah Thompson</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-label">Order Date</div>
+          <div class="info-value">May 15, 2026</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-label">Total Amount</div>
+          <div class="info-value">$187.50</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-label">Items</div>
+          <div class="info-value">3 products</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Timeline -->
+    <div class="timeline-section">
+      <h3>Order Progress</h3>
+      <div class="timeline">
+        <!-- Completed: Order Placed -->
+        <div class="timeline-item">
+          <div class="timeline-marker">✓</div>
+          <div class="timeline-content">
+            <div class="timeline-time">May 15, 2026 — 2:34 PM</div>
+            <div class="timeline-status">Order Placed</div>
+            <div class="timeline-desc">Payment received via Stripe Checkout. Order created and confirmed.</div>
+            <span class="badge badge-success">Completed</span>
+            <div class="action-row">
+              <a href="#" class="action-link">View receipt</a>
+            </div>
+            <div class="customer-notification">
+              <strong>✉ Customer notified</strong>
+              Order confirmation email sent to sarah@example.com
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed: Payment Processed -->
+        <div class="timeline-item">
+          <div class="timeline-marker">✓</div>
+          <div class="timeline-content">
+            <div class="timeline-time">May 15, 2026 — 2:35 PM</div>
+            <div class="timeline-status">Payment Processed</div>
+            <div class="timeline-desc">Stripe transaction completed. Funds captured from customer's payment method.</div>
+            <span class="badge badge-success">Completed</span>
+            <div class="action-row">
+              <a href="#" class="action-link">View transaction</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current: Preparing for Shipment -->
+        <div class="timeline-item">
+          <div class="timeline-marker current">📦</div>
+          <div class="timeline-content">
+            <div class="timeline-time">May 17, 2026 — 10:12 AM</div>
+            <div class="timeline-status">Preparing for Shipment</div>
+            <div class="timeline-desc">Items are being picked and packed in your warehouse. Shipping label being generated.</div>
+            <span class="badge badge-processing">In Progress</span>
+            <div class="action-row">
+              <a href="#" class="action-link">Edit tracking</a>
+              <a href="#" class="action-link">Add note</a>
+            </div>
+            <div class="customer-notification">
+              <strong>✉ Customer notified</strong>
+              "Your order is being prepared" status update sent
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming: Ready to Ship -->
+        <div class="timeline-item future-state">
+          <div class="timeline-marker future"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">Expected May 18, 2026</div>
+            <div class="timeline-status">Ready to Ship</div>
+            <div class="timeline-desc">Items packed and labeled. Waiting for carrier pickup or drop-off.</div>
+            <span class="badge badge-pending">Pending</span>
+          </div>
+        </div>
+
+        <!-- Upcoming: Shipped -->
+        <div class="timeline-item future-state">
+          <div class="timeline-marker future"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">Expected May 18–19, 2026</div>
+            <div class="timeline-status">Shipped</div>
+            <div class="timeline-desc">Package handed off to carrier (USPS, UPS, or FedEx). Tracking number provided.</div>
+            <span class="badge badge-pending">Pending</span>
+            <p style="font-size: 12px; color: #64748B; margin-top: 8px;">⚠ Add tracking ID here when carrier confirms pickup.</p>
+          </div>
+        </div>
+
+        <!-- Upcoming: In Transit -->
+        <div class="timeline-item future-state">
+          <div class="timeline-marker future"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">Expected May 19–22, 2026</div>
+            <div class="timeline-status">In Transit</div>
+            <div class="timeline-desc">Package is on its way to the customer. Real-time tracking available via carrier.</div>
+            <span class="badge badge-pending">Pending</span>
+          </div>
+        </div>
+
+        <!-- Upcoming: Delivered -->
+        <div class="timeline-item future-state">
+          <div class="timeline-marker future"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">Expected May 22–25, 2026</div>
+            <div class="timeline-status">Delivered</div>
+            <div class="timeline-desc">Package delivered to customer's address. Delivery signature/photo required (carrier dependent).</div>
+            <span class="badge badge-pending">Pending</span>
+            <p style="font-size: 12px; color: #64748B; margin-top: 8px;">After delivery, you can request a review from the customer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

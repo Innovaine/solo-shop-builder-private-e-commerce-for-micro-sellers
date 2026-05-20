@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Profile Editor — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    
+    header { background: white; border-bottom: 1px solid #E2E8F0; padding: 24px; margin-bottom: 24px; }
+    header h1 { font-size: 28px; font-weight: 700; margin: 0 0 4px 0; }
+    header p { font-size: 14px; color: #64748B; margin: 0; }
+    
+    .form-container { background: white; border-radius: 8px; border: 1px solid #E2E8F0; overflow: hidden; }
+    .form-header { background: #F9FAFB; padding: 24px; border-bottom: 1px solid #E2E8F0; }
+    .form-header h2 { font-size: 18px; font-weight: 600; margin: 0 0 4px 0; }
+    .form-header p { font-size: 13px; color: #64748B; margin: 0; }
+    
+    .form-body { padding: 32px; }
+    
+    .form-section { margin-bottom: 40px; }
+    .form-section:last-child { margin-bottom: 0; }
+    .form-section-divider { border-top: 1px solid #E2E8F0; padding-top: 32px; margin-top: 32px; }
+    
+    .form-section h3 { font-size: 16px; font-weight: 600; color: #1F2937; margin: 0 0 16px 0; }
+    
+    .image-upload-grid { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
+    
+    .image-preview { text-align: center; }
+    .image-preview-label { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: block; }
+    
+    .image-box { width: 100%; aspect-ratio: 1; background: #E2E8F0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 64px; margin-bottom: 12px; border: 1px solid #D1D5DB; }
+    .image-box.has-image { background: white; background-size: cover; background-position: center; font-size: 0; }
+    
+    .image-actions { display: flex; flex-direction: column; gap: 8px; }
+    button, .btn { border: none; padding: 10px 16px; font-size: 13px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .btn-danger { background: #F43F5E; color: white; font-size: 12px; }
+    .btn-danger:hover { background: #E11D48; }
+    
+    .upload-controls { }
+    .upload-zone { border: 2px dashed #E2E8F0; border-radius: 6px; padding: 24px; text-align: center; cursor: pointer; background: #FAFBFC; transition: all 0.2s; }
+    .upload-zone:hover { border-color: #3B4C63; background: #F3F6FB; }
+    .upload-zone.active { border-color: #10B981; background: #F0FDF4; }
+    .upload-icon { font-size: 32px; margin-bottom: 8px; }
+    .upload-text { font-weight: 600; color: #1F2937; font-size: 14px; }
+    .upload-subtext { font-size: 12px; color: #94A3B8; margin-top: 4px; }
+    
+    .form-field { margin-bottom: 24px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 8px; }
+    input, textarea, select { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #3B4C63; box-shadow: 0 0 0 3px rgba(59,76,99,0.1); }
+    textarea { min-height: 100px; resize: vertical; }
+    .form-hint { font-size: 12px; color: #64748B; margin-top: 4px; }
+    
+    .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    
+    .info-box { background: #EFF6FF; border-left: 4px solid #3B82F6; padding: 16px; border-radius: 4px; font-size: 13px; color: #1E40AF; margin-bottom: 24px; }
+    .info-box strong { display: block; margin-bottom: 4px; color: #1E3A8A; }
+    
+    .form-footer { background: #F9FAFB; padding: 24px; border-top: 1px solid #E2E8F0; display: flex; justify-content: flex-end; gap: 12px; }
+    
+    @media (max-width: 768px) {
+      .image-upload-grid { grid-template-columns: 1fr; }
+      .two-column { grid-template-columns: 1fr; }
+      .form-footer { flex-direction: column; }
+      button, .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Seller Profile</h1>
+    <p>Manage your public profile, shop branding, and seller information</p>
+  </header>
+
+  <div class="container">
+    <form class="form-container">
+      <!-- Section 1: Shop Logo & Image -->
+      <div class="form-header">
+        <h2>Shop Logo & Branding</h2>
+        <p>Your logo appears on your storefront, emails, and customer tracking pages</p>
+      </div>
+      
+      <div class="form-body">
+        <div class="form-section">
+          <div class="image-upload-grid">
+            <!-- Preview -->
+            <div class="image-preview">
+              <span class="image-preview-label">Current Logo</span>
+              <div class="image-box">🏪</div>
+              <div class="image-actions">
+                <button type="button" class="btn btn-secondary">Change</button>
+                <button type="button" class="btn btn-danger">Remove</button>
+              </div>
+            </div>
+            
+            <!-- Upload -->
+            <div class="upload-controls">
+              <div class="upload-zone">
+                <div class="upload-icon">📤</div>
+                <div class="upload-text">Click to upload or drag and drop</div>
+                <div class="upload-subtext">PNG, JPEG, WebP (max 5MB, min 400×400px)</div>
+              </div>
+              <div class="info-box" style="margin-top: 16px;">
+                <strong>💡 Pro tip:</strong> Square logos work best. If you have a rectangular logo, crop it to a square first.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Shop Colors -->
+        <div class="form-section form-section-divider">
+          <h3>Shop Colors</h3>
+          <p style="font-size: 13px; color: #64748B; margin-bottom: 16px;">Customize the colors on your public storefront (header, buttons, badges)</p>
+          
+          <div class="two-column">
+            <div class="form-field">
+              <label>Header Background Color</label>
+              <input type="color" value="#3B4C63">
+              <div class="form-hint">Color shown at the top of your shop. Typically dark (navy, black, deep green).</div>
+            </div>
+            <div class="form-field">
+              <label>Button & CTA Color</label>
+              <input type="color" value="#10B981">
+              <div class="form-hint">Used for "Add to Cart" and "Checkout" buttons. Bright, eye-catching color recommended.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Public Profile -->
+        <div class="form-section form-section-divider">
+          <h2>Public Profile</h2>
+          <p style="font-size: 13px; color: #64748B; margin-bottom: 16px;">Information visible to your customers on your shop storefront</p>
+          
+          <div class="form-field">
+            <label>Shop Name</label>
+            <input type="text" value="Sarah's Handmade Jewelry" placeholder="Your shop name">
+            <div class="form-hint">Displayed prominently on your storefront and in emails.</div>
+          </div>
+          
+          <div class="form-field">
+            <label>Shop Tagline (Optional)</label>
+            <input type="text" placeholder="e.g., 'Unique pieces made with love'" value="Unique pieces made with love">
+            <div class="form-hint">A short, catchy phrase that describes your shop. Appears under your logo.</div>
+          </div>
+          
+          <div class="form-field">
+            <label>Shop Description</label>
+            <textarea placeholder="Tell customers about your shop, your story, and what makes you unique...">I create handmade jewelry using ethically sourced materials. Each piece is designed and crafted in my studio in Portland, Oregon. I specialize in silver and gemstone pieces inspired by nature and sustainable living.</textarea>
+            <div class="form-hint">2–300 characters. Appears on your shop landing page and helps customers get to know you.</div>
+          </div>
+        </div>
+
+        <!-- Section 4: Contact & Social -->
+        <div class="form-section form-section-divider">
+          <h3>Contact & Social Links</h3>
+          <p style="font-size: 13px; color: #64748B; margin-bottom: 16px;">Let customers connect with you beyond your shop</p>
+          
+          <div class="form-field">
+            <label>Public Email Address</label>
+            <input type="email" value="sarah@handmadejewelry.com" placeholder="contact@yourshop.com">
+            <div class="form-hint">Customers can use this to contact you directly. Must be monitored by you.</div>
+          </div>
+          
+          <div class="two-column">
+            <div class="form-field">
+              <label>Instagram URL (Optional)</label>
+              <input type="url" placeholder="https://instagram.com/yourhandle" value="https://instagram.com/sarahsjewelry">
+              <div class="form-hint">Link to your Instagram profile</div>
+            </div>
+            <div class="form-field">
+              <label>Pinterest URL (Optional)</label>
+              <input type="url" placeholder="https://pinterest.com/yourhandle" value="https://pinterest.com/sarahsjewelry">
+              <div class="form-hint">Link to your Pinterest board</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Additional Info -->
+        <div class="form-section form-section-divider">
+          <h3>About Your Business</h3>
+          <p style="font-size: 13px; color: #64748B; margin-bottom: 16px;">Help customers understand your production timeline and policies</p>
+          
+          <div class="two-column">
+            <div class="form-field">
+              <label>Processing Time</label>
+              <select>
+                <option>1–2 business days</option>
+                <option selected>3–5 business days</option>
+                <option>1 week</option>
+                <option>Custom orders only</option>
+              </select>
+              <div class="form-hint">How long it takes to prepare items after purchase</div>
+            </div>
+            <div class="form-field">
+              <label>Typical Shipping Time</label>
+              <select>
+                <option>1–3 days</option>
+                <option selected>4–7 days</option>
+                <option>1–2 weeks</option>
+                <option>International (2–4 weeks)</option>
+              </select>
+              <div class="form-hint">Shown on product pages to set customer expectations</div>
+            </div>
+          </div>
+          
+          <div class="form-field">
+            <label>Return Policy (Optional)</label>
+            <textarea placeholder="Describe your return and refund policy...">Returns accepted within 30 days of purchase. Items must be unused and in original condition. Refunds will be issued to the original payment method within 5–10 business days.</textarea>
+            <div class="form-hint">Displayed on your shop so customers know your policy upfront.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer: Save & Cancel -->
+      <div class="form-footer">
+        <button type="reset" class="btn btn-secondary">Reset</button>
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

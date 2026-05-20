@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Onboarding Flow — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    
+    header { background: white; border-bottom: 1px solid #E2E8F0; padding: 32px 24px; margin-bottom: 48px; text-align: center; }
+    header h1 { font-size: 32px; font-weight: 700; margin: 0 0 12px 0; }
+    header p { font-size: 16px; color: #64748B; margin: 0; }
+    
+    .intro-section { background: white; padding: 32px; border-radius: 8px; border: 1px solid #E2E8F0; margin-bottom: 48px; }
+    .intro-section p { font-size: 15px; color: #64748B; line-height: 1.8; margin-bottom: 16px; }
+    .intro-section p:last-child { margin-bottom: 0; }
+    
+    .timeline-container { position: relative; }
+    .timeline-container::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #E2E8F0; transform: translateX(-50%); }
+    
+    .flow-step { margin-bottom: 64px; position: relative; }
+    .flow-step:nth-child(odd) .step-content { margin-right: 52%; text-align: right; }
+    .flow-step:nth-child(even) .step-content { margin-left: 52%; text-align: left; }
+    
+    .step-marker { position: absolute; left: 50%; top: 0; width: 60px; height: 60px; background: #10B981; border: 4px solid white; border-radius: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .flow-step:nth-child(odd) .step-marker { background: #3B4C63; }
+    .flow-step:nth-child(even) .step-marker { background: #10B981; }
+    
+    .step-content { background: white; padding: 32px; border-radius: 8px; border: 1px solid #E2E8F0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    
+    .step-number { font-size: 12px; font-weight: 700; color: #10B981; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .flow-step:nth-child(odd) .step-number { color: #3B4C63; }
+    
+    .step-title { font-size: 22px; font-weight: 700; color: #1F2937; margin: 0 0 12px 0; }
+    .step-desc { font-size: 15px; color: #64748B; margin-bottom: 20px; line-height: 1.7; }
+    
+    .step-image { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 24px; text-align: center; font-size: 56px; margin: 16px 0; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
+    
+    .step-details { background: #F9FAFB; padding: 16px; border-radius: 6px; border-left: 4px solid #10B981; margin: 16px 0 0 0; }
+    .flow-step:nth-child(odd) .step-details { border-left-color: #3B4C63; }
+    
+    .step-details h4 { font-size: 13px; font-weight: 600; color: #1F2937; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .step-details ul { margin: 0; padding-left: 16px; }
+    .step-details li { font-size: 13px; color: #64748B; margin: 4px 0; }
+    
+    .time-estimate { font-size: 12px; color: #94A3B8; font-weight: 500; margin-top: 12px; }
+    
+    .final-section { background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 48px 32px; border-radius: 8px; text-align: center; margin-top: 64px; }
+    .final-section h2 { font-size: 28px; font-weight: 700; margin: 0 0 16px 0; }
+    .final-section p { font-size: 16px; margin: 0 0 24px 0; opacity: 0.95; line-height: 1.6; }
+    
+    button { background: white; color: #10B981; border: none; padding: 14px 32px; font-size: 15px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    button:hover { background: #F9FAFB; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    
+    @media (max-width: 768px) {
+      .timeline-container::before { left: 14px; }
+      .flow-step { margin-bottom: 48px; }
+      .flow-step:nth-child(odd) .step-content, 
+      .flow-step:nth-child(even) .step-content { margin: 0; margin-left: 100px; text-align: left; }
+      .step-marker { left: 14px; width: 48px; height: 48px; font-size: 22px; }
+      .step-content { padding: 24px; }
+      header h1 { font-size: 24px; }
+      .final-section { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Path to Your First Sale</h1>
+    <p>A guided journey through Solo Shop Builder — from signup to your first order</p>
+  </header>
+
+  <div class="container">
+    <div class="intro-section">
+      <p><strong>Welcome to Solo Shop Builder!</strong> This flow shows you exactly what happens when you sign up and launch your shop.</p>
+      <p>Most sellers complete this journey in <strong>20–30 minutes</strong>. Each step is designed to be straightforward, with helpful guidance along the way.</p>
+    </div>
+
+    <div class="timeline-container">
+      <!-- Step 1: Sign Up -->
+      <div class="flow-step">
+        <div class="step-marker">1️⃣</div>
+        <div class="step-content">
+          <div class="step-number">Step 1</div>
+          <div class="step-title">Sign Up with Your Email</div>
+          <div class="step-desc">You provide your email address. We send a magic link — no password required (unless you prefer one).</div>
+          <div class="step-image">✉️</div>
+          <div class="step-details">
+            <h4>What happens:</h4>
+            <ul>
+              <li>Check your email for the magic link</li>
+              <li>Click the link to create your account</li>
+              <li>You're logged in automatically</li>
+            </ul>
+          </div>
+          <div class="time-estimate">⏱ 2 minutes</div>
+        </div>
+      </div>
+
+      <!-- Step 2: Create Your Shop -->
+      <div class="flow-step">
+        <div class="step-marker">2️⃣</div>
+        <div class="step-content">
+          <div class="step-number">Step 2</div>
+          <div class="step-title">Create Your Shop</div>
+          <div class="step-desc">Choose a shop name and unique URL. This is your storefront — customers will visit here to buy from you.</div>
+          <div class="step-image">🏪</div>
+          <div class="step-details">
+            <h4>You'll set:</h4>
+            <ul>
+              <li>Shop name (e.g., "Sarah's Handmade Jewelry")</li>
+              <li>Shop slug/URL (e.g., solo-shop.com/shop/sarahs-jewelry)</li>
+              <li>Brief shop description</li>
+            </ul>
+          </div>
+          <div class="time-estimate">⏱ 3–5 minutes</div>
+        </div>
+      </div>
+
+      <!-- Step 3: Add Your First Product -->
+      <div class="flow-step">
+        <div class="step-marker">3️⃣</div>
+        <div class="step-content">
+          <div class="step-number">Step 3</div>
+          <div class="step-title">Add Your First Product</div>
+          <div class="step-desc">Upload a product with a title, price, description, image, and category. This is what customers will see and buy.</div>
+          <div class="step-image">📸</div>
+          <div class="step-details">
+            <h4>For each product:</h4>
+            <ul>
+              <li>Product title and description</li>
+              <li>Price in USD</li>
+              <li>Product image (PNG, JPEG, WebP)</li>
+              <li>Category (Handmade, Vintage, Supplies, Other)</li>
+            </ul>
+          </div>
+          <div class="time-estimate">⏱ 5–10 minutes per product</div>
+        </div>
+      </div>
+
+      <!-- Step 4: Add Payment -->
+      <div class="flow-step">
+        <div class="step-marker">4️⃣</div>
+        <div class="step-content">
+          <div class="step-number">Step 4</div>
+          <div class="step-title">Connect Stripe for Payments</div>
+          <div class="step-desc">Link your Stripe account to receive payments. Customers checkout via Stripe Checkout — secure, trusted, and instant.</div>
+          <div class="step-image">💳</div>
+          <div class="step-details">
+            <h4>You'll provide:</h4>
+            <ul>
+              <li>Stripe API keys (from your Stripe dashboard)</li>
+              <li>Business info for payment processing</li>
+              <li>Bank account for payouts (Stripe handles this)</li>
+            </ul>
+          </div>
+          <div class="time-estimate">⏱ 5–10 minutes</div>
+        </div>
+      </div>
+
+      <!-- Step 5: Share Your Shop -->
+      <div class="flow-step">
+        <div class="step-marker">5️⃣</div>
+        <div class="step-content">
+          <div class="step-number">Step 5</div>
+          <div class="step-title">Share Your Shop Link</div>
+          <div class="step-desc">Your shop is live. Share the URL with customers via email, social media, or anywhere else. Customers can browse and buy immediately.</div>
+          <div class="step-image">🔗</div>
+          <div class="step-details">
+            <h4>Your shop URL:</h4>
+            <ul>
+              <li>Public storefront shows your products</li>
+              <li>Customers add items to cart (no login needed)</li>
+              <li>Checkout leads to Stripe Checkout</li>
+            </ul>
+          </div>
+          <div class="time-estimate">⏱ Instant</div>
+        </div>
+      </div>
+
+      <!-- Step 6: Manage Orders -->
+      <div class="flow-step">
+        <div class="step-marker">6️⃣</div>
+        <div class="step-content">
+          <div class="step-number">Step 6</div>
+          <div class="step-title">Track Orders in Your Dashboard</div>
+          <div class="step-desc">Every order appears in your dashboard. Update status, add tracking info, and send updates to customers automatically.</div>
+          <div class="step-image">📦</div>
+          <div class="step-details">
+            <h4>You can:</h4>
+            <ul>
+              <li>See all orders in one place</li>
+              <li>Mark orders as paid, in-progress, shipped, delivered</li>
+              <li>Add tracking IDs/URLs</li>
+              <li>Customers receive email updates automatically</li>
+            </ul>
+          </div>
+          <div class="time-estimate">⏱ Ongoing</div>
+        </div>
+      </div>
+
+      <!-- Step 7: Grow Your Business -->
+      <div class="flow-step">
+        <div class="step-marker">📈</div>
+        <div class="step-content">
+          <div class="step-number">Step 7</div>
+          <div class="step-title">Grow with Analytics & Tools</div>
+          <div class="step-desc">Once you have orders, use our built-in tools to understand your business, export data, and scale.</div>
+          <div class="step-image">📊</div>
+          <div class="step-details">
+            <h4>Available tools:</h4>
+            <ul>
+              <li>Sales analytics (revenue, order count)</li>
+              <li>CSV export (orders, products, customers)</li>
+              <li>Seller profile & shop branding</li>
+              <li>Email customization for order confirmations</li>
+            </ul>
+          </div>
+          <div class="time-estimate">⏱ As you grow</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-section">
+      <h2>You're Ready to Start!</h2>
+      <p>This journey has been completed by hundreds of sellers already. You've got this. If you get stuck, our help docs and team are here.</p>
+      <button>Create Your Shop Now</button>
+    </div>
+  </div>
+</body>
+</html>
