@@ -1531,3 +1531,34 @@ Running 5 tests using 4 workers
   3 passed (6.2s)
 ```
 Full output: [`server-runs/2026-05-20T13-00-53-www.soloshopbox.com-kill--0-cat-tmp-day96-test.pid-2-dev-nul-1.log`](server-runs/2026-05-20T13-00-53-www.soloshopbox.com-kill--0-cat-tmp-day96-test.pid-2-dev-nul-1.log)
+
+## 2026-05-20T13:02:12.286Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2cfa6aa` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exec-error: All SSH connection shapes failed. Underlying errors:
+  • SSHClient.connectWithKey(host, port, user, key, passphrase) → Connection to host 187.124.22.3 failed, with session
+
+This is a TRANSPORT-LAYER failure, not an auth failure. The SSH handshake never got to the password step. Causes:
+  • Phone can't reach the server (firewall, wrong network, VPN). Test from the phone's network: `nc -zv <host> <port>` should connect.
+  • SSH algorithm mismatch. The library uses older ciphers/KEX. Modern OpenSSH (Ubuntu 22.04+) disables many of them. Try:
+      On the server, edit /etc/ssh/sshd_config and ADD lines:
+        KexAlgorithms +diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
+        Ciphers +aes128-cbc,aes256-cbc,3des-cbc
+        HostKeyAlgorithms +ssh-rsa
+      Then: sudo systemctl restart sshd
+  • Wrong port (not 22). Check via your laptop: `ssh -v root@<host>` shows the real port., 10020ms)
+```
+cat /tmp/day96-test.log
+```
+ERROR: All SSH connection shapes failed. Underlying errors:
+  • SSHClient.connectWithKey(host, port, user, key, passphrase) → Connection to host 187.124.22.3 failed, with session
+
+This is a TRANSPORT-LAYER failure, not an auth failure. The SSH handshake never got to the password step. Causes:
+  • Phone can't reach the server (firewall, wrong network, VPN). Test from the phone's network: `nc -zv <host> <port>` should connect.
+  • SSH algorithm mismatch. The library uses older ciphers/KEX. Modern OpenSSH (Ubuntu 22.04+) disables many of them. Try:
+      On the server, edit /etc/ssh/sshd_config and ADD lines:
+        KexAlgorithms +diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
+        Ciphers +aes128-cbc,aes256-cbc,3des-cbc
+        HostKeyAlgorithms +ssh-rsa
+      Then: sudo systemctl restart sshd
+  • Wrong port (not 22). Check via your laptop: `ssh -v root@<host>` shows the real port.
