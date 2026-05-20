@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 40px 24px; text-align: center; }
+    .header h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+    .header p { font-size: 16px; opacity: 0.95; }
+    .header .icon { font-size: 80px; margin-bottom: 16px; }
+    
+    .container { max-width: 600px; margin: 0 auto; padding: 24px; }
+    
+    .alert { background: #F0F9FF; border: 1px solid #7DD3FC; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
+    .alert strong { color: #0369A1; }
+    .alert p { font-size: 13px; color: #082F49; line-height: 1.6; margin: 4px 0; }
+    
+    .order-card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    
+    .order-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #E2E8F0; padding-bottom: 16px; margin-bottom: 16px; }
+    .order-header h2 { font-size: 16px; font-weight: 600; color: #1F2937; }
+    .order-id { font-size: 13px; font-family: monospace; color: #10B981; font-weight: 600; background: #DCFCE7; padding: 6px 12px; border-radius: 4px; }
+    
+    .line-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #E2E8F0; font-size: 13px; }
+    .line-item:last-of-type { border-bottom: none; }
+    .line-item-details { flex: 1; }
+    .line-item-title { font-weight: 500; color: #1F2937; margin-bottom: 4px; }
+    .line-item-meta { font-size: 12px; color: #64748B; }
+    .line-item-price { text-align: right; font-weight: 500; color: #1F2937; min-width: 80px; }
+    
+    .totals { padding-top: 16px; }
+    .total-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; }
+    .total-row.subtotal { color: #64748B; }
+    .total-row.tax { color: #64748B; }
+    .total-row.shipping { color: #64748B; }
+    .total-row.final { font-size: 16px; font-weight: 700; color: #1F2937; border-top: 2px solid #E2E8F0; padding-top: 12px; margin-top: 12px; }
+    
+    .delivery-address { background: #F9FAFB; border: 1px solid #E2E8F0; border-radius: 6px; padding: 16px; margin: 24px 0; }
+    .delivery-address h3 { font-size: 13px; font-weight: 600; color: #1F2937; margin-bottom: 8px; }
+    .delivery-address p { font-size: 13px; color: #64748B; line-height: 1.6; }
+    
+    .shipping-info { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .shipping-info h3 { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 12px; }
+    .shipping-info .info-row { display: flex; gap: 12px; margin-bottom: 12px; font-size: 13px; color: #64748B; }
+    .shipping-info .info-row strong { color: #1F2937; }
+    .shipping-info .tracking { background: #DCFCE7; border-left: 3px solid #10B981; padding: 12px; border-radius: 4px; font-family: monospace; font-size: 12px; color: #065F46; font-weight: 600; }
+    
+    .seller-info { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .seller-info h3 { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 12px; }
+    .seller-info .shop-name { font-size: 14px; font-weight: 500; color: #3B4C63; margin-bottom: 8px; }
+    .seller-info p { font-size: 13px; color: #64748B; margin: 4px 0; }
+    .seller-contact { display: flex; gap: 12px; margin-top: 12px; }
+    .seller-contact button { flex: 1; padding: 8px 12px; font-size: 12px; background: white; border: 1px solid #E2E8F0; color: #3B4C63; border-radius: 4px; cursor: pointer; }
+    .seller-contact button:hover { background: #F9FAFB; }
+    
+    .next-steps { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .next-steps h3 { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 12px; }
+    .next-steps ol { margin-left: 20px; }
+    .next-steps li { font-size: 13px; color: #64748B; margin-bottom: 8px; line-height: 1.5; }
+    
+    .action-buttons { display: flex; gap: 12px; margin-bottom: 24px; }
+    button { border: none; padding: 12px 20px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; flex: 1; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    
+    .footer { text-align: center; padding-top: 24px; border-top: 1px solid #E2E8F0; }
+    .footer p { font-size: 12px; color: #94A3B8; margin: 6px 0; }
+    .footer a { color: #3B4C63; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    
+    @media (max-width: 600px) {
+      .header { padding: 24px 16px; }
+      .header .icon { font-size: 60px; }
+      .header h1 { font-size: 24px; }
+      .container { padding: 16px; }
+      .action-buttons { flex-direction: column; }
+      .seller-contact { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="icon">✓</div>
+    <h1>Order Confirmed!</h1>
+    <p>Thank you for your purchase. Your order has been received and will be processed shortly.</p>
+  </div>
+
+  <div class="container">
+    <!-- Email Confirmation Alert -->
+    <div class="alert">
+      <p><strong>📧 Check your email!</strong> A confirmation has been sent to <strong>you@example.com</strong> with order details, tracking information, and seller contact details.</p>
+    </div>
+
+    <!-- Order Summary Card -->
+    <div class="order-card">
+      <div class="order-header">
+        <h2>Order Summary</h2>
+        <div class="order-id">ORD-1847562</div>
+      </div>
+
+      <!-- Line Items -->
+      <div class="line-item">
+        <div class="line-item-details">
+          <div class="line-item-title">Handmade Ceramic Bowl (Large)</div>
+          <div class="line-item-meta">Color: Blue • Quantity: 1</div>
+        </div>
+        <div class="line-item-price">$45.00</div>
+      </div>
+
+      <!-- Delivery Address -->
+      <div class="delivery-address">
+        <h3>Shipping to</h3>
+        <p>
+          Ali Al-Dosari<br>
+          123 King Fahd Road<br>
+          Riyadh 11461<br>
+          Saudi Arabia
+        </p>
+      </div>
+
+      <!-- Totals -->
+      <div class="totals">
+        <div class="total-row subtotal">
+          <span>Subtotal</span>
+          <span>$45.00</span>
+        </div>
+        <div class="total-row shipping">
+          <span>Shipping (Standard)</span>
+          <span>$8.00</span>
+        </div>
+        <div class="total-row tax">
+          <span>Tax</span>
+          <span>$2.12</span>
+        </div>
+        <div class="total-row final">
+          <span>Total Paid</span>
+          <span>$55.12</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shipping Status -->
+    <div class="shipping-info">
+      <h3>📦 Shipping Details</h3>
+      <div class="info-row">
+        <span>Method:</span>
+        <strong>Standard Shipping (3-7 business days)</strong>
+      </div>
+      <div class="info-row">
+        <span>Tracking:</span>
+        <strong>Not yet shipped</strong>
+      </div>
+      <p style="font-size: 12px; color: #64748B; margin-top: 12px;">
+        ✓ The seller will ship your order within 2-3 business days. You'll receive a tracking link via email as soon as it ships.
+      </p>
+    </div>
+
+    <!-- Seller Info & Contact -->
+    <div class="seller-info">
+      <h3>Shop Information</h3>
+      <div class="shop-name">Handmade Ceramics by Emma</div>
+      <p><strong>Shop Owner:</strong> Emma Al-Rashid</p>
+      <p><strong>Location:</strong> Riyadh, Saudi Arabia</p>
+      <p style="margin-top: 12px; font-size: 12px; color: #94A3B8;">
+        This shop has 4.9★ rating (187 reviews). Average shipping time: 2-3 days.
+      </p>
+      <div class="seller-contact">
+        <button>📧 Message Seller</button>
+        <button>👀 Visit Shop</button>
+      </div>
+    </div>
+
+    <!-- What Happens Next -->
+    <div class="next-steps">
+      <h3>What happens next?</h3>
+      <ol>
+        <li><strong>Processing:</strong> Your order is being prepared by the seller (1-3 business days)</li>
+        <li><strong>Shipping:</strong> Once shipped, you'll get a tracking link via email</li>
+        <li><strong>In Transit:</strong> Track your package in real-time</li>
+        <li><strong>Delivery:</strong> Receive your order and enjoy!</li>
+        <li><strong>Review:</strong> Leave a review to help other customers (optional)</li>
+      </ol>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn-primary">Track Order</button>
+      <button class="btn-secondary">Continue Shopping</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p><strong>Questions?</strong></p>
+      <p><a href="#">Order status & tracking</a> • <a href="#">Contact seller</a> • <a href="#">Refund policy</a></p>
+      <p style="margin-top: 12px; color: #94A3B8;">Transaction ID: txn_1847562_ksa | Paid via Debit Card •••• 4242</p>
+    </div>
+  </div>
+</body>
+</html>

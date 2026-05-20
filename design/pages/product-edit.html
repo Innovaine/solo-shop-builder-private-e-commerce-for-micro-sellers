@@ -104,32 +104,52 @@
 
     <div class="card">
       <h2>Images</h2>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">Images must be set to <strong>Public</strong> to appear on your storefront. Private images are hidden from customers.</p>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
         <div>
           <h3>Primary Image</h3>
           <div class="image-preview">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f0f0f0' width='200' height='200'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%23e0e0e0'/%3E%3C/svg%3E" alt="Product image">
           </div>
+          <div style="margin-top: 12px; padding: 8px 12px; background: #DCFCE7; border: 1px solid #10B981; border-radius: 6px; font-size: 13px; color: #065F46; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 16px;">✓</span>
+            <span><strong>Public</strong> — Visible on storefront</span>
+          </div>
           <label class="file-input-label" style="margin-top: 12px;">
             📤 Replace Image
             <input type="file" accept="image/*">
           </label>
-          <div class="form-hint" style="margin-top: 8px;">JPG or PNG, at least 800x800px</div>
+          <div class="form-hint" style="margin-top: 8px;">JPG or PNG, at least 800x800px. After upload, confirm the status shows "Public" above.</div>
         </div>
         <div>
           <h3>Additional Images (Optional)</h3>
           <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div class="image-preview" style="height: 100px;">
-              <div class="image-placeholder">Image 2</div>
+            <div style="position: relative;">
+              <div class="image-preview" style="height: 100px;">
+                <div class="image-placeholder">Image 2</div>
+              </div>
+              <div style="margin-top: 6px; padding: 6px 8px; background: #FEE2E2; border: 1px solid #F43F5E; border-radius: 4px; font-size: 12px; color: #991B1B; display: flex; align-items: center; gap: 6px;">
+                <span>⚠️</span>
+                <span><strong>Private</strong> — Not visible to customers</span>
+              </div>
             </div>
-            <div class="image-preview" style="height: 100px;">
-              <div class="image-placeholder">Image 3</div>
+            <div style="position: relative;">
+              <div class="image-preview" style="height: 100px;">
+                <div class="image-placeholder">Image 3</div>
+              </div>
+              <div style="margin-top: 6px; padding: 6px 8px; background: #FEE2E2; border: 1px solid #F43F5E; border-radius: 4px; font-size: 12px; color: #991B1B; display: flex; align-items: center; gap: 6px;">
+                <span>⚠️</span>
+                <span><strong>Private</strong> — Not visible to customers</span>
+              </div>
             </div>
           </div>
           <label class="file-input-label" style="margin-top: 12px;">
             📤 Add More
             <input type="file" accept="image/*" multiple>
           </label>
+          <div class="form-hint" style="margin-top: 8px; background: #FFFBEB; border: 1px solid #FDE68A; padding: 8px; border-radius: 4px; color: #78350F;">
+            <strong>⚡ Heads up:</strong> New images upload as Private by default. Make them Public by clicking the visibility toggle (eye icon) after uploading.
+          </div>
         </div>
       </div>
     </div>

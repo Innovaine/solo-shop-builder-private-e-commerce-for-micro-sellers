@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Closed — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .navbar { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
+    .navbar a { color: #3B4C63; text-decoration: none; font-size: 14px; font-weight: 500; }
+    .navbar a:hover { color: #10B981; }
+    
+    .container { max-width: 600px; margin: 60px auto; padding: 24px; text-align: center; }
+    
+    .empty-state-icon { font-size: 80px; margin-bottom: 24px; opacity: 0.7; }
+    
+    .empty-state-title { font-size: 32px; font-weight: 700; color: #1F2937; margin-bottom: 12px; }
+    
+    .empty-state-subtitle { font-size: 14px; color: #64748B; margin-bottom: 24px; line-height: 1.6; max-width: 450px; margin-left: auto; margin-right: auto; }
+    
+    .shop-info { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin: 32px 0; text-align: left; }
+    .shop-info h3 { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 12px; }
+    .shop-info p { font-size: 13px; color: #64748B; line-height: 1.6; }
+    
+    .inactive-reasons { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 16px; margin: 24px 0; }
+    .inactive-reasons h4 { font-size: 13px; font-weight: 600; color: #78350F; margin-bottom: 8px; }
+    .inactive-reasons ul { list-style: none; margin-left: 0; }
+    .inactive-reasons li { font-size: 13px; color: #78350F; padding: 4px 0; }
+    .inactive-reasons li:before { content: "• "; margin-right: 6px; }
+    
+    .contact-section { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin: 24px 0; }
+    .contact-section h3 { font-size: 14px; font-weight: 600; color: #1F2937; margin-bottom: 12px; }
+    .contact-option { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 13px; color: #64748B; }
+    .contact-option strong { color: #1F2937; }
+    
+    button { border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .btn-primary { background: #10B981; color: white; }
+    .btn-primary:hover { background: #059669; }
+    .btn-secondary { background: white; color: #3B4C63; border: 1px solid #E2E8F0; margin-left: 12px; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    
+    .footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid #E2E8F0; }
+    .footer p { font-size: 12px; color: #94A3B8; margin: 6px 0; }
+    .footer a { color: #3B4C63; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    
+    @media (max-width: 600px) {
+      .container { margin: 40px auto; padding: 16px; }
+      .empty-state-icon { font-size: 60px; margin-bottom: 16px; }
+      .empty-state-title { font-size: 24px; }
+      .btn-secondary { margin-left: 0; margin-top: 8px; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/">← Back to Solo Shop Builder</a>
+  </div>
+
+  <div class="container">
+    <div class="empty-state-icon">🔒</div>
+    
+    <h1 class="empty-state-title">This Shop Is Currently Closed</h1>
+    
+    <p class="empty-state-subtitle">
+      The seller has temporarily paused this shop. New orders cannot be placed right now. Check back later or contact the seller directly.
+    </p>
+
+    <div class="shop-info">
+      <h3>Shop Status</h3>
+      <p>
+        <strong>Shop Name:</strong> Handmade Ceramics by Emma<br>
+        <strong>Status:</strong> Inactive (Paused)<br>
+        <strong>Last Active:</strong> May 15, 2026
+      </p>
+    </div>
+
+    <div class="inactive-reasons">
+      <h4>Why is this shop closed?</h4>
+      <ul>
+        <li>Seller paused the shop temporarily</li>
+        <li>Seller is on break or unavailable</li>
+        <li>Shop may reopen soon — check back later</li>
+      </ul>
+    </div>
+
+    <div class="contact-section">
+      <h3>Need something? Contact the seller</h3>
+      <div class="contact-option">
+        <span>📧</span>
+        <div>
+          <strong>Email:</strong> <a href="mailto:emma@example.com" style="color: #10B981; text-decoration: none;">emma@example.com</a>
+        </div>
+      </div>
+      <div class="contact-option">
+        <span>🌐</span>
+        <div>
+          <strong>Website:</strong> <a href="#" style="color: #10B981; text-decoration: none;">emmadesigns.com</a>
+        </div>
+      </div>
+      <div class="contact-option">
+        <span>📱</span>
+        <div>
+          <strong>Phone:</strong> +966 50 123 4567 (WhatsApp)
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button class="btn-primary">← Back to Solo Shop</button>
+    </div>
+
+    <div class="footer">
+      <p>Looking for similar shops? <a href="#">Browse other sellers</a></p>
+      <p>Having trouble? <a href="#">Contact Solo Shop support</a></p>
+    </div>
+  </div>
+</body>
+</html>
