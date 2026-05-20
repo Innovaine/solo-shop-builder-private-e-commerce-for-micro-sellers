@@ -670,3 +670,37 @@ drwxrwxr-x  24 reviewer reviewer 4096 May 14 22:23 order-inventory-dashboard-for
 drwxrwxr-x 100 reviewer reviewer 4096 May 19 22:36 solo-shop-builder-private-e-commerce-for-micro-sellers
 ```
 Full output: [`server-runs/2026-05-20T01-17-14-www.soloshopbox.com-cd-ls--la-head--20-1.log`](server-runs/2026-05-20T01-17-14-www.soloshopbox.com-cd-ls--la-head--20-1.log)
+
+## 2026-05-20T01:17:32.688Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e8eb3a8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2193ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -name "*.ts" -o -name "*.tsx" | wc -l && echo "=== SOURCE FILES ===" && find app src -type f \( -name "*.ts" -o -name "*.tsx" \) | head -20
+```
+STDOUT:
+```
+146
+=== SOURCE FILES ===
+app/error.tsx
+app/dashboard/settings/page.tsx
+app/dashboard/products/new/page.tsx
+app/dashboard/products/[id]/edit/page.tsx
+app/dashboard/products/page.tsx
+app/dashboard/products/import/page.tsx
+app/dashboard/branding/page.tsx
+app/dashboard/email-template/page.tsx
+app/dashboard/billing/page.tsx
+app/dashboard/page.tsx
+app/dashboard/orders/[id]/OrderDetailClient.tsx
+app/dashboard/orders/[id]/page.tsx
+app/dashboard/orders/page.tsx
+app/dashboard/profile/page.tsx
+app/dashboard/analytics/page.tsx
+app/dashboard/create-shop/page.tsx
+app/track/[orderId]/page.tsx
+app/components/CartButton.tsx
+app/components/ui/index.ts
+app/components/ui/Modal.tsx
+```
+Full output: [`server-runs/2026-05-20T01-17-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-17-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
