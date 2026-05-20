@@ -126,3 +126,18 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 4 seconds
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 5 hours (healthy)
 ```
 Full output: [`server-runs/2026-05-20T15-28-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T15-28-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T15:29:07.854Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `28ffca1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3876ms)
+```
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "OK" || echo "FAIL"
+curl -s https://www.soloshopbox.com/api/health | head -20
+```
+STDOUT:
+```
+OK
+{"status":"ok","timestamp":"2026-05-20T15:29:08.130Z","responseTime":"100ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"98ms"}}}
+```
+Full output: [`server-runs/2026-05-20T15-29-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T15-29-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
