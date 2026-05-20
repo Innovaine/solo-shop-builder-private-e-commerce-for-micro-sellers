@@ -192,3 +192,54 @@ _Pre-SSH: warehouse pushed to GitHub as commit `5f64743` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "Link href\|router.push" app/shop/[slug]/page.tsx | head -20
 ```
+
+## 2026-05-20T22:32:52.445Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `193ad0b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 4068ms) _(showing tail — full 2,566B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+….md                        | 791 +++++++++++++++++++++++++++
+ day-104/stage-ship-check.md                  |  15 +
+ day-104/standards-audit.md                   | 226 ++++++++
+ day-104/standards_qa.md                      |  44 ++
+ day-104/task-verification.md                 | 227 ++++++++
+ day-104/task_verifier.md                     | 293 ++++++++++
+ day-104/test.md                              | 160 ++++++
+ day-105/_plan.md                             |  41 ++
+ day-105/connectivity-audit.md                | 269 +++++++++
+ day-105/connectivity_qa.md                   | 215 ++++++++
+ day-105/design.md                            |  49 ++
+ day-105/server-log.md                        | 194 +++++++
+ design/pages/2fa-qr-setup.html               | 127 +++++
+ design/pages/refund-status-timeline.html     | 105 ++++
+ design/pages/seller-profile.html             |  46 +-
+ design/pages/webhook-signature-error.html    | 135 +++++
+ design/system/components.html                | 228 ++++++--
+ test-results/day-104/report.md               | 194 +++++++
+ tests/web/day104-crash-fix.spec.ts           |  88 +++
+ 27 files changed, 4225 insertions(+), 65 deletions(-)
+ create mode 100644 day-104/_index.md
+ create mode 100644 day-104/engineering.md
+ create mode 100644 day-104/review.md
+ create mode 100644 day-104/stage-ship-check.md
+ create mode 100644 day-104/standards-audit.md
+ create mode 100644 day-104/standards_qa.md
+ create mode 100644 day-104/task-verification.md
+ create mode 100644 day-104/task_verifier.md
+ create mode 100644 day-104/test.md
+ create mode 100644 day-105/_plan.md
+ create mode 100644 day-105/connectivity-audit.md
+ create mode 100644 day-105/connectivity_qa.md
+ create mode 100644 day-105/design.md
+ create mode 100644 day-105/server-log.md
+ create mode 100644 design/pages/2fa-qr-setup.html
+ create mode 100644 design/pages/refund-status-timeline.html
+ create mode 100644 design/pages/webhook-signature-error.html
+ create mode 100644 test-results/day-104/report.md
+ create mode 100644 tests/web/day104-crash-fix.spec.ts
+```
+Full output: [`server-runs/2026-05-20T22-32-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-32-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
