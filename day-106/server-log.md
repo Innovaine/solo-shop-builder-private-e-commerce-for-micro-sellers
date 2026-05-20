@@ -341,3 +341,12 @@ app/api/orders/[id]/refund/route.ts:15:  return new Stripe(process.env.STRIPE_SE
 app/api/webhooks/stripe/route.ts:15:  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
 ```
 Full output: [`server-runs/2026-05-20T23-27-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-27-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T23:28:27.798Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b016713` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2477ms)
+```
+find ~/solo-shop-builder-private-e-commerce-for-micro-sellers -name '*.ts' -o -name '*.tsx' | grep -v node_modules | grep -v .next | xargs -n1 basename 2>/dev/null | sort | uniq -d | grep -v -E '^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware|instrumentation)\.(ts|tsx)$'
+```
+ERROR: command exited 1
