@@ -900,3 +900,22 @@ app/api/auth/reset-password/route.ts:    const { token, newPassword } = resetPas
 app/api/auth/login/route.ts:    const { email, password } = loginSchema.parse(body)
 ```
 Full output: [`server-runs/2026-05-20T01-20-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-20-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:20:54.533Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0761666` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2887ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "checkRateLimit" app/ --include="*.ts" | wc -l && echo "--- Files using checkRateLimit ---" && grep -r "checkRateLimit" app/ --include="*.ts" | cut -d: -f1 | sort -u
+```
+STDOUT:
+```
+10
+--- Files using checkRateLimit ---
+app/api/auth/forgot-password/route.ts
+app/api/auth/login/route.ts
+app/api/auth/signup/route.ts
+app/api/products/route.ts
+app/api/shops/route.ts
+```
+Full output: [`server-runs/2026-05-20T01-20-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-20-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
