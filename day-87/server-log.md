@@ -430,3 +430,23 @@ Test 5: Test product upload endpoint (without auth - should return 401)
 {"error":"Failed to upload image"}
 ```
 Full output: [`server-runs/2026-05-20T01-11-40-www.soloshopbox.com-echo-Day-87---S3-Upload-Fix-Verification-1.log`](server-runs/2026-05-20T01-11-40-www.soloshopbox.com-echo-Day-87---S3-Upload-Fix-Verification-1.log)
+
+## 2026-05-20T01:12:07.944Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `93537e6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2525ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+cat lib/s3.ts | grep -A 3 -B 3 "ACL"
+```
+STDOUT:
+```
+    Key: key,
+    Body: buffer,
+    ContentType: mimeType,
+    ACL: 'public-read', // Make objects publicly readable
+  })
+
+  await s3Client.send(command)
+```
+Full output: [`server-runs/2026-05-20T01-12-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-12-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
