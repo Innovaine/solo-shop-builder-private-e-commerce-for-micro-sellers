@@ -1072,3 +1072,25 @@ app/api/checkout/myfatoorah/callback/route.ts:196:    return NextResponse.redire
 app/api/checkout/myfatoorah/callback/route.ts:209:    return NextResponse.redirect(`${baseUrl}/checkout?error=callback_error`)
 ```
 Full output: [`server-runs/2026-05-20T11-35-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-35-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:35:23.388Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `899aa48` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2437ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "from 'next/navigation'" app/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -10
+```
+STDOUT:
+```
+app/dashboard/settings/page.tsx:7:import { useRouter } from 'next/navigation'
+app/dashboard/products/new/page.tsx:7:import { useRouter } from 'next/navigation'
+app/dashboard/products/[id]/edit/page.tsx:7:import { useRouter, useParams } from 'next/navigation'
+app/dashboard/products/page.tsx:7:import { useRouter } from 'next/navigation'
+app/dashboard/products/import/page.tsx:4:import { useRouter } from 'next/navigation';
+app/dashboard/branding/page.tsx:4:import { useRouter } from 'next/navigation';
+app/dashboard/email-template/page.tsx:4:import { useRouter } from 'next/navigation';
+app/dashboard/page.tsx:6:import { redirect } from 'next/navigation'
+app/dashboard/orders/[id]/OrderDetailClient.tsx:7:import { useRouter } from 'next/navigation'
+app/dashboard/orders/[id]/page.tsx:4:import { notFound, redirect } from 'next/navigation'
+```
+Full output: [`server-runs/2026-05-20T11-35-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-35-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
