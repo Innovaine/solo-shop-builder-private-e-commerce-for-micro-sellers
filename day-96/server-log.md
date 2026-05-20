@@ -492,3 +492,46 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-20T12-37-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-37-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:38:28.803Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3e95e55` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2650ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -A 30 "function handleSubmit" app/dashboard/branding/page.tsx | head -40
+```
+STDOUT:
+```
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      // Use FormData for file upload
+      const formDataObj = new FormData();
+      formDataObj.append('primaryColor', formData.primaryColor);
+      formDataObj.append('accentColor', formData.accentColor);
+      formDataObj.append('logoUrl', formData.logoUrl);
+      
+      if (logoFile) {
+        formDataObj.append('logo', logoFile);
+      }
+
+      const res = await fetch('/api/shops/branding', {
+        method: 'PATCH',
+        body: formDataObj, // No Content-Type header - browser sets multipart/form-data
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to update branding');
+      }
+
+      const updatedShop = await res.json();
+      setSuccess('Branding updated successfully');
+      
+      // Update preview with new uploaded logo
+```
+Full output: [`server-runs/2026-05-20T12-38-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-38-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
