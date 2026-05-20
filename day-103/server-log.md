@@ -286,3 +286,27 @@ x-powered-by: Next.js
 content-length: 10710
 ```
 Full output: [`server-runs/2026-05-20T20-47-01-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-2.log`](server-runs/2026-05-20T20-47-01-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-2.log)
+
+## 2026-05-20T20:48:23.792Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `29ff96e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 5115ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git status && docker compose ps --format "table {{.Names}}\t{{.Status}}"
+```
+STDOUT:
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.env
+	tsconfig.tsbuildinfo
+
+nothing added to commit but untracked files present (use "git add" to track)
+<no value>                                                          STATUS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 3 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 5 hours (healthy)
+```
+Full output: [`server-runs/2026-05-20T20-48-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-48-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
