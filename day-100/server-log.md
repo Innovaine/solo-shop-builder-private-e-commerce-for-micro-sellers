@@ -342,3 +342,17 @@ STDOUT:
       const response = await fetch(endpoint, {
 ```
 Full output: [`server-runs/2026-05-20T16-29-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-29-41-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:30:15.611Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e1f0abd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2409ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "export async function" app/api/auth/login/route.ts app/api/auth/signup/route.ts 2>/dev/null | head -10
+```
+STDOUT:
+```
+app/api/auth/login/route.ts:17:export async function POST(request: NextRequest) {
+app/api/auth/signup/route.ts:19:export async function POST(request: NextRequest) {
+```
+Full output: [`server-runs/2026-05-20T16-30-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-30-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
