@@ -1676,3 +1676,27 @@ HTTP/2 307
 cache-control: private, no-cache, no-store, max-age=0, must-revalidate
 ```
 Full output: [`server-runs/2026-05-20T21-50-45-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-dashb-1.log`](server-runs/2026-05-20T21-50-45-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-dashb-1.log)
+
+## 2026-05-20T21:54:26.717Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `66918ef` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2759ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}" | grep solo-shop
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 10 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 6 hours (healthy)
+```
+Full output: [`server-runs/2026-05-20T21-54-26-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-20T21-54-26-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 672ms)
+```
+curl -sf https://www.soloshopbox.com/api/health
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T21:54:27.128Z","responseTime":"219ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"217ms"}}}
+```
+Full output: [`server-runs/2026-05-20T21-54-26-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log`](server-runs/2026-05-20T21-54-26-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log)
