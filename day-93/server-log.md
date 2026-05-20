@@ -151,3 +151,20 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T10:52:32.416Z","responseTime":"181ms","checks":{"database":{"status":"ok","responseTime":"35ms"},"email":{"status":"ok","responseTime":"146ms"}}}✓ API health OK
 ```
 Full output: [`server-runs/2026-05-20T10-52-31-www.soloshopbox.com-curl--v-https-www.soloshopbox.com-health-1.log`](server-runs/2026-05-20T10-52-31-www.soloshopbox.com-curl--v-https-www.soloshopbox.com-health-1.log)
+
+## 2026-05-20T10:52:56.117Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7d8014c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2739ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Run a subset of critical tests to verify no regressions
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day89-*.spec.ts tests/web/day87-*.spec.ts --output=$HOME/.playwright-out --reporter=list > /tmp/day93-regression.log 2>&1 &
+echo $! > /tmp/day93-regression.pid
+echo "Started regression tests, PID=$(cat /tmp/day93-regression.pid)"
+```
+STDOUT:
+```
+Started regression tests, PID=1971804
+```
+Full output: [`server-runs/2026-05-20T10-52-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-52-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
