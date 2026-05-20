@@ -905,3 +905,21 @@ STDOUT:
 /usr/local/bin/schema-sync-check
 ```
 Full output: [`server-runs/2026-05-20T12-08-27-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-08-27-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:08:45.717Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c2a1a71` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2580ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json | jq '.summary'
+```
+STDOUT:
+```
+{
+  "models": 9,
+  "interfaces": 33,
+  "matched": 9,
+  "drift": 6
+}
+```
+Full output: [`server-runs/2026-05-20T12-08-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-08-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
