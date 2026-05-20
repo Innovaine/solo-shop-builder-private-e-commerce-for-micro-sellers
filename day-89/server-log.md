@@ -393,3 +393,28 @@ HTTP/2 200
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-20T07-27-02-www.soloshopbox.com-echo-Testing-Dashboard-Pages-expect-401--1.log`](server-runs/2026-05-20T07-27-02-www.soloshopbox.com-echo-Testing-Dashboard-Pages-expect-401--1.log)
+
+## 2026-05-20T07:27:25.671Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `17e4bbf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2851ms)
+```
+echo "=== Testing API Endpoints ==="
+curl -s https://www.soloshopbox.com/api/health | head -5
+echo ""
+curl -sI https://www.soloshopbox.com/api/shops/profile | grep -E "HTTP|content-type"
+curl -sI https://www.soloshopbox.com/api/products | grep -E "HTTP|content-type"
+curl -sI https://www.soloshopbox.com/api/orders | grep -E "HTTP|content-type"
+```
+STDOUT:
+```
+=== Testing API Endpoints ===
+{"status":"ok","timestamp":"2026-05-20T07:27:25.443Z","responseTime":"211ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"210ms"}}}
+HTTP/2 401 
+content-type: application/json
+HTTP/2 400 
+content-type: application/json
+HTTP/2 500 
+content-type: application/json
+```
+Full output: [`server-runs/2026-05-20T07-27-25-www.soloshopbox.com-echo-Testing-API-Endpoints-1.log`](server-runs/2026-05-20T07-27-25-www.soloshopbox.com-echo-Testing-API-Endpoints-1.log)
