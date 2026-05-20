@@ -277,3 +277,22 @@ STDOUT:
 HTTP_CODE: 200
 ```
 Full output: [`server-runs/2026-05-20T23-52-17-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com--w-nH-1.log`](server-runs/2026-05-20T23-52-17-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com--w-nH-1.log)
+
+## 2026-05-20T23:54:09.699Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b990ab3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 2640ms)
+```
+docker ps --format ".Names\t.Status" | grep solo-shop
+```
+ERROR: command exited 1
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 707ms)
+```
+curl -sf https://www.soloshopbox.com/api/health
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T23:54:09.607Z","responseTime":"209ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"208ms"}}}
+```
+Full output: [`server-runs/2026-05-20T23-54-09-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log`](server-runs/2026-05-20T23-54-09-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log)
