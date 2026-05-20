@@ -105,3 +105,49 @@ app-1  | {"requestId":"IGf6w_i2SRr6n3ej","method":"GET","path":"/api/products","
 app-1  | {"requestId":"dwZv-xJJxYlQN9wb","method":"GET","path":"/api/analytics","responseTime":"0ms","timestamp":"2026-05-20T10:29:00.937Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
 ```
 Full output: [`server-runs/2026-05-20T10-52-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-52-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T10:52:31.926Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fbf3a82` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2718ms)
+```
+curl -v https://www.soloshopbox.com/health 2>&1 | head -30
+echo "---"
+curl -sf https://www.soloshopbox.com/api/health && echo "✓ API health OK" || echo "✗ API health FAIL"
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host www.soloshopbox.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 187.124.22.3
+*   Trying 187.124.22.3:443...
+* Connected to www.soloshopbox.com (187.124.22.3) port 443
+* ALPN: curl offers h2,http/1.1
+} [5 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+} [512 bytes data]
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+{ [19 bytes data]
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+{ [2848 bytes data]
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+{ [520 bytes data]
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+* SSL connection using TLSv1.3 / TLS_AES_128_GCM_SHA256 / X25519 / RSASSA-PSS
+* ALPN: server accepted h2
+---
+{"status":"ok","timestamp":"2026-05-20T10:52:32.416Z","responseTime":"181ms","checks":{"database":{"status":"ok","responseTime":"35ms"},"email":{"status":"ok","responseTime":"146ms"}}}✓ API health OK
+```
+Full output: [`server-runs/2026-05-20T10-52-31-www.soloshopbox.com-curl--v-https-www.soloshopbox.com-health-1.log`](server-runs/2026-05-20T10-52-31-www.soloshopbox.com-curl--v-https-www.soloshopbox.com-health-1.log)
