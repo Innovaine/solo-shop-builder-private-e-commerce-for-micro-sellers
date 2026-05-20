@@ -633,3 +633,36 @@ STDOUT:
       "kind": "api",
 ```
 Full output: [`server-runs/2026-05-20T11-27-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-27-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:27:44.962Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e91f4f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2806ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && bash -lc 'route-validator . --json' 2>&1 | grep -E '"(broken|orphans|methodMismatches)":|"summary"' -A 2
+```
+STDOUT:
+```
+  "summary": {
+    "routes": 58,
+    "pages": 24,
+--
+    "broken": 3,
+    "orphans": 4,
+    "methodMismatches": 1
+  },
+  "routes": [
+--
+  "broken": [
+    {
+      "file": "app/shop/[slug]/SortDropdown.tsx",
+--
+  "orphans": [
+    {
+      "route": "/auth/reset-password",
+--
+  "methodMismatches": [
+    {
+      "file": "app/track/[orderId]/page.tsx",
+```
+Full output: [`server-runs/2026-05-20T11-27-44-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-27-44-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
