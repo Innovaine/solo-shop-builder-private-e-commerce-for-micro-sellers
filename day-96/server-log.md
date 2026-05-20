@@ -699,3 +699,60 @@ STDOUT:
 389 app/dashboard/profile/page.tsx
 ```
 Full output: [`server-runs/2026-05-20T12-40-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-40-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:41:11.922Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e834854` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2402ms) _(showing tail — full 15,562B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat app/dashboard/profile/page.tsx
+```
+STDOUT:
+```
+…              <div className="w-16 h-16 bg-whisper/20 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                  ) : currentLogoUrl ? (
+                    <img src={currentLogoUrl} alt="Logo" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="text-3xl">🏪</div>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-1">
+                    {formData.displayName || 'Your shop name'}
+                  </h3>
+                  <p className="text-sm text-slate-200 leading-relaxed">
+                    {formData.publicDescription || 'Tell customers about your shop...'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-3 pt-3 border-t border-white/10 text-sm">
+                {formData.twitterUrl && (
+                  <a href={formData.twitterUrl} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white">
+                    🐦 Twitter
+                  </a>
+                )}
+                {formData.instagramUrl && (
+                  <a href={formData.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white">
+                    📷 Instagram
+                  </a>
+                )}
+                {formData.facebookUrl && (
+                  <a href={formData.facebookUrl} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white">
+                    📘 Facebook
+                  </a>
+                )}
+              </div>
+            </div>
+            <div className="text-xs text-slate/60 mt-3 px-1">
+              This is how customers see your shop page header and social links.
+            </div>
+          </div>
+        </Card>
+      </main>
+    </div>
+  );
+}
+```
+Full output: [`server-runs/2026-05-20T12-41-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-41-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
