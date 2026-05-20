@@ -1562,3 +1562,47 @@ This is a TRANSPORT-LAYER failure, not an auth failure. The SSH handshake never 
         HostKeyAlgorithms +ssh-rsa
       Then: sudo systemctl restart sshd
   • Wrong port (not 22). Check via your laptop: `ssh -v root@<host>` shows the real port.
+
+## 2026-05-20T13:03:32.366Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f45ecee` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3371ms) _(showing tail — full 4,280B stdout + 0B stderr)_
+```
+wc -l /tmp/day96-test.log && tail -80 /tmp/day96-test.log
+```
+STDOUT:
+```
+…────────────────────────────────────
+    ../.playwright-out/day96-image-upload-fix-Day-b4aab-olidated-image-upload-field-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day96-image-upload-fix-Day-b4aab-olidated-image-upload-field-chromium/error-context.md
+
+  2) [chromium] › tests/web/day96-image-upload-fix.spec.ts:48:7 › Day 96 — Image Upload Fixes › Smoke test: API endpoints respond correctly 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      57 |     // Products endpoint (public, might 404 or return empty)
+      58 |     const productsRes = await page.request.get('https://www.soloshopbox.com/api/products');
+    > 59 |     expect([200, 404, 401].includes(productsRes.status())).toBe(true);
+         |                                                            ^
+      60 |   });
+      61 |
+      62 |   test('Smoke test: Shop storefront page structure', async ({ page }) => {
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day96-image-upload-fix.spec.ts:59:60
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../.playwright-out/day96-image-upload-fix-Day-7da5f-endpoints-respond-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day96-image-upload-fix-Day-7da5f-endpoints-respond-correctly-chromium/error-context.md
+
+  2 failed
+    [chromium] › tests/web/day96-image-upload-fix.spec.ts:16:7 › Day 96 — Image Upload Fixes › Task #276 + #277 + #278: Profile page has consolidated image upload field 
+    [chromium] › tests/web/day96-image-upload-fix.spec.ts:48:7 › Day 96 — Image Upload Fixes › Smoke test: API endpoints respond correctly 
+  3 passed (6.2s)
+```
+Full output: [`server-runs/2026-05-20T13-03-32-www.soloshopbox.com-wc--l-tmp-day96-test.log-tail--80-tmp-da-1.log`](server-runs/2026-05-20T13-03-32-www.soloshopbox.com-wc--l-tmp-day96-test.log-tail--80-tmp-da-1.log)
