@@ -298,3 +298,18 @@ STDOUT:
 55:            <Link href={homeLink} className="hover:opacity-80 transition-opacity">
 ```
 Full output: [`server-runs/2026-05-20T16-28-14-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-28-14-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:28:43.242Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bd025df` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2212ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && cat app/page.tsx | grep -E "href=|router\.|Link " | head -20
+```
+STDOUT:
+```
+import Link from 'next/link'
+          <Link href="/auth/login">
+          <Link href="/auth/login" className="text-white font-semibold hover:underline">
+```
+Full output: [`server-runs/2026-05-20T16-28-43-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-28-43-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
