@@ -324,3 +324,11 @@ STDOUT:
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Up 31 minutes (healthy)
 ```
 Full output: [`server-runs/2026-05-20T10-00-08-www.soloshopbox.com-docker-ps---format-.Names-.Status-grep-s-1.log`](server-runs/2026-05-20T10-00-08-www.soloshopbox.com-docker-ps---format-.Names-.Status-grep-s-1.log)
+
+## 2026-05-20T10:00:28.846Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d218d34` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3484ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d app
+```
