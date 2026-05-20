@@ -257,3 +257,32 @@ DONE
   7 passed (37.6s)
 ```
 Full output: [`server-runs/2026-05-20T10-55-14-www.soloshopbox.com-kill--0-cat-tmp-day93-smoke.pid-2-dev-nu-1.log`](server-runs/2026-05-20T10-55-14-www.soloshopbox.com-kill--0-cat-tmp-day93-smoke.pid-2-dev-nu-1.log)
+
+## 2026-05-20T10:55:37.603Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `158652f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2641ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+# Test that the S3 module can be imported properly
+echo "Testing S3 module import..."
+grep -n "uploadToS3" src/lib/s3.ts
+echo "---"
+grep -n "from.*s3" app/api/products/upload/route.ts
+echo "---"
+# Check S3 config is readable
+curl -sf https://www.soloshopbox.com/api/health | grep -o "ok" && echo "✓ App still healthy after import change"
+```
+STDOUT:
+```
+Testing S3 module import...
+31:export async function uploadToS3(
+---
+9:import { uploadToS3, isS3Configured } from '@/lib/s3'
+---
+ok
+ok
+ok
+✓ App still healthy after import change
+```
+Full output: [`server-runs/2026-05-20T10-55-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-55-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
