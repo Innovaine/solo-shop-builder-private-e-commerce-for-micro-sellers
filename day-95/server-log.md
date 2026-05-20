@@ -692,3 +692,16 @@ STDOUT:
                       </td>
 ```
 Full output: [`server-runs/2026-05-20T12-06-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-06-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:07:07.862Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d8f9c3f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2402ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && which route-validator || echo "route-validator not found in PATH"
+```
+STDOUT:
+```
+/usr/local/bin/route-validator
+```
+Full output: [`server-runs/2026-05-20T12-07-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-07-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
