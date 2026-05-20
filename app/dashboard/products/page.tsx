@@ -217,9 +217,17 @@ export default function ProductsPage() {
                     <tr key={product.id} className="border-b border-whisper hover:bg-cream">
                       <td className="py-4 px-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-whisper rounded flex items-center justify-center text-xl">
-                            {product.imageUrl ? '🖼️' : '📦'}
-                          </div>
+                          {product.imageUrl ? (
+                            <img
+                              src={product.imageUrl}
+                              alt={product.title}
+                              className="w-12 h-12 object-cover rounded"
+                            />
+                          ) : (
+                            <div className="w-12 h-12 bg-whisper rounded flex items-center justify-center text-xl">
+                              📦
+                            </div>
+                          )}
                           <div>
                             <div className="font-medium text-charcoal">{product.title}</div>
                             {product.description && (

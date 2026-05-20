@@ -111,8 +111,9 @@ export async function uploadToS3(
     Key: key,
     Body: buffer,
     ContentType: mimeType,
-    // Note: ACL removed - DigitalOcean Spaces doesn't support legacy ACLs with IAM.
-    // Objects must be made public via Bucket settings or CDN configuration.
+    // FR-4: Make product images publicly accessible via CDN
+    // DigitalOcean Spaces DOES support public-read ACL (per integration docs)
+    ACL: 'public-read',
   })
 
   await s3Client.send(command)
