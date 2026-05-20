@@ -1410,3 +1410,18 @@ STDOUT:
 DELETE 2
 ```
 Full output: [`server-runs/2026-05-20T21-38-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-38-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:39:18.719Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bd53396` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2842ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED         STATUS                          PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        8 minutes ago   Restarting (1) 47 seconds ago   
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   6 hours ago     Up 6 hours (healthy)            127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-20T21-39-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-39-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
