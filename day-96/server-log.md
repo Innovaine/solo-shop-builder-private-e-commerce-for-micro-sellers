@@ -1686,3 +1686,51 @@ Check actual filesystem:
 -rw-rw-r--  1 tester tester 4060 May 20 11:24 s3.ts
 ```
 Full output: [`server-runs/2026-05-20T13-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T13-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T13:05:43.085Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3858082` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3020ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+echo "Check profile page for consolidated image upload:"
+grep -n "Shop Logo\|Profile Image\|Shop Image" app/dashboard/profile/page.tsx | head -5
+
+echo
+echo "Check if imageFile and imagePreview state are used:"
+grep -n "imageFile\|imagePreview" app/dashboard/profile/page.tsx | head -10
+
+echo
+echo "Check branding API for image upload handling:"
+head -60 app/api/shops/branding/route.ts | tail -20
+```
+STDOUT:
+```
+Check profile page for consolidated image upload:
+200:              <h2 className="text-lg font-semibold text-charcoal mb-5">Shop Logo</h2>
+
+Check if imageFile and imagePreview state are used:
+
+Check branding API for image upload handling:
+
+    // Validate color format
+    const colorRegex = /^#[0-9A-Fa-f]{6}$/;
+    if (primaryColor && !colorRegex.test(primaryColor)) {
+      return NextResponse.json(
+        { error: 'Invalid primary color format. Use hex format (#RRGGBB)' },
+        { status: 400 }
+      );
+    }
+    if (accentColor && !colorRegex.test(accentColor)) {
+      return NextResponse.json(
+        { error: 'Invalid accent color format. Use hex format (#RRGGBB)' },
+        { status: 400 }
+      );
+    }
+
+    let logoImageUrl: string | undefined;
+
+    // Handle logo file upload
+    if (logoFile && logoFile.size > 0) {
+```
+Full output: [`server-runs/2026-05-20T13-05-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T13-05-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
