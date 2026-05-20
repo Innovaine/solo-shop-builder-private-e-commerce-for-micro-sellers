@@ -364,3 +364,11 @@ page.tsx
 route.ts
 ```
 Full output: [`server-runs/2026-05-20T23-28-58-www.soloshopbox.com-find-solo-shop-builder-private-e-commerc-1.log`](server-runs/2026-05-20T23-28-58-www.soloshopbox.com-find-solo-shop-builder-private-e-commerc-1.log)
+
+## 2026-05-20T23:29:32.036Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0ac2904` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2150ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "cookies()" app/api/ --include='*.ts' | grep -v "^[^:]*:[^:]*:.*from.*cookies" | head -20
+```
