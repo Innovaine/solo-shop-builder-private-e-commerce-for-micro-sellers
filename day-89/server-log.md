@@ -418,3 +418,18 @@ HTTP/2 500
 content-type: application/json
 ```
 Full output: [`server-runs/2026-05-20T07-27-25-www.soloshopbox.com-echo-Testing-API-Endpoints-1.log`](server-runs/2026-05-20T07-27-25-www.soloshopbox.com-echo-Testing-API-Endpoints-1.log)
+
+## 2026-05-20T07:28:38.847Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0b4e162` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2549ms)
+```
+cd /home/reviewer && ls -la | grep -E "solo|repo" && echo "---" && pwd
+```
+STDOUT:
+```
+drwxrwxr-x 100 reviewer reviewer 4096 May 19 22:36 solo-shop-builder-private-e-commerce-for-micro-sellers
+---
+/home/reviewer
+```
+Full output: [`server-runs/2026-05-20T07-28-38-www.soloshopbox.com-cd-home-reviewer-ls--la-grep--E-solo-rep-1.log`](server-runs/2026-05-20T07-28-38-www.soloshopbox.com-cd-home-reviewer-ls--la-grep--E-solo-rep-1.log)
