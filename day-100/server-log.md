@@ -509,3 +509,17 @@ process.env.STRIPE_SECRET_KEY
 process.env.STRIPE_WEBHOOK_SECRET
 ```
 Full output: [`server-runs/2026-05-20T16-35-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-35-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:36:00.184Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `80c7121` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2446ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "constructEvent\|verify" app/api/webhooks/stripe/route.ts | head -5
+```
+STDOUT:
+```
+46:    // Stripe.webhooks.constructEvent validates the signature
+48:    event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
+```
+Full output: [`server-runs/2026-05-20T16-36-00-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-36-00-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
