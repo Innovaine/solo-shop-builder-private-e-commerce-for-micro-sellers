@@ -645,3 +645,18 @@ _Pre-SSH: warehouse pushed to GitHub as commit `1ad4498` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npm install 2>&1 | tail -20
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T21:05:22.924Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `67ffd64` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3387ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -100
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-20T21-05-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-05-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
