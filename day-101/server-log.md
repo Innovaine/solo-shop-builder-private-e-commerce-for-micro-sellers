@@ -137,3 +137,12 @@ sleep 3
 docker ps --format '.Names\t.Status' | grep solo-shop
 ```
 ERROR: command exited 1
+
+## 2026-05-20T18:07:20.229Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2df750b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 2455ms)
+```
+docker ps --format '.Names\t.Status' | grep -E 'solo|CONTAINER'
+```
+ERROR: command exited 1
