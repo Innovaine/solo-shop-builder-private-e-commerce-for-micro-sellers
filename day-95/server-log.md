@@ -802,3 +802,25 @@ STDOUT:
       "kind": "page",
 ```
 Full output: [`server-runs/2026-05-20T12-07-27-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-07-27-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:07:48.651Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c17d6e3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2450ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json | jq '.summary'
+```
+STDOUT:
+```
+{
+  "routes": 58,
+  "pages": 24,
+  "apis": 34,
+  "links": 92,
+  "apiCalls": 36,
+  "broken": 3,
+  "orphans": 4,
+  "methodMismatches": 1
+}
+```
+Full output: [`server-runs/2026-05-20T12-07-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-07-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
