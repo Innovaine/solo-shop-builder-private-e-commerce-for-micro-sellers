@@ -430,3 +430,35 @@ STDOUT:
       <select
 ```
 Full output: [`server-runs/2026-05-20T14-45-58-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-45-58-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:47:27.817Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `728aaa5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2858ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && git status | head -20
+```
+STDOUT:
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.env
+	tsconfig.tsbuildinfo
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+Full output: [`server-runs/2026-05-20T14-47-27-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-47-27-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:48:24.797Z — Mehrdad ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2285ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la app/lib/s3.ts 2>&1
+```
+STDOUT:
+```
+-rw-rw-r-- 1 reviewer reviewer 4060 May 20 14:21 app/lib/s3.ts
+```
+Full output: [`server-runs/2026-05-20T14-48-24-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-48-24-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
