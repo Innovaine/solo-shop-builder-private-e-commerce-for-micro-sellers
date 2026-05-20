@@ -139,3 +139,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `57069e6` so the server's `git pu
 docker ps --format '.Names\t.Status' | grep solo-shop && curl -sf https://www.soloshopbox.com/api/health | jq .
 ```
 ERROR: command exited 1
+
+## 2026-05-20T14:09:41.037Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4fbd74e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2659ms)
+```
+curl -sf https://www.soloshopbox.com/api/health
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T14:09:41.320Z","responseTime":"196ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"194ms"}}}
+```
+Full output: [`server-runs/2026-05-20T14-09-41-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T14-09-41-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
