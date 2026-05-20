@@ -315,3 +315,29 @@ _Pre-SSH: warehouse pushed to GitHub as commit `19d512a` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE '^(const|let|var)[[:space:]]+[A-Za-z_].*process\.env' app/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null
 ```
 ERROR: command exited 2
+
+## 2026-05-20T23:27:39.306Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `66cc753` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3093ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "process.env" src/lib/ app/api/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -E "^[^:]+:1[0-9]:" | head -40
+```
+STDOUT:
+```
+src/lib/s3.ts:13:  const s3Provider = process.env.S3_PROVIDER || 'aws'
+src/lib/s3.ts:17:  const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+src/lib/s3.ts:18:  const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
+src/lib/email.ts:11:    user: process.env.SMTP_USER,
+src/lib/email.ts:12:    pass: process.env.SMTP_PASS,
+src/lib/db.ts:14:    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+src/lib/db.ts:17:if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+src/lib/auth.ts:14:  password: process.env.SESSION_SECRET || 'complex_password_at_least_32_characters_long',
+src/lib/auth.ts:17:    secure: process.env.NODE_ENV === 'production',
+app/api/health/route.ts:16:  const isBuildTime = process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL
+app/api/checkout/myfatoorah/callback/route.ts:13:    const baseUrl = process.env.APP_URL || 'https://www.soloshopbox.com'
+app/api/checkout/route.ts:15:  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+app/api/orders/[id]/refund/route.ts:15:  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+app/api/webhooks/stripe/route.ts:15:  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+```
+Full output: [`server-runs/2026-05-20T23-27-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-27-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
