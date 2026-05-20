@@ -69,13 +69,29 @@ export default async function ProductDetailPage({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Image */}
           <div className="space-y-3">
-            <div className="aspect-square bg-gradient-to-br from-whisper to-cream rounded-lg flex items-center justify-center text-9xl border border-whisper cursor-pointer hover:from-cream hover:to-whisper transition-all">
-              💎
+            <div className="aspect-square bg-gradient-to-br from-whisper to-cream rounded-lg flex items-center justify-center border border-whisper overflow-hidden">
+              {product.imageUrl ? (
+                <img
+                  src={product.imageUrl}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="text-9xl">💎</div>
+              )}
             </div>
             {/* Thumbnail placeholders for future image gallery */}
             <div className="flex gap-2">
-              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center text-3xl border-2 border-charcoal">
-                💎
+              <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center border-2 border-charcoal overflow-hidden">
+                {product.imageUrl ? (
+                  <img
+                    src={product.imageUrl}
+                    alt={product.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-3xl">💎</div>
+                )}
               </div>
               <div className="w-20 h-20 bg-gradient-to-br from-whisper to-cream rounded-md flex items-center justify-center text-3xl border border-whisper opacity-50">
                 ✨
