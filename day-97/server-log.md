@@ -411,3 +411,60 @@ access-control-allow-origin: *
 content-type: application/json
 ```
 Full output: [`server-runs/2026-05-20T14-19-37-www.soloshopbox.com-echo-Day-97-Manual-Smoke-Tests-1.log`](server-runs/2026-05-20T14-19-37-www.soloshopbox.com-echo-Day-97-Manual-Smoke-Tests-1.log)
+
+## 2026-05-20T14:21:25.895Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6281cf5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3234ms) _(showing tail — full 11,654B stdout + 0B stderr)_
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…ty_qa.md
+ create mode 100644 day-95/design.md
+ create mode 100644 day-95/engineering.md
+ create mode 100644 day-95/review.md
+ create mode 100644 day-95/server-log.md
+ create mode 100644 day-95/stage-ship-check.md
+ create mode 100644 day-95/standards-audit.md
+ create mode 100644 day-95/standards_qa.md
+ create mode 100644 day-95/task-verification.md
+ create mode 100644 day-95/task_verifier.md
+ create mode 100644 day-95/test.md
+ create mode 100644 day-96/_index.md
+ create mode 100644 day-96/_plan.md
+ create mode 100644 day-96/connectivity-audit.md
+ create mode 100644 day-96/connectivity_qa.md
+ create mode 100644 day-96/design.md
+ create mode 100644 day-96/engineering.md
+ create mode 100644 day-96/review.md
+ create mode 100644 day-96/server-log.md
+ create mode 100644 day-96/stage-ship-check.md
+ create mode 100644 day-96/task_verifier.md
+ create mode 100644 day-96/test.md
+ create mode 100644 day-97/_plan.md
+ create mode 100644 day-97/connectivity-audit.md
+ create mode 100644 day-97/connectivity_qa.md
+ create mode 100644 day-97/design.md
+ create mode 100644 day-97/engineering.md
+ create mode 100644 day-97/review.md
+ create mode 100644 day-97/server-log.md
+ create mode 100644 day-97/test.md
+ create mode 100644 design/day-93-responsive-audit.md
+ create mode 100644 design/pages/checkout-myfatoorah-success.html
+ create mode 100644 design/pages/post-purchase-receipt.html
+ create mode 100644 design/pages/product-image-upload-flow.html
+ create mode 100644 design/pages/shop-logo-upload.html
+ create mode 100644 design/pages/storefront-inactive-shop.html
+ create mode 100644 test-results/day-93/report.md
+ create mode 100644 test-results/day-94/report.md
+ create mode 100644 test-results/day-95/report.md
+ create mode 100644 test-results/day-96/report.md
+ create mode 100644 test-results/day-97/report.md
+ create mode 100644 tests/web/day94-engineer-fixes.spec.ts
+ create mode 100644 tests/web/day95-s3-public-images.spec.ts
+ create mode 100644 tests/web/day96-image-upload-fix.spec.ts
+ create mode 100644 tests/web/day97-features.spec.ts
+```
+Full output: [`server-runs/2026-05-20T14-21-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-21-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
