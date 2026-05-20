@@ -484,3 +484,23 @@ bb8422d Mehrdad (task_verifier, day 97) — pre-SSH sync
 300adc5 Priya (tester, day 97) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-20T14-49-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-49-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:49:40.052Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9633e73` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2681ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && git show 812aee2 --stat | head -40
+```
+STDOUT:
+```
+commit 812aee2538790087df15af6ff6908974cd72b2f9
+Author: Qadar <qadar@local>
+Date:   Wed May 20 14:38:30 2026 +0000
+
+    Anil (engineer, day 98) — pre-SSH sync
+
+ day-98/server-log.md | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+```
+Full output: [`server-runs/2026-05-20T14-49-40-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-49-40-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
