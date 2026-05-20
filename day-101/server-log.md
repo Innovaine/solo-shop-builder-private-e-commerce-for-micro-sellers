@@ -562,3 +562,55 @@ STDOUT:
     },
 ```
 Full output: [`server-runs/2026-05-20T18-19-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-19-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T18:19:31.489Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `39177ee` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2523ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | grep -A 30 '"broken"' | head -40
+```
+STDOUT:
+```
+    "broken": 3,
+    "orphans": 4,
+    "methodMismatches": 0
+  },
+  "routes": [
+    {
+      "route": "/api/account/delete",
+      "kind": "api",
+      "file": "app/api/account/delete/route.ts"
+    },
+    {
+      "route": "/api/account/password",
+      "kind": "api",
+      "file": "app/api/account/password/route.ts"
+    },
+    {
+      "route": "/api/analytics",
+      "kind": "api",
+      "file": "app/api/analytics/route.ts"
+    },
+    {
+      "route": "/api/auth/forgot-password",
+      "kind": "api",
+      "file": "app/api/auth/forgot-password/route.ts"
+    },
+    {
+      "route": "/api/auth/login",
+      "kind": "api",
+      "file": "app/api/auth/login/route.ts"
+    },
+    {
+--
+  "broken": [
+    {
+      "file": "app/shop/[slug]/SortDropdown.tsx",
+      "line": 32,
+      "kind": "router",
+      "target": "/shop/${shopSlug}${queryString"
+    },
+    {
+```
+Full output: [`server-runs/2026-05-20T18-19-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-19-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
