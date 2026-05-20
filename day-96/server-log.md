@@ -231,3 +231,11 @@ STDOUT:
 HEAD is now at 6819a80 Anil (engineer, day 95) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-20T12-34-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-34-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:35:18.480Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b5136d2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2494ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find app -name "*profile*" -type f | grep -E "\.(ts|tsx)$" | head -10
+```
