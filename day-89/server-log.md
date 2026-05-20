@@ -240,3 +240,31 @@ STDOUT:
 #15 DONE 39.7s
 ```
 Full output: [`server-runs/2026-05-20T07-22-38-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-20T07-22-38-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+
+## 2026-05-20T07:22:59.375Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d98596a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2671ms)
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/build.log | grep -E "(Successfully|ERROR|DONE|#[0-9]+ exporting|FINISHED)"
+```
+STDOUT:
+```
+DONE
+#25 DONE 1.3s
+#26 DONE 0.1s
+#27 DONE 0.1s
+#28 DONE 0.1s
+#29 DONE 0.1s
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.8s done
+#30 exporting manifest sha256:e1ac4503088682884c2cb594f3eeaea898c2361dea21622655410476b71f0b5c done
+#30 exporting config sha256:03d5982a4a9bd5c8c7af6c5eae5bb2308afb18ad903fc7688c39dc659b4a5bfa done
+#30 exporting attestation manifest sha256:d51aa4261a3ee651bbbb61329917545ebbcbc34ddb8848e5719ecda951e20019 0.0s done
+#30 exporting manifest list sha256:c0bf3d1132a0715c1a1cabba104f03b1c9250326d75e739f4cd07c1b336e46ba done
+#30 DONE 3.0s
+#31 DONE 0.0s
+```
+Full output: [`server-runs/2026-05-20T07-22-59-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-20T07-22-59-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
