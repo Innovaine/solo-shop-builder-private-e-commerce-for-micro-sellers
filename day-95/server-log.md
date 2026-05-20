@@ -613,3 +613,18 @@ export function isS3Configured(): boolean {
 }
 ```
 Full output: [`server-runs/2026-05-20T12-04-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-04-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:05:06.128Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b4d56cf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2585ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "ACL\|PutObjectCommand" lib/s3.ts | head -20
+```
+STDOUT:
+```
+5:import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+73:  const command = new PutObjectCommand({
+78:    // Note: ACL removed - DigitalOcean Spaces doesn't support legacy ACLs with IAM.
+```
+Full output: [`server-runs/2026-05-20T12-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-05-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
