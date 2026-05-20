@@ -1651,3 +1651,28 @@ STDOUT:
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-20T21-49-08-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log`](server-runs/2026-05-20T21-49-08-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log)
+
+## 2026-05-20T21:50:05.040Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6dc8f8d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2203ms)
+```
+curl -sI https://www.soloshopbox.com/shop/salman | head -n 1
+```
+STDOUT:
+```
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-20T21-50-05-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-shop--1.log`](server-runs/2026-05-20T21-50-05-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-shop--1.log)
+
+## 2026-05-20T21:50:45.192Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2611ms)
+```
+curl -sI https://www.soloshopbox.com/dashboard | head -n 2
+```
+STDOUT:
+```
+HTTP/2 307 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+```
+Full output: [`server-runs/2026-05-20T21-50-45-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-dashb-1.log`](server-runs/2026-05-20T21-50-45-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-dashb-1.log)
