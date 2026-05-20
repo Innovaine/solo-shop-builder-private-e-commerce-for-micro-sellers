@@ -1368,3 +1368,23 @@ _Pre-SSH: warehouse pushed to GitHub as commit `a7d094d` so the server's `git pu
 docker ps --format '.Names\t.Status' | grep solo-shop && curl -sf https://www.soloshopbox.com/api/health
 ```
 ERROR: command exited 1
+
+## 2026-05-20T12:57:36.269Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a17dccb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2709ms)
+```
+docker ps --filter "name=solo-shop" --format "{{.Names}}\t{{.Status}}" ; echo "---" ; curl -I https://www.soloshopbox.com/api/health 2>&1 | head -5
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 3 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 3 hours (healthy)
+---
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 200 
+access-control-allow-headers: Content-Type, Authorization
+```
+Full output: [`server-runs/2026-05-20T12-57-36-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log`](server-runs/2026-05-20T12-57-36-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log)
