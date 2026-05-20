@@ -919,3 +919,25 @@ STDOUT:
 src/lib/db.ts:13:  new PrismaClient({
 ```
 Full output: [`server-runs/2026-05-20T07-34-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T07-34-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T07:34:24.329Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c56dccd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2410ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find app/api -name "route.ts" -exec grep -L "zod\|z\.parse\|z\.safeParse" {} \; | head -10
+```
+STDOUT:
+```
+app/api/shops/status/route.ts
+app/api/shops/branding/route.ts
+app/api/shops/email-template/route.ts
+app/api/shops/profile/route.ts
+app/api/products/[id]/status/route.ts
+app/api/products/[id]/variants/route.ts
+app/api/products/[id]/variants/[variantId]/route.ts
+app/api/products/export/route.ts
+app/api/products/import/route.ts
+app/api/products/bulk-status/route.ts
+```
+Full output: [`server-runs/2026-05-20T07-34-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T07-34-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
