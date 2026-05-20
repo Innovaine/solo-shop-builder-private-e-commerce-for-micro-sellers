@@ -177,3 +177,18 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 Full output: [`server-runs/2026-05-20T09-55-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T09-55-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T09:56:16.848Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cec6451` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 3853ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git reset --hard && git pull
+```
+STDOUT:
+```
+HEAD is now at 5ea76e7 Anil (engineer, day 92) — pre-SSH sync
+Updating 5ea76e7..cec6451
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-20T09-56-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T09-56-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
