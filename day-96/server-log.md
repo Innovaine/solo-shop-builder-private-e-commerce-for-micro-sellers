@@ -1359,3 +1359,12 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T12:55:42.240Z","responseTime":"212ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"210ms"}}}
 ```
 Full output: [`server-runs/2026-05-20T12-55-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-55-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:57:04.266Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a7d094d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 2875ms)
+```
+docker ps --format '.Names\t.Status' | grep solo-shop && curl -sf https://www.soloshopbox.com/api/health
+```
+ERROR: command exited 1
