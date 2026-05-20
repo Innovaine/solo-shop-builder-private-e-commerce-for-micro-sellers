@@ -1313,3 +1313,49 @@ _Pre-SSH: warehouse pushed to GitHub as commit `fd5b59b` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d app
 ```
+
+## 2026-05-20T12:54:43.667Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2e16840` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2765ms) _(showing tail — full 2,161B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps && docker compose logs app --tail=20
+```
+STDOUT:
+```
+…                COMMAND                  SERVICE    CREATED              STATUS                 PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        About a minute ago   Up 29 seconds          0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   3 hours ago          Up 3 hours (healthy)   127.0.0.1:5432->5432/tcp
+app-1  | {"requestId":"h8GBG7mO0OPSwXl7","method":"GET","path":"/api/shops","responseTime":"1ms","timestamp":"2026-05-20T12:54:37.018Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0."}
+app-1  | {"requestId":"XpVXuH4_P1L7stWE","method":"PATCH","path":"/api/shops/branding","responseTime":"0ms","timestamp":"2026-05-20T12:54:41.114Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0."}
+app-1  | [S3 Upload Debug] Configuration: {
+app-1  |   s3Provider: 'digitalocean',
+app-1  |   isDigitalOcean: true,
+app-1  |   region: 'fra1',
+app-1  |   endpoint: 'https://fra1.digitaloceanspaces.com',
+app-1  |   bucket: 'bukettest',
+app-1  |   cdnUrl: 'https://bukettest.fra1.digitaloceanspaces.com'
+app-1  | }
+app-1  | (node:63) Warning: NodeVersionSupportWarning: The AWS SDK for JavaScript (v3)
+app-1  | versions published after the first week of January 2027
+app-1  | will require node >=22. You are running node v20.20.2.
+app-1  | 
+app-1  | To continue receiving updates to AWS services, bug fixes,
+app-1  | and security updates please upgrade to node >=22.
+app-1  | 
+app-1  | More information can be found at: https://a.co/c895JFp
+app-1  | (Use `node --trace-warnings ...` to show where the warning was created)
+app-1  | [Branding] Logo uploaded to S3: https://bukettest.fra1.digitaloceanspaces.com/products/1779281681545-Untitled_2.png
+```
+Full output: [`server-runs/2026-05-20T12-54-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-54-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:55:42.048Z — Søren ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2588ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && curl -sf https://www.soloshopbox.com/api/health | head -c 500
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T12:55:42.240Z","responseTime":"212ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"210ms"}}}
+```
+Full output: [`server-runs/2026-05-20T12-55-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-55-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
