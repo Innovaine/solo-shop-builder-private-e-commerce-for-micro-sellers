@@ -387,3 +387,21 @@ STDOUT:
 -rw-rw-r-- 1 reviewer reviewer 4062 May 20 14:21 lib/s3.ts
 ```
 Full output: [`server-runs/2026-05-20T14-44-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-44-25-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:45:03.971Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b9cbf86` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3155ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '30,35p' app/shop/[slug]/SortDropdown.tsx
+```
+STDOUT:
+```
+    
+    const queryString = params.toString()
+    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
+  }
+
+  return (
+```
+Full output: [`server-runs/2026-05-20T14-45-03-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-45-03-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
