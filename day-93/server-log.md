@@ -544,3 +544,51 @@ STDOUT:
 ]
 ```
 Full output: [`server-runs/2026-05-20T10-58-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-58-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T10:59:03.831Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0bbfd9e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2302ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | jq '.orphans, .methodMismatches'
+```
+STDOUT:
+```
+[
+  {
+    "route": "/auth/reset-password",
+    "kind": "page",
+    "file": "app/auth/reset-password/page.tsx"
+  },
+  {
+    "route": "/auth/verify",
+    "kind": "page",
+    "file": "app/auth/verify/page.tsx"
+  },
+  {
+    "route": "/dashboard/orders/[id]",
+    "kind": "page",
+    "file": "app/dashboard/orders/[id]/page.tsx"
+  },
+  {
+    "route": "/shop/[slug]/product/[productId]",
+    "kind": "page",
+    "file": "app/shop/[slug]/product/[productId]/page.tsx"
+  }
+]
+[
+  {
+    "file": "app/track/[orderId]/page.tsx",
+    "line": 44,
+    "kind": "fetch",
+    "target": "/api/orders/${orderId}",
+    "method": "GET",
+    "route": "/api/orders/[id]",
+    "supportedMethods": [
+      "PATCH"
+    ],
+    "reason": "caller method not exported by route handler"
+  }
+]
+```
+Full output: [`server-runs/2026-05-20T10-59-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-59-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
