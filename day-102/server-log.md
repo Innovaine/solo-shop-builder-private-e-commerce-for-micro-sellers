@@ -167,3 +167,53 @@ app/api/shops/status/route.ts
 app/api/webhooks/stripe/route.ts
 ```
 Full output: [`server-runs/2026-05-20T19-43-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T19-43-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:05:11.454Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d746664` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2875ms) _(showing tail — full 2,468B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull && git log --oneline --all --grep="signature\|myfatoorah\|webhook" -20
+```
+STDOUT:
+```
+… 161 ++++
+ day-101/standards_qa.md                            |  108 +++
+ day-101/task-verification.md                       |  254 +++++
+ day-101/task_verifier.md                           |  406 ++++++++
+ day-101/test.md                                    |  244 +++++
+ day-102/_plan.md                                   |   45 +
+ day-102/connectivity-audit.md                      |  290 ++++++
+ day-102/connectivity_qa.md                         |  174 ++++
+ day-102/design.md                                  |   48 +
+ day-102/server-log.md                              |  169 ++++
+ design/pages/checkout-payment-method-selector.html |  392 ++++++++
+ design/pages/checkout-success.html                 |    1 +
+ design/pages/product-create-multi-image.html       |  361 +++++++
+ design/pages/product-detail.html                   |   56 +-
+ design/pages/storefront-redesigned.html            |  405 ++++++++
+ test-results/day-101/report.md                     |  257 +++++
+ tests/web/day101-myfatoorah-fixes.spec.ts          |  136 +++
+ 22 files changed, 4695 insertions(+), 49 deletions(-)
+ create mode 100644 day-101/_index.md
+ create mode 100644 day-101/engineering.md
+ create mode 100644 day-101/review.md
+ create mode 100644 day-101/server-log.md
+ create mode 100644 day-101/stage-ship-check.md
+ create mode 100644 day-101/standards-audit.md
+ create mode 100644 day-101/standards_qa.md
+ create mode 100644 day-101/task-verification.md
+ create mode 100644 day-101/task_verifier.md
+ create mode 100644 day-101/test.md
+ create mode 100644 day-102/_plan.md
+ create mode 100644 day-102/connectivity-audit.md
+ create mode 100644 day-102/connectivity_qa.md
+ create mode 100644 day-102/design.md
+ create mode 100644 day-102/server-log.md
+ create mode 100644 design/pages/checkout-payment-method-selector.html
+ create mode 100644 design/pages/product-create-multi-image.html
+ create mode 100644 design/pages/storefront-redesigned.html
+ create mode 100644 test-results/day-101/report.md
+ create mode 100644 tests/web/day101-myfatoorah-fixes.spec.ts
+```
+Full output: [`server-runs/2026-05-20T20-05-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-05-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
