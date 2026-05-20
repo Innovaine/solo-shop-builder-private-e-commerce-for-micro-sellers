@@ -959,3 +959,12 @@ Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:54
 No pending migrations to apply.
 ```
 Full output: [`server-runs/2026-05-20T21-23-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-23-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:23:44.658Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1307385` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 2, 2911ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U soloshop -d soloshop -c "SELECT migration_name FROM _prisma_migrations ORDER BY finished_at DESC LIMIT 10;"
+```
+ERROR: command exited 2
