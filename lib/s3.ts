@@ -4,20 +4,27 @@
 
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 
-// Check if using DigitalOcean Spaces
-const isDigitalOcean = process.env.S3_PROVIDER === 'digitalocean'
+// Check if using DigitalOcean Spaces or custom S3-compatible provider
+const s3Provider = process.env.S3_PROVIDER || 'aws'
+const isDigitalOcean = s3Provider === 'digitalocean'
+
+// DigitalOcean Spaces configuration
 const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
 const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
 
+// AWS S3 configuration
+const awsRegion = process.env.AWS_REGION || 'us-east-1'
+
 // Initialize S3 client with appropriate configuration
 const s3Client = new S3Client({
-  region: isDigitalOcean ? doRegion : (process.env.AWS_REGION || 'us-east-1'),
+  region: isDigitalOcean ? doRegion : awsRegion,
   endpoint: isDigitalOcean ? doEndpoint : undefined,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
   },
-  forcePathStyle: false, // DigitalOcean Spaces uses virtual-hosted-style
+  // DigitalOcean Spaces does NOT support path-style; it uses virtual-hosted style
+  forcePathStyle: false,
 })
 
 const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
@@ -68,7 +75,8 @@ export async function uploadToS3(
     Key: key,
     Body: buffer,
     ContentType: mimeType,
-    ACL: 'public-read', // Make objects publicly readable
+    // Note: ACL removed - DigitalOcean Spaces doesn't support legacy ACLs with IAM.
+    // Objects must be made public via Bucket settings or CDN configuration.
   })
 
   await s3Client.send(command)
