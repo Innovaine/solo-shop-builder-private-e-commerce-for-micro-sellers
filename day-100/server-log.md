@@ -466,3 +466,12 @@ STDOUT:
 20:  if (!session.isLoggedIn || !session.sellerId) {
 ```
 Full output: [`server-runs/2026-05-20T16-34-21-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-34-21-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:34:50.926Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f170fb0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2303ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "getSession" app/api/products/route.ts app/api/orders/route.ts
+```
+ERROR: command exited 1
