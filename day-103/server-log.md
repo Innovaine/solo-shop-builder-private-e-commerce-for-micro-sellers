@@ -117,3 +117,86 @@ STDOUT:
 #15 1.846    Creating an optimized production build ...
 ```
 Full output: [`server-runs/2026-05-20T20-43-52-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-3.log`](server-runs/2026-05-20T20-43-52-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-3.log)
+
+## 2026-05-20T20:44:42.113Z — Anil ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `81c512a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2255ms) _(showing tail — full 5,294B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/build.log
+```
+STDOUT:
+```
+…& rm -rf /var/lib/apt/lists/*
+#17 CACHED
+
+#18 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#18 CACHED
+
+#19 [runner  7/14] RUN mkdir .next
+#19 CACHED
+
+#20 [runner  1/14] WORKDIR /app
+#20 CACHED
+
+#21 [runner  3/14] RUN npm install -g prisma@5.14.0
+#21 CACHED
+
+#22 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#22 CACHED
+
+#23 [runner  6/14] COPY --from=builder /app/public ./public
+#23 CACHED
+
+#24 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#24 CACHED
+
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.5s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.5s done
+#30 exporting manifest sha256:c8928b538e5051f656924ba5701b3e31d75d50b4e497a8c6dbd21c0eb079ff9b done
+#30 exporting config sha256:deab520383bdf2f2f88e4035c6aef4b9dbfcdbd776fa6389305729ade73915b8 done
+#30 exporting attestation manifest sha256:f4aa70a0c0baacd28adfb023253e4f9e05d91e8b9eabbd2458915d1aedf344c8 0.0s done
+#30 exporting manifest list sha256:0f853ec3c83bfc043c679884d37a4d7f206b247ee236ece3d7b5fc39c56b39d5 done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#30 DONE 2.2s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-20T20-44-28-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-20T20-44-28-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
+
+### Command 2 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 10981ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+### Command 3 on www.soloshopbox.com as engineer (✓ exit 0, 2139ms)
+```
+curl -fsS https://www.soloshopbox.com/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+FAIL
+```
+Full output: [`server-runs/2026-05-20T20-44-42-www.soloshopbox.com-curl--fsS-https-www.soloshopbox.com-heal-3.log`](server-runs/2026-05-20T20-44-42-www.soloshopbox.com-curl--fsS-https-www.soloshopbox.com-heal-3.log)
