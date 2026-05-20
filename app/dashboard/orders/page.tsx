@@ -11,7 +11,7 @@ import type { Order as PrismaOrder, OrderItem } from '@prisma/client'
 type Order = Omit<PrismaOrder, 'createdAt' | 'updatedAt'> & {
   createdAt: string
   updatedAt: string
-  items: Array<{ title: string; quantity: number }>
+  items: Array<{ productTitle: string; quantity: number }>
 }
 
 interface Analytics {
@@ -363,7 +363,7 @@ export default function OrdersPage() {
                       <td className="px-6 py-4 text-sm text-slate">{formatDate(order.createdAt)}</td>
                       <td className="px-6 py-4 text-sm text-slate">{order.customerEmail}</td>
                       <td className="px-6 py-4 text-sm text-slate">
-                        {order.items.map(item => `${item.title} (${item.quantity})`).join(', ')}
+                        {order.items.map(item => `${item.productTitle} (${item.quantity})`).join(', ')}
                       </td>
                       <td className="px-6 py-4 font-semibold text-charcoal">${(order.total / 100).toFixed(2)}</td>
                       <td className="px-6 py-4">

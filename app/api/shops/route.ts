@@ -20,6 +20,7 @@ const shopSchema = z.object({
       /^[a-z0-9-]+$/,
       'Slug can only contain lowercase letters, numbers, and hyphens'
     ),
+  currency: z.enum(['USD', 'KWD']).optional().default('USD'),
 })
 
 export async function GET(request: NextRequest) {
@@ -75,7 +76,7 @@ export async function POST(request: NextRequest) {
 
     // Parse and validate body
     const body = await request.json()
-    const { name, slug } = shopSchema.parse(body)
+    const { name, slug, currency } = shopSchema.parse(body)
 
     // Check if slug already exists
     const existingShop = await prisma.shop.findUnique({
@@ -107,6 +108,7 @@ export async function POST(request: NextRequest) {
         name,
         slug,
         sellerId,
+        currency,
       },
     })
 

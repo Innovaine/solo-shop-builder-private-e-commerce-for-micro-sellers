@@ -182,7 +182,11 @@ export default async function ProductDetailPage({
                 productTitle={product.title}
                 price={product.price}
                 shopSlug={slug}
-                imageUrl={product.imageUrl || undefined}
+                imageUrl={
+                  (product.images && product.images.length > 0)
+                    ? product.images[0].imageUrl
+                    : product.imageUrl || undefined
+                }
               />
             ) : (
               <Button

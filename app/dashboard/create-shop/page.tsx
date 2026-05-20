@@ -12,6 +12,7 @@ export default function CreateShopPage() {
   const router = useRouter()
   const [shopName, setShopName] = useState('')
   const [shopSlug, setShopSlug] = useState('')
+  const [currency, setCurrency] = useState('USD')
   const [slugTouched, setSlugTouched] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -61,7 +62,7 @@ export default function CreateShopPage() {
       const response = await fetch('/api/shops', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: shopName, slug: shopSlug }),
+        body: JSON.stringify({ name: shopName, slug: shopSlug, currency }),
       })
 
       const data = await response.json()
@@ -161,6 +162,27 @@ export default function CreateShopPage() {
                 {shopSlug && slugValid && (
                   <p className="text-xs mt-1 text-emerald">✓ Address available</p>
                 )}
+              </div>
+
+              <div className="mb-7">
+                <label htmlFor="currency" className="block text-sm font-semibold text-charcoal mb-2">
+                  Currency
+                </label>
+                <select
+                  id="currency"
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value)}
+                  className="w-full px-4 py-3 border border-whisper rounded-lg focus:ring-2 focus:ring-emerald focus:border-emerald text-charcoal"
+                  required
+                >
+                  <option value="USD">USD - United States Dollar</option>
+                  <option value="KWD">KWD - Kuwaiti Dinar</option>
+                </select>
+                <p className="text-xs text-slate mt-2">
+                  {currency === 'USD' 
+                    ? 'Payments will be processed via Stripe' 
+                    : 'Payments will be processed via MyFatoorah'}
+                </p>
               </div>
 
               <div className="flex gap-3">

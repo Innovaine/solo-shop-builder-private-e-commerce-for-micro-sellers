@@ -530,54 +530,194 @@
       <p style="font-size: 12px; color: #64748B; margin-top: 12px;"><strong>Use when:</strong> Space is limited or filtering is secondary to content.</p>
     </section>
 
-    <!-- DROPDOWNS / MENUS -->
-    <section class="component-section" id="dropdowns">
-      <h2>Dropdowns & Context Menus</h2>
+    <!-- STAGE 1: 2FA SETUP -->
+    <section class="component-section" id="2fa">
+      <h2 style="color: #059669;">Stage 1: Two-Factor Authentication (2FA)</h2>
+      <p>TOTP-based 2FA setup flow. User scans QR code with authenticator app (Google Authenticator, Authy, Microsoft Authenticator), then verifies with 6-digit code.</p>
+      
+      <h3>2FA Enable Toggle</h3>
       <div class="component-demo" style="display: block;">
-        <div style="position: relative; display: inline-block;">
-          <button class="btn btn-secondary">⋮ More Actions</button>
+        <div style="padding: 16px; border: 1px solid #E2E8F0; border-radius: 6px; background: #F9FAFB;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <div>
+              <div style="font-weight: 600; color: #1F2937;">Two-Factor Authentication</div>
+              <div style="font-size: 12px; color: #64748B; margin-top: 4px;">Protect your account with TOTP (Google Authenticator, Authy, etc.)</div>
+            </div>
+            <button class="btn btn-primary" style="padding: 8px 16px; font-size: 13px;">Enable 2FA</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 24px;">2FA QR Code Display</h3>
+      <div class="component-demo" style="display: block;">
+        <div style="padding: 20px; border: 1px solid #E2E8F0; border-radius: 6px; background: white; max-width: 400px;">
+          <div style="font-weight: 600; margin-bottom: 12px;">Step 1: Scan QR Code</div>
           <div style="
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border: 1px solid #E2E8F0;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
             border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-top: 8px;
-            min-width: 160px;
-            z-index: 10;
-          ">
-            <a href="#" style="
-              display: block;
-              padding: 12px 16px;
-              color: #3B4C63;
-              text-decoration: none;
-              border-bottom: 1px solid #F3F4F6;
-              font-size: 14px;
-              transition: background 0.2s;
-            " onmouseover="this.style.background='#F9FAFB'" onmouseout="this.style.background=''">Edit</a>
-            <a href="#" style="
-              display: block;
-              padding: 12px 16px;
-              color: #3B4C63;
-              text-decoration: none;
-              border-bottom: 1px solid #F3F4F6;
-              font-size: 14px;
-              transition: background 0.2s;
-            " onmouseover="this.style.background='#F9FAFB'" onmouseout="this.style.background=''">Duplicate</a>
-            <a href="#" style="
-              display: block;
-              padding: 12px 16px;
-              color: #F43F5E;
-              text-decoration: none;
-              font-size: 14px;
-              transition: background 0.2s;
-            " onmouseover="this.style.background='#FEE2E2'" onmouseout="this.style.background=''">Delete</a>
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+          ">📱 QR Code Here</div>
+          <div style="font-size: 12px; color: #64748B; margin-bottom: 12px; text-align: center;">Can't scan? Enter manual key:</div>
+          <div style="
+            background: #F9FAFB;
+            padding: 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            text-align: center;
+            color: #1F2937;
+            word-break: break-all;
+          ">JBSWY3DPEBLW64TMMQ======</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 24px;">2FA Verification Code Input</h3>
+      <div class="component-demo" style="display: block;">
+        <div class="form-field">
+          <label>6-Digit Code from Authenticator App</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" maxlength="1" style="width: 40px; padding: 12px; text-align: center; font-size: 18px; font-weight: 700;" placeholder="0">
+            <input type="text" maxlength="1" style="width: 40px; padding: 12px; text-align: center; font-size: 18px; font-weight: 700;" placeholder="0">
+            <input type="text" maxlength="1" style="width: 40px; padding: 12px; text-align: center; font-size: 18px; font-weight: 700;" placeholder="0">
+            <input type="text" maxlength="1" style="width: 40px; padding: 12px; text-align: center; font-size: 18px; font-weight: 700;" placeholder="0">
+            <input type="text" maxlength="1" style="width: 40px; padding: 12px; text-align: center; font-size: 18px; font-weight: 700;" placeholder="0">
+            <input type="text" maxlength="1" style="width: 40px; padding: 12px; text-align: center; font-size: 18px; font-weight: 700;" placeholder="0">
+          </div>
+          <div class="form-hint">Enter the 6-digit code from your authenticator app</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 1: REFUND MANAGEMENT -->
+    <section class="component-section" id="refunds">
+      <h2 style="color: #059669;">Stage 1: Refund Management</h2>
+      <p>Refund request and status display. Sellers can approve/deny refund requests; customers see refund status timeline.</p>
+      
+      <h3>Refund Status Badge</h3>
+      <div class="component-demo">
+        <span class="badge" style="background: #FEF3C7; color: #92400E;">Pending</span>
+        <span class="badge" style="background: #D1FAE5; color: #065F46;">Approved</span>
+        <span class="badge" style="background: #FEE2E2; color: #991B1B;">Rejected</span>
+      </div>
+
+      <h3 style="margin-top: 24px;">Refund Request Timeline</h3>
+      <div class="component-demo" style="display: block;">
+        <div style="max-width: 500px;">
+          <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+            <div style="
+              width: 24px;
+              height: 24px;
+              background: #D1FAE5;
+              border: 2px solid #10B981;
+              border-radius: 50%;
+              flex-shrink: 0;
+              margin-top: 2px;
+            "></div>
+            <div>
+              <div style="font-weight: 600; color: #1F2937;">Refund Requested</div>
+              <div style="font-size: 12px; color: #64748B;">May 20, 2026 at 14:23 UTC</div>
+              <div style="font-size: 13px; color: #1F2937; margin-top: 4px;">Customer reason: Item arrived damaged</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+            <div style="
+              width: 24px;
+              height: 24px;
+              background: #FEF3C7;
+              border: 2px solid #F59E0B;
+              border-radius: 50%;
+              flex-shrink: 0;
+              margin-top: 2px;
+            "></div>
+            <div>
+              <div style="font-weight: 600; color: #1F2937;">Under Review</div>
+              <div style="font-size: 12px; color: #64748B;">Seller reviewing request...</div>
+            </div>
+          </div>
+
+          <div style="border-left: 2px solid #D1D5DB; padding-left: 16px; margin-left: 10px; padding-top: 4px;">
+            <div style="font-size: 12px; color: #64748B;">Expected approval by May 22, 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 24px;">Refund Approval Form (Seller)</h3>
+      <div class="component-demo" style="display: block; max-width: 500px;">
+        <div style="border: 1px solid #E2E8F0; border-radius: 6px; padding: 20px;">
+          <div style="margin-bottom: 16px;">
+            <div style="font-weight: 600; color: #1F2937; margin-bottom: 4px;">Refund Amount</div>
+            <div style="font-size: 18px; font-weight: 700; color: #3B4C63;">$89.50</div>
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-weight: 500; color: #1F2937; margin-bottom: 8px;">Your Decision</label>
+            <div style="display: flex; gap: 12px;">
+              <button class="btn btn-secondary" style="flex: 1;">Deny</button>
+              <button class="btn btn-primary" style="flex: 1;">Approve Refund</button>
+            </div>
+          </div>
+          <div style="margin-top: 16px;">
+            <label style="display: block; font-weight: 500; color: #1F2937; margin-bottom: 8px;">Optional Note to Customer</label>
+            <textarea style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-family: inherit; font-size: 14px;" placeholder="Tell customer why you approved or denied..." rows="3"></textarea>
           </div>
         </div>
       </div>
     </section>
-  </div>
-</body>
-</html>
+
+    <!-- STAGE 1: WEBHOOK ERROR STATE -->
+    <section class="component-section" id="webhook-errors">
+      <h2 style="color: #059669;">Stage 1: Security & Error States</h2>
+      <p>Payment processing errors, signature verification failures, and webhook retry states.</p>
+
+      <h3>Webhook Signature Error (Admin View)</h3>
+      <div class="component-demo" style="display: block;">
+        <div style="
+          background: #FEE2E2;
+          border: 1px solid #FECACA;
+          border-radius: 6px;
+          padding: 16px;
+          max-width: 500px;
+        ">
+          <div style="display: flex; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">⚠️</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: #991B1B;">Webhook Signature Verification Failed</div>
+              <div style="font-size: 13px; color: #7F1D1D; margin-top: 4px;">
+                Payment callback from MyFatoorah rejected: invalid signature. This payment was NOT recorded.
+              </div>
+              <div style="font-size: 12px; color: #7F1D1D; margin-top: 8px;">
+                <strong>Technical:</strong> HMAC-SHA256 mismatch. Verify signing secret in env vars.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 24px;">Payment Processing Error (Customer)</h3>
+      <div class="component-demo" style="display: block;">
+        <div style="
+          background: #FEE2E2;
+          border: 1px solid #FECACA;
+          border-radius: 6px;
+          padding: 20px;
+          text-align: center;
+          max-width: 400px;
+          margin: 0 auto;
+        ">
+          <div style="font-size: 40px; margin-bottom: 12px;">❌</div>
+          <div style="font-weight: 600; color: #991B1B; margin-bottom: 8px;">Payment Failed</div>
+          <div style="font-size: 14px; color: #7F1D1D; margin-bottom: 16px;">
+            Your payment could not be processed. Please check your payment details and try again, or contact support.
+          </div>
+          <button class="btn btn-primary">Try Again</button>
+        </div>
+      </div>
+    </section>
+

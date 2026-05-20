@@ -184,3 +184,11 @@ STDOUT:
       "file": "app/api/auth/signup/route.ts"
 ```
 Full output: [`server-runs/2026-05-20T22-22-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-22-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:23:23.466Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5f64743` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2173ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "Link href\|router.push" app/shop/[slug]/page.tsx | head -20
+```
