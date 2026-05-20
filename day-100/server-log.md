@@ -451,3 +451,18 @@ app/api/products/route.ts:42:export async function POST(request: NextRequest) {
 app/api/orders/route.ts:10:export async function GET(request: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-20T16-33-47-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-33-47-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:34:21.791Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c1407fd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2135ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "getSession\|isLoggedIn" app/dashboard/page.tsx
+```
+STDOUT:
+```
+7:import { getSession } from '@/lib/auth'
+18:  const session = await getSession()
+20:  if (!session.isLoggedIn || !session.sellerId) {
+```
+Full output: [`server-runs/2026-05-20T16-34-21-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-34-21-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
