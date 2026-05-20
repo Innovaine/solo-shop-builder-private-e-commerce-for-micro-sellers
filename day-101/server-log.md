@@ -964,3 +964,17 @@ app/api/shops/status/route.ts:import prisma from '@/lib/db'
 app/api/shops/branding/route.ts:import { prisma } from '@/lib/db';
 ```
 Full output: [`server-runs/2026-05-20T18-33-47-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-33-47-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T18:34:56.808Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ef5b5c5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 4095ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -path './app/lib/db.ts' -o -path './src/lib/db.ts' -o -path './lib/db.ts' 2>/dev/null
+```
+STDOUT:
+```
+./lib/db.ts
+./src/lib/db.ts
+```
+Full output: [`server-runs/2026-05-20T18-34-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-34-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
