@@ -372,3 +372,61 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 35 minutes 
 {"status":"ok","timestamp":"2026-05-20T01:11:10.130Z","responseTime":"238ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"236ms"}}}✓ Health OK
 ```
 Full output: [`server-runs/2026-05-20T01-11-10-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-20T01-11-10-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
+
+## 2026-05-20T01:11:41.019Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b769d79` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2749ms)
+```
+echo "Day 87 - S3 Upload Fix Verification Tests"
+echo ""
+echo "Test 1: Check S3 configuration in lib/s3.ts"
+grep -A 5 "forcePathStyle" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/lib/s3.ts 2>/dev/null | head -10
+
+echo ""
+echo "Test 2: Check that ACL parameter is removed"
+grep -i "ACL" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/lib/s3.ts && echo "❌ ACL still present" || echo "✓ ACL removed"
+
+echo ""
+echo "Test 3: Verify endpoint configuration"
+grep -A 3 "endpoint:" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/lib/s3.ts | head -5
+
+echo ""
+echo "Test 4: Check S3 environment variables are set"
+docker exec solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 env | grep -E "AWS_S3_|DO_SPACES_" | head -5
+
+echo ""
+echo "Test 5: Test product upload endpoint (without auth - should return 401)"
+curl -s -X POST https://www.soloshopbox.com/api/products/upload -H "Content-Type: application/json" | head -3
+```
+STDOUT:
+```
+Day 87 - S3 Upload Fix Verification Tests
+
+Test 1: Check S3 configuration in lib/s3.ts
+  forcePathStyle: false, // DigitalOcean Spaces uses virtual-hosted-style
+})
+
+const BUCKET_NAME = process.env.AWS_S3_BUCKET || 'soloshopbox-uploads'
+
+// Construct CDN URL based on provider
+
+Test 2: Check that ACL parameter is removed
+    ACL: 'public-read', // Make objects publicly readable
+❌ ACL still present
+
+Test 3: Verify endpoint configuration
+  endpoint: isDigitalOcean ? doEndpoint : undefined,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+
+Test 4: Check S3 environment variables are set
+DO_SPACES_ENDPOINT=https://bukettest.fra1.digitaloceanspaces.com
+DO_SPACES_REGION=eu-central-1
+AWS_S3_BUCKET=bukettest
+
+Test 5: Test product upload endpoint (without auth - should return 401)
+{"error":"Failed to upload image"}
+```
+Full output: [`server-runs/2026-05-20T01-11-40-www.soloshopbox.com-echo-Day-87---S3-Upload-Fix-Verification-1.log`](server-runs/2026-05-20T01-11-40-www.soloshopbox.com-echo-Day-87---S3-Upload-Fix-Verification-1.log)
