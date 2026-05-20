@@ -204,3 +204,16 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T09:19:41.329Z","responseTime":"157ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"155ms"}}} - Health check OK
 ```
 Full output: [`server-runs/2026-05-20T09-19-41-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log`](server-runs/2026-05-20T09-19-41-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log)
+
+## 2026-05-20T09:20:10.788Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7c60da1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2670ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=100 | grep -A5 -B5 "S3 Upload Debug" || echo "S3 debug logging not yet triggered (no uploads since restart)"
+```
+STDOUT:
+```
+S3 debug logging not yet triggered (no uploads since restart)
+```
+Full output: [`server-runs/2026-05-20T09-20-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T09-20-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
