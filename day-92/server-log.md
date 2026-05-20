@@ -446,3 +446,35 @@ _Pre-SSH: warehouse pushed to GitHub as commit `adb2d74` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "\.toFixed" app/ src/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -E '\.(total|price|amount|cost)\.toFixed'
 ```
 ERROR: command exited 1
+
+## 2026-05-20T10:03:54.687Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c06d083` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2637ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "interface.*{" app/ src/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -20
+```
+STDOUT:
+```
+app/dashboard/products/import/page.tsx:6:interface ImportResult {
+app/dashboard/billing/page.tsx:8:interface BillingData {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:11:interface OrderItem {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:19:interface Order {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:32:interface OrderDetailClientProps {
+app/dashboard/orders/page.tsx:17:interface Analytics {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/dashboard/analytics/page.tsx:8:interface ProductAnalytics {
+app/dashboard/analytics/page.tsx:15:interface DailyRevenue {
+app/dashboard/analytics/page.tsx:20:interface Analytics {
+app/track/[orderId]/page.tsx:10:interface OrderItem {
+app/track/[orderId]/page.tsx:17:interface Order {
+app/components/ui/Modal.tsx:7:interface ModalProps {
+app/components/ui/Input.tsx:4:interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+app/components/ui/Card.tsx:4:interface CardProps extends HTMLAttributes<HTMLDivElement> {
+app/components/ui/FormField.tsx:5:interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+app/components/ui/Button.tsx:4:interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+app/components/ui/EmptyState.tsx:4:interface EmptyStateProps {
+app/components/ui/Header.tsx:5:interface HeaderProps {
+app/components/ErrorBoundary.tsx:8:interface Props {
+```
+Full output: [`server-runs/2026-05-20T10-03-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-03-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
