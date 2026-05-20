@@ -189,3 +189,66 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T18:11:52.560Z","responseTime":"111ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"109ms"}}}
 ```
 Full output: [`server-runs/2026-05-20T18-11-52-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log`](server-runs/2026-05-20T18-11-52-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log)
+
+## 2026-05-20T18:13:17.217Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cf52ccb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 10698ms) _(showing tail — full 4,921B stdout + 0B stderr)_
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers
+git pull
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day101-myfatoorah-fixes.spec.ts --output=$HOME/.playwright-out --reporter=list > /tmp/day101-test.log 2>&1" &
+echo $! > /tmp/day101-test.pid
+echo "Tests started, PID=$(cat /tmp/day101-test.pid)"
+```
+STDOUT:
+```
+…            | 154 ++++++
+ tests/web/day101-myfatoorah-fixes.spec.ts     | 136 ++++++
+ 48 files changed, 6300 insertions(+), 1612 deletions(-)
+ delete mode 100644 app/lib/s3.ts
+ create mode 100644 day-100/_index.md
+ create mode 100644 day-100/_plan.md
+ create mode 100644 day-100/connectivity-audit.md
+ create mode 100644 day-100/connectivity_qa.md
+ create mode 100644 day-100/server-log.md
+ rename {day-61 => day-100}/stage-ship-check.md (77%)
+ create mode 100644 day-100/standards_qa.md
+ create mode 100644 day-101/_plan.md
+ create mode 100644 day-101/connectivity-audit.md
+ create mode 100644 day-101/connectivity_qa.md
+ create mode 100644 day-101/engineering.md
+ create mode 100644 day-101/review.md
+ create mode 100644 day-101/server-log.md
+ delete mode 100644 day-61/task-verification.md
+ delete mode 100644 day-61/task_verifier.md
+ delete mode 100644 day-62/task-verification.md
+ delete mode 100644 day-62/task_verifier.md
+ create mode 100644 day-97/_index.md
+ create mode 100644 day-97/stage-ship-check.md
+ create mode 100644 day-97/task-verification.md
+ create mode 100644 day-97/task_verifier.md
+ create mode 100644 day-97/test.md
+ create mode 100644 day-98/_index.md
+ create mode 100644 day-98/_plan.md
+ create mode 100644 day-98/engineering.md
+ create mode 100644 day-98/server-log.md
+ create mode 100644 day-98/stage-ship-check.md
+ create mode 100644 day-98/standards-audit.md
+ create mode 100644 day-98/standards_qa.md
+ create mode 100644 day-98/task-verification.md
+ create mode 100644 day-98/task_verifier.md
+ create mode 100644 day-99/_index.md
+ create mode 100644 day-99/_plan.md
+ create mode 100644 day-99/engineering.md
+ create mode 100644 day-99/server-log.md
+ create mode 100644 day-99/stage-ship-check.md
+ create mode 100644 day-99/task-verification.md
+ create mode 100644 day-99/task_verifier.md
+ delete mode 100644 integrations/s3.md
+ delete mode 100644 integrations/stripe-webhooks.md
+ create mode 100644 test-results/day-97/report.md
+ create mode 100644 tests/web/day101-myfatoorah-fixes.spec.ts
+Tests started, PID=2057960
+```
+Full output: [`server-runs/2026-05-20T18-13-17-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-13-17-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
