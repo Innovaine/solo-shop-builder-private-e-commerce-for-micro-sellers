@@ -122,3 +122,65 @@ STDOUT:
       "kind": "page",
 ```
 Full output: [`server-runs/2026-05-20T22-22-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-22-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:22:49.256Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `509178b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2653ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | grep -A 200 '"summary"' | head -50
+```
+STDOUT:
+```
+  "summary": {
+    "routes": 60,
+    "pages": 24,
+    "apis": 36,
+    "links": 91,
+    "apiCalls": 36,
+    "broken": 3,
+    "orphans": 4,
+    "methodMismatches": 0
+  },
+  "routes": [
+    {
+      "route": "/api/account/delete",
+      "kind": "api",
+      "file": "app/api/account/delete/route.ts"
+    },
+    {
+      "route": "/api/account/password",
+      "kind": "api",
+      "file": "app/api/account/password/route.ts"
+    },
+    {
+      "route": "/api/analytics",
+      "kind": "api",
+      "file": "app/api/analytics/route.ts"
+    },
+    {
+      "route": "/api/auth/forgot-password",
+      "kind": "api",
+      "file": "app/api/auth/forgot-password/route.ts"
+    },
+    {
+      "route": "/api/auth/login",
+      "kind": "api",
+      "file": "app/api/auth/login/route.ts"
+    },
+    {
+      "route": "/api/auth/logout",
+      "kind": "api",
+      "file": "app/api/auth/logout/route.ts"
+    },
+    {
+      "route": "/api/auth/reset-password",
+      "kind": "api",
+      "file": "app/api/auth/reset-password/route.ts"
+    },
+    {
+      "route": "/api/auth/signup",
+      "kind": "api",
+      "file": "app/api/auth/signup/route.ts"
+```
+Full output: [`server-runs/2026-05-20T22-22-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-22-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
