@@ -1027,3 +1027,57 @@ STDOUT:
 Health check FAILED
 ```
 Full output: [`server-runs/2026-05-20T21-26-50-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-healt-1.log`](server-runs/2026-05-20T21-26-50-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-healt-1.log)
+
+## 2026-05-20T21:27:29.861Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `498d96e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2474ms) _(showing tail — full 2,338B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=50 app
+```
+STDOUT:
+```
+…| 
+app-1  | 
+app-1  | The column `Shop.currency` does not exist in the current database.
+app-1  |     at In.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6877)
+app-1  |     at In.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6211)
+app-1  |     at In.request (/app/node_modules/@prisma/client/runtime/library.js:122:5919)
+app-1  |     at async l (/app/node_modules/@prisma/client/runtime/library.js:127:11167)
+app-1  |     at async b (/app/.next/server/app/shop/[slug]/page.js:1:4962) {
+app-1  |   code: 'P2022',
+app-1  |   clientVersion: '5.14.0',
+app-1  |   meta: { modelName: 'Shop', column: 'Shop.currency' },
+app-1  |   digest: '3909219332'
+app-1  | }
+app-1  | PrismaClientKnownRequestError: 
+app-1  | Invalid `prisma.shop.findUnique()` invocation:
+app-1  | 
+app-1  | 
+app-1  | The column `Shop.currency` does not exist in the current database.
+app-1  |     at In.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6877)
+app-1  |     at In.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6211)
+app-1  |     at In.request (/app/node_modules/@prisma/client/runtime/library.js:122:5919)
+app-1  |     at async l (/app/node_modules/@prisma/client/runtime/library.js:127:11167)
+app-1  |     at async b (/app/.next/server/app/shop/[slug]/page.js:1:4962) {
+app-1  |   code: 'P2022',
+app-1  |   clientVersion: '5.14.0',
+app-1  |   meta: { modelName: 'Shop', column: 'Shop.currency' },
+app-1  |   digest: '3909219332'
+app-1  | }
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 9 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 54ms
+```
+Full output: [`server-runs/2026-05-20T21-27-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-27-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
