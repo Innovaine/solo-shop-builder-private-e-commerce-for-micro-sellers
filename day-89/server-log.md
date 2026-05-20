@@ -601,3 +601,62 @@ error TS2688: Cannot find type definition file for 'node'.
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-20T07-29-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-29-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
+
+## 2026-05-20T07:29:49.933Z — Mehrdad ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d251226` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2620ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | jq '.summary' 2>/dev/null || route-validator . --json 2>&1 | tail -30
+```
+STDOUT:
+```
+{
+  "routes": 58,
+  "pages": 24,
+  "apis": 34,
+  "links": 92,
+  "apiCalls": 36,
+  "broken": 3,
+  "orphans": 4,
+  "methodMismatches": 1
+}
+```
+Full output: [`server-runs/2026-05-20T07-29-49-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-29-49-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✓ exit 0, 433ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && cat tsconfig.json | head -30
+```
+STDOUT:
+```
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["node"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./app/*", "./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+Full output: [`server-runs/2026-05-20T07-29-49-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log`](server-runs/2026-05-20T07-29-49-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-2.log)
