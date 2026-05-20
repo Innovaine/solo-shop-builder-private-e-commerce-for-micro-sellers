@@ -1018,3 +1018,38 @@ echo $! > /tmp/build.pid
 echo "Started build, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T12:47:11.029Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4250c34` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2380ms)
+```
+kill -0 $(cat /tmp/build.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "NOT RUNNING"
+ls -lh /tmp/build.log 2>/dev/null || echo "No build log yet"
+tail -20 /tmp/build.log 2>/dev/null || echo "Can't read log"
+```
+STDOUT:
+```
+NOT RUNNING
+-rw-rw-r-- 1 engineer engineer 6.9K May 20 12:46 /tmp/build.log
+19.32 [0m [90m 113 |[39m     } [36mfinally[39m {[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-20T12-47-11-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log`](server-runs/2026-05-20T12-47-11-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log)
