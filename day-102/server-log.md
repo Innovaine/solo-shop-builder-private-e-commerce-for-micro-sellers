@@ -494,3 +494,48 @@ access-control-allow-origin: *
 cache-control: private, no-cache, no-store, max-age=0, must-revalidate
 ```
 Full output: [`server-runs/2026-05-20T20-20-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-20-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:21:01.308Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e87ab6c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 2, 2450ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+
+echo "=== Verifying Currency Support Code ==="
+grep -n "shopCurrency" app/checkout/page.tsx | head -5
+
+echo ""
+echo "=== Verifying Payment Method Selector ==="
+grep -n "myfatoorahMethod\|APPLE_PAY\|KNET" app/checkout/page.tsx | head -5
+
+echo ""
+echo "=== Verifying Email Required Field ==="
+grep -n "customerEmail\|required" app/checkout/page.tsx | head -5
+
+echo ""
+echo "=== Checking Currency API Route Exists ==="
+ls -la app/api/shops/[slug]/currency/route.ts
+
+echo ""
+echo "=== Checking Multi-Image API Exists ==="
+ls -la app/api/products/[id]/images/route.ts
+```
+STDOUT:
+```
+=== Verifying Currency Support Code ===
+
+=== Verifying Payment Method Selector ===
+225:                  <div className="text-xs text-slate">KNET, Visa, Mastercard, Apple Pay</div>
+
+=== Verifying Email Required Field ===
+18:  const [customerEmail, setCustomerEmail] = useState('')
+80:          customerEmail: customerEmail || undefined,
+180:                value={customerEmail}
+
+=== Checking Currency API Route Exists ===
+
+=== Checking Multi-Image API Exists ===
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-20T20-21-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-21-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
