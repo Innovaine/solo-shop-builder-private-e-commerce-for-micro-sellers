@@ -1159,3 +1159,38 @@ BUILD NOT RUNNING
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-20T12-49-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-49-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:50:04.678Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f7bf66e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2657ms)
+```
+tail -100 /tmp/build2.log | grep -A 7 -B 3 "Type error"
+```
+STDOUT:
+```
+#15 21.72 Failed to compile.
+#15 21.72 
+#15 21.72 ./app/dashboard/profile/page.tsx:307:20
+#15 21.72 Type error: Cannot find name 'imagePreview'.
+#15 21.72 
+#15 21.72 [0m [90m 305 |[39m               [33m<[39m[33mdiv[39m className[33m=[39m[32m"flex gap-4 items-start mb-3"[39m[33m>[39m[0m
+#15 21.72 [0m [90m 306 |[39m                 [33m<[39m[33mdiv[39m className[33m=[39m[32m"w-16 h-16 bg-whisper/20 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"[39m[33m>[39m[0m
+#15 21.72 [0m[31m[1m>[22m[39m[90m 307 |[39m                   {imagePreview [33m?[39m ([0m
+#15 21.72 [0m [90m     |[39m                    [31m[1m^[22m[39m[0m
+#15 21.72 [0m [90m 308 |[39m                     [33m<[39m[33mimg[39m src[33m=[39m{imagePreview} alt[33m=[39m[32m"Preview"[39m className[33m=[39m[32m"w-full h-full object-cover"[39m [33m/[39m[33m>[39m[0m
+#15 21.72 [0m [90m 309 |[39m                   ) [33m:[39m currentLogoUrl [33m?[39m ([0m
+--
+------
+ > [builder 7/7] RUN npm run build:
+21.72 ./app/dashboard/profile/page.tsx:307:20
+21.72 Type error: Cannot find name 'imagePreview'.
+21.72 
+21.72 [0m [90m 305 |[39m               [33m<[39m[33mdiv[39m className[33m=[39m[32m"flex gap-4 items-start mb-3"[39m[33m>[39m[0m
+21.72 [0m [90m 306 |[39m                 [33m<[39m[33mdiv[39m className[33m=[39m[32m"w-16 h-16 bg-whisper/20 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"[39m[33m>[39m[0m
+21.72 [0m[31m[1m>[22m[39m[90m 307 |[39m                   {imagePreview [33m?[39m ([0m
+21.72 [0m [90m     |[39m                    [31m[1m^[22m[39m[0m
+21.72 [0m [90m 308 |[39m                     [33m<[39m[33mimg[39m src[33m=[39m{imagePreview} alt[33m=[39m[32m"Preview"[39m className[33m=[39m[32m"w-full h-full object-cover"[39m [33m/[39m[33m>[39m[0m
+21.72 [0m [90m 309 |[39m                   ) [33m:[39m currentLogoUrl [33m?[39m ([0m
+```
+Full output: [`server-runs/2026-05-20T12-50-04-www.soloshopbox.com-tail--100-tmp-build2.log-grep--A-7--B-3--1.log`](server-runs/2026-05-20T12-50-04-www.soloshopbox.com-tail--100-tmp-build2.log-grep--A-7--B-3--1.log)
