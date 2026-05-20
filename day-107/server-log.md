@@ -343,3 +343,119 @@ Test 4: Shop list page
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-20T23-55-20-www.soloshopbox.com-echo-Test-1-Homepage-1.log`](server-runs/2026-05-20T23-55-20-www.soloshopbox.com-echo-Test-1-Homepage-1.log)
+
+## 2026-05-20T23:57:07.014Z — Mehrdad ran 3 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c71ed26` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3435ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -50
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-20T23-57-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-57-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✓ exit 0, 473ms) _(showing tail — full 4,755B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | head -200
+```
+STDOUT:
+```
+…"route": "/api/products/[id]/status",
+      "kind": "api",
+      "file": "app/api/products/[id]/status/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants/[variantId]",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/[variantId]/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/route.ts"
+    },
+    {
+      "route": "/api/products/bulk-status",
+      "kind": "api",
+      "file": "app/api/products/bulk-status/route.ts"
+    },
+    {
+      "route": "/api/products/export",
+      "kind": "api",
+      "file": "app/api/products/export/route.ts"
+    },
+    {
+      "route": "/api/products/import",
+      "kind": "api",
+      "file": "app/api/products/import/route.ts"
+    },
+    {
+      "route": "/api/products",
+      "kind": "api",
+      "file": "app/api/products/route.ts"
+    },
+    {
+      "route": "/api/products/upload",
+      "kind": "api",
+      "file": "app/api/products/upload/route.ts"
+    },
+    {
+      "route": "/api/shops/[slug]/currency",
+      "kind": "api",
+      "file": "app/api/shops/[slug]/currency/route.ts"
+    },
+    {
+      "route": "/api/shops/branding",
+      "kind": "api",
+      "file": "app/api/shops/branding/route.ts"
+    },
+    {
+      "route": "/api/shops/email-template",
+      "kind": "api",
+      "file": "app/api/shops/email-template/route.ts"
+    },
+    {
+      "route": "/api/shops/profile",
+      "kind": "api",
+      "file": "app/api/shops/profile/route.ts"
+    },
+    {
+      "route": "/api/shops",
+      "kind": "api",
+      "file": "app/api/shops/route.ts"
+    },
+    {
+      "route": "/api/shops/status",
+      "kind": "api",
+      "file": "app/api/shops/status/route.ts"
+    },
+    {
+      "route": "/api/webhooks/stripe",
+      "kind": "api",
+      "file": "app/api/webhooks/stripe/route.ts"
+    },
+    {
+      "route": "/auth/forgot-password",
+      "kind": "page",
+      "file": "app/auth/forgot-password/page.tsx"
+    },
+    {
+      "route": "/auth/login",
+      "kind": "page",
+```
+Full output: [`server-runs/2026-05-20T23-57-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T23-57-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
+
+### Command 3 on www.soloshopbox.com as reviewer (✓ exit 0, 787ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && curl -sf https://www.soloshopbox.com/api/health | head -20
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T23:57:06.794Z","responseTime":"216ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"214ms"}}}
+```
+Full output: [`server-runs/2026-05-20T23-57-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--3.log`](server-runs/2026-05-20T23-57-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--3.log)
