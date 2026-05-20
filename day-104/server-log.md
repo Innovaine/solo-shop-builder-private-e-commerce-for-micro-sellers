@@ -2036,3 +2036,25 @@ STDOUT:
 203:                              Out of Stock
 ```
 Full output: [`server-runs/2026-05-20T22-03-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-03-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:04:03.988Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bb36bc0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3388ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== MVP Features Check ===" && echo "F1 Sign-up:" && grep -l "signup\|register" app/api/auth/*.ts | head -1 && echo "F2 Shop creation:" && grep -l "shops" app/api/*.ts | head -1 && echo "F3 Product CRUD:" && grep -l "products" app/api/*.ts | head -1 && echo "F9 Stripe checkout:" && grep -l "stripe\|checkout" app/api/checkout/*.ts | head -1 && echo "F10 Webhook order creation:" && grep -l "webhooks\|stripe" app/api/webhooks/*.ts | head -1 && echo "F11 Order dashboard:" && ls -1 app/dashboard/orders/ 2>/dev/null | head -3
+```
+STDOUT:
+```
+=== MVP Features Check ===
+F1 Sign-up:
+F2 Shop creation:
+F3 Product CRUD:
+F9 Stripe checkout:
+app/api/checkout/route.ts
+F10 Webhook order creation:
+F11 Order dashboard:
+[id]
+page.tsx
+```
+Full output: [`server-runs/2026-05-20T22-04-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-04-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
