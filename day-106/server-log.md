@@ -372,3 +372,29 @@ _Pre-SSH: warehouse pushed to GitHub as commit `0ac2904` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "cookies()" app/api/ --include='*.ts' | grep -v "^[^:]*:[^:]*:.*from.*cookies" | head -20
 ```
+
+## 2026-05-20T23:30:04.948Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `103e7ff` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2435ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "getSession\|requireAuth" app/api/ --include='*.ts' | wc -l
+```
+STDOUT:
+```
+58
+```
+Full output: [`server-runs/2026-05-20T23-30-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-30-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T23:30:38.355Z — Vitali ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2251ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "NextResponse.redirect" app/api/ --include='*.ts' | wc -l && echo "---" && grep -rn "from.*next/navigation" app/ --include='*.ts' --include='*.tsx' | wc -l
+```
+STDOUT:
+```
+17
+---
+22
+```
+Full output: [`server-runs/2026-05-20T23-30-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-30-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
