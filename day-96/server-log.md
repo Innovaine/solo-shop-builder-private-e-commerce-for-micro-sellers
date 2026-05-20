@@ -1896,3 +1896,25 @@ error TS2688: Cannot find type definition file for 'node'.
     Entry point of type library 'node' specified in compilerOptions
 ```
 Full output: [`server-runs/2026-05-20T13-09-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T13-09-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
+
+## 2026-05-20T13:09:42.612Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2906917` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2791ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | jq '.summary' 2>/dev/null || echo "parse failed"
+```
+STDOUT:
+```
+{
+  "routes": 58,
+  "pages": 24,
+  "apis": 34,
+  "links": 92,
+  "apiCalls": 36,
+  "broken": 3,
+  "orphans": 4,
+  "methodMismatches": 1
+}
+```
+Full output: [`server-runs/2026-05-20T13-09-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T13-09-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
