@@ -162,3 +162,16 @@ c04a261eb9de   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "doc
 2967d9e0bd67   traefik:latest                                               "/entrypoint.sh --ap…"   3 days ago      Up 3 days                                                            traefik-vwiz-traefik-1
 ```
 Full output: [`server-runs/2026-05-20T18-07-51-www.soloshopbox.com-docker-ps--a-1.log`](server-runs/2026-05-20T18-07-51-www.soloshopbox.com-docker-ps--a-1.log)
+
+## 2026-05-20T18:08:28.661Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7245feb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2917ms)
+```
+curl -sf https://www.soloshopbox.com/api/health
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T18:08:28.779Z","responseTime":"204ms","checks":{"database":{"status":"ok","responseTime":"61ms"},"email":{"status":"ok","responseTime":"143ms"}}}
+```
+Full output: [`server-runs/2026-05-20T18-08-28-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T18-08-28-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
