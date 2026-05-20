@@ -1787,3 +1787,112 @@ Date:   Wed May 20 12:54:39 2026 +0000
  1 file changed, 8 insertions(+)
 ```
 Full output: [`server-runs/2026-05-20T13-06-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T13-06-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T13:09:10.297Z — Mehrdad ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5c93d29` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2870ms) _(showing tail — full 3,540B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | head -150
+```
+STDOUT:
+```
+…route.ts"
+    },
+    {
+      "route": "/api/checkout/myfatoorah",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/route.ts"
+    },
+    {
+      "route": "/api/checkout",
+      "kind": "api",
+      "file": "app/api/checkout/route.ts"
+    },
+    {
+      "route": "/api/health",
+      "kind": "api",
+      "file": "app/api/health/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/history",
+      "kind": "api",
+      "file": "app/api/orders/[id]/history/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/refund",
+      "kind": "api",
+      "file": "app/api/orders/[id]/refund/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]",
+      "kind": "api",
+      "file": "app/api/orders/[id]/route.ts"
+    },
+    {
+      "route": "/api/orders/export",
+      "kind": "api",
+      "file": "app/api/orders/export/route.ts"
+    },
+    {
+      "route": "/api/orders",
+      "kind": "api",
+      "file": "app/api/orders/route.ts"
+    },
+    {
+      "route": "/api/products/[id]",
+      "kind": "api",
+      "file": "app/api/products/[id]/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/status",
+      "kind": "api",
+      "file": "app/api/products/[id]/status/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants/[variantId]",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/[variantId]/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/route.ts"
+    },
+    {
+      "route": "/api/products/bulk-status",
+      "kind": "api",
+      "file": "app/api/products/bulk-status/route.ts"
+    },
+    {
+      "route": "/api/products/export",
+      "kind": "api",
+      "file": "app/api/products/export/route.ts"
+    },
+    {
+      "route": "/api/products/import",
+      "kind": "api",
+      "file": "app/api/products/import/route.ts"
+    },
+    {
+      "route": "/api/products",
+      "kind": "api",
+      "file": "app/api/products/route.ts"
+    },
+    {
+      "route": "/api/products/upload",
+      "kind": "api",
+```
+Full output: [`server-runs/2026-05-20T13-09-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T13-09-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✓ exit 0, 1609ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -80
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-20T13-09-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T13-09-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
