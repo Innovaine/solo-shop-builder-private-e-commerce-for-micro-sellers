@@ -213,3 +213,52 @@ STDOUT:
 BUILD DONE or PID dead
 ```
 Full output: [`server-runs/2026-05-20T23-19-37-www.soloshopbox.com-if--f-tmp-day106-build.pid-then-kill--0--1.log`](server-runs/2026-05-20T23-19-37-www.soloshopbox.com-if--f-tmp-day106-build.pid-then-kill--0--1.log)
+
+## 2026-05-20T23:20:08.235Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ded35d1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2744ms) _(showing tail — full 2,680B stdout + 0B stderr)_
+```
+tail -100 /tmp/day106-build.log 2>/dev/null | tail -50
+```
+STDOUT:
+```
+…[39m[33m>[39m[0m
+#15 21.30 [0m[31m[1m>[22m[39m[90m 134 |[39m               [33mPlaced[39m {formatDate(order[33m.[39mcreatedAt)}[0m
+#15 21.30 [0m [90m     |[39m                                  [31m[1m^[22m[39m[0m
+#15 21.30 [0m [90m 135 |[39m             [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+#15 21.30 [0m [90m 136 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+#15 21.30 [0m [90m 137 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m{[32m`px-4 py-2 rounded-lg font-semibold text-sm ${statusColors[status] || 'bg-gray-50 text-gray-700'}`[39m}[33m>[39m[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+21.30 ./app/dashboard/orders/[id]/OrderDetailClient.tsx:134:34
+21.30 Type error: Argument of type 'Date' is not assignable to parameter of type 'string'.
+21.30 
+21.30 [0m [90m 132 |[39m             [33m<[39m[33m/[39m[33mh1[39m[33m>[39m[0m
+21.30 [0m [90m 133 |[39m             [33m<[39m[33mp[39m className[33m=[39m[32m"text-slate"[39m[33m>[39m[0m
+21.30 [0m[31m[1m>[22m[39m[90m 134 |[39m               [33mPlaced[39m {formatDate(order[33m.[39mcreatedAt)}[0m
+21.30 [0m [90m     |[39m                                  [31m[1m^[22m[39m[0m
+21.30 [0m [90m 135 |[39m             [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+21.30 [0m [90m 136 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+21.30 [0m [90m 137 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m{[32m`px-4 py-2 rounded-lg font-semibold text-sm ${statusColors[status] || 'bg-gray-50 text-gray-700'}`[39m}[33m>[39m[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-20T23-20-08-www.soloshopbox.com-tail--100-tmp-day106-build.log-2-dev-nul-1.log`](server-runs/2026-05-20T23-20-08-www.soloshopbox.com-tail--100-tmp-day106-build.log-2-dev-nul-1.log)
