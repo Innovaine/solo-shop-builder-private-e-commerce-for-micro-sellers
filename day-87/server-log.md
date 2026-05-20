@@ -832,3 +832,36 @@ STDOUT:
 src/lib/db.ts:import { PrismaClient } from '@prisma/client'
 ```
 Full output: [`server-runs/2026-05-20T01-19-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-19-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:19:35.801Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f8ba4d6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2602ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "from '@/lib/db'" app/ src/ --include="*.ts" --include="*.tsx" | wc -l
+```
+STDOUT:
+```
+36
+```
+Full output: [`server-runs/2026-05-20T01-19-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-19-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:19:53.137Z — Vitali ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2271ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "^interface.*Order\|^interface.*Product\|^interface.*Shop\|^interface.*Seller" app/ src/ --include="*.ts" --include="*.tsx"
+```
+STDOUT:
+```
+app/dashboard/orders/[id]/OrderDetailClient.tsx:11:interface OrderItem {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:19:interface Order {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:32:interface OrderDetailClientProps {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/dashboard/analytics/page.tsx:8:interface ProductAnalytics {
+app/track/[orderId]/page.tsx:10:interface OrderItem {
+app/track/[orderId]/page.tsx:17:interface Order {
+app/components/AnalyticsCards.tsx:9:interface ProductAnalytics {
+app/api/analytics/route.ts:9:interface ProductAnalytics {
+app/checkout/success/page.tsx:13:interface OrderDetails {
+```
+Full output: [`server-runs/2026-05-20T01-19-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-19-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
