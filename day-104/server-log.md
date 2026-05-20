@@ -1933,3 +1933,48 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T22:01:08.324Z","responseTime":"210ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"209ms"}}}
 ```
 Full output: [`server-runs/2026-05-20T22-01-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T22-01-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-20T22:01:42.516Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f865abf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3152ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && curl -sI https://www.soloshopbox.com/ 2>&1 && echo "---" && curl -sI https://www.soloshopbox.com/auth/login 2>&1 && echo "---" && curl -sI https://www.soloshopbox.com/dashboard 2>&1
+```
+STDOUT:
+```
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Wed, 20 May 2026 22:01:42 GMT
+etag: "r31t3y25se88h"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+content-length: 10710
+
+---
+HTTP/2 200 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Wed, 20 May 2026 22:01:42 GMT
+etag: "127koe2vx235wo"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-powered-by: Next.js
+x-request-id: 2uK0a2Ob6gfFnRog
+content-length: 7695
+
+---
+HTTP/2 307 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-type: text/html; charset=utf-8
+date: Wed, 20 May 2026 22:01:42 GMT
+location: /auth/login
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+x-powered-by: Next.js
+```
+Full output: [`server-runs/2026-05-20T22-01-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-01-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
