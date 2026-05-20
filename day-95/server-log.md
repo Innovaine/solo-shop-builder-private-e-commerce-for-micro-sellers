@@ -442,3 +442,13 @@ echo $! > /tmp/day95-test-v2.pid
 echo "Started test, PID=$(cat /tmp/day95-test-v2.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T12:00:51.347Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b773ad0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14517ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day95-s3-public-images.spec.ts --output=$HOME/.playwright-out --reporter=list 2>&1 | tee /tmp/day95-test-simple.log | head -100
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
