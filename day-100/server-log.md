@@ -475,3 +475,37 @@ _Pre-SSH: warehouse pushed to GitHub as commit `f170fb0` so the server's `git pu
 cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "getSession" app/api/products/route.ts app/api/orders/route.ts
 ```
 ERROR: command exited 1
+
+## 2026-05-20T16:35:31.538Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d37a5dd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2155ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rho "process\.env\.[A-Z_]\+" app lib src 2>/dev/null | sort -u | head -40
+```
+STDOUT:
+```
+process.env.APP_URL
+process.env.AWS_ACCESS_KEY_ID
+process.env.AWS_CLOUDFRONT_URL
+process.env.AWS_REGION
+process.env.AWS_S
+process.env.AWS_SECRET_ACCESS_KEY
+process.env.DATABASE_URL
+process.env.DO_SPACES_ENDPOINT
+process.env.DO_SPACES_REGION
+process.env.MYFATOORAH_API_KEY
+process.env.MYFATOORAH_API_URL
+process.env.NEXT_PUBLIC_BASE_URL
+process.env.NODE_ENV
+process.env.S
+process.env.SESSION_SECRET
+process.env.SMTP_FROM
+process.env.SMTP_HOST
+process.env.SMTP_PASS
+process.env.SMTP_PORT
+process.env.SMTP_USER
+process.env.STRIPE_SECRET_KEY
+process.env.STRIPE_WEBHOOK_SECRET
+```
+Full output: [`server-runs/2026-05-20T16-35-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-35-31-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
