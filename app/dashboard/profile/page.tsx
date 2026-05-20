@@ -230,33 +230,27 @@ export default function ProfilePage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-charcoal mb-5">Shop Image</h2>
+              <h2 className="text-lg font-semibold text-charcoal mb-5">Shop Logo</h2>
               
               <div className="space-y-2">
-                <label htmlFor="profileImage" className="block text-sm font-medium text-charcoal">
-                  Shop Logo/Profile Image
-                </label>
                 <div className="flex gap-4 items-start">
                   <div className="w-32 h-32 bg-whisper border-2 border-dashed border-slate/30 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    {imagePreview ? (
-                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
-                    ) : currentLogoUrl ? (
+                    {currentLogoUrl ? (
                       <img src={currentLogoUrl} alt="Current logo" className="w-full h-full object-cover" />
                     ) : (
                       <div className="text-5xl">🏪</div>
                     )}
                   </div>
                   <div className="flex-1">
-                    <input
-                      type="file"
-                      id="profileImage"
-                      accept="image/jpeg,image/png,image/webp"
-                      onChange={handleImageChange}
-                      className="block w-full text-sm text-slate border border-whisper rounded-md px-3 py-2 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-emerald/10 file:text-emerald hover:file:bg-emerald/20"
-                    />
-                    <div className="text-xs text-slate/80 mt-2">
-                      PNG, JPG, or WebP. Maximum 5MB. Square images work best (e.g., 512×512px).
-                    </div>
+                    <p className="text-sm text-slate/80 mb-3">
+                      Your shop logo is displayed on your public shop page and in customer communications.
+                    </p>
+                    <a
+                      href="/dashboard/branding"
+                      className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-charcoal rounded-md hover:bg-charcoal/90 transition-colors"
+                    >
+                      Change Logo in Branding Settings →
+                    </a>
                   </div>
                 </div>
               </div>
