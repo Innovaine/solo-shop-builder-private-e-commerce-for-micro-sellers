@@ -35,3 +35,19 @@ Fast-forward
  create mode 100644 day-99/_plan.md
 ```
 Full output: [`server-runs/2026-05-20T15-23-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T15-23-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T15:24:38.095Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `60d0135` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2374ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/build.log 2>&1 &
+echo $! > /tmp/build.pid
+echo "Started build, PID=$(cat /tmp/build.pid)"
+```
+STDOUT:
+```
+Started build, PID=2030023
+```
+Full output: [`server-runs/2026-05-20T15-24-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T15-24-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
