@@ -354,3 +354,60 @@ STDOUT:
     TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
 ```
 Full output: [`server-runs/2026-05-20T14-19-01-www.soloshopbox.com-grep--B5--A5-TimeoutError-page.waitForUR-1.log`](server-runs/2026-05-20T14-19-01-www.soloshopbox.com-grep--B5--A5-TimeoutError-page.waitForUR-1.log)
+
+## 2026-05-20T14:19:37.088Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `300adc5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3312ms)
+```
+echo "=== Day 97 Manual Smoke Tests ==="
+echo ""
+echo "Test 1: Homepage loads"
+curl -sI https://www.soloshopbox.com | head -5
+echo ""
+echo "Test 2: Login page loads"
+curl -sI https://www.soloshopbox.com/auth/login | head -5
+echo ""
+echo "Test 3: API health check"
+curl -sf https://www.soloshopbox.com/api/health | jq -c '{status, db: .checks.database.status, email: .checks.email.status}'
+echo ""
+echo "Test 4: Dashboard redirect (should be 307/302)"
+curl -sI https://www.soloshopbox.com/dashboard | head -3
+echo ""
+echo "Test 5: Products API endpoint exists"
+curl -sI https://www.soloshopbox.com/api/products | head -5
+```
+STDOUT:
+```
+=== Day 97 Manual Smoke Tests ===
+
+Test 1: Homepage loads
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Wed, 20 May 2026 14:19:37 GMT
+etag: "m9ujt077vn88h"
+
+Test 2: Login page loads
+HTTP/2 200 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+cache-control: s-maxage=31536000, stale-while-revalidate
+
+Test 3: API health check
+{"status":"ok","db":"ok","email":"ok"}
+
+Test 4: Dashboard redirect (should be 307/302)
+HTTP/2 307 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-type: text/html; charset=utf-8
+
+Test 5: Products API endpoint exists
+HTTP/2 400 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+content-type: application/json
+```
+Full output: [`server-runs/2026-05-20T14-19-37-www.soloshopbox.com-echo-Day-97-Manual-Smoke-Tests-1.log`](server-runs/2026-05-20T14-19-37-www.soloshopbox.com-echo-Day-97-Manual-Smoke-Tests-1.log)
