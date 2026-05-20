@@ -200,3 +200,17 @@ STDOUT:
 FAIL
 ```
 Full output: [`server-runs/2026-05-20T20-44-42-www.soloshopbox.com-curl--fsS-https-www.soloshopbox.com-heal-3.log`](server-runs/2026-05-20T20-44-42-www.soloshopbox.com-curl--fsS-https-www.soloshopbox.com-heal-3.log)
+
+## 2026-05-20T20:45:53.645Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `40f595f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3254ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+
+### Command 2 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 38108ms)
+```
+sleep 10 && curl -fsS https://www.soloshopbox.com/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
