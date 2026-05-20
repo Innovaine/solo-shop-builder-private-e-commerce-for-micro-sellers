@@ -408,3 +408,30 @@ app/dashboard/profile/page.tsx
 app/dashboard/settings/page.tsx
 ```
 Full output: [`server-runs/2026-05-20T16-32-02-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-32-02-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:32:33.511Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9e961d2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2352ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && find app/dashboard/products -name "page.tsx" | sort
+```
+STDOUT:
+```
+app/dashboard/products/[id]/edit/page.tsx
+app/dashboard/products/import/page.tsx
+app/dashboard/products/new/page.tsx
+app/dashboard/products/page.tsx
+```
+Full output: [`server-runs/2026-05-20T16-32-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-32-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:33:15.614Z — Zainab ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2147ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "export async function" app/api/auth/logout/route.ts
+```
+STDOUT:
+```
+8:export async function POST(request: NextRequest) {
+```
+Full output: [`server-runs/2026-05-20T16-33-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-33-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
