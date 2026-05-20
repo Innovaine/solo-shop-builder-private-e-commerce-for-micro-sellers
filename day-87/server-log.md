@@ -704,3 +704,35 @@ app/components/ui/index.ts
 app/components/ui/Modal.tsx
 ```
 Full output: [`server-runs/2026-05-20T01-17-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-17-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:17:53.749Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7f995da` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2101ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "requireAuth()" app/ src/ --include="*.ts" --include="*.tsx" | head -20
+```
+STDOUT:
+```
+app/api/shops/route.ts:    const { sellerId } = await requireAuth()
+app/api/shops/route.ts:    const { sellerId } = await requireAuth()
+app/api/shops/status/route.ts:      const auth = await requireAuth();
+app/api/shops/branding/route.ts:      const auth = await requireAuth();
+app/api/shops/email-template/route.ts:      const auth = await requireAuth();
+app/api/shops/email-template/route.ts:      const auth = await requireAuth();
+app/api/shops/profile/route.ts:      const auth = await requireAuth();
+app/api/products/route.ts:    const { sellerId } = await requireAuth()
+app/api/products/[id]/route.ts:    const { sellerId } = await requireAuth()
+app/api/products/[id]/route.ts:    const { sellerId } = await requireAuth()
+app/api/products/[id]/status/route.ts:    const { sellerId } = await requireAuth()
+app/api/products/export/route.ts:      const auth = await requireAuth();
+app/api/products/bulk-status/route.ts:    const { sellerId } = await requireAuth()
+app/api/account/password/route.ts:    const { sellerId } = await requireAuth()
+app/api/billing/route.ts:    const session = await requireAuth();
+app/api/orders/route.ts:    const session = await requireAuth()
+app/api/orders/[id]/route.ts:    // Auth check using canonical requireAuth() pattern
+app/api/orders/[id]/route.ts:    const { sellerId } = await requireAuth()
+app/api/orders/[id]/history/route.ts:    const { sellerId } = await requireAuth()
+app/api/orders/[id]/refund/route.ts:    // Auth check using requireAuth() helper per standards.md
+```
+Full output: [`server-runs/2026-05-20T01-17-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-17-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
