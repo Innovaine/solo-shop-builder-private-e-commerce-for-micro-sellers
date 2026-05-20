@@ -102,3 +102,75 @@ STDOUT:
 Started build, PID=1977710
 ```
 Full output: [`server-runs/2026-05-20T11-18-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-18-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:18:29.592Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d920342` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2512ms) _(showing tail — full 2,816B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"; tail -80 /tmp/build.log
+```
+STDOUT:
+```
+…Client()
+#15 1.002 ```
+#15 1.002 
+#15 1.002 See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+#15 1.002 
+#15 1.002 ┌─────────────────────────────────────────────────────────────┐
+#15 1.002 │  Deploying your app to serverless or edge functions?        │
+#15 1.002 │  Try Prisma Accelerate for connection pooling and caching.  │
+#15 1.002 │  https://pris.ly/cli/--accelerate                           │
+#15 1.002 └─────────────────────────────────────────────────────────────┘
+#15 1.002 
+#15 1.685 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#15 1.685 This information is used to shape Next.js' roadmap and prioritize features.
+#15 1.685 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 1.685 https://nextjs.org/telemetry
+#15 1.685 
+#15 1.736   ▲ Next.js 14.2.3
+#15 1.736   - Environments: .env
+#15 1.736 
+#15 1.805    Creating an optimized production build ...
+#15 6.932 Failed to compile.
+#15 6.932 
+#15 6.932 ./app/api/products/upload/route.ts
+#15 6.932 Module not found: Can't resolve '@/src/lib/s3'
+#15 6.932 
+#15 6.932 https://nextjs.org/docs/messages/module-not-found
+#15 6.932 
+#15 6.950 
+#15 6.950 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+1.805    Creating an optimized production build ...
+6.932 Failed to compile.
+6.932 
+6.932 ./app/api/products/upload/route.ts
+6.932 Module not found: Can't resolve '@/src/lib/s3'
+6.932 
+6.932 https://nextjs.org/docs/messages/module-not-found
+6.932 
+6.950 
+6.950 > Build failed because of webpack errors
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-20T11-18-29-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-20T11-18-29-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
