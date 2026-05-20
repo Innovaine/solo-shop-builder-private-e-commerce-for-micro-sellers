@@ -399,3 +399,20 @@ STDOUT:
 …abled:bg-whisper disabled:text-slate px-4 py-2 text-base\",\"children\":\"Go Home\"}]}],[\"$\",\"$L9\",null,{\"href\":\"/dashboard\",\"children\":[\"$\",\"button\",null,{\"disabled\":false,\"className\":\"font-semibold rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white border border-whisper text-charcoal hover:bg-cream focus:ring-charcoal px-4 py-2 text-base\",\"children\":\"Dashboard\"}]}]]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[false,\"$La\"],\"globalErrorComponent\":\"$b\",\"missingSlots\":\"$Wc\"}]]\n"])</script><script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:title\",\"content\":\"Solo Shop Builder — Your own storefront. No marketplace fees.\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:description\",\"content\":\"Elegant, honest tools for independent sellers who want to own their storefront without the marketplace middleman.\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:site_name\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:locale\",\"content\":\"en_US\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"Solo Shop Builder\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"Your own storefront. No marketplace fees.\"}]]\n3:null\n"])</script><script>self.__next_f.push([1,"4:E{\"digest\":\"3909219332\"}\n"])</script></body></html>
 ```
 Full output: [`server-runs/2026-05-20T20-50-28-www.soloshopbox.com-echo-Shop-page-structure-test-1.log`](server-runs/2026-05-20T20-50-28-www.soloshopbox.com-echo-Shop-page-structure-test-1.log)
+
+## 2026-05-20T20:52:50.617Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a683832` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3306ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --format "{{.Names}}\t{{.Status}}\t{{.Ports}}" && echo "---" && curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "Health check: OK" || echo "Health check: FAIL"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 7 minutes	0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 5 hours (healthy)	127.0.0.1:5432->5432/tcp
+traefik-vwiz-traefik-1	Up 3 days	
+---
+Health check: OK
+```
+Full output: [`server-runs/2026-05-20T20-52-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-52-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
