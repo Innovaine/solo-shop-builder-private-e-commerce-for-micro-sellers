@@ -1050,3 +1050,25 @@ STDOUT:
 src/lib/auth.ts:  return getIronSession<SessionData>(cookies(), sessionOptions)
 ```
 Full output: [`server-runs/2026-05-20T11-34-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-34-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:35:05.042Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fc7e972` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2319ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "NextResponse.redirect(" app/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -10
+```
+STDOUT:
+```
+app/api/checkout/myfatoorah/callback/route.ts:18:      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_failed`)
+app/api/checkout/myfatoorah/callback/route.ts:26:      return NextResponse.redirect(`${baseUrl}/checkout?error=configuration_error`)
+app/api/checkout/myfatoorah/callback/route.ts:50:      return NextResponse.redirect(`${baseUrl}/checkout?error=verification_failed`)
+app/api/checkout/myfatoorah/callback/route.ts:60:      return NextResponse.redirect(`${baseUrl}/checkout?error=invalid_response`)
+app/api/checkout/myfatoorah/callback/route.ts:65:      return NextResponse.redirect(`${baseUrl}/checkout?error=invalid_response`)
+app/api/checkout/myfatoorah/callback/route.ts:91:      return NextResponse.redirect(`${baseUrl}/checkout?error=${errorMessage}`)
+app/api/checkout/myfatoorah/callback/route.ts:109:      return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+app/api/checkout/myfatoorah/callback/route.ts:130:      return NextResponse.redirect(`${baseUrl}/checkout?error=order_not_found`)
+app/api/checkout/myfatoorah/callback/route.ts:196:    return NextResponse.redirect(`${baseUrl}/checkout/success?payment_id=${paymentId}&provider=myfatoorah`)
+app/api/checkout/myfatoorah/callback/route.ts:209:    return NextResponse.redirect(`${baseUrl}/checkout?error=callback_error`)
+```
+Full output: [`server-runs/2026-05-20T11-35-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-35-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
