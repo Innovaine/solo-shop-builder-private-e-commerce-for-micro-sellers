@@ -405,3 +405,28 @@ STDOUT:
   return (
 ```
 Full output: [`server-runs/2026-05-20T14-45-03-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-45-03-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:45:58.125Z — Mehrdad ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2429ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && head -40 app/shop/[slug]/SortDropdown.tsx | tail -15
+```
+STDOUT:
+```
+    // Add sort parameter (unless it's the default 'newest')
+    if (value !== 'newest') {
+      params.set('sort', value)
+    }
+    
+    const queryString = params.toString()
+    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <label htmlFor="sort" className="text-sm text-slate font-medium">
+        Sort by:
+      </label>
+      <select
+```
+Full output: [`server-runs/2026-05-20T14-45-58-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-45-58-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
