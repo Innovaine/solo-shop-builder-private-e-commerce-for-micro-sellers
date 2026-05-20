@@ -310,3 +310,42 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 3 minutes
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 5 hours (healthy)
 ```
 Full output: [`server-runs/2026-05-20T20-48-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-48-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:48:55.774Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `41e67d3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2483ms)
+```
+echo "=== TEST 1: Health check ===" &&
+curl -fsS https://www.soloshopbox.com/health | head -c 200 &&
+echo "" &&
+echo "" &&
+echo "=== TEST 2: Homepage loads ===" &&
+curl -sI https://www.soloshopbox.com/ | head -5 &&
+echo "" &&
+echo "=== TEST 3: Checkout success page structure ===" &&
+curl -s "https://www.soloshopbox.com/checkout/success?session_id=test" | grep -o "<h1" | head -1 &&
+echo "✓ h1 tag found (page renders)" &&
+echo "" &&
+echo "=== TEST 4: Shop page loads ===" &&
+curl -sI https://www.soloshopbox.com/shop/test-shop 2>&1 | grep -E "HTTP|404" | head -1
+```
+STDOUT:
+```
+=== TEST 1: Health check ===
+
+
+=== TEST 2: Homepage loads ===
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Wed, 20 May 2026 20:48:55 GMT
+etag: "rmxf7msjbe88h"
+
+=== TEST 3: Checkout success page structure ===
+✓ h1 tag found (page renders)
+
+=== TEST 4: Shop page loads ===
+HTTP/2 500
+```
+Full output: [`server-runs/2026-05-20T20-48-55-www.soloshopbox.com-echo-TEST-1-Health-check-1.log`](server-runs/2026-05-20T20-48-55-www.soloshopbox.com-echo-TEST-1-Health-check-1.log)
