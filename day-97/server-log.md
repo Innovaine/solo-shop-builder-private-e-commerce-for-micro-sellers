@@ -207,3 +207,12 @@ STDOUT:
 11.12.1
 ```
 Full output: [`server-runs/2026-05-20T14-13-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T14-13-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T14:14:43.650Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bb50263` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12990ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup bash -c 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day97-features.spec.ts --output=$HOME/.playwright-out --reporter=list' > /tmp/day97-tests.log 2>&1 & echo $! > /tmp/day97-tests.pid && echo "Tests started, PID=$(cat /tmp/day97-tests.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
