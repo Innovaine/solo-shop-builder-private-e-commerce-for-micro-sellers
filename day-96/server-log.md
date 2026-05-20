@@ -1606,3 +1606,56 @@ STDOUT:
   3 passed (6.2s)
 ```
 Full output: [`server-runs/2026-05-20T13-03-32-www.soloshopbox.com-wc--l-tmp-day96-test.log-tail--80-tmp-da-1.log`](server-runs/2026-05-20T13-03-32-www.soloshopbox.com-wc--l-tmp-day96-test.log-tail--80-tmp-da-1.log)
+
+## 2026-05-20T13:04:32.936Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9f92b30` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3516ms)
+```
+echo "=== Manual Day 96 Verification Tests ===" 
+echo
+echo "Test 1: Health endpoint"
+curl -s https://www.soloshopbox.com/api/health | head -5
+
+echo
+echo "Test 2: Homepage title"
+curl -s https://www.soloshopbox.com/ | grep -o '<title>.*</title>' | head -1
+
+echo
+echo "Test 3: Products API status (expected 500 based on test failure)"
+curl -sI https://www.soloshopbox.com/api/products 2>&1 | head -8
+
+echo
+echo "Test 4: Check if app/lib/s3.ts was removed (Task #279)"
+ls -la ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/lib/ 2>&1 | grep s3 || echo "No s3.ts in app/lib (PASS)"
+
+echo
+echo "Test 5: Check src/lib/s3.ts exists (should be the only one)"
+ls -la ~/solo-shop-builder-private-e-commerce-for-micro-sellers/src/lib/s3.ts 2>&1 | head -1
+```
+STDOUT:
+```
+=== Manual Day 96 Verification Tests ===
+
+Test 1: Health endpoint
+{"status":"ok","timestamp":"2026-05-20T13:04:32.951Z","responseTime":"240ms","checks":{"database":{"status":"ok","responseTime":"35ms"},"email":{"status":"ok","responseTime":"205ms"}}}
+Test 2: Homepage title
+<title>Solo Shop Builder — Your own storefront. No marketplace fees.</title>
+
+Test 3: Products API status (expected 500 based on test failure)
+HTTP/2 400 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+content-type: application/json
+date: Wed, 20 May 2026 13:04:33 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+x-request-id: ZUscVp7tW69y4EEt
+
+Test 4: Check if app/lib/s3.ts was removed (Task #279)
+-rw-rw-r--  1 tester tester 4060 May 20 11:24 s3.ts
+
+Test 5: Check src/lib/s3.ts exists (should be the only one)
+-rw-rw-r-- 1 tester tester 4062 May 20 11:59 /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/src/lib/s3.ts
+```
+Full output: [`server-runs/2026-05-20T13-04-32-www.soloshopbox.com-echo-Manual-Day-96-Verification-Tests-1.log`](server-runs/2026-05-20T13-04-32-www.soloshopbox.com-echo-Manual-Day-96-Verification-Tests-1.log)
