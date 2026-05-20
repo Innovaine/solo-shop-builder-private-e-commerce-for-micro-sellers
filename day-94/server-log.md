@@ -709,3 +709,26 @@ STDOUT:
     },
 ```
 Full output: [`server-runs/2026-05-20T11-28-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-28-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:28:30.044Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b73cda4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2505ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '60,70p' app/shop/[slug]/product/[productId]/page.tsx
+```
+STDOUT:
+```
+            <p className="text-slate mb-4">
+              The seller has temporarily paused this shop. You cannot purchase items at this time.
+            </p>
+            <Link href={`/shop/${slug}`}>
+              <Button variant="secondary">Back to Shop</Button>
+            </Link>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Product Image */}
+```
+Full output: [`server-runs/2026-05-20T11-28-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-28-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
