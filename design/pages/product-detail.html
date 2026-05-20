@@ -68,18 +68,23 @@
     }
     .main-image {
       aspect-ratio: 1;
-      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      background: white;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 96px;
       cursor: pointer;
       border: 1px solid #E2E8F0;
       transition: all 0.2s ease;
+      overflow: hidden;
     }
     .main-image:hover {
-      background: linear-gradient(135deg, #CBD5E1 0%, #94A3B8 100%);
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .product-svg {
+      width: 100%;
+      height: 100%;
     }
     .thumbnail-list {
       display: flex;
@@ -88,22 +93,27 @@
     .thumbnail {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      background: white;
       border-radius: 6px;
       border: 1px solid #E2E8F0;
       cursor: pointer;
-      font-size: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
+      overflow: hidden;
     }
     .thumbnail:hover {
       border-color: #3B4C63;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     }
     .thumbnail.active {
       border-color: #3B4C63;
       box-shadow: 0 0 0 2px white, 0 0 0 4px #3B4C63;
+    }
+    .thumbnail-svg {
+      width: 100%;
+      height: 100%;
     }
 
     /* Product Info */
@@ -315,11 +325,61 @@
     <div class="product-layout">
       <!-- Images -->
       <div class="product-images">
-        <div class="main-image" id="mainImage">💎</div>
+        <div class="main-image" id="mainImage">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="product-svg">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.15" />
+                <stop offset="100%" style="stop-color:#3B4C63;stop-opacity:0.15" />
+              </linearGradient>
+            </defs>
+            <rect width="400" height="400" fill="url(#grad1)"/>
+            <rect x="50" y="50" width="300" height="300" rx="8" fill="#FAF9F7" stroke="#E2E8F0" stroke-width="2"/>
+            <text x="200" y="150" font-size="80" font-weight="bold" text-anchor="middle" fill="#94A3B8">👗</text>
+            <text x="200" y="260" font-size="14" text-anchor="middle" fill="#94A3B8" font-family="system-ui">Gold Minimalist Necklace</text>
+            <text x="200" y="280" font-size="12" text-anchor="middle" fill="#CBD5E1">Uploaded image placeholder</text>
+          </svg>
+        </div>
         <div class="thumbnail-list">
-          <div class="thumbnail active" data-image="💎">💎</div>
-          <div class="thumbnail" data-image="✨">✨</div>
-          <div class="thumbnail" data-image="⭐">⭐</div>
+          <div class="thumbnail active" data-image="main">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="thumbnail-svg">
+              <defs>
+                <linearGradient id="thumb1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.15" />
+                  <stop offset="100%" style="stop-color:#3B4C63;stop-opacity:0.15" />
+                </linearGradient>
+              </defs>
+              <rect width="80" height="80" fill="url(#thumb1)"/>
+              <rect x="6" y="6" width="68" height="68" rx="4" fill="#FAF9F7" stroke="#E2E8F0" stroke-width="1"/>
+              <text x="40" y="40" font-size="28" text-anchor="middle" dominant-baseline="central" fill="#94A3B8">👗</text>
+            </svg>
+          </div>
+          <div class="thumbnail" data-image="alt1">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="thumbnail-svg">
+              <defs>
+                <linearGradient id="thumb2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#10B981;stop-opacity:0.15" />
+                  <stop offset="100%" style="stop-color:#3B4C63;stop-opacity:0.15" />
+                </linearGradient>
+              </defs>
+              <rect width="80" height="80" fill="url(#thumb2)"/>
+              <rect x="6" y="6" width="68" height="68" rx="4" fill="#FAF9F7" stroke="#E2E8F0" stroke-width="1"/>
+              <text x="40" y="40" font-size="28" text-anchor="middle" dominant-baseline="central" fill="#94A3B8">💎</text>
+            </svg>
+          </div>
+          <div class="thumbnail" data-image="alt2">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="thumbnail-svg">
+              <defs>
+                <linearGradient id="thumb3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#F43F5E;stop-opacity:0.15" />
+                  <stop offset="100%" style="stop-color:#3B4C63;stop-opacity:0.15" />
+                </linearGradient>
+              </defs>
+              <rect width="80" height="80" fill="url(#thumb3)"/>
+              <rect x="6" y="6" width="68" height="68" rx="4" fill="#FAF9F7" stroke="#E2E8F0" stroke-width="1"/>
+              <text x="40" y="40" font-size="28" text-anchor="middle" dominant-baseline="central" fill="#94A3B8">✨</text>
+            </svg>
+          </div>
         </div>
       </div>
 
@@ -391,11 +451,52 @@
 
   <script>
     // Image gallery (design reference)
+    const svgImages = {
+      main: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="product-svg">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.15" />
+            <stop offset="100%" style="stop-color:#3B4C63;stop-opacity:0.15" />
+          </linearGradient>
+        </defs>
+        <rect width="400" height="400" fill="url(#grad1)"/>
+        <rect x="50" y="50" width="300" height="300" rx="8" fill="#FAF9F7" stroke="#E2E8F0" stroke-width="2"/>
+        <text x="200" y="150" font-size="80" font-weight="bold" text-anchor="middle" fill="#94A3B8">👗</text>
+        <text x="200" y="260" font-size="14" text-anchor="middle" fill="#94A3B8" font-family="system-ui">Gold Minimalist Necklace</text>
+        <text x="200" y="280" font-size="12" text-anchor="middle" fill="#CBD5E1">Uploaded image placeholder</text>
+      </svg>`,
+      alt1: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="product-svg">
+        <defs>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#10B981;stop-opacity:0.15" />
+            <stop offset="100%" style="stop-color:#3B4C63;stop-opacity:0.15" />
+          </linearGradient>
+        </defs>
+        <rect width="400" height="400" fill="url(#grad2)"/>
+        <rect x="50" y="50" width="300" height="300" rx="8" fill="#FAF9F7" stroke="#E2E8F0" stroke-width="2"/>
+        <text x="200" y="180" font-size="80" text-anchor="middle" fill="#94A3B8">💎</text>
+        <text x="200" y="280" font-size="14" text-anchor="middle" fill="#94A3B8" font-family="system-ui">Detail view</text>
+      </svg>`,
+      alt2: `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="product-svg">
+        <defs>
+          <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F43F5E;stop-opacity:0.15" />
+            <stop offset="100%" style="stop-color:#3B4C63;stop-opacity:0.15" />
+          </linearGradient>
+        </defs>
+        <rect width="400" height="400" fill="url(#grad3)"/>
+        <rect x="50" y="50" width="300" height="300" rx="8" fill="#FAF9F7" stroke="#E2E8F0" stroke-width="2"/>
+        <text x="200" y="180" font-size="80" text-anchor="middle" fill="#94A3B8">✨</text>
+        <text x="200" y="280" font-size="14" text-anchor="middle" fill="#94A3B8" font-family="system-ui">Styled variant</text>
+      </svg>`
+    };
+
     document.querySelectorAll('.thumbnail').forEach(thumb => {
       thumb.addEventListener('click', function() {
         document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
         this.classList.add('active');
-        document.getElementById('mainImage').textContent = this.dataset.image;
+        const imageKey = this.dataset.image;
+        document.getElementById('mainImage').innerHTML = svgImages[imageKey];
       });
     });
 
