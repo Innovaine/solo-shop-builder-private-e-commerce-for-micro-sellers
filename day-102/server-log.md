@@ -413,3 +413,17 @@ No pending migrations to apply.
  ✓ Ready in 57ms
 ```
 Full output: [`server-runs/2026-05-20T20-16-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-16-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:17:28.839Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bd7fe01` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3046ms)
+```
+curl -sf https://www.soloshopbox.com/api/health | head -20
+curl -sf https://www.soloshopbox.com/ -o /dev/null && echo "Homepage OK" || echo "Homepage DOWN"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T20:17:29.091Z","responseTime":"228ms","checks":{"database":{"status":"ok","responseTime":"50ms"},"email":{"status":"ok","responseTime":"178ms"}}}Homepage OK
+```
+Full output: [`server-runs/2026-05-20T20-17-28-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T20-17-28-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
