@@ -183,3 +183,33 @@ DONE
 Error: No tests found.
 ```
 Full output: [`server-runs/2026-05-20T10-53-19-www.soloshopbox.com-kill--0-cat-tmp-day93-regression.pid-2-d-1.log`](server-runs/2026-05-20T10-53-19-www.soloshopbox.com-kill--0-cat-tmp-day93-regression.pid-2-d-1.log)
+
+## 2026-05-20T10:53:41.518Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6b95552` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2389ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+ls -la tests/web/*.spec.ts 2>/dev/null | tail -10
+echo "---"
+# Run a simple smoke test on recent tests
+nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day84-smoke.spec.ts tests/web/day85-profile-fix.spec.ts --output=$HOME/.playwright-out --reporter=list > /tmp/day93-smoke.log 2>&1 &
+echo $! > /tmp/day93-smoke.pid
+echo "Started smoke tests, PID=$(cat /tmp/day93-smoke.pid)"
+```
+STDOUT:
+```
+-rw-rw-r-- 1 tester tester  3327 May 19 22:31 tests/web/day84-smoke.spec.ts
+-rw-rw-r-- 1 tester tester  1853 May 19 23:55 tests/web/day85-profile-fix.spec.ts
+-rw-rw-r-- 1 tester tester  4984 May 15 23:09 tests/web/public-storefront.spec.ts
+-rw-rw-r-- 1 tester tester  4540 May 15 23:09 tests/web/scaling-day12.spec.ts
+-rw-rw-r-- 1 tester tester  6831 May 15 23:37 tests/web/scaling-day13.spec.ts
+-rw-rw-r-- 1 tester tester  3665 May 16 01:15 tests/web/scaling-day15.spec.ts
+-rw-rw-r-- 1 tester tester 11211 May 16 13:36 tests/web/scaling-day18.spec.ts
+-rw-rw-r-- 1 tester tester 12148 May 16 13:36 tests/web/scaling-day19.spec.ts
+-rw-rw-r-- 1 tester tester  7898 May 15 23:09 tests/web/session-management.spec.ts
+-rw-rw-r-- 1 tester tester  5961 May 15 23:09 tests/web/shop-creation.spec.ts
+---
+Started smoke tests, PID=1972072
+```
+Full output: [`server-runs/2026-05-20T10-53-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-53-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
