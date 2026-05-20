@@ -1115,3 +1115,25 @@ app/api/auth/login/route.ts:6:import { z } from 'zod'
 src/lib/product.ts:4:import { z } from 'zod'
 ```
 Full output: [`server-runs/2026-05-20T11-35-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-35-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:36:01.593Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `81103a8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2631ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "checkRateLimit" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -10
+```
+STDOUT:
+```
+app/api/shops/route.ts:59:    const { checkRateLimit, getClientIdentifier, RATE_LIMITS } = await import('@/lib/rate-limit')
+app/api/shops/route.ts:61:    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.SHOP_CREATE)
+app/api/products/route.ts:12:import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
+app/api/products/route.ts:49:    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.SHOP_CREATE)
+app/api/auth/forgot-password/route.ts:10:import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
+app/api/auth/forgot-password/route.ts:20:    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.AUTH_SIGNUP)
+app/api/auth/signup/route.ts:12:import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
+app/api/auth/signup/route.ts:23:    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.AUTH_SIGNUP)
+app/api/auth/login/route.ts:10:import { checkRateLimit, getClientIdentifier, RATE_LIMITS } from '@/lib/rate-limit'
+app/api/auth/login/route.ts:21:    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.AUTH_LOGIN || RATE_LIMITS.AUTH_SIGNUP)
+```
+Full output: [`server-runs/2026-05-20T11-36-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-36-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
