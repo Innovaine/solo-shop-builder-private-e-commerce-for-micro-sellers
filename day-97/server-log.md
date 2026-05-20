@@ -161,3 +161,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `66690c3` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull && npm install -D @playwright/test 2>&1 | tail -20
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T14:12:54.151Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f17b50a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3302ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup git pull > /tmp/git-pull.log 2>&1 & echo $! > /tmp/git-pull.pid && echo "Pull started, PID=$(cat /tmp/git-pull.pid)"
+```
+STDOUT:
+```
+Pull started, PID=2016178
+```
+Full output: [`server-runs/2026-05-20T14-12-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T14-12-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
