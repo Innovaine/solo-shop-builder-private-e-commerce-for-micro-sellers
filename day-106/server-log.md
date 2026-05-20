@@ -123,3 +123,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `88e5124` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "fetch.*credentials" app --include="*.tsx" --include="*.ts" | head -15
 ```
+
+## 2026-05-20T23:17:54.000Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1a08bf6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3303ms)
+```
+cd /home/reviewer && pwd && ls -la | grep solo || echo "Not yet cloned"
+```
+STDOUT:
+```
+/home/reviewer
+drwxrwxr-x 119 reviewer reviewer 4096 May 20 21:59 solo-shop-builder-private-e-commerce-for-micro-sellers
+```
+Full output: [`server-runs/2026-05-20T23-17-53-www.soloshopbox.com-cd-home-reviewer-pwd-ls--la-grep-solo-ec-1.log`](server-runs/2026-05-20T23-17-53-www.soloshopbox.com-cd-home-reviewer-pwd-ls--la-grep-solo-ec-1.log)
