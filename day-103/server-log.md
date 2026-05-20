@@ -713,3 +713,22 @@ STDOUT:
 /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/app/api/products/upload/route.ts:import { uploadToS3, isS3Configured } from '@/lib/s3'
 ```
 Full output: [`server-runs/2026-05-20T21-07-33-www.soloshopbox.com-grep--r-from.-lib-s3-solo-shop-builder-p-1.log`](server-runs/2026-05-20T21-07-33-www.soloshopbox.com-grep--r-from.-lib-s3-solo-shop-builder-p-1.log)
+
+## 2026-05-20T21:08:03.535Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `49599ce` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2250ms)
+```
+grep -A 6 '"paths"' ~/solo-shop-builder-private-e-commerce-for-micro-sellers/tsconfig.json
+```
+STDOUT:
+```
+    "paths": {
+      "@/*": ["./app/*", "./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+Full output: [`server-runs/2026-05-20T21-08-03-www.soloshopbox.com-grep--A-6-paths-solo-shop-builder-privat-1.log`](server-runs/2026-05-20T21-08-03-www.soloshopbox.com-grep--A-6-paths-solo-shop-builder-privat-1.log)
