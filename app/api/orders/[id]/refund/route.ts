@@ -7,15 +7,24 @@ import { prisma } from '@/lib/db'
 import { sendEmail } from '@/lib/email'
 import { requireAuth } from '@/lib/auth'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-04-10',
-})
+/**
+ * Get Stripe client at runtime (not module scope)
+ * This ensures env vars are read when the function is called, not at module load time
+ */
+function getStripeClient(): Stripe {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2024-04-10',
+  })
+}
 
 export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    // Get Stripe client at runtime
+    const stripe = getStripeClient()
+    
     // Auth check using requireAuth() helper per standards.md
     const { sellerId } = await requireAuth()
 

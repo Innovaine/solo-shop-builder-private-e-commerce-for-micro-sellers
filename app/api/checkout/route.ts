@@ -7,12 +7,21 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { prisma } from '@/lib/db'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-04-10',
-})
+/**
+ * Get Stripe client at runtime (not module scope)
+ * This ensures env vars are read when the function is called, not at module load time
+ */
+function getStripeClient(): Stripe {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2024-04-10',
+  })
+}
 
 export async function POST(request: NextRequest) {
   try {
+    // Get Stripe client at runtime
+    const stripe = getStripeClient()
+    
     const body = await request.json()
     const { items, shopSlug, customerEmail } = body
 

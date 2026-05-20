@@ -7,13 +7,28 @@ import Stripe from 'stripe'
 import prisma from '@/lib/db'
 import { sendOrderConfirmationEmail, sendEmail } from '@/lib/email'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-04-10',
-})
+/**
+ * Get Stripe client at runtime (not module scope)
+ * This ensures env vars are read when the function is called, not at module load time
+ */
+function getStripeClient(): Stripe {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2024-04-10',
+  })
+}
 
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
+/**
+ * Get webhook secret at runtime (not module scope)
+ */
+function getWebhookSecret(): string {
+  return process.env.STRIPE_WEBHOOK_SECRET!
+}
 
 export async function POST(request: NextRequest) {
+  // Get Stripe client and webhook secret at runtime
+  const stripe = getStripeClient()
+  const webhookSecret = getWebhookSecret()
+  
   const body = await request.text()
   const signature = request.headers.get('stripe-signature')
 
