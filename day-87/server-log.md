@@ -878,3 +878,25 @@ STDOUT:
 0
 ```
 Full output: [`server-runs/2026-05-20T01-20-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-20-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:20:34.065Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b59e8fa` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3214ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "safeParse\|\.parse(" app/ src/ --include="*.ts" --include="*.tsx" | head -10
+```
+STDOUT:
+```
+app/api/shops/route.ts:    const { name, slug } = shopSchema.parse(body)
+app/api/products/route.ts:    const productData = productSchema.parse(body)
+app/api/products/[id]/route.ts:    const productData = productSchema.parse(body)
+app/api/account/password/route.ts:    const { currentPassword, newPassword } = passwordChangeSchema.parse(body)
+app/api/checkout/myfatoorah/route.ts:          ...JSON.parse(pendingOrder.metadata || '{}'),
+app/api/checkout/myfatoorah/callback/route.ts:          ...JSON.parse(pendingOrder.metadata || '{}'),
+app/api/auth/forgot-password/route.ts:    const { email } = forgotPasswordSchema.parse(body)
+app/api/auth/signup/route.ts:    const { email, password } = signupSchema.parse(body)
+app/api/auth/reset-password/route.ts:    const { token, newPassword } = resetPasswordSchema.parse(body)
+app/api/auth/login/route.ts:    const { email, password } = loginSchema.parse(body)
+```
+Full output: [`server-runs/2026-05-20T01-20-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-20-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
