@@ -249,3 +249,17 @@ time="2026-05-20T23:51:08Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy
 ```
 Full output: [`server-runs/2026-05-20T23-51-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-51-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T23:51:44.764Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `59a1277` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2771ms)
+```
+curl -sf https://www.soloshopbox.com/api/health -w "\nHTTP_CODE: %{http_code}\n" || echo "HEALTH CHECK FAILED"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T23:51:44.591Z","responseTime":"159ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"157ms"}}}
+HTTP_CODE: 200
+```
+Full output: [`server-runs/2026-05-20T23-51-44-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T23-51-44-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
