@@ -297,3 +297,47 @@ STDOUT:
   3 passed (6.6s)
 ```
 Full output: [`server-runs/2026-05-20T18-13-48-www.soloshopbox.com-kill--0-cat-tmp-day101-test.pid-2-dev-nu-1.log`](server-runs/2026-05-20T18-13-48-www.soloshopbox.com-kill--0-cat-tmp-day101-test.pid-2-dev-nu-1.log)
+
+## 2026-05-20T18:14:20.539Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `894e32b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2864ms) _(showing tail — full 6,242B stdout + 0B stderr)_
+```
+cat /tmp/day101-test.log | head -200
+```
+STDOUT:
+```
+…9b39-customerEmail-field-visible-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day101-myfatoorah-fixes-My-d9b39-customerEmail-field-visible-chromium/error-context.md
+
+  4) [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:109:7 › MyFatoorah Customer Email & Data Persistence › checkout page displays MyFatoorah payment option 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mfalse[39m
+
+      118 |     const formExists = await myfatoorahForm.count() > 0
+      119 |     
+    > 120 |     expect(buttonExists || formExists).toBeTruthy()
+          |                                        ^
+      121 |   })
+      122 | })
+      123 |
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day101-myfatoorah-fixes.spec.ts:120:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../.playwright-out/day101-myfatoorah-fixes-My-025d8-s-MyFatoorah-payment-option-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day101-myfatoorah-fixes-My-025d8-s-MyFatoorah-payment-option-chromium/error-context.md
+
+  4 failed
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:10:7 › MyFatoorah Callback Signature Verification › rejects POST callback without signature header 
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:27:7 › MyFatoorah Callback Signature Verification › rejects POST callback with invalid signature 
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:100:7 › MyFatoorah Customer Email & Data Persistence › checkout form has customerEmail field visible 
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:109:7 › MyFatoorah Customer Email & Data Persistence › checkout page displays MyFatoorah payment option 
+  3 passed (6.6s)
+```
+Full output: [`server-runs/2026-05-20T18-14-20-www.soloshopbox.com-cat-tmp-day101-test.log-head--200-1.log`](server-runs/2026-05-20T18-14-20-www.soloshopbox.com-cat-tmp-day101-test.log-head--200-1.log)
