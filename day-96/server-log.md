@@ -954,3 +954,56 @@ STDOUT:
       });
 ```
 Full output: [`server-runs/2026-05-20T12-45-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-45-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:45:55.441Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `381cd98` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2838ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+Updating 6819a80..381cd98
+Fast-forward
+ app/api/shops/branding/route.ts          |  97 ++--
+ app/dashboard/profile/page.tsx           |  58 +-
+ day-95/_index.md                         |  23 +
+ day-95/engineering.md                    | 318 ++++++++++
+ day-95/review.md                         |  22 +
+ day-95/server-log.md                     | 772 +++++++++++++++++++++++++
+ day-95/stage-ship-check.md               |  15 +
+ day-95/standards-audit.md                | 302 ++++++++++
+ day-95/standards_qa.md                   |  43 ++
+ day-95/task-verification.md              | 314 ++++++++++
+ day-95/task_verifier.md                  | 323 +++++++++++
+ day-95/test.md                           | 185 ++++++
+ day-96/_plan.md                          |  39 ++
+ day-96/connectivity-audit.md             |   0
+ day-96/connectivity_qa.md                | 133 +++++
+ day-96/design.md                         |  36 ++
+ day-96/server-log.md                     | 956 +++++++++++++++++++++++++++++++
+ design/pages/order-detail.html           |  16 +
+ design/pages/shop-logo-upload.html       | 259 +++++++++
+ test-results/day-95/report.md            | 181 ++++++
+ tests/web/day95-s3-public-images.spec.ts | 110 ++++
+ 21 files changed, 4111 insertions(+), 91 deletions(-)
+ create mode 100644 day-95/_index.md
+ create mode 100644 day-95/engineering.md
+ create mode 100644 day-95/review.md
+ create mode 100644 day-95/stage-ship-check.md
+ create mode 100644 day-95/standards-audit.md
+ create mode 100644 day-95/standards_qa.md
+ create mode 100644 day-95/task-verification.md
+ create mode 100644 day-95/task_verifier.md
+ create mode 100644 day-95/test.md
+ create mode 100644 day-96/_plan.md
+ create mode 100644 day-96/connectivity-audit.md
+ create mode 100644 day-96/connectivity_qa.md
+ create mode 100644 day-96/design.md
+ create mode 100644 day-96/server-log.md
+ create mode 100644 design/pages/shop-logo-upload.html
+ create mode 100644 test-results/day-95/report.md
+ create mode 100644 tests/web/day95-s3-public-images.spec.ts
+```
+Full output: [`server-runs/2026-05-20T12-45-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-45-55-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
