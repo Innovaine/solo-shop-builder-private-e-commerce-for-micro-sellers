@@ -29,9 +29,9 @@ export default function OrderDetailClient({ order, shopId }: OrderDetailClientPr
     return `$${(cents / 100).toFixed(2)}`
   }
 
-  const formatDate = (isoString: string) => {
-    const date = new Date(isoString)
-    return date.toLocaleDateString('en-US', {
+  const formatDate = (date: Date | string) => {
+    const dateObj = typeof date === 'string' ? new Date(date) : date
+    return dateObj.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',

@@ -2,16 +2,24 @@
 // ASSUMPTION: SMTP credentials are configured in environment variables
 
 import nodemailer from 'nodemailer'
+import type { Transporter } from 'nodemailer'
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.ethereal.email',
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-})
+let _transporter: Transporter | null = null
+
+function getTransporter(): Transporter {
+  if (!_transporter) {
+    _transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || 'smtp.ethereal.email',
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    })
+  }
+  return _transporter
+}
 
 export async function sendMagicLinkEmail(
   email: string,
@@ -36,7 +44,7 @@ export async function sendMagicLinkEmail(
     `,
   }
 
-  await transporter.sendMail(mailOptions)
+  await getTransporter().sendMail(mailOptions)
 }
 
 export async function sendPasswordResetEmail(
@@ -63,7 +71,7 @@ export async function sendPasswordResetEmail(
     `,
   }
 
-  await transporter.sendMail(mailOptions)
+  await getTransporter().sendMail(mailOptions)
 }
 
 // FR-35 & FR-36: Send order confirmation email with custom template
@@ -134,7 +142,7 @@ Best regards,
     `,
   };
 
-  await transporter.sendMail(mailOptions);
+  await getTransporter().sendMail(mailOptions);
 }
 
 // Generic email sending function for custom use cases (refunds, etc.)
@@ -152,5 +160,5 @@ export async function sendEmail(options: {
     html: options.html || options.text.replace(/\n/g, '<br/>'),
   }
 
-  await transporter.sendMail(mailOptions)
+  await getTransporter().sendMail(mailOptions)
 }
