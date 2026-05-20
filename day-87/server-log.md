@@ -772,3 +772,19 @@ app/api/auth/verify/route.ts:      return NextResponse.redirect(
 app/api/auth/verify/route.ts:      return NextResponse.redirect(new URL('/dashboard', request.url))
 ```
 Full output: [`server-runs/2026-05-20T01-18-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-18-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T01:18:43.881Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e2fc682` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2120ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "redirect(" app/ --include="*.tsx" | grep -v "node_modules" | head -20
+```
+STDOUT:
+```
+app/dashboard/page.tsx:    redirect('/auth/login')
+app/dashboard/page.tsx:    redirect('/dashboard/create-shop')
+app/dashboard/orders/[id]/page.tsx:    redirect('/auth/login')
+app/dashboard/orders/[id]/page.tsx:    redirect('/dashboard/create-shop')
+```
+Full output: [`server-runs/2026-05-20T01-18-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T01-18-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
