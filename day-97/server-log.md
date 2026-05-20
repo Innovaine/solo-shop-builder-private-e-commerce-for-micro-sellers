@@ -232,3 +232,17 @@ STDOUT:
 Started tests, PID=2017644
 ```
 Full output: [`server-runs/2026-05-20T14-15-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T14-15-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T14:15:57.599Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a5ad693` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 12455ms)
+```
+sleep 10 && kill -0 $(cat /tmp/day97-test.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"; tail -100 /tmp/day97-test.log 2>/dev/null | head -80
+```
+STDOUT:
+```
+DONE
+Error: EPERM: operation not permitted, rmdir '/tmp/playwright-test-results'
+```
+Full output: [`server-runs/2026-05-20T14-15-57-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day97-test.pid--1.log`](server-runs/2026-05-20T14-15-57-www.soloshopbox.com-sleep-10-kill--0-cat-tmp-day97-test.pid--1.log)
