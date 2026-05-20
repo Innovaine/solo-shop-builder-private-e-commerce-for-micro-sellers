@@ -1301,3 +1301,16 @@ STDOUT:
 DELETE 1
 ```
 Full output: [`server-runs/2026-05-20T21-34-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-34-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:35:00.781Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e86aa2f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2343ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c "INSERT INTO _prisma_migrations (id, checksum, finished_at, migration_name, logs, rolled_back_at, started_at, applied_steps_count) VALUES (gen_random_uuid(), '5d3c8e5f5c5e5c5e5c5e5c5e5c5e5c5e5c5e5c5e5c5e5c5e5c5e5c5e5c5e5c5e', NOW(), '20260521_add_shop_currency', NULL, NULL, NOW(), 1);"
+```
+STDOUT:
+```
+INSERT 0 1
+```
+Full output: [`server-runs/2026-05-20T21-35-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-35-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
