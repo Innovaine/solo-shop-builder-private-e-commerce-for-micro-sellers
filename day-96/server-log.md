@@ -1388,3 +1388,56 @@ HTTP/2 200
 access-control-allow-headers: Content-Type, Authorization
 ```
 Full output: [`server-runs/2026-05-20T12-57-36-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log`](server-runs/2026-05-20T12-57-36-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log)
+
+## 2026-05-20T12:58:40.842Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `de130fe` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3431ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+Updating 462f490..de130fe
+Fast-forward
+ app/api/shops/branding/route.ts          |   97 ++-
+ app/dashboard/profile/page.tsx           |   65 +-
+ day-95/_index.md                         |   23 +
+ day-95/server-log.md                     |  545 ++++++++++++
+ day-95/stage-ship-check.md               |   15 +
+ day-95/standards-audit.md                |  302 +++++++
+ day-95/standards_qa.md                   |   43 +
+ day-95/task-verification.md              |  314 +++++++
+ day-95/task_verifier.md                  |  323 +++++++
+ day-95/test.md                           |  185 ++++
+ day-96/_plan.md                          |   39 +
+ day-96/connectivity-audit.md             |    0
+ day-96/connectivity_qa.md                |  133 +++
+ day-96/design.md                         |   36 +
+ day-96/engineering.md                    | 1019 ++++++++++++++++++++++
+ day-96/review.md                         |   34 +
+ day-96/server-log.md                     | 1390 ++++++++++++++++++++++++++++++
+ design/pages/order-detail.html           |   16 +
+ design/pages/shop-logo-upload.html       |  259 ++++++
+ test-results/day-95/report.md            |  181 ++++
+ tests/web/day96-image-upload-fix.spec.ts |   74 ++
+ 21 files changed, 4996 insertions(+), 97 deletions(-)
+ create mode 100644 day-95/_index.md
+ create mode 100644 day-95/stage-ship-check.md
+ create mode 100644 day-95/standards-audit.md
+ create mode 100644 day-95/standards_qa.md
+ create mode 100644 day-95/task-verification.md
+ create mode 100644 day-95/task_verifier.md
+ create mode 100644 day-95/test.md
+ create mode 100644 day-96/_plan.md
+ create mode 100644 day-96/connectivity-audit.md
+ create mode 100644 day-96/connectivity_qa.md
+ create mode 100644 day-96/design.md
+ create mode 100644 day-96/engineering.md
+ create mode 100644 day-96/review.md
+ create mode 100644 day-96/server-log.md
+ create mode 100644 design/pages/shop-logo-upload.html
+ create mode 100644 test-results/day-95/report.md
+ create mode 100644 tests/web/day96-image-upload-fix.spec.ts
+```
+Full output: [`server-runs/2026-05-20T12-58-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-58-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
