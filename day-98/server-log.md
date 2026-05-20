@@ -588,3 +588,11 @@ app/api/shops/branding/route.ts:import { uploadToS3, isS3Configured } from '@/li
 app/api/products/upload/route.ts:import { uploadToS3, isS3Configured } from '@/lib/s3'
 ```
 Full output: [`server-runs/2026-05-20T14-56-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T14-56-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T14:56:45.143Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `74a1a71` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2271ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "cookies()" app/ src/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -v "src/lib/auth.ts" | head -15
+```
