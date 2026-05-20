@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding Checklist — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAF9F7;
+      color: #1F2937;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    
+    header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1F2937;
+    }
+    
+    .subtitle {
+      font-size: 16px;
+      color: #64748B;
+      margin-bottom: 24px;
+    }
+    
+    .progress-wrapper {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid #E2E8F0;
+    }
+    
+    .progress-bar-container {
+      margin-bottom: 16px;
+    }
+    
+    .progress-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #3B4C63;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: #E2E8F0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: #10B981;
+      width: 40%;
+      transition: width 0.3s ease;
+    }
+    
+    .checklist {
+      list-style: none;
+    }
+    
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid #E2E8F0;
+      transition: background 0.2s ease;
+    }
+    
+    .checklist-item:last-child {
+      border-bottom: none;
+    }
+    
+    .checklist-item.completed {
+      opacity: 0.7;
+    }
+    
+    .checklist-item input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #3B4C63;
+      border-radius: 4px;
+      margin-right: 16px;
+      margin-top: 2px;
+      cursor: pointer;
+      accent-color: #10B981;
+      flex-shrink: 0;
+    }
+    
+    .checklist-item input[type="checkbox"]:checked {
+      background: #10B981;
+      border-color: #10B981;
+    }
+    
+    .checklist-content {
+      flex: 1;
+    }
+    
+    .checklist-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    
+    .checklist-item.completed .checklist-title {
+      text-decoration: line-through;
+      color: #64748B;
+    }
+    
+    .checklist-desc {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+    
+    .checklist-cta {
+      font-size: 14px;
+    }
+    
+    .checklist-cta a {
+      color: #3B4C63;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid #E2E8F0;
+      transition: border-color 0.2s ease;
+    }
+    
+    .checklist-cta a:hover {
+      border-color: #10B981;
+    }
+    
+    .checklist-time {
+      display: inline-block;
+      background: #F0FDF4;
+      color: #15803D;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+    
+    .milestone-banner {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .milestone-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+    
+    .milestone-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .milestone-desc {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+    
+    .next-steps {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+    }
+    
+    .next-steps h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 16px;
+    }
+    
+    .next-steps p {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-primary {
+      background: #10B981;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #059669;
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #3B4C63;
+      border: 2px solid #3B4C63;
+    }
+    
+    .btn-secondary:hover {
+      background: #F9FAFB;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 32px 16px;
+      }
+      
+      h1 {
+        font-size: 28px;
+      }
+      
+      .progress-wrapper,
+      .next-steps {
+        padding: 16px;
+      }
+      
+      .checklist-item {
+        padding: 12px 0;
+      }
+      
+      .checklist-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Get Your Shop Ready 🚀</h1>
+      <p class="subtitle">Complete these setup steps to start accepting orders</p>
+    </header>
+    
+    <div class="progress-wrapper">
+      <div class="progress-bar-container">
+        <div class="progress-label">
+          <span>Your Progress</span>
+          <span>2 of 5 steps complete</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+    
+    <ul class="checklist">
+      <li class="checklist-item completed">
+        <input type="checkbox" checked disabled>
+        <div class="checklist-content">
+          <div class="checklist-title">Create your shop</div>
+          <div class="checklist-desc">You've set up your shop name and public URL.</div>
+        </div>
+      </li>
+      
+      <li class="checklist-item completed">
+        <input type="checkbox" checked disabled>
+        <div class="checklist-content">
+          <div class="checklist-title">Verify your email</div>
+          <div class="checklist-desc">Your email address has been verified.</div>
+        </div>
+      </li>
+      
+      <li class="checklist-item">
+        <input type="checkbox" id="step3">
+        <div class="checklist-content">
+          <div class="checklist-title">Add your first product</div>
+          <div class="checklist-desc">Upload at least one product with title, price, description, and image.</div>
+          <div class="checklist-cta">
+            <a href="/dashboard/products/new">Add a product</a>
+            <span class="checklist-time">5-10 min</span>
+          </div>
+        </div>
+      </li>
+      
+      <li class="checklist-item">
+        <input type="checkbox" id="step4">
+        <div class="checklist-content">
+          <div class="checklist-title">Set up payment</div>
+          <div class="checklist-desc">Connect your Stripe account to receive payments from customers.</div>
+          <div class="checklist-cta">
+            <a href="/dashboard/settings/payment">Connect Stripe</a>
+            <span class="checklist-time">3 min</span>
+          </div>
+        </div>
+      </li>
+      
+      <li class="checklist-item">
+        <input type="checkbox" id="step5">
+        <div class="checklist-content">
+          <div class="checklist-title">Customize your shop</div>
+          <div class="checklist-desc">Add your logo, choose brand colors, and write a shop description.</div>
+          <div class="checklist-cta">
+            <a href="/dashboard/settings/branding">Customize shop</a>
+            <span class="checklist-time">10 min</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    
+    <div class="milestone-banner">
+      <div class="milestone-icon">✨</div>
+      <div class="milestone-title">You're ready to sell!</div>
+      <div class="milestone-desc">Once all steps are complete, your shop will be live and ready for customers.</div>
+    </div>
+    
+    <div class="next-steps">
+      <h2>Need Help?</h2>
+      <p>Check out our quick guides to learn more about Solo Shop Builder.</p>
+      <div class="action-buttons">
+        <button class="btn btn-secondary" onclick="window.location='/help'">View Guides</button>
+        <button class="btn btn-primary" onclick="window.location='/dashboard/products/new'">Add Product Now</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Simple progress update on checkbox change
+    const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]:not(:disabled)');
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        e.target.closest('.checklist-item').classList.toggle('completed');
+        updateProgress();
+      });
+    });
+    
+    function updateProgress() {
+      const total = document.querySelectorAll('.checklist-item').length;
+      const checked = document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').length;
+      const percentage = (checked / total) * 100;
+      document.querySelector('.progress-fill').style.width = percentage + '%';
+      document.querySelector('.progress-label span:last-child').textContent = checked + ' of ' + total + ' steps complete';
+    }
+  </script>
+</body>
+</html>
