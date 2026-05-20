@@ -240,3 +240,18 @@ STDOUT:
 248:    .createHmac('sha256', webhookSecret)
 ```
 Full output: [`server-runs/2026-05-20T20-05-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-05-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:11:11.077Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e6427ff` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3584ms)
+```
+docker ps --format '.Names\t.Status' | grep solo-shop || echo "No containers running"
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "App is UP" || echo "App is DOWN"
+```
+STDOUT:
+```
+No containers running
+App is UP
+```
+Full output: [`server-runs/2026-05-20T20-11-11-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log`](server-runs/2026-05-20T20-11-11-www.soloshopbox.com-docker-ps---format-.Names-t.Status-grep--1.log)
