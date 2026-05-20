@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { existsSync } from 'fs'
-import { uploadToS3, isS3Configured } from '@/lib/s3'
+import { uploadToS3, isS3Configured } from '@/src/lib/s3'
 
 // Max file size: 5MB
 const MAX_FILE_SIZE = 5 * 1024 * 1024
