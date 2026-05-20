@@ -329,3 +329,24 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Up 7 hours (he
 ✓ Homepage OK
 ```
 Full output: [`server-runs/2026-05-20T07-25-45-www.soloshopbox.com-docker-ps---format-.Names-.Status-grep-s-1.log`](server-runs/2026-05-20T07-25-45-www.soloshopbox.com-docker-ps---format-.Names-.Status-grep-s-1.log)
+
+## 2026-05-20T07:26:11.543Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ff12a67` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3365ms)
+```
+echo "=== Testing Public Pages ==="
+curl -s https://www.soloshopbox.com | grep -o "<title>[^<]*" | head -1
+curl -sI https://www.soloshopbox.com/auth/login | head -1
+curl -sI https://www.soloshopbox.com/auth/signup | head -1
+curl -sI https://www.soloshopbox.com/checkout | head -1
+```
+STDOUT:
+```
+=== Testing Public Pages ===
+<title>Solo Shop Builder — Your own storefront. No marketplace fees.
+HTTP/2 200 
+HTTP/2 404 
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-20T07-26-11-www.soloshopbox.com-echo-Testing-Public-Pages-1.log`](server-runs/2026-05-20T07-26-11-www.soloshopbox.com-echo-Testing-Public-Pages-1.log)
