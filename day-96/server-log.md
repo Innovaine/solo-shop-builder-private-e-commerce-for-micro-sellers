@@ -1133,3 +1133,29 @@ echo $! > /tmp/build2.pid
 echo "Started build, PID=$(cat /tmp/build2.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T12:49:34.047Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `88b2523` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2355ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git log --oneline -1
+kill -0 $(cat /tmp/build2.pid 2>/dev/null) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD NOT RUNNING"
+ls -lh /tmp/build2.log 2>/dev/null && tail -10 /tmp/build2.log 2>/dev/null || echo "No build2.log yet"
+```
+STDOUT:
+```
+b4bed27 Anil (engineer, day 96) — pre-SSH sync
+BUILD NOT RUNNING
+-rw-rw-r-- 1 engineer engineer 8.0K May 20 12:49 /tmp/build2.log
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-20T12-49-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-49-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
