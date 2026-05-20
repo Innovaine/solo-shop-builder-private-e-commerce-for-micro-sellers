@@ -435,3 +435,19 @@ STDOUT:
 8:export async function POST(request: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-20T16-33-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-33-15-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:33:47.118Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0691380` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2444ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "export async function" app/api/checkout/route.ts app/api/products/route.ts app/api/orders/route.ts | head -20
+```
+STDOUT:
+```
+app/api/checkout/route.ts:20:export async function POST(request: NextRequest) {
+app/api/products/route.ts:14:export async function GET(request: NextRequest) {
+app/api/products/route.ts:42:export async function POST(request: NextRequest) {
+app/api/orders/route.ts:10:export async function GET(request: NextRequest) {
+```
+Full output: [`server-runs/2026-05-20T16-33-47-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-33-47-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
