@@ -259,3 +259,41 @@ STDOUT:
 Started build, PID=2111245
 ```
 Full output: [`server-runs/2026-05-20T22-34-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-34-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:34:59.838Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9494fe5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2541ms) _(showing tail — full 6,507B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/build.log
+```
+STDOUT:
+```
+…t/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 22.68     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 22.68     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+#15 22.68   description: "Route /api/orders/export couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 22.68   digest: 'DYNAMIC_SERVER_USAGE'
+#15 22.68 }
+#15 22.68 Analytics error: n [Error]: Dynamic server usage: Route /api/analytics couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#15 22.68     at l (/app/.next/server/chunks/8948.js:1:37237)
+#15 22.68     at u (/app/.next/server/chunks/8402.js:6:4069)
+#15 22.68     at a (/app/.next/server/app/api/billing/route.js:1:2456)
+#15 22.68     at i (/app/.next/server/app/api/billing/route.js:1:2493)
+#15 22.68     at p (/app/.next/server/app/api/analytics/route.js:1:933)
+#15 22.68     at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34672
+#15 22.68     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#15 22.68     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 22.68     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 22.68     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+#15 22.68   description: "Route /api/analytics couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 22.68   digest: 'DYNAMIC_SERVER_USAGE'
+#15 22.68 }
+#15 22.81    Generating static pages (21/43) 
+#15 22.98    Generating static pages (32/43) 
+#15 23.08  ✓ Generating static pages (43/43)
+#15 23.51    Finalizing page optimization ...
+#15 23.51    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-20T22-34-59-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-20T22-34-59-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
