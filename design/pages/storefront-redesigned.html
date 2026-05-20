@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarah's Jewelry — Solo Shop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #FFFFFF;
+      color: #1F2937;
+    }
+
+    /* Header Section 1: Brand + Cart */
+    header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .shop-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .cart-button {
+      background: white;
+      border: 1px solid #E2E8F0;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #3B4C63;
+      transition: all 0.2s ease;
+    }
+    .cart-button:hover {
+      background: #FAF9F7;
+      border-color: #3B4C63;
+    }
+
+    /* Header Section 2: Hero / Tagline */
+    .hero {
+      background: linear-gradient(135deg, #3B4C63 0%, #2C3A4F 100%);
+      color: white;
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* Header Section 3: Search + Filters + Sorting */
+    .filter-bar {
+      background: #F9FAFB;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 8px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 3px rgba(59, 76, 99, 0.1);
+    }
+    .sort-dropdown {
+      padding: 8px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+      cursor: pointer;
+      color: #64748B;
+      transition: all 0.2s ease;
+    }
+    .sort-dropdown:hover {
+      border-color: #3B4C63;
+      color: #3B4C63;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    /* Categories */
+    .categories {
+      margin-bottom: 32px;
+    }
+    .categories-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .category-list {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .category-tag {
+      background: white;
+      border: 1px solid #E2E8F0;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .category-tag:hover {
+      border-color: #3B4C63;
+      color: #3B4C63;
+      background: #FAF9F7;
+    }
+    .category-tag.active {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .product-card {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+      border-color: #3B4C63;
+    }
+    .product-image {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94A3B8;
+      font-size: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(59, 76, 99, 0.04);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .product-card:hover .product-image::after {
+      opacity: 1;
+    }
+    .product-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+    .product-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 6px;
+    }
+    .product-rating {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .product-stars {
+      color: #F59E0B;
+      letter-spacing: 0.5px;
+    }
+    .product-badge {
+      display: inline-block;
+      background: #D1FAE5;
+      color: #065F46;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    .product-badge.out-of-stock {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+    .product-card.disabled {
+      opacity: 0.6;
+    }
+    .add-btn {
+      display: none;
+      width: 100%;
+      padding: 8px 12px;
+      background: #10B981;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+    .product-card:hover .add-btn {
+      display: block;
+    }
+    .add-btn:hover {
+      background: #059669;
+    }
+
+    /* Footer */
+    footer {
+      background: white;
+      border-top: 1px solid #E2E8F0;
+      padding: 32px 24px;
+      text-align: center;
+      color: #64748B;
+      font-size: 12px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 24px;
+      }
+      .filter-bar {
+        flex-direction: column;
+      }
+      .search-input {
+        width: 100%;
+      }
+      .sort-dropdown {
+        width: 100%;
+      }
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Section 1: Brand + Cart -->
+  <header>
+    <div class="shop-name">Sarah's Jewelry</div>
+    <button class="cart-button">🛒 Cart (0)</button>
+  </header>
+
+  <!-- Section 2: Hero -->
+  <section class="hero">
+    <h1 class="hero-title">Welcome to Sarah's Jewelry</h1>
+    <p class="hero-subtitle">Handcrafted pieces made with care</p>
+  </section>
+
+  <!-- Section 3: Search + Sort + Filter -->
+  <div class="filter-bar">
+    <input type="text" class="search-input" placeholder="Search products...">
+    <select class="sort-dropdown">
+      <option>Sort by: Newest</option>
+      <option>Price: Low to High</option>
+      <option>Price: High to Low</option>
+      <option>Most Popular</option>
+    </select>
+  </div>
+
+  <main>
+    <!-- Categories -->
+    <div class="categories">
+      <div class="categories-title">Browse by Category</div>
+      <div class="category-list">
+        <div class="category-tag active">All</div>
+        <div class="category-tag">Necklaces</div>
+        <div class="category-tag">Bracelets</div>
+        <div class="category-tag">Earrings</div>
+        <div class="category-tag">Rings</div>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image">💎</div>
+        <div class="product-info">
+          <div class="product-title">Gold Minimalist Necklace</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-rating">
+            <span class="product-stars">★★★★★</span>
+            <span>(24)</span>
+          </div>
+          <div class="product-badge">In Stock</div>
+          <button class="add-btn">+ Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">💎</div>
+        <div class="product-info">
+          <div class="product-title">Pearl Stud Earrings</div>
+          <div class="product-price">$32.00</div>
+          <div class="product-rating">
+            <span class="product-stars">★★★★☆</span>
+            <span>(12)</span>
+          </div>
+          <div class="product-badge">In Stock</div>
+          <button class="add-btn">+ Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">💍</div>
+        <div class="product-info">
+          <div class="product-title">Handmade Silver Ring</div>
+          <div class="product-price">$28.00</div>
+          <div class="product-rating">
+            <span class="product-stars">★★★★★</span>
+            <span>(8)</span>
+          </div>
+          <div class="product-badge">In Stock</div>
+          <button class="add-btn">+ Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">💍</div>
+        <div class="product-info">
+          <div class="product-title">Emerald Statement Brooch</div>
+          <div class="product-price">$62.00</div>
+          <div class="product-rating">
+            <span class="product-stars">★★★★★</span>
+            <span>(15)</span>
+          </div>
+          <div class="product-badge">In Stock</div>
+          <button class="add-btn">+ Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card disabled">
+        <div class="product-image">💎</div>
+        <div class="product-info">
+          <div class="product-title">Ruby Vintage Pendant</div>
+          <div class="product-price">$85.00</div>
+          <div class="product-rating">
+            <span class="product-stars">★★★★★</span>
+            <span>(22)</span>
+          </div>
+          <div class="product-badge out-of-stock">Out of Stock</div>
+          <button class="add-btn" disabled>Out of Stock</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Sarah's Jewelry. Solo Shop Builder. | Secured by Stripe</p>
+  </footer>
+</body>
+</html>
