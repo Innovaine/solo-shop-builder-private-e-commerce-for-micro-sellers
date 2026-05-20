@@ -54,3 +54,45 @@ echo $! > /tmp/build.pid
 echo "Started build, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T08:46:29.215Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9c37c04` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2937ms) _(showing tail — full 5,950B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/build.log
+```
+STDOUT:
+```
+…er usage: Route /api/analytics couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#15 21.58     at l (/app/.next/server/chunks/8948.js:1:37237)
+#15 21.58     at u (/app/.next/server/chunks/8402.js:6:4069)
+#15 21.58     at n (/app/.next/server/app/api/analytics/route.js:1:3533)
+#15 21.58     at i (/app/.next/server/app/api/analytics/route.js:1:3570)
+#15 21.58     at p (/app/.next/server/app/api/analytics/route.js:1:933)
+#15 21.58     at /app/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34672
+#15 21.58     at /app/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#15 21.58     at NoopContextManager.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#15 21.58     at ContextAPI.with (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#15 21.58     at NoopTracer.startActiveSpan (/app/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093) {
+#15 21.58   description: "Route /api/analytics couldn't be rendered statically because it used cookies. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#15 21.58   digest: 'DYNAMIC_SERVER_USAGE'
+#15 21.58 }
+#15 21.69    Generating static pages (10/43) 
+#15 21.80    Generating static pages (21/43) 
+#15 21.95    Generating static pages (32/43) 
+#15 22.04  ✓ Generating static pages (43/43)
+#15 22.04 (node:236) Warning: NodeVersionSupportWarning: The AWS SDK for JavaScript (v3)
+#15 22.04 versions published after the first week of January 2027
+#15 22.04 will require node >=22. You are running node v20.20.2.
+#15 22.04 
+#15 22.04 To continue receiving updates to AWS services, bug fixes,
+#15 22.04 and security updates please upgrade to node >=22.
+#15 22.04 
+#15 22.04 More information can be found at: https://a.co/c895JFp
+#15 22.04 (Use `node --trace-warnings ...` to show where the warning was created)
+#15 22.42    Finalizing page optimization ...
+#15 22.42    Collecting build traces ...
+```
+Full output: [`server-runs/2026-05-20T08-46-29-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log`](server-runs/2026-05-20T08-46-29-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log)
