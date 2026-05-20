@@ -108,3 +108,21 @@ Full output: [`server-runs/2026-05-20T15-25-28-www.soloshopbox.com-kill--0-cat-t
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T15:28:10.125Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `482a951` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 20071ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/up.log 2>&1 &
+sleep 5
+docker ps --filter "name=solo-shop" --format "table {{.Names}}\t{{.Status}}"
+```
+STDOUT:
+```
+NAMES                                                               STATUS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 4 seconds
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 5 hours (healthy)
+```
+Full output: [`server-runs/2026-05-20T15-28-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T15-28-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
