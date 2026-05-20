@@ -844,3 +844,17 @@ STDOUT:
       >
 ```
 Full output: [`server-runs/2026-05-20T07-31-13-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-31-13-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T07:31:33.684Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8c16b61` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2529ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "reset-password\|/auth/verify\|/dashboard/orders/\|/shop/.*product" app/ --include="*.tsx" --include="*.ts" | grep -v "page.tsx" | head -20
+```
+STDOUT:
+```
+app/api/auth/reset-password/route.ts:// POST /api/auth/reset-password with { token, newPassword }
+app/api/auth/verify/route.ts:// GET /auth/verify?token=XXX
+```
+Full output: [`server-runs/2026-05-20T07-31-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T07-31-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
