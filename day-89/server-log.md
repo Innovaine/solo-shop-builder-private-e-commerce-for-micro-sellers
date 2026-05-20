@@ -350,3 +350,24 @@ HTTP/2 404
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-20T07-26-11-www.soloshopbox.com-echo-Testing-Public-Pages-1.log`](server-runs/2026-05-20T07-26-11-www.soloshopbox.com-echo-Testing-Public-Pages-1.log)
+
+## 2026-05-20T07:26:38.319Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0c0ba0b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2679ms)
+```
+echo "=== Testing Auth Pages ==="
+curl -sI https://www.soloshopbox.com/auth/login | grep -E "HTTP|location"
+curl -s https://www.soloshopbox.com/auth/login | grep -o "<title>[^<]*" | head -1
+curl -sI https://www.soloshopbox.com/auth/forgot-password | head -1
+curl -sI https://www.soloshopbox.com/auth/verify | head -1
+```
+STDOUT:
+```
+=== Testing Auth Pages ===
+HTTP/2 200 
+<title>Solo Shop Builder — Your own storefront. No marketplace fees.
+HTTP/2 200 
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-20T07-26-38-www.soloshopbox.com-echo-Testing-Auth-Pages-1.log`](server-runs/2026-05-20T07-26-38-www.soloshopbox.com-echo-Testing-Auth-Pages-1.log)
