@@ -1722,3 +1722,22 @@ HTTP/2 307
 cache-control: private, no-cache, no-store, max-age=0, must-revalidate
 ```
 Full output: [`server-runs/2026-05-20T21-55-02-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log`](server-runs/2026-05-20T21-55-02-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log)
+
+## 2026-05-20T21:55:59.749Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9369559` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 3657ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers \
+PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out \
+npx playwright test tests/web/day104-crash-fix.spec.ts --output=$HOME/.playwright-out --reporter=list
+```
+STDOUT:
+```
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-20T21-55-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-55-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
