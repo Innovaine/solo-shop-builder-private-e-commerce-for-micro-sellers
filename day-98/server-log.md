@@ -204,3 +204,36 @@ STDOUT:
       "kind": "page",
 ```
 Full output: [`server-runs/2026-05-20T14-41-04-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-41-04-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T14:41:35.980Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cf7c3be` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2747ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | grep -A 20 '"summary"'
+```
+STDOUT:
+```
+  "summary": {
+    "routes": 58,
+    "pages": 24,
+    "apis": 34,
+    "links": 90,
+    "apiCalls": 35,
+    "broken": 3,
+    "orphans": 4,
+    "methodMismatches": 0
+  },
+  "routes": [
+    {
+      "route": "/api/account/delete",
+      "kind": "api",
+      "file": "app/api/account/delete/route.ts"
+    },
+    {
+      "route": "/api/account/password",
+      "kind": "api",
+      "file": "app/api/account/password/route.ts"
+    },
+```
+Full output: [`server-runs/2026-05-20T14-41-35-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T14-41-35-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
