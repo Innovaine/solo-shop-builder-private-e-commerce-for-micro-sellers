@@ -760,3 +760,95 @@ STDOUT:
 42
 ```
 Full output: [`server-runs/2026-05-20T11-29-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-29-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:31:41.147Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8c29629` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2520ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && bash -lc 'schema-sync-check . --json' 2>&1 | head -80
+```
+STDOUT:
+```
+{
+  "summary": {
+    "models": 9,
+    "interfaces": 33,
+    "matched": 9,
+    "drift": 6
+  },
+  "models": {
+    "Seller": [
+      "id",
+      "email",
+      "passwordHash",
+      "passwordResetToken",
+      "passwordResetExpires",
+      "createdAt",
+      "updatedAt",
+      "shops",
+      "tokens"
+    ],
+    "Shop": [
+      "id",
+      "name",
+      "slug",
+      "sellerId",
+      "displayName",
+      "publicDescription",
+      "description",
+      "instagramUrl",
+      "facebookUrl",
+      "twitterUrl",
+      "primaryColor",
+      "accentColor",
+      "logoUrl",
+      "logoImageUrl",
+      "tagline",
+      "emailTemplateBody",
+      "status",
+      "createdAt",
+      "updatedAt",
+      "seller",
+      "products",
+      "orders"
+    ],
+    "Product": [
+      "id",
+      "shopId",
+      "title",
+      "description",
+      "price",
+      "imageUrl",
+      "category",
+      "stock",
+      "status",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "variants"
+    ],
+    "ProductVariant": [
+      "id",
+      "productId",
+      "name",
+      "value",
+      "price",
+      "stock",
+      "sku",
+      "createdAt",
+      "updatedAt",
+      "product"
+    ],
+    "AuthToken": [
+      "id",
+      "token",
+      "sellerId",
+      "expiresAt",
+      "used",
+      "createdAt",
+      "seller"
+    ],
+    "Order": [
+```
+Full output: [`server-runs/2026-05-20T11-31-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-31-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
