@@ -437,3 +437,12 @@ app/api/auth/verify/route.ts:142:      return NextResponse.redirect(new URL('/da
 app/api/auth/verify/route.ts:146:    return NextResponse.redirect(
 ```
 Full output: [`server-runs/2026-05-20T10-03-17-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T10-03-17-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T10:03:37.267Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `adb2d74` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2338ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "\.toFixed" app/ src/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -E '\.(total|price|amount|cost)\.toFixed'
+```
+ERROR: command exited 1
