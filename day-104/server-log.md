@@ -872,3 +872,52 @@ Fast-forward
  create mode 100644 tests/web/day103-new-features.spec.ts
 ```
 Full output: [`server-runs/2026-05-20T21-21-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-21-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:21:34.398Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8628ad1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2685ms) _(showing tail — full 23,328B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail=100
+```
+STDOUT:
+```
+…op', column: 'Shop.currency' }
+app-1       | }
+app-1       | prisma:error 
+app-1       | Invalid `prisma.shop.findUnique()` invocation:
+app-1       | 
+app-1       | 
+app-1       | The column `Shop.currency` does not exist in the current database.
+app-1       | PrismaClientKnownRequestError: 
+app-1       | Invalid `prisma.shop.findUnique()` invocation:
+app-1       | 
+app-1       | 
+app-1       | The column `Shop.currency` does not exist in the current database.
+app-1       |     at In.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6877)
+app-1       |     at In.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6211)
+app-1       |     at In.request (/app/node_modules/@prisma/client/runtime/library.js:122:5919)
+app-1       |     at async l (/app/node_modules/@prisma/client/runtime/library.js:127:11167)
+app-1       |     at async b (/app/.next/server/app/shop/[slug]/page.js:1:4962) {
+app-1       |   code: 'P2022',
+app-1       |   clientVersion: '5.14.0',
+app-1       |   meta: { modelName: 'Shop', column: 'Shop.currency' },
+app-1       |   digest: '3909219332'
+app-1       | }
+app-1       | PrismaClientKnownRequestError: 
+app-1       | Invalid `prisma.shop.findUnique()` invocation:
+app-1       | 
+app-1       | 
+app-1       | The column `Shop.currency` does not exist in the current database.
+app-1       |     at In.handleRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6877)
+app-1       |     at In.handleAndLogRequestError (/app/node_modules/@prisma/client/runtime/library.js:122:6211)
+app-1       |     at In.request (/app/node_modules/@prisma/client/runtime/library.js:122:5919)
+app-1       |     at async l (/app/node_modules/@prisma/client/runtime/library.js:127:11167)
+app-1       |     at async b (/app/.next/server/app/shop/[slug]/page.js:1:4962) {
+app-1       |   code: 'P2022',
+app-1       |   clientVersion: '5.14.0',
+app-1       |   meta: { modelName: 'Shop', column: 'Shop.currency' },
+app-1       |   digest: '3909219332'
+app-1       | }
+```
+Full output: [`server-runs/2026-05-20T21-21-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-21-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
