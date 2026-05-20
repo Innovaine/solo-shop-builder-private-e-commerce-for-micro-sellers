@@ -273,3 +273,42 @@ kill -0 $(cat /tmp/day97-test-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DON
 tail -150 /tmp/day97-test-v2.log
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-20T14:18:27.945Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c171edf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2473ms) _(showing tail — full 6,682B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day97-test-v2.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+wc -l /tmp/day97-test-v2.log
+tail -100 /tmp/day97-test-v2.log
+```
+STDOUT:
+```
+…shboard`, { timeout: 10000 });
+         |              ^
+      22 | }
+      23 |
+      24 | test.describe('FR-3: Product CRUD', () => {
+        at loginAsSeller (/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day97-features.spec.ts:21:14)
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day97-features.spec.ts:240:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../.playwright-out/day97-features-Day-97-Smok-eeea5-hboard-pages-without-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../.playwright-out/day97-features-Day-97-Smok-eeea5-hboard-pages-without-errors-chromium/error-context.md
+
+  10 failed
+    [chromium] › tests/web/day97-features.spec.ts:25:7 › FR-3: Product CRUD › should create a new product 
+    [chromium] › tests/web/day97-features.spec.ts:53:7 › FR-3: Product CRUD › should read/display product details 
+    [chromium] › tests/web/day97-features.spec.ts:70:7 › FR-3: Product CRUD › should update product details 
+    [chromium] › tests/web/day97-features.spec.ts:96:7 › FR-4: S3 Image Upload › should upload shop logo via branding page 
+    [chromium] › tests/web/day97-features.spec.ts:128:7 › FR-11: Seller Order Dashboard › should display orders list 
+    [chromium] › tests/web/day97-features.spec.ts:140:7 › FR-11: Seller Order Dashboard › should show order details when clicked 
+    [chromium] › tests/web/day97-features.spec.ts:161:7 › FR-12: Order Status Dropdown › should allow changing order status 
+    [chromium] › tests/web/day97-features.spec.ts:196:7 › FR-12: Order Status Dropdown › should display available order statuses 
+    [chromium] › tests/web/day97-features.spec.ts:223:7 › Day 97 Smoke Tests › should allow full product creation workflow 
+    [chromium] › tests/web/day97-features.spec.ts:239:7 › Day 97 Smoke Tests › should load all dashboard pages without errors
+```
+Full output: [`server-runs/2026-05-20T14-18-27-www.soloshopbox.com-kill--0-cat-tmp-day97-test-v2.pid-2-dev--1.log`](server-runs/2026-05-20T14-18-27-www.soloshopbox.com-kill--0-cat-tmp-day97-test-v2.pid-2-dev--1.log)
