@@ -232,3 +232,20 @@ sleep 5
 docker compose ps
 ```
 ERROR: command exited 1
+
+## 2026-05-20T23:51:09.021Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `73559ad` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2974ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d 2>&1 | head -50
+```
+STDOUT:
+```
+time="2026-05-20T23:51:08Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy
+```
+Full output: [`server-runs/2026-05-20T23-51-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-51-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
