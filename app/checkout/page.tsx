@@ -232,7 +232,7 @@ export default function CheckoutPage() {
         <div className="flex gap-4">
           <Button
             variant="secondary"
-            onClick={() => router.push(`/shop/${cart.shopSlug}`)}
+            onClick={() => router.push(cart.shopSlug ? `/shop/${cart.shopSlug}` : '/')}
             disabled={isLoading}
             className="flex-1"
           >

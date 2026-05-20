@@ -1,9 +1,49 @@
+// GET /api/orders/[id] - Retrieve order details (public for tracking)
 // PATCH /api/orders/[id] - Update order status and tracking info
+// FR-14: Customer order tracking
 // FR-17: Seller order management
 
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const orderId = params.id
+
+    // Public endpoint - no auth required for order tracking (FR-14)
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: {
+        items: true,
+        shop: {
+          select: {
+            name: true,
+            slug: true,
+          },
+        },
+      },
+    })
+
+    if (!order) {
+      return NextResponse.json(
+        { error: 'Order not found' },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({ order })
+  } catch (error: any) {
+    console.error('Failed to fetch order:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch order' },
+      { status: 500 }
+    )
+  }
+}
 
 export async function PATCH(
   request: NextRequest,

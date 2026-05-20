@@ -282,7 +282,7 @@ export default function OrdersPage() {
                 onClick={() => handleFilterChange('paid')}
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'paid'
-                    ? 'bg-blue-500 text-white'
+                    ? 'bg-slate-blue text-white'
                     : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
@@ -292,7 +292,7 @@ export default function OrdersPage() {
                 onClick={() => handleFilterChange('in_progress')}
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'in_progress'
-                    ? 'bg-purple-500 text-white'
+                    ? 'bg-slate-blue text-white'
                     : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
@@ -302,7 +302,7 @@ export default function OrdersPage() {
                 onClick={() => handleFilterChange('shipped')}
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors text-sm ${
                   selectedFilter === 'shipped'
-                    ? 'bg-green-500 text-white'
+                    ? 'bg-emerald text-white'
                     : 'bg-whisper/50 text-charcoal hover:bg-whisper'
                 }`}
               >
