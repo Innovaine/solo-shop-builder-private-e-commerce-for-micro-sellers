@@ -514,3 +514,22 @@ error TS2688: Cannot find type definition file for 'node'.
     Entry point of type library 'node' specified in compilerOptions
 ```
 Full output: [`server-runs/2026-05-20T22-44-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-44-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T22:46:53.059Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `16486bd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2381ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "interface.*Order" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -30
+```
+STDOUT:
+```
+app/dashboard/orders/[id]/OrderDetailClient.tsx:11:interface OrderItem {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:19:interface Order {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:32:interface OrderDetailClientProps {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/track/[orderId]/page.tsx:10:interface OrderItem {
+app/track/[orderId]/page.tsx:17:interface Order {
+app/checkout/success/page.tsx:13:interface OrderDetails {
+```
+Full output: [`server-runs/2026-05-20T22-46-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-46-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
