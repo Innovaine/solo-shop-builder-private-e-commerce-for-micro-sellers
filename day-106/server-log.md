@@ -137,3 +137,57 @@ STDOUT:
 drwxrwxr-x 119 reviewer reviewer 4096 May 20 21:59 solo-shop-builder-private-e-commerce-for-micro-sellers
 ```
 Full output: [`server-runs/2026-05-20T23-17-53-www.soloshopbox.com-cd-home-reviewer-pwd-ls--la-grep-solo-ec-1.log`](server-runs/2026-05-20T23-17-53-www.soloshopbox.com-cd-home-reviewer-pwd-ls--la-grep-solo-ec-1.log)
+
+## 2026-05-20T23:18:24.596Z — Søren ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `831bf9b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2980ms) _(showing tail — full 4,175B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull --ff-only
+```
+STDOUT:
+```
+…day-106/engineering.md                          |  49 ++
+ day-106/server-log.md                           | 139 ++++++
+ design/pages/2fa-qr-setup.html                  | 127 +++++
+ design/pages/refund-status-timeline.html        | 105 ++++
+ design/pages/seller-profile.html                |  46 +-
+ design/pages/webhook-signature-error.html       | 135 ++++++
+ design/system/components.html                   | 228 +++++++--
+ test-results/day-105/report.md                  | 151 ++++++
+ tests/web/day105-fixes.spec.ts                  | 145 ++++++
+ 43 files changed, 5332 insertions(+), 113 deletions(-)
+ create mode 100644 app/shop/page.tsx
+ create mode 100644 day-104/_index.md
+ create mode 100644 day-104/stage-ship-check.md
+ create mode 100644 day-104/standards-audit.md
+ create mode 100644 day-104/standards_qa.md
+ create mode 100644 day-104/task-verification.md
+ create mode 100644 day-104/task_verifier.md
+ create mode 100644 day-105/_index.md
+ create mode 100644 day-105/_plan.md
+ create mode 100644 day-105/connectivity-audit.md
+ create mode 100644 day-105/connectivity_qa.md
+ create mode 100644 day-105/design.md
+ create mode 100644 day-105/engineering.md
+ create mode 100644 day-105/review.md
+ create mode 100644 day-105/server-log.md
+ create mode 100644 day-105/stage-ship-check.md
+ create mode 100644 day-105/standards-audit.md
+ create mode 100644 day-105/standards_qa.md
+ create mode 100644 day-105/task-verification.md
+ create mode 100644 day-105/task_verifier.md
+ create mode 100644 day-105/test.md
+ create mode 100644 day-106/_plan.md
+ create mode 100644 day-106/connectivity-audit.md
+ create mode 100644 day-106/connectivity_qa.md
+ create mode 100644 day-106/design.md
+ create mode 100644 day-106/engineering.md
+ create mode 100644 day-106/server-log.md
+ create mode 100644 design/pages/2fa-qr-setup.html
+ create mode 100644 design/pages/refund-status-timeline.html
+ create mode 100644 design/pages/webhook-signature-error.html
+ create mode 100644 test-results/day-105/report.md
+ create mode 100644 tests/web/day105-fixes.spec.ts
+```
+Full output: [`server-runs/2026-05-20T23-18-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-18-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
