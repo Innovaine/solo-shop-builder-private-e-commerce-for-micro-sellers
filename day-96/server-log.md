@@ -239,3 +239,34 @@ _Pre-SSH: warehouse pushed to GitHub as commit `b5136d2` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find app -name "*profile*" -type f | grep -E "\.(ts|tsx)$" | head -10
 ```
+
+## 2026-05-20T12:35:50.215Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2765876` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 2, 2517ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la app/dashboard/profile/ 2>/dev/null && ls -la app/api/profile/ 2>/dev/null
+```
+STDOUT:
+```
+total 24
+drwxrwxr-x  2 engineer engineer  4096 May 19 13:35 .
+drwxrwxr-x 11 engineer engineer  4096 May 18 04:51 ..
+-rw-rw-r--  1 engineer engineer 15576 May 19 13:35 page.tsx
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-20T12-35-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-35-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as engineer (✗ exit 2, 439ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la app/dashboard/branding/ 2>/dev/null && ls -la app/api/branding/ 2>/dev/null
+```
+STDOUT:
+```
+total 20
+drwxrwxr-x  2 engineer engineer  4096 May 18 10:01 .
+drwxrwxr-x 11 engineer engineer  4096 May 18 04:51 ..
+-rw-rw-r--  1 engineer engineer 10303 May 18 10:01 page.tsx
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-20T12-35-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T12-35-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
