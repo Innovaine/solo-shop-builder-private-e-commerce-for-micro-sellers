@@ -429,3 +429,16 @@ STDOUT:
 -rw-rw-r-- 1 tester tester 4714 May 20 11:59 tests/web/day95-s3-public-images.spec.ts
 ```
 Full output: [`server-runs/2026-05-20T11-59-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-59-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:00:09.347Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7f5d982` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13626ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+rm -rf $HOME/.playwright-out && \
+nohup bash -c "PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day95-s3-public-images.spec.ts --output=$HOME/.playwright-out --reporter=list > /tmp/day95-test-v2.log 2>&1" &
+echo $! > /tmp/day95-test-v2.pid
+echo "Started test, PID=$(cat /tmp/day95-test-v2.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
