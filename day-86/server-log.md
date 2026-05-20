@@ -691,3 +691,56 @@ STDOUT:
       "supportedMethods": [
 ```
 Full output: [`server-runs/2026-05-19T23-58-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-58-54-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-19T23:59:10.581Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d53e89b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2374ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && head -20 app/api/shops/profile/route.ts && echo "---" && head -20 app/api/orders/\[id\]/route.ts
+```
+STDOUT:
+```
+import { NextRequest, NextResponse } from 'next/server';
+import { requireAuth } from '@/lib/auth';
+import { prisma } from '@/lib/db';
+
+// PATCH /api/shops/profile — Update seller profile (FR-31)
+export async function PATCH(req: NextRequest) {
+  try {
+    // Auth check using iron-session
+    let sellerId: string;
+    try {
+      const auth = await requireAuth();
+      sellerId = auth.sellerId;
+    } catch (authError) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Find seller's shop
+    const shop = await prisma.shop.findFirst({
+      where: { sellerId },
+    });
+---
+// PATCH /api/orders/[id] - Update order status and tracking info
+// FR-17: Seller order management
+
+import { NextRequest, NextResponse } from 'next/server'
+import prisma from '@/lib/db'
+import { requireAuth } from '@/lib/auth'
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // Auth check using canonical requireAuth() pattern
+    const { sellerId } = await requireAuth()
+
+    const orderId = params.id
+    const body = await request.json()
+    const { status, trackingId, trackingUrl } = body
+
+    // Verify order belongs to one of seller's shops
+```
+Full output: [`server-runs/2026-05-19T23-59-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-19T23-59-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
