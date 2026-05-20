@@ -25,8 +25,6 @@ export default function ProfilePage() {
     publicDescription: 0,
   });
 
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>('');
   const [currentLogoUrl, setCurrentLogoUrl] = useState<string>('');
 
   useEffect(() => {
