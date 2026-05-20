@@ -1548,3 +1548,11 @@ DONE
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-20T21-42-03-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log`](server-runs/2026-05-20T21-42-03-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-ec-1.log)
+
+## 2026-05-20T21:42:36.567Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `50a0fae` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3881ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose stop app
+```
