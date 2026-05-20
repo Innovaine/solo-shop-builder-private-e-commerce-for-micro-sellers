@@ -1137,3 +1137,30 @@ app/api/auth/login/route.ts:10:import { checkRateLimit, getClientIdentifier, RAT
 app/api/auth/login/route.ts:21:    const rateLimitResult = checkRateLimit(clientId, RATE_LIMITS.AUTH_LOGIN || RATE_LIMITS.AUTH_SIGNUP)
 ```
 Full output: [`server-runs/2026-05-20T11-36-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-36-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T11:36:23.689Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a074278` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2365ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "params\." app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | grep -i "id\|slug" | head -15
+```
+STDOUT:
+```
+app/dashboard/products/[id]/edit/page.tsx:17:  const productId = params.id as string
+app/dashboard/orders/[id]/page.tsx:33:    where: { id: params.id },
+app/track/[orderId]/page.tsx:35:  const orderId = params.orderId as string
+app/api/products/[id]/route.ts:17:    const productId = params.id
+app/api/products/[id]/route.ts:53:    const productId = params.id
+app/api/products/[id]/route.ts:123:    const productId = params.id
+app/api/products/[id]/status/route.ts:15:    const productId = params.id
+app/api/products/[id]/variants/route.ts:10:    const productId = params.id;
+app/api/products/[id]/variants/route.ts:33:    const productId = params.id;
+app/api/orders/[id]/route.ts:16:    const orderId = params.id
+app/api/orders/[id]/history/route.ts:14:    const orderId = params.id
+app/api/orders/[id]/refund/route.ts:33:      where: { id: params.id },
+app/shop/[slug]/CategoryFilter.tsx:26:      params.set('category', category)
+app/shop/[slug]/CategoryFilter.tsx:28:      params.delete('category')
+app/shop/[slug]/CategoryFilter.tsx:31:    router.push(`/shop/${shopSlug}?${params.toString()}`)
+```
+Full output: [`server-runs/2026-05-20T11-36-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-36-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
