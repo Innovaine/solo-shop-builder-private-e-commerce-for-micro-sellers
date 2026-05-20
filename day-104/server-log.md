@@ -1397,3 +1397,16 @@ Fast-forward
  2 files changed, 460 insertions(+), 1 deletion(-)
 ```
 Full output: [`server-runs/2026-05-20T21-37-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-37-49-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:38:25.181Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c73ca2c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3273ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T postgres psql -U postgres -d soloshop -c "DELETE FROM _prisma_migrations WHERE migration_name = '20260521_add_shop_currency';"
+```
+STDOUT:
+```
+DELETE 2
+```
+Full output: [`server-runs/2026-05-20T21-38-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-38-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
