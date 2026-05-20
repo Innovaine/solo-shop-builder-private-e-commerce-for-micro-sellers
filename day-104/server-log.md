@@ -1809,3 +1809,42 @@ STDOUT:
 -rw-rw-r-- 1 tester tester 3323 May 20 21:56 tests/web/day104-crash-fix.spec.ts
 ```
 Full output: [`server-runs/2026-05-20T21-56-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T21-56-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
+
+## 2026-05-20T21:57:32.582Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `530defe` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 7607ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && \
+nohup bash -c 'PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day104-crash-fix.spec.ts --output=$HOME/.playwright-out --reporter=list > /tmp/day104-tests.log 2>&1' &
+echo $! > /tmp/day104-tests.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day104-tests.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=2104927
+```
+Full output: [`server-runs/2026-05-20T21-57-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-57-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 10557ms)
+```
+sleep 10
+kill -0 $(cat /tmp/day104-tests.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day104-tests.log
+```
+STDOUT:
+```
+DONE
+
+Running 6 tests using 4 workers
+
+  ✓  4 [chromium] › tests/web/day104-crash-fix.spec.ts:39:7 › Day 104 - Crash Fix Verification › API currency endpoint works (181ms)
+  ✓  2 [chromium] › tests/web/day104-crash-fix.spec.ts:4:7 › Day 104 - Crash Fix Verification › homepage loads without crash (513ms)
+  ✓  3 [chromium] › tests/web/day104-crash-fix.spec.ts:12:7 › Day 104 - Crash Fix Verification › shop page loads without crash - reads currency field (555ms)
+  ✓  6 [chromium] › tests/web/day104-crash-fix.spec.ts:78:7 › Day 104 - Crash Fix Verification › health check confirms database migration applied (269ms)
+  ✓  1 [chromium] › tests/web/day104-crash-fix.spec.ts:27:7 › Day 104 - Crash Fix Verification › dashboard redirects properly (not crash) (958ms)
+  ✓  5 [chromium] › tests/web/day104-crash-fix.spec.ts:52:7 › Day 104 - Crash Fix Verification › shop products page loads without Prisma errors (1.4s)
+
+  6 passed (2.6s)
+```
+Full output: [`server-runs/2026-05-20T21-57-32-www.soloshopbox.com-sleep-10-2.log`](server-runs/2026-05-20T21-57-32-www.soloshopbox.com-sleep-10-2.log)
