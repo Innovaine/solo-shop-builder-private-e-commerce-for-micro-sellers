@@ -48,6 +48,15 @@ services:
       STRIPE_WEBHOOK_SECRET: "${STRIPE_WEBHOOK_SECRET}"
       MYFATOORAH_API_KEY: "${MYFATOORAH_API_KEY}"
       MYFATOORAH_API_URL: "${MYFATOORAH_API_URL:-https://apitest.myfatoorah.com}"
+      S3_PROVIDER: "${S3_PROVIDER:-aws}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_REGION: "${AWS_REGION:-us-east-1}"
+      AWS_S3_BUCKET: "${AWS_S3_BUCKET}"
+      AWS_CLOUDFRONT_URL: "${AWS_CLOUDFRONT_URL}"
+      DO_SPACES_REGION: "${DO_SPACES_REGION}"
+      DO_SPACES_ENDPOINT: "${DO_SPACES_ENDPOINT}"
+
     depends_on:
       postgres:
         condition: service_healthy
