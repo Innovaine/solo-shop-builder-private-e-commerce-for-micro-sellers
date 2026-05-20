@@ -581,3 +581,35 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T12:04:27.841Z","responseTime":"210ms","checks":{"database":{"status":"ok","responseTime":"0ms"},"email":{"status":"ok","responseTime":"210ms"}}}
 ```
 Full output: [`server-runs/2026-05-20T12-04-27-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-04-27-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:04:46.699Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a6520f3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2302ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && head -120 lib/s3.ts | tail -20
+```
+STDOUT:
+```
+  const url = `${CDN_URL}/${key}`
+
+  return {
+    url,
+    key,
+    bucket: BUCKET_NAME,
+  }
+}
+
+/**
+ * Check if S3 is configured
+ * @returns boolean
+ */
+export function isS3Configured(): boolean {
+  return !!(
+    process.env.AWS_ACCESS_KEY_ID &&
+    process.env.AWS_SECRET_ACCESS_KEY &&
+    process.env.AWS_S3_BUCKET
+  )
+}
+```
+Full output: [`server-runs/2026-05-20T12-04-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-04-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
