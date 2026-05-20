@@ -251,3 +251,12 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-20T09-58-41-www.soloshopbox.com-if--f-tmp-day92-build.pid-then-kill--0-c-1.log`](server-runs/2026-05-20T09-58-41-www.soloshopbox.com-if--f-tmp-day92-build.pid-then-kill--0-c-1.log)
+
+## 2026-05-20T09:59:01.162Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5b960db` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 2533ms)
+```
+tail -50 /tmp/day92-build.log | grep -E "(Successfully|built|ERROR|failed)"
+```
+ERROR: command exited 1
