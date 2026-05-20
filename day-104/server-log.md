@@ -789,3 +789,18 @@ STDOUT:
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-20T21-17-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-17-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:18:18.821Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1223ddb` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2227ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "\/shop\/\${slug" app/shop/[slug]/product/[productId]/page.tsx
+```
+STDOUT:
+```
+43:            href={`/shop/${slug}`}
+66:            <Link href={`/shop/${slug}`}>
+198:              <Link href={`/shop/${slug}`}>
+```
+Full output: [`server-runs/2026-05-20T21-18-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-18-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
