@@ -146,3 +146,19 @@ _Pre-SSH: warehouse pushed to GitHub as commit `2df750b` so the server's `git pu
 docker ps --format '.Names\t.Status' | grep -E 'solo|CONTAINER'
 ```
 ERROR: command exited 1
+
+## 2026-05-20T18:07:51.866Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f0fac67` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2577ms)
+```
+docker ps -a
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED         STATUS                 PORTS                                         NAMES
+c04a261eb9de   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes           0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+3e42fd635ff7   postgres:16-alpine                                           "docker-entrypoint.s…"   2 hours ago     Up 2 hours (healthy)   127.0.0.1:5432->5432/tcp                      solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+2967d9e0bd67   traefik:latest                                               "/entrypoint.sh --ap…"   3 days ago      Up 3 days                                                            traefik-vwiz-traefik-1
+```
+Full output: [`server-runs/2026-05-20T18-07-51-www.soloshopbox.com-docker-ps--a-1.log`](server-runs/2026-05-20T18-07-51-www.soloshopbox.com-docker-ps--a-1.log)
