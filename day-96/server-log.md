@@ -819,3 +819,23 @@ STDOUT:
                   <label htmlFor="twitterUrl" className="block text-sm font-medium text-charcoal">
 ```
 Full output: [`server-runs/2026-05-20T12-42-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-42-18-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:43:01.620Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `93470d7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2738ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "imageFile\|imagePreview" app/dashboard/profile/page.tsx | head -10
+```
+STDOUT:
+```
+28:  const [imageFile, setImageFile] = useState<File | null>(null);
+29:  const [imagePreview, setImagePreview] = useState<string>('');
+109:      if (imageFile) {
+111:        formDataImg.append('logo', imageFile);
+241:                    {imagePreview ? (
+242:                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+346:                  {imagePreview ? (
+347:                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+```
+Full output: [`server-runs/2026-05-20T12-43-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-43-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
