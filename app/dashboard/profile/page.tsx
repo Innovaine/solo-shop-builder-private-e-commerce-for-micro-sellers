@@ -105,9 +105,6 @@ export default function ProfilePage() {
 
       setSuccess('Profile updated successfully. Changes appear on your shop page immediately.');
       setTimeout(() => setSuccess(''), 4000);
-      
-      // Reset image file state
-      setImageFile(null);
     } catch (err: any) {
       setError(err.message);
     } finally {
