@@ -259,3 +259,27 @@ _Pre-SSH: warehouse pushed to GitHub as commit `15a7973` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T11:55:14.064Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `edb3a22` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2348ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED       STATUS                 PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   2 hours ago   Up 2 hours (healthy)   127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-20T11-55-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-55-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as engineer (✓ exit 0, 481ms)
+```
+curl -sf https://www.soloshopbox.com/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+FAIL
+```
+Full output: [`server-runs/2026-05-20T11-55-14-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-healt-2.log`](server-runs/2026-05-20T11-55-14-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-healt-2.log)
