@@ -378,3 +378,101 @@ STDOUT:
 OK
 ```
 Full output: [`server-runs/2026-05-20T22-42-44-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T22-42-44-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-20T22:43:29.706Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cd40a01` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2629ms) _(showing tail — full 2,286B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | head -100
+```
+STDOUT:
+```
+…nd": "api",
+      "file": "app/api/account/delete/route.ts"
+    },
+    {
+      "route": "/api/account/password",
+      "kind": "api",
+      "file": "app/api/account/password/route.ts"
+    },
+    {
+      "route": "/api/analytics",
+      "kind": "api",
+      "file": "app/api/analytics/route.ts"
+    },
+    {
+      "route": "/api/auth/forgot-password",
+      "kind": "api",
+      "file": "app/api/auth/forgot-password/route.ts"
+    },
+    {
+      "route": "/api/auth/login",
+      "kind": "api",
+      "file": "app/api/auth/login/route.ts"
+    },
+    {
+      "route": "/api/auth/logout",
+      "kind": "api",
+      "file": "app/api/auth/logout/route.ts"
+    },
+    {
+      "route": "/api/auth/reset-password",
+      "kind": "api",
+      "file": "app/api/auth/reset-password/route.ts"
+    },
+    {
+      "route": "/api/auth/signup",
+      "kind": "api",
+      "file": "app/api/auth/signup/route.ts"
+    },
+    {
+      "route": "/api/auth/verify",
+      "kind": "api",
+      "file": "app/api/auth/verify/route.ts"
+    },
+    {
+      "route": "/api/billing",
+      "kind": "api",
+      "file": "app/api/billing/route.ts"
+    },
+    {
+      "route": "/api/checkout/myfatoorah/callback",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/callback/route.ts"
+    },
+    {
+      "route": "/api/checkout/myfatoorah",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/route.ts"
+    },
+    {
+      "route": "/api/checkout",
+      "kind": "api",
+      "file": "app/api/checkout/route.ts"
+    },
+    {
+      "route": "/api/health",
+      "kind": "api",
+      "file": "app/api/health/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/history",
+      "kind": "api",
+      "file": "app/api/orders/[id]/history/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/refund",
+      "kind": "api",
+      "file": "app/api/orders/[id]/refund/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]",
+      "kind": "api",
+      "file": "app/api/orders/[id]/route.ts"
+    },
+    {
+      "route": "/api/orders/export",
+      "kind": "api",
+```
+Full output: [`server-runs/2026-05-20T22-43-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T22-43-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
