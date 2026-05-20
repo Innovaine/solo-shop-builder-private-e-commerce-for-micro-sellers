@@ -362,3 +362,70 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-20T11:23:07.982Z","responseTime":"190ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"188ms"}}}
 ```
 Full output: [`server-runs/2026-05-20T11-23-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log`](server-runs/2026-05-20T11-23-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-2.log)
+
+## 2026-05-20T11:24:07.368Z — Priya ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1f89c06` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3366ms) _(showing tail — full 11,898B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…
+ create mode 100644 day-92/server-log.md
+ create mode 100644 day-92/stage-ship-check.md
+ create mode 100644 day-92/standards-audit.md
+ create mode 100644 day-92/standards_qa.md
+ create mode 100644 day-93/_index.md
+ create mode 100644 day-93/_plan.md
+ create mode 100644 day-93/connectivity-audit.md
+ create mode 100644 day-93/connectivity_qa.md
+ create mode 100644 day-93/design.md
+ create mode 100644 day-93/engineering.md
+ create mode 100644 day-93/review.md
+ create mode 100644 day-93/server-log.md
+ create mode 100644 day-93/stage-ship-check.md
+ create mode 100644 day-93/standards-audit.md
+ create mode 100644 day-93/standards_qa.md
+ create mode 100644 day-93/task-verification.md
+ create mode 100644 day-93/task_verifier.md
+ create mode 100644 day-93/test.md
+ create mode 100644 day-94/_plan.md
+ create mode 100644 day-94/connectivity-audit.md
+ create mode 100644 day-94/connectivity_qa.md
+ create mode 100644 day-94/design-compliance.md
+ create mode 100644 day-94/design_qa.md
+ create mode 100644 day-94/engineering.md
+ create mode 100644 day-94/review.md
+ create mode 100644 day-94/server-log.md
+ create mode 100644 design/day-93-responsive-audit.md
+ create mode 100644 design/emails/password-reset.html
+ create mode 100644 design/pages/checkout-myfatoorah-success.html
+ create mode 100644 design/pages/order-detail-timeline-view.html
+ create mode 100644 design/pages/post-purchase-receipt.html
+ create mode 100644 design/pages/seller-onboarding-checklist.html
+ create mode 100644 design/pages/seller-onboarding-flow.html
+ create mode 100644 design/pages/seller-profile-complete-editor.html
+ create mode 100644 design/pages/seller-profile-image-upload.html
+ create mode 100644 design/pages/shop-storefront-filter.html
+ create mode 100644 design/pages/storefront-inactive-shop.html
+ create mode 100644 test-results/day-86/report.md
+ create mode 100644 test-results/day-87/report.md
+ create mode 100644 test-results/day-89/report.md
+ create mode 100644 test-results/day-93/report.md
+ create mode 100644 tests/web/day94-engineer-fixes.spec.ts
+```
+Full output: [`server-runs/2026-05-20T11-24-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T11-24-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as tester (✓ exit 0, 6963ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup env PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers PLAYWRIGHT_OUTPUT_DIR=$HOME/.playwright-out npx playwright test tests/web/day94-engineer-fixes.spec.ts --reporter=list > /tmp/day94-test.log 2>&1 &
+echo $! > /tmp/day94-test.pid
+echo "Started Playwright tests, PID=$(cat /tmp/day94-test.pid)"
+```
+STDOUT:
+```
+Started Playwright tests, PID=1980629
+```
+Full output: [`server-runs/2026-05-20T11-24-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-20T11-24-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
