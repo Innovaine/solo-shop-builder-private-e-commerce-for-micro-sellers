@@ -416,3 +416,37 @@ traefik-vwiz-traefik-1	Up 3 days
 Health check: OK
 ```
 Full output: [`server-runs/2026-05-20T20-52-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-52-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T20:53:29.189Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3b34ea8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2432ms)
+```
+echo "=== TEST 1: Checkout success page structure ===" &&
+curl -s "https://www.soloshopbox.com/checkout/success?session_id=test123&provider=stripe" | grep -o '<h1[^>]*>.*</h1>' | head -3 &&
+curl -s "https://www.soloshopbox.com/checkout/success?session_id=test123&provider=stripe" | grep -o 'Order Confirmed\|Download Receipt\|Back to Shop\|Continue Shopping' | head -5 &&
+echo "" &&
+echo "=== TEST 2: Shop storefront header structure ===" &&
+curl -s "https://www.soloshopbox.com/shop/test-shop" 2>&1 | grep -o 'Welcome to\|Search products\|In Stock\|Out of Stock' | head -5
+```
+STDOUT:
+```
+=== TEST 1: Checkout success page structure ===
+
+=== TEST 2: Shop storefront header structure ===
+```
+Full output: [`server-runs/2026-05-20T20-53-29-www.soloshopbox.com-echo-TEST-1-Checkout-success-page-struct-1.log`](server-runs/2026-05-20T20-53-29-www.soloshopbox.com-echo-TEST-1-Checkout-success-page-struct-1.log)
+
+## 2026-05-20T20:56:30.190Z — Priya ran 1 command(s)
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2667ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la tests/web/ | grep day-103 || echo "No day-103 test spec found" && echo "---" && ls -la tests/web/day102-new-features.spec.ts 2>/dev/null || echo "Day 102 test exists" && echo "---" && cat tests/web/day102-new-features.spec.ts | head -40
+```
+STDOUT:
+```
+No day-103 test spec found
+---
+Day 102 test exists
+---
+```
+Full output: [`server-runs/2026-05-20T20-56-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T20-56-30-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
