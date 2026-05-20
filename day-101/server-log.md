@@ -903,3 +903,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `f1bb6c0` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE '^(const|let|var)[[:space:]]+[A-Za-z_].*process\.env' app/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -30
 ```
+
+## 2026-05-20T18:29:08.596Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2d1da4b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2860ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -name '*.ts' -o -name '*.tsx' 2>/dev/null | grep -vE 'node_modules|\.next|dist|build' | xargs -n1 basename 2>/dev/null | sort | uniq -d | grep -vE '^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware|instrumentation)\.(ts|tsx)$' | head -20
+```
+STDOUT:
+```
+db.ts
+s3.ts
+```
+Full output: [`server-runs/2026-05-20T18-29-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-29-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
