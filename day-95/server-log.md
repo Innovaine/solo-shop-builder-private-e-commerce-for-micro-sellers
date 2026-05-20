@@ -824,3 +824,71 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-20T12-07-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-07-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:08:07.031Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `95de46f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2456ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json | jq '.broken,.methodMismatches,.orphans'
+```
+STDOUT:
+```
+[
+  {
+    "file": "app/shop/[slug]/SortDropdown.tsx",
+    "line": 32,
+    "kind": "router",
+    "target": "/shop/${shopSlug}${queryString"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 63,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 170,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  }
+]
+[
+  {
+    "file": "app/track/[orderId]/page.tsx",
+    "line": 44,
+    "kind": "fetch",
+    "target": "/api/orders/${orderId}",
+    "method": "GET",
+    "route": "/api/orders/[id]",
+    "supportedMethods": [
+      "PATCH"
+    ],
+    "reason": "caller method not exported by route handler"
+  }
+]
+[
+  {
+    "route": "/auth/reset-password",
+    "kind": "page",
+    "file": "app/auth/reset-password/page.tsx"
+  },
+  {
+    "route": "/auth/verify",
+    "kind": "page",
+    "file": "app/auth/verify/page.tsx"
+  },
+  {
+    "route": "/dashboard/orders/[id]",
+    "kind": "page",
+    "file": "app/dashboard/orders/[id]/page.tsx"
+  },
+  {
+    "route": "/shop/[slug]/product/[productId]",
+    "kind": "page",
+    "file": "app/shop/[slug]/product/[productId]/page.tsx"
+  }
+]
+```
+Full output: [`server-runs/2026-05-20T12-08-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-08-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
