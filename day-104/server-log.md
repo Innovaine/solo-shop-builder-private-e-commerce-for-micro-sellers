@@ -1205,3 +1205,19 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   6 hours ago   Up 6 hours (healthy)   127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-20T21-31-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-31-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T21:31:37.048Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `637d44a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2200ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose up -d > /tmp/up.log 2>&1 &
+echo $! > /tmp/up.pid
+echo "Started docker compose up, PID=$(cat /tmp/up.pid)"
+```
+STDOUT:
+```
+Started docker compose up, PID=2094722
+```
+Full output: [`server-runs/2026-05-20T21-31-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T21-31-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
