@@ -74,3 +74,30 @@ drwxrwxr-x 3 engineer engineer 4096 May 15 15:45 ..
 -rw-rw-r-- 1 engineer engineer 1979 May 15 23:23 timeout.ts
 ```
 Full output: [`server-runs/2026-05-20T14-04-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T14-04-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T14:05:10.034Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f46617e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2977ms)
+```
+curl -sf https://www.soloshopbox.com/api/health | jq .
+```
+STDOUT:
+```
+{
+  "status": "ok",
+  "timestamp": "2026-05-20T14:05:10.320Z",
+  "responseTime": "280ms",
+  "checks": {
+    "database": {
+      "status": "ok",
+      "responseTime": "33ms"
+    },
+    "email": {
+      "status": "ok",
+      "responseTime": "247ms"
+    }
+  }
+}
+```
+Full output: [`server-runs/2026-05-20T14-05-10-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-20T14-05-10-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
