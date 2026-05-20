@@ -332,3 +332,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `d218d34` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d app
 ```
+
+## 2026-05-20T10:00:56.193Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `df824f2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 8642ms)
+```
+sleep 5 && curl -sf https://www.soloshopbox.com/api/health && echo "✓ Health check OK"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-20T10:00:56.442Z","responseTime":"199ms","checks":{"database":{"status":"ok","responseTime":"53ms"},"email":{"status":"ok","responseTime":"146ms"}}}✓ Health check OK
+```
+Full output: [`server-runs/2026-05-20T10-00-56-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log`](server-runs/2026-05-20T10-00-56-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log)
