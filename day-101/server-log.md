@@ -416,3 +416,19 @@ Test 3: Check .env.example has webhook secret documented
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-20T18-15-36-www.soloshopbox.com-echo-Test-1-Check-callback-with-no-signa-1.log`](server-runs/2026-05-20T18-15-36-www.soloshopbox.com-echo-Test-1-Check-callback-with-no-signa-1.log)
+
+## 2026-05-20T18:16:09.959Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `cfc35a5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 2, 2471ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers
+grep -i "webhook" .env.example || echo "No webhook secret found in .env.example"
+grep -i "MYFATOORAH" .env.example
+```
+STDOUT:
+```
+No webhook secret found in .env.example
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-20T18-16-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-16-09-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
