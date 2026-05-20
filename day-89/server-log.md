@@ -962,3 +962,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `98b1c4f` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "new Response\|return \[^N\].*status" app/api --include="*.ts" | grep -v "NextResponse" | head -10
 ```
+
+## 2026-05-20T07:35:22.447Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `197ec12` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2529ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "new NextResponse" app/api --include="*.ts" | head -10
+```
+STDOUT:
+```
+app/api/products/export/route.ts:77:    return new NextResponse(csv, {
+app/api/orders/export/route.ts:83:    return new NextResponse(csvContent, {
+```
+Full output: [`server-runs/2026-05-20T07-35-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T07-35-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
