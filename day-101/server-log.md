@@ -341,3 +341,43 @@ STDOUT:
   3 passed (6.6s)
 ```
 Full output: [`server-runs/2026-05-20T18-14-20-www.soloshopbox.com-cat-tmp-day101-test.log-head--200-1.log`](server-runs/2026-05-20T18-14-20-www.soloshopbox.com-cat-tmp-day101-test.log-head--200-1.log)
+
+## 2026-05-20T18:14:51.755Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1e33f21` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2453ms) _(showing tail — full 2,582B stdout + 0B stderr)_
+```
+grep -A 15 "rejects POST callback without signature header" /tmp/day101-test.log
+```
+STDOUT:
+```
+…mium] › tests/web/day101-myfatoorah-fixes.spec.ts:85:7 › MyFatoorah Callback Signature Verification › GET callback does not require signature (redirect flow) (279ms)
+  ✘  5 [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:109:7 › MyFatoorah Customer Email & Data Persistence › checkout page displays MyFatoorah payment option (287ms)
+  ✓  7 [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:125:7 › MyFatoorah API Health Check › health endpoint shows MyFatoorah env vars configured (276ms)
+  ✘  6 [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:100:7 › MyFatoorah Customer Email & Data Persistence › checkout form has customerEmail field visible (5.2s)
+
+
+  1) [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:10:7 › MyFatoorah Callback Signature Verification › rejects POST callback without signature header 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m401[39m
+    Received: [31m500[39m
+
+      20 |     })
+      21 |
+    > 22 |     expect(response.status()).toBe(401)
+         |                               ^
+      23 |     const body = await response.json()
+      24 |     expect(body.error).toContain('signature')
+      25 |   })
+        at /home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/tests/web/day101-myfatoorah-fixes.spec.ts:22:31
+
+--
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:10:7 › MyFatoorah Callback Signature Verification › rejects POST callback without signature header 
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:27:7 › MyFatoorah Callback Signature Verification › rejects POST callback with invalid signature 
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:100:7 › MyFatoorah Customer Email & Data Persistence › checkout form has customerEmail field visible 
+    [chromium] › tests/web/day101-myfatoorah-fixes.spec.ts:109:7 › MyFatoorah Customer Email & Data Persistence › checkout page displays MyFatoorah payment option 
+  3 passed (6.6s)
+```
+Full output: [`server-runs/2026-05-20T18-14-51-www.soloshopbox.com-grep--A-15-rejects-POST-callback-without-1.log`](server-runs/2026-05-20T18-14-51-www.soloshopbox.com-grep--A-15-rejects-POST-callback-without-1.log)
