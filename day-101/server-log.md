@@ -782,3 +782,25 @@ STDOUT:
 @@ -115,14 +124,14 @@ async function handleCallback(req: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-20T18-21-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-21-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T18:22:26.493Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `75d5634` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2655ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git log --oneline -- app/api/checkout/myfatoorah/callback/route.ts | head -10
+```
+STDOUT:
+```
+2102ad0 Anil (engineer, day 84) — pre-SSH sync
+5a060f5 Anil (engineer, day 83) — pre-SSH sync
+db7ac1e Anil (engineer, day 82) — pre-SSH sync
+0e96a24 Anil (engineer, day 77) — pre-SSH sync
+7c19b98 Anil (engineer, day 76) — pre-SSH sync
+966c311 Anil (engineer, day 74) — pre-SSH sync
+48dda8d Anil (engineer, day 73) — pre-SSH sync
+d2aff26 Anil (engineer, day 71) — pre-SSH sync
+1e34949 Anil (engineer, day 70) — pre-SSH sync
+8a20a3a Anil (engineer, day 70) — pre-SSH sync
+```
+Full output: [`server-runs/2026-05-20T18-22-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-22-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
