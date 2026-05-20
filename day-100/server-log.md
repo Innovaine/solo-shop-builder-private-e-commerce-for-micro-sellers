@@ -386,3 +386,25 @@ page.tsx
 success
 ```
 Full output: [`server-runs/2026-05-20T16-31-19-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-31-19-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-20T16:32:02.881Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8a6e6ff` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2109ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && find app/dashboard -maxdepth 2 -name "page.tsx" | sort
+```
+STDOUT:
+```
+app/dashboard/analytics/page.tsx
+app/dashboard/billing/page.tsx
+app/dashboard/branding/page.tsx
+app/dashboard/create-shop/page.tsx
+app/dashboard/email-template/page.tsx
+app/dashboard/orders/page.tsx
+app/dashboard/page.tsx
+app/dashboard/products/page.tsx
+app/dashboard/profile/page.tsx
+app/dashboard/settings/page.tsx
+```
+Full output: [`server-runs/2026-05-20T16-32-02-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-20T16-32-02-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
