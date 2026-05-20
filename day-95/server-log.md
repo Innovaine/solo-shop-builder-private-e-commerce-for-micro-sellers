@@ -651,3 +651,16 @@ STDOUT:
                           {statusUpdating === product.id ? '...' : product.status || 'PUBLISHED'}
 ```
 Full output: [`server-runs/2026-05-20T12-05-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-05-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:05:46.247Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b2df55f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3198ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "imageUrl\|product.imageUrl" app/dashboard/products/page.tsx | head -10
+```
+STDOUT:
+```
+221:                            {product.imageUrl ? '🖼️' : '📦'}
+```
+Full output: [`server-runs/2026-05-20T12-05-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-05-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
