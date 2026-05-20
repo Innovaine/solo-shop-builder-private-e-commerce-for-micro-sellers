@@ -28,3 +28,18 @@ STDOUT:
 No S3 imports in branding/profile endpoints
 ```
 Full output: [`server-runs/2026-05-20T12-20-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-20-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:20:40.168Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0aae316` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2739ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "api/shops/branding\|logoImageUrl\|logoUrl" app/dashboard/profile/page.tsx | head -20
+```
+STDOUT:
+```
+58:          if (shop.logoImageUrl || shop.logoUrl) {
+59:            setCurrentLogoUrl(shop.logoImageUrl || shop.logoUrl);
+113:        const uploadRes = await fetch('/api/shops/branding', {
+```
+Full output: [`server-runs/2026-05-20T12-20-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-20-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
