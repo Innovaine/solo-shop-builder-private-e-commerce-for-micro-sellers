@@ -614,3 +614,59 @@ STDOUT:
     {
 ```
 Full output: [`server-runs/2026-05-20T18-19-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-19-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T18:20:01.066Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7811166` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2379ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | tail -400 | grep -A 100 '"broken"'
+```
+STDOUT:
+```
+  "broken": [
+    {
+      "file": "app/shop/[slug]/SortDropdown.tsx",
+      "line": 32,
+      "kind": "router",
+      "target": "/shop/${shopSlug}${queryString"
+    },
+    {
+      "file": "app/shop/[slug]/product/[productId]/page.tsx",
+      "line": 63,
+      "kind": "Link",
+      "target": "/shop/${slug"
+    },
+    {
+      "file": "app/shop/[slug]/product/[productId]/page.tsx",
+      "line": 170,
+      "kind": "Link",
+      "target": "/shop/${slug"
+    }
+  ],
+  "orphans": [
+    {
+      "route": "/auth/reset-password",
+      "kind": "page",
+      "file": "app/auth/reset-password/page.tsx"
+    },
+    {
+      "route": "/auth/verify",
+      "kind": "page",
+      "file": "app/auth/verify/page.tsx"
+    },
+    {
+      "route": "/dashboard/orders/[id]",
+      "kind": "page",
+      "file": "app/dashboard/orders/[id]/page.tsx"
+    },
+    {
+      "route": "/shop/[slug]/product/[productId]",
+      "kind": "page",
+      "file": "app/shop/[slug]/product/[productId]/page.tsx"
+    }
+  ],
+  "methodMismatches": []
+}
+```
+Full output: [`server-runs/2026-05-20T18-20-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-20-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
