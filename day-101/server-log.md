@@ -51,3 +51,19 @@ echo $! > /tmp/build-day101.pid
 echo "Started build, PID=$(cat /tmp/build-day101.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-20T18:03:59.349Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1b45c0b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2448ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/build-day101.log 2>&1 &
+echo $! > /tmp/build-day101.pid
+echo "Build started, PID=$(cat /tmp/build-day101.pid)"
+```
+STDOUT:
+```
+Build started, PID=2055808
+```
+Full output: [`server-runs/2026-05-20T18-03-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T18-03-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
