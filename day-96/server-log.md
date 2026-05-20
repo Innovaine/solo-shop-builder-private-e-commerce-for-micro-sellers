@@ -416,3 +416,79 @@ app/api/shops/branding/route.ts
 app/api/shops/profile/route.ts
 ```
 Full output: [`server-runs/2026-05-20T12-37-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-37-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:37:56.474Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f0d8f7a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2336ms) _(showing tail — full 4,591B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat app/api/shops/branding/route.ts
+```
+STDOUT:
+```
+…        return NextResponse.json(
+          { error: 'Logo file must be less than 2MB' },
+          { status: 400 }
+        );
+      }
+
+      // Validate MIME type
+      if (!['image/png', 'image/jpeg', 'image/jpg'].includes(logoFile.type)) {
+        return NextResponse.json(
+          { error: 'Logo must be a PNG or JPEG image' },
+          { status: 400 }
+        );
+      }
+
+      // Create upload directory
+      const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'shops', shop.id);
+      await mkdir(uploadDir, { recursive: true });
+
+      // Generate unique filename
+      const ext = logoFile.name.split('.').pop() || 'png';
+      const filename = `logo-${crypto.randomBytes(8).toString('hex')}.${ext}`;
+      const filepath = path.join(uploadDir, filename);
+
+      // Save file
+      const buffer = Buffer.from(await logoFile.arrayBuffer());
+      await writeFile(filepath, buffer);
+
+      // Store relative path (served from /public)
+      logoImageUrl = `/uploads/shops/${shop.id}/${filename}`;
+    }
+
+    // Update shop branding
+    const updated = await prisma.shop.update({
+      where: { id: shop.id },
+      data: {
+        primaryColor: primaryColor || '#3B4C63',
+        accentColor: accentColor || '#10B981',
+        logoUrl: logoUrl?.trim() || null,
+        logoImageUrl: logoImageUrl || undefined, // Only update if new file uploaded
+        tagline: tagline?.trim() || null,
+        updatedAt: new Date(),
+      },
+    });
+
+    return NextResponse.json({
+      message: 'Branding updated successfully',
+      shop: {
+        id: updated.id,
+        primaryColor: updated.primaryColor,
+        accentColor: updated.accentColor,
+        logoUrl: updated.logoUrl,
+        logoImageUrl: updated.logoImageUrl,
+        tagline: updated.tagline,
+      },
+      logoImageUrl: updated.logoImageUrl, // Return for frontend preview
+    });
+  } catch (error: any) {
+    console.error('Branding update error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+```
+Full output: [`server-runs/2026-05-20T12-37-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-37-56-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
