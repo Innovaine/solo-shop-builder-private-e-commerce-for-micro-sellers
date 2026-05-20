@@ -1222,3 +1222,14 @@ STDOUT:
                     {formData.publicDescription || 'Tell customers about your shop...'}
 ```
 Full output: [`server-runs/2026-05-20T12-50-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-50-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T12:51:25.258Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d2e0acf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12914ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull && nohup docker compose build > /tmp/build3.log 2>&1 &
+echo $! > /tmp/build3.pid
+echo "Started rebuild, PID=$(cat /tmp/build3.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
