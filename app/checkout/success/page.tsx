@@ -9,21 +9,14 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { clearCart, getCart } from '@/lib/cart'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
+import type { Order, OrderItem } from '@prisma/client'
 
-interface OrderDetails {
-  id: string
-  customerEmail: string
-  total: number
-  items: Array<{
-    productTitle: string
-    price: number
-    quantity: number
-  }>
+type OrderDetails = Order & {
+  items: OrderItem[]
   shop: {
     name: string
     slug: string
   }
-  createdAt: string
 }
 
 /**

@@ -6,23 +6,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { Card } from '@/components/ui/Card'
+import type { Order, OrderItem } from '@prisma/client'
 
-interface OrderItem {
-  id: string
-  productTitle: string
-  price: number
-  quantity: number
-}
-
-interface Order {
-  id: string
-  customerEmail: string
-  customerName: string | null
-  status: string
-  total: number
-  trackingId: string | null
-  trackingUrl: string | null
-  createdAt: string
+type OrderWithDetails = Order & {
   items: OrderItem[]
   shop: {
     name: string
@@ -34,7 +20,7 @@ export default function TrackOrderPage() {
   const params = useParams()
   const orderId = params.orderId as string
 
-  const [order, setOrder] = useState<Order | null>(null)
+  const [order, setOrder] = useState<OrderWithDetails | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 

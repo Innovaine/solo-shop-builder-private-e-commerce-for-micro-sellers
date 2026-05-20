@@ -115,3 +115,11 @@ export async function POST(request: NextRequest) {
     // Get Stripe client at runtime
 ```
 Full output: [`server-runs/2026-05-20T23-07-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T23-07-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-20T23:08:08.273Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `88e5124` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2427ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "fetch.*credentials" app --include="*.tsx" --include="*.ts" | head -15
+```

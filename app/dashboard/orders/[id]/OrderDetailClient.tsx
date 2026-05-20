@@ -7,30 +7,14 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import type { Order, OrderItem } from '@prisma/client'
 
-interface OrderItem {
-  id: string
-  productTitle: string
-  quantity: number
-  price: number
-  productId: string
-}
-
-interface Order {
-  id: string
-  customerEmail: string
-  customerName: string | null
-  status: string
-  total: number
-  stripePaymentId: string | null
-  trackingId: string | null
-  createdAt: string
-  updatedAt: string
+type OrderWithItems = Order & {
   items: OrderItem[]
 }
 
 interface OrderDetailClientProps {
-  order: Order
+  order: OrderWithItems
   shopId: string
 }
 

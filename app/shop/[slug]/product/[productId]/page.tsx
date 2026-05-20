@@ -74,7 +74,7 @@ export default async function ProductDetailPage({
           <div className="space-y-3">
             {/* Main Image */}
             <div className="aspect-square bg-gradient-to-br from-whisper to-cream rounded-lg flex items-center justify-center border border-whisper overflow-hidden">
-              {product.images && product.images.length > 0 ? (
+              {product.images?.[0]?.imageUrl ? (
                 <img
                   src={product.images[0].imageUrl}
                   alt={product.title}
@@ -94,7 +94,7 @@ export default async function ProductDetailPage({
             </div>
             
             {/* Thumbnail Gallery */}
-            {product.images && product.images.length > 0 && (
+            {product.images && product.images.length > 1 && (
               <div className="flex gap-2 overflow-x-auto">
                 {product.images.map((image, index) => (
                   <div
@@ -183,9 +183,7 @@ export default async function ProductDetailPage({
                 price={product.price}
                 shopSlug={slug}
                 imageUrl={
-                  (product.images && product.images.length > 0)
-                    ? product.images[0].imageUrl
-                    : product.imageUrl || undefined
+                  product.images?.[0]?.imageUrl || product.imageUrl || undefined
                 }
               />
             ) : (
