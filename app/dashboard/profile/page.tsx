@@ -304,9 +304,7 @@ export default function ProfilePage() {
             <div className="bg-slate-blue text-white p-4 rounded-lg">
               <div className="flex gap-4 items-start mb-3">
                 <div className="w-16 h-16 bg-whisper/20 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  {imagePreview ? (
-                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
-                  ) : currentLogoUrl ? (
+                  {currentLogoUrl ? (
                     <img src={currentLogoUrl} alt="Logo" className="w-full h-full object-cover" />
                   ) : (
                     <div className="text-3xl">🏪</div>

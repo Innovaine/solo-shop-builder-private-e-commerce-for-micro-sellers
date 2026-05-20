@@ -1194,3 +1194,31 @@ STDOUT:
 21.72 [0m [90m 309 |[39m                   ) [33m:[39m currentLogoUrl [33m?[39m ([0m
 ```
 Full output: [`server-runs/2026-05-20T12-50-04-www.soloshopbox.com-tail--100-tmp-build2.log-grep--A-7--B-3--1.log`](server-runs/2026-05-20T12-50-04-www.soloshopbox.com-tail--100-tmp-build2.log-grep--A-7--B-3--1.log)
+
+## 2026-05-20T12:50:37.010Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2b1cde9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2346ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '305,320p' app/dashboard/profile/page.tsx
+```
+STDOUT:
+```
+              <div className="flex gap-4 items-start mb-3">
+                <div className="w-16 h-16 bg-whisper/20 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                  ) : currentLogoUrl ? (
+                    <img src={currentLogoUrl} alt="Logo" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="text-3xl">🏪</div>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-1">
+                    {formData.displayName || 'Your shop name'}
+                  </h3>
+                  <p className="text-sm text-slate-200 leading-relaxed">
+                    {formData.publicDescription || 'Tell customers about your shop...'}
+```
+Full output: [`server-runs/2026-05-20T12-50-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-20T12-50-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
