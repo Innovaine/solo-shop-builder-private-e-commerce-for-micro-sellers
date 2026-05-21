@@ -269,3 +269,45 @@ _Pre-SSH: warehouse pushed to GitHub as commit `601f809` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -name '*.ts' -o -name '*.tsx' | grep -vE 'node_modules|\.next|dist|build|\.spec\.' | xargs -n1 basename 2>/dev/null | sort | uniq -d | grep -vE '^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware|instrumentation)\.(ts|tsx)$' | head -20
 ```
+
+## 2026-05-21T00:41:57.257Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5ac64bd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2280ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "^interface\|^type " app/ components/ src/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -v '@prisma' | head -30
+```
+STDOUT:
+```
+app/dashboard/products/import/page.tsx:6:interface ImportResult {
+app/dashboard/billing/page.tsx:8:interface BillingData {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:12:type OrderWithItems = Order & {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:16:interface OrderDetailClientProps {
+app/dashboard/orders/page.tsx:11:type Order = Omit<PrismaOrder, 'createdAt' | 'updatedAt'> & {
+app/dashboard/orders/page.tsx:17:interface Analytics {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/dashboard/analytics/page.tsx:8:interface ProductAnalytics {
+app/dashboard/analytics/page.tsx:15:interface DailyRevenue {
+app/dashboard/analytics/page.tsx:20:interface Analytics {
+app/track/[orderId]/page.tsx:11:type OrderWithDetails = Order & {
+app/components/ui/Modal.tsx:7:interface ModalProps {
+app/components/ui/Input.tsx:4:interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+app/components/ui/Card.tsx:4:interface CardProps extends HTMLAttributes<HTMLDivElement> {
+app/components/ui/FormField.tsx:5:interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+app/components/ui/Button.tsx:4:interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+app/components/ui/EmptyState.tsx:4:interface EmptyStateProps {
+app/components/ui/Header.tsx:5:interface HeaderProps {
+app/components/ErrorBoundary.tsx:8:interface Props {
+app/components/ErrorBoundary.tsx:13:interface State {
+app/components/AnalyticsCards.tsx:9:interface ProductAnalytics {
+app/components/AnalyticsCards.tsx:16:interface Analytics {
+app/components/AddToCartButton.tsx:10:interface AddToCartButtonProps {
+app/api/products/import/route.ts:11:interface CSVRow {
+app/api/products/import/route.ts:19:interface ImportError {
+app/api/analytics/route.ts:9:interface ProductAnalytics {
+app/checkout/success/page.tsx:14:type OrderDetails = Order & {
+app/shop/[slug]/CategoryFilter.tsx:8:interface CategoryFilterProps {
+app/shop/[slug]/SortDropdown.tsx:8:interface SortDropdownProps {
+src/lib/rate-limit.ts:5:type RateLimitStore = {
+```
+Full output: [`server-runs/2026-05-21T00-41-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-41-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
