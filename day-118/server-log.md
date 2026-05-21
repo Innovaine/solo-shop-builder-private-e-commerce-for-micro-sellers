@@ -154,3 +154,20 @@ _Pre-SSH: warehouse pushed to GitHub as commit `5adfb03` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build --no-cache > /tmp/build.log 2>&1 & echo $! > /tmp/build.pid && echo "Started build without cache, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T18:47:55.643Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ae323bc` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2617ms)
+```
+ps aux | grep docker | grep -v grep | head -5
+```
+STDOUT:
+```
+root        2194  0.4  2.0 4189472 670152 ?      Ssl  May12  62:52 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+reviewer  730439  0.0  0.0   7740  2068 ?        S    May15   0:00 bash -c cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up > /tmp/compose-up.log 2>&1 & echo "Started"; sleep 8; docker compose logs app 2>&1 | tail -60; printf "__QADAR_EXIT__%d" $?
+reviewer  730441  0.0  0.0 2032368 29196 ?       Sl   May15   0:09 docker compose up
+reviewer  730459  0.0  0.0 1256920 30972 ?       Sl   May15   1:31 /usr/libexec/docker/cli-plugins/docker-compose compose up
+engineer  753904  0.0  0.0 2032048 29268 ?       Sl   May15   0:10 docker compose up
+```
+Full output: [`server-runs/2026-05-21T18-47-55-www.soloshopbox.com-ps-aux-grep-docker-grep--v-grep-head--5-1.log`](server-runs/2026-05-21T18-47-55-www.soloshopbox.com-ps-aux-grep-docker-grep--v-grep-head--5-1.log)
