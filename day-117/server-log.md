@@ -629,3 +629,31 @@ _Pre-SSH: warehouse pushed to GitHub as commit `99d5968` so the server's `git pu
 curl --sf https://www.soloshopbox.com/api/health && echo "" && echo "Health check: OK"
 ```
 ERROR: command exited 2
+
+## 2026-05-21T17:21:32.337Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e968c38` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2892ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail 200 app 2>&1 | tail -100
+```
+STDOUT:
+```
+time="2026-05-21T17:21:32Z" level=warning msg="/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 11 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 52ms
+app-1  | {"requestId":"T__FuoyH_sGSZy8_","method":"GET","path":"/api/health","responseTime":"2ms","timestamp":"2026-05-21T17:16:10.267Z","userAgent":"curl/8.5.0"}
+```
+Full output: [`server-runs/2026-05-21T17-21-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-21-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
