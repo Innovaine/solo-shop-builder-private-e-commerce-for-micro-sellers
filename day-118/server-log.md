@@ -233,3 +233,20 @@ af845a010fe4   postgres:16-alpine   "docker-entrypoint.s…"   6 hours ago   Exi
 2967d9e0bd67   traefik:latest       "/entrypoint.sh --ap…"   4 days ago    Up 4 days                            traefik-vwiz-traefik-1
 ```
 Full output: [`server-runs/2026-05-21T18-53-40-www.soloshopbox.com-docker-ps--a-head--10-1.log`](server-runs/2026-05-21T18-53-40-www.soloshopbox.com-docker-ps--a-head--10-1.log)
+
+## 2026-05-21T18:54:04.436Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e7d33a2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2467ms)
+```
+curl -I https://www.soloshopbox.com 2>&1 | head -5
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0    19    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 404 
+content-type: text/plain; charset=utf-8
+```
+Full output: [`server-runs/2026-05-21T18-54-04-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log`](server-runs/2026-05-21T18-54-04-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log)
