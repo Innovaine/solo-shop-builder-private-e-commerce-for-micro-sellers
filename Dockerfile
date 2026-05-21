@@ -15,7 +15,14 @@ RUN npm install --loglevel=verbose
 FROM base AS builder
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+
+# Copy package files first
+COPY package.json ./
+
+# Install dependencies fresh in builder stage to avoid corruption from layer copy
+RUN npm cache clean --force && npm install
+
+# Copy source code
 COPY . .
 
 # Generate Prisma client
