@@ -370,3 +370,30 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-21T15:29:08.298Z","responseTime":"127ms","checks":{"database":{"status":"ok","responseTime":"2ms"},"email":{"status":"ok","responseTime":"125ms"}}}
 ```
 Full output: [`server-runs/2026-05-21T15-29-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T15-29-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-21T15:29:35.460Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2f8447c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3178ms)
+```
+echo "Test 1: Homepage"
+curl -sI https://www.soloshopbox.com | head -1
+
+echo -e "\nTest 2: Login page"
+curl -sI https://www.soloshopbox.com/auth/login | head -1
+
+echo -e "\nTest 3: Dashboard (should redirect if not logged in)"
+curl -sI https://www.soloshopbox.com/dashboard | head -1
+```
+STDOUT:
+```
+Test 1: Homepage
+HTTP/2 200 
+
+Test 2: Login page
+HTTP/2 200 
+
+Test 3: Dashboard (should redirect if not logged in)
+HTTP/2 307
+```
+Full output: [`server-runs/2026-05-21T15-29-35-www.soloshopbox.com-echo-Test-1-Homepage-1.log`](server-runs/2026-05-21T15-29-35-www.soloshopbox.com-echo-Test-1-Homepage-1.log)
