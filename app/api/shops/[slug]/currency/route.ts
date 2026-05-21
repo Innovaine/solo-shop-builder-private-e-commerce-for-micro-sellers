@@ -40,7 +40,7 @@ export async function PUT(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const seller = await requireAuth(request)
+    const seller = await requireAuth()
     if (!seller) {
       return NextResponse.json(
         { error: 'Unauthorized' },

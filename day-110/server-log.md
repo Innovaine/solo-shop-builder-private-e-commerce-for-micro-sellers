@@ -90,3 +90,64 @@ STDOUT:
 Started build, PID=2149800
 ```
 Full output: [`server-runs/2026-05-21T00-51-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-51-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:52:02.981Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `996a37e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2332ms) _(showing tail — full 4,452B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/app-build.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE"
+tail -100 /tmp/app-build.log
+```
+STDOUT:
+```
+…43   - Environments: .env
+#15 1.843 
+#15 1.910    Creating an optimized production build ...
+#15 14.15  ✓ Compiled successfully
+#15 14.15    Linting and checking validity of types ...
+#15 20.61 Failed to compile.
+#15 20.61 
+#15 20.61 ./app/api/shops/[slug]/currency/route.ts:43:38
+#15 20.61 Type error: Expected 0 arguments, but got 1.
+#15 20.61 
+#15 20.61 [0m [90m 41 |[39m ) {[0m
+#15 20.61 [0m [90m 42 |[39m   [36mtry[39m {[0m
+#15 20.61 [0m[31m[1m>[22m[39m[90m 43 |[39m     [36mconst[39m seller [33m=[39m [36mawait[39m requireAuth(request)[0m
+#15 20.61 [0m [90m    |[39m                                      [31m[1m^[22m[39m[0m
+#15 20.61 [0m [90m 44 |[39m     [36mif[39m ([33m![39mseller) {[0m
+#15 20.61 [0m [90m 45 |[39m       [36mreturn[39m [33mNextResponse[39m[33m.[39mjson([0m
+#15 20.61 [0m [90m 46 |[39m         { error[33m:[39m [32m'Unauthorized'[39m }[33m,[39m[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+20.61 ./app/api/shops/[slug]/currency/route.ts:43:38
+20.61 Type error: Expected 0 arguments, but got 1.
+20.61 
+20.61 [0m [90m 41 |[39m ) {[0m
+20.61 [0m [90m 42 |[39m   [36mtry[39m {[0m
+20.61 [0m[31m[1m>[22m[39m[90m 43 |[39m     [36mconst[39m seller [33m=[39m [36mawait[39m requireAuth(request)[0m
+20.61 [0m [90m    |[39m                                      [31m[1m^[22m[39m[0m
+20.61 [0m [90m 44 |[39m     [36mif[39m ([33m![39mseller) {[0m
+20.61 [0m [90m 45 |[39m       [36mreturn[39m [33mNextResponse[39m[33m.[39mjson([0m
+20.61 [0m [90m 46 |[39m         { error[33m:[39m [32m'Unauthorized'[39m }[33m,[39m[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T00-52-02-www.soloshopbox.com-kill--0-cat-tmp-app-build.pid-2-dev-null-1.log`](server-runs/2026-05-21T00-52-02-www.soloshopbox.com-kill--0-cat-tmp-app-build.pid-2-dev-null-1.log)
