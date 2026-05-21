@@ -5,8 +5,10 @@ FROM base AS deps
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
-# Clear npm cache to avoid integrity errors
-RUN npm cache clean --force
+# Configure npm retry behavior BEFORE install to handle transient registry failures
+RUN npm config set fetch-retries 5 && \
+    npm config set fetch-retry-mintimeout 20000 && \
+    npm config set fetch-retry-maxtimeout 120000
 
 COPY package.json ./
 RUN npm install --loglevel=verbose
