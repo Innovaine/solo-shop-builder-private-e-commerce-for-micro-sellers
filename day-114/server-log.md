@@ -42,3 +42,18 @@ STDOUT:
 32:    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
 ```
 Full output: [`server-runs/2026-05-21T15-13-19-www.soloshopbox.com-grep--n-router.push-solo-shop-builder-pr-1.log`](server-runs/2026-05-21T15-13-19-www.soloshopbox.com-grep--n-router.push-solo-shop-builder-pr-1.log)
+
+## 2026-05-21T15:13:39.792Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `546658f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2451ms)
+```
+grep -n "Back to shop\|href=.*slug" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/shop/\[slug\]/product/\[productId\]/page.tsx | head -10
+```
+STDOUT:
+```
+47:            href={`/shop/${slug}`}
+70:            <Link href={`/shop/${slug}`}>
+204:              <Link href={`/shop/${slug}`}>
+```
+Full output: [`server-runs/2026-05-21T15-13-39-www.soloshopbox.com-grep--n-Back-to-shop-href-.-slug-solo-sh-1.log`](server-runs/2026-05-21T15-13-39-www.soloshopbox.com-grep--n-Back-to-shop-href-.-slug-solo-sh-1.log)
