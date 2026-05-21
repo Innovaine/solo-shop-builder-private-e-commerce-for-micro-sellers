@@ -1027,3 +1027,122 @@ STDOUT:
 /opt/qadar-runtime/bin/route-validator
 ```
 Full output: [`server-runs/2026-05-21T14-47-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-47-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T14:48:05.325Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `85f89b5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3673ms) _(showing tail — full 7,933B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && echo "=== ROUTE-VALIDATOR ===" && route-validator . --json 2>&1 | head -150 && echo "" && echo "=== TSC (no source check) ===" && npx tsc --noEmit 2>&1 | head -50 && echo "" && echo "=== SCHEMA-SYNC-CHECK ===" && schema-sync-check . --json 2>&1 | head -100
+```
+STDOUT:
+```
+…pected.
+app/dashboard/products/new/page.tsx(579,7): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(580,5): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(581,3): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(582,1): error TS1128: Declaration or statement expected.
+
+=== SCHEMA-SYNC-CHECK ===
+{
+  "summary": {
+    "models": 10,
+    "interfaces": 29,
+    "matched": 4,
+    "drift": 4
+  },
+  "models": {
+    "Seller": [
+      "id",
+      "email",
+      "passwordHash",
+      "passwordResetToken",
+      "passwordResetExpires",
+      "createdAt",
+      "updatedAt",
+      "shops",
+      "tokens"
+    ],
+    "Shop": [
+      "id",
+      "name",
+      "slug",
+      "sellerId",
+      "displayName",
+      "publicDescription",
+      "description",
+      "instagramUrl",
+      "facebookUrl",
+      "twitterUrl",
+      "primaryColor",
+      "accentColor",
+      "logoUrl",
+      "logoImageUrl",
+      "tagline",
+      "emailTemplateBody",
+      "status",
+      "currency",
+      "createdAt",
+      "updatedAt",
+      "seller",
+      "products",
+      "orders"
+    ],
+    "Product": [
+      "id",
+      "shopId",
+      "title",
+      "description",
+      "price",
+      "imageUrl",
+      "category",
+      "stock",
+      "status",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "variants",
+      "images"
+    ],
+    "ProductImage": [
+      "id",
+      "productId",
+      "imageUrl",
+      "displayOrder",
+      "createdAt",
+      "product"
+    ],
+    "ProductVariant": [
+      "id",
+      "productId",
+      "name",
+      "value",
+      "price",
+      "stock",
+      "sku",
+      "createdAt",
+      "updatedAt",
+      "product"
+    ],
+    "AuthToken": [
+      "id",
+      "token",
+      "sellerId",
+      "expiresAt",
+      "used",
+      "createdAt",
+      "seller"
+    ],
+    "Order": [
+      "id",
+      "shopId",
+      "customerEmail",
+      "customerName",
+      "status",
+      "total",
+      "stripePaymentId",
+      "trackingUrl",
+      "trackingId",
+      "metadata",
+```
+Full output: [`server-runs/2026-05-21T14-48-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-48-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
