@@ -347,3 +347,28 @@ content-length: 19
 date: Thu, 21 May 2026 13:42:31 GMT
 ```
 Full output: [`server-runs/2026-05-21T13-42-31-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--2.log`](server-runs/2026-05-21T13-42-31-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--2.log)
+
+## 2026-05-21T13:43:13.625Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `324f5b0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2188ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=50 2>&1 || echo "No app container logs yet"
+```
+STDOUT:
+```
+time="2026-05-21T13:43:13Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+```
+Full output: [`server-runs/2026-05-21T13-43-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-43-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as engineer (✓ exit 0, 382ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose up -d app > /tmp/compose-up.log 2>&1 &
+echo $! > /tmp/compose-up.pid
+echo "Started compose up, PID=$(cat /tmp/compose-up.pid)"
+```
+STDOUT:
+```
+Started compose up, PID=2257353
+```
+Full output: [`server-runs/2026-05-21T13-43-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-21T13-43-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
