@@ -21,8 +21,8 @@ interface Analytics {
   totalOrders: number
 }
 
-// Aggregation counts by order status (not a Prisma model - derived from Order.status field)
-interface OrderStatusCounts {
+// Aggregation summary by order status (not a Prisma model - derived from Order.status field)
+interface OrderStatusSummary {
   paid: number
   in_progress: number
   shipped: number
@@ -37,7 +37,7 @@ export default function OrdersPage() {
   const [dateTo, setDateTo] = useState('')
   const [loading, setLoading] = useState(true)
   const [analytics, setAnalytics] = useState<Analytics | null>(null)
-  const [orderCounts, setOrderCounts] = useState<OrderStatusCounts>({ paid: 0, in_progress: 0, shipped: 0, delivered: 0 })
+  const [orderCounts, setOrderCounts] = useState<OrderStatusSummary>({ paid: 0, in_progress: 0, shipped: 0, delivered: 0 })
   const [error, setError] = useState('')
   const [shopCurrency, setShopCurrency] = useState<Currency>('USD')
 
