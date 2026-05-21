@@ -13,6 +13,7 @@ interface AddToCartButtonProps {
   price: number
   shopSlug: string
   imageUrl?: string
+  quantity?: number
 }
 
 export function AddToCartButton({
@@ -21,6 +22,7 @@ export function AddToCartButton({
   price,
   shopSlug,
   imageUrl,
+  quantity = 1,
 }: AddToCartButtonProps) {
   const [isAdding, setIsAdding] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -38,6 +40,7 @@ export function AddToCartButton({
         price,
         shopSlug,
         imageUrl,
+        quantity,
       })
 
       // Dispatch custom event to update cart count
