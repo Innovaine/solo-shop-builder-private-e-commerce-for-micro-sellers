@@ -477,3 +477,24 @@ NAMES                                                               STATUS
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 4 hours (healthy)
 ```
 Full output: [`server-runs/2026-05-21T17-14-25-www.soloshopbox.com-sleep-5-docker-ps---format-table-.Names--1.log`](server-runs/2026-05-21T17-14-25-www.soloshopbox.com-sleep-5-docker-ps---format-table-.Names--1.log)
+
+## 2026-05-21T17:14:50.606Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a2013f9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2571ms) _(showing tail — full 11,819B stdout + 0B stderr)_
+```
+tail -50 /tmp/compose-up.log
+```
+STDOUT:
+```
+…                                                 | 2026-05-21 15:59:53.341 UTC [28] LOG:  checkpoint starting: time
+postgres-1                                                                   | 2026-05-21 15:59:54.856 UTC [28] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.509 s, sync=0.002 s, total=1.515 s; sync files=16, longest=0.001 s, average=0.001 s; distance=28 kB, estimate=28 kB; lsn=0/47180A8, redo lsn=0/4718070
+app-1                                                                        | {"requestId":"aBFxBZlgs8iUALrk","method":"GET","path":"/api/shops","responseTime":"1ms","timestamp":"2026-05-21T16:00:55.446Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"SB5teAhiYnVHfypy","method":"PUT","path":"/api/shops/salman/currency","responseTime":"0ms","timestamp":"2026-05-21T16:00:57.320Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"qpOgFP00Fu0bDwFX","method":"PUT","path":"/api/shops/salman/currency","responseTime":"0ms","timestamp":"2026-05-21T16:01:03.465Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+postgres-1                                                                   | 2026-05-21 16:04:53.956 UTC [28] LOG:  checkpoint starting: time
+postgres-1                                                                   | 2026-05-21 16:04:54.061 UTC [28] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.101 s, sync=0.002 s, total=0.106 s; sync files=2, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=26 kB; lsn=0/4719210, redo lsn=0/47191D8
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+```
+Full output: [`server-runs/2026-05-21T17-14-50-www.soloshopbox.com-tail--50-tmp-compose-up.log-1.log`](server-runs/2026-05-21T17-14-50-www.soloshopbox.com-tail--50-tmp-compose-up.log-1.log)
