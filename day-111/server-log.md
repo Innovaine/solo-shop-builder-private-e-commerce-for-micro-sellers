@@ -262,3 +262,16 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 12 hours
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 12 hours (healthy)
 ```
 Full output: [`server-runs/2026-05-21T12-56-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T12-56-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T12:56:37.695Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `386b18b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2615ms)
+```
+curl -sf https://www.soloshopbox.com/api/health | head -20
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-21T12:56:37.863Z","responseTime":"203ms","checks":{"database":{"status":"ok","responseTime":"36ms"},"email":{"status":"ok","responseTime":"167ms"}}}
+```
+Full output: [`server-runs/2026-05-21T12-56-37-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T12-56-37-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
