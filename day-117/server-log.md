@@ -1667,3 +1667,54 @@ app-1  | {"requestId":"to4JhHcgwv_zeD1d","method":"GET","path":"/api/shops","res
 app-1  | {"requestId":"AQO1wWx1b1ykMfIF","method":"GET","path":"/auth/login","responseTime":"0ms","timestamp":"2026-05-21T17:25:40.885Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 26_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Cr"}
 ```
 Full output: [`server-runs/2026-05-21T17-28-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-28-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:29:35.826Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4f17664` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2478ms) _(showing tail — full 6,626B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && cat day-117/test.md 2>/dev/null | head -100
+```
+STDOUT:
+```
+…es}}\t{{.Status}}' | grep -E "solo-shop|NAMES"
+STDOUT:
+NAMES                                                               STATUS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 5 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 4 hours (healthy)
+Full log: server-runs/2026-05-21T17-20-43-www.soloshopbox.com-docker-ps---format-table-.Names-t-.Statu-1.log
+
+2. ✗ fail (exit 2) — curl --sf https://www.soloshopbox.com/api/health && echo "" && echo "Health chec
+ERROR: command exited 2
+
+3. ✓ exit 0 — cd solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs
+STDOUT:
+time="2026-05-21T17:21:32Z" level=warning msg="/home/tester/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 11 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 52ms
+app-1  | {"requestId":"T__FuoyH_sGSZy8_","method":"GET","path":"/api/health","responseTime":"2ms","timestamp":"2026-05-21T17:16:10.267Z","userAgent":"curl/8.5.0"}
+Full log: server-runs/2026-05-21T17-21-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log
+
+4. ✓ exit 0 — curl -I https://www.soloshopbox.com/ 2>&1 | head -1
+STDOUT:
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Full log: server-runs/2026-05-21T17-21-56-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log
+
+5. ✓ exit 0 — echo "Test 1: Homepage" && curl -sI https://www.soloshopbox.com/ | grep HTTP && 
+STDOUT:
+Test 1: Homepage
+HTTP/2 200
+```
+Full output: [`server-runs/2026-05-21T17-29-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-29-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
