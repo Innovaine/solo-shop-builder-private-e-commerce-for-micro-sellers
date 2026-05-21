@@ -743,3 +743,32 @@ Test 3: Health check
 All core routes responding correctly
 ```
 Full output: [`server-runs/2026-05-21T17-24-17-www.soloshopbox.com-echo-Day-117-Comprehensive-Smoke-Tests-e-1.log`](server-runs/2026-05-21T17-24-17-www.soloshopbox.com-echo-Day-117-Comprehensive-Smoke-Tests-e-1.log)
+
+## 2026-05-21T17:25:51.985Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2328b99` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2340ms)
+```
+uptime && whoami && ls -la ~
+```
+STDOUT:
+```
+ 17:25:52 up 8 days, 18:29,  6 users,  load average: 0.00, 0.05, 0.08
+reviewer
+total 56
+drwxr-x---  11 reviewer reviewer 4096 May 15 16:16 .
+drwxr-xr-x   7 root     root     4096 May 13 18:28 ..
+-rw-r--r--   1 reviewer reviewer  220 Mar 31  2024 .bash_logout
+-rw-r--r--   1 reviewer reviewer 3771 Mar 31  2024 .bashrc
+drwx------   6 reviewer reviewer 4096 May 14 13:25 .cache
+drwx------   3 reviewer reviewer 4096 May 13 06:03 .docker
+drwxrwxr-x   5 reviewer reviewer 4096 May 18 15:52 .npm
+-rw-r--r--   1 reviewer reviewer  807 Mar 31  2024 .profile
+drwx------   2 reviewer reviewer 4096 May 13 05:11 .ssh
+drwxrwxr-x  24 reviewer reviewer 4096 May 13 17:21 email-to-sql
+drwxrwxr-x  12 reviewer reviewer 4096 May 13 05:34 email-to-sql-fresh
+drwxrwxr-x   8 reviewer reviewer 4096 May 13 05:18 email-to-sql-review
+drwxrwxr-x  24 reviewer reviewer 4096 May 14 22:23 order-inventory-dashboard-for-etsy-multi-listers
+drwxrwxr-x 128 reviewer reviewer 4096 May 21 14:40 solo-shop-builder-private-e-commerce-for-micro-sellers
+```
+Full output: [`server-runs/2026-05-21T17-25-51-www.soloshopbox.com-uptime-whoami-ls--la-1.log`](server-runs/2026-05-21T17-25-51-www.soloshopbox.com-uptime-whoami-ls--la-1.log)
