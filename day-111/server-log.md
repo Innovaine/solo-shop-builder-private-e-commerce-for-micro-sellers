@@ -355,3 +355,11 @@ drwxrwxr-x 3 reviewer reviewer 4096 May 15 16:16 ..
 sh: 1: prisma: not found
 ```
 Full output: [`server-runs/2026-05-21T13-08-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-08-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:08:46.943Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6ee7522` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3048ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -name "currency.ts" -type f 2>/dev/null
+```
