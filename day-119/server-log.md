@@ -990,3 +990,427 @@ STDOUT:
 NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
 ```
 Full output: [`server-runs/2026-05-21T20-36-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T20-36-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T20:56:51.539Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `649fa05` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2807ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+Updating d2cecab..649fa05
+Fast-forward
+ app/api/analytics/route.ts    |   6 +-
+ app/dashboard/orders/page.tsx |   4 +-
+ day-119/server-log.md         | 242 ++++++++++++++++++++++++++++++++++++++++++
+ package-lock.json             |  75 -------------
+ 4 files changed, 247 insertions(+), 80 deletions(-)
+ delete mode 100644 package-lock.json
+```
+Full output: [`server-runs/2026-05-21T20-56-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T20-56-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T20:57:17.510Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12879ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build.log 2>&1 &
+echo $! > /tmp/build.pid
+echo "Started build, PID=$(cat /tmp/build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T20:57:34.079Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2200ms) _(showing tail — full 2,718B stdout + 0B stderr)_
+```
+if [ -f /tmp/build.pid ]; then
+  if kill -0 $(cat /tmp/build.pid) 2>/dev/null; then
+    echo "RUNNING"
+  else
+    echo "DONE"
+  fi
+else
+  echo "NO PID FILE - build may not have started"
+fi
+echo "--- Last 80 lines of build log ---"
+tail -80 /tmp/build.log 2>/dev/null || echo "No build log found"
+```
+STDOUT:
+```
+…nsferring context: 2B done
+#4 DONE 0.0s
+
+#5 [base 1/1] FROM docker.io/library/node:20-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#5 resolve docker.io/library/node:20-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0 0.0s done
+#5 DONE 0.0s
+
+#6 [runner  3/14] RUN npm install -g prisma@5.14.0
+#6 CACHED
+
+#7 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#7 CACHED
+
+#8 [runner  1/14] WORKDIR /app
+#8 CACHED
+
+#9 [runner  2/14] RUN apt-get update && apt-get install -y     openssl     ca-certificates     libnss3     libnspr4     libatk1.0-0     libatk-bridge2.0-0     libcups2     libdrm2     libdbus-1-3     libxkbcommon0     libatspi2.0-0     libxcomposite1     libxdamage1     libxfixes3     libxrandr2     libgbm1     libpango-1.0-0     libcairo2     libasound2     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#10 CACHED
+
+#11 [internal] load build context
+#11 transferring context: 1.18MB 0.4s done
+#11 DONE 0.4s
+
+#12 [builder 2/8] WORKDIR /app
+#12 CACHED
+
+#13 [builder 1/8] RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#13 CACHED
+
+#14 [builder 3/8] COPY package.json ./
+#14 CACHED
+
+#15 [builder 4/8] COPY . .
+#15 DONE 1.6s
+
+#16 [builder 5/8] RUN npm cache clean --force &&     npm config set fetch-retries 10 &&     npm config set fetch-retry-mintimeout 100000 &&     npm config set fetch-retry-maxtimeout 600000 &&     npm install
+#16 0.348 npm warn using --force Recommended protections disabled.
+#16 22.43 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#16 23.56 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+```
+Full output: [`server-runs/2026-05-21T20-57-34-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log`](server-runs/2026-05-21T20-57-34-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log)
+
+## 2026-05-21T20:57:49.904Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2323ms)
+```
+if [ -f /tmp/build.pid ]; then
+  if kill -0 $(cat /tmp/build.pid) 2>/dev/null; then
+    echo "RUNNING"
+  else
+    echo "DONE"
+  fi
+else
+  echo "NO PID FILE"
+fi
+echo "--- Last 100 lines of build log ---"
+tail -100 /tmp/build.log 2>/dev/null | grep -E "(Successfully built|ERROR|FAILED|DONE|npm ERR|graceful-fs)" || tail -100 /tmp/build.log
+```
+STDOUT:
+```
+RUNNING
+--- Last 100 lines of build log ---
+#1 DONE 0.0s
+#2 DONE 0.0s
+#3 DONE 0.6s
+#4 DONE 0.0s
+#5 DONE 0.0s
+#11 DONE 0.4s
+#15 DONE 1.6s
+```
+Full output: [`server-runs/2026-05-21T20-57-49-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log`](server-runs/2026-05-21T20-57-49-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log)
+
+## 2026-05-21T20:58:03.894Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2277ms) _(showing tail — full 2,683B stdout + 0B stderr)_
+```
+if [ -f /tmp/build.pid ]; then
+  if kill -0 $(cat /tmp/build.pid) 2>/dev/null; then
+    echo "RUNNING"
+  else
+    echo "DONE"
+  fi
+else
+  echo "NO PID FILE"
+fi
+tail -120 /tmp/build.log | tail -60
+```
+STDOUT:
+```
+…nsferring context: 2B done
+#4 DONE 0.0s
+
+#5 [base 1/1] FROM docker.io/library/node:20-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#5 resolve docker.io/library/node:20-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0 0.0s done
+#5 DONE 0.0s
+
+#6 [runner  3/14] RUN npm install -g prisma@5.14.0
+#6 CACHED
+
+#7 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#7 CACHED
+
+#8 [runner  1/14] WORKDIR /app
+#8 CACHED
+
+#9 [runner  2/14] RUN apt-get update && apt-get install -y     openssl     ca-certificates     libnss3     libnspr4     libatk1.0-0     libatk-bridge2.0-0     libcups2     libdrm2     libdbus-1-3     libxkbcommon0     libatspi2.0-0     libxcomposite1     libxdamage1     libxfixes3     libxrandr2     libgbm1     libpango-1.0-0     libcairo2     libasound2     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#10 CACHED
+
+#11 [internal] load build context
+#11 transferring context: 1.18MB 0.4s done
+#11 DONE 0.4s
+
+#12 [builder 2/8] WORKDIR /app
+#12 CACHED
+
+#13 [builder 1/8] RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+#13 CACHED
+
+#14 [builder 3/8] COPY package.json ./
+#14 CACHED
+
+#15 [builder 4/8] COPY . .
+#15 DONE 1.6s
+
+#16 [builder 5/8] RUN npm cache clean --force &&     npm config set fetch-retries 10 &&     npm config set fetch-retry-mintimeout 100000 &&     npm config set fetch-retry-maxtimeout 600000 &&     npm install
+#16 0.348 npm warn using --force Recommended protections disabled.
+#16 22.43 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#16 23.56 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+```
+Full output: [`server-runs/2026-05-21T20-58-03-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log`](server-runs/2026-05-21T20-58-03-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log)
+
+## 2026-05-21T20:58:19.720Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2521ms)
+```
+if [ -f /tmp/build.pid ]; then
+  if kill -0 $(cat /tmp/build.pid) 2>/dev/null; then
+    echo "STILL RUNNING"
+  else
+    echo "DONE"
+  fi
+else
+  echo "NO PID FILE"
+fi
+echo "--- FINAL lines ---"
+tail -150 /tmp/build.log | grep -A 10 -B 10 "Successfully built\|ERROR\|FAILED\|graceful-fs\|npm ERR" || tail -80 /tmp/build.log
+```
+STDOUT:
+```
+STILL RUNNING
+--- FINAL lines ---
+#21 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#21 CACHED
+
+#22 [runner  7/14] RUN mkdir .next
+#22 CACHED
+
+#23 [runner  8/14] RUN chown nextjs:nodejs .next
+#23 CACHED
+
+#24 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#24 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/standalone": not found
+
+#25 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#25 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/static": not found
+```
+Full output: [`server-runs/2026-05-21T20-58-19-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log`](server-runs/2026-05-21T20-58-19-www.soloshopbox.com-if--f-tmp-build.pid-then-1.log)
+
+## 2026-05-21T20:59:13.505Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 32364ms)
+```
+sleep 30
+if [ -f /tmp/build.pid ]; then
+  if kill -0 $(cat /tmp/build.pid) 2>/dev/null; then
+    echo "STILL RUNNING after 30s wait"
+  else
+    echo "DONE"
+  fi
+else
+  echo "NO PID FILE"
+fi
+echo "--- Check for build errors ---"
+tail -200 /tmp/build.log | grep -E "ERROR|FAILED|Successfully built|=> exporting" | tail -30
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T20:59:28.950Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2387ms)
+```
+kill -0 $(cat /tmp/build.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -300 /tmp/build.log | grep -E "ERROR|error|Successfully built|failed to|not found" | tail -20
+```
+STDOUT:
+```
+DONE
+#24 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/standalone": not found
+#25 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/static": not found
+failed to solve: failed to compute cache key: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/static": not found
+```
+Full output: [`server-runs/2026-05-21T20-59-28-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log`](server-runs/2026-05-21T20-59-28-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log)
+
+## 2026-05-21T20:59:44.087Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2281ms) _(showing tail — full 2,065B stdout + 0B stderr)_
+```
+grep -A 50 "npm run build" /tmp/build.log | head -80 || tail -400 /tmp/build.log | head -200
+```
+STDOUT:
+```
+… RUN npm run build
+#19 0.299 
+#19 0.299 > solo-shop-builder@0.1.0 build
+#19 0.299 > prisma generate && next build
+#19 0.299 
+#19 0.679 Environment variables loaded from .env
+#19 0.681 Prisma schema loaded from prisma/schema.prisma
+#19 1.062 
+#19 1.062 ✔ Generated Prisma Client (v5.14.0) to ./node_modules/@prisma/client in 112ms
+#19 1.062 
+#19 1.062 Start using Prisma Client in Node.js (See: https://pris.ly/d/client)
+#19 1.062 ```
+#19 1.062 import { PrismaClient } from '@prisma/client'
+#19 1.062 const prisma = new PrismaClient()
+#19 1.062 ```
+#19 1.062 or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+#19 1.062 ```
+#19 1.062 import { PrismaClient } from '@prisma/client/edge'
+#19 1.062 const prisma = new PrismaClient()
+#19 1.062 ```
+#19 1.062 
+#19 1.062 See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+#19 1.062 
+#19 1.062 ┌─────────────────────────────────────────────────────────────┐
+#19 1.062 │  Deploying your app to serverless or edge functions?        │
+#19 1.062 │  Try Prisma Accelerate for connection pooling and caching.  │
+#19 1.062 │  https://pris.ly/cli/--accelerate                           │
+#19 1.062 └─────────────────────────────────────────────────────────────┘
+#19 1.062 
+#19 1.774 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#19 1.775 This information is used to shape Next.js' roadmap and prioritize features.
+#19 1.775 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#19 1.775 https://nextjs.org/telemetry
+#19 1.775 
+#19 1.826   ▲ Next.js 14.2.3
+#19 1.826   - Environments: .env
+#19 1.826 
+#19 1.883    Creating an optimized production build ...
+#19 DONE 2.6s
+
+#20 [runner  6/14] COPY --from=builder /app/public ./public
+#20 CACHED
+
+#21 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#21 CACHED
+
+#22 [runner  7/14] RUN mkdir .next
+#22 CACHED
+
+#23 [runner  8/14] RUN chown nextjs:nodejs .next
+#23 CACHED
+```
+Full output: [`server-runs/2026-05-21T20-59-44-www.soloshopbox.com-grep--A-50-npm-run-build-tmp-build.log-h-1.log`](server-runs/2026-05-21T20-59-44-www.soloshopbox.com-grep--A-50-npm-run-build-tmp-build.log-h-1.log)
+
+## 2026-05-21T21:00:20.247Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2360ms)
+```
+grep -A 150 "Creating an optimized production build" /tmp/build.log | head -180
+```
+STDOUT:
+```
+#19 1.883    Creating an optimized production build ...
+#19 DONE 2.6s
+
+#20 [runner  6/14] COPY --from=builder /app/public ./public
+#20 CACHED
+
+#21 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#21 CACHED
+
+#22 [runner  7/14] RUN mkdir .next
+#22 CACHED
+
+#23 [runner  8/14] RUN chown nextjs:nodejs .next
+#23 CACHED
+
+#24 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#24 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/standalone": not found
+
+#25 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#25 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/static": not found
+------
+ > [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./:
+------
+------
+ > [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static:
+------
+Dockerfile:87
+
+--------------------
+
+  85 |     # Automatically leverage output traces to reduce image size
+
+  86 |     COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+
+  87 | >>> COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+  88 |     COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
+  89 |     COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+
+--------------------
+
+failed to solve: failed to compute cache key: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::pceg6kuusw7oxafqxar98k2ku: "/app/.next/static": not found
+```
+Full output: [`server-runs/2026-05-21T21-00-20-www.soloshopbox.com-grep--A-150-Creating-an-optimized-produc-1.log`](server-runs/2026-05-21T21-00-20-www.soloshopbox.com-grep--A-150-Creating-an-optimized-produc-1.log)
+
+## 2026-05-21T21:01:34.220Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12998ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build --no-cache > /tmp/build-fresh.log 2>&1 &
+echo $! > /tmp/build-fresh.pid
+echo "Started fresh build, PID=$(cat /tmp/build-fresh.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T21:02:39.607Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2593ms) _(showing tail — full 3,430B stdout + 0B stderr)_
+```
+if [ -f /tmp/build-fresh.pid ]; then
+  if kill -0 $(cat /tmp/build-fresh.pid) 2>/dev/null; then
+    echo "FRESH BUILD RUNNING, PID=$(cat /tmp/build-fresh.pid)"
+  else
+    echo "FRESH BUILD DONE"
+  fi
+else
+  echo "NO FRESH BUILD PID - may not have started"
+fi
+tail -60 /tmp/build-fresh.log 2>/dev/null || echo "No fresh build log yet"
+```
+STDOUT:
+```
+…lean --force &&     npm config set fetch-retries 10 &&     npm config set fetch-retry-mintimeout 100000 &&     npm config set fetch-retry-maxtimeout 600000 &&     npm install
+#13 ...
+
+#15 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#15 DONE 0.2s
+
+#13 [builder 5/8] RUN npm cache clean --force &&     npm config set fetch-retries 10 &&     npm config set fetch-retry-mintimeout 100000 &&     npm config set fetch-retry-maxtimeout 600000 &&     npm install
+#13 ...
+
+#16 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#16 0.205 useradd warning: nextjs's uid 1001 is greater than SYS_UID_MAX 999
+#16 DONE 0.2s
+
+#13 [builder 5/8] RUN npm cache clean --force &&     npm config set fetch-retries 10 &&     npm config set fetch-retry-mintimeout 100000 &&     npm config set fetch-retry-maxtimeout 600000 &&     npm install
+#13 25.89 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#13 26.97 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+#13 65.60 npm warn deprecated next@14.2.3: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+#13 67.50 
+#13 67.50 added 394 packages, removed 247 packages, changed 98 packages, and audited 648 packages in 1m
+#13 67.50 
+#13 67.50 165 packages are looking for funding
+#13 67.50   run `npm fund` for details
+#13 67.76 
+#13 67.76 9 vulnerabilities (1 moderate, 7 high, 1 critical)
+#13 67.76 
+#13 67.76 To address issues that do not require attention, run:
+#13 67.76   npm audit fix
+#13 67.76 
+#13 67.76 To address all issues (including breaking changes), run:
+#13 67.76   npm audit fix --force
+#13 67.76 
+#13 67.76 Run `npm audit` for details.
+```
+Full output: [`server-runs/2026-05-21T21-02-39-www.soloshopbox.com-if--f-tmp-build-fresh.pid-then-1.log`](server-runs/2026-05-21T21-02-39-www.soloshopbox.com-if--f-tmp-build-fresh.pid-then-1.log)
