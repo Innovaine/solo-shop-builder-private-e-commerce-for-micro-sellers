@@ -346,3 +346,12 @@ error TS2688: Cannot find type definition file for 'node'.
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-21T17-09-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-09-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:10:29.690Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bcf037a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12626ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day117-build.log 2>&1 & echo $! > /tmp/day117-build.pid && echo "Build started, PID=$(cat /tmp/day117-build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
