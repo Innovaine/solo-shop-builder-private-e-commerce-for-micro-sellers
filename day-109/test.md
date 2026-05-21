@@ -1,17 +1,68 @@
-# Server command log — day-109
+# Day 109 — Tester · Playwright / Appetize: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
-Auto-recorded by the runner. Every approved SSH command + its output for this day goes here.
-Historical entries (before per-day rotation) live in /server-log.md at repo root.
+- **By:** Priya (Tester)
+- **Cycle:** 186
+- **Saved:** 21/05/2026, 3:38:57 AM
 
-## 2026-05-21T00:35:21.786Z — Priya ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `8ae028c` so the server's `git pull` will pick it up._
+---
 
-### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2959ms) _(showing tail — full 8,615B stdout + 0B stderr)_
-```
-cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
-```
+## ✅ Done
+
+Day 109 testing complete with FAIL verdict. Production build failed due to TypeScript errors in the engineer's currency route implementation (task #314). Identified two critical errors: requireAuth() called with wrong argument count (expects 0, got 1) and incorrect property reference (seller.id should be seller.sellerId). Current deployment (day 107) remains healthy and running. Test report written with specific fix instructions for the engineer.
+
+Status: DONE
+
+Day 109 testing complete with FAIL verdict. Production build failed due to TypeScript errors in the engineer's currency route implementation (task #314). Identified two critical errors: requireAuth() called with wrong argument count (expects 0, got 1) and incorrect property reference (seller.id should be seller.sellerId). Current deployment (day 107) remains healthy and running. Test report written with specific fix instructions for the engineer.
+
+## Plan
+[x] p1: Read README to understand the app structure
+[x] p2: Check server status and current deployment
+[x] p3: Run production build verification
+[x] p4: Verify runtime health check (app is running)
+[-] p5: Test engineer's currency fix (task #314) - GET currency endpoint
+[x] p6: Write test report for day 109 in test-results/day-109/report.md
+
+## Actions
+- list `/` (3456 files)
+- read `day-109/engineering.md` (1934B)
+- read `test-results/day-107/report.md` (4192B)
+- read `test-results/day-108/report.md` (0B)
+- read `day-108/test.md` (545B)
+- read `README.md` (1426B)
+- ✓ p1: Read README to understand the app structure
+- queued SSH on www.soloshopbox.com: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull`
+- ran 1 SSH command(s) — 0 failure(s)
+- SSH `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull` → exit 0 ✓
+- queued SSH on www.soloshopbox.com: `docker ps --format "{{.Names}}\t{{.Status}}" | grep solo-shop`
+- ran 1 SSH command(s) — 0 failure(s)
+- SSH `docker ps --format "{{.Names}}\t{{.Status}}" | grep solo-shop` → exit 0 ✓
+- ✓ p2: Check server status and current deployment
+- queued SSH on www.soloshopbox.com: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day`
+- ran 1 SSH command(s) — 1 failure(s)
+- SSH `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day109-build.log 2>&1 &` → exit ? ✗
+- queued SSH on www.soloshopbox.com: `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers`
+- ran 1 SSH command(s) — 0 failure(s)
+- SSH `cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers` → exit 0 ✓
+- queued SSH on www.soloshopbox.com: `kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"`
+- ran 1 SSH command(s) — 0 failure(s)
+- SSH `kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"` → exit 0 ✓
+- queued SSH on www.soloshopbox.com: `kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"`
+- ran 1 SSH command(s) — 0 failure(s)
+- SSH `kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"` → exit 0 ✓
+- read `src/lib/auth.ts` (1694B)
+- read `app/api/shops/[slug]/currency/route.ts` (2340B)
+- ✓ p3: Run production build verification
+- queued SSH on www.soloshopbox.com: `curl -sf https://www.soloshopbox.com/api/health`
+- ran 1 SSH command(s) — 0 failure(s)
+- SSH `curl -sf https://www.soloshopbox.com/api/health` → exit 0 ✓
+- ✓ p4: Verify runtime health check (app is running)
+- ○ skipped p5: Test engineer's currency fix (task #314) - GET currency endpoint
+- **wrote** `test-results/day-109/report.md` (5364B)
+- ✓ p6: Write test report for day 109 in test-results/day-109/report.md
+
+## SSH commands executed
+1. ✓ exit 0 — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
 STDOUT:
-```
 …reate mode 100644 day-106/design.md
  create mode 100644 day-106/engineering.md
  create mode 100644 day-106/review.md
@@ -57,60 +108,24 @@ STDOUT:
  create mode 100644 test-results/day-106/report.md
  create mode 100644 test-results/day-107/report.md
  create mode 100644 tests/web/day105-fixes.spec.ts
-```
-Full output: [`server-runs/2026-05-21T00-35-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-35-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+Full log: server-runs/2026-05-21T00-35-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log
 
-## 2026-05-21T00:35:45.811Z — Priya ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `1b1b415` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2321ms)
-```
-docker ps --format "{{.Names}}\t{{.Status}}" | grep solo-shop
-```
+2. ✓ exit 0 — docker ps --format "{{.Names}}\t{{.Status}}" | grep solo-shop
 STDOUT:
-```
 solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 11 minutes
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 12 minutes (healthy)
-```
-Full output: [`server-runs/2026-05-21T00-35-45-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-21T00-35-45-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
+Full log: server-runs/2026-05-21T00-35-45-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log
 
-## 2026-05-21T00:36:23.293Z — Priya ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `d2f4993` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as tester (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12639ms)
-```
-cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/day109-build.log 2>&1 &
-echo $! > /tmp/day109-build.pid
-echo "Started build, PID=$(cat /tmp/day109-build.pid)"
-```
+3. ✗ exec-error (exit -) — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker comp
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
 
-## 2026-05-21T00:36:45.062Z — Priya ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `a1f8005` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2489ms)
-```
-cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
-nohup docker compose build > /tmp/day109-build.log 2>&1 &
-echo $! > /tmp/day109-build.pid
-echo "Started build, PID=$(cat /tmp/day109-build.pid)"
-```
+4. ✓ exit 0 — cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
 STDOUT:
-```
 Started build, PID=2138928
-```
-Full output: [`server-runs/2026-05-21T00-36-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-36-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+Full log: server-runs/2026-05-21T00-36-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log
 
-## 2026-05-21T00:37:06.929Z — Priya ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `823e703` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2200ms) _(showing tail — full 2,853B stdout + 0B stderr)_
-```
-kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
-tail -80 /tmp/day109-build.log
-```
+5. ✓ exit 0 — kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE
 STDOUT:
-```
 …#11 CACHED
 
 #12 [deps 2/4] WORKDIR /app
@@ -162,19 +177,10 @@ STDOUT:
 #15 1.889    Creating an optimized production build ...
 #15 14.36  ✓ Compiled successfully
 #15 14.36    Linting and checking validity of types ...
-```
-Full output: [`server-runs/2026-05-21T00-37-06-www.soloshopbox.com-kill--0-cat-tmp-day109-build.pid-2-dev-n-1.log`](server-runs/2026-05-21T00-37-06-www.soloshopbox.com-kill--0-cat-tmp-day109-build.pid-2-dev-n-1.log)
+Full log: server-runs/2026-05-21T00-37-06-www.soloshopbox.com-kill--0-cat-tmp-day109-build.pid-2-dev-n-1.log
 
-## 2026-05-21T00:37:28.925Z — Priya ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `879a854` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2236ms) _(showing tail — full 3,989B stdout + 0B stderr)_
-```
-kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
-tail -100 /tmp/day109-build.log
-```
+6. ✓ exit 0 — kill -0 $(cat /tmp/day109-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE
 STDOUT:
-```
 …33   - Environments: .env
 #15 1.833 
 #15 1.889    Creating an optimized production build ...
@@ -223,18 +229,9 @@ Dockerfile:25
 --------------------
 
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
-```
-Full output: [`server-runs/2026-05-21T00-37-28-www.soloshopbox.com-kill--0-cat-tmp-day109-build.pid-2-dev-n-1.log`](server-runs/2026-05-21T00-37-28-www.soloshopbox.com-kill--0-cat-tmp-day109-build.pid-2-dev-n-1.log)
+Full log: server-runs/2026-05-21T00-37-28-www.soloshopbox.com-kill--0-cat-tmp-day109-build.pid-2-dev-n-1.log
 
-## 2026-05-21T00:38:07.436Z — Priya ran 1 command(s)
-_Pre-SSH: warehouse pushed to GitHub as commit `4da5d7c` so the server's `git pull` will pick it up._
-
-### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2825ms)
-```
-curl -sf https://www.soloshopbox.com/api/health
-```
+7. ✓ exit 0 — curl -sf https://www.soloshopbox.com/api/health
 STDOUT:
-```
 {"status":"ok","timestamp":"2026-05-21T00:38:07.360Z","responseTime":"198ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"197ms"}}}
-```
-Full output: [`server-runs/2026-05-21T00-38-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T00-38-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+Full log: server-runs/2026-05-21T00-38-07-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log
