@@ -605,3 +605,18 @@ STDOUT:
 npm ci started
 ```
 Full output: [`server-runs/2026-05-21T17-19-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-19-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:20:43.135Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9f273e3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3050ms)
+```
+docker ps --format 'table {{.Names}}\t{{.Status}}' | grep -E "solo-shop|NAMES"
+```
+STDOUT:
+```
+NAMES                                                               STATUS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        Up 5 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 4 hours (healthy)
+```
+Full output: [`server-runs/2026-05-21T17-20-43-www.soloshopbox.com-docker-ps---format-table-.Names-t-.Statu-1.log`](server-runs/2026-05-21T17-20-43-www.soloshopbox.com-docker-ps---format-table-.Names-t-.Statu-1.log)
