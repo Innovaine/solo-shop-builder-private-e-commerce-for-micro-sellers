@@ -275,3 +275,23 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-21T12:56:37.863Z","responseTime":"203ms","checks":{"database":{"status":"ok","responseTime":"36ms"},"email":{"status":"ok","responseTime":"167ms"}}}
 ```
 Full output: [`server-runs/2026-05-21T12-56-37-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T12-56-37-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-21T12:57:05.077Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7d733f3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2566ms)
+```
+docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' && curl -sI https://www.soloshopbox.com | head -5
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 12 hours	0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 12 hours (healthy)	127.0.0.1:5432->5432/tcp
+traefik-vwiz-traefik-1	Up 4 days	
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Thu, 21 May 2026 12:57:05 GMT
+etag: "hwxyxdd3d688h"
+```
+Full output: [`server-runs/2026-05-21T12-57-05-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-21T12-57-05-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-1.log)
