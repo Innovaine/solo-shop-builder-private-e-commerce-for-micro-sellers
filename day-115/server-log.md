@@ -175,3 +175,24 @@ NAME                                                                IMAGE       
 solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   3 hours ago   Up 3 hours (healthy)   127.0.0.1:5432->5432/tcp
 ```
 Full output: [`server-runs/2026-05-21T15-50-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-50-33-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T15:51:30.373Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `904e65b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2576ms) _(showing tail — full 27,583B stdout + 0B stderr)_
+```
+tail -100 /tmp/compose-up.log
+```
+STDOUT:
+```
+…Gecko) Version/18."}
+app-1                                                                        | {"requestId":"9kYe3gPaGJhFEwmD","method":"GET","path":"/api/analytics","responseTime":"0ms","timestamp":"2026-05-21T15:32:02.534Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"8pZ3pSgbOYfUgTp7","method":"GET","path":"/api/analytics","responseTime":"0ms","timestamp":"2026-05-21T15:38:17.369Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"DS0aXnEazuxwTqHt","method":"GET","path":"/api/shops/salman/currency","responseTime":"1ms","timestamp":"2026-05-21T15:38:51.083Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"zKhhOGOVskZ_nKyE","method":"GET","path":"/api/analytics","responseTime":"1ms","timestamp":"2026-05-21T15:47:14.446Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"9e29Q8jBOXL1KKEk","method":"GET","path":"/api/analytics","responseTime":"2ms","timestamp":"2026-05-21T15:47:16.440Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+app-1                                                                        | {"requestId":"AtO-PTalq7yMCdAx","method":"GET","path":"/api/analytics","responseTime":"0ms","timestamp":"2026-05-21T15:47:19.133Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18."}
+[Kapp-1 has been recreated
+[Kapp-1 exited with code 137
+```
+Full output: [`server-runs/2026-05-21T15-51-30-www.soloshopbox.com-tail--100-tmp-compose-up.log-1.log`](server-runs/2026-05-21T15-51-30-www.soloshopbox.com-tail--100-tmp-compose-up.log-1.log)
