@@ -861,3 +861,25 @@ _Pre-SSH: warehouse pushed to GitHub as commit `3420baf` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build2.log 2>&1 & echo $! > /tmp/build2.pid && echo "Started build retry, PID=$(cat /tmp/build2.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T20:29:36.452Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `21d539a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2627ms) _(showing tail — full 5,026B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build2.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/build2.log
+```
+STDOUT:
+```
+…4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ==) seems to be corrupted. Trying again.
+#16 24.19 npm warn tarball tarball data for @prisma/engines@https://registry.npmjs.org/@prisma/engines/-/engines-5.14.0.tgz (sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ==) seems to be corrupted. Trying again.
+#16 24.32 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#16 24.97 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#16 26.14 npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+#16 26.39 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+#16 26.49 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+#16 26.91 npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+#16 30.14 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+```
+Full output: [`server-runs/2026-05-21T20-29-36-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-2--1.log`](server-runs/2026-05-21T20-29-36-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-2--1.log)
