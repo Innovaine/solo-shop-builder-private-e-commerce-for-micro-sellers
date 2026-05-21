@@ -488,3 +488,33 @@ time="2026-05-21T13:44:22Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-21T13-44-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-21T13-44-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
+
+## 2026-05-21T13:44:46.347Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8f3d22a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2300ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps && echo "---" && docker compose logs app --tail=30
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        3 minutes ago    Up 23 seconds             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   24 minutes ago   Up 24 minutes (healthy)   127.0.0.1:5432->5432/tcp
+---
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 11 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 65ms
+```
+Full output: [`server-runs/2026-05-21T13-44-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-44-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
