@@ -18,17 +18,14 @@ FROM base AS builder
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
-# Copy package files AND source code FIRST (before npm install)
-COPY package.json ./
-COPY . .
+# Copy node_modules from deps stage (already has all dependencies installed)
+COPY --from=deps /app/node_modules ./node_modules
 
-# Install dependencies AFTER copying source (so COPY doesn't overwrite node_modules)
-# Use high retry count and timeout to handle network issues
-RUN npm cache clean --force && \
-    npm config set fetch-retries 10 && \
-    npm config set fetch-retry-mintimeout 100000 && \
-    npm config set fetch-retry-maxtimeout 600000 && \
-    npm install
+# Copy package.json
+COPY package.json ./
+
+# Copy source code
+COPY . .
 
 # Generate Prisma client
 RUN npx prisma generate
@@ -36,7 +33,7 @@ RUN npx prisma generate
 # Ensure public directory exists (Next.js may not create it if there are no static assets)
 RUN mkdir -p public
 
-# Build Next.js app
+# Build Next.js app (this will create .next/standalone and .next/static with output: 'standalone' config)
 RUN npm run build
 
 # Production image, copy all the files and run next
