@@ -157,3 +157,14 @@ app/dashboard/page.tsx:import { prisma } from '@/lib/db'
 app/dashboard/orders/[id]/page.tsx:import { prisma } from '@/lib/db'
 ```
 Full output: [`server-runs/2026-05-21T12-53-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T12-53-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T12:54:02.501Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `611e8ac` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13301ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build-day111-fixed.log 2>&1 &
+echo $! > /tmp/build-day111-fixed.pid
+echo "Build started, PID=$(cat /tmp/build-day111-fixed.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
