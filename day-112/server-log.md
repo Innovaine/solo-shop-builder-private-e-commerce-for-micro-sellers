@@ -230,3 +230,18 @@ STDOUT:
 #15 27.57    Collecting build traces ...
 ```
 Full output: [`server-runs/2026-05-21T13-40-07-www.soloshopbox.com-kill--0-cat-tmp-build-day112-v2.pid-2-de-1.log`](server-runs/2026-05-21T13-40-07-www.soloshopbox.com-kill--0-cat-tmp-build-day112-v2.pid-2-de-1.log)
+
+## 2026-05-21T13:40:30.931Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `812e550` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 2460ms)
+```
+kill -0 $(cat /tmp/build-day112-v2.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -50 /tmp/build-day112-v2.log | grep -A 20 -E "(Successfully built|Build failed|error|ERROR)"
+```
+STDOUT:
+```
+DONE
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-21T13-40-30-www.soloshopbox.com-kill--0-cat-tmp-build-day112-v2.pid-2-de-1.log`](server-runs/2026-05-21T13-40-30-www.soloshopbox.com-kill--0-cat-tmp-build-day112-v2.pid-2-de-1.log)
