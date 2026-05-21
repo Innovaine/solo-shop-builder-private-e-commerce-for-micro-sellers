@@ -249,3 +249,133 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-21T15:56:20.336Z","responseTime":"104ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"103ms"}}} - Health check OK
 ```
 Full output: [`server-runs/2026-05-21T15-56-19-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T15-56-19-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-21T15:58:26.289Z — Mehrdad ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `de68625` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3500ms) _(showing tail — full 2,608B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -80
+```
+STDOUT:
+```
+…w/page.tsx(323,7): error TS17002: Expected corresponding JSX closing tag for 'form'.
+app/dashboard/products/new/page.tsx(325,1): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+app/dashboard/products/new/page.tsx(446,11): error TS17002: Expected corresponding JSX closing tag for 'Card'.
+app/dashboard/products/new/page.tsx(447,9): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/dashboard/products/new/page.tsx(448,5): error TS1005: ')' expected.
+app/dashboard/products/new/page.tsx(449,3): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(451,1): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(453,16): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(454,13): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(458,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(461,16): error TS1005: ';' expected.
+app/dashboard/products/new/page.tsx(462,13): error TS2657: JSX expressions must have one parent element.
+app/dashboard/products/new/page.tsx(478,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(481,16): error TS1005: ';' expected.
+app/dashboard/products/new/page.tsx(539,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(542,16): error TS1005: ';' expected.
+app/dashboard/products/new/page.tsx(543,13): error TS2657: JSX expressions must have one parent element.
+app/dashboard/products/new/page.tsx(556,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(578,9): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(579,7): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(580,5): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(581,3): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(582,1): error TS1128: Declaration or statement expected.
+```
+Full output: [`server-runs/2026-05-21T15-58-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-58-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as reviewer (✓ exit 0, 500ms) _(showing tail — full 2,287B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && bash -lc 'route-validator . --json 2>&1' | head -100
+```
+STDOUT:
+```
+…nd": "api",
+      "file": "app/api/account/delete/route.ts"
+    },
+    {
+      "route": "/api/account/password",
+      "kind": "api",
+      "file": "app/api/account/password/route.ts"
+    },
+    {
+      "route": "/api/analytics",
+      "kind": "api",
+      "file": "app/api/analytics/route.ts"
+    },
+    {
+      "route": "/api/auth/forgot-password",
+      "kind": "api",
+      "file": "app/api/auth/forgot-password/route.ts"
+    },
+    {
+      "route": "/api/auth/login",
+      "kind": "api",
+      "file": "app/api/auth/login/route.ts"
+    },
+    {
+      "route": "/api/auth/logout",
+      "kind": "api",
+      "file": "app/api/auth/logout/route.ts"
+    },
+    {
+      "route": "/api/auth/reset-password",
+      "kind": "api",
+      "file": "app/api/auth/reset-password/route.ts"
+    },
+    {
+      "route": "/api/auth/signup",
+      "kind": "api",
+      "file": "app/api/auth/signup/route.ts"
+    },
+    {
+      "route": "/api/auth/verify",
+      "kind": "api",
+      "file": "app/api/auth/verify/route.ts"
+    },
+    {
+      "route": "/api/billing",
+      "kind": "api",
+      "file": "app/api/billing/route.ts"
+    },
+    {
+      "route": "/api/checkout/myfatoorah/callback",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/callback/route.ts"
+    },
+    {
+      "route": "/api/checkout/myfatoorah",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/route.ts"
+    },
+    {
+      "route": "/api/checkout",
+      "kind": "api",
+      "file": "app/api/checkout/route.ts"
+    },
+    {
+      "route": "/api/health",
+      "kind": "api",
+      "file": "app/api/health/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/history",
+      "kind": "api",
+      "file": "app/api/orders/[id]/history/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/refund",
+      "kind": "api",
+      "file": "app/api/orders/[id]/refund/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]",
+      "kind": "api",
+      "file": "app/api/orders/[id]/route.ts"
+    },
+    {
+      "route": "/api/orders/export",
+      "kind": "api",
+```
+Full output: [`server-runs/2026-05-21T15-58-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log`](server-runs/2026-05-21T15-58-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--2.log)
