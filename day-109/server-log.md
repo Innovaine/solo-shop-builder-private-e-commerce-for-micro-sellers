@@ -311,3 +311,11 @@ app/shop/[slug]/SortDropdown.tsx:8:interface SortDropdownProps {
 src/lib/rate-limit.ts:5:type RateLimitStore = {
 ```
 Full output: [`server-runs/2026-05-21T00-41-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-41-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:42:32.785Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e832008` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2009ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "\.total\.toFixed\|\.price\.toFixed\|\.amount\.toFixed" app/ src/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -20
+```
