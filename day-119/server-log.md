@@ -556,3 +556,22 @@ STDOUT:
 #12 26.53 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
 ```
 Full output: [`server-runs/2026-05-21T20-07-27-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T20-07-27-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log)
+
+## 2026-05-21T20:08:23.740Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1b4e58b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2350ms)
+```
+ps aux | grep 2357331 | grep -v grep || echo "BUILD_COMPLETE"
+tail -120 /tmp/build5.log | grep -E "(Successfully built|npm run build|ERROR|error|failed to solve)" | tail -20 || tail -40 /tmp/build5.log
+```
+STDOUT:
+```
+BUILD_COMPLETE
+#19 [builder 8/8] RUN npm run build
+#19 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+ > [builder 8/8] RUN npm run build:
+  35 | >>> RUN npm run build
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T20-08-23-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T20-08-23-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log)
