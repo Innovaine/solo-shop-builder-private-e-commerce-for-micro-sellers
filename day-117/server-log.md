@@ -253,3 +253,19 @@ STDOUT:
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-21T16-58-10-www.soloshopbox.com-tail--30-tmp-day117-build.log-1.log`](server-runs/2026-05-21T16-58-10-www.soloshopbox.com-tail--30-tmp-day117-build.log-1.log)
+
+## 2026-05-21T16:58:46.060Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3e468de` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 3317ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-21T16-58-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-58-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
