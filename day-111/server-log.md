@@ -325,3 +325,33 @@ _Pre-SSH: warehouse pushed to GitHub as commit `3e7a2c8` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la src/lib/ | grep currency
 ```
 ERROR: command exited 1
+
+## 2026-05-21T13:08:23.167Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f0be2f8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2896ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la src/lib/ && echo "---" && npm run build 2>&1 | head -100
+```
+STDOUT:
+```
+total 48
+drwxrwxr-x 2 reviewer reviewer 4096 May 20 14:21 .
+drwxrwxr-x 3 reviewer reviewer 4096 May 15 16:16 ..
+-rw-rw-r-- 1 reviewer reviewer 1652 May 19 12:43 auth.ts
+-rw-rw-r-- 1 reviewer reviewer 3781 May 16 13:19 cart.ts
+-rw-rw-r-- 1 reviewer reviewer  948 May 16 19:35 db.ts
+-rw-rw-r-- 1 reviewer reviewer 5685 May 18 00:46 email.ts
+-rw-rw-r-- 1 reviewer reviewer 3270 May 15 23:32 errors.ts
+-rw-rw-r-- 1 reviewer reviewer 1896 May 19 12:43 product.ts
+-rw-rw-r-- 1 reviewer reviewer 2788 May 16 22:41 rate-limit.ts
+-rw-rw-r-- 1 reviewer reviewer 4062 May 20 14:21 s3.ts
+-rw-rw-r-- 1 reviewer reviewer 1979 May 15 23:32 timeout.ts
+---
+
+> solo-shop-builder@0.1.0 build
+> prisma generate && next build
+
+sh: 1: prisma: not found
+```
+Full output: [`server-runs/2026-05-21T13-08-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-08-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
