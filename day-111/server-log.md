@@ -477,3 +477,77 @@ STDOUT:
   "methodMismatches": [
 ```
 Full output: [`server-runs/2026-05-21T13-10-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-10-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:10:25.946Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3fa050c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2508ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | jq '.broken,.orphans,.methodMismatches' 2>/dev/null | head -80
+```
+STDOUT:
+```
+[
+  {
+    "file": "app/shop/[slug]/SortDropdown.tsx",
+    "line": 32,
+    "kind": "router",
+    "target": "/shop/${shopSlug}${queryString"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 66,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  },
+  {
+    "file": "app/shop/[slug]/product/[productId]/page.tsx",
+    "line": 200,
+    "kind": "Link",
+    "target": "/shop/${slug"
+  },
+  {
+    "file": "app/shop/page.tsx",
+    "line": 64,
+    "kind": "Link",
+    "target": "/shop/${shop.slug"
+  }
+]
+[
+  {
+    "route": "/auth/reset-password",
+    "kind": "page",
+    "file": "app/auth/reset-password/page.tsx"
+  },
+  {
+    "route": "/auth/verify",
+    "kind": "page",
+    "file": "app/auth/verify/page.tsx"
+  },
+  {
+    "route": "/dashboard/orders/[id]",
+    "kind": "page",
+    "file": "app/dashboard/orders/[id]/page.tsx"
+  },
+  {
+    "route": "/shop/[slug]/product/[productId]",
+    "kind": "page",
+    "file": "app/shop/[slug]/product/[productId]/page.tsx"
+  }
+]
+[
+  {
+    "file": "app/dashboard/settings/page.tsx",
+    "line": 93,
+    "kind": "fetch",
+    "target": "/api/shops/${shopSlug}/currency",
+    "method": "PUT",
+    "route": "/api/shops/[slug]/currency",
+    "supportedMethods": [
+      "GET"
+    ],
+    "reason": "caller method not exported by route handler"
+  }
+]
+```
+Full output: [`server-runs/2026-05-21T13-10-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-10-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
