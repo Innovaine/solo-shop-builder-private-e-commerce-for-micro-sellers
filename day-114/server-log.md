@@ -343,3 +343,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `24c59f6` so the server's `git pu
 docker ps --format ".Names\t.Status" | grep solo-shop
 ```
 ERROR: command exited 1
+
+## 2026-05-21T15:28:42.833Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `153d335` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2366ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}" | grep solo-shop
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 2 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 2 hours (healthy)
+```
+Full output: [`server-runs/2026-05-21T15-28-42-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-21T15-28-42-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
