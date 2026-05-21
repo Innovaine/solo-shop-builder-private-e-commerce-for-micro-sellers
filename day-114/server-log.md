@@ -57,3 +57,16 @@ STDOUT:
 204:              <Link href={`/shop/${slug}`}>
 ```
 Full output: [`server-runs/2026-05-21T15-13-39-www.soloshopbox.com-grep--n-Back-to-shop-href-.-slug-solo-sh-1.log`](server-runs/2026-05-21T15-13-39-www.soloshopbox.com-grep--n-Back-to-shop-href-.-slug-solo-sh-1.log)
+
+## 2026-05-21T15:13:59.982Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6abe60d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2574ms)
+```
+grep -n "href.*shop.slug\|href.*shopSlug" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/shop/page.tsx
+```
+STDOUT:
+```
+64:        <Link key={shop.id} href={`/shop/${shop.slug}`}>
+```
+Full output: [`server-runs/2026-05-21T15-13-59-www.soloshopbox.com-grep--n-href.-shop.slug-href.-shopSlug-s-1.log`](server-runs/2026-05-21T15-13-59-www.soloshopbox.com-grep--n-href.-shop.slug-href.-shopSlug-s-1.log)
