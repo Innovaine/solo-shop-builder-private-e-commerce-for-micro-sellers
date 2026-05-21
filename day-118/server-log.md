@@ -60,3 +60,17 @@ Fast-forward
  create mode 100644 test-results/day-117/report.md
 ```
 Full output: [`server-runs/2026-05-21T18-43-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T18-43-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T18:44:53.781Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 2, 3732ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-21T18-44-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T18-44-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
