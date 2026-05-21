@@ -925,3 +925,33 @@ date: Thu, 21 May 2026 14:43:43 GMT
 vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
 ```
 Full output: [`server-runs/2026-05-21T14-43-43-www.soloshopbox.com-echo-Test-CSV-export-endpoint-exists-1.log`](server-runs/2026-05-21T14-43-43-www.soloshopbox.com-echo-Test-CSV-export-endpoint-exists-1.log)
+
+## 2026-05-21T14:44:20.885Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `29eb9b9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2990ms)
+```
+echo "Test 1: Verify public shop page loads"
+curl -sI https://www.soloshopbox.com/shop/test-shop 2>&1 | head -5
+
+echo ""
+echo "Test 2: Verify dashboard products page loads"
+curl -sI https://www.soloshopbox.com/dashboard/products 2>&1 | head -5
+```
+STDOUT:
+```
+Test 1: Verify public shop page loads
+HTTP/2 200 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-type: text/html; charset=utf-8
+date: Thu, 21 May 2026 14:44:21 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding
+
+Test 2: Verify dashboard products page loads
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Thu, 21 May 2026 14:44:21 GMT
+etag: "x0k90s54gn5wk"
+```
+Full output: [`server-runs/2026-05-21T14-44-20-www.soloshopbox.com-echo-Test-1-Verify-public-shop-page-load-1.log`](server-runs/2026-05-21T14-44-20-www.soloshopbox.com-echo-Test-1-Verify-public-shop-page-load-1.log)
