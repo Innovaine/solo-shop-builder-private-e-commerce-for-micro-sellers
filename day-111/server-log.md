@@ -49,3 +49,14 @@ Fast-forward
  create mode 100644 lib/currency.ts
 ```
 Full output: [`server-runs/2026-05-21T12-51-02-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T12-51-02-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T12:51:35.929Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c627fb0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12606ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build-day111.log 2>&1 &
+echo $! > /tmp/build-day111.pid
+echo "Build started, PID=$(cat /tmp/build-day111.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
