@@ -29,3 +29,16 @@ drwxrwxr-x   2 reviewer reviewer    4096 May 15 16:48 day-03
 drwxrwxr-x   2 reviewer reviewer    4096 May 15 18:54 day-04
 ```
 Full output: [`server-runs/2026-05-21T15-12-54-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-21T15-12-54-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log)
+
+## 2026-05-21T15:13:19.474Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f1da55f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2162ms)
+```
+grep -n "router.push" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/shop/\[slug\]/SortDropdown.tsx | head -5
+```
+STDOUT:
+```
+32:    router.push(`/shop/${shopSlug}${queryString ? `?${queryString}` : ''}`)
+```
+Full output: [`server-runs/2026-05-21T15-13-19-www.soloshopbox.com-grep--n-router.push-solo-shop-builder-pr-1.log`](server-runs/2026-05-21T15-13-19-www.soloshopbox.com-grep--n-router.push-solo-shop-builder-pr-1.log)
