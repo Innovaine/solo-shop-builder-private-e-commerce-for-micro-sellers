@@ -594,3 +594,14 @@ STDOUT:
 tsc not found in node_modules
 ```
 Full output: [`server-runs/2026-05-21T17-18-30-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-21T17-18-30-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log)
+
+## 2026-05-21T17:19:01.027Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 7124ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && nohup npm ci > /tmp/npm-install.log 2>&1 & echo $! > /tmp/npm-install.pid && echo "npm ci started"
+```
+STDOUT:
+```
+npm ci started
+```
+Full output: [`server-runs/2026-05-21T17-19-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-19-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
