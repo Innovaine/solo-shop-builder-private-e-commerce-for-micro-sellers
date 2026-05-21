@@ -674,3 +674,25 @@ Build attempt 6, PID=2365364
 engineer 2365364  0.3  0.0 1957716 28976 ?       Sl   20:11   0:00 docker compose build --no-cache
 ```
 Full output: [`server-runs/2026-05-21T20-11-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T20-11-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T20:12:22.577Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f8f50e3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2453ms) _(showing tail — full 4,216B stdout + 0B stderr)_
+```
+ps aux | grep 2365364 | grep -v grep || echo "BUILD_COMPLETE"
+tail -100 /tmp/build6.log | tail -50
+```
+STDOUT:
+```
+…ecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+#13 23.29 npm warn tarball tarball data for @prisma/engines@https://registry.npmjs.org/@prisma/engines/-/engines-5.14.0.tgz (sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ==) seems to be corrupted. Trying again.
+#13 23.42 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#13 24.09 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#13 25.16 npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+#13 25.37 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+#13 25.49 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+#13 25.82 npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+#13 29.15 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+```
+Full output: [`server-runs/2026-05-21T20-12-22-www.soloshopbox.com-ps-aux-grep-2365364-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T20-12-22-www.soloshopbox.com-ps-aux-grep-2365364-grep--v-grep-echo-BU-1.log)
