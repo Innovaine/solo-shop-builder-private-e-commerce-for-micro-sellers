@@ -282,3 +282,30 @@ STDOUT:
 ls: cannot access 'solo-shop-builder-private-e-commerce-for-micro-sellers/node_modules/@types/': No such file or directory
 ```
 Full output: [`server-runs/2026-05-21T16-59-09-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log`](server-runs/2026-05-21T16-59-09-www.soloshopbox.com-ls--la-solo-shop-builder-private-e-comme-1.log)
+
+## 2026-05-21T16:59:34.078Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `abb71c8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2279ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup npm install > /tmp/npm-day117.log 2>&1 &
+echo $! > /tmp/npm-day117.pid
+echo "Started npm install, PID=$(cat /tmp/npm-day117.pid)"
+```
+STDOUT:
+```
+Started npm install, PID=2294798
+```
+Full output: [`server-runs/2026-05-21T16-59-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-59-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T16:59:57.215Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2311ms)
+```
+kill -0 $(cat /tmp/npm-day117.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-21T16-59-57-www.soloshopbox.com-kill--0-cat-tmp-npm-day117.pid-2-dev-nul-1.log`](server-runs/2026-05-21T16-59-57-www.soloshopbox.com-kill--0-cat-tmp-npm-day117.pid-2-dev-nul-1.log)

@@ -150,9 +150,9 @@ export default function NewProductPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Title */}
-          <div className="mb-6">
+          <div>
             <FormField
               label="Product Title"
               type="text"
@@ -166,7 +166,7 @@ export default function NewProductPage() {
           </div>
 
           {/* Description */}
-          <div className="mb-6">
+          <div>
             <label htmlFor="description" className="block text-sm font-medium text-charcoal mb-2">
               Description
             </label>
@@ -185,7 +185,7 @@ export default function NewProductPage() {
           </div>
 
           {/* Price */}
-          <div className="mb-6">
+          <div>
             <label htmlFor="price" className="block text-sm font-medium text-charcoal mb-2">
               Price ({shopCurrency}) *
             </label>
@@ -209,7 +209,7 @@ export default function NewProductPage() {
           </div>
 
           {/* Category */}
-          <div className="mb-6">
+          <div>
             <label htmlFor="category" className="block text-sm font-medium text-charcoal mb-2">
               Category
             </label>
@@ -229,7 +229,7 @@ export default function NewProductPage() {
           </div>
 
           {/* Image Upload */}
-          <div className="mb-6">
+          <div>
             <label htmlFor="imageUpload" className="block text-sm font-medium text-charcoal mb-2">
               Product Image
             </label>
@@ -290,7 +290,7 @@ export default function NewProductPage() {
           </div>
 
           {/* Stock */}
-          <div className="mb-8">
+          <div>
             <label htmlFor="stock" className="block text-sm font-medium text-charcoal mb-2">
               Stock Quantity *
             </label>
@@ -306,7 +306,7 @@ export default function NewProductPage() {
             <p className="text-xs text-slate mt-1">How many units do you have available?</p>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 pt-2">
             <Button
               type="button"
               onClick={() => router.back()}

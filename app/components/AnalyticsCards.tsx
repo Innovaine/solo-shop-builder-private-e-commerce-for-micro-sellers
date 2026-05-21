@@ -7,9 +7,11 @@ import { useState, useEffect } from 'react'
 import { Card } from './ui/Card'
 import { formatPrice, type Currency } from '@/lib/currency'
 
+// ASSUMPTION: Interface aligns with Prisma Product model (id, title)
+// and Order model aggregation (orderCount = count of Order records)
 interface ProductAnalytics {
-  productId: string
-  productTitle: string
+  id: string
+  title: string
   totalQuantity: number
   totalRevenue: number
 }
@@ -132,7 +134,7 @@ export default function AnalyticsCards() {
           <div className="space-y-3">
             {analytics.topProducts.map((product, index) => (
               <div
-                key={product.productId}
+                key={product.id}
                 className="flex items-center justify-between py-3 border-b border-whisper last:border-0"
               >
                 <div className="flex items-center gap-3">
@@ -141,7 +143,7 @@ export default function AnalyticsCards() {
                   </div>
                   <div>
                     <div className="font-medium text-charcoal">
-                      {product.productTitle}
+                      {product.title}
                     </div>
                     <div className="text-sm text-slate">
                       {product.totalQuantity} sold

@@ -6,9 +6,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
 
+// Aligns with Prisma Product model (id, title fields)
 interface ProductAnalytics {
-  productId: string
-  productTitle: string
+  id: string
+  title: string
   totalQuantity: number
   totalRevenue: number
 }
@@ -75,8 +76,8 @@ export async function GET(request: NextRequest) {
           existing.totalRevenue += item.price * item.quantity
         } else {
           productStats.set(item.productId, {
-            productId: item.productId,
-            productTitle: item.productTitle,
+            id: item.productId,
+            title: item.productTitle,
             totalQuantity: item.quantity,
             totalRevenue: item.price * item.quantity,
           })
