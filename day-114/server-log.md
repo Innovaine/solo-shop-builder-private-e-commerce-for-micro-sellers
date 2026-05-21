@@ -70,3 +70,17 @@ STDOUT:
 64:        <Link key={shop.id} href={`/shop/${shop.slug}`}>
 ```
 Full output: [`server-runs/2026-05-21T15-13-59-www.soloshopbox.com-grep--n-href.-shop.slug-href.-shopSlug-s-1.log`](server-runs/2026-05-21T15-13-59-www.soloshopbox.com-grep--n-href.-shop.slug-href.-shopSlug-s-1.log)
+
+## 2026-05-21T15:14:19.970Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `983c5db` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2183ms)
+```
+grep -n "Link.*order\|href.*orders" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app/dashboard/orders/page.tsx | head -15
+```
+STDOUT:
+```
+198:            <Button onClick={() => window.location.href = '/api/orders/export'}>
+384:                        <a href={`/dashboard/orders/${order.id}`} className="text-emerald hover:underline font-semibold text-sm">
+```
+Full output: [`server-runs/2026-05-21T15-14-19-www.soloshopbox.com-grep--n-Link.-order-href.-orders-solo-sh-1.log`](server-runs/2026-05-21T15-14-19-www.soloshopbox.com-grep--n-Link.-order-href.-orders-solo-sh-1.log)
