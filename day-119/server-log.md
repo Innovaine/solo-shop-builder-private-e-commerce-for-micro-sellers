@@ -696,3 +696,19 @@ STDOUT:
 #13 29.15 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
 ```
 Full output: [`server-runs/2026-05-21T20-12-22-www.soloshopbox.com-ps-aux-grep-2365364-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T20-12-22-www.soloshopbox.com-ps-aux-grep-2365364-grep--v-grep-echo-BU-1.log)
+
+## 2026-05-21T20:13:21.861Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a3f35bd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2258ms)
+```
+ps aux | grep 2365364 | grep -v grep || echo "BUILD_COMPLETE"
+tail -150 /tmp/build6.log | grep -E "(Successfully built|npm run build|ERROR|failed to solve)" | tail -10 || tail -30 /tmp/build6.log
+```
+STDOUT:
+```
+BUILD_COMPLETE
+#13 ERROR: process "/bin/sh -c npm cache clean --force && npm install" did not complete successfully: exit code: 1
+failed to solve: process "/bin/sh -c npm cache clean --force && npm install" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T20-13-21-www.soloshopbox.com-ps-aux-grep-2365364-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T20-13-21-www.soloshopbox.com-ps-aux-grep-2365364-grep--v-grep-echo-BU-1.log)

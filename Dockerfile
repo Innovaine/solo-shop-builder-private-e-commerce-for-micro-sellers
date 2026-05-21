@@ -21,7 +21,12 @@ COPY package.json ./
 COPY . .
 
 # Install dependencies AFTER copying source (so COPY doesn't overwrite node_modules)
-RUN npm cache clean --force && npm install
+# Use high retry count and timeout to handle network issues
+RUN npm cache clean --force && \
+    npm config set fetch-retries 10 && \
+    npm config set fetch-retry-mintimeout 100000 && \
+    npm config set fetch-retry-maxtimeout 600000 && \
+    npm install
 
 # Generate Prisma client
 RUN npx prisma generate
