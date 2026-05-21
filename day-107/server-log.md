@@ -687,3 +687,26 @@ STDOUT:
 6:const transporter = nodemailer.createTransport({
 ```
 Full output: [`server-runs/2026-05-21T00-00-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-00-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:01:31.744Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0b1ee22` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2486ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '130,140p' app/dashboard/orders/\[id\]/OrderDetailClient.tsx
+```
+STDOUT:
+```
+            <h1 className="text-3xl font-bold text-charcoal mb-2">
+              Order #{order.id.substring(0, 8)}
+            </h1>
+            <p className="text-slate">
+              Placed {formatDate(order.createdAt)}
+            </p>
+          </div>
+          <div className={`px-4 py-2 rounded-lg font-semibold text-sm ${statusColors[status] || 'bg-gray-50 text-gray-700'}`}>
+            {status.toUpperCase()}
+          </div>
+        </div>
+```
+Full output: [`server-runs/2026-05-21T00-01-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-01-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
