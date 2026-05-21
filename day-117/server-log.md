@@ -798,3 +798,76 @@ bb79db3 Priya (tester, day 113) — pre-SSH sync
 e694103 Priya (tester, day 113) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-21T17-26-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-26-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:26:39.937Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9562e07` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2563ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps -a
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                                                        COMMAND                  CREATED          STATUS                 PORTS                                         NAMES
+3253d170bcb3   solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   13 minutes ago   Up 10 minutes          0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-app-1
+af845a010fe4   postgres:16-alpine                                           "docker-entrypoint.s…"   4 hours ago      Up 4 hours (healthy)   127.0.0.1:5432->5432/tcp                      solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+2967d9e0bd67   traefik:latest                                               "/entrypoint.sh --ap…"   4 days ago       Up 4 days                                                            traefik-vwiz-traefik-1
+```
+Full output: [`server-runs/2026-05-21T17-26-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-26-39-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:27:01.407Z — Mehrdad ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3434ms) _(showing tail — full 5,599B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull
+```
+STDOUT:
+```
+…uctDetailClient.tsx
+ create mode 100644 day-113/_index.md
+ create mode 100644 day-113/stage-ship-check.md
+ create mode 100644 day-113/standards-audit.md
+ create mode 100644 day-113/standards_qa.md
+ create mode 100644 day-113/task-verification.md
+ create mode 100644 day-113/task_verifier.md
+ create mode 100644 day-114/_index.md
+ create mode 100644 day-114/_plan.md
+ create mode 100644 day-114/connectivity-audit.md
+ create mode 100644 day-114/connectivity_qa.md
+ create mode 100644 day-114/design-compliance.md
+ create mode 100644 day-114/design.md
+ create mode 100644 day-114/design_qa.md
+ create mode 100644 day-114/engineering.md
+ create mode 100644 day-114/review.md
+ create mode 100644 day-114/server-log.md
+ create mode 100644 day-114/stage-ship-check.md
+ create mode 100644 day-114/standards_qa.md
+ create mode 100644 day-114/task-verification.md
+ create mode 100644 day-114/task_verifier.md
+ create mode 100644 day-114/test.md
+ create mode 100644 day-115/_index.md
+ create mode 100644 day-115/_plan.md
+ create mode 100644 day-115/engineering.md
+ create mode 100644 day-115/review.md
+ create mode 100644 day-115/server-log.md
+ create mode 100644 day-115/stage-ship-check.md
+ create mode 100644 day-115/standards-audit.md
+ create mode 100644 day-115/standards_qa.md
+ create mode 100644 day-115/task-verification.md
+ create mode 100644 day-115/task_verifier.md
+ create mode 100644 day-116/_index.md
+ create mode 100644 day-116/_plan.md
+ create mode 100644 day-116/server-log.md
+ create mode 100644 day-116/stage-ship-check.md
+ create mode 100644 day-116/standards_qa.md
+ create mode 100644 day-117/_plan.md
+ create mode 100644 day-117/engineering.md
+ create mode 100644 day-117/review.md
+ create mode 100644 day-117/server-log.md
+ create mode 100644 day-117/test.md
+ create mode 100644 design/pages/orders-list-mobile.html
+ create mode 100644 design/pages/product-detail-mobile.html
+ create mode 100644 design/pages/product-list-mobile.html
+ create mode 100644 test-results/day-114/report.md
+ create mode 100644 test-results/day-117/report.md
+```
+Full output: [`server-runs/2026-05-21T17-27-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-27-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
