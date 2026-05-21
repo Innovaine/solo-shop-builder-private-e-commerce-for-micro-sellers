@@ -498,3 +498,18 @@ postgres-1                                                                   | 2
 [Kapp-1 exited with code 137
 ```
 Full output: [`server-runs/2026-05-21T17-14-50-www.soloshopbox.com-tail--50-tmp-compose-up.log-1.log`](server-runs/2026-05-21T17-14-50-www.soloshopbox.com-tail--50-tmp-compose-up.log-1.log)
+
+## 2026-05-21T17:15:16.855Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f210b2f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2500ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps -a
+```
+STDOUT:
+```
+NAME                                                                IMAGE                                                        COMMAND                  SERVICE    CREATED         STATUS                 PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1        solo-shop-builder-private-e-commerce-for-micro-sellers-app   "docker-entrypoint.s…"   app        2 minutes ago   Created                
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine                                           "docker-entrypoint.s…"   postgres   4 hours ago     Up 4 hours (healthy)   127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-21T17-15-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-15-16-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
