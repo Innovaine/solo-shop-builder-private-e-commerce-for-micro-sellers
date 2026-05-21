@@ -209,3 +209,21 @@ STDOUT:
 time="2026-05-21T15:52:54Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
 ```
 Full output: [`server-runs/2026-05-21T15-52-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-52-53-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T15:54:14.390Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `027862f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 3348ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up app -d 2>&1
+```
+STDOUT:
+```
+time="2026-05-21T15:54:14Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Running 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Waiting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 Healthy 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Starting 
+ Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
+```
+Full output: [`server-runs/2026-05-21T15-54-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-54-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
