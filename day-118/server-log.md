@@ -571,3 +571,11 @@ STDOUT:
 ---
 ```
 Full output: [`server-runs/2026-05-21T19-04-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-04-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:05:00.845Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e9aa08e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2549ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "\.total\.toFixed\|\.price\.toFixed\|\.amount\.toFixed" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -5
+```
