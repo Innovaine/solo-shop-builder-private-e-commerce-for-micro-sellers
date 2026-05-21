@@ -513,3 +513,46 @@ Started final build, PID=2357331
 engineer 2357331  0.6  0.0 1957708 29368 ?       Sl   20:06   0:00 docker compose build --no-cache
 ```
 Full output: [`server-runs/2026-05-21T20-06-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T20-06-40-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T20:07:27.759Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bf358c6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2668ms) _(showing tail — full 3,052B stdout + 0B stderr)_
+```
+ps aux | grep 2357331 | grep -v grep || echo "BUILD_COMPLETE"
+tail -100 /tmp/build5.log | tail -50
+```
+STDOUT:
+```
+… 6.734 
+#13 6.734 added 6 packages in 6s
+#13 6.736 npm notice
+#13 6.736 npm notice New major version of npm available! 10.8.2 -> 11.15.0
+#13 6.736 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.15.0
+#13 6.736 npm notice To update run: npm install -g npm@11.15.0
+#13 6.736 npm notice
+#13 DONE 6.8s
+
+#12 [builder 4/8] RUN npm cache clean --force && npm install
+#12 ...
+
+#14 [runner  4/14] RUN groupadd --system --gid 1001 nodejs
+#14 DONE 0.2s
+
+#12 [builder 4/8] RUN npm cache clean --force && npm install
+#12 ...
+
+#15 [runner  5/14] RUN useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+#15 0.196 useradd warning: nextjs's uid 1001 is greater than SYS_UID_MAX 999
+#15 DONE 0.2s
+
+#12 [builder 4/8] RUN npm cache clean --force && npm install
+#12 22.58 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#12 23.64 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#12 24.19 npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+#12 24.43 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+#12 24.76 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#12 25.26 npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#12 26.53 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+```
+Full output: [`server-runs/2026-05-21T20-07-27-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T20-07-27-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log)
