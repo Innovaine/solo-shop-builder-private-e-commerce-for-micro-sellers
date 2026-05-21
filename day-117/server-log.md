@@ -717,3 +717,29 @@ HTTP/2 200
     Verified in code: productId→id, productTitle→title alignment with Prisma
 ```
 Full output: [`server-runs/2026-05-21T17-23-38-www.soloshopbox.com-echo-Manual-Test-2-Analytics-dashboard-c-1.log`](server-runs/2026-05-21T17-23-38-www.soloshopbox.com-echo-Manual-Test-2-Analytics-dashboard-c-1.log)
+
+## 2026-05-21T17:24:17.888Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6daaf23` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2760ms)
+```
+echo "=== Day 117 Comprehensive Smoke Tests ===" && echo "" && echo "Test 1: Homepage" && curl -sI https://www.soloshopbox.com/ | grep HTTP && echo "" && echo "Test 2: Dashboard pages require auth" && curl -sI https://www.soloshopbox.com/dashboard | grep HTTP && echo "" && echo "Test 3: Health check" && curl -s https://www.soloshopbox.com/api/health | grep -o '"status":"ok"' && echo "" && echo "All core routes responding correctly"
+```
+STDOUT:
+```
+=== Day 117 Comprehensive Smoke Tests ===
+
+Test 1: Homepage
+HTTP/2 200 
+
+Test 2: Dashboard pages require auth
+HTTP/2 307 
+
+Test 3: Health check
+"status":"ok"
+"status":"ok"
+"status":"ok"
+
+All core routes responding correctly
+```
+Full output: [`server-runs/2026-05-21T17-24-17-www.soloshopbox.com-echo-Day-117-Comprehensive-Smoke-Tests-e-1.log`](server-runs/2026-05-21T17-24-17-www.soloshopbox.com-echo-Day-117-Comprehensive-Smoke-Tests-e-1.log)
