@@ -209,3 +209,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `6e91d17` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail 100
 ```
+
+## 2026-05-21T18:53:14.011Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2391da5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 2737ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}" | grep solo
+```
+ERROR: command exited 1
