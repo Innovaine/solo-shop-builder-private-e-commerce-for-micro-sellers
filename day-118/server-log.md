@@ -362,3 +362,12 @@ error TS2688: Cannot find type definition file for 'node'.
     Entry point of type library 'node' specified in compilerOptions
 ```
 Full output: [`server-runs/2026-05-21T18-57-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T18-57-34-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T18:58:32.287Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1d52ea4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 25720ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npm install 2>&1 | tail -30
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
