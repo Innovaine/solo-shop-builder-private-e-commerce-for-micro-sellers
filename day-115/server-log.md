@@ -537,3 +537,38 @@ STDOUT:
             <label htmlFor="category" className="block text-sm font-medium text-charcoal mb-2">
 ```
 Full output: [`server-runs/2026-05-21T16-01-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-01-50-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T16:03:23.078Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0011f4d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3465ms) _(showing tail — full 2,608B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -50
+```
+STDOUT:
+```
+…w/page.tsx(323,7): error TS17002: Expected corresponding JSX closing tag for 'form'.
+app/dashboard/products/new/page.tsx(325,1): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+app/dashboard/products/new/page.tsx(446,11): error TS17002: Expected corresponding JSX closing tag for 'Card'.
+app/dashboard/products/new/page.tsx(447,9): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/dashboard/products/new/page.tsx(448,5): error TS1005: ')' expected.
+app/dashboard/products/new/page.tsx(449,3): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(451,1): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(453,16): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(454,13): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(458,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(461,16): error TS1005: ';' expected.
+app/dashboard/products/new/page.tsx(462,13): error TS2657: JSX expressions must have one parent element.
+app/dashboard/products/new/page.tsx(478,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(481,16): error TS1005: ';' expected.
+app/dashboard/products/new/page.tsx(539,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(542,16): error TS1005: ';' expected.
+app/dashboard/products/new/page.tsx(543,13): error TS2657: JSX expressions must have one parent element.
+app/dashboard/products/new/page.tsx(556,11): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(578,9): error TS1128: Declaration or statement expected.
+app/dashboard/products/new/page.tsx(579,7): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(580,5): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(581,3): error TS1109: Expression expected.
+app/dashboard/products/new/page.tsx(582,1): error TS1128: Declaration or statement expected.
+```
+Full output: [`server-runs/2026-05-21T16-03-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-03-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
