@@ -168,3 +168,83 @@ echo $! > /tmp/build-day111-fixed.pid
 echo "Build started, PID=$(cat /tmp/build-day111-fixed.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T12:54:27.064Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `933b8d4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2238ms) _(showing tail — full 2,780B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build-day111-fixed.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/build-day111-fixed.log 2>/dev/null || echo "No log yet"
+```
+STDOUT:
+```
+…opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 2.138 https://nextjs.org/telemetry
+#15 2.138 
+#15 2.193   ▲ Next.js 14.2.3
+#15 2.193   - Environments: .env
+#15 2.193 
+#15 2.275    Creating an optimized production build ...
+#15 9.077 Failed to compile.
+#15 9.077 
+#15 9.077 ./app/checkout/page.tsx
+#15 9.077 Module not found: Can't resolve '@/lib/currency'
+#15 9.077 
+#15 9.077 https://nextjs.org/docs/messages/module-not-found
+#15 9.077 
+#15 9.077 ./app/dashboard/analytics/page.tsx
+#15 9.077 Module not found: Can't resolve '@/lib/currency'
+#15 9.077 
+#15 9.077 https://nextjs.org/docs/messages/module-not-found
+#15 9.077 
+#15 9.077 ./app/dashboard/orders/page.tsx
+#15 9.077 Module not found: Can't resolve '@/lib/currency'
+#15 9.077 
+#15 9.077 https://nextjs.org/docs/messages/module-not-found
+#15 9.077 
+#15 9.077 ./app/shop/[slug]/page.tsx
+#15 9.077 Module not found: Can't resolve '@/lib/currency'
+#15 9.077 
+#15 9.077 https://nextjs.org/docs/messages/module-not-found
+#15 9.077 
+#15 9.077 ./app/shop/[slug]/product/[productId]/page.tsx
+#15 9.077 Module not found: Can't resolve '@/lib/currency'
+#15 9.077 
+#15 9.077 https://nextjs.org/docs/messages/module-not-found
+#15 9.077 
+#15 9.094 
+#15 9.094 > Build failed because of webpack errors
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+9.077 
+9.077 https://nextjs.org/docs/messages/module-not-found
+9.077 
+9.077 ./app/shop/[slug]/product/[productId]/page.tsx
+9.077 Module not found: Can't resolve '@/lib/currency'
+9.077 
+9.077 https://nextjs.org/docs/messages/module-not-found
+9.077 
+9.094 
+9.094 > Build failed because of webpack errors
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T12-54-27-www.soloshopbox.com-kill--0-cat-tmp-build-day111-fixed.pid-2-1.log`](server-runs/2026-05-21T12-54-27-www.soloshopbox.com-kill--0-cat-tmp-build-day111-fixed.pid-2-1.log)
