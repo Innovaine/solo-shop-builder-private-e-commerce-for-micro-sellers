@@ -550,3 +550,16 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 28 minutes 
 traefik-vwiz-traefik-1	Up 4 days
 ```
 Full output: [`server-runs/2026-05-21T13-48-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-48-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:48:27.944Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `85849ef` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2883ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo " - Health check OK"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-21T13:48:28.254Z","responseTime":"300ms","checks":{"database":{"status":"ok","responseTime":"52ms"},"email":{"status":"ok","responseTime":"248ms"}}} - Health check OK
+```
+Full output: [`server-runs/2026-05-21T13-48-27-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T13-48-27-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
