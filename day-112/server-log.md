@@ -627,3 +627,60 @@ app/dashboard/orders/[id]/OrderDetailClient.tsx
 app/dashboard/products/page.tsx
 ```
 Full output: [`server-runs/2026-05-21T13-50-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-50-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:52:03.395Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bdc45c4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3285ms) _(showing tail — full 9,846B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && git pull && echo "=== REPO STATUS ===" && pwd
+```
+STDOUT:
+```
+…md
+ create mode 100644 day-110/_index.md
+ create mode 100644 day-110/_plan.md
+ create mode 100644 day-110/engineering.md
+ create mode 100644 day-110/server-log.md
+ create mode 100644 day-110/stage-ship-check.md
+ create mode 100644 day-111/_index.md
+ create mode 100644 day-111/_plan.md
+ create mode 100644 day-111/connectivity-audit.md
+ create mode 100644 day-111/connectivity_qa.md
+ create mode 100644 day-111/design-compliance.md
+ create mode 100644 day-111/design.md
+ create mode 100644 day-111/design_qa.md
+ create mode 100644 day-111/engineering.md
+ create mode 100644 day-111/review.md
+ create mode 100644 day-111/server-log.md
+ create mode 100644 day-111/stage-ship-check.md
+ create mode 100644 day-111/standards_qa.md
+ create mode 100644 day-111/task-verification.md
+ create mode 100644 day-111/task_verifier.md
+ create mode 100644 day-111/test.md
+ create mode 100644 day-112/_plan.md
+ create mode 100644 day-112/connectivity-audit.md
+ create mode 100644 day-112/connectivity_qa.md
+ create mode 100644 day-112/design-compliance.md
+ create mode 100644 day-112/design.md
+ create mode 100644 day-112/design_qa.md
+ create mode 100644 day-112/engineering.md
+ create mode 100644 day-112/review.md
+ create mode 100644 day-112/server-log.md
+ create mode 100644 day-112/test.md
+ create mode 100644 design/decks/mvp-launch.html
+ create mode 100644 design/pages/analytics-dashboard-back-button.html
+ create mode 100644 design/pages/dashboard-kwd-currency.html
+ create mode 100644 design/pages/onboarding-visual-walkthrough.html
+ create mode 100644 design/system/mobile-response-audit.md
+ create mode 100644 prisma/migrations/20260521_add_product_images/migration.sql
+ create mode 100644 src/lib/currency.ts
+ create mode 100644 test-results/day-106/report.md
+ create mode 100644 test-results/day-107/report.md
+ create mode 100644 test-results/day-109/report.md
+ create mode 100644 test-results/day-111/report.md
+ create mode 100644 test-results/day-112/report.md
+=== REPO STATUS ===
+/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers
+```
+Full output: [`server-runs/2026-05-21T13-52-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-52-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
