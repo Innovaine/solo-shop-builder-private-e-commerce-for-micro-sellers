@@ -557,3 +557,17 @@ STDOUT:
 0
 ```
 Full output: [`server-runs/2026-05-21T19-04-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-04-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:04:33.031Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c69fdbe` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2296ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "z.object\|z.string\|z.number" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | wc -l && echo "---" && grep -r "if (!.*\\.)" app/api/ --include="*.ts" | head -3
+```
+STDOUT:
+```
+26
+---
+```
+Full output: [`server-runs/2026-05-21T19-04-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-04-33-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
