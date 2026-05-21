@@ -70,3 +70,12 @@ npm notice
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-21T16-53-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-53-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T16:54:58.943Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7536f2f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 60325ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && npm install 2>&1 | tail -30
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
