@@ -1486,3 +1486,65 @@ STDOUT:
         "title",
 ```
 Full output: [`server-runs/2026-05-21T14-50-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-50-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T14:51:25.111Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4646942` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2972ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json 2>&1 | tail -50
+```
+STDOUT:
+```
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "productId",
+        "productTitle",
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+    {
+      "interface": "OrderCount",
+      "kind": "interface",
+      "file": "dashboard/orders/page.tsx",
+      "line": 24,
+      "matchedPrismaModel": "Order",
+      "interfaceFields": [
+        "paid",
+        "in_progress",
+        "shipped",
+        "delivered"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "customerEmail",
+        "customerName",
+        "status",
+        "total",
+        "stripePaymentId",
+        "trackingUrl",
+        "trackingId",
+        "metadata",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "items"
+      ],
+      "fieldsNotInPrisma": [
+        "paid",
+        "in_progress",
+        "shipped",
+        "delivered"
+      ]
+    }
+  ]
+}
+```
+Full output: [`server-runs/2026-05-21T14-51-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-51-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
