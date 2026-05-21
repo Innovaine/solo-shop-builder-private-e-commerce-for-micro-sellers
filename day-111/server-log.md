@@ -295,3 +295,24 @@ date: Thu, 21 May 2026 12:57:05 GMT
 etag: "hwxyxdd3d688h"
 ```
 Full output: [`server-runs/2026-05-21T12-57-05-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-1.log`](server-runs/2026-05-21T12-57-05-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-t-.P-1.log)
+
+## 2026-05-21T12:59:01.325Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a4d3916` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 6080ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -50
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-21T12-59-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T12-59-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:07:39.829Z — Mehrdad ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 4054ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | grep -A 5 "currency" | head -20
+```
