@@ -670,3 +670,33 @@ STDOUT:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 ```
 Full output: [`server-runs/2026-05-21T17-21-56-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log`](server-runs/2026-05-21T17-21-56-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log)
+
+## 2026-05-21T17:22:23.847Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `697d3b5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2947ms)
+```
+echo "Test 1: Homepage" && curl -sI https://www.soloshopbox.com/ | grep HTTP && echo "Test 2: Health endpoint" && curl -s https://www.soloshopbox.com/api/health | head -c 100
+```
+STDOUT:
+```
+Test 1: Homepage
+HTTP/2 200 
+Test 2: Health endpoint
+{"status":"ok","timestamp":"2026-05-21T17:22:24.345Z","responseTime":"219ms","checks":{"database":{"
+```
+Full output: [`server-runs/2026-05-21T17-22-23-www.soloshopbox.com-echo-Test-1-Homepage-curl--sI-https-www.-1.log`](server-runs/2026-05-21T17-22-23-www.soloshopbox.com-echo-Test-1-Homepage-curl--sI-https-www.-1.log)
+
+## 2026-05-21T17:22:56.674Z — Priya ran 1 command(s)
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2416ms)
+```
+echo "Manual Test 1: Product creation form structure (task #338)" && echo "  - Checking /dashboard/products/new renders without form nesting" && curl -s https://www.soloshopbox.com/dashboard/products/new 2>&1 | grep -o '<form' | wc -l && echo "  Expected: 1 form tag (fixed from nested forms)"
+```
+STDOUT:
+```
+Manual Test 1: Product creation form structure (task #338)
+  - Checking /dashboard/products/new renders without form nesting
+1
+  Expected: 1 form tag (fixed from nested forms)
+```
+Full output: [`server-runs/2026-05-21T17-22-56-www.soloshopbox.com-echo-Manual-Test-1-Product-creation-form-1.log`](server-runs/2026-05-21T17-22-56-www.soloshopbox.com-echo-Manual-Test-1-Product-creation-form-1.log)
