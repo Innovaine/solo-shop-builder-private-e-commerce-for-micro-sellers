@@ -1013,3 +1013,17 @@ app/dashboard/products/new/page.tsx(581,3): error TS1109: Expression expected.
 app/dashboard/products/new/page.tsx(582,1): error TS1128: Declaration or statement expected.
 ```
 Full output: [`server-runs/2026-05-21T14-46-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-46-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T14:47:43.955Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `820824c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2489ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && which route-validator || echo "route-validator not found, checking /opt/qadar-runtime/bin/"  && ls /opt/qadar-runtime/bin/route-validator 2>/dev/null || echo "Not installed"
+```
+STDOUT:
+```
+/usr/local/bin/route-validator
+/opt/qadar-runtime/bin/route-validator
+```
+Full output: [`server-runs/2026-05-21T14-47-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-47-43-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
