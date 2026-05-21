@@ -334,3 +334,12 @@ STDOUT:
 OK
 ```
 Full output: [`server-runs/2026-05-21T15-26-38-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T15-26-38-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-21T15:28:18.534Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `24c59f6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✗ exit 1, 3051ms)
+```
+docker ps --format ".Names\t.Status" | grep solo-shop
+```
+ERROR: command exited 1
