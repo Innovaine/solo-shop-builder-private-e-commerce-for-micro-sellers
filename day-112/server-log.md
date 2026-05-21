@@ -535,3 +535,18 @@ date: Thu, 21 May 2026 13:45:09 GMT
 etag: "dkl8vpflxw88h"
 ```
 Full output: [`server-runs/2026-05-21T13-45-08-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log`](server-runs/2026-05-21T13-45-08-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log)
+
+## 2026-05-21T13:48:03.183Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fc30240` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3330ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --format "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 3 minutes	0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 28 minutes (healthy)	127.0.0.1:5432->5432/tcp
+traefik-vwiz-traefik-1	Up 4 days
+```
+Full output: [`server-runs/2026-05-21T13-48-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-48-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
