@@ -1827,3 +1827,12 @@ npm error Run "npm help ci" for more info
 npm error A complete log of this run can be found in: /home/engineer/.npm/_logs/2026-05-21T17_18_56_637Z-debug-0.log
 ```
 Full output: [`server-runs/2026-05-21T17-30-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-30-45-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:31:42.453Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `75c97c8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14442ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup npm install > /tmp/npm-install-reviewer.log 2>&1 & echo $! > /tmp/npm-install-reviewer.pid && echo "npm install started, PID=$(cat /tmp/npm-install-reviewer.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
