@@ -897,3 +897,11 @@ app/api/analytics/route.ts:9:interface ProductAnalytics {
 app/checkout/success/page.tsx:14:type OrderDetails = Order & {
 ```
 Full output: [`server-runs/2026-05-21T00-06-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-06-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:07:27.339Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `14bd35d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2495ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE "^(const|let|var) .* = process\.env" app/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -30
+```
