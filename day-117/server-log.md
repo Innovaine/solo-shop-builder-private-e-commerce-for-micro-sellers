@@ -1638,3 +1638,11 @@ error TS2688: Cannot find type definition file for 'node'.
 ```
 ERROR: command exited 2
 Full output: [`server-runs/2026-05-21T17-28-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-28-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:28:26.573Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3d91fc9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2204ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la node_modules/.bin | head -20
+```
