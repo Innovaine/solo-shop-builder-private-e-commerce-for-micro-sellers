@@ -48,6 +48,10 @@ RUN npx prisma generate
 # Ensure public directory exists
 RUN mkdir -p public
 
+# Workaround for Docker OverlayFS corruption: reinstall graceful-fs to ensure package.json is valid
+RUN npm install --no-save graceful-fs@latest && \
+    node -e "try { JSON.parse(require('fs').readFileSync('node_modules/graceful-fs/package.json', 'utf8')); console.log('[WORKAROUND] graceful-fs package.json verified OK'); } catch(e) { console.error('[WORKAROUND] graceful-fs still corrupt:', e.message); process.exit(1); }"
+
 # Build Next.js app
 RUN npm run build
 
