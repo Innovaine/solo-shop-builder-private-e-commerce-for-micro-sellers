@@ -657,3 +657,16 @@ app-1  |  ✓ Ready in 52ms
 app-1  | {"requestId":"T__FuoyH_sGSZy8_","method":"GET","path":"/api/health","responseTime":"2ms","timestamp":"2026-05-21T17:16:10.267Z","userAgent":"curl/8.5.0"}
 ```
 Full output: [`server-runs/2026-05-21T17-21-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-21-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:21:56.853Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e64e432` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2737ms)
+```
+curl -I https://www.soloshopbox.com/ 2>&1 | head -1
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+```
+Full output: [`server-runs/2026-05-21T17-21-56-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log`](server-runs/2026-05-21T17-21-56-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log)
