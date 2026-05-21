@@ -901,3 +901,27 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-21T14:43:16.736Z","responseTime":"408ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"407ms"}}}
 ```
 Full output: [`server-runs/2026-05-21T14-43-16-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T14-43-16-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-21T14:43:43.300Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `79ef7ad` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2371ms)
+```
+echo "Test CSV export endpoint exists"
+curl -I https://www.soloshopbox.com/api/orders/export 2>&1 | head -10
+```
+STDOUT:
+```
+Test CSV export endpoint exists
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/2 401 
+access-control-allow-headers: Content-Type, Authorization
+access-control-allow-methods: GET, POST, PUT, DELETE, OPTIONS
+access-control-allow-origin: *
+content-type: application/json
+date: Thu, 21 May 2026 14:43:43 GMT
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch
+```
+Full output: [`server-runs/2026-05-21T14-43-43-www.soloshopbox.com-echo-Test-CSV-export-endpoint-exists-1.log`](server-runs/2026-05-21T14-43-43-www.soloshopbox.com-echo-Test-CSV-export-endpoint-exists-1.log)
