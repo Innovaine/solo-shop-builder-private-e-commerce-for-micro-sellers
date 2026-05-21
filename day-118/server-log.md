@@ -87,3 +87,61 @@ STDOUT:
 Started build, PID=2313129
 ```
 Full output: [`server-runs/2026-05-21T18-45-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T18-45-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T18:46:24.451Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `633b133` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2616ms) _(showing tail — full 3,415B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/build.log
+```
+STDOUT:
+```
+… 
+#15 1.673 unhandledRejection SyntaxError: Error parsing /app/node_modules/graceful-fs/package.json: Unexpected end of JSON input
+#15 1.673     at parse (<anonymous>)
+#15 1.673     at read (node:internal/modules/package_json_reader:80:16)
+#15 1.673     at readPackage (node:internal/modules/package_json_reader:141:10)
+#15 1.673     at resolveExports (node:internal/modules/cjs/loader:634:15)
+#15 1.673     at Module._findPath (node:internal/modules/cjs/loader:711:31)
+#15 1.673     at Module._resolveFilename (node:internal/modules/cjs/loader:1193:27)
+#15 1.673     at /app/node_modules/next/dist/server/require-hook.js:55:36
+#15 1.673     at Module._load (node:internal/modules/cjs/loader:1038:27)
+#15 1.673     at Module.require (node:internal/modules/cjs/loader:1289:19)
+#15 1.673     at mod.require (/app/node_modules/next/dist/server/require-hook.js:65:28) {
+#15 1.673   path: '/app/node_modules/graceful-fs/package.json'
+#15 1.673 }
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+1.673     at readPackage (node:internal/modules/package_json_reader:141:10)
+1.673     at resolveExports (node:internal/modules/cjs/loader:634:15)
+1.673     at Module._findPath (node:internal/modules/cjs/loader:711:31)
+1.673     at Module._resolveFilename (node:internal/modules/cjs/loader:1193:27)
+1.673     at /app/node_modules/next/dist/server/require-hook.js:55:36
+1.673     at Module._load (node:internal/modules/cjs/loader:1038:27)
+1.673     at Module.require (node:internal/modules/cjs/loader:1289:19)
+1.673     at mod.require (/app/node_modules/next/dist/server/require-hook.js:65:28) {
+1.673   path: '/app/node_modules/graceful-fs/package.json'
+1.673 }
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T18-46-24-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log`](server-runs/2026-05-21T18-46-24-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-ech-1.log)
