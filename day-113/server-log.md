@@ -1146,3 +1146,95 @@ app/dashboard/products/new/page.tsx(582,1): error TS1128: Declaration or stateme
       "metadata",
 ```
 Full output: [`server-runs/2026-05-21T14-48-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-48-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T14:48:26.320Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a733409` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2665ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | head -80
+```
+STDOUT:
+```
+{
+  "summary": {
+    "routes": 61,
+    "pages": 25,
+    "apis": 36,
+    "links": 103,
+    "apiCalls": 41,
+    "broken": 4,
+    "orphans": 4,
+    "methodMismatches": 0
+  },
+  "routes": [
+    {
+      "route": "/api/account/delete",
+      "kind": "api",
+      "file": "app/api/account/delete/route.ts"
+    },
+    {
+      "route": "/api/account/password",
+      "kind": "api",
+      "file": "app/api/account/password/route.ts"
+    },
+    {
+      "route": "/api/analytics",
+      "kind": "api",
+      "file": "app/api/analytics/route.ts"
+    },
+    {
+      "route": "/api/auth/forgot-password",
+      "kind": "api",
+      "file": "app/api/auth/forgot-password/route.ts"
+    },
+    {
+      "route": "/api/auth/login",
+      "kind": "api",
+      "file": "app/api/auth/login/route.ts"
+    },
+    {
+      "route": "/api/auth/logout",
+      "kind": "api",
+      "file": "app/api/auth/logout/route.ts"
+    },
+    {
+      "route": "/api/auth/reset-password",
+      "kind": "api",
+      "file": "app/api/auth/reset-password/route.ts"
+    },
+    {
+      "route": "/api/auth/signup",
+      "kind": "api",
+      "file": "app/api/auth/signup/route.ts"
+    },
+    {
+      "route": "/api/auth/verify",
+      "kind": "api",
+      "file": "app/api/auth/verify/route.ts"
+    },
+    {
+      "route": "/api/billing",
+      "kind": "api",
+      "file": "app/api/billing/route.ts"
+    },
+    {
+      "route": "/api/checkout/myfatoorah/callback",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/callback/route.ts"
+    },
+    {
+      "route": "/api/checkout/myfatoorah",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/route.ts"
+    },
+    {
+      "route": "/api/checkout",
+      "kind": "api",
+      "file": "app/api/checkout/route.ts"
+    },
+    {
+      "route": "/api/health",
+      "kind": "api",
+```
+Full output: [`server-runs/2026-05-21T14-48-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-48-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
