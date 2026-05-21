@@ -111,3 +111,14 @@ DONE
 Total reclaimed space: 0B
 ```
 Full output: [`server-runs/2026-05-21T19-43-36-www.soloshopbox.com-kill--0-cat-tmp-docker-prune.pid-2-dev-n-1.log`](server-runs/2026-05-21T19-43-36-www.soloshopbox.com-kill--0-cat-tmp-docker-prune.pid-2-dev-n-1.log)
+
+## 2026-05-21T19:44:11.749Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `21c2ace` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12893ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build --no-cache > /tmp/build.log 2>&1 &
+echo $! > /tmp/build.pid
+echo "Started build without cache, PID=$(cat /tmp/build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
