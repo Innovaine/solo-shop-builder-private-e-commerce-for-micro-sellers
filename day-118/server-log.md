@@ -595,3 +595,20 @@ _Pre-SSH: warehouse pushed to GitHub as commit `c88da1b` so the server's `git pu
 ```
 cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -n "^const.*process\.env\|^let.*process\.env\|^var.*process\.env" app/api/ src/ lib/ --include="*.ts" 2>/dev/null | head -10
 ```
+
+## 2026-05-21T19:06:23.936Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `11359c4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2537ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "cookies()" app/ src/ --include="*.ts" --include="*.tsx" -B2 -A2 2>/dev/null
+```
+STDOUT:
+```
+src/lib/auth.ts-
+src/lib/auth.ts-export async function getSession(): Promise<IronSession<SessionData>> {
+src/lib/auth.ts:  return getIronSession<SessionData>(cookies(), getSessionOptions())
+src/lib/auth.ts-}
+src/lib/auth.ts-
+```
+Full output: [`server-runs/2026-05-21T19-06-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-06-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
