@@ -250,3 +250,16 @@ HTTP/2 404
 content-type: text/plain; charset=utf-8
 ```
 Full output: [`server-runs/2026-05-21T18-54-04-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log`](server-runs/2026-05-21T18-54-04-www.soloshopbox.com-curl--I-https-www.soloshopbox.com-2-1-he-1.log)
+
+## 2026-05-21T18:54:29.102Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f87e56f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2755ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+FAIL
+```
+Full output: [`server-runs/2026-05-21T18-54-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T18-54-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
