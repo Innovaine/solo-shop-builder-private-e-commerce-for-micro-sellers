@@ -168,3 +168,70 @@ STDOUT:
 Build started, PID=2135494
 ```
 Full output: [`server-runs/2026-05-21T00-22-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-22-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:22:57.022Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4db3916` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2191ms) _(showing tail — full 3,482B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/day108-rebuild.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/day108-rebuild.log
+```
+STDOUT:
+```
+…1 nodejs
+#19 CACHED
+
+#20 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#20 CACHED
+
+#21 [builder 4/7] COPY . .
+#21 CACHED
+
+#22 [builder 5/7] RUN npx prisma generate
+#22 CACHED
+
+#23 [runner  2/14] RUN apt-get update && apt-get install -y     openssl     ca-certificates     libnss3     libnspr4     libatk1.0-0     libatk-bridge2.0-0     libcups2     libdrm2     libdbus-1-3     libxkbcommon0     libatspi2.0-0     libxcomposite1     libxdamage1     libxfixes3     libxrandr2     libgbm1     libpango-1.0-0     libcairo2     libasound2     && rm -rf /var/lib/apt/lists/*
+#23 CACHED
+
+#24 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#24 CACHED
+
+#25 [runner  3/14] RUN npm install -g prisma@5.14.0
+#25 CACHED
+
+#26 [deps 4/4] RUN npm install
+#26 CACHED
+
+#27 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#27 CACHED
+
+#28 [builder 7/7] RUN npm run build
+#28 CACHED
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 CACHED
+
+#30 exporting to image
+#30 exporting layers done
+#30 exporting manifest sha256:d7ccbbb561096f90deef530e7a5790b8a313c71cc4cf9c92892dc4eabb1d8546 done
+#30 exporting config sha256:3a11da0c1389e31af2754ad3b0b14131b3ccd70db333a35278ff3ef2a49c2f2e done
+#30 exporting attestation manifest sha256:e8f25bf857ff8787e84bd8437dd02e8c2bf14bc5b8382fdef1e61394bb3c1a0d 0.0s done
+#30 exporting manifest list sha256:0f2cb54c1fad7ca34cdd7c31bb2fe21ca3e3831b4cd1f77cfd2f9bb4591f5b5d 0.0s done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.0s done
+#30 DONE 0.1s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-21T00-22-57-www.soloshopbox.com-kill--0-cat-tmp-day108-rebuild.pid-2-dev-1.log`](server-runs/2026-05-21T00-22-57-www.soloshopbox.com-kill--0-cat-tmp-day108-rebuild.pid-2-dev-1.log)
+
+## 2026-05-21T00:23:39.335Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13485ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
