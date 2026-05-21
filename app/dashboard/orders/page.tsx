@@ -21,6 +21,7 @@ interface Analytics {
   totalOrders: number
 }
 
+// Aggregation counts by order status (not a Prisma model - derived from Order.status field)
 interface OrderCount {
   paid: number
   in_progress: number
