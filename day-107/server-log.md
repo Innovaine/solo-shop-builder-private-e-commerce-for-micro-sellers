@@ -914,3 +914,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `ba8d60e` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -type f \( -name '*.ts' -o -name '*.tsx' \) -not -path './node_modules/*' -not -path './.next/*' -not -path './dist/*' -not -path './build/*' 2>/dev/null | xargs -n1 basename | sort | uniq -d | grep -vE '^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware|instrumentation)\.(ts|tsx)$'
 ```
 ERROR: command exited 1
+
+## 2026-05-21T00:08:32.896Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5f5e432` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2471ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find app src lib -type f \( -name '*.ts' -o -name '*.tsx' \) 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -d
+```
+STDOUT:
+```
+page.tsx
+route.ts
+```
+Full output: [`server-runs/2026-05-21T00-08-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-08-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
