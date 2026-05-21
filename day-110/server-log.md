@@ -398,3 +398,29 @@ d466737f3c9d   postgres:16-alpine   "docker-entrypoint.s…"   56 seconds ago   
 Health check FAILED
 ```
 Full output: [`server-runs/2026-05-21T01-01-08-www.soloshopbox.com-docker-ps-1.log`](server-runs/2026-05-21T01-01-08-www.soloshopbox.com-docker-ps-1.log)
+
+## 2026-05-21T01:01:29.020Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `864b714` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2075ms) _(showing tail — full 13,573B stdout + 0B stderr)_
+```
+docker ps -a | grep solo-shop
+tail -50 /tmp/compose-up.log
+```
+STDOUT:
+```
+…                                            | 2026-05-21 00:39:36.712 UTC [27] LOG:  checkpoint starting: shutdown immediate
+postgres-1                                                                   | 2026-05-21 00:39:36.718 UTC [27] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.007 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=155 kB; lsn=0/46F1830, redo lsn=0/46F1830
+postgres-1                                                                   | 2026-05-21 00:39:36.726 UTC [1] LOG:  database system is shut down
+[Kpostgres-1 exited with code 0
+postgres-1                                                                   | 
+postgres-1                                                                   | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres-1                                                                   | 
+postgres-1                                                                   | 2026-05-21 01:00:12.551 UTC [1] LOG:  starting PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1                                                                   | 2026-05-21 01:00:12.551 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1                                                                   | 2026-05-21 01:00:12.551 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1                                                                   | 2026-05-21 01:00:12.554 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1                                                                   | 2026-05-21 01:00:12.559 UTC [29] LOG:  database system was shut down at 2026-05-21 00:39:36 UTC
+postgres-1                                                                   | 2026-05-21 01:00:12.568 UTC [1] LOG:  database system is ready to accept connections
+```
+Full output: [`server-runs/2026-05-21T01-01-29-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-21T01-01-29-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log)
