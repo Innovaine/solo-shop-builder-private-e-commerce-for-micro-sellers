@@ -1646,3 +1646,24 @@ _Pre-SSH: warehouse pushed to GitHub as commit `3d91fc9` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la node_modules/.bin | head -20
 ```
+
+## 2026-05-21T17:28:51.655Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `22cade7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 6388ms) _(showing tail — full 4,292B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=100 2>&1 | head -150
+```
+STDOUT:
+```
+…a/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1  | {"requestId":"Q8R_azBkTI2Ya1JP","method":"GET","path":"/api/shops","responseTime":"0ms","timestamp":"2026-05-21T17:23:46.489Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1  | {"requestId":"vXCZ-8RjEhj7Q_RW","method":"PUT","path":"/api/shops/salman/currency","responseTime":"0ms","timestamp":"2026-05-21T17:23:47.758Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1  | {"requestId":"sr5pnO7WJYPWVNQ2","method":"GET","path":"/api/analytics","responseTime":"0ms","timestamp":"2026-05-21T17:23:49.353Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1  | {"requestId":"_-a2KGGtq7OOWElB","method":"GET","path":"/api/shops","responseTime":"0ms","timestamp":"2026-05-21T17:23:49.358Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1  | {"requestId":"1DhxpJGqeixbihxd","method":"GET","path":"/api/health","responseTime":"0ms","timestamp":"2026-05-21T17:24:18.091Z","userAgent":"curl/8.5.0"}
+app-1  | {"requestId":"_iXyJXuPpdPuRKYb","method":"GET","path":"/api/analytics","responseTime":"1ms","timestamp":"2026-05-21T17:25:06.269Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1  | {"requestId":"to4JhHcgwv_zeD1d","method":"GET","path":"/api/shops","responseTime":"0ms","timestamp":"2026-05-21T17:25:06.274Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Vers"}
+app-1  | {"requestId":"AQO1wWx1b1ykMfIF","method":"GET","path":"/auth/login","responseTime":"0ms","timestamp":"2026-05-21T17:25:40.885Z","userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 26_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Cr"}
+```
+Full output: [`server-runs/2026-05-21T17-28-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-28-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
