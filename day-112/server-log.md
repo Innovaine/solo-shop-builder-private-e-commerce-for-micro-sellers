@@ -319,3 +319,31 @@ curl: (22) The requested URL returned error: 404
 FAIL
 ```
 Full output: [`server-runs/2026-05-21T13-41-55-www.soloshopbox.com-sleep-5-curl--f-https-www.soloshopbox.co-2.log`](server-runs/2026-05-21T13-41-55-www.soloshopbox.com-sleep-5-curl--f-https-www.soloshopbox.co-2.log)
+
+## 2026-05-21T13:42:31.454Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `56236e7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2263ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose ps
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   22 minutes ago   Up 22 minutes (healthy)   127.0.0.1:5432->5432/tcp
+```
+Full output: [`server-runs/2026-05-21T13-42-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-42-31-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+### Command 2 on www.soloshopbox.com as engineer (✓ exit 0, 426ms)
+```
+curl -sI https://www.soloshopbox.com/ | head -5
+```
+STDOUT:
+```
+HTTP/2 404 
+content-type: text/plain; charset=utf-8
+x-content-type-options: nosniff
+content-length: 19
+date: Thu, 21 May 2026 13:42:31 GMT
+```
+Full output: [`server-runs/2026-05-21T13-42-31-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--2.log`](server-runs/2026-05-21T13-42-31-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--2.log)
