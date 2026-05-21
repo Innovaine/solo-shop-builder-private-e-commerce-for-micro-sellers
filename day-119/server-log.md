@@ -883,3 +883,29 @@ STDOUT:
 #16 30.14 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
 ```
 Full output: [`server-runs/2026-05-21T20-29-36-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-2--1.log`](server-runs/2026-05-21T20-29-36-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-2--1.log)
+
+## 2026-05-21T20:31:37.877Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `02daf8e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2631ms)
+```
+kill -0 $(cat /tmp/build2.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/build2.log | grep -E "(DONE|RUNNING|Successfully|error|failed)" | tail -20
+```
+STDOUT:
+```
+DONE
+#2 DONE 0.0s
+#3 DONE 0.6s
+#4 DONE 0.0s
+#5 DONE 0.0s
+#11 DONE 0.5s
+#16 67.99 npm error code EINTEGRITY
+#16 67.99 npm error sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== integrity checksum failed when using sha512: wanted sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== but got sha512-lgxkKZ6IEygVcw6IZZUlPIfLQ9hjSYAtHjZ5r64sCLDgVzsPFCi2XBBJgzPMkOQ5RHzUD4E/dVdpn9+ez8tk1A==. (22478 bytes)
+#16 67.99 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-05-21T20_29_02_321Z-debug-0.log
+67.99 npm error code EINTEGRITY
+67.99 npm error sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== integrity checksum failed when using sha512: wanted sha512-vI1f4f4rZOPLUMHhvMc93AVCt3JEBlKNlWcD/Vx4fZ8FTfHAwl4v/wAKEyqfBlKTe+RD62e8yAFGJHZvL1OTKQ== but got sha512-lgxkKZ6IEygVcw6IZZUlPIfLQ9hjSYAtHjZ5r64sCLDgVzsPFCi2XBBJgzPMkOQ5RHzUD4E/dVdpn9+ez8tk1A==. (22478 bytes)
+67.99 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-05-21T20_29_02_321Z-debug-0.log
+failed to solve: process "/bin/sh -c npm cache clean --force &&     npm config set fetch-retries 10 &&     npm config set fetch-retry-mintimeout 100000 &&     npm config set fetch-retry-maxtimeout 600000 &&     npm install" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T20-31-37-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-2--1.log`](server-runs/2026-05-21T20-31-37-www.soloshopbox.com-kill--0-cat-tmp-build2.pid-2-dev-null-2--1.log)
