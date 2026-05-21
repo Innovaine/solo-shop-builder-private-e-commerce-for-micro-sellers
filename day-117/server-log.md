@@ -211,3 +211,45 @@ STDOUT:
 #31 DONE 0.0s
 ```
 Full output: [`server-runs/2026-05-21T16-57-47-www.soloshopbox.com-tail--100-tmp-day117-build.log-grep--E-e-1.log`](server-runs/2026-05-21T16-57-47-www.soloshopbox.com-tail--100-tmp-day117-build.log-grep--E-e-1.log)
+
+## 2026-05-21T16:58:10.535Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ab990b6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2227ms)
+```
+tail -30 /tmp/day117-build.log
+```
+STDOUT:
+```
+#25 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.7s
+
+#26 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.1s
+
+#27 [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+#27 DONE 0.0s
+
+#28 [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.7s done
+#30 exporting manifest sha256:417cd5c861023fb66942e51578223636cbddaefabb31615177c18d39a28d46b3 done
+#30 exporting config sha256:6dcba23208fcbba5a0ffc464b2ee692227bc854df0349a04d265e72ed3d670a7 done
+#30 exporting attestation manifest sha256:0f02ae795e540ef0e1da8950c38ad201dd32cbaf922d5f584ac199208cc251aa 0.0s done
+#30 exporting manifest list sha256:e1650f520cb8562846c0ac62704bbd1a400c7d4b031f60bcdd831fe0d2cdaa5b done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.7s done
+#30 DONE 2.4s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-21T16-58-10-www.soloshopbox.com-tail--30-tmp-day117-build.log-1.log`](server-runs/2026-05-21T16-58-10-www.soloshopbox.com-tail--30-tmp-day117-build.log-1.log)
