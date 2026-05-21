@@ -167,3 +167,14 @@ STDOUT:
 #15 14.30    Linting and checking validity of types ...
 ```
 Full output: [`server-runs/2026-05-21T16-56-20-www.soloshopbox.com-kill--0-cat-tmp-day117-build.pid-2-dev-n-1.log`](server-runs/2026-05-21T16-56-20-www.soloshopbox.com-kill--0-cat-tmp-day117-build.pid-2-dev-n-1.log)
+
+## 2026-05-21T16:57:00.475Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ffcab0a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 17451ms)
+```
+sleep 15
+kill -0 $(cat /tmp/day117-build.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -80 /tmp/day117-build.log | grep -E "(error|Error|ERROR|Successfully built|✓|✗|DONE)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
