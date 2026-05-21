@@ -852,3 +852,12 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-21T20-28-34-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log`](server-runs/2026-05-21T20-28-34-www.soloshopbox.com-kill--0-cat-tmp-build.pid-2-dev-null-2-d-1.log)
+
+## 2026-05-21T20:29:09.713Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3420baf` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13195ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build2.log 2>&1 & echo $! > /tmp/build2.pid && echo "Started build retry, PID=$(cat /tmp/build2.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
