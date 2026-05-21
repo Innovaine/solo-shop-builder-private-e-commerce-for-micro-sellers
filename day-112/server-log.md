@@ -613,3 +613,17 @@ _Pre-SSH: warehouse pushed to GitHub as commit `e774137` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "from '@/lib/currency'" app/ --include="*.tsx" --include="*.ts" | head -20
 ```
+
+## 2026-05-21T13:50:15.610Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6c4bdf2` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2554ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "formatPrice" app/ --include="*.tsx" | cut -d: -f1 | sort | uniq
+```
+STDOUT:
+```
+app/dashboard/orders/[id]/OrderDetailClient.tsx
+app/dashboard/products/page.tsx
+```
+Full output: [`server-runs/2026-05-21T13-50-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-50-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
