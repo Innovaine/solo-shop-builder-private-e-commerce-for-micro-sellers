@@ -13,7 +13,7 @@ import { test, expect } from '@playwright/test';
 const BASE_URL = 'https://www.soloshopbox.com';
 
 // Helper function for login
-async function loginAsSeller(page, email = 'test@example.com', password = 'Test123!') {
+async function loginAsSeller(page: any, email = 'test@example.com', password = 'Test123!') {
   await page.goto(`${BASE_URL}/auth/login`);
   await page.fill('input[type="email"]', email);
   await page.fill('input[type="password"]', password);

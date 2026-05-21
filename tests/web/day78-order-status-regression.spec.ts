@@ -44,7 +44,7 @@ test.describe('STAB-3: Order status flow regression', () => {
     // Should show some tracking UI or "not found" message
     const pageText = await page.textContent('body');
     expect(pageText).toBeTruthy();
-    expect(pageText.length).toBeGreaterThan(0);
+    expect(pageText!.length).toBeGreaterThan(0);
     
     console.log('✓ Order tracking page accessible');
   });
