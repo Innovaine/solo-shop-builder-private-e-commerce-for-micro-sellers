@@ -400,3 +400,22 @@ Fast-forward
  2 files changed, 108 insertions(+), 5 deletions(-)
 ```
 Full output: [`server-runs/2026-05-21T20-00-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T20-00-24-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T20:02:29.446Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2dc8a37` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 6093ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose build --no-cache > /tmp/build4.log 2>&1 &
+BUILD_PID=$!
+echo "Started build with npm cache clean, PID=$BUILD_PID"
+sleep 3
+ps aux | grep $BUILD_PID | grep -v grep || echo "Process check"
+```
+STDOUT:
+```
+Started build with npm cache clean, PID=2349316
+engineer 2349316  0.3  0.0 2105188 29088 ?       Sl   20:02   0:00 docker compose build --no-cache
+```
+Full output: [`server-runs/2026-05-21T20-02-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T20-02-29-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
