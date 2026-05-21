@@ -127,3 +127,11 @@ STDOUT:
 /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/app/api/orders/route.ts:export async function GET(request: NextRequest) {
 ```
 Full output: [`server-runs/2026-05-21T15-15-25-www.soloshopbox.com-grep-export-async-function-solo-shop-bui-1.log`](server-runs/2026-05-21T15-15-25-www.soloshopbox.com-grep-export-async-function-solo-shop-bui-1.log)
+
+## 2026-05-21T15:15:47.247Z — Zainab ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `363d8b6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2220ms)
+```
+grep -r "router.push\|href=" ~/solo-shop-builder-private-e-commerce-for-micro-sellers/app --include="*.tsx" --include="*.ts" | grep -E '\$\{[^}]*$' | head -10
+```
