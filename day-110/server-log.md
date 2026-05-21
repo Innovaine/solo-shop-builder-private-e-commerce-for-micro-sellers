@@ -424,3 +424,20 @@ postgres-1                                                                   | 2
 postgres-1                                                                   | 2026-05-21 01:00:12.568 UTC [1] LOG:  database system is ready to accept connections
 ```
 Full output: [`server-runs/2026-05-21T01-01-29-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log`](server-runs/2026-05-21T01-01-29-www.soloshopbox.com-docker-ps--a-grep-solo-shop-1.log)
+
+## 2026-05-21T01:01:51.693Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `53ff88b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2193ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose ps
+docker compose logs --tail=30 app 2>&1 || echo "No app logs yet"
+```
+STDOUT:
+```
+NAME                                                                IMAGE                COMMAND                  SERVICE    CREATED              STATUS                        PORTS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   postgres:16-alpine   "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute (healthy)   127.0.0.1:5432->5432/tcp
+time="2026-05-21T01:01:51Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+```
+Full output: [`server-runs/2026-05-21T01-01-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T01-01-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
