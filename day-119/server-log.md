@@ -317,3 +317,22 @@ _Pre-SSH: warehouse pushed to GitHub as commit `dfc96a0` so the server's `git pu
 ps aux | grep "docker compose build" | grep -v grep
 ```
 ERROR: command exited 1
+
+## 2026-05-21T19:56:12.672Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `750dd42` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 5782ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+docker compose build --no-cache > /tmp/build3.log 2>&1 &
+BUILD_PID=$!
+echo "Started build PID=$BUILD_PID"
+sleep 3
+ps aux | grep $BUILD_PID | grep -v grep || echo "Process may have already finished"
+```
+STDOUT:
+```
+Started build PID=2341456
+engineer 2341456  0.6  0.0 2031456 29272 ?       Sl   19:56   0:00 docker compose build --no-cache
+```
+Full output: [`server-runs/2026-05-21T19-56-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T19-56-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
