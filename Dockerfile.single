@@ -2,7 +2,7 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies (OpenSSL for Prisma, Playwright deps for tests)
 RUN apt-get update && apt-get install -y \
     openssl \
     ca-certificates \
@@ -25,50 +25,39 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Prisma globally
-RUN npm install -g prisma@5.14.0
-
-# Configure npm retry behavior
+# Configure npm retry behavior BEFORE copying files
 RUN npm config set fetch-retries 5 && \
     npm config set fetch-retry-mintimeout 20000 && \
     npm config set fetch-retry-maxtimeout 120000
 
-# Copy package files
+# Copy package.json
 COPY package.json ./
 
-# Install dependencies
-RUN npm cache clean --force && npm install
+# CRITICAL: Clean install without lockfile to avoid EINTEGRITY from stale hashes
+# Using --no-save to prevent creating a stub lockfile
+RUN npm install --no-save --loglevel=info
 
 # Copy source code
 COPY . .
 
-# Generate Prisma client
-RUN npx prisma generate
-
 # Ensure public directory exists
 RUN mkdir -p public
 
-# Workaround for Docker OverlayFS corruption: reinstall graceful-fs to ensure package.json is valid
-RUN npm install --no-save graceful-fs@latest && \
-    node -e "try { JSON.parse(require('fs').readFileSync('node_modules/graceful-fs/package.json', 'utf8')); console.log('[WORKAROUND] graceful-fs package.json verified OK'); } catch(e) { console.error('[WORKAROUND] graceful-fs still corrupt:', e.message); process.exit(1); }"
+# Generate Prisma client
+RUN npx prisma generate
 
-# Build Next.js app
+# Build Next.js (output: 'standalone' mode in next.config.js)
 RUN npm run build
 
-# Create nextjs user
-RUN groupadd --system --gid 1001 nodejs && \
-    useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+# Create test-results directory
+RUN mkdir -p test-results
 
-# Set up directories with correct permissions
-RUN mkdir -p .next test-results && \
-    chown -R nextjs:nodejs .next test-results
-
-USER nextjs
-
+# Expose port
 EXPOSE 3000
 
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["node", "server.js"]
+# Run migrations and start
+CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
