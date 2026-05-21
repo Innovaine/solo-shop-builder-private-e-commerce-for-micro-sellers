@@ -762,3 +762,20 @@ STDOUT:
   "drift": [
 ```
 Full output: [`server-runs/2026-05-21T19-08-57-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-08-57-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:09:20.746Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `85155b3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2616ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && standards-scan . --json 2>&1 | grep -E '"summary"|"duplicateModules"|"moduleScopeEnv"' | head -30
+```
+STDOUT:
+```
+  "summary": {
+    "duplicateModules": 0,
+    "moduleScopeEnv": 0,
+  "duplicateModules": [],
+  "moduleScopeEnv": []
+```
+Full output: [`server-runs/2026-05-21T19-09-20-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-09-20-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
