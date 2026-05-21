@@ -18,11 +18,16 @@ FROM base AS builder
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
+# Configure npm retry behavior BEFORE install to handle transient registry failures
+RUN npm config set fetch-retries 5 && \
+    npm config set fetch-retry-mintimeout 20000 && \
+    npm config set fetch-retry-maxtimeout 120000
+
 # Copy package.json first for dependency install
 COPY package.json ./
 
-# Install dependencies directly in builder stage (don't copy from deps to avoid corruption)
-RUN npm install
+# Clean npm cache to avoid corrupted cached packages, then install dependencies
+RUN npm cache clean --force && npm install
 
 # Copy source code
 COPY . .
