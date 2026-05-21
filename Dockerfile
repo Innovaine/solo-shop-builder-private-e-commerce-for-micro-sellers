@@ -25,8 +25,16 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY package.json ./
 COPY . .
 
+# Verify graceful-fs package.json integrity before build (diagnose corruption early)
+RUN test -f node_modules/graceful-fs/package.json && \
+    node -e "try { JSON.parse(require('fs').readFileSync('node_modules/graceful-fs/package.json', 'utf8')); console.log('graceful-fs package.json OK'); } catch(e) { console.error('graceful-fs package.json CORRUPTED:', e.message); process.exit(1); }"
+
 # Generate Prisma client
 RUN npx prisma generate
+
+# Verify graceful-fs again after prisma generate
+RUN test -f node_modules/graceful-fs/package.json && \
+    node -e "try { JSON.parse(require('fs').readFileSync('node_modules/graceful-fs/package.json', 'utf8')); console.log('graceful-fs still OK after prisma generate'); } catch(e) { console.error('CORRUPTION AFTER PRISMA GENERATE:', e.message); process.exit(1); }"
 
 # Ensure public directory exists (Next.js may not create it if there are no static assets)
 RUN mkdir -p public
