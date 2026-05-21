@@ -467,3 +467,31 @@ STDOUT:
 drwxrwxr-x 133 reviewer reviewer 4096 May 21 18:58 solo-shop-builder-private-e-commerce-for-micro-sellers
 ```
 Full output: [`server-runs/2026-05-21T19-01-15-www.soloshopbox.com-cd-home-reviewer-ls--la-grep-solo-echo-R-1.log`](server-runs/2026-05-21T19-01-15-www.soloshopbox.com-cd-home-reviewer-ls--la-grep-solo-echo-R-1.log)
+
+## 2026-05-21T19:01:43.485Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bf9047f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3550ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | head -100
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-21T19-01-43-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-01-43-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:02:09.890Z — Vitali ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2559ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && find app src -name "*.ts" -o -name "*.tsx" | wc -l && echo "---" && grep -r "cookies()" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | grep -v "node_modules" | wc -l
+```
+STDOUT:
+```
+90
+---
+1
+```
+Full output: [`server-runs/2026-05-21T19-02-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-02-09-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
