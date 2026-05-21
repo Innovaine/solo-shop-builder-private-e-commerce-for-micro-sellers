@@ -5,8 +5,11 @@ FROM base AS deps
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
+# Clear npm cache to avoid integrity errors
+RUN npm cache clean --force
+
 COPY package.json ./
-RUN npm install
+RUN npm install --loglevel=verbose
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -14,10 +17,6 @@ RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-# Fix graceful-fs corruption issue (known Docker+npm bug)
-# Reinstall graceful-fs to ensure package.json is not truncated
-RUN npm install --no-save graceful-fs
 
 # Generate Prisma client
 RUN npx prisma generate

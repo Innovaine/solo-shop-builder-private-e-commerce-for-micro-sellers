@@ -336,3 +336,50 @@ Started build PID=2341456
 engineer 2341456  0.6  0.0 2031456 29272 ?       Sl   19:56   0:00 docker compose build --no-cache
 ```
 Full output: [`server-runs/2026-05-21T19-56-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T19-56-12-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T19:58:13.250Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bf6d7a6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2877ms) _(showing tail — full 6,159B stdout + 0B stderr)_
+```
+ps aux | grep 2341456 | grep -v grep || echo "BUILD_COMPLETE"
+tail -80 /tmp/build3.log
+```
+STDOUT:
+```
+…npm notice To update run: npm install -g npm@11.15.0
+#18 22.20 npm notice
+#18 22.20 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-05-21T19_57_34_476Z-debug-0.log
+#18 ERROR: process "/bin/sh -c npm install --no-save graceful-fs" did not complete successfully: exit code: 1
+------
+ > [builder 5/8] RUN npm install --no-save graceful-fs:
+19.28 npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+22.17 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+22.20 npm error code EINTEGRITY
+22.20 npm error sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ== integrity checksum failed when using sha512: wanted sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ== but got sha512-gCNZco7y5XtjrnQYeDJTiVZmT/ncqCr5RY1/Cf8X2wgLRmyh9ayPAGBNziI4qEE4S6SxCH5omQLVo9lmURaJ/Q==. (3958604 bytes)
+22.20 npm notice
+22.20 npm notice New major version of npm available! 10.8.2 -> 11.15.0
+22.20 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.15.0
+22.20 npm notice To update run: npm install -g npm@11.15.0
+22.20 npm notice
+22.20 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-05-21T19_57_34_476Z-debug-0.log
+------
+Dockerfile:20
+
+--------------------
+
+  18 |     # Fix graceful-fs corruption issue (known Docker+npm bug)
+
+  19 |     # Reinstall graceful-fs to ensure package.json is not truncated
+
+  20 | >>> RUN npm install --no-save graceful-fs
+
+  21 |     
+
+  22 |     # Generate Prisma client
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm install --no-save graceful-fs" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T19-58-13-www.soloshopbox.com-ps-aux-grep-2341456-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T19-58-13-www.soloshopbox.com-ps-aux-grep-2341456-grep--v-grep-echo-BU-1.log)
