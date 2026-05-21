@@ -579,3 +579,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `e9aa08e` so the server's `git pu
 ```
 cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "\.total\.toFixed\|\.price\.toFixed\|\.amount\.toFixed" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | head -5
 ```
+
+## 2026-05-21T19:05:28.364Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ee46d08` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2517ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -name "*.ts" -o -name "*.tsx" | grep -v node_modules | xargs -n1 basename 2>/dev/null | sort | uniq -d | grep -v -E "^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware)\." | head -10
+```
