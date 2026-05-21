@@ -254,3 +254,11 @@ time="2026-05-21T00:24:10Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-21T00-24-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-24-11-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:24:44.985Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f8d23a7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2425ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail=50 | grep -E "migrate|ProductImage|started" | head -30
+```
