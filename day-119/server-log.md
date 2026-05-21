@@ -308,3 +308,12 @@ echo $! > /tmp/build2.pid
 echo "Started rebuild with graceful-fs fix, PID=$(cat /tmp/build2.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T19:54:08.489Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dfc96a0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 2647ms)
+```
+ps aux | grep "docker compose build" | grep -v grep
+```
+ERROR: command exited 1
