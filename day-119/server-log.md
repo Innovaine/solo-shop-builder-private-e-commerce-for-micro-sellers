@@ -81,3 +81,18 @@ DONE
 time="2026-05-21T19:42:23Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
 ```
 Full output: [`server-runs/2026-05-21T19-42-47-www.soloshopbox.com-kill--0-cat-tmp-compose-down.pid-2-dev-n-1.log`](server-runs/2026-05-21T19-42-47-www.soloshopbox.com-kill--0-cat-tmp-compose-down.pid-2-dev-n-1.log)
+
+## 2026-05-21T19:43:12.487Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a81e4f3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2413ms)
+```
+nohup docker system prune -af --volumes > /tmp/docker-prune.log 2>&1 &
+echo $! > /tmp/docker-prune.pid
+echo "Started docker prune, PID=$(cat /tmp/docker-prune.pid)"
+```
+STDOUT:
+```
+Started docker prune, PID=2325502
+```
+Full output: [`server-runs/2026-05-21T19-43-12-www.soloshopbox.com-nohup-docker-system-prune--af---volumes--1.log`](server-runs/2026-05-21T19-43-12-www.soloshopbox.com-nohup-docker-system-prune--af---volumes--1.log)
