@@ -8,6 +8,7 @@ import { useRouter, useParams } from 'next/navigation'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { getCurrencySymbol, type Currency } from '@/lib/currency'
 
 const CATEGORIES = ['Handmade', 'Vintage', 'Supplies', 'Other']
 
@@ -21,6 +22,7 @@ export default function EditProductPage() {
   const [error, setError] = useState('')
   const [uploading, setUploading] = useState(false)
   const [uploadedImageUrl, setUploadedImageUrl] = useState('')
+  const [shopCurrency, setShopCurrency] = useState<Currency>('USD')
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -32,6 +34,15 @@ export default function EditProductPage() {
   useEffect(() => {
     async function fetchProduct() {
       try {
+        // Fetch shop currency first
+        const shopsResponse = await fetch('/api/shops')
+        if (shopsResponse.ok) {
+          const shops = await shopsResponse.json()
+          if (shops.length > 0 && shops[0].currency) {
+            setShopCurrency(shops[0].currency as Currency)
+          }
+        }
+
         const response = await fetch(`/api/products/${productId}`)
         if (!response.ok) {
           throw new Error('Product not found')
@@ -40,7 +51,15 @@ export default function EditProductPage() {
         const product = await response.json()
         setTitle(product.title)
         setDescription(product.description || '')
-        setPrice((product.price / 100).toFixed(2))
+        
+        // Format price based on currency
+        const currency = shopCurrency || 'USD'
+        if (currency === 'KWD') {
+          setPrice((product.price / 1000).toFixed(3))
+        } else {
+          setPrice((product.price / 100).toFixed(2))
+        }
+        
         setCategory(product.category || 'Other')
         setStock(String(product.stock || 0))
         setImageUrl(product.imageUrl || '')
@@ -91,9 +110,12 @@ export default function EditProductPage() {
     setError('')
 
     try {
-      const priceInCents = Math.round(parseFloat(price) * 100)
+      // Convert price to smallest currency unit (cents for USD, fils for KWD)
+      const priceInSmallestUnit = shopCurrency === 'KWD' 
+        ? Math.round(parseFloat(price) * 1000)
+        : Math.round(parseFloat(price) * 100)
 
-      if (isNaN(priceInCents) || priceInCents <= 0) {
+      if (isNaN(priceInSmallestUnit) || priceInSmallestUnit <= 0) {
         throw new Error('Please enter a valid price')
       }
 
@@ -108,7 +130,7 @@ export default function EditProductPage() {
         body: JSON.stringify({
           title,
           description,
-          price: priceInCents,
+          price: priceInSmallestUnit,
           category,
           stock: parseInt(stock, 10),
           imageUrl: finalImageUrl,
@@ -212,19 +234,25 @@ export default function EditProductPage() {
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <label htmlFor="price" className="block text-sm font-semibold text-charcoal mb-2">
-                  Price (USD) <span className="text-rose">*</span>
+                  Price ({shopCurrency}) <span className="text-rose">*</span>
                 </label>
-                <Input
-                  id="price"
-                  type="number"
-                  step="0.01"
-                  min="0.01"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  placeholder="19.99"
-                  required
-                />
-                <p className="text-xs text-slate mt-1">Price in dollars</p>
+                <div className="relative">
+                  <span className="absolute left-3 top-2.5 text-slate">{getCurrencySymbol(shopCurrency)}</span>
+                  <Input
+                    id="price"
+                    type="number"
+                    step={shopCurrency === 'KWD' ? '0.001' : '0.01'}
+                    min={shopCurrency === 'KWD' ? '0.001' : '0.01'}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder={shopCurrency === 'KWD' ? '19.500' : '19.99'}
+                    className="pl-7"
+                    required
+                  />
+                </div>
+                <p className="text-xs text-slate mt-1">
+                  Price in {shopCurrency === 'KWD' ? 'dinars' : 'dollars'}
+                </p>
               </div>
 
               <div>

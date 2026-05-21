@@ -27,8 +27,8 @@ export default async function ProductDetailPage({
     },
   })
 
-  // Verify product exists and belongs to the correct shop
-  if (!product || product.shop.slug !== slug) {
+  // Verify product exists, belongs to the correct shop, and is published
+  if (!product || product.shop.slug !== slug || product.status !== 'PUBLISHED') {
     notFound()
   }
 

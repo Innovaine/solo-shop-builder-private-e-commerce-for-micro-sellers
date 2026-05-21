@@ -195,7 +195,7 @@ export default function OrdersPage() {
           </button>
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold text-charcoal">Orders</h1>
-            <Button onClick={() => window.location.href = '/dashboard/orders?export=csv'}>
+            <Button onClick={() => window.location.href = '/api/orders/export'}>
               📥 Export as CSV
             </Button>
           </div>

@@ -3,9 +3,10 @@
 // FR-9: Product creation UI
 // Seller creates a new product with title, description, price, category, stock
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { PRODUCT_CATEGORIES, parsePriceToCents } from '@/lib/product'
+import { getCurrencySymbol, type Currency } from '@/lib/currency'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { FormField } from '@/components/ui/FormField'
@@ -22,6 +23,25 @@ export default function NewProductPage() {
   const [error, setError] = useState('')
   const [uploading, setUploading] = useState(false)
   const [uploadedImageUrl, setUploadedImageUrl] = useState('')
+  const [shopCurrency, setShopCurrency] = useState<Currency>('USD')
+
+  // Fetch shop currency on mount
+  useEffect(() => {
+    async function fetchShopCurrency() {
+      try {
+        const response = await fetch('/api/shops')
+        if (response.ok) {
+          const shops = await response.json()
+          if (shops.length > 0 && shops[0].currency) {
+            setShopCurrency(shops[0].currency as Currency)
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch shop currency:', err)
+      }
+    }
+    fetchShopCurrency()
+  }, [])
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -167,22 +187,274 @@ export default function NewProductPage() {
           {/* Price */}
           <div className="mb-6">
             <label htmlFor="price" className="block text-sm font-medium text-charcoal mb-2">
-              Price (USD) *
+              Price ({shopCurrency}) *
             </label>
             <div className="relative">
-              <span className="absolute left-4 top-3 text-slate">$</span>
+              <span className="absolute left-4 top-3 text-slate">{getCurrencySymbol(shopCurrency)}</span>
               <input
                 type="text"
                 id="price"
                 value={priceDisplay}
                 onChange={(e) => setPriceDisplay(e.target.value)}
-                placeholder="45.00"
+                placeholder={shopCurrency === 'KWD' ? '45.000' : '45.00'}
                 required
-                pattern="^\d+\.?\d{0,2}$"
+                pattern={shopCurrency === 'KWD' ? '^\\d+\\.?\\d{0,3}
+
+          {/* Category */}
+          <div className="mb-6">
+            <label htmlFor="category" className="block text-sm font-medium text-charcoal mb-2">
+              Category
+            </label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
+            >
+              <option value="">— Select Category —</option>
+              {PRODUCT_CATEGORIES.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Image Upload */}
+          <div className="mb-6">
+            <label htmlFor="imageUpload" className="block text-sm font-medium text-charcoal mb-2">
+              Product Image
+            </label>
+            
+            {/* Upload button */}
+            <div className="mb-3">
+              <input
+                type="file"
+                id="imageUpload"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                onChange={handleImageUpload}
+                disabled={uploading}
+                className="hidden"
+              />
+              <label
+                htmlFor="imageUpload"
+                className={`inline-flex items-center px-4 py-2 bg-whisper text-charcoal rounded-md cursor-pointer hover:bg-slate/10 transition ${
+                  uploading ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {uploading ? 'Uploading...' : 'Upload Image'}
+              </label>
+              <p className="text-xs text-slate mt-2">
+                Max 5MB • JPEG, PNG, WebP, or GIF
+              </p>
+            </div>
+
+            {/* Image preview */}
+            {uploadedImageUrl && (
+              <div className="mb-3">
+                <img
+                  src={uploadedImageUrl}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover rounded-md border border-whisper"
+                />
+              </div>
+            )}
+
+            {/* Manual URL input (fallback) */}
+            <div className="mt-4">
+              <label htmlFor="imageUrl" className="block text-xs font-medium text-slate mb-2">
+                Or paste image URL
+              </label>
+              <input
+                type="url"
+                id="imageUrl"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="https://example.com/image.jpg"
+                maxLength={500}
+                disabled={uploading}
+                className="w-full px-4 py-2 text-sm border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-2 focus:ring-slate-blue/10 transition"
+              />
+            </div>
+          </div>
+
+          {/* Stock */}
+          <div className="mb-8">
+            <label htmlFor="stock" className="block text-sm font-medium text-charcoal mb-2">
+              Stock Quantity *
+            </label>
+            <input
+              type="number"
+              id="stock"
+              value={stock}
+              onChange={(e) => setStock(e.target.value)}
+              min="0"
+              required
+              className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
+            />
+            <p className="text-xs text-slate mt-1">How many units do you have available?</p>
+          </div>
+
+          <div className="flex gap-3">
+            <Button
+              type="button"
+              onClick={() => router.back()}
+              variant="secondary"
+              size="lg"
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              loading={loading}
+              variant="primary"
+              size="lg"
+              className="flex-1"
+            >
+              Create Product
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </div>
+  )
+}
+ : '^\\d+\\.?\\d{0,2}
+
+          {/* Category */}
+          <div className="mb-6">
+            <label htmlFor="category" className="block text-sm font-medium text-charcoal mb-2">
+              Category
+            </label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
+            >
+              <option value="">— Select Category —</option>
+              {PRODUCT_CATEGORIES.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Image Upload */}
+          <div className="mb-6">
+            <label htmlFor="imageUpload" className="block text-sm font-medium text-charcoal mb-2">
+              Product Image
+            </label>
+            
+            {/* Upload button */}
+            <div className="mb-3">
+              <input
+                type="file"
+                id="imageUpload"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                onChange={handleImageUpload}
+                disabled={uploading}
+                className="hidden"
+              />
+              <label
+                htmlFor="imageUpload"
+                className={`inline-flex items-center px-4 py-2 bg-whisper text-charcoal rounded-md cursor-pointer hover:bg-slate/10 transition ${
+                  uploading ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {uploading ? 'Uploading...' : 'Upload Image'}
+              </label>
+              <p className="text-xs text-slate mt-2">
+                Max 5MB • JPEG, PNG, WebP, or GIF
+              </p>
+            </div>
+
+            {/* Image preview */}
+            {uploadedImageUrl && (
+              <div className="mb-3">
+                <img
+                  src={uploadedImageUrl}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover rounded-md border border-whisper"
+                />
+              </div>
+            )}
+
+            {/* Manual URL input (fallback) */}
+            <div className="mt-4">
+              <label htmlFor="imageUrl" className="block text-xs font-medium text-slate mb-2">
+                Or paste image URL
+              </label>
+              <input
+                type="url"
+                id="imageUrl"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="https://example.com/image.jpg"
+                maxLength={500}
+                disabled={uploading}
+                className="w-full px-4 py-2 text-sm border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-2 focus:ring-slate-blue/10 transition"
+              />
+            </div>
+          </div>
+
+          {/* Stock */}
+          <div className="mb-8">
+            <label htmlFor="stock" className="block text-sm font-medium text-charcoal mb-2">
+              Stock Quantity *
+            </label>
+            <input
+              type="number"
+              id="stock"
+              value={stock}
+              onChange={(e) => setStock(e.target.value)}
+              min="0"
+              required
+              className="w-full px-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
+            />
+            <p className="text-xs text-slate mt-1">How many units do you have available?</p>
+          </div>
+
+          <div className="flex gap-3">
+            <Button
+              type="button"
+              onClick={() => router.back()}
+              variant="secondary"
+              size="lg"
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              loading={loading}
+              variant="primary"
+              size="lg"
+              className="flex-1"
+            >
+              Create Product
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </div>
+  )
+}
+}
                 className="w-full pl-8 pr-4 py-3 text-base border border-whisper rounded-md focus:outline-none focus:border-slate-blue focus:ring-4 focus:ring-slate-blue/10 transition"
               />
             </div>
-            <p className="text-xs text-slate mt-1">Enter price in dollars (e.g., 45.00)</p>
+            <p className="text-xs text-slate mt-1">
+              Enter price in {shopCurrency === 'KWD' ? 'dinars (e.g., 45.000)' : 'dollars (e.g., 45.00)'}
+            </p>
           </div>
 
           {/* Category */}

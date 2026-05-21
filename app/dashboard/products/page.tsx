@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { formatPrice } from '@/lib/product'
+import { formatPrice, type Currency } from '@/lib/currency'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { EmptyState } from '@/components/ui/EmptyState'
@@ -17,6 +17,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [shopId, setShopId] = useState('')
+  const [shopCurrency, setShopCurrency] = useState<Currency>('USD')
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null)
   const [statusUpdating, setStatusUpdating] = useState<string | null>(null)
   const [selectedProducts, setSelectedProducts] = useState<Set<string>>(new Set())
@@ -62,6 +63,7 @@ export default function ProductsPage() {
 
         const shop = shops[0]
         setShopId(shop.id)
+        setShopCurrency((shop.currency || 'USD') as Currency)
 
         // Then fetch products for this shop
         const productsResponse = await fetch(`/api/products?shopId=${shop.id}`)
@@ -242,7 +244,7 @@ export default function ProductsPage() {
                         {product.category || '—'}
                       </td>
                       <td className="py-4 px-4 text-sm font-semibold text-charcoal">
-                        {formatPrice(product.price)}
+                        {formatPrice(product.price, shopCurrency)}
                       </td>
                       <td className="py-4 px-4 text-sm text-slate">{product.stock}</td>
                       <td className="py-4 px-4">

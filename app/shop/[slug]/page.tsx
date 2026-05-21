@@ -23,9 +23,10 @@ export default async function ShopPage({
     where: { slug: params.slug },
     include: {
       products: {
-        where: searchParams.category 
-          ? { category: searchParams.category }
-          : {},
+        where: {
+          status: 'PUBLISHED', // Only show published products to customers
+          ...(searchParams.category && { category: searchParams.category }),
+        },
         orderBy: searchParams.sort === 'price-low'
           ? { price: 'asc' }
           : searchParams.sort === 'price-high'
@@ -44,9 +45,12 @@ export default async function ShopPage({
   // Check if shop is inactive
   const isShopActive = shop.status === 'ACTIVE'
 
-  // Get unique categories for filter
+  // Get unique categories for filter (only from published products)
   const allProducts = await prisma.product.findMany({
-    where: { shopId: shop.id },
+    where: { 
+      shopId: shop.id,
+      status: 'PUBLISHED',
+    },
     select: { category: true },
   })
   
