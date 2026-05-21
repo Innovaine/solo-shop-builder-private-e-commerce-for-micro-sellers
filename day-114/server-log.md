@@ -633,3 +633,12 @@ app/dashboard/products/new/page.tsx(581,3): error TS1109: Expression expected.
 app/dashboard/products/new/page.tsx(582,1): error TS1128: Declaration or statement expected.
 ```
 Full output: [`server-runs/2026-05-21T15-35-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-35-08-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T15:35:57.310Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8ea165f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 127, 2483ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ast-grep --version
+```
+ERROR: command exited 127
