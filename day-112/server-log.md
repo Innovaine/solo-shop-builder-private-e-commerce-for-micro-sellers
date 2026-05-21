@@ -756,3 +756,44 @@ solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1 | Up 34 minute
 App is UP
 ```
 Full output: [`server-runs/2026-05-21T13-54-42-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log`](server-runs/2026-05-21T13-54-42-www.soloshopbox.com-docker-ps---filter-name-solo-shop---form-1.log)
+
+## 2026-05-21T13:55:05.564Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `fc5aefd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2672ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app 2>&1 | tail -100 | head -50 && echo "..." && echo "=== CHECKING LAST 10 LINES ===" && docker compose logs app 2>&1 | tail -10
+```
+STDOUT:
+```
+time="2026-05-21T13:55:05Z" level=warning msg="/home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  | Environment variables loaded from .env
+app-1  | Prisma schema loaded from prisma/schema.prisma
+app-1  | Datasource "db": PostgreSQL database "soloshop", schema "public" at "postgres:5432"
+app-1  | 
+app-1  | 11 migrations found in prisma/migrations
+app-1  | 
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 65ms
+app-1  | {"requestId":"bSNOSIRGhRJOvPfP","method":"GET","path":"/api/health","responseTime":"4ms","timestamp":"2026-05-21T13:48:27.900Z","userAgent":"curl/8.5.0"}
+app-1  | {"requestId":"5uujwu25RaRiU0t6","method":"GET","path":"/api/health","responseTime":"1ms","timestamp":"2026-05-21T13:54:42.735Z","userAgent":"curl/8.5.0"}
+...
+=== CHECKING LAST 10 LINES ===
+app-1  | 
+app-1  | No pending migrations to apply.
+app-1  |   ▲ Next.js 14.2.3
+app-1  |   - Local:        http://localhost:3000
+app-1  |   - Network:      http://0.0.0.0:3000
+app-1  | 
+app-1  |  ✓ Starting...
+app-1  |  ✓ Ready in 65ms
+app-1  | {"requestId":"bSNOSIRGhRJOvPfP","method":"GET","path":"/api/health","responseTime":"4ms","timestamp":"2026-05-21T13:48:27.900Z","userAgent":"curl/8.5.0"}
+app-1  | {"requestId":"5uujwu25RaRiU0t6","method":"GET","path":"/api/health","responseTime":"1ms","timestamp":"2026-05-21T13:54:42.735Z","userAgent":"curl/8.5.0"}
+```
+Full output: [`server-runs/2026-05-21T13-55-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-55-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
