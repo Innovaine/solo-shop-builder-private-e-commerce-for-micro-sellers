@@ -66,3 +66,18 @@ STDOUT:
 Started docker compose down, PID=2325350
 ```
 Full output: [`server-runs/2026-05-21T19-42-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T19-42-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T19:42:47.325Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5565ad6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2467ms)
+```
+kill -0 $(cat /tmp/compose-down.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -30 /tmp/compose-down.log
+```
+STDOUT:
+```
+DONE
+time="2026-05-21T19:42:23Z" level=warning msg="/home/engineer/solo-shop-builder-private-e-commerce-for-micro-sellers/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+```
+Full output: [`server-runs/2026-05-21T19-42-47-www.soloshopbox.com-kill--0-cat-tmp-compose-down.pid-2-dev-n-1.log`](server-runs/2026-05-21T19-42-47-www.soloshopbox.com-kill--0-cat-tmp-compose-down.pid-2-dev-n-1.log)
