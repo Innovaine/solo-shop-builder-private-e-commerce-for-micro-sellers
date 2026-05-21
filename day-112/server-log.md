@@ -797,3 +797,98 @@ app-1  | {"requestId":"bSNOSIRGhRJOvPfP","method":"GET","path":"/api/health","re
 app-1  | {"requestId":"5uujwu25RaRiU0t6","method":"GET","path":"/api/health","responseTime":"1ms","timestamp":"2026-05-21T13:54:42.735Z","userAgent":"curl/8.5.0"}
 ```
 Full output: [`server-runs/2026-05-21T13-55-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-55-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:56:03.081Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `043abdd` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2908ms) _(showing tail — full 3,589B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && which route-validator || echo "route-validator not found, trying /opt/qadar-runtime/bin/" && /opt/qadar-runtime/bin/route-validator . --json 2>&1 | head -150 || echo "Tool installation: file a task for owner"
+```
+STDOUT:
+```
+…    {
+      "route": "/api/checkout/myfatoorah",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/route.ts"
+    },
+    {
+      "route": "/api/checkout",
+      "kind": "api",
+      "file": "app/api/checkout/route.ts"
+    },
+    {
+      "route": "/api/health",
+      "kind": "api",
+      "file": "app/api/health/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/history",
+      "kind": "api",
+      "file": "app/api/orders/[id]/history/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/refund",
+      "kind": "api",
+      "file": "app/api/orders/[id]/refund/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]",
+      "kind": "api",
+      "file": "app/api/orders/[id]/route.ts"
+    },
+    {
+      "route": "/api/orders/export",
+      "kind": "api",
+      "file": "app/api/orders/export/route.ts"
+    },
+    {
+      "route": "/api/orders",
+      "kind": "api",
+      "file": "app/api/orders/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/images",
+      "kind": "api",
+      "file": "app/api/products/[id]/images/route.ts"
+    },
+    {
+      "route": "/api/products/[id]",
+      "kind": "api",
+      "file": "app/api/products/[id]/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/status",
+      "kind": "api",
+      "file": "app/api/products/[id]/status/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants/[variantId]",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/[variantId]/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/route.ts"
+    },
+    {
+      "route": "/api/products/bulk-status",
+      "kind": "api",
+      "file": "app/api/products/bulk-status/route.ts"
+    },
+    {
+      "route": "/api/products/export",
+      "kind": "api",
+      "file": "app/api/products/export/route.ts"
+    },
+    {
+      "route": "/api/products/import",
+      "kind": "api",
+      "file": "app/api/products/import/route.ts"
+    },
+    {
+      "route": "/api/products",
+      "kind": "api",
+```
+Full output: [`server-runs/2026-05-21T13-56-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-56-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
