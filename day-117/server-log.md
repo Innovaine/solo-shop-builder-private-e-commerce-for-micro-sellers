@@ -386,3 +386,45 @@ _Pre-SSH: warehouse pushed to GitHub as commit `314349c` so the server's `git pu
 tail -100 /tmp/day117-build.log | grep -E "(Successfully|ERROR|error|failed|Build failed)"
 ```
 ERROR: command exited 1
+
+## 2026-05-21T17:12:18.135Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f7383a0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2366ms)
+```
+tail -30 /tmp/day117-build.log
+```
+STDOUT:
+```
+#28 DONE 0.1s
+
+#29 [runner 14/14] COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+#29 DONE 0.0s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 1.6s done
+#30 exporting manifest sha256:f8e7dbf9f16b87b06362afdd499bc009e41ccb93e7ed2a244778642c043a7deb 0.1s done
+#30 exporting config sha256:57811094ba0a4d5f303dde3722318da583ecfe50a4eb65979d0cbd0a8e203032 done
+#30 exporting attestation manifest sha256:7377d901804764d6e0b94c3e59928873602d3c6c9922d01c9026b16f65f37507 0.0s done
+#30 exporting manifest list sha256:cad7c4d9a587d5dd3d5c6ee6a940e58388567e6b6e2b57ff0144f2e3e3c01bf3 0.0s done
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#30 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.8s done
+#30 DONE 2.5s
+
+#31 resolving provenance for metadata file
+#31 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built 
+st
+#37 naming to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest done
+#37 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest
+#37 unpacking to docker.io/library/solo-shop-builder-private-e-commerce-for-micro-sellers-app:latest 0.8s done
+#37 DONE 2.5s
+
+#38 resolving provenance for metadata file
+#38 DONE 0.0s
+ Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
+```
+Full output: [`server-runs/2026-05-21T17-12-18-www.soloshopbox.com-tail--30-tmp-day117-build.log-1.log`](server-runs/2026-05-21T17-12-18-www.soloshopbox.com-tail--30-tmp-day117-build.log-1.log)
