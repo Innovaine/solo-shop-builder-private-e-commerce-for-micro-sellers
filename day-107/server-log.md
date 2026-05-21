@@ -905,3 +905,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `14bd35d` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE "^(const|let|var) .* = process\.env" app/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -30
 ```
+
+## 2026-05-21T00:08:01.229Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ba8d60e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2547ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -type f \( -name '*.ts' -o -name '*.tsx' \) -not -path './node_modules/*' -not -path './.next/*' -not -path './dist/*' -not -path './build/*' 2>/dev/null | xargs -n1 basename | sort | uniq -d | grep -vE '^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware|instrumentation)\.(ts|tsx)$'
+```
+ERROR: command exited 1
