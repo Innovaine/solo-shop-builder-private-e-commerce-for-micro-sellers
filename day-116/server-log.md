@@ -215,3 +215,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `e182105` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && find . -name '*.ts' -o -name '*.tsx' | grep -vE 'node_modules|.next|dist|build' | xargs -n1 basename 2>/dev/null | grep -vE '^(page|route|layout|loading|error|not-found|template|default|global-error|index|middleware|instrumentation)\.(ts|tsx)$' | sort | uniq -d
 ```
+
+## 2026-05-21T16:46:58.670Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b30c4c6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2331ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "cookies()" app/api/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -v 'src/lib/auth.ts' | head -10
+```
