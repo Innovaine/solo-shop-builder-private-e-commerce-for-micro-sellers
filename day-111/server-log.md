@@ -140,3 +140,20 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-21T12-52-29-www.soloshopbox.com-kill--0-cat-tmp-build-day111.pid-2-dev-n-1.log`](server-runs/2026-05-21T12-52-29-www.soloshopbox.com-kill--0-cat-tmp-build-day111.pid-2-dev-n-1.log)
+
+## 2026-05-21T12:53:06.257Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d6fe3e0` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2534ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "from '@/lib" app/ | head -5
+```
+STDOUT:
+```
+app/dashboard/products/new/page.tsx:import { PRODUCT_CATEGORIES, parsePriceToCents } from '@/lib/product'
+app/dashboard/products/page.tsx:import { formatPrice } from '@/lib/product'
+app/dashboard/page.tsx:import { getSession } from '@/lib/auth'
+app/dashboard/page.tsx:import { prisma } from '@/lib/db'
+app/dashboard/orders/[id]/page.tsx:import { prisma } from '@/lib/db'
+```
+Full output: [`server-runs/2026-05-21T12-53-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T12-53-06-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
