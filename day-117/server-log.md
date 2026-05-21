@@ -1718,3 +1718,50 @@ Test 1: Homepage
 HTTP/2 200
 ```
 Full output: [`server-runs/2026-05-21T17-29-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-29-35-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:30:00.374Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `be75b0c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2402ms)
+```
+kill -0 $(cat /tmp/npm-install.pid) 2>/dev/null && echo "RUNNING" || echo "DONE"
+```
+STDOUT:
+```
+DONE
+```
+Full output: [`server-runs/2026-05-21T17-30-00-www.soloshopbox.com-kill--0-cat-tmp-npm-install.pid-2-dev-nu-1.log`](server-runs/2026-05-21T17-30-00-www.soloshopbox.com-kill--0-cat-tmp-npm-install.pid-2-dev-nu-1.log)
+
+## 2026-05-21T17:30:22.549Z — Mehrdad ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3578ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && tail -20 /tmp/npm-install.log && echo "---" && npx tsc --noEmit 2>&1 | head -50
+```
+STDOUT:
+```
+npm error   --dry-run
+npm error     Indicates that you don't want npm to make any changes and that it should
+npm error
+npm error   -w|--workspace
+npm error     Enable running a command in the context of the configured workspaces of the
+npm error
+npm error   --workspaces
+npm error     Set to true to run the command in the context of **all** configured
+npm error
+npm error   --include-workspace-root
+npm error     Include the workspace root when workspaces are enabled for a command.
+npm error
+npm error   --install-links
+npm error     When set file: protocol dependencies will be packed and installed as
+npm error
+npm error
+npm error aliases: clean-install, ic, install-clean, isntall-clean
+npm error
+npm error Run "npm help ci" for more info
+npm error A complete log of this run can be found in: /home/engineer/.npm/_logs/2026-05-21T17_18_56_637Z-debug-0.log
+---
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-21T17-30-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-30-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
