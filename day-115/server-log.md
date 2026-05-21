@@ -152,3 +152,12 @@ STDOUT:
 Started compose up, PID=2282243
 ```
 Full output: [`server-runs/2026-05-21T15-49-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-49-15-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T15:49:59.400Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `92c3677` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 8299ms)
+```
+sleep 5 && docker compose ps
+```
+ERROR: command exited 1
