@@ -550,3 +550,12 @@ error TS2688: Cannot find type definition file for 'node'.
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-21T17-16-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-16-57-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:17:33.817Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ba22352` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 14389ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && npm install && npx tsc --noEmit
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
