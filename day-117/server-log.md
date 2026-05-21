@@ -377,3 +377,12 @@ STDOUT:
 DONE
 ```
 Full output: [`server-runs/2026-05-21T17-11-28-www.soloshopbox.com-if--f-tmp-day117-build.pid-then-kill--0--1.log`](server-runs/2026-05-21T17-11-28-www.soloshopbox.com-if--f-tmp-day117-build.pid-then-kill--0--1.log)
+
+## 2026-05-21T17:11:51.611Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `314349c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 2263ms)
+```
+tail -100 /tmp/day117-build.log | grep -E "(Successfully|ERROR|error|failed|Build failed)"
+```
+ERROR: command exited 1
