@@ -42,3 +42,14 @@ Fast-forward
  create mode 100644 test-results/day-114/report.md
 ```
 Full output: [`server-runs/2026-05-21T15-46-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-46-10-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T15:46:45.046Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4c7c579` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12792ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build > /tmp/build.log 2>&1 &
+echo $! > /tmp/build.pid
+echo "Started build, PID=$(cat /tmp/build.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
