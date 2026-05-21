@@ -316,3 +316,12 @@ Full output: [`server-runs/2026-05-21T12-59-01-www.soloshopbox.com-cd-solo-shop-
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1 | grep -A 5 "currency" | head -20
 ```
+
+## 2026-05-21T13:08:00.687Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3e7a2c8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2272ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la src/lib/ | grep currency
+```
+ERROR: command exited 1
