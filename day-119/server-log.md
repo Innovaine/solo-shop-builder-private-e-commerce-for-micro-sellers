@@ -122,3 +122,17 @@ echo $! > /tmp/build.pid
 echo "Started build without cache, PID=$(cat /tmp/build.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T19:44:35.232Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3fb676d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2470ms)
+```
+ps aux | grep "docker compose build" | grep -v grep
+```
+STDOUT:
+```
+engineer 2325638  0.0  0.0   7740  2064 ?        S    19:44   0:00 bash -c cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build --no-cache > /tmp/build.log 2>&1 & echo $! > /tmp/build.pid echo "Started build without cache, PID=$(cat /tmp/build.pid)"; printf "__QADAR_EXIT__%d" $?
+engineer 2325639  0.0  0.0 2031704 29064 ?       Sl   19:44   0:00 docker compose build --no-cache
+```
+Full output: [`server-runs/2026-05-21T19-44-35-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log`](server-runs/2026-05-21T19-44-35-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log)
