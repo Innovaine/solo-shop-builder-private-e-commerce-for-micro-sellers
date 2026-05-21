@@ -1341,3 +1341,17 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-21T14-48-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-48-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T14:49:52.022Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `614938a` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3276ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && which schema-sync-check || echo "Checking /opt/qadar-runtime..." && ls /opt/qadar-runtime/bin/schema-sync-check 2>/dev/null || echo "Not installed"
+```
+STDOUT:
+```
+/usr/local/bin/schema-sync-check
+/opt/qadar-runtime/bin/schema-sync-check
+```
+Full output: [`server-runs/2026-05-21T14-49-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-49-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
