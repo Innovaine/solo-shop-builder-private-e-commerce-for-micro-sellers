@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — KWD Currency Display — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .header h1 { font-size: 28px; font-weight: 700; }
+    .header-right { display: flex; gap: 16px; align-items: center; }
+    .currency-selector { border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px 12px; font-size: 14px; background: white; cursor: pointer; }
+    .container { max-width: 1200px; margin: 24px auto; padding: 0 24px; }
+    
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; }
+    
+    .stat-label { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .stat-value { font-size: 36px; font-weight: 700; color: #1F2937; font-family: 'Monaco', 'Courier New', monospace; }
+    .stat-currency { font-size: 16px; color: #64748B; margin-left: 8px; font-weight: 500; }
+    .stat-subtext { font-size: 12px; color: #64748B; margin-top: 12px; }
+    
+    h2 { font-size: 18px; font-weight: 600; margin: 0 0 16px; }
+    
+    .currency-comparison { background: #F0FDF4; border-left: 4px solid #10B981; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
+    .comparison-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 14px; }
+    .comparison-row strong { color: #1F2937; }
+    .comparison-row .usd { color: #3B82F6; }
+    .comparison-row .kwd { color: #10B981; }
+    
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; }
+    th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937; }
+    td { padding: 12px 16px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+    .badge-green { background: #D1FAE5; color: #065F46; }
+    
+    .currency-note { background: #EFF6FF; border-left: 4px solid #0EA5E9; padding: 12px 16px; border-radius: 6px; font-size: 12px; color: #0C4A6E; margin-bottom: 20px; }
+    
+    @media (max-width: 768px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .header-right { flex-direction: column; width: 100%; }
+      .currency-selector { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Seller Dashboard</h1>
+    <div class="header-right">
+      <span style="font-size: 14px; color: #64748B;">Display Currency:</span>
+      <select class="currency-selector">
+        <option value="usd">USD ($)</option>
+        <option value="kwd" selected>KWD (د.ك)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- CURRENCY NOTE -->
+    <div class="currency-note">
+      💡 All amounts below are displayed in <strong>Kuwaiti Dinar (KWD)</strong>. Actual transactions and settlements use the currency you selected at checkout.
+    </div>
+
+    <!-- KEY METRICS: KWD DISPLAY -->
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-label">This Month Revenue</div>
+        <div style="display: flex; align-items: baseline;">
+          <span class="stat-value">د.ك 715</span>
+          <span class="stat-currency">.250</span>
+        </div>
+        <div class="stat-subtext">From 12 orders • ~$2,340 USD</div>
+      </div>
+
+      <div class="card">
+        <div class="stat-label">Your Earnings (after fees)</div>
+        <div style="display: flex; align-items: baseline;">
+          <span class="stat-value">د.ك 682</span>
+          <span class="stat-currency">.480</span>
+        </div>
+        <div class="stat-subtext">Stripe fee: 2.9% + 30¢ per transaction</div>
+      </div>
+
+      <div class="card">
+        <div class="stat-label">Subscription Cost</div>
+        <div style="display: flex; align-items: baseline;">
+          <span class="stat-value">-د.ك 6</span>
+          <span class="stat-currency">.120</span>
+        </div>
+        <div class="stat-subtext">Starter plan ($20/mo)</div>
+      </div>
+    </div>
+
+    <!-- CURRENCY COMPARISON CARD -->
+    <div class="card">
+      <h2>Conversion Reference</h2>
+      <p style="color: #64748B; font-size: 14px; margin-bottom: 20px;">Showing your revenue in both currencies for reference. Actual rates may vary at payment time.</p>
+      
+      <div class="currency-comparison">
+        <div class="comparison-row">
+          <strong>Order #1001</strong>
+          <span><span class="usd">$50</span> = <span class="kwd">د.ك 15.250</span></span>
+        </div>
+        <div class="comparison-row">
+          <strong>Order #1002</strong>
+          <span><span class="usd">$120</span> = <span class="kwd">د.ك 36.720</span></span>
+        </div>
+        <div class="comparison-row">
+          <strong>Order #1003</strong>
+          <span><span class="usd">$87.50</span> = <span class="kwd">د.ك 26.755</span></span>
+        </div>
+        <div style="border-top: 1px solid rgba(16, 185, 129, 0.2); padding-top: 12px; margin-top: 12px;">
+          <div class="comparison-row" style="font-weight: 600;">
+            <strong>Total This Month</strong>
+            <span><span class="usd">$2,340</span> = <span class="kwd">د.ك 715.250</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECENT ORDERS — SHOWING KWD -->
+    <div class="card">
+      <h2>Recent Orders (Displaying in KWD)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Items</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#1005</td>
+            <td>Ali Al-Rashid</td>
+            <td style="font-weight: 600;">د.ك 31.005</td>
+            <td>2 items</td>
+            <td><span class="badge badge-green">Paid</span></td>
+          </tr>
+          <tr>
+            <td>#1004</td>
+            <td>Noor Al-Otaibi</td>
+            <td style="font-weight: 600;">د.ك 45.750</td>
+            <td>3 items</td>
+            <td><span class="badge badge-green">Paid</span></td>
+          </tr>
+          <tr>
+            <td>#1003</td>
+            <td>Zainab Hassan</td>
+            <td style="font-weight: 600;">د.ك 26.755</td>
+            <td>1 item</td>
+            <td><span class="badge badge-green">Shipped</span></td>
+          </tr>
+          <tr>
+            <td>#1002</td>
+            <td>Mohammed Al-Kharji</td>
+            <td style="font-weight: 600;">د.ك 36.720</td>
+            <td>4 items</td>
+            <td><span class="badge badge-green">Shipped</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PRODUCT PRICES — KWD DISPLAY -->
+    <div class="card">
+      <h2>Top Products (Showing in KWD)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Sold</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Premium Leather Bag</strong></td>
+            <td style="font-weight: 600;">د.ك 30.500</td>
+            <td>12</td>
+            <td>8</td>
+            <td style="font-weight: 600; color: #10B981;">د.ك 244</td>
+          </tr>
+          <tr>
+            <td><strong>Silk Scarf Set</strong></td>
+            <td style="font-weight: 600;">د.ك 15.250</td>
+            <td>24</td>
+            <td>6</td>
+            <td style="font-weight: 600; color: #10B981;">د.ك 91.50</td>
+          </tr>
+          <tr>
+            <td><strong>Handmade Bracelet</strong></td>
+            <td style="font-weight: 600;">د.ك 9.150</td>
+            <td>50</td>
+            <td>14</td>
+            <td style="font-weight: 600; color: #10B981;">د.ك 128.10</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BILLING SUMMARY — KWD -->
+    <div class="card">
+      <h2>This Month's Billing Summary</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
+        <div>
+          <div class="stat-label">Gross Revenue</div>
+          <div style="font-size: 24px; font-weight: 700; color: #1F2937; font-family: 'Monaco', 'Courier New', monospace;">د.ك 715.250</div>
+        </div>
+        <div>
+          <div class="stat-label">Stripe Processing Fee</div>
+          <div style="font-size: 24px; font-weight: 700; color: #EF4444; font-family: 'Monaco', 'Courier New', monospace;">-د.ك 32.770</div>
+        </div>
+        <div>
+          <div class="stat-label">Subscription (Starter)</div>
+          <div style="font-size: 24px; font-weight: 700; color: #EF4444; font-family: 'Monaco', 'Courier New', monospace;">-د.ك 6.120</div>
+        </div>
+        <div>
+          <div class="stat-label" style="color: #10B981;">Net Deposit</div>
+          <div style="font-size: 28px; font-weight: 700; color: #10B981; font-family: 'Monaco', 'Courier New', monospace;">د.ك 676.360</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

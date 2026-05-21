@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Dashboard — Back Button Fix — Solo Shop Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif; background: #FAF9F7; color: #1F2937; line-height: 1.6; }
+    
+    .header { background: white; border-bottom: 1px solid #E2E8F0; padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
+    .back-button { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #3B4C63; text-decoration: none; transition: all 0.2s; }
+    .back-button:hover { background: #F9FAFB; border-color: #D1D5DB; }
+    .back-button svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    
+    .header h1 { font-size: 28px; font-weight: 700; flex: 1; }
+    .header-actions { display: flex; gap: 12px; }
+    .btn { border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; font-family: inherit; transition: all 0.2s; }
+    .btn-secondary { background: white; border: 1px solid #E2E8F0; color: #3B4C63; }
+    .btn-secondary:hover { background: #F9FAFB; }
+    .btn-primary { background: #3B82F6; color: white; border: none; }
+    .btn-primary:hover { background: #2563EB; }
+    
+    .container { max-width: 1200px; margin: 24px auto; padding: 0 24px; }
+    
+    .breadcrumb { font-size: 12px; color: #64748B; margin-bottom: 20px; }
+    .breadcrumb a { color: #3B82F6; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .card { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; }
+    .card h3 { font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .card .value { font-size: 28px; font-weight: 700; color: #1F2937; margin-bottom: 8px; }
+    .card .change { font-size: 12px; color: #10B981; }
+    .card .change.negative { color: #EF4444; }
+    
+    .chart-container { background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    .chart-title { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
+    .chart-placeholder { background: linear-gradient(135deg, #F0FDF4 0%, #DBEAFE 100%); border-radius: 6px; height: 300px; display: flex; align-items: center; justify-content: center; color: #64748B; font-style: italic; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; }
+    th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: #1F2937; }
+    td { padding: 12px 16px; border-bottom: 1px solid #F3F4F6; font-size: 14px; }
+    
+    .annotation { background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 12px 16px; border-radius: 4px; margin: 16px 0; font-size: 13px; }
+    .annotation strong { color: #92400E; }
+    
+    @media (max-width: 1024px) {
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .grid-4 { grid-template-columns: 1fr; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .header h1 { margin-bottom: 12px; }
+      .header-actions { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER WITH BACK BUTTON FIX -->
+  <div class="header">
+    <a href="/dashboard" class="back-button">
+      <svg viewBox="0 0 24 24">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>Back to Dashboard</span>
+    </a>
+    <h1>Analytics</h1>
+    <div class="header-actions">
+      <button class="btn btn-secondary">Last 30 Days</button>
+      <button class="btn btn-primary">Export Report</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- BREADCRUMB NAVIGATION -->
+    <div class="breadcrumb">
+      <a href="/dashboard">Dashboard</a> → <span>Analytics</span>
+    </div>
+
+    <!-- KEY METRICS -->
+    <div class="grid-4">
+      <div class="card">
+        <h3>Total Revenue</h3>
+        <div class="value">$12,450</div>
+        <div class="change">↑ 18% vs last month</div>
+      </div>
+      <div class="card">
+        <h3>Total Orders</h3>
+        <div class="value">145</div>
+        <div class="change">↑ 12% vs last month</div>
+      </div>
+      <div class="card">
+        <h3>Avg Order Value</h3>
+        <div class="value">$85.86</div>
+        <div class="change">↑ 5% vs last month</div>
+      </div>
+      <div class="card">
+        <h3>Conversion Rate</h3>
+        <div class="value">3.2%</div>
+        <div class="change">↓ 0.3pp vs last month</div>
+      </div>
+    </div>
+
+    <!-- ANNOTATION: BACK BUTTON CONTEXT -->
+    <div class="annotation">
+      <strong>🔧 Task #322 Fix:</strong> Back button now includes a visual arrow icon, visible label, and smooth hover state. Clicking it returns to the dashboard main page, not the previous browser history — this ensures predictable navigation even if the user jumped directly to analytics from a link.
+    </div>
+
+    <!-- REVENUE TREND CHART -->
+    <div class="chart-container">
+      <div class="chart-title">Revenue Trend (Last 30 Days)</div>
+      <div class="chart-placeholder">
+        [Chart: Line graph showing daily revenue, $200–$800 range, with upward trend]
+      </div>
+    </div>
+
+    <!-- TOP PRODUCTS TABLE -->
+    <div class="chart-container">
+      <div class="chart-title">Top 5 Products by Revenue</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Revenue</th>
+            <th>Units Sold</th>
+            <th>Avg Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Premium Leather Bag</strong></td>
+            <td>$3,840</td>
+            <td>64</td>
+            <td>$60.00</td>
+          </tr>
+          <tr>
+            <td><strong>Silk Scarf Collection</strong></td>
+            <td>$2,280</td>
+            <td>38</td>
+            <td>$60.00</td>
+          </tr>
+          <tr>
+            <td><strong>Handmade Bracelet</strong></td>
+            <td>$1,458</td>
+            <td>159</td>
+            <td>$9.17</td>
+          </tr>
+          <tr>
+            <td><strong>Ceramic Vase Set</strong></td>
+            <td>$1,200</td>
+            <td>15</td>
+            <td>$80.00</td>
+          </tr>
+          <tr>
+            <td><strong>Wooden Coasters (6-pack)</strong></td>
+            <td>$684</td>
+            <td>114</td>
+            <td>$6.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TRAFFIC SOURCE CHART -->
+    <div class="chart-container">
+      <div class="chart-title">Traffic Sources</div>
+      <div class="chart-placeholder">
+        [Chart: Pie chart — Direct 45%, Social Media 28%, Email 18%, Other 9%]
+      </div>
+    </div>
+
+    <!-- CUSTOMER INSIGHTS TABLE -->
+    <div class="chart-container">
+      <div class="chart-title">Customer Insights</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New Customers</strong></td>
+            <td>34</td>
+            <td style="color: #10B981;">↑ 8%</td>
+          </tr>
+          <tr>
+            <td><strong>Returning Customers</strong></td>
+            <td>111</td>
+            <td style="color: #10B981;">↑ 14%</td>
+          </tr>
+          <tr>
+            <td><strong>Avg Customer Lifetime Value</strong></td>
+            <td>$287.50</td>
+            <td style="color: #10B981;">↑ 12%</td>
+          </tr>
+          <tr>
+            <td><strong>Cart Abandonment Rate</strong></td>
+            <td>28%</td>
+            <td style="color: #EF4444;">↑ 3pp</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BACK BUTTON BEHAVIOR NOTE -->
+    <div class="annotation">
+      <strong>UX Note:</strong> The back button at the top of this page now behaves consistently across all dashboard pages. Clicking it always returns to <code>/dashboard</code>, never relies on browser history. This prevents users from getting stuck in confusing navigation loops when bookmarking or sharing direct links.
+    </div>
+  </div>
+</body>
+</html>
