@@ -201,3 +201,11 @@ STDOUT:
 FAIL
 ```
 Full output: [`server-runs/2026-05-21T18-50-09-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log`](server-runs/2026-05-21T18-50-09-www.soloshopbox.com-sleep-5-curl--sf-https-www.soloshopbox.c-1.log)
+
+## 2026-05-21T18:51:18.228Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6e91d17` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2623ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs app --tail 100
+```
