@@ -1,0 +1,70 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    openssl \
+    ca-certificates \
+    libnss3 \
+    libnspr4 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libdbus-1-3 \
+    libxkbcommon0 \
+    libatspi2.0-0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm1 \
+    libpango-1.0-0 \
+    libcairo2 \
+    libasound2 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Prisma globally
+RUN npm install -g prisma@5.14.0
+
+# Configure npm retry behavior
+RUN npm config set fetch-retries 5 && \
+    npm config set fetch-retry-mintimeout 20000 && \
+    npm config set fetch-retry-maxtimeout 120000
+
+# Copy package files
+COPY package.json ./
+
+# Install dependencies
+RUN npm cache clean --force && npm install
+
+# Copy source code
+COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Ensure public directory exists
+RUN mkdir -p public
+
+# Build Next.js app
+RUN npm run build
+
+# Create nextjs user
+RUN groupadd --system --gid 1001 nodejs && \
+    useradd --system --uid 1001 --home-dir /home/nextjs --create-home nextjs
+
+# Set up directories with correct permissions
+RUN mkdir -p .next test-results && \
+    chown -R nextjs:nodejs .next test-results
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]
