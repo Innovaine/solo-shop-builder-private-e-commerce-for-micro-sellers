@@ -580,3 +580,28 @@ date: Thu, 21 May 2026 13:48:51 GMT
 etag: "dkl8vpflxw88h"
 ```
 Full output: [`server-runs/2026-05-21T13-48-51-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log`](server-runs/2026-05-21T13-48-51-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log)
+
+## 2026-05-21T13:49:24.490Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0e90115` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3595ms)
+```
+echo "Test 1: Check dashboard page loads"
+curl -sI https://www.soloshopbox.com/dashboard | head -3
+echo ""
+echo "Test 2: Check billing dashboard page loads"
+curl -sI https://www.soloshopbox.com/dashboard/billing | head -3
+```
+STDOUT:
+```
+Test 1: Check dashboard page loads
+HTTP/2 307 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-type: text/html; charset=utf-8
+
+Test 2: Check billing dashboard page loads
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+```
+Full output: [`server-runs/2026-05-21T13-49-24-www.soloshopbox.com-echo-Test-1-Check-dashboard-page-loads-1.log`](server-runs/2026-05-21T13-49-24-www.soloshopbox.com-echo-Test-1-Check-dashboard-page-loads-1.log)
