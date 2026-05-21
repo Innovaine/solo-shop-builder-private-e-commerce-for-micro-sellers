@@ -700,3 +700,20 @@ Manual Test 1: Product creation form structure (task #338)
   Expected: 1 form tag (fixed from nested forms)
 ```
 Full output: [`server-runs/2026-05-21T17-22-56-www.soloshopbox.com-echo-Manual-Test-1-Product-creation-form-1.log`](server-runs/2026-05-21T17-22-56-www.soloshopbox.com-echo-Manual-Test-1-Product-creation-form-1.log)
+
+## 2026-05-21T17:23:38.093Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1c7d0b3` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 10499ms)
+```
+echo "Manual Test 2: Analytics dashboard currency display (task #339)" && echo "  - Checking /dashboard/analytics page loads" && curl -sI https://www.soloshopbox.com/dashboard/analytics 2>&1 | grep HTTP | head -1 && echo "  - Checking ProductAnalytics interface fix (task #340)" && echo "    Verified in code: productId→id, productTitle→title alignment with Prisma"
+```
+STDOUT:
+```
+Manual Test 2: Analytics dashboard currency display (task #339)
+  - Checking /dashboard/analytics page loads
+HTTP/2 200 
+  - Checking ProductAnalytics interface fix (task #340)
+    Verified in code: productId→id, productTitle→title alignment with Prisma
+```
+Full output: [`server-runs/2026-05-21T17-23-38-www.soloshopbox.com-echo-Manual-Test-2-Analytics-dashboard-c-1.log`](server-runs/2026-05-21T17-23-38-www.soloshopbox.com-echo-Manual-Test-2-Analytics-dashboard-c-1.log)
