@@ -227,3 +227,12 @@ time="2026-05-21T15:54:14Z" level=warning msg="/home/engineer/solo-shop-builder-
  Container solo-shop-builder-private-e-commerce-for-micro-sellers-app-1 Started
 ```
 Full output: [`server-runs/2026-05-21T15-54-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-54-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T15:55:41.789Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `77affb7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (after 3 attempts on this idempotent command), 40115ms)
+```
+sleep 10 && curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "OK" || echo "FAIL"
+```
+ERROR: Connection timed out (after 3 attempts on this idempotent command)
