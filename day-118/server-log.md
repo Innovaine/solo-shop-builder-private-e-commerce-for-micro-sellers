@@ -525,3 +525,20 @@ STDOUT:
 17
 ```
 Full output: [`server-runs/2026-05-21T19-03-07-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-03-07-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:03:37.690Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4badcb1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2593ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "redirect(" app/ --include="*.ts" --include="*.tsx" | head -5
+```
+STDOUT:
+```
+app/dashboard/page.tsx:    redirect('/auth/login')
+app/dashboard/page.tsx:    redirect('/dashboard/create-shop')
+app/dashboard/orders/[id]/page.tsx:    redirect('/auth/login')
+app/dashboard/orders/[id]/page.tsx:    redirect('/dashboard/create-shop')
+app/api/checkout/myfatoorah/callback/route.ts:      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_failed`)
+```
+Full output: [`server-runs/2026-05-21T19-03-37-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-03-37-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
