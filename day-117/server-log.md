@@ -1836,3 +1836,227 @@ _Pre-SSH: warehouse pushed to GitHub as commit `75c97c8` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup npm install > /tmp/npm-install-reviewer.log 2>&1 & echo $! > /tmp/npm-install-reviewer.pid && echo "npm install started, PID=$(cat /tmp/npm-install-reviewer.pid)"
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T17:33:01.231Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0a2463b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3100ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json 2>&1 | head -100
+```
+STDOUT:
+```
+{
+  "summary": {
+    "models": 10,
+    "interfaces": 30,
+    "matched": 4,
+    "drift": 4
+  },
+  "models": {
+    "Seller": [
+      "id",
+      "email",
+      "passwordHash",
+      "passwordResetToken",
+      "passwordResetExpires",
+      "createdAt",
+      "updatedAt",
+      "shops",
+      "tokens"
+    ],
+    "Shop": [
+      "id",
+      "name",
+      "slug",
+      "sellerId",
+      "displayName",
+      "publicDescription",
+      "description",
+      "instagramUrl",
+      "facebookUrl",
+      "twitterUrl",
+      "primaryColor",
+      "accentColor",
+      "logoUrl",
+      "logoImageUrl",
+      "tagline",
+      "emailTemplateBody",
+      "status",
+      "currency",
+      "createdAt",
+      "updatedAt",
+      "seller",
+      "products",
+      "orders"
+    ],
+    "Product": [
+      "id",
+      "shopId",
+      "title",
+      "description",
+      "price",
+      "imageUrl",
+      "category",
+      "stock",
+      "status",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "variants",
+      "images"
+    ],
+    "ProductImage": [
+      "id",
+      "productId",
+      "imageUrl",
+      "displayOrder",
+      "createdAt",
+      "product"
+    ],
+    "ProductVariant": [
+      "id",
+      "productId",
+      "name",
+      "value",
+      "price",
+      "stock",
+      "sku",
+      "createdAt",
+      "updatedAt",
+      "product"
+    ],
+    "AuthToken": [
+      "id",
+      "token",
+      "sellerId",
+      "expiresAt",
+      "used",
+      "createdAt",
+      "seller"
+    ],
+    "Order": [
+      "id",
+      "shopId",
+      "customerEmail",
+      "customerName",
+      "status",
+      "total",
+      "stripePaymentId",
+      "trackingUrl",
+      "trackingId",
+      "metadata",
+```
+Full output: [`server-runs/2026-05-21T17-33-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-33-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:33:23.790Z — Mehrdad ran 1 command(s)
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2814ms) _(showing tail — full 4,934B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json 2>&1 | grep -A 200 '"drift"'
+```
+STDOUT:
+```
+…"file": "components/AnalyticsCards.tsx",
+      "line": 12,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "id",
+        "title",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+        "description",
+        "price",
+        "imageUrl",
+        "category",
+        "stock",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+    {
+      "interface": "ProductAnalytics",
+      "kind": "interface",
+      "file": "dashboard/analytics/page.tsx",
+      "line": 9,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "productId",
+        "productTitle",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+        "description",
+        "price",
+        "imageUrl",
+        "category",
+        "stock",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "productId",
+        "productTitle",
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+    {
+      "interface": "OrderCount",
+      "kind": "interface",
+      "file": "dashboard/orders/page.tsx",
+      "line": 24,
+      "matchedPrismaModel": "Order",
+      "interfaceFields": [
+        "paid",
+        "in_progress",
+        "shipped",
+        "delivered"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "customerEmail",
+        "customerName",
+        "status",
+        "total",
+        "stripePaymentId",
+        "trackingUrl",
+        "trackingId",
+        "metadata",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "items"
+      ],
+      "fieldsNotInPrisma": [
+        "paid",
+        "in_progress",
+        "shipped",
+        "delivered"
+      ]
+    }
+  ]
+}
+```
+Full output: [`server-runs/2026-05-21T17-33-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-33-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
