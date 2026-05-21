@@ -25,25 +25,18 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Configure npm retry behavior BEFORE copying files
-RUN npm config set fetch-retries 5 && \
-    npm config set fetch-retry-mintimeout 20000 && \
-    npm config set fetch-retry-maxtimeout 120000
+# CRITICAL FIX: Copy pre-installed node_modules from host to avoid OverlayFS corruption
+# The host must run `npm install` BEFORE docker build
+COPY node_modules ./node_modules
 
-# Copy package.json
+# Copy package.json and source code
 COPY package.json ./
-
-# CRITICAL: Clean install without lockfile to avoid EINTEGRITY from stale hashes
-# Using --no-save to prevent creating a stub lockfile
-RUN npm install --no-save --loglevel=info
-
-# Copy source code
 COPY . .
 
 # Ensure public directory exists
 RUN mkdir -p public
 
-# Generate Prisma client
+# Generate Prisma client (uses pre-installed node_modules, so no fs writes to graceful-fs)
 RUN npx prisma generate
 
 # Build Next.js (output: 'standalone' mode in next.config.js)
