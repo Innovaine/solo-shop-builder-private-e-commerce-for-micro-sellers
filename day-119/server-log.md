@@ -51,3 +51,18 @@ _Pre-SSH: warehouse pushed to GitHub as commit `c35c404` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose down && docker system prune -af --volumes
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T19:42:23.056Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7d8d3ca` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2884ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose down > /tmp/compose-down.log 2>&1 &
+echo $! > /tmp/compose-down.pid
+echo "Started docker compose down, PID=$(cat /tmp/compose-down.pid)"
+```
+STDOUT:
+```
+Started docker compose down, PID=2325350
+```
+Full output: [`server-runs/2026-05-21T19-42-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T19-42-23-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
