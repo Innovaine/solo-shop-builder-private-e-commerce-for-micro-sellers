@@ -876,3 +876,24 @@ error TS2688: Cannot find type definition file for 'node'.
     Entry point of type library 'node' specified in compilerOptions
 ```
 Full output: [`server-runs/2026-05-21T00-06-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-06-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:06:48.688Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5a664d5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2106ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "^interface\|^type" app/ src/ components/ --include='*.ts' --include='*.tsx' 2>/dev/null | grep -E "Order|Product|Shop|Seller|Invoice" | head -40
+```
+STDOUT:
+```
+app/dashboard/orders/[id]/OrderDetailClient.tsx:12:type OrderWithItems = Order & {
+app/dashboard/orders/[id]/OrderDetailClient.tsx:16:interface OrderDetailClientProps {
+app/dashboard/orders/page.tsx:11:type Order = Omit<PrismaOrder, 'createdAt' | 'updatedAt'> & {
+app/dashboard/orders/page.tsx:23:interface OrderCount {
+app/dashboard/analytics/page.tsx:8:interface ProductAnalytics {
+app/track/[orderId]/page.tsx:11:type OrderWithDetails = Order & {
+app/components/AnalyticsCards.tsx:9:interface ProductAnalytics {
+app/api/analytics/route.ts:9:interface ProductAnalytics {
+app/checkout/success/page.tsx:14:type OrderDetails = Order & {
+```
+Full output: [`server-runs/2026-05-21T00-06-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-06-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
