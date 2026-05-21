@@ -63,7 +63,7 @@ export async function PUT(
     const shop = await prisma.shop.findFirst({
       where: {
         slug,
-        sellerId: seller.id,
+        sellerId: seller.sellerId,
       },
     })
 

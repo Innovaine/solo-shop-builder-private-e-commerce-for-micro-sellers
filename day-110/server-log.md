@@ -185,3 +185,68 @@ STDOUT:
 Started fixed build, PID=2150645
 ```
 Full output: [`server-runs/2026-05-21T00-54-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-54-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:54:36.672Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b84a204` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2279ms) _(showing tail — full 4,256B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/app-build-fixed.pid) 2>/dev/null && echo "BUILD RUNNING" || echo "BUILD DONE"
+tail -100 /tmp/app-build-fixed.log
+```
+STDOUT:
+```
+…ing how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#15 1.701 https://nextjs.org/telemetry
+#15 1.702 
+#15 1.750   ▲ Next.js 14.2.3
+#15 1.750   - Environments: .env
+#15 1.750 
+#15 1.817    Creating an optimized production build ...
+#15 13.97  ✓ Compiled successfully
+#15 13.97    Linting and checking validity of types ...
+#15 20.73 Failed to compile.
+#15 20.73 
+#15 20.73 ./app/api/shops/[slug]/currency/route.ts:66:26
+#15 20.73 Type error: Property 'id' does not exist on type '{ sellerId: string; email: string; }'.
+#15 20.73 
+#15 20.73 [0m [90m 64 |[39m       where[33m:[39m {[0m
+#15 20.73 [0m [90m 65 |[39m         slug[33m,[39m[0m
+#15 20.73 [0m[31m[1m>[22m[39m[90m 66 |[39m         sellerId[33m:[39m seller[33m.[39mid[33m,[39m[0m
+#15 20.73 [0m [90m    |[39m                          [31m[1m^[22m[39m[0m
+#15 20.73 [0m [90m 67 |[39m       }[33m,[39m[0m
+#15 20.73 [0m [90m 68 |[39m     })[0m
+#15 20.73 [0m [90m 69 |[39m[0m
+#15 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+20.73 ./app/api/shops/[slug]/currency/route.ts:66:26
+20.73 Type error: Property 'id' does not exist on type '{ sellerId: string; email: string; }'.
+20.73 
+20.73 [0m [90m 64 |[39m       where[33m:[39m {[0m
+20.73 [0m [90m 65 |[39m         slug[33m,[39m[0m
+20.73 [0m[31m[1m>[22m[39m[90m 66 |[39m         sellerId[33m:[39m seller[33m.[39mid[33m,[39m[0m
+20.73 [0m [90m    |[39m                          [31m[1m^[22m[39m[0m
+20.73 [0m [90m 67 |[39m       }[33m,[39m[0m
+20.73 [0m [90m 68 |[39m     })[0m
+20.73 [0m [90m 69 |[39m[0m
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T00-54-36-www.soloshopbox.com-kill--0-cat-tmp-app-build-fixed.pid-2-de-1.log`](server-runs/2026-05-21T00-54-36-www.soloshopbox.com-kill--0-cat-tmp-app-build-fixed.pid-2-de-1.log)
