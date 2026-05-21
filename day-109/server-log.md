@@ -59,3 +59,17 @@ STDOUT:
  create mode 100644 tests/web/day105-fixes.spec.ts
 ```
 Full output: [`server-runs/2026-05-21T00-35-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-35-21-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:35:45.811Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1b1b415` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2321ms)
+```
+docker ps --format "{{.Names}}\t{{.Status}}" | grep solo-shop
+```
+STDOUT:
+```
+solo-shop-builder-private-e-commerce-for-micro-sellers-app-1	Up 11 minutes
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1	Up 12 minutes (healthy)
+```
+Full output: [`server-runs/2026-05-21T00-35-45-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log`](server-runs/2026-05-21T00-35-45-www.soloshopbox.com-docker-ps---format-.Names-t-.Status-grep-1.log)
