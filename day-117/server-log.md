@@ -559,3 +559,25 @@ _Pre-SSH: warehouse pushed to GitHub as commit `ba22352` so the server's `git pu
 cd solo-shop-builder-private-e-commerce-for-micro-sellers && npm install && npx tsc --noEmit
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T17:18:07.511Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1a3abb7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 1, 3687ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose exec -T app npx tsc --noEmit
+```
+STDOUT:
+```
+
+[41m                                                                               [0m
+[41m[37m                This is not the tsc command you are looking for                [0m
+[41m                                                                               [0m
+
+To get access to the TypeScript compiler, [34mtsc[0m, from the command line either:
+
+- Use [1mnpm install typescript[0m to first add TypeScript to your project [1mbefore[0m using npx
+- Use [1myarn[0m to avoid accidentally running code from un-installed packages
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-21T17-18-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-18-07-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
