@@ -16,14 +16,12 @@ FROM base AS builder
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
-# Copy package files first
+# Copy package files AND source code FIRST (before npm install)
 COPY package.json ./
-
-# Install dependencies fresh in builder stage to avoid corruption from layer copy
-RUN npm cache clean --force && npm install
-
-# Copy source code
 COPY . .
+
+# Install dependencies AFTER copying source (so COPY doesn't overwrite node_modules)
+RUN npm cache clean --force && npm install
 
 # Generate Prisma client
 RUN npx prisma generate

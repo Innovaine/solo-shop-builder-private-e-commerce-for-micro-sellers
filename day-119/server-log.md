@@ -575,3 +575,66 @@ BUILD_COMPLETE
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-21T20-08-23-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log`](server-runs/2026-05-21T20-08-23-www.soloshopbox.com-ps-aux-grep-2357331-grep--v-grep-echo-BU-1.log)
+
+## 2026-05-21T20:09:15.404Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2882900` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2609ms) _(showing tail — full 2,551B stdout + 0B stderr)_
+```
+tail -200 /tmp/build5.log | grep -A 30 "npm run build"
+```
+STDOUT:
+```
+…nt'
+#19 1.444 const prisma = new PrismaClient()
+#19 1.444 ```
+#19 1.444 or start using Prisma Client at the edge (See: https://pris.ly/d/accelerate)
+#19 1.444 ```
+#19 1.444 import { PrismaClient } from '@prisma/client/edge'
+#19 1.444 const prisma = new PrismaClient()
+#19 1.444 ```
+#19 1.444 
+#19 1.444 See other ways of importing Prisma Client: http://pris.ly/d/importing-client
+#19 1.444 
+#19 1.444 ┌─────────────────────────────────────────────────────────────┐
+#19 1.444 │  Deploying your app to serverless or edge functions?        │
+#19 1.444 │  Try Prisma Accelerate for connection pooling and caching.  │
+#19 1.444 │  https://pris.ly/cli/--accelerate                           │
+#19 1.444 └─────────────────────────────────────────────────────────────┘
+#19 1.444 
+#19 2.125 unhandledRejection SyntaxError: Error parsing /app/node_modules/graceful-fs/package.json: Unexpected end of JSON input
+#19 2.125     at parse (<anonymous>)
+--
+#19 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 8/8] RUN npm run build:
+2.125     at readPackage (node:internal/modules/package_json_reader:141:10)
+2.125     at resolveExports (node:internal/modules/cjs/loader:634:15)
+2.125     at Module._findPath (node:internal/modules/cjs/loader:711:31)
+2.125     at Module._resolveFilename (node:internal/modules/cjs/loader:1193:27)
+2.125     at /app/node_modules/next/dist/server/require-hook.js:55:36
+2.125     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2.125     at Module.require (node:internal/modules/cjs/loader:1289:19)
+2.125     at mod.require (/app/node_modules/next/dist/server/require-hook.js:65:28) {
+2.125   path: '/app/node_modules/graceful-fs/package.json'
+2.125 }
+------
+Dockerfile:35
+
+--------------------
+
+  33 |     
+
+  34 |     # Build Next.js app
+
+  35 | >>> RUN npm run build
+
+  36 |     
+
+  37 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T20-09-15-www.soloshopbox.com-tail--200-tmp-build5.log-grep--A-30-npm--1.log`](server-runs/2026-05-21T20-09-15-www.soloshopbox.com-tail--200-tmp-build5.log-grep--A-30-npm--1.log)
