@@ -463,3 +463,17 @@ STDOUT:
 Compose up started
 ```
 Full output: [`server-runs/2026-05-21T17-13-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-13-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:14:25.449Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `485cca8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 20858ms)
+```
+sleep 5 && docker ps --format "table {{.Names}}\t{{.Status}}" | grep -E "solo-shop|NAMES"
+```
+STDOUT:
+```
+NAMES                                                               STATUS
+solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1   Up 4 hours (healthy)
+```
+Full output: [`server-runs/2026-05-21T17-14-25-www.soloshopbox.com-sleep-5-docker-ps---format-table-.Names--1.log`](server-runs/2026-05-21T17-14-25-www.soloshopbox.com-sleep-5-docker-ps---format-table-.Names--1.log)
