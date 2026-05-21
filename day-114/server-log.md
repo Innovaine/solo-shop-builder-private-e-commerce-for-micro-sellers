@@ -450,3 +450,97 @@ STDOUT:
 …d-color:#3B4C63"><div class="text-5xl">🏪</div></div><div class="px-2"><h3 class="text-xl font-bold text-charcoal mb-2 line-clamp-1">Flow Test Shop</h3><div class="flex items-center gap-2 text-sm text-slate"><span>📦</span><span>0<!-- --> <!-- -->products<!-- --> available</span></div></div></div></a><a href="/shop/bug-test-shop"><div class="bg-white rounded-lg border border-whisper hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer p-6 h-full hover:shadow-lg transition-shadow duration-200"><div class="h-32 rounded-t-lg flex items-center justify-center mb-4" style="background-color:#3B4C63"><div class="text-5xl">🏪</div></div><div class="px-2"><h3 class="text-xl font-bold text-charcoal mb-2 line-clamp-1">Bug Test Shop</h3><div class="flex items-center gap-2 text-sm text-slate"><span>📦</span><span>0<!-- --> <!-- -->products<!-- --> available</span></div></div></div></a><a href="/shop/test-shop"><div class="bg-white rounded-lg border border-whisper hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer p-6 h-full hover:shadow-lg transition-shadow duration-200"><div class="h-32 rounded-t-lg flex items-center justify-center mb-4" style="background-color:#3B4C63"><div class="text-5xl">🏪</div></div><div class="px-2"><h3 class="text-xl font-bold text-charcoal mb-2 line-clamp-1">Test Shop</h3><div class="flex items-center gap-2 text-sm text-slate"><span>📦</span><span>1<!-- --> <!-- -->product<!-- --> available</span></div></div></div></a></div></div><script>$RC=function(b,c,e){c=document.getElementById(c);c.parentNode.removeChild(c);var a=document.getElementById(b);if(a){b=a.previousSibling;if(e)b.data="$!",a.setAttribute("data-dgst",e);else{e=b.parentNode;a=b.nextSibling;var f=0;do{if(a&&8===a.nodeType){var d=a.data;if("/$"===d)if(0===f)break;else f--;else"$"!==d&&"$?"!==d&&"$!"!==d||f++}d=a.nextSibling;e.removeChild(a);a=d}while(a);for(;c.firstChild;)e.insertBefore(c.firstChild,a);b.data="$"}b._reactRetry&&b._reactRetry()}};$RC("B:0","S:0")</script></body></html>
 ```
 Full output: [`server-runs/2026-05-21T15-31-02-www.soloshopbox.com-echo-Test-Public-shop-listing-page-1.log`](server-runs/2026-05-21T15-31-02-www.soloshopbox.com-echo-Test-Public-shop-listing-page-1.log)
+
+## 2026-05-21T15:32:22.507Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `53e0c08` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2907ms) _(showing tail — full 4,756B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | head -200
+```
+STDOUT:
+```
+…"route": "/api/products/[id]/status",
+      "kind": "api",
+      "file": "app/api/products/[id]/status/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants/[variantId]",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/[variantId]/route.ts"
+    },
+    {
+      "route": "/api/products/[id]/variants",
+      "kind": "api",
+      "file": "app/api/products/[id]/variants/route.ts"
+    },
+    {
+      "route": "/api/products/bulk-status",
+      "kind": "api",
+      "file": "app/api/products/bulk-status/route.ts"
+    },
+    {
+      "route": "/api/products/export",
+      "kind": "api",
+      "file": "app/api/products/export/route.ts"
+    },
+    {
+      "route": "/api/products/import",
+      "kind": "api",
+      "file": "app/api/products/import/route.ts"
+    },
+    {
+      "route": "/api/products",
+      "kind": "api",
+      "file": "app/api/products/route.ts"
+    },
+    {
+      "route": "/api/products/upload",
+      "kind": "api",
+      "file": "app/api/products/upload/route.ts"
+    },
+    {
+      "route": "/api/shops/[slug]/currency",
+      "kind": "api",
+      "file": "app/api/shops/[slug]/currency/route.ts"
+    },
+    {
+      "route": "/api/shops/branding",
+      "kind": "api",
+      "file": "app/api/shops/branding/route.ts"
+    },
+    {
+      "route": "/api/shops/email-template",
+      "kind": "api",
+      "file": "app/api/shops/email-template/route.ts"
+    },
+    {
+      "route": "/api/shops/profile",
+      "kind": "api",
+      "file": "app/api/shops/profile/route.ts"
+    },
+    {
+      "route": "/api/shops",
+      "kind": "api",
+      "file": "app/api/shops/route.ts"
+    },
+    {
+      "route": "/api/shops/status",
+      "kind": "api",
+      "file": "app/api/shops/status/route.ts"
+    },
+    {
+      "route": "/api/webhooks/stripe",
+      "kind": "api",
+      "file": "app/api/webhooks/stripe/route.ts"
+    },
+    {
+      "route": "/auth/forgot-password",
+      "kind": "page",
+      "file": "app/auth/forgot-password/page.tsx"
+    },
+    {
+      "route": "/auth/login",
+      "kind": "page",
+```
+Full output: [`server-runs/2026-05-21T15-32-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T15-32-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
