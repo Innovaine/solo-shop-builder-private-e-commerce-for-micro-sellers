@@ -542,3 +542,18 @@ app/dashboard/orders/[id]/page.tsx:    redirect('/dashboard/create-shop')
 app/api/checkout/myfatoorah/callback/route.ts:      return NextResponse.redirect(`${baseUrl}/checkout?error=payment_failed`)
 ```
 Full output: [`server-runs/2026-05-21T19-03-37-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-03-37-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:04:06.030Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `881c902` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2281ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "from '@/lib/db'" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | wc -l && echo "---" && grep -r "new PrismaClient()" app/ src/ --include="*.ts" --include="*.tsx" 2>/dev/null | wc -l
+```
+STDOUT:
+```
+39
+---
+0
+```
+Full output: [`server-runs/2026-05-21T19-04-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-04-06-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
