@@ -15,6 +15,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Fix graceful-fs corruption issue (known Docker+npm bug)
+# Reinstall graceful-fs to ensure package.json is not truncated
+RUN npm install --no-save graceful-fs
+
 # Generate Prisma client
 RUN npx prisma generate
 

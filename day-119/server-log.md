@@ -226,3 +226,56 @@ engineer 2325639  0.0  0.0 2031704 29064 ?       Sl   19:44   0:00 docker compos
 #17 [builder 4/7] COPY . .
 ```
 Full output: [`server-runs/2026-05-21T19-46-01-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log`](server-runs/2026-05-21T19-46-01-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log)
+
+## 2026-05-21T19:47:39.793Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `2926921` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2711ms)
+```
+ps aux | grep "docker compose build" | grep -v grep || echo "BUILD_COMPLETE"
+tail -120 /tmp/build.log | tail -40
+```
+STDOUT:
+```
+BUILD_COMPLETE
+#20 2.027     at Module._findPath (node:internal/modules/cjs/loader:711:31)
+#20 2.027     at Module._resolveFilename (node:internal/modules/cjs/loader:1193:27)
+#20 2.027     at /app/node_modules/next/dist/server/require-hook.js:55:36
+#20 2.027     at Module._load (node:internal/modules/cjs/loader:1038:27)
+#20 2.027     at Module.require (node:internal/modules/cjs/loader:1289:19)
+#20 2.027     at mod.require (/app/node_modules/next/dist/server/require-hook.js:65:28) {
+#20 2.027   path: '/app/node_modules/graceful-fs/package.json'
+#20 2.027 }
+#20 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN npm run build:
+2.027     at readPackage (node:internal/modules/package_json_reader:141:10)
+2.027     at resolveExports (node:internal/modules/cjs/loader:634:15)
+2.027     at Module._findPath (node:internal/modules/cjs/loader:711:31)
+2.027     at Module._resolveFilename (node:internal/modules/cjs/loader:1193:27)
+2.027     at /app/node_modules/next/dist/server/require-hook.js:55:36
+2.027     at Module._load (node:internal/modules/cjs/loader:1038:27)
+2.027     at Module.require (node:internal/modules/cjs/loader:1289:19)
+2.027     at mod.require (/app/node_modules/next/dist/server/require-hook.js:65:28) {
+2.027   path: '/app/node_modules/graceful-fs/package.json'
+2.027 }
+------
+Dockerfile:25
+
+--------------------
+
+  23 |     
+
+  24 |     # Build Next.js app
+
+  25 | >>> RUN npm run build
+
+  26 |     
+
+  27 |     # Production image, copy all the files and run next
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T19-47-39-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log`](server-runs/2026-05-21T19-47-39-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log)
