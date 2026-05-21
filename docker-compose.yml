@@ -60,7 +60,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    command: sh -c "/usr/local/bin/prisma migrate deploy && node server.js"
+    command: sh -c "npx prisma migrate deploy && node server.js"
 
 volumes:
   postgres_data:
