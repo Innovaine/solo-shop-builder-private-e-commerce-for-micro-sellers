@@ -703,3 +703,20 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-21T13-52-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-52-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:52:51.818Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `292b248` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3585ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la src/lib/currency.ts && echo "=== RUNNING TSC ===" && npx tsc --noEmit 2>&1 | head -50
+```
+STDOUT:
+```
+-rw-rw-r-- 1 reviewer reviewer 1953 May 21 13:52 src/lib/currency.ts
+=== RUNNING TSC ===
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+```
+Full output: [`server-runs/2026-05-21T13-52-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-52-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
