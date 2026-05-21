@@ -1414,3 +1414,94 @@ STDOUT:
 #13 67.76 Run `npm audit` for details.
 ```
 Full output: [`server-runs/2026-05-21T21-02-39-www.soloshopbox.com-if--f-tmp-build-fresh.pid-then-1.log`](server-runs/2026-05-21T21-02-39-www.soloshopbox.com-if--f-tmp-build-fresh.pid-then-1.log)
+
+## 2026-05-21T21:05:21.956Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 76304ms)
+```
+kill -0 $(cat /tmp/build-fresh.pid 2>/dev/null) 2>/dev/null && echo "STILL RUNNING" || echo "DONE"
+tail -100 /tmp/build-fresh.log | grep -E "prisma generate|next build|Creating an optimized|Compiled successfully|ERROR|failed" | tail -20
+```
+STDOUT:
+```
+DONE
+#19 0.312 > prisma generate && next build
+#19 1.905    Creating an optimized production build ...
+#24 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::kmllkf0fuz6sgkikry9kff1ri: "/app/.next/standalone": not found
+#25 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::kmllkf0fuz6sgkikry9kff1ri: "/app/.next/static": not found
+failed to solve: failed to compute cache key: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::kmllkf0fuz6sgkikry9kff1ri: "/app/.next/static": not found
+```
+Full output: [`server-runs/2026-05-21T21-05-21-www.soloshopbox.com-kill--0-cat-tmp-build-fresh.pid-2-dev-nu-1.log`](server-runs/2026-05-21T21-05-21-www.soloshopbox.com-kill--0-cat-tmp-build-fresh.pid-2-dev-nu-1.log)
+
+## 2026-05-21T21:06:14.040Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2458ms)
+```
+grep -B 5 -A 100 "Creating an optimized production build" /tmp/build-fresh.log | head -120
+```
+STDOUT:
+```
+#19 1.782 https://nextjs.org/telemetry
+#19 1.782 
+#19 1.835   ▲ Next.js 14.2.3
+#19 1.835   - Environments: .env
+#19 1.835 
+#19 1.905    Creating an optimized production build ...
+#19 DONE 2.5s
+
+#20 [runner  8/14] RUN chown nextjs:nodejs .next
+#20 CACHED
+
+#21 [runner  9/14] RUN mkdir -p test-results && chown -R nextjs:nodejs test-results
+#21 CACHED
+
+#22 [runner  6/14] COPY --from=builder /app/public ./public
+#22 CACHED
+
+#23 [runner  7/14] RUN mkdir .next
+#23 CACHED
+
+#24 [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#24 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::kmllkf0fuz6sgkikry9kff1ri: "/app/.next/standalone": not found
+
+#25 [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#25 ERROR: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::kmllkf0fuz6sgkikry9kff1ri: "/app/.next/static": not found
+------
+ > [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./:
+------
+------
+ > [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static:
+------
+Dockerfile:87
+
+--------------------
+
+  85 |     # Automatically leverage output traces to reduce image size
+
+  86 |     COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+
+  87 | >>> COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+  88 |     COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
+  89 |     COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+
+--------------------
+
+failed to solve: failed to compute cache key: failed to calculate checksum of ref 0wtamw6h3prrglq7c4y7mfs9v::kmllkf0fuz6sgkikry9kff1ri: "/app/.next/static": not found
+```
+Full output: [`server-runs/2026-05-21T21-06-14-www.soloshopbox.com-grep--B-5--A-100-Creating-an-optimized-p-1.log`](server-runs/2026-05-21T21-06-14-www.soloshopbox.com-grep--B-5--A-100-Creating-an-optimized-p-1.log)
+
+## 2026-05-21T21:06:36.351Z — Anil ran 1 command(s)
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2370ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+npm run build 2>&1 | head -200
+```
+STDOUT:
+```
+
+> solo-shop-builder@0.1.0 build
+> prisma generate && next build
+
+sh: 1: prisma: not found
+```
+Full output: [`server-runs/2026-05-21T21-06-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T21-06-36-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
