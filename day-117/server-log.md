@@ -49,3 +49,24 @@ Fast-forward
  create mode 100644 day-117/_plan.md
 ```
 Full output: [`server-runs/2026-05-21T16-53-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-53-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T16:53:37.544Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `568e51f` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exit 2, 3445ms)
+```
+cd solo-shop-builder-private-e-commerce-for-micro-sellers && npx tsc --noEmit 2>&1
+```
+STDOUT:
+```
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+npm notice
+npm notice New minor version of npm available! 11.12.1 -> 11.15.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.15.0
+npm notice To update run: npm install -g npm@11.15.0
+npm notice
+```
+ERROR: command exited 2
+Full output: [`server-runs/2026-05-21T16-53-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-53-37-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
