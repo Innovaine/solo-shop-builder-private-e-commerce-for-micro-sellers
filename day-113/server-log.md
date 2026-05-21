@@ -1355,3 +1355,134 @@ STDOUT:
 /opt/qadar-runtime/bin/schema-sync-check
 ```
 Full output: [`server-runs/2026-05-21T14-49-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-49-52-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T14:50:13.743Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4f45f18` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2762ms) _(showing tail — full 2,584B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json 2>&1 | head -150
+```
+STDOUT:
+```
+…   "accentColor",
+      "logoUrl",
+      "logoImageUrl",
+      "tagline",
+      "emailTemplateBody",
+      "status",
+      "currency",
+      "createdAt",
+      "updatedAt",
+      "seller",
+      "products",
+      "orders"
+    ],
+    "Product": [
+      "id",
+      "shopId",
+      "title",
+      "description",
+      "price",
+      "imageUrl",
+      "category",
+      "stock",
+      "status",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "variants",
+      "images"
+    ],
+    "ProductImage": [
+      "id",
+      "productId",
+      "imageUrl",
+      "displayOrder",
+      "createdAt",
+      "product"
+    ],
+    "ProductVariant": [
+      "id",
+      "productId",
+      "name",
+      "value",
+      "price",
+      "stock",
+      "sku",
+      "createdAt",
+      "updatedAt",
+      "product"
+    ],
+    "AuthToken": [
+      "id",
+      "token",
+      "sellerId",
+      "expiresAt",
+      "used",
+      "createdAt",
+      "seller"
+    ],
+    "Order": [
+      "id",
+      "shopId",
+      "customerEmail",
+      "customerName",
+      "status",
+      "total",
+      "stripePaymentId",
+      "trackingUrl",
+      "trackingId",
+      "metadata",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "items"
+    ],
+    "OrderItem": [
+      "id",
+      "orderId",
+      "productId",
+      "productTitle",
+      "price",
+      "quantity",
+      "order"
+    ],
+    "OrderHistory": [
+      "id",
+      "orderId",
+      "statusFrom",
+      "statusTo",
+      "note",
+      "createdAt"
+    ],
+    "Webhook": [
+      "id",
+      "stripeEventId",
+      "eventType",
+      "payload",
+      "status",
+      "receivedAt",
+      "processedAt",
+      "createdAt"
+    ]
+  },
+  "drift": [
+    {
+      "interface": "ProductAnalytics",
+      "kind": "interface",
+      "file": "api/analytics/route.ts",
+      "line": 9,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "productId",
+        "productTitle",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+```
+Full output: [`server-runs/2026-05-21T14-50-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-50-13-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
