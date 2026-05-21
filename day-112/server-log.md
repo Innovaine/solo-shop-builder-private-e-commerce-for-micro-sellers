@@ -684,3 +684,22 @@ STDOUT:
 /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers
 ```
 Full output: [`server-runs/2026-05-21T13-52-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-52-03-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T13:52:26.988Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8131f81` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2482ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -A10 '"paths"' tsconfig.json
+```
+STDOUT:
+```
+    "paths": {
+      "@/*": ["./src/*", "./app/*", "./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+Full output: [`server-runs/2026-05-21T13-52-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-52-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
