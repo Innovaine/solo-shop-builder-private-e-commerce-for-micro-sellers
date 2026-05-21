@@ -6,8 +6,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { requireAuth } from '@/lib/auth'
 
-// Aligns with Prisma Product model (id, title fields)
-interface ProductAnalytics {
+// Sales aggregation DTO - does not shadow Prisma Product model
+interface ProductSalesStats {
   id: string
   title: string
   totalQuantity: number
@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
     })
 
     // Calculate top products by quantity sold
-    const productStats = new Map<string, ProductAnalytics>()
+    const productStats = new Map<string, ProductSalesStats>()
 
     for (const order of recentOrders) {
       for (const item of order.items) {
