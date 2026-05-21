@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from 'react'
 import { Card } from './ui/Card'
+import { formatPrice, type Currency } from '@/lib/currency'
 
 interface ProductAnalytics {
   productId: string
@@ -25,10 +26,26 @@ export default function AnalyticsCards() {
   const [analytics, setAnalytics] = useState<Analytics | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [shopCurrency, setShopCurrency] = useState<Currency>('USD')
 
   useEffect(() => {
     fetchAnalytics()
+    fetchShopCurrency()
   }, [])
+
+  const fetchShopCurrency = async () => {
+    try {
+      const response = await fetch('/api/shops')
+      if (response.ok) {
+        const shops = await response.json()
+        if (shops.length > 0 && shops[0].currency) {
+          setShopCurrency(shops[0].currency as Currency)
+        }
+      }
+    } catch (err) {
+      console.error('Failed to fetch shop currency:', err)
+    }
+  }
 
   const fetchAnalytics = async () => {
     try {
@@ -69,7 +86,7 @@ export default function AnalyticsCards() {
             TOTAL REVENUE (30 DAYS)
           </div>
           <div className="text-3xl font-bold text-emerald">
-            ${(analytics.totalRevenue / 100).toFixed(2)}
+            {formatPrice(analytics.totalRevenue, shopCurrency)}
           </div>
         </Card>
 
@@ -99,9 +116,9 @@ export default function AnalyticsCards() {
             AVG ORDER VALUE
           </div>
           <div className="text-3xl font-bold text-charcoal">
-            ${analytics.orderCount > 0 
-              ? ((analytics.totalRevenue / 100) / analytics.orderCount).toFixed(2) 
-              : '0.00'}
+            {analytics.orderCount > 0 
+              ? formatPrice(Math.round(analytics.totalRevenue / analytics.orderCount), shopCurrency)
+              : formatPrice(0, shopCurrency)}
           </div>
         </Card>
       </div>
@@ -133,7 +150,7 @@ export default function AnalyticsCards() {
                 </div>
                 <div className="text-right">
                   <div className="font-semibold text-emerald">
-                    ${(product.totalRevenue / 100).toFixed(2)}
+                    {formatPrice(product.totalRevenue, shopCurrency)}
                   </div>
                 </div>
               </div>
