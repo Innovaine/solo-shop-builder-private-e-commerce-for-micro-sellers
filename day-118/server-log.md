@@ -371,3 +371,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `1d52ea4` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npm install 2>&1 | tail -30
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T18:58:58.458Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d218fc1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2987ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --format "table {{.Names}}\t{{.Status}}" | grep solo
+```
+ERROR: command exited 1
