@@ -175,3 +175,35 @@ STDOUT:
       "fieldsNotInPrisma": [
 ```
 Full output: [`server-runs/2026-05-21T16-45-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-45-51-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T16:46:14.758Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `70c8d58` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2557ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE '^\s*(const|let|var)\s+[A-Za-z_][A-Za-z0-9_]*\s*=.*process\.env' app/ src/ lib/ --include='*.ts' --include='*.tsx' 2>/dev/null | head -20
+```
+STDOUT:
+```
+app/dashboard/page.tsx:34:  const appUrl = process.env.APP_URL || 'http://localhost:3000'
+app/api/health/route.ts:16:  const isBuildTime = process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL
+app/api/checkout/myfatoorah/route.ts:62:    let appUrl = process.env.APP_URL
+app/api/checkout/myfatoorah/route.ts:71:    const myfatoorahApiKey = process.env.MYFATOORAH_API_KEY
+app/api/checkout/myfatoorah/route.ts:72:    const myfatoorahApiUrl = process.env.MYFATOORAH_API_URL || 'https://apitest.myfatoorah.com'
+app/api/checkout/myfatoorah/callback/route.ts:13:    const baseUrl = process.env.APP_URL || 'https://www.soloshopbox.com'
+app/api/checkout/myfatoorah/callback/route.ts:22:    const myfatoorahApiKey = process.env.MYFATOORAH_API_KEY
+app/api/checkout/myfatoorah/callback/route.ts:23:    const myfatoorahApiUrl = process.env.MYFATOORAH_API_URL || 'https://apitest.myfatoorah.com'
+app/api/checkout/myfatoorah/callback/route.ts:170:      const trackingUrl = `${process.env.APP_URL || 'http://localhost:3000'}/track/${updatedOrder.id}`
+app/api/checkout/myfatoorah/callback/route.ts:209:    const baseUrl = process.env.APP_URL || 'https://www.soloshopbox.com'
+app/api/checkout/myfatoorah/callback/route.ts:224:  const webhookSecret = process.env.MYFATOORAH_WEBHOOK_SECRET
+app/api/checkout/route.ts:156:    let baseUrl = process.env.APP_URL
+app/api/webhooks/stripe/route.ts:232:            const trackingUrl = `${process.env.APP_URL || 'http://localhost:3000'}/track/${order.id}`
+src/lib/s3.ts:13:  const s3Provider = process.env.S3_PROVIDER || 'aws'
+src/lib/s3.ts:17:  const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+src/lib/s3.ts:18:  const doEndpoint = process.env.DO_SPACES_ENDPOINT || `https://${doRegion}.digitaloceanspaces.com`
+src/lib/s3.ts:21:  const awsRegion = process.env.AWS_REGION || 'us-east-1'
+src/lib/s3.ts:46:  const s3Provider = process.env.S3_PROVIDER || 'aws'
+src/lib/s3.ts:57:    const doRegion = process.env.DO_SPACES_REGION || 'nyc3'
+src/lib/s3.ts:89:  const s3Provider = process.env.S3_PROVIDER || 'aws'
+```
+Full output: [`server-runs/2026-05-21T16-46-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T16-46-14-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
