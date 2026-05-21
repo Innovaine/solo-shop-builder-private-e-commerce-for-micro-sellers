@@ -381,3 +381,20 @@ STDOUT:
 Started compose up in background
 ```
 Full output: [`server-runs/2026-05-21T01-00-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T01-00-46-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T01:01:08.259Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `804e877` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2363ms)
+```
+docker ps
+curl -sf https://www.soloshopbox.com/api/health && echo "Health check OK" || echo "Health check FAILED"
+```
+STDOUT:
+```
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                    PORTS                      NAMES
+d466737f3c9d   postgres:16-alpine   "docker-entrypoint.s…"   56 seconds ago   Up 55 seconds (healthy)   127.0.0.1:5432->5432/tcp   solo-shop-builder-private-e-commerce-for-micro-sellers-postgres-1
+2967d9e0bd67   traefik:latest       "/entrypoint.sh --ap…"   3 days ago       Up 3 days                                            traefik-vwiz-traefik-1
+Health check FAILED
+```
+Full output: [`server-runs/2026-05-21T01-01-08-www.soloshopbox.com-docker-ps-1.log`](server-runs/2026-05-21T01-01-08-www.soloshopbox.com-docker-ps-1.log)
