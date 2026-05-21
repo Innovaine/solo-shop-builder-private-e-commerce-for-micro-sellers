@@ -1675,3 +1675,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `26b1f58` so the server's `git pu
 ```
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rn "NextResponse.redirect" app/ --include="*.ts" --include="*.tsx" 2>/dev/null | grep -v "route.ts" | head -5
 ```
+
+## 2026-05-21T14:54:54.270Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `67c9d45` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 2, 2722ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -rnE "^(const|let|var)[[:space:]]+[A-Za-z_].*process\.env" app/ src/ lib/ --include="*.ts" --include="*.tsx" 2>/dev/null
+```
+ERROR: command exited 2
