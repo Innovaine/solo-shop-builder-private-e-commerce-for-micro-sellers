@@ -729,3 +729,14 @@ _Pre-SSH: warehouse pushed to GitHub as commit `bb5eb3c` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && npm install --silent 2>&1 | tail -20 && echo "=== TSC CHECK ===" && npx tsc --noEmit 2>&1 | head -80
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T13:54:19.269Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9093cf5` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12804ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup bash -c 'npm install --silent && npx tsc --noEmit' > /tmp/tsc_check.log 2>&1 &
+echo $! > /tmp/tsc_check.pid
+echo "Started tsc check, PID=$(cat /tmp/tsc_check.pid)"
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
