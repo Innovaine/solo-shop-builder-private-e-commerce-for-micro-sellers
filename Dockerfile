@@ -18,18 +18,11 @@ FROM base AS builder
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
-# Configure npm retry behavior BEFORE install to handle transient registry failures
-RUN npm config set fetch-retries 5 && \
-    npm config set fetch-retry-mintimeout 20000 && \
-    npm config set fetch-retry-maxtimeout 120000
+# Copy node_modules from deps stage (already installed and verified)
+COPY --from=deps /app/node_modules ./node_modules
 
-# Copy package.json first for dependency install
+# Copy package.json and source code
 COPY package.json ./
-
-# Clean npm cache to avoid corrupted cached packages, then install dependencies
-RUN npm cache clean --force && npm install
-
-# Copy source code
 COPY . .
 
 # Generate Prisma client
