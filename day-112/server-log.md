@@ -296,3 +296,26 @@ STDOUT:
  Image solo-shop-builder-private-e-commerce-for-micro-sellers-app Built
 ```
 Full output: [`server-runs/2026-05-21T13-40-53-www.soloshopbox.com-tail--150-tmp-build-day112-v2.log-1.log`](server-runs/2026-05-21T13-40-53-www.soloshopbox.com-tail--150-tmp-build-day112-v2.log-1.log)
+
+## 2026-05-21T13:41:55.694Z — Anil ran 2 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `956c1c6` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 13029ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose up -d
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+### Command 2 on www.soloshopbox.com as engineer (✓ exit 0, 7233ms)
+```
+sleep 5 && curl -f https://www.soloshopbox.com/health 2>&1 && echo "OK" || echo "FAIL"
+```
+STDOUT:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0    19    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (22) The requested URL returned error: 404
+FAIL
+```
+Full output: [`server-runs/2026-05-21T13-41-55-www.soloshopbox.com-sleep-5-curl--f-https-www.soloshopbox.co-2.log`](server-runs/2026-05-21T13-41-55-www.soloshopbox.com-sleep-5-curl--f-https-www.soloshopbox.co-2.log)
