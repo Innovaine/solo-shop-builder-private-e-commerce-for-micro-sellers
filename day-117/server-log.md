@@ -871,3 +871,16 @@ STDOUT:
  create mode 100644 test-results/day-117/report.md
 ```
 Full output: [`server-runs/2026-05-21T17-27-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-27-01-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T17:27:22.611Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `73bea95` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2234ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && which route-validator || echo "not in PATH"
+```
+STDOUT:
+```
+/usr/local/bin/route-validator
+```
+Full output: [`server-runs/2026-05-21T17-27-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T17-27-22-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
