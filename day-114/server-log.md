@@ -433,3 +433,20 @@ access-control-allow-origin: *
 content-type: application/json
 ```
 Full output: [`server-runs/2026-05-21T15-30-31-www.soloshopbox.com-echo-Test-Analytics-endpoint-requires-au-1.log`](server-runs/2026-05-21T15-30-31-www.soloshopbox.com-echo-Test-Analytics-endpoint-requires-au-1.log)
+
+## 2026-05-21T15:31:02.085Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9c7fd53` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2972ms) _(showing tail — full 20,862B stdout + 0B stderr)_
+```
+echo "Test: Public shop listing page"
+curl -sI https://www.soloshopbox.com/shop | head -5
+
+echo -e "\nTest: Check shop page renders HTML"
+curl -s https://www.soloshopbox.com/shop | grep -E "DOCTYPE|Discover.*[Ss]hops|Browse" | head -5
+```
+STDOUT:
+```
+…d-color:#3B4C63"><div class="text-5xl">🏪</div></div><div class="px-2"><h3 class="text-xl font-bold text-charcoal mb-2 line-clamp-1">Flow Test Shop</h3><div class="flex items-center gap-2 text-sm text-slate"><span>📦</span><span>0<!-- --> <!-- -->products<!-- --> available</span></div></div></div></a><a href="/shop/bug-test-shop"><div class="bg-white rounded-lg border border-whisper hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer p-6 h-full hover:shadow-lg transition-shadow duration-200"><div class="h-32 rounded-t-lg flex items-center justify-center mb-4" style="background-color:#3B4C63"><div class="text-5xl">🏪</div></div><div class="px-2"><h3 class="text-xl font-bold text-charcoal mb-2 line-clamp-1">Bug Test Shop</h3><div class="flex items-center gap-2 text-sm text-slate"><span>📦</span><span>0<!-- --> <!-- -->products<!-- --> available</span></div></div></div></a><a href="/shop/test-shop"><div class="bg-white rounded-lg border border-whisper hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer p-6 h-full hover:shadow-lg transition-shadow duration-200"><div class="h-32 rounded-t-lg flex items-center justify-center mb-4" style="background-color:#3B4C63"><div class="text-5xl">🏪</div></div><div class="px-2"><h3 class="text-xl font-bold text-charcoal mb-2 line-clamp-1">Test Shop</h3><div class="flex items-center gap-2 text-sm text-slate"><span>📦</span><span>1<!-- --> <!-- -->product<!-- --> available</span></div></div></div></a></div></div><script>$RC=function(b,c,e){c=document.getElementById(c);c.parentNode.removeChild(c);var a=document.getElementById(b);if(a){b=a.previousSibling;if(e)b.data="$!",a.setAttribute("data-dgst",e);else{e=b.parentNode;a=b.nextSibling;var f=0;do{if(a&&8===a.nodeType){var d=a.data;if("/$"===d)if(0===f)break;else f--;else"$"!==d&&"$?"!==d&&"$!"!==d||f++}d=a.nextSibling;e.removeChild(a);a=d}while(a);for(;c.firstChild;)e.insertBefore(c.firstChild,a);b.data="$"}b._reactRetry&&b._reactRetry()}};$RC("B:0","S:0")</script></body></html>
+```
+Full output: [`server-runs/2026-05-21T15-31-02-www.soloshopbox.com-echo-Test-Public-shop-listing-page-1.log`](server-runs/2026-05-21T15-31-02-www.soloshopbox.com-echo-Test-Public-shop-listing-page-1.log)
