@@ -151,3 +151,20 @@ STDOUT:
 No build running
 ```
 Full output: [`server-runs/2026-05-21T00-21-53-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log`](server-runs/2026-05-21T00-21-53-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log)
+
+## 2026-05-21T00:22:25.809Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3f48f07` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2434ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/day108-rebuild.log 2>&1 &
+BUILD_PID=$!
+echo $BUILD_PID > /tmp/day108-rebuild.pid
+echo "Build started, PID=$BUILD_PID"
+```
+STDOUT:
+```
+Build started, PID=2135494
+```
+Full output: [`server-runs/2026-05-21T00-22-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-22-25-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
