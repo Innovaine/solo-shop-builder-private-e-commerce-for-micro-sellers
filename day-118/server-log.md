@@ -380,3 +380,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `d218fc1` so the server's `git pu
 cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker ps --format "table {{.Names}}\t{{.Status}}" | grep solo
 ```
 ERROR: command exited 1
+
+## 2026-05-21T18:59:29.668Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `623fd4b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2604ms)
+```
+curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "OK" || echo "DOWN"
+```
+STDOUT:
+```
+DOWN
+```
+Full output: [`server-runs/2026-05-21T18-59-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T18-59-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
