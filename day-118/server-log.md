@@ -263,3 +263,29 @@ STDOUT:
 FAIL
 ```
 Full output: [`server-runs/2026-05-21T18-54-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T18-54-29-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-21T18:55:05.016Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `198ce68` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 3374ms) _(showing tail — full 4,396B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose logs --tail 100
+```
+STDOUT:
+```
+…8] LOG:  could not receive data from client: Connection reset by peer
+postgres-1  | 2026-05-21 15:59:53.341 UTC [28] LOG:  checkpoint starting: time
+postgres-1  | 2026-05-21 15:59:54.856 UTC [28] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.509 s, sync=0.002 s, total=1.515 s; sync files=16, longest=0.001 s, average=0.001 s; distance=28 kB, estimate=28 kB; lsn=0/47180A8, redo lsn=0/4718070
+postgres-1  | 2026-05-21 16:04:53.956 UTC [28] LOG:  checkpoint starting: time
+postgres-1  | 2026-05-21 16:04:54.061 UTC [28] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.101 s, sync=0.002 s, total=0.106 s; sync files=2, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=26 kB; lsn=0/4719210, redo lsn=0/47191D8
+postgres-1  | 2026-05-21 17:24:54.338 UTC [28] LOG:  checkpoint starting: time
+postgres-1  | 2026-05-21 17:24:54.447 UTC [28] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.104 s, sync=0.002 s, total=0.110 s; sync files=2, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=23 kB; lsn=0/471A5F8, redo lsn=0/471A5C0
+postgres-1  | 2026-05-21 18:48:40.215 UTC [1] LOG:  received fast shutdown request
+postgres-1  | 2026-05-21 18:48:40.216 UTC [1] LOG:  aborting any active transactions
+postgres-1  | 2026-05-21 18:48:40.219 UTC [1] LOG:  background worker "logical replication launcher" (PID 33) exited with exit code 1
+postgres-1  | 2026-05-21 18:48:40.220 UTC [28] LOG:  shutting down
+postgres-1  | 2026-05-21 18:48:40.221 UTC [28] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-05-21 18:48:40.227 UTC [28] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.007 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=21 kB; lsn=0/471A6A8, redo lsn=0/471A6A8
+postgres-1  | 2026-05-21 18:48:40.235 UTC [1] LOG:  database system is shut down
+```
+Full output: [`server-runs/2026-05-21T18-55-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T18-55-04-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
