@@ -744,3 +744,32 @@ STDOUT:
     })
 ```
 Full output: [`server-runs/2026-05-21T00-02-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-02-32-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:03:05.959Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `72c0e4b` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2606ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && sed -n '1,30p' app/dashboard/orders/\[id\]/OrderDetailClient.tsx | grep -A 10 "type\|interface"
+```
+STDOUT:
+```
+import type { Order, OrderItem } from '@prisma/client'
+
+type OrderWithItems = Order & {
+  items: OrderItem[]
+}
+
+interface OrderDetailClientProps {
+  order: OrderWithItems
+  shopId: string
+}
+
+export default function OrderDetailClient({ order, shopId }: OrderDetailClientProps) {
+  const router = useRouter()
+  const [status, setStatus] = useState(order.status)
+  const [trackingId, setTrackingId] = useState(order.trackingId || '')
+  const [updating, setUpdating] = useState(false)
+  const [refunding, setRefunding] = useState(false)
+```
+Full output: [`server-runs/2026-05-21T00-03-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-03-05-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
