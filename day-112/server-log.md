@@ -123,3 +123,46 @@ Dockerfile:25
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 ```
 Full output: [`server-runs/2026-05-21T13-38-34-www.soloshopbox.com-kill--0-cat-tmp-build-day112.pid-2-dev-n-1.log`](server-runs/2026-05-21T13-38-34-www.soloshopbox.com-kill--0-cat-tmp-build-day112.pid-2-dev-n-1.log)
+
+## 2026-05-21T13:39:00.449Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ac0e53d` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2433ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la | head -20
+echo "---"
+ls -la src/ 2>/dev/null || echo "src/ does not exist"
+echo "---"
+ls -la lib/ 2>/dev/null || echo "lib/ does not exist"
+```
+STDOUT:
+```
+total 2364
+drwxrwxr-x 127 engineer engineer    4096 May 21 13:37 .
+drwxr-x---  15 engineer engineer    4096 May 15 16:12 ..
+-rw-r--r--   1 root     root        2339 May 20 10:21 .build.log
+-rw-------   1 engineer engineer    1833 May 21 13:39 .env
+drwxrwxr-x   8 engineer engineer    4096 May 21 13:37 .git
+-rw-rw-r--   1 engineer engineer    5838 May 15 23:23 DEPLOYMENT.md
+-rw-rw-r--   1 engineer engineer    2389 May 16 19:10 Dockerfile
+-rw-rw-r--   1 engineer engineer    1444 May 15 15:45 README.md
+-rw-rw-r--   1 engineer engineer    1150 May 15 15:45 _meta.json
+drwxrwxr-x   9 engineer engineer    4096 May 20 15:43 app
+-rw-rw-r--   1 engineer engineer    1290 May 19 23:53 customer-messages.md
+drwxrwxr-x   2 engineer engineer    4096 May 15 15:45 day-01
+drwxrwxr-x   2 engineer engineer    4096 May 15 16:06 day-02
+drwxrwxr-x   2 engineer engineer    4096 May 15 16:37 day-03
+drwxrwxr-x   2 engineer engineer    4096 May 15 16:55 day-04
+drwxrwxr-x   2 engineer engineer    4096 May 15 17:22 day-05
+drwxrwxr-x   2 engineer engineer    4096 May 15 18:23 day-06
+drwxrwxr-x   2 engineer engineer    4096 May 15 18:46 day-07
+drwxrwxr-x   2 engineer engineer    4096 May 15 19:10 day-08
+---
+total 12
+drwxrwxr-x   3 engineer engineer 4096 May 15 15:45 .
+drwxrwxr-x 127 engineer engineer 4096 May 21 13:37 ..
+drwxrwxr-x   2 engineer engineer 4096 May 21 13:15 lib
+---
+lib/ does not exist
+```
+Full output: [`server-runs/2026-05-21T13-39-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T13-39-00-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
