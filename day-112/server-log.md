@@ -605,3 +605,11 @@ cache-control: s-maxage=31536000, stale-while-revalidate
 content-type: text/html; charset=utf-8
 ```
 Full output: [`server-runs/2026-05-21T13-49-24-www.soloshopbox.com-echo-Test-1-Check-dashboard-page-loads-1.log`](server-runs/2026-05-21T13-49-24-www.soloshopbox.com-echo-Test-1-Check-dashboard-page-loads-1.log)
+
+## 2026-05-21T13:49:53.273Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e774137` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2875ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && grep -r "from '@/lib/currency'" app/ --include="*.tsx" --include="*.ts" | head -20
+```
