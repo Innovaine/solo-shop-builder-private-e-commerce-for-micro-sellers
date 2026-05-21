@@ -18,11 +18,11 @@ FROM base AS builder
 RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
-# Copy node_modules from deps stage (already has all dependencies installed)
-COPY --from=deps /app/node_modules ./node_modules
-
-# Copy package.json
+# Copy package.json first for dependency install
 COPY package.json ./
+
+# Install dependencies directly in builder stage (don't copy from deps to avoid corruption)
+RUN npm install
 
 # Copy source code
 COPY . .
