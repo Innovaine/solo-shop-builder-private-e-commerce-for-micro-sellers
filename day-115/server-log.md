@@ -236,3 +236,16 @@ _Pre-SSH: warehouse pushed to GitHub as commit `77affb7` so the server's `git pu
 sleep 10 && curl -sf https://www.soloshopbox.com/api/health -o /dev/null && echo "OK" || echo "FAIL"
 ```
 ERROR: Connection timed out (after 3 attempts on this idempotent command)
+
+## 2026-05-21T15:56:19.887Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b45ab14` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2634ms)
+```
+curl -sf https://www.soloshopbox.com/api/health && echo " - Health check OK"
+```
+STDOUT:
+```
+{"status":"ok","timestamp":"2026-05-21T15:56:20.336Z","responseTime":"104ms","checks":{"database":{"status":"ok","responseTime":"1ms"},"email":{"status":"ok","responseTime":"103ms"}}} - Health check OK
+```
+Full output: [`server-runs/2026-05-21T15-56-19-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T15-56-19-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
