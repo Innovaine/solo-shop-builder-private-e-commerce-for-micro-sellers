@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/ui/Header';
 import { Card } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { formatPrice, type Currency } from '@/lib/currency';
 
 interface BillingData {
   totalRevenue: number;
@@ -11,6 +12,7 @@ interface BillingData {
   averageOrderValue: number;
   stripeFees: number;
   netRevenue: number;
+  currency: string;
   transactions: {
     id: string;
     date: string;
@@ -47,6 +49,8 @@ export default function BillingPage() {
     }
     loadBilling();
   }, []);
+
+  const shopCurrency = (data?.currency || 'USD') as Currency;
 
   if (loading) {
     return (
@@ -97,7 +101,7 @@ export default function BillingPage() {
           <Card>
             <div className="text-sm text-slate mb-1">Total Revenue</div>
             <div className="text-3xl font-bold text-charcoal">
-              ${((data?.totalRevenue || 0) / 100).toFixed(2)}
+              {formatPrice(data?.totalRevenue || 0, shopCurrency)}
             </div>
           </Card>
 
@@ -111,21 +115,21 @@ export default function BillingPage() {
           <Card>
             <div className="text-sm text-slate mb-1">Average Order</div>
             <div className="text-3xl font-bold text-charcoal">
-              ${((data?.averageOrderValue || 0) / 100).toFixed(2)}
+              {formatPrice(data?.averageOrderValue || 0, shopCurrency)}
             </div>
           </Card>
 
           <Card>
             <div className="text-sm text-slate mb-1">Stripe Fees</div>
             <div className="text-3xl font-bold text-rose">
-              -${((data?.stripeFees || 0) / 100).toFixed(2)}
+              -{formatPrice(data?.stripeFees || 0, shopCurrency)}
             </div>
           </Card>
 
           <Card>
             <div className="text-sm text-slate mb-1">Net Revenue</div>
             <div className="text-3xl font-bold text-emerald">
-              ${((data?.netRevenue || 0) / 100).toFixed(2)}
+              {formatPrice(data?.netRevenue || 0, shopCurrency)}
             </div>
           </Card>
         </div>
@@ -166,13 +170,13 @@ export default function BillingPage() {
                       </td>
                       <td className="py-3 text-sm text-slate">{txn.customerEmail}</td>
                       <td className="py-3 text-sm text-charcoal text-right font-medium">
-                        ${(txn.amount / 100).toFixed(2)}
+                        {formatPrice(txn.amount, shopCurrency)}
                       </td>
                       <td className="py-3 text-sm text-rose text-right">
-                        -${(txn.stripeFee / 100).toFixed(2)}
+                        -{formatPrice(txn.stripeFee, shopCurrency)}
                       </td>
                       <td className="py-3 text-sm text-emerald text-right font-medium">
-                        ${(txn.net / 100).toFixed(2)}
+                        {formatPrice(txn.net, shopCurrency)}
                       </td>
                       <td className="py-3">
                         <span

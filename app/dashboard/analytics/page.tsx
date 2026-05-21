@@ -100,11 +100,21 @@ export default function AnalyticsPage() {
     ? Math.max(...analytics!.dailyRevenue.map(d => d.revenue))
     : 0;
 
+  const goBack = () => {
+    window.location.href = '/dashboard';
+  };
+
   return (
     <div className="min-h-screen bg-cream">
       <Header />
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
+          <button
+            onClick={goBack}
+            className="mb-4 text-sm text-slate hover:text-charcoal transition-colors flex items-center gap-1"
+          >
+            ← Back to Dashboard
+          </button>
           <h1 className="text-4xl font-bold text-charcoal mb-2">Analytics Dashboard</h1>
           <p className="text-slate">Insights into your shop performance over the last 30 days</p>
         </div>

@@ -68,6 +68,7 @@ export async function GET(req: NextRequest) {
       averageOrderValue,
       stripeFees,
       netRevenue,
+      currency: shop.currency || 'USD',
       transactions,
     });
   } catch (error: any) {
