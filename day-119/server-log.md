@@ -935,3 +935,45 @@ kill -0 $(cat /tmp/build3.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo
 tail -100 /tmp/build3.log | grep -E "(Successfully|error|failed|DONE)" | tail -20
 ```
 ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
+
+## 2026-05-21T20:35:07.983Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e922aa9` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2616ms) _(showing tail — full 8,577B stdout + 0B stderr)_
+```
+kill -0 $(cat /tmp/build3.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/build3.log
+```
+STDOUT:
+```
+…rg/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+24.57 npm warn tarball tarball data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-5.14.0.tgz (sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg==) seems to be corrupted. Trying again.
+27.70 npm warn tarball tarball data for prisma@https://registry.npmjs.org/prisma/-/prisma-5.14.0.tgz (sha512-vLI34KNqqXVOALzfHlbYD7ha6mz/8fND/MlH0uPB8vHaz4r/cuGMdQSE0n4dKwMW0cHuY4LvFLKBT1RvC+lNDQ==) seems to be corrupted. Trying again.
+64.90 npm warn deprecated next@14.2.3: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+65.78 npm error code EINTEGRITY
+65.78 npm error sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg== integrity checksum failed when using sha512: wanted sha512-i6LM8g4eIf+wHLFDLv8BpZDfHZCUqqJN8rx0ovDPZE5/ca5OogVPMr+JJPslF6b8ELxmPYIFGvXtUGJxfBcLqg== but got sha512-akMSuyvLKeoU4LeyBAUdThP/uhVP3GuLygFE3MlYzaCb3/J8SfsYBE5PkaFuLuVpLyA6sFoW+16z/aPhNAESqg==. (3220307 bytes)
+65.78 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-05-21T20_32_44_429Z-debug-0.log
+------
+Dockerfile:27
+
+--------------------
+
+  26 |     # Use high retry count and timeout to handle network issues
+
+  27 | >>> RUN npm cache clean --force && \
+
+  28 | >>>     npm config set fetch-retries 10 && \
+
+  29 | >>>     npm config set fetch-retry-mintimeout 100000 && \
+
+  30 | >>>     npm config set fetch-retry-maxtimeout 600000 && \
+
+  31 | >>>     npm install
+
+  32 |     
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm cache clean --force &&     npm config set fetch-retries 10 &&     npm config set fetch-retry-mintimeout 100000 &&     npm config set fetch-retry-maxtimeout 600000 &&     npm install" did not complete successfully: exit code: 1
+```
+Full output: [`server-runs/2026-05-21T20-35-07-www.soloshopbox.com-kill--0-cat-tmp-build3.pid-2-dev-null-2--1.log`](server-runs/2026-05-21T20-35-07-www.soloshopbox.com-kill--0-cat-tmp-build3.pid-2-dev-null-2--1.log)
