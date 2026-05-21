@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solo Shop — First 10 Minutes Walkthrough</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #FAF9F7;
+      color: #1F2937;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 20px;
+      color: #64748B;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    .step {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s;
+    }
+    .step:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+    }
+    .step-header {
+      background: linear-gradient(135deg, #3B4C63 0%, #10B981 100%);
+      color: white;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .step-number {
+      font-size: 36px;
+      font-weight: 700;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .step-title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .step-content {
+      padding: 32px;
+    }
+    .step-content h3 {
+      font-size: 18px;
+      color: #3B4C63;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .step-content p {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .step-content ul {
+      list-style: none;
+      margin-left: 0;
+    }
+    .step-content li {
+      font-size: 16px;
+      color: #64748B;
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+    }
+    .step-content li:before {
+      content: "•";
+      color: #10B981;
+      font-weight: 700;
+      position: absolute;
+      left: 0;
+    }
+    .mockup {
+      background: #F3F4F6;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 16px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #64748B;
+      border-left: 4px solid #10B981;
+      overflow-x: auto;
+    }
+    .timeline {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .timeline-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .timeline-item:not(:last-child):after {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 48px;
+      width: 2px;
+      height: calc(100% + 32px);
+      background: #E2E8F0;
+    }
+    .timeline-marker {
+      width: 32px;
+      height: 32px;
+      background: #10B981;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .timeline-content h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #3B4C63;
+      margin-bottom: 8px;
+    }
+    .timeline-content p {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.6;
+    }
+    .cta-section {
+      text-align: center;
+      margin-top: 60px;
+      padding: 48px;
+      background: linear-gradient(135deg, #3B4C63 0%, #10B981 100%);
+      border-radius: 12px;
+      color: white;
+    }
+    .cta-section h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 40px;
+      background: #FAF9F7;
+      color: #3B4C63;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    @media (max-width: 1024px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Get Started in 10 Minutes</h1>
+  <p class="subtitle">Your visual guide to launching a Solo Shop from zero to live</p>
+
+  <div class="steps">
+    <!-- Step 1 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <div class="step-title">Sign Up</div>
+      </div>
+      <div class="step-content">
+        <h3>Enter your email, get a magic link</h3>
+        <p>No password required. Click the link in your email and you're in.</p>
+        <ul>
+          <li>Takes 30 seconds</li>
+          <li>Email link valid for 24 hours</li>
+          <li>Auto-creates your seller account</li>
+        </ul>
+        <div class="mockup">
+[Email Input Field]
+Sign me up with a magic link
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <div class="step-title">Create Your Shop</div>
+      </div>
+      <div class="step-content">
+        <h3>Pick a name, get your unique URL</h3>
+        <p>This is your branded storefront. Customers will visit yourdomain/shop/yourname.</p>
+        <ul>
+          <li>Choose your shop name (e.g., "amira-jewelry")</li>
+          <li>Add a short bio (50 chars max)</li>
+          <li>Pick a shop color (optional)</li>
+        </ul>
+        <div class="mockup">
+Shop name: [amira-jewelry]
+Your URL: solo-shop.com/shop/amira-jewelry
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <div class="step-title">Add Your First Product</div>
+      </div>
+      <div class="step-content">
+        <h3>Upload product details in 2 minutes</h3>
+        <p>Fill in the essentials. Images are auto-resized for web.</p>
+        <ul>
+          <li>Product title (e.g., "Hand-Carved Earrings")</li>
+          <li>Price (in your local currency)</li>
+          <li>Description (tell the story)</li>
+          <li>Category (Handmade, Vintage, Supplies, Other)</li>
+          <li>Upload image (JPG/PNG)</li>
+        </ul>
+        <div class="mockup">
+Title: [Hand-Carved Earrings]
+Price: [$ 35.00]
+Image: [📷 Upload]
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-number">4</div>
+        <div class="step-title">Share Your Storefront</div>
+      </div>
+      <div class="step-content">
+        <h3>Your shop is live. Start selling.</h3>
+        <p>Send the link to customers via email, social, or embed it anywhere.</p>
+        <ul>
+          <li>Your unique shop URL is live immediately</li>
+          <li>Customers can browse, add to cart, checkout</li>
+          <li>You receive a notification for every order</li>
+          <li>Your dashboard shows all orders in real time</li>
+        </ul>
+        <div class="mockup">
+Share this link:
+solo-shop.com/shop/amira-jewelry
+
+[📋 Copy] [📧 Share via Email]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <h3 class="timeline-title">What Happens When an Order Comes In</h3>
+    
+    <div class="timeline-item">
+      <div class="timeline-marker">1</div>
+      <div class="timeline-content">
+        <h4>Customer Visits Your Shop</h4>
+        <p>They browse your products, filter by category, and add items to their cart.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">2</div>
+      <div class="timeline-content">
+        <h4>They Checkout</h4>
+        <p>Stripe Checkout handles the payment securely. No technical setup needed — we handle it.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">3</div>
+      <div class="timeline-content">
+        <h4>You Get Notified</h4>
+        <p>Email notification + order appears in your dashboard instantly.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">4</div>
+      <div class="timeline-content">
+        <h4>You Mark It Shipped</h4>
+        <p>Click the order, add a tracking ID, mark as "shipped." Customer gets an email with tracking.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">5</div>
+      <div class="timeline-content">
+        <h4>Customer Gets Paid Out</h4>
+        <p>Revenue transfers to your bank account via Stripe. You control when and how often.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to Launch Your Shop?</h2>
+    <p>Join 50+ sellers already using Solo Shop to run their business.</p>
+    <button class="btn">Get Started Free Today</button>
+  </div>
+</div>
+
+</body>
+</html>

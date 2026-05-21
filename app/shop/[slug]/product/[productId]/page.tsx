@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { AddToCartButton } from '@/components/AddToCartButton'
 import { CartButton } from '@/components/CartButton'
+import { formatPrice, type Currency } from '@/lib/currency'
 
 export default async function ProductDetailPage({
   params,
@@ -33,6 +34,9 @@ export default async function ProductDetailPage({
 
   // Check if shop is inactive
   const isShopActive = product.shop.status === 'ACTIVE'
+  
+  // Get shop currency for price formatting
+  const shopCurrency = (product.shop.currency || 'USD') as Currency
 
   return (
     <div className="min-h-screen bg-white">
@@ -125,7 +129,7 @@ export default async function ProductDetailPage({
               {product.title}
             </h1>
             <div className="text-3xl font-bold text-charcoal mb-2">
-              ${(product.price / 100).toFixed(2)}
+              {formatPrice(product.price, shopCurrency)}
             </div>
             {product.stock > 0 ? (
               <div className="text-sm text-emerald font-medium mb-6">

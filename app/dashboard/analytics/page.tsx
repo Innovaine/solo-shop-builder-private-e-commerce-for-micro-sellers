@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/ui/Header';
 import { Card } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { formatPrice, type Currency } from '@/lib/currency';
 
 interface ProductAnalytics {
   productId: string;
@@ -29,14 +30,27 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [error, setError] = useState('');
+  const [shopCurrency, setShopCurrency] = useState<Currency>('USD');
 
   useEffect(() => {
     async function loadAnalytics() {
       try {
-        const res = await fetch('/api/analytics');
-        if (!res.ok) throw new Error('Failed to load analytics');
-        const data = await res.json();
+        const [analyticsRes, shopsRes] = await Promise.all([
+          fetch('/api/analytics'),
+          fetch('/api/shops'),
+        ]);
+        
+        if (!analyticsRes.ok) throw new Error('Failed to load analytics');
+        const data = await analyticsRes.json();
         setAnalytics(data.analytics);
+        
+        // Load shop currency
+        if (shopsRes.ok) {
+          const shopsData = await shopsRes.json();
+          if (Array.isArray(shopsData) && shopsData.length > 0 && shopsData[0].currency) {
+            setShopCurrency(shopsData[0].currency as Currency);
+          }
+        }
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -106,7 +120,7 @@ export default function AnalyticsPage() {
               <div className="text-3xl">💰</div>
             </div>
             <div className="text-4xl font-bold text-emerald">
-              ${((analytics?.totalRevenue || 0) / 100).toFixed(2)}
+              {formatPrice(analytics?.totalRevenue || 0, shopCurrency)}
             </div>
           </Card>
 
@@ -132,7 +146,7 @@ export default function AnalyticsPage() {
               <div className="text-3xl">💵</div>
             </div>
             <div className="text-4xl font-bold text-charcoal">
-              ${(avgOrderValue / 100).toFixed(2)}
+              {formatPrice(avgOrderValue, shopCurrency)}
             </div>
           </Card>
         </div>
@@ -161,7 +175,7 @@ export default function AnalyticsPage() {
                       >
                         {/* Tooltip on hover */}
                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-charcoal text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                          ${(day.revenue / 100).toFixed(2)}
+                          {formatPrice(day.revenue, shopCurrency)}
                         </div>
                       </div>
                       
@@ -221,10 +235,10 @@ export default function AnalyticsPage() {
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-emerald mb-1">
-                        ${(product.totalRevenue / 100).toFixed(2)}
+                        {formatPrice(product.totalRevenue, shopCurrency)}
                       </div>
                       <div className="text-xs text-slate">
-                        ${((product.totalRevenue / product.totalQuantity) / 100).toFixed(2)} avg
+                        {formatPrice(product.totalRevenue / product.totalQuantity, shopCurrency)} avg
                       </div>
                     </div>
                   </div>
@@ -257,7 +271,7 @@ export default function AnalyticsPage() {
                   <div>
                     <div className="font-medium text-charcoal">Great revenue!</div>
                     <div className="text-slate">
-                      You've generated over ${((analytics!.totalRevenue / 100)).toFixed(0)} in the last 30 days.
+                      You've generated over {formatPrice(analytics!.totalRevenue, shopCurrency)} in the last 30 days.
                     </div>
                   </div>
                 </div>
@@ -281,7 +295,7 @@ export default function AnalyticsPage() {
                   <div>
                     <div className="font-medium text-charcoal">High-value orders</div>
                     <div className="text-slate">
-                      Your average order value of ${(avgOrderValue / 100).toFixed(2)} is excellent.
+                      Your average order value of {formatPrice(avgOrderValue, shopCurrency)} is excellent.
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import { Header } from '@/components/ui/Header'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import type { Order as PrismaOrder, OrderItem } from '@prisma/client'
+import { formatPrice, type Currency } from '@/lib/currency'
 
 // Extended Order type that includes the items relation
 // Note: API returns JSON-serialized data, so dates are strings
@@ -37,6 +38,7 @@ export default function OrdersPage() {
   const [analytics, setAnalytics] = useState<Analytics | null>(null)
   const [orderCounts, setOrderCounts] = useState<OrderCount>({ paid: 0, in_progress: 0, shipped: 0, delivered: 0 })
   const [error, setError] = useState('')
+  const [shopCurrency, setShopCurrency] = useState<Currency>('USD')
 
   const goBack = () => {
     window.location.href = '/dashboard'
@@ -47,24 +49,31 @@ export default function OrdersPage() {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const [ordersRes, analyticsRes] = await Promise.all([
+        const [ordersRes, analyticsRes, shopsRes] = await Promise.all([
           fetch('/api/orders'),
           fetch('/api/analytics'),
+          fetch('/api/shops'),
         ])
 
-        if (!ordersRes.ok || !analyticsRes.ok) {
+        if (!ordersRes.ok || !analyticsRes.ok || !shopsRes.ok) {
           setError('Failed to load data')
           return
         }
 
         const ordersData = await ordersRes.json()
         const analyticsResponse = await analyticsRes.json()
+        const shopsData = await shopsRes.json()
         
         // Extract analytics object from response (API returns { analytics: {...} })
         const analyticsData = analyticsResponse.analytics || analyticsResponse
 
         // Extract orders array from response (API returns { orders: [...] })
         const ordersArray = ordersData.orders || []
+        
+        // Extract shop currency from shops response
+        if (Array.isArray(shopsData) && shopsData.length > 0 && shopsData[0].currency) {
+          setShopCurrency(shopsData[0].currency as Currency)
+        }
         
         // Sort orders by date (most recent first)
         const sortedOrders = ordersArray.sort((a: Order, b: Order) => {
@@ -210,7 +219,7 @@ export default function OrdersPage() {
             <Card>
               <div className="p-6">
                 <div className="text-sm font-semibold text-slate uppercase">Total Revenue</div>
-                <div className="text-3xl font-bold text-charcoal mt-2">${((analytics.totalRevenue || 0) / 100).toFixed(2)}</div>
+                <div className="text-3xl font-bold text-charcoal mt-2">{formatPrice(analytics.totalRevenue || 0, shopCurrency)}</div>
               </div>
             </Card>
             <Card>
@@ -365,7 +374,7 @@ export default function OrdersPage() {
                       <td className="px-6 py-4 text-sm text-slate">
                         {order.items.map(item => `${item.productTitle} (${item.quantity})`).join(', ')}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-charcoal">${(order.total / 100).toFixed(2)}</td>
+                      <td className="px-6 py-4 font-semibold text-charcoal">{formatPrice(order.total, shopCurrency)}</td>
                       <td className="px-6 py-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusBadgeColor(order.status)}`}>
                           {statusLabel[order.status]}

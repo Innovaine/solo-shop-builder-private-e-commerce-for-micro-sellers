@@ -11,6 +11,7 @@ import { getCart, getCartTotal, removeFromCart } from '@/lib/cart'
 import type { Cart } from '@/lib/cart'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
+import { formatPrice, type Currency } from '@/lib/currency'
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -177,7 +178,7 @@ export default function CheckoutPage() {
                     <h3 className="font-semibold text-charcoal">{item.productTitle}</h3>
                     <p className="text-sm text-slate">Quantity: {item.quantity}</p>
                     <p className="text-sm text-charcoal font-medium">
-                      ${((item.price * item.quantity) / 100).toFixed(2)}
+                      {formatPrice(item.price * item.quantity, shopCurrency)}
                     </p>
                   </div>
                   <button
@@ -194,7 +195,7 @@ export default function CheckoutPage() {
             <div className="mt-6 pt-4 border-t border-whisper">
               <div className="flex justify-between items-center text-lg font-bold">
                 <span className="text-charcoal">Total</span>
-                <span className="text-emerald">${(total / 100).toFixed(2)}</span>
+                <span className="text-emerald">{formatPrice(total, shopCurrency)}</span>
               </div>
             </div>
           </div>

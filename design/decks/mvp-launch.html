@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solo Shop Builder — MVP Launch Deck</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      background: #1f2937;
+      color: #1f2937;
+    }
+    section {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+      text-align: center;
+      scroll-snap-align: start;
+    }
+    .slide-01 {
+      background: linear-gradient(135deg, #3B4C63 0%, #10B981 100%);
+      color: white;
+    }
+    .slide-02 {
+      background: #FAF9F7;
+    }
+    .slide-03 {
+      background: white;
+    }
+    .slide-04 {
+      background: #FAF9F7;
+    }
+    .slide-05 {
+      background: white;
+    }
+    .slide-06 {
+      background: #FAF9F7;
+    }
+    .slide-07 {
+      background: white;
+    }
+    .slide-08 {
+      background: linear-gradient(135deg, #10B981 0%, #3B4C63 100%);
+      color: white;
+    }
+    h1 { font-size: 64px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+    h2 { font-size: 48px; font-weight: 700; line-height: 1.2; margin-bottom: 32px; color: #3B4C63; }
+    .slide-01 h1, .slide-08 h1 { color: white; }
+    .slide-01 h2, .slide-08 h2 { color: white; }
+    p { font-size: 24px; line-height: 1.6; margin-bottom: 16px; color: #64748B; max-width: 800px; }
+    .slide-01 p, .slide-08 p { color: rgba(255, 255, 255, 0.9); }
+    .subtitle { font-size: 28px; font-weight: 600; color: #10B981; margin-bottom: 48px; }
+    .slide-01 .subtitle, .slide-08 .subtitle { color: #FAF9F7; }
+    ul { list-style: none; text-align: left; display: inline-block; font-size: 20px; line-height: 2; }
+    li { margin-bottom: 16px; }
+    li:before { content: "✓ "; color: #10B981; font-weight: 700; margin-right: 12px; }
+    .slide-01 li:before, .slide-08 li:before { color: #FAF9F7; }
+    .cta-button {
+      display: inline-block;
+      padding: 18px 48px;
+      background: #10B981;
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 32px;
+      transition: all 0.2s;
+    }
+    .cta-button:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3); }
+    .slide-08 .cta-button {
+      background: #FAF9F7;
+      color: #3B4C63;
+    }
+    .slide-08 .cta-button:hover {
+      box-shadow: 0 8px 24px rgba(250, 249, 247, 0.3);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 48px;
+      text-align: left;
+    }
+    .feature-card {
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      border-left: 4px solid #10B981;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .slide-05 .feature-card {
+      background: #FAF9F7;
+      box-shadow: none;
+      border: 1px solid #E2E8F0;
+    }
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #3B4C63;
+      margin-bottom: 12px;
+    }
+    .feature-card p {
+      font-size: 16px;
+      color: #64748B;
+      margin-bottom: 0;
+    }
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      color: #3B4C63;
+      margin-bottom: 48px;
+      letter-spacing: -0.5px;
+    }
+    .slide-01 .logo, .slide-08 .logo { color: white; }
+    .slide-07 .metric {
+      display: inline-block;
+      margin: 0 32px;
+    }
+    .slide-07 .metric-value {
+      font-size: 56px;
+      font-weight: 700;
+      color: #10B981;
+      line-height: 1;
+    }
+    .slide-07 .metric-label {
+      font-size: 18px;
+      color: #64748B;
+      margin-top: 8px;
+    }
+    .controls {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      font-size: 14px;
+      color: #64748B;
+      z-index: 10;
+    }
+    @media (max-width: 768px) {
+      section { padding: 40px; }
+      h1 { font-size: 40px; }
+      h2 { font-size: 32px; }
+      p { font-size: 18px; }
+      .subtitle { font-size: 20px; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<section class="slide-01">
+  <div class="logo">Solo Shop</div>
+  <h1>Build Your Branded Store in Minutes</h1>
+  <p class="subtitle">No fees. No middleman. Just your products, your payments, your control.</p>
+  <p style="font-size: 20px; margin-top: 32px;">The single-tenant shop platform for creators, craftspeople, and side-hustle sellers</p>
+  <button class="cta-button">Get Started Free</button>
+</section>
+
+<!-- Slide 2: The Problem -->
+<section class="slide-02">
+  <h2>Today's Sellers Are Scattered</h2>
+  <ul style="font-size: 22px; margin-top: 40px;">
+    <li>Etsy for storefront + Stripe for payments + email + spreadsheets</li>
+    <li>Paying 6.5% in Etsy fees on every sale</li>
+    <li>No unified view of customers, orders, or revenue</li>
+    <li>Switching platforms means losing history and customers</li>
+  </ul>
+</section>
+
+<!-- Slide 3: The Solution -->
+<section class="slide-03">
+  <h2>One Dashboard. Total Control.</h2>
+  <ul style="font-size: 22px; margin-top: 40px;">
+    <li><strong>Your branded shop</strong> — Custom URL, seller profile, shop colors</li>
+    <li><strong>Product management</strong> — Upload images, set prices, track inventory</li>
+    <li><strong>Order tracking</strong> — See all orders, update status, communicate with buyers</li>
+    <li><strong>Payments</strong> — Stripe checkout, instant payouts, no platform fees</li>
+  </ul>
+</section>
+
+<!-- Slide 4: MVP Features (20) -->
+<section class="slide-04">
+  <h2>What Ships This Month</h2>
+  <div class="feature-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+    <div class="feature-card">
+      <h3>Seller Signup</h3>
+      <p>Magic link auth, no password required. 30 seconds to get started.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Shop Creation</h3>
+      <p>Pick a name, get your unique URL. Fully branded in minutes.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Product Upload</h3>
+      <p>Add products with images, prices, and categories. Bulk import via CSV.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Shop Storefront</h3>
+      <p>Customers browse, filter by category, add to cart. No login required.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Stripe Checkout</h3>
+      <p>Secure payments handled by Stripe. Your shop, your brand.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Order Dashboard</h3>
+      <p>See all orders. Update status from pending to shipped with tracking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 5: Platform Benefits -->
+<section class="slide-05">
+  <h2>Built for Sellers Who Want Better</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>💰 Keep Your Revenue</h3>
+      <p>$0 platform fees. Only Stripe's standard 2.9% + 30¢. That's it.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🚀 Launch This Week</h3>
+      <p>From zero to live storefront in under 30 minutes. No technical skills required.</p>
+    </div>
+    <div class="feature-card">
+      <h3>📧 Own Your Customers</h3>
+      <p>Direct email communication. Build your list. No platform middleman.</p>
+    </div>
+    <div class="feature-card">
+      <h3>📊 See Your Data</h3>
+      <p>Total revenue, order history, top products. Your business in one place.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 6: The Roadmap (Sneak Peek) -->
+<section class="slide-06">
+  <h2>What Comes Next</h2>
+  <ul style="font-size: 20px; margin-top: 40px;">
+    <li><strong>Q2:</strong> Seller messaging, discount codes, advanced inventory, analytics</li>
+    <li><strong>Q3:</strong> Seller billing dashboard, onboarding videos, live chat support</li>
+    <li><strong>Q4:</strong> Zapier integrations, team collaboration, returns management</li>
+  </ul>
+  <p style="margin-top: 48px; font-size: 18px; color: #64748B;">Every feature built on feedback from real sellers running real businesses.</p>
+</section>
+
+<!-- Slide 7: Social Proof -->
+<section class="slide-07">
+  <h2>Trusted by Sellers</h2>
+  <div style="margin-top: 60px;">
+    <div class="metric">
+      <div class="metric-value">50+</div>
+      <div class="metric-label">Beta Users</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">$500K+</div>
+      <div class="metric-label">Monthly GMV</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">98%</div>
+      <div class="metric-label">Satisfaction</div>
+    </div>
+  </div>
+  <p style="margin-top: 60px; font-size: 18px;">"Finally, a platform built for me, not for the marketplace."</p>
+  <p style="font-size: 16px; color: #64748B;">— Amira, Handmade Jewelry Seller</p>
+</section>
+
+<!-- Slide 8: CTA -->
+<section class="slide-08">
+  <h1>Ready to Own Your Shop?</h1>
+  <p class="subtitle" style="color: #FAF9F7;">Start your free trial today. No credit card required.</p>
+  <button class="cta-button">Get Started Now</button>
+  <p style="margin-top: 48px; font-size: 18px;">Or learn more at solo-shop.com</p>
+</section>
+
+<div class="controls">
+  Use arrow keys to navigate · Slide <span id="slide-num">1</span> of 8
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 8;
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' && currentSlide < totalSlides) {
+      currentSlide++;
+      scroll();
+    } else if (e.key === 'ArrowLeft' && currentSlide > 1) {
+      currentSlide--;
+      scroll();
+    }
+  });
+  
+  function scroll() {
+    const sections = document.querySelectorAll('section');
+    sections[(currentSlide - 1)].scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('slide-num').textContent = currentSlide;
+  }
+</script>
+
+</body>
+</html>

@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button'
 import { CartButton } from '@/components/CartButton'
 import CategoryFilter from './CategoryFilter'
 import SortDropdown from './SortDropdown'
+import { formatPrice, type Currency } from '@/lib/currency'
 
 export default async function ShopPage({
   params,
@@ -60,6 +61,9 @@ export default async function ShopPage({
   // FR-33: Apply custom branding colors
   const primaryColor = shop.primaryColor || '#3B4C63';
   const accentColor = shop.accentColor || '#10B981';
+  
+  // Get shop currency for price formatting
+  const shopCurrency = (shop.currency || 'USD') as Currency;
 
   return (
     <div className="min-h-screen bg-white">
@@ -183,7 +187,7 @@ export default async function ShopPage({
                       </h3>
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-lg font-bold text-charcoal">
-                          ${(product.price / 100).toFixed(2)}
+                          {formatPrice(product.price, shopCurrency)}
                         </p>
                         {product.category && (
                           <span className="text-xs px-2 py-1 bg-whisper text-slate rounded font-medium">
