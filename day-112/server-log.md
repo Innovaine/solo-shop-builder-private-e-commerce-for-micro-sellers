@@ -563,3 +563,20 @@ STDOUT:
 {"status":"ok","timestamp":"2026-05-21T13:48:28.254Z","responseTime":"300ms","checks":{"database":{"status":"ok","responseTime":"52ms"},"email":{"status":"ok","responseTime":"248ms"}}} - Health check OK
 ```
 Full output: [`server-runs/2026-05-21T13-48-27-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log`](server-runs/2026-05-21T13-48-27-www.soloshopbox.com-curl--sf-https-www.soloshopbox.com-api-h-1.log)
+
+## 2026-05-21T13:48:51.436Z — Priya ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a8ecc5c` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as tester (✓ exit 0, 2450ms)
+```
+curl -sI https://www.soloshopbox.com/ | head -5
+```
+STDOUT:
+```
+HTTP/2 200 
+cache-control: s-maxage=31536000, stale-while-revalidate
+content-type: text/html; charset=utf-8
+date: Thu, 21 May 2026 13:48:51 GMT
+etag: "dkl8vpflxw88h"
+```
+Full output: [`server-runs/2026-05-21T13-48-51-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log`](server-runs/2026-05-21T13-48-51-www.soloshopbox.com-curl--sI-https-www.soloshopbox.com-head--1.log)
