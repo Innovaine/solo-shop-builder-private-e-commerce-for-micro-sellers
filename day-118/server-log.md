@@ -626,3 +626,124 @@ lrwxrwxrwx  1 root root   40 May 21 18:33 schema-sync-check -> /opt/qadar-runtim
 lrwxrwxrwx  1 root root   37 May 21 18:33 standards-scan -> /opt/qadar-runtime/bin/standards-scan
 ```
 Full output: [`server-runs/2026-05-21T19-08-07-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-08-07-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:08:34.674Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5a0de09` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2339ms) _(showing tail — full 3,557B stdout + 0B stderr)_
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json 2>&1 | head -200
+```
+STDOUT:
+```
+…     "shopId",
+      "customerEmail",
+      "customerName",
+      "status",
+      "total",
+      "stripePaymentId",
+      "trackingUrl",
+      "trackingId",
+      "metadata",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "items"
+    ],
+    "OrderItem": [
+      "id",
+      "orderId",
+      "productId",
+      "productTitle",
+      "price",
+      "quantity",
+      "order"
+    ],
+    "OrderHistory": [
+      "id",
+      "orderId",
+      "statusFrom",
+      "statusTo",
+      "note",
+      "createdAt"
+    ],
+    "Webhook": [
+      "id",
+      "stripeEventId",
+      "eventType",
+      "payload",
+      "status",
+      "receivedAt",
+      "processedAt",
+      "createdAt"
+    ]
+  },
+  "drift": [
+    {
+      "interface": "ProductAnalytics",
+      "kind": "interface",
+      "file": "api/analytics/route.ts",
+      "line": 10,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "id",
+        "title",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+        "description",
+        "price",
+        "imageUrl",
+        "category",
+        "stock",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+    {
+      "interface": "ProductAnalytics",
+      "kind": "interface",
+      "file": "components/AnalyticsCards.tsx",
+      "line": 12,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "id",
+        "title",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+        "description",
+        "price",
+        "imageUrl",
+        "category",
+        "stock",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+```
+Full output: [`server-runs/2026-05-21T19-08-34-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-08-34-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
