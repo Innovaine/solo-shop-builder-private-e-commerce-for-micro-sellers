@@ -779,3 +779,286 @@ STDOUT:
   "moduleScopeEnv": []
 ```
 Full output: [`server-runs/2026-05-21T19-09-20-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-09-20-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:10:14.906Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5268b30` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✗ exit 1, 2237ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json
+```
+STDOUT:
+```
+{
+  "summary": {
+    "models": 10,
+    "interfaces": 30,
+    "matched": 4,
+    "drift": 4
+  },
+  "models": {
+    "Seller": [
+      "id",
+      "email",
+      "passwordHash",
+      "passwordResetToken",
+      "passwordResetExpires",
+      "createdAt",
+      "updatedAt",
+      "shops",
+      "tokens"
+    ],
+    "Shop": [
+      "id",
+      "name",
+      "slug",
+      "sellerId",
+      "displayName",
+      "publicDescription",
+      "description",
+      "instagramUrl",
+      "facebookUrl",
+      "twitterUrl",
+      "primaryColor",
+      "accentColor",
+      "logoUrl",
+      "logoImageUrl",
+      "tagline",
+      "emailTemplateBody",
+      "status",
+      "currency",
+      "createdAt",
+      "updatedAt",
+      "seller",
+      "products",
+      "orders"
+    ],
+    "Product": [
+      "id",
+      "shopId",
+      "title",
+      "description",
+      "price",
+      "imageUrl",
+      "category",
+      "stock",
+      "status",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "variants",
+      "images"
+    ],
+    "ProductImage": [
+      "id",
+      "productId",
+      "imageUrl",
+      "displayOrder",
+      "createdAt",
+      "product"
+    ],
+    "ProductVariant": [
+      "id",
+      "productId",
+      "name",
+      "value",
+      "price",
+      "stock",
+      "sku",
+      "createdAt",
+      "updatedAt",
+      "product"
+    ],
+    "AuthToken": [
+      "id",
+      "token",
+      "sellerId",
+      "expiresAt",
+      "used",
+      "createdAt",
+      "seller"
+    ],
+    "Order": [
+      "id",
+      "shopId",
+      "customerEmail",
+      "customerName",
+      "status",
+      "total",
+      "stripePaymentId",
+      "trackingUrl",
+      "trackingId",
+      "metadata",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "items"
+    ],
+    "OrderItem": [
+      "id",
+      "orderId",
+      "productId",
+      "productTitle",
+      "price",
+      "quantity",
+      "order"
+    ],
+    "OrderHistory": [
+      "id",
+      "orderId",
+      "statusFrom",
+      "statusTo",
+      "note",
+      "createdAt"
+    ],
+    "Webhook": [
+      "id",
+      "stripeEventId",
+      "eventType",
+      "payload",
+      "status",
+      "receivedAt",
+      "processedAt",
+      "createdAt"
+    ]
+  },
+  "drift": [
+    {
+      "interface": "ProductAnalytics",
+      "kind": "interface",
+      "file": "api/analytics/route.ts",
+      "line": 10,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "id",
+        "title",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+        "description",
+        "price",
+        "imageUrl",
+        "category",
+        "stock",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+    {
+      "interface": "ProductAnalytics",
+      "kind": "interface",
+      "file": "components/AnalyticsCards.tsx",
+      "line": 12,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "id",
+        "title",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+        "description",
+        "price",
+        "imageUrl",
+        "category",
+        "stock",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+    {
+      "interface": "ProductAnalytics",
+      "kind": "interface",
+      "file": "dashboard/analytics/page.tsx",
+      "line": 10,
+      "matchedPrismaModel": "Product",
+      "interfaceFields": [
+        "id",
+        "title",
+        "totalQuantity",
+        "totalRevenue"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "title",
+        "description",
+        "price",
+        "imageUrl",
+        "category",
+        "stock",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "variants",
+        "images"
+      ],
+      "fieldsNotInPrisma": [
+        "totalQuantity",
+        "totalRevenue"
+      ]
+    },
+    {
+      "interface": "OrderCount",
+      "kind": "interface",
+      "file": "dashboard/orders/page.tsx",
+      "line": 25,
+      "matchedPrismaModel": "Order",
+      "interfaceFields": [
+        "paid",
+        "in_progress",
+        "shipped",
+        "delivered"
+      ],
+      "prismaFields": [
+        "id",
+        "shopId",
+        "customerEmail",
+        "customerName",
+        "status",
+        "total",
+        "stripePaymentId",
+        "trackingUrl",
+        "trackingId",
+        "metadata",
+        "createdAt",
+        "updatedAt",
+        "shop",
+        "items"
+      ],
+      "fieldsNotInPrisma": [
+        "paid",
+        "in_progress",
+        "shipped",
+        "delivered"
+      ]
+    }
+  ]
+}
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-21T19-10-14-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-10-14-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
