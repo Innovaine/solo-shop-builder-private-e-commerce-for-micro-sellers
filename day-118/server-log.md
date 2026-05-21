@@ -171,3 +171,12 @@ reviewer  730459  0.0  0.0 1256920 30972 ?       Sl   May15   1:31 /usr/libexec/
 engineer  753904  0.0  0.0 2032048 29268 ?       Sl   May15   0:10 docker compose up
 ```
 Full output: [`server-runs/2026-05-21T18-47-55-www.soloshopbox.com-ps-aux-grep-docker-grep--v-grep-head--5-1.log`](server-runs/2026-05-21T18-47-55-www.soloshopbox.com-ps-aux-grep-docker-grep--v-grep-head--5-1.log)
+
+## 2026-05-21T18:48:40.031Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a658fe7` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 12540ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && docker compose down
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
