@@ -74,3 +74,19 @@ Fast-forward
 -rw-rw-r-- 1 engineer engineer 1275 May 18 17:11 package.json
 ```
 Full output: [`server-runs/2026-05-21T00-50-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-50-59-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:51:28.739Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6d32171` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2033ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers
+nohup docker compose build > /tmp/app-build.log 2>&1 &
+echo $! > /tmp/app-build.pid
+echo "Started build, PID=$(cat /tmp/app-build.pid)"
+```
+STDOUT:
+```
+Started build, PID=2149800
+```
+Full output: [`server-runs/2026-05-21T00-51-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-51-28-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
