@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Sarah's Jewelry Seller Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #F9FAFB;
+      color: #1F2937;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .shop-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .menu-btn {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #3B4C63;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: white;
+      padding: 16px 24px;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-text h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    .header-text p {
+      font-size: 13px;
+      color: #64748B;
+    }
+    .add-btn {
+      background: #10B981;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .add-btn:hover {
+      background: #059669;
+    }
+
+    /* Search & Filters */
+    .search-box {
+      background: white;
+      padding: 12px 24px;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      gap: 8px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: #3B4C63;
+      box-shadow: 0 0 0 2px rgba(59, 76, 99, 0.1);
+    }
+    .filter-icon {
+      background: transparent;
+      border: 1px solid #E2E8F0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #3B4C63;
+      font-size: 14px;
+    }
+
+    /* Products List */
+    main {
+      padding: 12px;
+    }
+    .product-card {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Product Thumbnail */
+    .product-thumb {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    /* Product Info */
+    .product-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product-top {
+      margin-bottom: 8px;
+    }
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .product-meta {
+      display: flex;
+      gap: 8px;
+      font-size: 12px;
+      color: #64748B;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* Product Status & Price */
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .product-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-draft {
+      background: #F3F4F6;
+      color: #6B7280;
+    }
+    .badge-published {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+    .badge-low-stock {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    /* Actions */
+    .product-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .action-btn {
+      flex: 1;
+      background: transparent;
+      border: 1px solid #E2E8F0;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      color: #3B4C63;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+    }
+    .action-btn.delete {
+      color: #DC2626;
+      border-color: #FEE2E2;
+    }
+    .action-btn.delete:hover {
+      background: #DC2626;
+      border-color: #DC2626;
+      color: white;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      background: white;
+      border-radius: 8px;
+      margin: 12px;
+    }
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .empty-text {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 16px;
+    }
+    .empty-btn {
+      background: #10B981;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .empty-btn:hover {
+      background: #059669;
+    }
+
+    /* Footer */
+    footer {
+      background: white;
+      border-top: 1px solid #E2E8F0;
+      padding: 24px;
+      text-align: center;
+      color: #64748B;
+      font-size: 12px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="shop-title">Sarah's Jewelry</div>
+    <button class="menu-btn">☰</button>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-text">
+      <h1>Products</h1>
+      <p>8 products · 2 drafts</p>
+    </div>
+    <button class="add-btn">+ Add Product</button>
+  </div>
+
+  <!-- Search & Filters -->
+  <div class="search-box">
+    <input type="text" class="search-input" placeholder="Search products...">
+    <button class="filter-icon">⚙️</button>
+  </div>
+
+  <!-- Products List -->
+  <main>
+    <!-- Product 1: Published -->
+    <div class="product-card">
+      <div class="product-thumb">💎</div>
+      <div class="product-info">
+        <div class="product-top">
+          <div class="product-name">Gold Minimalist Necklace</div>
+          <div class="product-meta">
+            <div class="meta-item">📊 24 sold</div>
+            <div class="meta-item">⭐ 4.8</div>
+            <div class="meta-item">📦 12 left</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <span class="product-price">$45.00</span>
+          <span class="status-badge badge-published">Published</span>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn">Edit</button>
+          <button class="action-btn">View</button>
+          <button class="action-btn delete">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2: Published -->
+    <div class="product-card">
+      <div class="product-thumb">💎</div>
+      <div class="product-info">
+        <div class="product-top">
+          <div class="product-name">Pearl Stud Earrings</div>
+          <div class="product-meta">
+            <div class="meta-item">📊 18 sold</div>
+            <div class="meta-item">⭐ 4.6</div>
+            <div class="meta-item">📦 5 left</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <span class="product-price">$32.00</span>
+          <span class="status-badge badge-low-stock">Low Stock</span>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn">Edit</button>
+          <button class="action-btn">View</button>
+          <button class="action-btn delete">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3: Published -->
+    <div class="product-card">
+      <div class="product-thumb">💍</div>
+      <div class="product-info">
+        <div class="product-top">
+          <div class="product-name">Handmade Silver Ring</div>
+          <div class="product-meta">
+            <div class="meta-item">📊 12 sold</div>
+            <div class="meta-item">⭐ 4.9</div>
+            <div class="meta-item">📦 28 left</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <span class="product-price">$28.00</span>
+          <span class="status-badge badge-published">Published</span>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn">Edit</button>
+          <button class="action-btn">View</button>
+          <button class="action-btn delete">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4: Draft -->
+    <div class="product-card">
+      <div class="product-thumb" style="background: #F9FAFB; border: 1px dashed #E2E8F0;">?</div>
+      <div class="product-info">
+        <div class="product-top">
+          <div class="product-name">Emerald Statement Brooch</div>
+          <div class="product-meta">
+            <div class="meta-item">🔄 Never published</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <span class="product-price">$62.00</span>
+          <span class="status-badge badge-draft">Draft</span>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn">Edit</button>
+          <button class="action-btn">Publish</button>
+          <button class="action-btn delete">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5: Published -->
+    <div class="product-card">
+      <div class="product-thumb">💍</div>
+      <div class="product-info">
+        <div class="product-top">
+          <div class="product-name">Ruby Vintage Pendant</div>
+          <div class="product-meta">
+            <div class="meta-item">📊 22 sold</div>
+            <div class="meta-item">⭐ 4.7</div>
+            <div class="meta-item">📦 8 left</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <span class="product-price">$85.00</span>
+          <span class="status-badge badge-published">Published</span>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn">Edit</button>
+          <button class="action-btn">View</button>
+          <button class="action-btn delete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Showing 5 of 8 products. <a href="#" style="color: #3B4C63; text-decoration: none;">Load more</a></p>
+  </footer>
+</body>
+</html>

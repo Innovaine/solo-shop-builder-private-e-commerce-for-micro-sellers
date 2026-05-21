@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders — Sarah's Jewelry Seller Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+      background-color: #F9FAFB;
+      color: #1F2937;
+    }
+
+    /* Header / Navigation */
+    header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .shop-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .menu-btn {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #3B4C63;
+    }
+
+    /* Breadcrumb / Section Title */
+    .page-header {
+      background: white;
+      padding: 16px 24px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    /* Filters & Actions */
+    .filters {
+      background: white;
+      padding: 12px 24px;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-btn {
+      background: white;
+      border: 1px solid #E2E8F0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #64748B;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .filter-btn:hover {
+      border-color: #3B4C63;
+      color: #3B4C63;
+    }
+    .filter-btn.active {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+    }
+
+    /* Orders List */
+    main {
+      padding: 12px;
+    }
+    .order-card {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .order-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Order Header */
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 16px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .order-id-section {
+      flex: 1;
+    }
+    .order-id {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 4px;
+    }
+    .order-date {
+      font-size: 12px;
+      color: #94A3B8;
+    }
+    .order-status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .status-pending {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+    .status-processing {
+      background: #DBEAFE;
+      color: #0C4A6E;
+    }
+    .status-shipped {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+    .status-delivered {
+      background: #E0E7FF;
+      color: #312E81;
+    }
+
+    /* Order Body */
+    .order-body {
+      padding: 16px;
+    }
+    .order-customer {
+      margin-bottom: 12px;
+    }
+    .customer-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 2px;
+    }
+    .customer-email {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    /* Order Items */
+    .order-items {
+      margin-bottom: 12px;
+    }
+    .item-preview {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 4px;
+    }
+    .item-count {
+      font-size: 12px;
+      color: #94A3B8;
+    }
+
+    /* Order Total & Actions */
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid #E2E8F0;
+    }
+    .order-total {
+      font-size: 16px;
+      font-weight: 700;
+      color: #3B4C63;
+    }
+    .order-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .action-btn {
+      background: transparent;
+      border: 1px solid #E2E8F0;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #3B4C63;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+    }
+    .action-btn.primary {
+      background: #3B4C63;
+      color: white;
+      border-color: #3B4C63;
+    }
+    .action-btn.primary:hover {
+      background: #2C3A4F;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      color: #94A3B8;
+    }
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .empty-text {
+      font-size: 14px;
+      color: #64748B;
+    }
+
+    /* Footer */
+    footer {
+      background: white;
+      border-top: 1px solid #E2E8F0;
+      padding: 24px;
+      text-align: center;
+      color: #64748B;
+      font-size: 12px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="shop-title">Sarah's Jewelry</div>
+    <button class="menu-btn">☰</button>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">Orders</h1>
+    <p class="page-subtitle">12 orders this month • 3 pending</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Pending</button>
+    <button class="filter-btn">Processing</button>
+    <button class="filter-btn">Shipped</button>
+    <button class="filter-btn">Delivered</button>
+  </div>
+
+  <!-- Orders List -->
+  <main>
+    <!-- Order 1 -->
+    <div class="order-card">
+      <div class="order-header">
+        <div class="order-id-section">
+          <div class="order-id">#ORD-2026-0847</div>
+          <div class="order-date">May 21, 2026</div>
+        </div>
+        <span class="order-status status-pending">Pending</span>
+      </div>
+      <div class="order-body">
+        <div class="order-customer">
+          <div class="customer-name">Emily M.</div>
+          <div class="customer-email">emily@example.com</div>
+        </div>
+        <div class="order-items">
+          <div class="item-preview">Gold Minimalist Necklace × 1</div>
+          <div class="item-count">1 item · 1 SKU</div>
+        </div>
+        <div class="order-footer">
+          <span class="order-total">$45.00</span>
+          <div class="order-actions">
+            <button class="action-btn">View</button>
+            <button class="action-btn primary">Mark Shipped</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order 2 -->
+    <div class="order-card">
+      <div class="order-header">
+        <div class="order-id-section">
+          <div class="order-id">#ORD-2026-0846</div>
+          <div class="order-date">May 20, 2026</div>
+        </div>
+        <span class="order-status status-shipped">Shipped</span>
+      </div>
+      <div class="order-body">
+        <div class="order-customer">
+          <div class="customer-name">Sarah K.</div>
+          <div class="customer-email">sarah@example.com</div>
+        </div>
+        <div class="order-items">
+          <div class="item-preview">Pearl Stud Earrings × 2, Handmade Silver Ring × 1</div>
+          <div class="item-count">3 items · 2 SKUs</div>
+        </div>
+        <div class="order-footer">
+          <span class="order-total">$92.00</span>
+          <div class="order-actions">
+            <button class="action-btn">View</button>
+            <button class="action-btn">Track</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order 3 -->
+    <div class="order-card">
+      <div class="order-header">
+        <div class="order-id-section">
+          <div class="order-id">#ORD-2026-0845</div>
+          <div class="order-date">May 19, 2026</div>
+        </div>
+        <span class="order-status status-delivered">Delivered</span>
+      </div>
+      <div class="order-body">
+        <div class="order-customer">
+          <div class="customer-name">Jessica R.</div>
+          <div class="customer-email">jessica@example.com</div>
+        </div>
+        <div class="order-items">
+          <div class="item-preview">Emerald Statement Brooch × 1</div>
+          <div class="item-count">1 item · 1 SKU</div>
+        </div>
+        <div class="order-footer">
+          <span class="order-total">$62.00</span>
+          <div class="order-actions">
+            <button class="action-btn">View</button>
+            <button class="action-btn">Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order 4 -->
+    <div class="order-card">
+      <div class="order-header">
+        <div class="order-id-section">
+          <div class="order-id">#ORD-2026-0844</div>
+          <div class="order-date">May 18, 2026</div>
+        </div>
+        <span class="order-status status-processing">Processing</span>
+      </div>
+      <div class="order-body">
+        <div class="order-customer">
+          <div class="customer-name">Michael T.</div>
+          <div class="customer-email">michael@example.com</div>
+        </div>
+        <div class="order-items">
+          <div class="item-preview">Gold Minimalist Necklace × 1, Pearl Stud Earrings × 1</div>
+          <div class="item-count">2 items · 2 SKUs</div>
+        </div>
+        <div class="order-footer">
+          <span class="order-total">$77.00</span>
+          <div class="order-actions">
+            <button class="action-btn">View</button>
+            <button class="action-btn primary">Mark Shipped</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Showing 4 of 12 orders. <a href="#" style="color: #3B4C63; text-decoration: none;">Load more</a></p>
+  </footer>
+</body>
+</html>
