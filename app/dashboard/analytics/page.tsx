@@ -6,9 +6,10 @@ import { Card } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { formatPrice, type Currency } from '@/lib/currency';
 
+// Aligns with Prisma Product model (id, title fields) and API response
 interface ProductAnalytics {
-  productId: string;
-  productTitle: string;
+  id: string;
+  title: string;
   totalQuantity: number;
   totalRevenue: number;
 }
@@ -212,7 +213,7 @@ export default function AnalyticsPage() {
                 const isTopSeller = index === 0;
                 return (
                   <div
-                    key={product.productId}
+                    key={product.id}
                     className={`flex items-center justify-between p-4 rounded-lg border ${
                       isTopSeller
                         ? 'bg-emerald/5 border-emerald/20'
@@ -231,7 +232,7 @@ export default function AnalyticsPage() {
                       </div>
                       <div>
                         <div className="font-semibold text-charcoal mb-1">
-                          {product.productTitle}
+                          {product.title}
                           {isTopSeller && (
                             <span className="ml-2 text-xs bg-emerald text-white px-2 py-0.5 rounded">
                               BEST SELLER
