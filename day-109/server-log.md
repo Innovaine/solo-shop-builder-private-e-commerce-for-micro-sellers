@@ -345,3 +345,115 @@ STDOUT:
 src/lib/auth.ts:25:  return getIronSession<SessionData>(cookies(), sessionOptions)
 ```
 Full output: [`server-runs/2026-05-21T00-43-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-43-38-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T00:44:42.249Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `43b9017` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2043ms)
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && schema-sync-check . --json 2>&1 | head -100
+```
+STDOUT:
+```
+{
+  "summary": {
+    "models": 10,
+    "interfaces": 28,
+    "matched": 4,
+    "drift": 4
+  },
+  "models": {
+    "Seller": [
+      "id",
+      "email",
+      "passwordHash",
+      "passwordResetToken",
+      "passwordResetExpires",
+      "createdAt",
+      "updatedAt",
+      "shops",
+      "tokens"
+    ],
+    "Shop": [
+      "id",
+      "name",
+      "slug",
+      "sellerId",
+      "displayName",
+      "publicDescription",
+      "description",
+      "instagramUrl",
+      "facebookUrl",
+      "twitterUrl",
+      "primaryColor",
+      "accentColor",
+      "logoUrl",
+      "logoImageUrl",
+      "tagline",
+      "emailTemplateBody",
+      "status",
+      "currency",
+      "createdAt",
+      "updatedAt",
+      "seller",
+      "products",
+      "orders"
+    ],
+    "Product": [
+      "id",
+      "shopId",
+      "title",
+      "description",
+      "price",
+      "imageUrl",
+      "category",
+      "stock",
+      "status",
+      "createdAt",
+      "updatedAt",
+      "shop",
+      "variants",
+      "images"
+    ],
+    "ProductImage": [
+      "id",
+      "productId",
+      "imageUrl",
+      "displayOrder",
+      "createdAt",
+      "product"
+    ],
+    "ProductVariant": [
+      "id",
+      "productId",
+      "name",
+      "value",
+      "price",
+      "stock",
+      "sku",
+      "createdAt",
+      "updatedAt",
+      "product"
+    ],
+    "AuthToken": [
+      "id",
+      "token",
+      "sellerId",
+      "expiresAt",
+      "used",
+      "createdAt",
+      "seller"
+    ],
+    "Order": [
+      "id",
+      "shopId",
+      "customerEmail",
+      "customerName",
+      "status",
+      "total",
+      "stripePaymentId",
+      "trackingUrl",
+      "trackingId",
+      "metadata",
+```
+Full output: [`server-runs/2026-05-21T00-44-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T00-44-42-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
