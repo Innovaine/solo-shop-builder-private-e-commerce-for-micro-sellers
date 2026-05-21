@@ -1238,3 +1238,106 @@ STDOUT:
       "kind": "api",
 ```
 Full output: [`server-runs/2026-05-21T14-48-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-48-26-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T14:48:48.732Z — Mehrdad ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a39a2a1` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 3160ms) _(showing tail — full 3,487B stdout + 0B stderr)_
+```
+cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && route-validator . --json 2>&1 | grep -A 100 '"broken":'
+```
+STDOUT:
+```
+…/myfatoorah",
+      "kind": "api",
+      "file": "app/api/checkout/myfatoorah/route.ts"
+    },
+    {
+      "route": "/api/checkout",
+      "kind": "api",
+      "file": "app/api/checkout/route.ts"
+    },
+    {
+      "route": "/api/health",
+      "kind": "api",
+      "file": "app/api/health/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/history",
+      "kind": "api",
+      "file": "app/api/orders/[id]/history/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]/refund",
+      "kind": "api",
+      "file": "app/api/orders/[id]/refund/route.ts"
+    },
+    {
+      "route": "/api/orders/[id]",
+      "kind": "api",
+      "file": "app/api/orders/[id]/route.ts"
+    },
+    {
+      "route": "/api/orders/export",
+      "kind": "api",
+      "file": "app/api/orders/export/route.ts"
+    },
+    {
+      "route": "/api/orders",
+      "kind": "api",
+      "file": "app/api/orders/route.ts"
+    },
+    {
+--
+  "broken": [
+    {
+      "file": "app/shop/[slug]/SortDropdown.tsx",
+      "line": 32,
+      "kind": "router",
+      "target": "/shop/${shopSlug}${queryString"
+    },
+    {
+      "file": "app/shop/[slug]/product/[productId]/page.tsx",
+      "line": 70,
+      "kind": "Link",
+      "target": "/shop/${slug"
+    },
+    {
+      "file": "app/shop/[slug]/product/[productId]/page.tsx",
+      "line": 204,
+      "kind": "Link",
+      "target": "/shop/${slug"
+    },
+    {
+      "file": "app/shop/page.tsx",
+      "line": 64,
+      "kind": "Link",
+      "target": "/shop/${shop.slug"
+    }
+  ],
+  "orphans": [
+    {
+      "route": "/auth/reset-password",
+      "kind": "page",
+      "file": "app/auth/reset-password/page.tsx"
+    },
+    {
+      "route": "/auth/verify",
+      "kind": "page",
+      "file": "app/auth/verify/page.tsx"
+    },
+    {
+      "route": "/dashboard/orders/[id]",
+      "kind": "page",
+      "file": "app/dashboard/orders/[id]/page.tsx"
+    },
+    {
+      "route": "/shop/[slug]/product/[productId]",
+      "kind": "page",
+      "file": "app/shop/[slug]/product/[productId]/page.tsx"
+    }
+  ],
+  "methodMismatches": []
+}
+```
+Full output: [`server-runs/2026-05-21T14-48-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T14-48-48-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
