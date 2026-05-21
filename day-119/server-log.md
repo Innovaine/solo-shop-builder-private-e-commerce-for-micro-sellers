@@ -924,3 +924,14 @@ Container not running, will clean in build
 Started build attempt 3, PID=2381634
 ```
 Full output: [`server-runs/2026-05-21T20-32-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log`](server-runs/2026-05-21T20-32-41-www.soloshopbox.com-cd-solo-shop-builder-private-e-commerce--1.log)
+
+## 2026-05-21T20:34:40.681Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c0acd9e` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✗ exec-error: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more), 62230ms)
+```
+sleep 60
+kill -0 $(cat /tmp/build3.pid 2>/dev/null) 2>/dev/null && echo "RUNNING" || echo "DONE"
+tail -100 /tmp/build3.log | grep -E "(Successfully|error|failed|DONE)" | tail -20
+```
+ERROR: Connection timed out (mutating command — not auto-retried; queue it again if you want to try once more)
