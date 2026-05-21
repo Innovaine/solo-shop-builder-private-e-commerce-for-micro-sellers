@@ -612,3 +612,17 @@ src/lib/auth.ts-}
 src/lib/auth.ts-
 ```
 Full output: [`server-runs/2026-05-21T19-06-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-06-23-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
+
+## 2026-05-21T19:08:07.433Z — Vitali ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `af770e4` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as reviewer (✓ exit 0, 2564ms)
+```
+cd /home/reviewer/solo-shop-builder-private-e-commerce-for-micro-sellers && ls -la /usr/local/bin/ | grep -E "schema-sync|standards-scan" || echo "Tools not in /usr/local/bin"
+```
+STDOUT:
+```
+lrwxrwxrwx  1 root root   40 May 21 18:33 schema-sync-check -> /opt/qadar-runtime/bin/schema-sync-check
+lrwxrwxrwx  1 root root   37 May 21 18:33 standards-scan -> /opt/qadar-runtime/bin/standards-scan
+```
+Full output: [`server-runs/2026-05-21T19-08-07-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log`](server-runs/2026-05-21T19-08-07-www.soloshopbox.com-cd-home-reviewer-solo-shop-builder-priva-1.log)
