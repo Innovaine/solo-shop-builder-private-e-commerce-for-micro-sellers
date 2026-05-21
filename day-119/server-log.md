@@ -181,3 +181,48 @@ STDOUT:
 #9 45.23 Unpacking libicu72:amd64 (72.1-3+deb12u1) ...
 ```
 Full output: [`server-runs/2026-05-21T19-45-12-www.soloshopbox.com-ps-aux-grep-2325639-grep--v-grep-1.log`](server-runs/2026-05-21T19-45-12-www.soloshopbox.com-ps-aux-grep-2325639-grep--v-grep-1.log)
+
+## 2026-05-21T19:46:01.188Z — Anil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6fba6d8` so the server's `git pull` will pick it up._
+
+### Command 1 on www.soloshopbox.com as engineer (✓ exit 0, 2278ms)
+```
+ps aux | grep "docker compose build" | grep -v grep || echo "BUILD_COMPLETE"
+tail -100 /tmp/build.log | grep -E "(Successfully built|ERROR|error|failed to solve|npm ERR)" || tail -30 /tmp/build.log
+```
+STDOUT:
+```
+engineer 2325638  0.0  0.0   7740  2064 ?        S    19:44   0:00 bash -c cd ~/solo-shop-builder-private-e-commerce-for-micro-sellers && nohup docker compose build --no-cache > /tmp/build.log 2>&1 & echo $! > /tmp/build.pid echo "Started build without cache, PID=$(cat /tmp/build.pid)"; printf "__QADAR_EXIT__%d" $?
+engineer 2325639  0.0  0.0 2031704 29064 ?       Sl   19:44   0:00 docker compose build --no-cache
+#15 DONE 0.2s
+
+#12 [deps 4/4] RUN npm install
+#12 74.37 npm warn deprecated next@14.2.3: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+#12 75.57 
+#12 75.57 added 504 packages, and audited 505 packages in 1m
+#12 75.57 
+#12 75.57 168 packages are looking for funding
+#12 75.57   run `npm fund` for details
+#12 75.81 
+#12 75.81 9 vulnerabilities (1 moderate, 7 high, 1 critical)
+#12 75.81 
+#12 75.81 To address issues that do not require attention, run:
+#12 75.81   npm audit fix
+#12 75.81 
+#12 75.81 To address all issues (including breaking changes), run:
+#12 75.81   npm audit fix --force
+#12 75.81 
+#12 75.81 Run `npm audit` for details.
+#12 75.82 npm notice
+#12 75.82 npm notice New major version of npm available! 10.8.2 -> 11.15.0
+#12 75.82 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.15.0
+#12 75.82 npm notice To update run: npm install -g npm@11.15.0
+#12 75.82 npm notice
+#12 DONE 76.1s
+
+#16 [builder 3/7] COPY --from=deps /app/node_modules ./node_modules
+#16 DONE 4.0s
+
+#17 [builder 4/7] COPY . .
+```
+Full output: [`server-runs/2026-05-21T19-46-01-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log`](server-runs/2026-05-21T19-46-01-www.soloshopbox.com-ps-aux-grep-docker-compose-build-grep--v-1.log)
