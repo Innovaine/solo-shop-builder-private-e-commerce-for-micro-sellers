@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -156,6 +155,7 @@ model Order {
   
   shop              Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
   items             OrderItem[]
+  history           OrderHistory[]
   
   @@index([shopId])
   @@index([customerEmail])
@@ -187,6 +187,8 @@ model OrderHistory {
   statusTo    String   // New status
   note        String?  @db.Text // Optional note from seller
   createdAt   DateTime @default(now())
+  
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   
   @@index([orderId])
   @@index([createdAt])

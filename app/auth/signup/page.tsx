@@ -12,6 +12,8 @@ import { FormField } from '@/components/ui/FormField'
 
 export default function SignupPage() {
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [usePassword, setUsePassword] = useState(false) // FR-21: Optional password
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -23,10 +25,12 @@ export default function SignupPage() {
     setError('')
 
     try {
+      const body = usePassword ? { email, password } : { email }
+      
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify(body),
       })
 
       const data = await response.json()
@@ -63,6 +67,12 @@ export default function SignupPage() {
 
         {!submitted ? (
           <form onSubmit={handleSubmit}>
+            {!usePassword && (
+              <div className="bg-cream border border-whisper rounded-md p-4 mb-6 text-sm text-slate leading-relaxed">
+                <strong className="text-slate-blue">No password needed.</strong> We&apos;ll send you a magic link via email.
+              </div>
+            )}
+
             <FormField
               label="Email Address"
               type="email"
@@ -75,6 +85,21 @@ export default function SignupPage() {
               autoComplete="email"
             />
 
+            {usePassword && (
+              <FormField
+                label="Password (optional)"
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="At least 8 characters"
+                required={usePassword}
+                autoComplete="new-password"
+                helperText="Choose a strong password with at least 8 characters"
+              />
+            )}
+
             <Button
               type="submit"
               loading={loading}
@@ -82,8 +107,18 @@ export default function SignupPage() {
               size="lg"
               className="w-full"
             >
-              Send Magic Link
+              {usePassword ? 'Sign Up with Password' : 'Send Magic Link'}
             </Button>
+
+            <div className="mt-4 text-center">
+              <button
+                type="button"
+                onClick={() => setUsePassword(!usePassword)}
+                className="text-sm text-slate-blue hover:underline"
+              >
+                {usePassword ? 'Use magic link instead' : 'Set a password instead'}
+              </button>
+            </div>
 
             <div className="mt-6 text-center text-sm text-slate">
               Already have an account? <Link href="/auth/login" className="text-slate-blue font-semibold hover:underline">Sign in</Link>
