@@ -77,8 +77,8 @@ export default function AnalyticsPage() {
   const hasDailyData = analytics && analytics.dailyRevenue && analytics.dailyRevenue.length > 0;
 
   // Calculate max revenue for chart scaling
-  const maxRevenue = hasDailyData
-    ? Math.max(...analytics!.dailyRevenue.map(d => d.revenue))
+  const maxRevenue = hasDailyData && analytics?.dailyRevenue
+    ? Math.max(...analytics.dailyRevenue.map(d => d.revenue))
     : 0;
 
   const goBack = () => {
@@ -152,7 +152,7 @@ export default function AnalyticsPage() {
             
             <div className="bg-cream rounded-lg p-6" style={{ minHeight: '320px' }}>
               <div className="h-64 flex items-end justify-around gap-2">
-                {analytics!.dailyRevenue.map((day, index) => {
+                {analytics?.dailyRevenue?.map((day, index) => {
                   const heightPercent = maxRevenue > 0 ? (day.revenue / maxRevenue) * 100 : 0;
                   const date = new Date(day.date);
                   const dayLabel = date.getDate();
