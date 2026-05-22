@@ -105,7 +105,6 @@
       margin-top: 32px;
       padding-top: 28px;
       border-top: 1px solid #E2E8F0;
-      text-align: left;
     }
 
     .suggestions-title {
@@ -114,18 +113,39 @@
       color: #64748B;
       text-transform: uppercase;
       margin-bottom: 12px;
+      display: block;
+    }
+
+    .suggestions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
     .suggestion-link {
-      display: block;
-      padding: 8px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 12px;
       color: #3B4C63;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      transition: all 0.2s ease;
     }
 
     .suggestion-link:hover {
-      text-decoration: underline;
+      background-color: #FAF9F7;
+      border-color: #3B4C63;
+      transform: translateY(-2px);
+    }
+
+    .suggestion-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
     }
 
     @media (max-width: 640px) {
@@ -160,11 +180,25 @@
     </div>
 
     <div class="suggestions">
-      <div class="suggestions-title">You might be looking for:</div>
-      <a href="/auth/login" class="suggestion-link">→ Sign in to your account</a>
-      <a href="/dashboard" class="suggestion-link">→ Go to your dashboard</a>
-      <a href="/help" class="suggestion-link">→ View help & support</a>
-      <a href="/" class="suggestion-link">→ Return to homepage</a>
+      <span class="suggestions-title">Try these instead:</span>
+      <div class="suggestions-grid">
+        <a href="/auth/login" class="suggestion-link">
+          <span class="suggestion-icon">🔐</span>
+          Sign In
+        </a>
+        <a href="/dashboard" class="suggestion-link">
+          <span class="suggestion-icon">📊</span>
+          Dashboard
+        </a>
+        <a href="/help" class="suggestion-link">
+          <span class="suggestion-icon">❓</span>
+          Help & Support
+        </a>
+        <a href="/" class="suggestion-link">
+          <span class="suggestion-icon">🏠</span>
+          Home
+        </a>
+      </div>
     </div>
   </div>
 </body>
