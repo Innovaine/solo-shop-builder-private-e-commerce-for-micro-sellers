@@ -6,23 +6,7 @@
 import { useState, useEffect } from 'react'
 import { Card } from './ui/Card'
 import { formatPrice, type Currency } from '@/lib/currency'
-
-// ASSUMPTION: Interface aligns with Prisma Product model (id, title)
-// and Order model aggregation (orderCount = count of Order records)
-interface ProductAnalytics {
-  id: string
-  title: string
-  totalQuantity: number
-  totalRevenue: number
-}
-
-interface Analytics {
-  totalRevenue: number
-  orderCount: number
-  productCount: number // FR-157: total products count
-  topProducts: ProductAnalytics[]
-  periodDays: number
-}
+import type { ProductAnalytics, Analytics } from '@/lib/types/analytics'
 
 export default function AnalyticsCards() {
   const [analytics, setAnalytics] = useState<Analytics | null>(null)

@@ -5,27 +5,7 @@ import Header from '@/components/ui/Header';
 import { Card } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { formatPrice, type Currency } from '@/lib/currency';
-
-// Aligns with Prisma Product model (id, title fields) and API response
-interface ProductAnalytics {
-  id: string;
-  title: string;
-  totalQuantity: number;
-  totalRevenue: number;
-}
-
-interface DailyRevenue {
-  date: string;
-  revenue: number;
-}
-
-interface Analytics {
-  totalRevenue: number;
-  orderCount: number;
-  topProducts: ProductAnalytics[];
-  dailyRevenue: DailyRevenue[];
-  periodDays: number;
-}
+import type { ProductAnalytics, DailyRevenue, Analytics } from '@/lib/types/analytics';
 
 export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true);

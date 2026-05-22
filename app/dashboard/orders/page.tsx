@@ -355,20 +355,20 @@ export default function OrdersPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-whisper/50 border-b border-whisper">
+                <thead className="bg-slate-blue/5 border-b-2 border-slate-blue/20">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Order ID</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Customer</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Items</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Total</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-charcoal uppercase">Action</th>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-blue uppercase tracking-wider">Order ID</th>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-blue uppercase tracking-wider">Date</th>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-blue uppercase tracking-wider">Customer</th>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-blue uppercase tracking-wider">Items</th>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-blue uppercase tracking-wider">Total</th>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-blue uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-blue uppercase tracking-wider">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredOrders.map((order) => (
-                    <tr key={order.id} className="border-b border-whisper hover:bg-whisper/20">
+                    <tr key={order.id} className="border-b border-whisper hover:bg-emerald/5 transition-colors duration-150 cursor-pointer">
                       <td className="px-6 py-4 font-semibold text-charcoal">{order.id.substring(0, 8)}</td>
                       <td className="px-6 py-4 text-sm text-slate">{formatDate(order.createdAt)}</td>
                       <td className="px-6 py-4 text-sm text-slate">{order.customerEmail}</td>

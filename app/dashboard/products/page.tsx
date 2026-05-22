@@ -192,31 +192,31 @@ export default function ProductsPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead>
-                  <tr className="border-b border-whisper">
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-charcoal">
+                <thead className="bg-slate-blue/5 border-b-2 border-slate-blue/20">
+                  <tr>
+                    <th className="text-left py-4 px-4 text-xs font-bold text-slate-blue uppercase tracking-wider">
                       Product
                     </th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-charcoal">
+                    <th className="text-left py-4 px-4 text-xs font-bold text-slate-blue uppercase tracking-wider">
                       Category
                     </th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-charcoal">
+                    <th className="text-left py-4 px-4 text-xs font-bold text-slate-blue uppercase tracking-wider">
                       Price
                     </th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-charcoal">
+                    <th className="text-left py-4 px-4 text-xs font-bold text-slate-blue uppercase tracking-wider">
                       Stock
                     </th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-charcoal">
+                    <th className="text-left py-4 px-4 text-xs font-bold text-slate-blue uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="text-right py-3 px-4 text-sm font-semibold text-charcoal">
+                    <th className="text-right py-4 px-4 text-xs font-bold text-slate-blue uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product.id} className="border-b border-whisper hover:bg-cream">
+                    <tr key={product.id} className="border-b border-whisper hover:bg-emerald/5 transition-colors duration-150 cursor-pointer">
                       <td className="py-4 px-4">
                         <div className="flex items-center gap-3">
                           {product.imageUrl ? (
