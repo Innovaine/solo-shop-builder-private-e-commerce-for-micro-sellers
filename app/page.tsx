@@ -15,11 +15,18 @@ export default function HomePage() {
           <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto">
             Your own storefront. No marketplace fees. Just you and your customers.
           </p>
-          <Link href="/auth/login">
-            <Button variant="primary" size="lg" className="text-lg px-8">
-              Start selling today
-            </Button>
-          </Link>
+          <div className="flex gap-4 justify-center items-center">
+            <Link href="/auth/signup">
+              <Button variant="primary" size="lg" className="text-lg px-8">
+                Start selling today
+              </Button>
+            </Link>
+            <Link href="/auth/login">
+              <Button variant="secondary" size="lg" className="text-lg px-8">
+                Sign in
+              </Button>
+            </Link>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mt-20">
@@ -50,9 +57,15 @@ export default function HomePage() {
           <p className="text-white/90 mb-4">
             Built for Etsy resellers, local craftspeople, and micro-sellers who want to own their storefront.
           </p>
-          <Link href="/auth/login" className="text-white font-semibold hover:underline">
-            Create your shop →
-          </Link>
+          <div className="flex gap-6 justify-center items-center">
+            <Link href="/auth/signup" className="text-white font-semibold hover:underline">
+              Create your shop →
+            </Link>
+            <span className="text-white/60">|</span>
+            <Link href="/auth/login" className="text-white/90 hover:text-white hover:underline">
+              Sign in
+            </Link>
+          </div>
         </div>
       </div>
     </div>
