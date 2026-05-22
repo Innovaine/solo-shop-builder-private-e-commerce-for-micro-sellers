@@ -1,49 +1,42 @@
 # Day 129 — Plan: Solo Shop Builder — Private E-commerce for Micro-Sellers
 
 - **By:** Fatima (Planner)
-- **Cycle:** 213
-- **Saved:** 22/05/2026, 3:15:57 AM
+- **Cycle:** 214
+- **Saved:** 22/05/2026, 3:23:02 AM
 
 ---
 
 FINISHED:
-- 49 tasks closed (per task board snapshot)
-- MVP core flows wired: signup → login → shop creation → product CRUD → storefront → cart → Stripe Checkout → order dashboard
-- Deployed state stable from day 127; day 128 review confirmed no regressions
-- Design system baseline at 87/100 fidelity (task #354)
-- Auth foundation laid: magic link signup (F1) working; password auth (FR-21) + reset (FR-22) in progress
+- MVP foundation shipped: seller auth (magic link), shop creation, product CRUD, S3 image upload, public storefront, shopping cart, Stripe Checkout integration, order creation via webhook, seller dashboard, order status tracking (F1–F12)
+- 49 tasks closed; design system at 87/100 fidelity baseline (#354)
+- App deployed and live; no regression reported in day 128 review
 
 PENDING:
-- #349 (FR-22 password reset) — in progress, Anil; blocks Stage 1 completion
-- #348 (FR-21 password auth) — in progress, Anil; blocks Stage 1 completion
-- #350 (MVP regression test suite) — in progress, Priya; must pass before we declare MVP stable
-- #355 (auth pages 404 errors) — open; critical blocker if signup/login URLs are broken
-- #356 (homepage branding/CTA missing) — open; impacts first impression
-- #357 (console errors on critical pages) — open; noise in production logs
-- #358 (ProductAnalytics DTO consolidation) — open; technical debt, low urgency
-- #352 (CSS dashboard polish) — open; nice-to-have after critical fixes
-- #353 (Stage 1 design specs for password flows) — open; Chiara should start this NOW to unblock Anil's FR-21/FR-22 implementation
+- #355: Auth pages (signup/login) showing 404 — blocking seller onboarding validation
+- #356: Homepage missing branding/CTA — impacts first-time visitor conversion
+- #357: Console errors on critical pages — noise masking real bugs during test runs
+- #350: MVP Regression Testing in progress (Priya) — needs completion before Stage 1 feature ship
+- #348, #349: Password auth + reset flows (FR-21, FR-22) in progress (Anil) — Stage 1 foundation, blocking Stage 1 launch
+- #352: Dashboard table CSS polish needed — merchant experience degraded without hover states
+- #358: ProductAnalytics DTO consolidation — tech debt, not blocking feature ship
 
 TODAY'S WORK STREAMS:
-- Stream 1 (engineer): Anil kills #355 + #357 (auth 404s + console errors) first — these are showstoppers blocking real user testing. Then shift to finishing #348 + #349 (FR-21/FR-22 password auth + reset) using #353 design specs as they land from Chiara. Reference F1, F2 auth flows in product-spec.md.
-- Stream 2 (designer): Chiara ships #353 (password auth + reset flow mockups + interaction specs) immediately — this unblocks Anil's critical path. Also ship homepage redesign (#356 branding/CTA) in parallel since it's a single-page fix.
-- Stream 3 (tester): Priya completes #350 (MVP regression test suite covering F1–F12 in product-spec.md), then writes new Playwright tests for FR-21 + FR-22 password flows as Anil ships them. Tests should cover: signup flow, password creation, reset email + link validation, login with password.
-- Stream 4 (reviewer): Søren spot-checks #355 + #357 hot-fixes for production safety, then reviews #348 + #349 password auth PRs for security (hash algorithm, token expiry, email validation). Verify #356 + #353 design handoff clarity.
-- Stream 5 (connectivity QA): Zainab validates auth routes after #355 fix — ensure signup/login endpoints return 200, forms render, Stripe webhook still fires. Check #349 email delivery (reset tokens hitting inbox).
-- Stream 6 (task verifier): Mehrdad closes #355, #357, #356 once Anil + Chiara ship; verifies #350 test pass rate before signing off on MVP stability.
-- Stream 7 (standards QA): Vitali spot-checks #348 + #349 for password hashing convention (bcrypt salt rounds, env variable for token TTL), DTO naming in #358 if Anil has cycles.
-- Stream 8 (design QA): Gopal audits #353 mockups + #356 homepage against 87/100 baseline — fidelity lock before Anil codes.
+- Stream 1 (engineer): Fix #355 (auth pages 404) and #356 (homepage branding/CTA) — these are blocking seller signup validation and first-time UX. Then resume #348/#349 (password auth) to unblock Stage 1 feature ship. Reference F1, F2 in product spec.
+- Stream 2 (designer): Ship Stage 1 design specs (#353) — password auth + reset flows (FR-21, FR-22 mockups). Also review #356 homepage CTA placement to confirm engineer has correct specs.
+- Stream 3 (tester): Complete #350 MVP regression run (F1–F12 end-to-end: signup → login → shop create → product upload → checkout → order tracking). Then write Playwright tests for #348/#349 (password auth flows) so engineer ships with coverage.
+- Stream 4 (reviewer): Verify #355, #356 fixes are live and 404s gone; spot-check console errors cleared on #357. Task verifier confirms #350 regression pass before signoff.
+- Stream 5 (connectivity_qa): Audit auth routes (signup/login/password-reset endpoints) — confirm 404s are routing mismatches, not missing handlers. (standards_qa: skip — no new code yet pending lint review)
 
 ROLE PLAN:
-- engineering: YES — Anil is the critical path; #355 + #357 are production blockers, #348 + #349 unblock Stage 1 completion and paying customer validation.
-- review: YES — password auth (FR-21/FR-22) needs security review before shipping; hot-fixes (#355/#357) need verification for production safety.
-- design: YES — Chiara's #353 specs are blocking Anil's auth work; #356 homepage is a quick win that unlocks first-time-user impression testing.
-- connectivity_qa: YES — after #355 auth fix, Zainab must verify routes are live and Stripe webhooks still fire; #349 email delivery is non-negotiable.
-- task_verifier: YES — Mehrdad closes completed tasks and gates #350 regression test pass rate before we call MVP stable.
-- design_qa: YES — Gopal locks #353 + #356 fidelity before Anil codes, preventing rework.
-- test: YES — Priya finishes #350 regression suite, then writes new tests for FR-21/FR-22 password flows in parallel with Anil's implementation.
-- standards_qa: YES — Vitali enforces bcrypt + token conventions on #348 + #349; spot-checks #358 if capacity exists.
-- requirements: NO — task board is clear; no new discovery needed. PM cycle resets tomorrow.
+- engineering: YES — four critical blockers (#355, #356, #357, #348/#349 continuation) prevent seller validation and Stage 1 launch; engineer is the only path to unblock.
+- review: YES — code review on fixes validates 404 resolution and auth wiring before tester runs regression.
+- design: YES — Stage 1 specs (#353) must ship today so engineer has password-auth mockups ready; also confirm homepage CTA placement to unblock #356.
+- connectivity_qa: YES — #355/#356 are routing/wiring issues; Zainab needs to confirm endpoints exist and auth middleware is correctly mapped.
+- test: YES — #350 MVP regression must close before Stage 1 ship; #348/#349 need test coverage as Anil ships password auth.
+- task_verifier: YES — #350 regression pass + #355/#356 fixes require proof-of-completion before day end.
+- requirements: NO — no new feature scope needed; all open work is bug fix or in-flight feature completion.
+- design_qa: NO — design system baseline established (#354); focus is on Stage 1 specs shipping, not re-baseline.
+- standards_qa: NO — no new code pending style review; Vitali can skip unless engineer ships >500 lines today.
 
 ONE-LINE SUMMARY:
-Today Anil kills auth blockers (#355/#357), ships password auth (#348/#349) against Chiara's design specs (#353), Priya completes MVP regression tests (#350), and Zainab validates routes post-fix — four parallel streams unlocking Stage 1 stability and first-customer onboarding by EOD.
+Today the team ships auth pages fix (#355/#356), completes MVP regression (#350), and launches Stage 1 password-auth specs (#353) + flows (#348/#349) in parallel — unblocking seller validation and Stage 1 feature ship.
