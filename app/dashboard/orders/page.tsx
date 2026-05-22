@@ -382,9 +382,9 @@ export default function OrdersPage() {
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <a href={`/dashboard/orders/${order.id}`} className="text-emerald hover:underline font-semibold text-sm">
+                        <Link href={`/dashboard/orders/${order.id}`} className="text-emerald hover:underline font-semibold text-sm">
                           View
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   ))}

@@ -47,12 +47,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: white;
     }
     
     .card-header h2 {
       font-size: 18px;
       font-weight: 600;
       margin: 0;
+      color: #1F2937;
+    }
+
+    .card-header-meta {
+      font-size: 12px;
+      color: #64748B;
+      font-weight: 500;
     }
     
     .empty-state {
@@ -129,14 +137,34 @@
     .status-timeline {
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 3px;
       font-size: 11px;
       color: #94A3B8;
-      margin-top: 4px;
+      margin-top: 6px;
     }
-    .timeline-dot { width: 6px; height: 6px; border-radius: 50%; background: #CBD5E1; }
-    .timeline-dot.active { background: #10B981; }
-    .timeline-dot.pending { background: #FCD34D; }
+    .timeline-dot { 
+      width: 8px; 
+      height: 8px; 
+      border-radius: 50%; 
+      background: #E5E7EB;
+      transition: all 0.2s ease;
+    }
+    .timeline-dot.active { 
+      background: #10B981;
+      box-shadow: 0 0 3px rgba(16, 185, 129, 0.4);
+    }
+    .timeline-dot.pending { 
+      background: #FCD34D;
+      opacity: 0.6;
+    }
+    .status-timeline-label {
+      font-size: 10px;
+      color: #94A3B8;
+      margin-top: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+    }
     
     /* Actions */
     .action-button {
@@ -297,7 +325,7 @@
             <td>Sarah Johnson</td>
             <td>Ceramic Bowl (1)</td>
             <td><strong>$145.00</strong></td>
-            <td><span class="badge badge-shipped">Shipped</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span></div></td>
+            <td><span class="badge badge-shipped">Shipped</span><div class="status-timeline"><span class="timeline-dot active" title="Paid"></span><span class="timeline-dot active" title="In Progress"></span><span class="timeline-dot active" title="Shipped"></span><span class="timeline-dot active" title="Delivered"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
@@ -307,7 +335,7 @@
             <td>Michael Chen</td>
             <td>Coffee Mug (2), Plate Set (1)</td>
             <td><strong>$380.00</strong></td>
-            <td><span class="badge badge-in-progress">In Progress</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot pending"></span></div></td>
+            <td><span class="badge badge-in-progress">In Progress</span><div class="status-timeline"><span class="timeline-dot active" title="Paid"></span><span class="timeline-dot active" title="In Progress"></span><span class="timeline-dot active" title="Shipped"></span><span class="timeline-dot pending" title="Pending: Delivered"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
@@ -317,7 +345,7 @@
             <td>Emma Rodriguez</td>
             <td>Dinner Plate Set (1)</td>
             <td><strong>$520.00</strong></td>
-            <td><span class="badge badge-paid">Paid</span><div class="status-timeline"><span class="timeline-dot active"></span><span class="timeline-dot active"></span><span class="timeline-dot pending"></span><span class="timeline-dot pending"></span></div></td>
+            <td><span class="badge badge-paid">Paid</span><div class="status-timeline"><span class="timeline-dot active" title="Paid"></span><span class="timeline-dot active" title="In Progress"></span><span class="timeline-dot pending" title="Pending: Shipped"></span><span class="timeline-dot pending" title="Pending: Delivered"></span></div></td>
             <td><a href="#" class="action-button">View</a></td>
           </tr>
           <tr>
