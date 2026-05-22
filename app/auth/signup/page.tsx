@@ -96,7 +96,7 @@ export default function SignupPage() {
                 placeholder="At least 8 characters"
                 required={usePassword}
                 autoComplete="new-password"
-                helperText="Choose a strong password with at least 8 characters"
+                helpText="Choose a strong password with at least 8 characters"
               />
             )}
 
